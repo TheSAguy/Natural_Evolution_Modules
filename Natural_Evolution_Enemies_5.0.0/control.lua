@@ -34,59 +34,38 @@ local filters = {["small-alien-artifact"] = 1,
 				 }
 
 
---- Artifact Collector
-function ticker()
-	if global.ArtifactCollectors ~= nil then
-		if global.ticks == 0 or global.ticks == nil then
-			global.ticks = 59
-			processCollectors()
-		else
-			global.ticks = global.ticks - 1
-		end
-	else
-		game.on_event(defines.events.on_tick, nil)
+
+
+game.on_init(function()
+	if global.itemCollectors ~= nil then
+		game.on_event(defines.events.on_tick, ticker)
 	end
-end
-
-
+end)
 game.on_load(function() On_Load() end)
 
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+game.on_event({defines.events.on_built_entity,defines.events.on_robot_built_entity},function() On_Remove(event) end)
 
 				 
 function On_Load()
-
  -- Make sure all recipes and technologies are up to date.
 	for k,force in pairs(game.forces) do 
 		force.reset_recipes()
 		force.reset_technologies() 
 	end
- 
-	--- Artifact Collector
-	if not loaded then
-		loaded = true
-		
-		if global.ArtifactCollectors ~= nil then
-			game.on_event(defines.events.on_tick, ticker)
-		end
-	end
-
-end
-
-
-game.on_init(function()
-	loaded = true
-	
 	if global.itemCollectors ~= nil then
 		game.on_event(defines.events.on_tick, ticker)
 	end
-end)
+end
+
+
+
+
 
 ---------------------------------------------
 
 function On_Built(event)
-
 	--- Artifact Collector	
 	local newCollector
 	
@@ -106,7 +85,38 @@ function On_Built(event)
 	
 end
 
+function On_Remove(event)
+    --Artifact collector
+    if event.entity.name=="Artifact-collector" then
+        local artifacts=global.ArtifactCollectors;
+        for i=1,#artifacts do
+            if artifacts[i]==event.entity then
+                table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
+                return
+            end
+        end
+        if #artifacts==0 then
+        --and here artifacts=nil would not cut it.
+            global.ArtifactCollectors=nil--I'm not sure this wins much, on it's own
+            game.on_event(defines.events.on_tick, nil);
+            --but it's  surelly better done here than during on_tick
+        end
+    end
+end
 
+--- Artifact Collector
+function ticker()
+	if global.ArtifactCollectors ~= nil then
+		if global.ticks == 0 or global.ticks == nil then
+			global.ticks = 59
+			processCollectors()
+		else
+			global.ticks = global.ticks - 1
+		end
+	else
+		game.on_event(defines.events.on_tick, nil)
+	end
+end
 
 --- Artifact Collector
 function processCollectors()
@@ -138,6 +148,7 @@ function processCollectors()
 		end
 	end
 end
+
 
 --
 --- DeBug Messages 
