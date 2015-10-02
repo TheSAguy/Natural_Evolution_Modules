@@ -105,16 +105,9 @@ function On_Remove(event)
 end
 
 --- Artifact Collector
-function ticker()
-	if global.ArtifactCollectors ~= nil then
-		if global.ticks == 0 or global.ticks == nil then
-			global.ticks = 59
-			processCollectors()
-		else
-			global.ticks = global.ticks - 1
-		end
-	else
-		game.on_event(defines.events.on_tick, nil)
+function ticker(event)
+	if event.tick==global.time_to_check then
+		processCollectors()
 	end
 end
 
