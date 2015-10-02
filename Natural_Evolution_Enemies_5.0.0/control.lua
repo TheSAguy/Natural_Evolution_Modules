@@ -7,7 +7,6 @@ require "config"
 
 
 --- Artifact Collector
-local loaded
 local radius = 25
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
@@ -70,8 +69,8 @@ function On_Built(event)
 	local newCollector
 	
 	if event.created_entity.name == "Artifact-collector-area" then
-	local surface = event.created_entity.surface
-    local force = event.created_entity.force
+		local surface = event.created_entity.surface
+    		local force = event.created_entity.force
 		newCollector = surface.create_entity({name = "Artifact-collector", position = event.created_entity.position, force = force})
 		event.created_entity.destroy()
 		
@@ -106,37 +105,32 @@ end
 
 --- Artifact Collector
 function ticker(event)
-	if event.tick==global.time_to_check then
-		processCollectors()
+	--this function provides the smooth handling of all collectors within certain span of time
+	--it requires global.ArtifactCollectors, global.next_check, global.next_collector and global.last_check to do that
+	if event.tick==global.next_check then
+		local collectors=global.ArtifactCollectors
+		for i=global.next_collector,#collectors,interval do
+			ProcessCollector(collectors[i])
+		end
+		global.last_check=global.next_check
+		global.next_check=event.tick+global.time_interval
 	end
 end
 
 --- Artifact Collector
-function processCollectors()
+function ProcessCollector(collector)
+	--This makes collectors collect items.
 	local items
 	local inventory
-	local belt
-	
-	for k,collector in pairs(global.ArtifactCollectors) do
-		if collector.valid then
-			items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
-			
-			if #items > 0 then
-				inventory = collector.get_inventory(chestInventoryIndex)
-				for _,item in pairs(items) do
-				
-			local stack = item.stack
-				if filters[stack.name] == 1 and inventory.can_insert(stack) then
-					 inventory.insert(stack)
-					 item.destroy()
-					 break
-					end
-				end
-			end
-		else
-			table.remove(global.ArtifactCollectors, k)
-			if #global.ArtifactCollectors == 0 then
-				global.ArtifactCollectors = nil
+	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
+	if #items > 0 then
+		inventory = collector.get_inventory(chestInventoryIndex)
+		for i=1,#items do
+			local stack = item[i].stack
+			if filters[stack.name] == 1 and inventory.can_insert(stack) then
+				 inventory.insert(stack)
+				 item[i].destroy()
+				 break
 			end
 		end
 	end
