@@ -117,7 +117,7 @@ function ticker(event)
 		for i=global.next_collector,#collectors,interval do
 			ProcessCollector(collectors[i])
 		end
-		local time_interval=(collectors[global.next_collector+1] and 1) or (interval-#collectors)
+		local time_interval=(collectors[global.next_collector+1] and 1) or (interval- #collectors +1)
 		global.next_collector=(global.next_collector+1)/#collectors
 		global.next_check=event.tick+time_interval
 	end
