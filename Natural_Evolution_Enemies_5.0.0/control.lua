@@ -50,7 +50,7 @@ function On_Load()
 		force.reset_recipes()
 		force.reset_technologies() 
 	end
-	if global.itemCollectors ~= nil then
+	if global.ArtifactCollectors ~= nil then
 		game.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 	end
 end
