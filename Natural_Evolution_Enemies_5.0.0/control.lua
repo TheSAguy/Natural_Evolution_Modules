@@ -7,6 +7,7 @@ require "config"
 
 
 --- Artifact Collector
+local interval=60 -- this is an interval between the consequtive updates of a single collector
 local radius = 25
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
@@ -35,16 +36,12 @@ local filters = {["small-alien-artifact"] = 1,
 
 
 
-game.on_init(function()
-	if global.itemCollectors ~= nil then
-		game.on_event(defines.events.on_tick, ticker)
-	end
-end)
+game.on_init(function() On_Load() end)
 game.on_load(function() On_Load() end)
 
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-game.on_event({defines.events.on_built_entity,defines.events.on_robot_built_entity},function() On_Remove(event) end)
+game.on_event({defines.events.on_built_entity,defines.events.on_robot_built_entity},function(event) On_Remove(event) end)
 
 				 
 function On_Load()
@@ -54,13 +51,22 @@ function On_Load()
 		force.reset_technologies() 
 	end
 	if global.itemCollectors ~= nil then
-		game.on_event(defines.events.on_tick, ticker)
+		game.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 	end
 end
 
 
 
 
+----
+function subscribe_ticker(tick)
+	--this function subsribes handler to on_tick event and also sets global values used by it
+	--it exists merelly for a convenience grouping 
+	game.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
+	global.ArtifactCollectors= {}
+	global.next_check=tick+interval
+	global.next_collector= 1
+end
 
 ---------------------------------------------
 
@@ -70,13 +76,12 @@ function On_Built(event)
 	
 	if event.created_entity.name == "Artifact-collector-area" then
 		local surface = event.created_entity.surface
-    		local force = event.created_entity.force
+		local force = event.created_entity.force
 		newCollector = surface.create_entity({name = "Artifact-collector", position = event.created_entity.position, force = force})
 		event.created_entity.destroy()
 		
 		if global.ArtifactCollectors == nil then
-			global.ArtifactCollectors = {}
-			game.on_event(defines.events.on_tick, ticker)
+			subscribe_ticker(event.tick)
 		end
 		
 		table.insert(global.ArtifactCollectors, newCollector)
@@ -106,14 +111,15 @@ end
 --- Artifact Collector
 function ticker(event)
 	--this function provides the smooth handling of all collectors within certain span of time
-	--it requires global.ArtifactCollectors, global.next_check, global.next_collector and global.last_check to do that
+	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
 	if event.tick==global.next_check then
 		local collectors=global.ArtifactCollectors
 		for i=global.next_collector,#collectors,interval do
 			ProcessCollector(collectors[i])
 		end
-		global.last_check=global.next_check
-		global.next_check=event.tick+global.time_interval
+		local time_interval=(collectors[global.next_collector+1] and 1) or (interval-#collectors)
+		global.next_collector=(global.next_collector+1)/#collectors
+		global.next_check=event.tick+time_interval
 	end
 end
 
