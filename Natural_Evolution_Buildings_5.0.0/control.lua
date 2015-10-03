@@ -33,6 +33,8 @@ end)
 				 
 function On_Load()
 
+
+		
  -- Make sure all recipes and technologies are up to date.
 	for k,force in pairs(game.forces) do 
 		force.reset_recipes()
@@ -68,6 +70,11 @@ function On_Load()
 	if not global.numTerraformingStations then
       global.numTerraformingStations = 0
 	end
+	
+	if not global.factormultiplier then
+      global.factormultiplier = 0
+	end
+		
 
 end
 
