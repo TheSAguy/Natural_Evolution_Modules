@@ -109,17 +109,17 @@ function On_Remove(event)
 end
 
 --- Artifact Collector
-function ticker(event)
+function ticker(tick)
 	--this function provides the smooth handling of all collectors within certain span of time
 	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
-	if event.tick==global.next_check then
+	if tick==global.next_check then
 		local collectors=global.ArtifactCollectors
 		for i=global.next_collector,#collectors,interval do
 			ProcessCollector(collectors[i])
 		end
 		local time_interval=(collectors[global.next_collector+1] and 1) or (interval- #collectors +1)
 		global.next_collector=(global.next_collector+1)/#collectors
-		global.next_check=event.tick+time_interval
+		global.next_check=tick+time_interval
 	end
 end
 
