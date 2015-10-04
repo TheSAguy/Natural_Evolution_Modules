@@ -51,7 +51,10 @@ function On_Load()
 		force.reset_technologies() 
 	end
 	if global.ArtifactCollectors ~= nil then
+        --print('Onload subscription')
 		game.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+        global.next_check= global.next_check or tick+interval
+        global.next_collector= global.next_collector or 1
 	end
 end
 
@@ -61,7 +64,10 @@ end
 ----
 function subscribe_ticker(tick)
 	--this function subsribes handler to on_tick event and also sets global values used by it
-	--it exists merelly for a convenience grouping 
+	--it exists merelly for a convenience grouping
+    --print('mod initialized')
+    --print(tick)
+    --print(global.next_check)
 	game.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
 	global.ArtifactCollectors= {}
 	global.next_check=tick+interval
@@ -113,12 +119,16 @@ function ticker(tick)
 	--this function provides the smooth handling of all collectors within certain span of time
 	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
 	if tick==global.next_check then
+        --print('mod working')
+        --print(tick)
+        --print(global.next_collector)
 		local collectors=global.ArtifactCollectors
+        --print(#collectors)
 		for i=global.next_collector,#collectors,interval do
 			ProcessCollector(collectors[i])
 		end
 		local time_interval=(collectors[global.next_collector+1] and 1) or (interval- #collectors +1)
-		global.next_collector=(global.next_collector+1)/#collectors
+		global.next_collector=(global.next_collector+1)%(#collectors)+1
 		global.next_check=tick+time_interval
 	end
 end
@@ -126,16 +136,18 @@ end
 --- Artifact Collector
 function ProcessCollector(collector)
 	--This makes collectors collect items.
+    --print('mod looing for items')
 	local items
 	local inventory
 	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
 	if #items > 0 then
 		inventory = collector.get_inventory(chestInventoryIndex)
 		for i=1,#items do
-			local stack = item[i].stack
+			local stack = items[i].stack
+            print(stack.name)
 			if filters[stack.name] == 1 and inventory.can_insert(stack) then
 				 inventory.insert(stack)
-				 item[i].destroy()
+				 items[i].destroy()
 				 break
 			end
 		end
