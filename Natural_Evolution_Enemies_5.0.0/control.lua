@@ -41,7 +41,7 @@ game.on_load(function() On_Load() end)
 
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-game.on_event({defines.events.on_built_entity,defines.events.on_robot_built_entity},function(event) On_Remove(event) end)
+game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 				 
 function On_Load()
