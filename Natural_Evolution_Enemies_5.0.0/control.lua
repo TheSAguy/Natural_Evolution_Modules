@@ -144,7 +144,7 @@ function ProcessCollector(collector)
 		inventory = collector.get_inventory(chestInventoryIndex)
 		for i=1,#items do
 			local stack = items[i].stack
-            print(stack.name)
+            --print(stack.name)
 			if filters[stack.name] == 1 and inventory.can_insert(stack) then
 				 inventory.insert(stack)
 				 items[i].destroy()
