@@ -211,6 +211,30 @@ if NEConfig.Expansion then
 		end	
 	end
 
+--------------------
+
+	function Natural_Evolution_Expansion_Settings(Evolution_Timer_Min, Evolution_Timer_Max, NE_Min_Base_Spacing, NE_Max_Expansion_Distance, NE_Min_Player_Base_Distance, NE_Settler_Group_Min_Size, NE_Settler_Group_Max_Size, NE_Min_Expansion_Cooldown, NE_Max_Expansion_Cooldown, NE_Max_Group_Radius, NE_Min_Group_Radius, NE_Speedup)
+		
+		local enemy_expansion = game.map_settings.enemy_expansion
+		local unit_group = game.map_settings.unit_group
+		-----
+		global.Natural_Evolution_Timer = math.random(Evolution_Timer_Min * 3600, Evolution_Timer_Max * 3600)
+		enemy_expansion.enabled = true
+		enemy_expansion.min_base_spacing = NE_Min_Base_Spacing
+		enemy_expansion.max_expansion_distance = NE_Max_Expansion_Distance
+		enemy_expansion.min_player_base_distance = NE_Min_Player_Base_Distance
+		enemy_expansion.settler_group_min_size = NE_Settler_Group_Min_Size + global.Natural_Evolution_Counter
+		enemy_expansion.settler_group_max_size = NE_Settler_Group_Max_Size + global.Natural_Evolution_Counter
+		enemy_expansion.min_expansion_cooldown = NE_Min_Expansion_Cooldown * 60
+		enemy_expansion.max_expansion_cooldown = NE_Max_Expansion_Cooldown * 60
+			---
+		unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
+		unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
+		unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
+		unit_group.max_group_radius = NE_Max_Group_Radius + (global.Natural_Evolution_Counter / 2)
+		unit_group.min_group_radius = NE_Min_Group_Radius + (global.Natural_Evolution_Counter / 2)
+		unit_group.max_member_speedup_when_behind = NE_Speedup + (global.Natural_Evolution_Counter / 10)
+	end
 	
 --------------------	
 	function Natural_Evolution_SetExpansionLevel(Expansion_State)
@@ -257,266 +281,84 @@ if NEConfig.Expansion then
 		
 		-- Defines the values for the different Evolution States.
 		elseif Expansion_State == "Awakening" then
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(2 * 3600, 4 * 3600)
-			enemy_expansion.min_base_spacing = 3
-			enemy_expansion.max_expansion_distance = 5
-			enemy_expansion.min_player_base_distance = 20
-			enemy_expansion.settler_group_min_size = 2 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 4 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 60 * 60
-			enemy_expansion.max_expansion_cooldown = 120 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 10.0
-			unit_group.min_group_radius = 5.0
-			unit_group.max_member_speedup_when_behind = 1.4
-				
+			Natural_Evolution_Expansion_Settings(2,4,3,5,20,2,4,60,120,10,5,1.4)
+			
 		
 		elseif Expansion_State == "Phase 1" then
 			----- Harder Ending
 			Harder_Endgame(0.1,100)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(2 * 3600, 4 * 3600)
-			enemy_expansion.min_base_spacing = 5
-			enemy_expansion.max_expansion_distance = 6
-			enemy_expansion.min_player_base_distance = 10
-			enemy_expansion.settler_group_min_size = 2 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 4 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 40 * 60
-			enemy_expansion.max_expansion_cooldown = 60 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(2,4,5,6,10,2,4,40,60,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 2" then
 			----- Harder Ending
 			Harder_Endgame(0.1,200)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(2 * 3600, 4 * 3600)
-			enemy_expansion.min_base_spacing = 5
-			enemy_expansion.max_expansion_distance = 8
-			enemy_expansion.min_player_base_distance = 9
-			enemy_expansion.settler_group_min_size = 4 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 7 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 24 * 60
-			enemy_expansion.max_expansion_cooldown = 30 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(2,4,5,8,9,4,7,24,30,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 3" then
 			----- Harder Ending
 			Harder_Endgame(0.05,400)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(3 * 3600, 5 * 3600)
-			enemy_expansion.min_base_spacing = 5
-			enemy_expansion.max_expansion_distance = 10
-			enemy_expansion.min_player_base_distance = 8
-			enemy_expansion.settler_group_min_size = 6 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 10 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 20 * 60
-			enemy_expansion.max_expansion_cooldown = 30 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(3,5,5,10,8,6,10,20,30,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 4" then
 			----- Harder Ending
 			Harder_Endgame(0.05,500)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(4 * 3600, 6 * 3600)
-			enemy_expansion.min_base_spacing = 5
-			enemy_expansion.max_expansion_distance = 12
-			enemy_expansion.min_player_base_distance = 8
-			enemy_expansion.settler_group_min_size = 8 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 13 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 20 * 60
-			enemy_expansion.max_expansion_cooldown = 24 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(4,6,5,12,8,8,13,20,24,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 5" then
 			----- Harder Ending
 			Harder_Endgame(0.025,600)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(4 * 3600, 6 * 3600)
-			enemy_expansion.min_base_spacing = 4
-			enemy_expansion.max_expansion_distance = 13
-			enemy_expansion.min_player_base_distance = 7
-			enemy_expansion.settler_group_min_size = 10 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 16 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 20 * 60
-			enemy_expansion.max_expansion_cooldown = 20 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)				
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(4,6,4,13,7,10,16,20,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 6" then
 			----- Harder Ending
 			Harder_Endgame(0.025,700)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(4 * 3600, 7 * 3600)
-			enemy_expansion.min_base_spacing = 4
-			enemy_expansion.max_expansion_distance = 14
-			enemy_expansion.min_player_base_distance = 6
-			enemy_expansion.settler_group_min_size = 12 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 19 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 15 * 60
-			enemy_expansion.max_expansion_cooldown = 20 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
-
+			Natural_Evolution_Expansion_Settings(4,7,4,14,6,12,19,15,20,30,5,1.4)
+			
 				
 		elseif Expansion_State == "Phase 7" then
 			----- Harder Ending
 			Harder_Endgame(0.015,800)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(5 * 3600, 7 * 3600)
-			enemy_expansion.min_base_spacing = 4
-			enemy_expansion.max_expansion_distance = 15
-			enemy_expansion.min_player_base_distance = 5
-			enemy_expansion.settler_group_min_size = 14 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 22 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 15 * 60
-			enemy_expansion.max_expansion_cooldown = 20 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(5,7,4,15,5,14,22,15,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 8" then
 			----- Harder Ending
 			Harder_Endgame(0.015,900)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(5 * 3600, 7 * 3600)
-			enemy_expansion.min_base_spacing = 4
-			enemy_expansion.max_expansion_distance = 16
-			enemy_expansion.min_player_base_distance = 4
-			enemy_expansion.settler_group_min_size = 16 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 25 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 15 * 60
-			enemy_expansion.max_expansion_cooldown = 20 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(5,7,4,16,4,16,25,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 9" then
 			----- Harder Ending
 			Harder_Endgame(0.01,1000)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(5 * 3600, 8 * 3600)
-			enemy_expansion.min_base_spacing = 3
-			enemy_expansion.max_expansion_distance = 18
-			enemy_expansion.min_player_base_distance = 3
-			enemy_expansion.settler_group_min_size = 18 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 28 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 15 * 60
-			enemy_expansion.max_expansion_cooldown = 20 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
+			Natural_Evolution_Expansion_Settings(5,8,3,18,3,18,28,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 10" then
 			----- Harder Ending
 			Harder_Endgame(0.01,2000)
 			-----
-			enemy_expansion.enabled = true
-			global.Natural_Evolution_Timer = math.random(6 * 3600, 8 * 3600)
-			enemy_expansion.min_base_spacing = 3
-			enemy_expansion.max_expansion_distance = 20
-			enemy_expansion.min_player_base_distance = 0
-			enemy_expansion.settler_group_min_size = 30 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 75 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 15 * 60
-			enemy_expansion.max_expansion_cooldown = 20 * 60
-					---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 2)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 10)
-
+			Natural_Evolution_Expansion_Settings(6,8,3,20,1,30,75,15,20,30,5,2)
 			
 		
 		elseif Expansion_State == "Armageddon" then
 			--- During Armageddon state the player will be attached regardless of Silo built or not.
 			game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},2000)
 			writeDebug("Attack wave inbound")	
-			
-			enemy_expansion.enabled = true					 
-			global.Natural_Evolution_Timer = math.random(6 * 3600, 8 * 3600)
-			enemy_expansion.min_base_spacing = 2
-			enemy_expansion.max_expansion_distance = 20
-			enemy_expansion.min_player_base_distance = 0
-			enemy_expansion.settler_group_min_size = 100 + global.Natural_Evolution_Counter
-			enemy_expansion.settler_group_max_size = 200 + global.Natural_Evolution_Counter
-			enemy_expansion.min_expansion_cooldown = 8 * 60
-			enemy_expansion.max_expansion_cooldown = 15 * 60
-				---
-			unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-			unit_group.max_group_gathering_time = global.Natural_Evolution_Timer
-			unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
-			unit_group.max_group_radius = 30.0 + (global.Natural_Evolution_Counter / 1)
-			unit_group.min_group_radius = 5.0 + (global.Natural_Evolution_Counter / 1)
-			unit_group.max_member_speedup_when_behind = 1.4 + (global.Natural_Evolution_Counter / 5)
+			Natural_Evolution_Expansion_Settings(6,8,2,20,1,100,200,8,15,30,5,2)
 		
 		end
 				

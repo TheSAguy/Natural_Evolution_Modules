@@ -124,7 +124,7 @@ function ticker(tick)
         --print(tick)
         --print(global.next_collector)
 		local collectors=global.ArtifactCollectors
-        --print(#collectors)
+         writeDebug(#collectors)
 		for i=global.next_collector,#collectors,interval do
 			ProcessCollector(collectors[i])
 		end
@@ -137,7 +137,7 @@ end
 --- Artifact Collector
 function ProcessCollector(collector)
 	--This makes collectors collect items.
-    --print('mod looing for items')
+     writeDebug("mod looking for items")
 	local items
 	local inventory
 	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
