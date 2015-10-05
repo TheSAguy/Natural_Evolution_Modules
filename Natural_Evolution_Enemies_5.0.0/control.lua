@@ -102,6 +102,7 @@ function On_Remove(event)
         for i=1,#artifacts do
             if artifacts[i]==event.entity then
                 table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
+                if global.next_collector>(#artifacts) then global.next_check=(#artifacts) end 
                 return
             end
         end
@@ -128,7 +129,7 @@ function ticker(tick)
 			ProcessCollector(collectors[i])
 		end
 		local time_interval=(collectors[global.next_collector+1] and 1) or (interval- #collectors +1)
-		global.next_collector=(global.next_collector+1)%(#collectors)+1
+		global.next_collector=(global.next_collector)%(#collectors)+1
 		global.next_check=tick+time_interval
 	end
 end
