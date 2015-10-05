@@ -227,7 +227,7 @@ end
 function Remove_Mind_Control()
 
   --local surface = game.surfaces['nauvis'] --- Old Code Need to Fix
-  --local surface = beacon.surface
+   local surface = mind.surface -- Needs Testing
    local enemyForce = game.forces.enemy 
 	
   if global.beacons[1] then -- if there are valid beacons
