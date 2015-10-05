@@ -226,7 +226,7 @@ end
 --------------- Alien Control Station ---------------------------------
 function Remove_Mind_Control()
 
-  local surface = game.surfaces['nauvis'] --- Old Code Need to Fix
+  --local surface = game.surfaces['nauvis'] --- Old Code Need to Fix
   --local surface = beacon.surface
    local enemyForce = game.forces.enemy 
 	
