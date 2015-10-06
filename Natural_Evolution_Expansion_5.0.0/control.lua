@@ -238,14 +238,11 @@ if NEConfig.Expansion then
 	
 --------------------	
 	function Natural_Evolution_SetExpansionLevel(Expansion_State)
-	
-	local enemy_expansion = game.map_settings.enemy_expansion
-	local unit_group = game.map_settings.unit_group
-	
+		
 		Expansion_State = Expansion_State or "Peaceful"
 		
 		if Expansion_State == "Peaceful" then
-			enemy_expansion.enabled = false
+			game.map_settings.enemy_expansion.enabled = false
 			global.Natural_Evolution_Timer = 0
 			
 			-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
@@ -363,6 +360,7 @@ if NEConfig.Expansion then
 		end
 				
 		if Expansion_State ~= "Peaceful" then
+			local unit_group = game.map_settings.unit_group
 			writeDebug("Expansion state set to: " .. Expansion_State)	
 			writeDebug("The Max Group Radius is: " .. unit_group.max_group_radius)
 			writeDebug("The Min Group Gathering time is: " .. unit_group.min_group_gathering_time)
