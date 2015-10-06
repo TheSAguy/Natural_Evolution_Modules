@@ -43,7 +43,7 @@ Health = {
 Resistances = {
 	Small_Biter = {
 	  {type = "fire", decrease = 0, percent = -45},
-      {type = "physical", decrease = 1, percent = 5},
+      {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 1, percent = 0},
       {type = "explosion", decrease = 1, percent = 0},
       {type = "acid", decrease = 1, percent = 0},
@@ -123,7 +123,7 @@ Resistances = {
       {type = "laser", decrease = 15, percent = 15}},
 	Small_Spitter = {
 	  {type = "fire", decrease = 0, percent = -45},
-      {type = "physical", decrease = 1, percent = 0},
+      {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 1, percent = 0},
       {type = "explosion", decrease = 1, percent = 5,},
       {type = "acid", decrease = 1, percent = 0},

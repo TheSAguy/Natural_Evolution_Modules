@@ -185,10 +185,19 @@ if NEConfig.Expansion then
 					else
 						Natural_Evolution_SetExpansionLevel("Peaceful")
 					end
+				
+					if game.evolution_factor > 0.05 then
 					
+						if global.Natural_Evolution_state == "Awakening" then
+							game.evolution_factor = game.evolution_factor		
+						else 
+							-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
+							game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
+							writeDebug("Evolution Deduction during Expansion: " .. (0.00012 * (1 - game.evolution_factor)))	
+						end
+								
+					end			
 				end
-		
-
 	 
 	end)
 
@@ -244,38 +253,8 @@ if NEConfig.Expansion then
 		if Expansion_State == "Peaceful" then
 			game.map_settings.enemy_expansion.enabled = false
 			global.Natural_Evolution_Timer = 0
+
 			
-			-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
-			if game.evolution_factor > 0.05 then
-			
-				if global.Natural_Evolution_state == "Awakening" then
-					game.evolution_factor = game.evolution_factor		
-				elseif global.Natural_Evolution_state == "Phase 1" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 2" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 3" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 4" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))			
-				elseif global.Natural_Evolution_state == "Phase 5" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 6" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 7" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 8" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 9" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Phase 10" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				elseif global.Natural_Evolution_state == "Armageddon" then
-					game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-				end
-						
-			end
-		
 		-- Defines the values for the different Evolution States.
 		elseif Expansion_State == "Awakening" then
 			Natural_Evolution_Expansion_Settings(2,4,3,5,20,2,4,60,120,10,5,1.4)
@@ -358,7 +337,9 @@ if NEConfig.Expansion then
 			Natural_Evolution_Expansion_Settings(6,8,2,20,1,100,200,8,15,30,5,2)
 		
 		end
-				
+			
+		global.Natural_Evolution_state = Expansion_State
+		
 		if Expansion_State ~= "Peaceful" then
 			local unit_group = game.map_settings.unit_group
 			writeDebug("Expansion state set to: " .. Expansion_State)	
