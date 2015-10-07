@@ -185,18 +185,7 @@ if NEConfig.Expansion then
 					else
 						Natural_Evolution_SetExpansionLevel("Peaceful")
 					end
-				
-					if game.evolution_factor > 0.05 then
-					
-						if global.Natural_Evolution_state == "Awakening" then
-							game.evolution_factor = game.evolution_factor		
-						else 
-							-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
-							game.evolution_factor = game.evolution_factor - (0.00012 * (1 - game.evolution_factor))
-							writeDebug("Evolution Deduction during Expansion: " .. (0.00012 * (1 - game.evolution_factor)))	
-						end
-								
-					end			
+	
 				end
 	 
 	end)
@@ -243,6 +232,9 @@ if NEConfig.Expansion then
 		unit_group.max_group_radius = NE_Max_Group_Radius + (global.Natural_Evolution_Counter / 2)
 		unit_group.min_group_radius = NE_Min_Group_Radius + (global.Natural_Evolution_Counter / 2)
 		unit_group.max_member_speedup_when_behind = NE_Speedup + (global.Natural_Evolution_Counter / 10)
+	
+		
+		
 	end
 	
 --------------------	
@@ -253,7 +245,18 @@ if NEConfig.Expansion then
 		if Expansion_State == "Peaceful" then
 			game.map_settings.enemy_expansion.enabled = false
 			global.Natural_Evolution_Timer = 0
-
+			
+									
+		if game.evolution_factor > 0.05 then
+			if global.Natural_Evolution_state == "Awakening" then
+				game.evolution_factor = game.evolution_factor		
+			else 
+				-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
+				game.evolution_factor = game.evolution_factor - (0.002 * (1 - game.evolution_factor))
+				writeDebug("Evolution Deduction during Expansion: " .. (0.002 * (1 - game.evolution_factor)))	
+			end
+						
+		end	
 			
 		-- Defines the values for the different Evolution States.
 		elseif Expansion_State == "Awakening" then

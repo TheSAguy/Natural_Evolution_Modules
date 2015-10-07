@@ -40,7 +40,7 @@ NE.Spawners = true
 
 ----------------------------- END -------------------------------------------
 
-NE.QCCode = true
+NE.QCCode = false
 -- Used for QC
 -- Displays messages used for checking my code
 
