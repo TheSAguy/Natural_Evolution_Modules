@@ -36,8 +36,7 @@ local filters = {["small-alien-artifact"] = 1,
 
 
 
-game.on_init(On_Load)
-game.on_load(On_Load)
+
 
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
@@ -156,7 +155,8 @@ function ProcessCollector(collector)
 	end
 end
 
-
+game.on_init(On_Load)
+game.on_load(On_Load)
 --
 --- DeBug Messages 
 function writeDebug(message)
