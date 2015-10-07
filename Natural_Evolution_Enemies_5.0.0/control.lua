@@ -36,8 +36,8 @@ local filters = {["small-alien-artifact"] = 1,
 
 
 
-game.on_init(function() On_Load() end)
-game.on_load(function() On_Load() end)
+game.on_init(On_Load)
+game.on_load(On_Load)
 
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
@@ -53,7 +53,7 @@ function On_Load()
 	if global.ArtifactCollectors ~= nil then
         --print('Onload subscription')
 		game.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-        global.next_check= global.next_check or tick+interval
+        global.next_check= global.next_check or game.tick+interval
         global.next_collector= global.next_collector or 1
 	end
 end
@@ -70,7 +70,7 @@ function subscribe_ticker(tick)
     --print(global.next_check)
 	game.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
 	global.ArtifactCollectors= {}
-	global.next_check=tick+interval
+	global.next_check=game.tick+interval
 	global.next_collector= 1
 end
 
@@ -119,7 +119,7 @@ end
 function ticker(tick)
 	--this function provides the smooth handling of all collectors within certain span of time
 	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
-	if tick==global.next_check then
+	if game.tick==global.next_check then
         --print('mod working')
         --print(tick)
         --print(global.next_collector)
@@ -130,7 +130,7 @@ function ticker(tick)
 		end
 		local time_interval=(collectors[global.next_collector+1] and 1) or (interval- #collectors +1)
 		global.next_collector=(global.next_collector)%(#collectors)+1
-		global.next_check=tick+time_interval
+		global.next_check=game.tick+time_interval
 	end
 end
 
@@ -140,6 +140,7 @@ function ProcessCollector(collector)
      writeDebug("mod looking for items")
 	local items
 	local inventory
+	
 	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
 	if #items > 0 then
 		inventory = collector.get_inventory(chestInventoryIndex)
