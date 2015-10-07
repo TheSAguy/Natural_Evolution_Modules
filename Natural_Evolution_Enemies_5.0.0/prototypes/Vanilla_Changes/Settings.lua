@@ -5,19 +5,19 @@ Damage = {
 	Small_Biter = Biter_Melee_Attack_Healthy(5),
 	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(8,5),
 	Small_Biter_Mk3 = Biter_Melee_Attack_Mutated(10,5),
-	Medium_Biter = Biter_Melee_Attack_Healthy(15),
+	Medium_Biter = Biter_Melee_Attack_Healthy(18),
 	Medium_Biter_Mk2 = Biter_Melee_Attack_Infected(20,10),
-	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(20,10),
+	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(24,12),
 	Big_Biter = Biter_Melee_Attack_Healthy(40),
-	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(45,20),
-	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(50,20),
+	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(45,24),
+	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(50,30),
 	Behemoth_Biter = Biter_Melee_Attack_Healthy(100)
 	}
 	
 	
 Health = {
 	Small_Biter = 15,
-	Small_Biter_Mk2 = 30,
+	Small_Biter_Mk2 = 20,
 	Small_Biter_Mk3 = 45,
 	Medium_Biter = 75,
 	Medium_Biter_Mk2 = 150,
@@ -27,8 +27,8 @@ Health = {
 	Big_Biter_Mk3 = 1125,
 	Behemoth_Biter = 5000,
 	Small_Spitter = 10,
-	Small_Spitter_Mk2 = 20,
-	Small_Spitter_Mk3 = 30,
+	Small_Spitter_Mk2 = 15,
+	Small_Spitter_Mk3 = 20,
 	Medium_Spitter = 50,
 	Medium_Spitter_Mk2 = 100,
 	Medium_Spitter_Mk3 = 150,
@@ -67,7 +67,7 @@ Resistances = {
       {type = "laser", decrease = 0, percent = 0}},
 	Medium_Biter = {
 	  {type = "fire", decrease = 0, percent = -35},
-      {type = "physical", decrease = 2, percent = 5},
+      {type = "physical", decrease = 3, percent = 5},
       {type = "impact", decrease = 5, percent = 0},
       {type = "explosion", decrease = 5, percent = 5},
       {type = "acid", decrease = 5, percent = 5},
@@ -75,7 +75,7 @@ Resistances = {
       {type = "laser", decrease = 2, percent = 0}},
 	Medium_Biter_Mk2 = {
 	  {type = "fire", decrease = 0, percent = -35},
-      {type = "physical", decrease = 3, percent = 0},
+      {type = "physical", decrease = 3, percent = 10},
       {type = "impact", decrease = 6, percent = 5},
       {type = "explosion", decrease = 6, percent = 5},
       {type = "acid", decrease = 6, percent = 5},
@@ -83,7 +83,7 @@ Resistances = {
       {type = "laser", decrease = 3, percent = 5}},
 	Medium_Biter_Mk3 = {
 	  {type = "fire", decrease = 0, percent = -30},
-      {type = "physical", decrease = 4, percent = 5},
+      {type = "physical", decrease = 4, percent = 10},
       {type = "impact", decrease = 7, percent = 5},
       {type = "explosion", decrease = 7, percent = 5},
       {type = "acid", decrease = 7, percent = 5},

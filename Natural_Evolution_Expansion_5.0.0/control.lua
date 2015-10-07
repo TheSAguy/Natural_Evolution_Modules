@@ -5,12 +5,6 @@ NEConfig = {}
 
 require "config"
 
-
-	
-	game.on_init(function() On_Load() end)
-	game.on_load(function() On_Load() end)
-
-
 					 
 	function On_Load()
 		
@@ -61,8 +55,8 @@ if NEConfig.HarderEndGame then
 					
 				-- Biters will attack the newly built Rocket Silo
 				event.created_entity.surface.set_multi_command({type=defines.command.attack,target=event.created_entity,distraction=defines.distraction.none},2000)
-				writeDebug("Attack wave inbound")	
-				
+				--event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(2000 * game.evolution_factor), unit_search_distance = 300}
+			
 				game.player.print("WARNING!")
 				game.player.print("Building a Rocket Silo caused a lot of noise and biter will Attack!!!")
 			end
@@ -184,10 +178,8 @@ if NEConfig.Expansion then
 						global.Natural_Evolution_Timer = global.Natural_Evolution_Timer - 1
 					else
 						Natural_Evolution_SetExpansionLevel("Peaceful")
-					end
-	
+					end	
 				end
-	 
 	end)
 
 	
@@ -204,6 +196,7 @@ if NEConfig.Expansion then
 				end  	
 						---- Attack the player, since you have a silo built
 				game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},Enemy_Count)
+				--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 600}
 				writeDebug("Attack wave inbound")					
 			end 
 		end	
@@ -265,21 +258,21 @@ if NEConfig.Expansion then
 		
 		elseif Expansion_State == "Phase 1" then
 			----- Harder Ending
-			Harder_Endgame(0.1,100)
+			Harder_Endgame(0.1,500)
 			-----
 			Natural_Evolution_Expansion_Settings(2,4,5,6,10,2,4,40,60,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 2" then
 			----- Harder Ending
-			Harder_Endgame(0.1,200)
+			Harder_Endgame(0.1,500)
 			-----
 			Natural_Evolution_Expansion_Settings(2,4,5,8,9,4,7,24,30,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 3" then
 			----- Harder Ending
-			Harder_Endgame(0.05,400)
+			Harder_Endgame(0.05,500)
 			-----
 			Natural_Evolution_Expansion_Settings(3,5,5,10,8,6,10,20,30,30,5,1.4)
 
@@ -293,35 +286,35 @@ if NEConfig.Expansion then
 				
 		elseif Expansion_State == "Phase 5" then
 			----- Harder Ending
-			Harder_Endgame(0.025,600)
+			Harder_Endgame(0.025,1000)
 			-----
 			Natural_Evolution_Expansion_Settings(4,6,4,13,7,10,16,20,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 6" then
 			----- Harder Ending
-			Harder_Endgame(0.025,700)
+			Harder_Endgame(0.025,1000)
 			-----
 			Natural_Evolution_Expansion_Settings(4,7,4,14,6,12,19,15,20,30,5,1.4)
 			
 				
 		elseif Expansion_State == "Phase 7" then
 			----- Harder Ending
-			Harder_Endgame(0.015,800)
+			Harder_Endgame(0.015,1000)
 			-----
 			Natural_Evolution_Expansion_Settings(5,7,4,15,5,14,22,15,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 8" then
 			----- Harder Ending
-			Harder_Endgame(0.015,900)
+			Harder_Endgame(0.015,1500)
 			-----
 			Natural_Evolution_Expansion_Settings(5,7,4,16,4,16,25,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 9" then
 			----- Harder Ending
-			Harder_Endgame(0.01,1000)
+			Harder_Endgame(0.01,1500)
 			-----
 			Natural_Evolution_Expansion_Settings(5,8,3,18,3,18,28,15,20,30,5,1.4)
 
@@ -336,6 +329,7 @@ if NEConfig.Expansion then
 		elseif Expansion_State == "Armageddon" then
 			--- During Armageddon state the player will be attached regardless of Silo built or not.
 			game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},2000)
+			--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 600}
 			writeDebug("Attack wave inbound")	
 			Natural_Evolution_Expansion_Settings(6,8,2,20,1,100,200,8,15,30,5,2)
 		
@@ -355,6 +349,10 @@ if NEConfig.Expansion then
 	end
 --------------- END Expansion ------------------------------
 end
+
+
+game.on_init(On_Load)
+game.on_load(On_Load)
 
 --- DeBug Messages 
 function writeDebug(message)
