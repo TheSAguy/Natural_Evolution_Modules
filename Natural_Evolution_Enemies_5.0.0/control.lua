@@ -102,7 +102,7 @@ function On_Remove(event)
             if artifacts[i]==event.entity then
                 table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
                 if global.next_collector>(#artifacts) then global.next_collector=(#artifacts) end 
-                return
+                break
             end
         end
         if #artifacts==0 then
