@@ -20,7 +20,6 @@ data:extend(
 			selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 			order = "i[items]-i[Artifact-collector]",
 			subgroup = "storage",
-			fast_replaceable_group = "container",
 			inventory_size = 48,
 			logistic_mode = "passive-provider",
 			open_sound = { filename = "__base__/sound/metallic-chest-open.ogg", volume=0.65 },
