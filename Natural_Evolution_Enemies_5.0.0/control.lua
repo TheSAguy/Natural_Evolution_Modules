@@ -139,17 +139,20 @@ function ProcessCollector(collector)
      writeDebug("mod looking for items")
 	local items
 	local inventory
-	
-	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
-	if #items > 0 then
-		inventory = collector.get_inventory(chestInventoryIndex)
-		for i=1,#items do
-			local stack = items[i].stack
-            --print(stack.name)
-			if filters[stack.name] == 1 and inventory.can_insert(stack) then
-				 inventory.insert(stack)
-				 items[i].destroy()
-				 break
+	local Count_Check=global.ArtifactCollectors
+	--if Count_Check ~= nil then
+	if Count_Check > 0 then
+		items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
+		if #items > 0 then
+			inventory = collector.get_inventory(chestInventoryIndex)
+			for i=1,#items do
+				local stack = items[i].stack
+				--print(stack.name)
+				if filters[stack.name] == 1 and inventory.can_insert(stack) then
+					 inventory.insert(stack)
+					 items[i].destroy()
+					 break
+				end
 			end
 		end
 	end
