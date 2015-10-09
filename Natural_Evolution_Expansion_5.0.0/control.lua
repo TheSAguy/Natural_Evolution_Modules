@@ -64,7 +64,7 @@ if NEConfig.HarderEndGame then
 
 
 	---------------------------------------------
-	function On_Removed(event)
+	function On_Remove(event)
 
 	   ---- Remove Rocket Silo count
 	   if event.entity.name == "rocket-silo" then

@@ -95,7 +95,7 @@ end
 
 
 ---------------------------------------------
-function On_Removed(event)
+function On_Remove(event)
 	--- Terraforming Station has been removed
    if event.entity.name == "TerraformingStation" then
       
