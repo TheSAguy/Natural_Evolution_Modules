@@ -7,7 +7,7 @@ require "config"
 
 
 --- Artifact Collector
-local interval=60 -- this is an interval between the consequtive updates of a single collector
+local interval = 60 -- this is an interval between the consecutive updates of a single collector
 local radius = 25
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
@@ -34,11 +34,12 @@ local filters = {["small-alien-artifact"] = 1,
 				 }
 
 
+---------------------------------------------
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
 game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
-				 
+---------------------------------------------				 
 function On_Load()
  -- Make sure all recipes and technologies are up to date.
 	for k,force in pairs(game.forces) do 
@@ -53,9 +54,7 @@ function On_Load()
 end
 
 
-
-
-----
+---------------------------------------------
 function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it
 	--it exists merely for a convenience grouping
@@ -66,7 +65,6 @@ function subscribe_ticker(tick)
 end
 
 ---------------------------------------------
-
 function On_Built(event)
 	--- Artifact Collector	
 	local newCollector
@@ -86,6 +84,7 @@ function On_Built(event)
 	
 end
 
+---------------------------------------------
 function On_Remove(event)
     --Artifact collector
     if event.entity.name=="Artifact-collector" then
@@ -104,9 +103,16 @@ function On_Remove(event)
             --but it's surely better done here than during on_tick
         end
     end
+	-- Detect killing a Unit spawner.
+	if event.entity.type == "unit-spawner" then
+		writeDebug("YOU KILLED A SPAWNER")
+		game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},(20+math.floor(game.evolution_factor*100)))
+		--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+	end
+	
 end
 
---- Artifact Collector
+---------------------------------------------
 function ticker(tick)
 	--this function provides the smooth handling of all collectors within certain span of time
 	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
@@ -122,7 +128,7 @@ function ticker(tick)
 	end
 end
 
---- Artifact Collector
+---------------------------------------------
 function ProcessCollector(collector)
 	--This makes collectors collect items.
      writeDebug("mod looking for items")
@@ -142,9 +148,11 @@ function ProcessCollector(collector)
 	end
 end
 
+---------------------------------------------
 game.on_init(On_Load)
 game.on_load(On_Load)
---
+
+---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
   if NEConfig.QCCode then game.player.print(tostring(message)) end

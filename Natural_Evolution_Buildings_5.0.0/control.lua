@@ -11,17 +11,15 @@ local update_com_count = 80
 local agro_area_rad = 40
 local call_back_area_rad = agro_area_rad + 15
 local max_unit_count = 20
-----
 
-game.on_init(function() On_Load() end)
-game.on_load(function() On_Load() end)
 
+---------------------------------------------
 game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-game.on_event(defines.events.on_preplayer_mined_item, function(event) On_Removed(event) end)
-game.on_event(defines.events.on_robot_pre_mined, function(event) On_Removed(event) end)
-game.on_event(defines.events.on_entity_died, function(event) On_Removed(event) end)
+game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
+
+---------------------------------------------
 game.on_event(defines.events.on_research_finished, function(event)
   if event.research.name == "Alien_Training" then
     for _, player in pairs(event.research.force.players) do
@@ -30,10 +28,9 @@ game.on_event(defines.events.on_research_finished, function(event)
   end
 end)
 
-				 
+
+---------------------------------------------				 
 function On_Load()
-
-
 		
  -- Make sure all recipes and technologies are up to date.
 	for k,force in pairs(game.forces) do 
@@ -65,7 +62,6 @@ function On_Load()
 	else global.minds.difficulty = 10 -- Hard
 	end
 
-	
 ---- Terraforming Initialization ----	
 	if not global.numTerraformingStations then
       global.numTerraformingStations = 0
@@ -73,13 +69,12 @@ function On_Load()
 	
 	if not global.factormultiplier then
       global.factormultiplier = 0
-	end
-		
+	end	
 
 end
 
----------------------------------------------
 
+---------------------------------------------
 function On_Built(event)
      
    --- Terraforming Station has been built
@@ -89,8 +84,7 @@ function On_Built(event)
       global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
 	  writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
 	  
-	end
-   
+	end   
    
    --- Alien Control Station has been built
     if event.created_entity.name == "AlienControlStation" then
@@ -101,7 +95,6 @@ end
 
 
 ---------------------------------------------
-
 function On_Removed(event)
 	--- Terraforming Station has been removed
    if event.entity.name == "TerraformingStation" then
@@ -152,7 +145,6 @@ function GetFactorPerTerraformingStation(numTerraformingStations)
    -- Return the evolution reduction per Terraforming Station.
    return res / numTerraformingStations
 end
-
 
 
 ----------------Radars Scanning Function -----------------------------
@@ -316,15 +308,13 @@ function Convert_Base(base, died, newforce)
   end
 end
 
-
+---------------------------------------------
 function Get_Bounding_Box(position, radius)
 	return {{position.x-radius, position.y-radius}, {position.x+radius,position.y+radius}}
 end
 
+
 --------------------------------------------
-
-
-
 game.on_event(defines.events.on_tick, function(event)
 
  -- check for biters within Alien Control Station's range
@@ -347,9 +337,10 @@ game.on_event(defines.events.on_tick, function(event)
 	
 end)
 
+
+---------------------------------------------
 ---- Evolution_MOD
 function UpdateUnitsCommands(player_index)
-	--local player = game.players[player_index].character
 	local player = game.get_player(player_index)
 	local pos = player.position
     local aggression_area = {{pos.x - agro_area_rad, pos.y - agro_area_rad}, {pos.x + agro_area_rad, pos.y + agro_area_rad}}
@@ -372,10 +363,7 @@ function UpdateUnitsCommands(player_index)
 	end
 	
 	local unit_count = 0
-	if closest_index == -1 then
-		
-		--local attOn = game.players[player_index].get_item_count("attractor-on") 
-		--local attOff = game.players[player_index].get_item_count("attractor-off") 
+	if closest_index == -1 then	
 		local attOn = player.get_item_count("attractor-on")
 		local attOff = player.get_item_count("attractor-off")
 		local lastState = nil
@@ -441,11 +429,18 @@ function UpdateUnitsCommands(player_index)
 	end
 end
 
+
+---------------------------------------------
 function GetDistance(pos1 , pos2)
 	return math.sqrt((pos1.x - pos2.x)^2 + (pos1.y - pos2.y)^2)
 end
 
 
+---------------------------------------------
+game.on_init(On_Load)
+game.on_load(On_Load)
+
+---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
   if NEConfig.QCCode then game.player.print(tostring(message)) end

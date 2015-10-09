@@ -5,43 +5,43 @@ NEConfig = {}
 
 require "config"
 
-					 
-	function On_Load()
-		
-	---- Expansion Initialization ----	
-		if not global.Natural_Evolution_state then
-			global.Natural_Evolution_state = "Peaceful"
-		end
-		if not global.Natural_Evolution_Timer then
-			global.Natural_Evolution_Timer = 0
-		end
-		if not global.Natural_Evolution_Counter then
-			global.Natural_Evolution_Counter = 0
-		end
 
-		--- Harder End Game
-		---- Rocket Silo Initialization ----	
-		if not global.RocketSiloBuilt then
-		  global.RocketSiloBuilt = 0
-		end
-			
-	end
-
-if NEConfig.HarderEndGame then
-
-
-	game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-	game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-	game.on_event(defines.events.on_preplayer_mined_item, function(event) On_Removed(event) end)
-	game.on_event(defines.events.on_robot_pre_mined, function(event) On_Removed(event) end)
-	game.on_event(defines.events.on_entity_died, function(event) On_Removed(event) end)
 
 ---------------------------------------------
+function On_Load()
+		
+---- Expansion Initialization ----	
+	if not global.Natural_Evolution_state then
+		global.Natural_Evolution_state = "Peaceful"
+	end
+	if not global.Natural_Evolution_Timer then
+		global.Natural_Evolution_Timer = 0
+	end
+	if not global.Natural_Evolution_Counter then
+		global.Natural_Evolution_Counter = 0
+	end
 
+	--- Harder End Game
+	---- Rocket Silo Initialization ----	
+	if not global.RocketSiloBuilt then
+	  global.RocketSiloBuilt = 0
+	end
+		
+end
+
+
+---------------------------------------------
+if NEConfig.HarderEndGame then
+
+	---------------------------------------------
+	game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
+	game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+	game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+
+---------------------------------------------
 	function On_Built(event)
 	  
 	   --- Harder Ending Some action if you built the Rocket-silo!
-
 			if event.created_entity.name == "rocket-silo" then
 			
 				global.RocketSiloBuilt = global.RocketSiloBuilt + 1
@@ -60,12 +60,10 @@ if NEConfig.HarderEndGame then
 				game.player.print("WARNING!")
 				game.player.print("Building a Rocket Silo caused a lot of noise and biter will Attack!!!")
 			end
-
 	end
 
 
----------------------------------------------
-
+	---------------------------------------------
 	function On_Removed(event)
 
 	   ---- Remove Rocket Silo count
@@ -78,7 +76,7 @@ if NEConfig.HarderEndGame then
 end
 
 	
-	
+---------------------------------------------	
 if NEConfig.Expansion then	
 
 	game.on_event(defines.events.on_tick, function(event)
@@ -172,14 +170,14 @@ if NEConfig.Expansion then
 				writeDebug("The Natural_Evolution Counter is: " .. global.Natural_Evolution_Counter)	
 
 			end
-
-				if global.Natural_Evolution_state ~= "Peaceful" then
-					if global.Natural_Evolution_Timer > 0 then
-						global.Natural_Evolution_Timer = global.Natural_Evolution_Timer - 1
-					else
-						Natural_Evolution_SetExpansionLevel("Peaceful")
-					end	
-				end
+			----
+			if global.Natural_Evolution_state ~= "Peaceful" then
+				if global.Natural_Evolution_Timer > 0 then
+					global.Natural_Evolution_Timer = global.Natural_Evolution_Timer - 1
+				else
+					Natural_Evolution_SetExpansionLevel("Peaceful")
+				end	
+			end
 	end)
 
 	
@@ -202,8 +200,8 @@ if NEConfig.Expansion then
 		end	
 	end
 
---------------------
-
+	
+	--------------------
 	function Natural_Evolution_Expansion_Settings(Evolution_Timer_Min, Evolution_Timer_Max, NE_Min_Base_Spacing, NE_Max_Expansion_Distance, NE_Min_Player_Base_Distance, NE_Settler_Group_Min_Size, NE_Settler_Group_Max_Size, NE_Min_Expansion_Cooldown, NE_Max_Expansion_Cooldown, NE_Max_Group_Radius, NE_Min_Group_Radius, NE_Speedup)
 		
 		local enemy_expansion = game.map_settings.enemy_expansion
@@ -224,13 +222,11 @@ if NEConfig.Expansion then
 		unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 4)
 		unit_group.max_group_radius = NE_Max_Group_Radius + (global.Natural_Evolution_Counter / 2)
 		unit_group.min_group_radius = NE_Min_Group_Radius + (global.Natural_Evolution_Counter / 2)
-		unit_group.max_member_speedup_when_behind = NE_Speedup + (global.Natural_Evolution_Counter / 10)
-	
-		
+		unit_group.max_member_speedup_when_behind = NE_Speedup + (global.Natural_Evolution_Counter / 10)		
 		
 	end
 	
---------------------	
+	--------------------	
 	function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		
 		Expansion_State = Expansion_State or "Peaceful"
@@ -347,13 +343,15 @@ if NEConfig.Expansion then
 		end
 			
 	end
---------------- END Expansion ------------------------------
+
 end
 
 
+---------------------------------------------
 game.on_init(On_Load)
 game.on_load(On_Load)
 
+---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
   if NEConfig.QCCode then game.player.print(tostring(message)) end
