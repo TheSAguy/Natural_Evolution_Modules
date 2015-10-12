@@ -8,8 +8,7 @@ data:extend({
 		  enabled = "false",
 		  ingredients = 
 		  {
-			{"Building_Materials", 3},
-            --  {type="fluid", name="sulfuric-acid", amount=10},
+			{"Building_Materials", 5},           
 		  },
 		  result = "Alien_Hatchery"
 	},
@@ -24,7 +23,7 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-        {"alien-artifact", 1},
+        {"alien-artifact", 2},
 		{type="fluid", name="sulfuric-acid", amount=50},
     },
     result = "small-biter-hatching",
@@ -39,8 +38,8 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"small-biter-hatching", 2},
-		{type="fluid", name="sulfuric-acid", amount=100},
+		{"small-biter-hatching", 4},
+		{type="fluid", name="sulfuric-acid", amount=150},
     },
     result = "medium-biter-hatching",
     energy_required = 2,
@@ -54,8 +53,8 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"medium-biter-hatching", 4},
-		{type="fluid", name="sulfuric-acid", amount=150},
+		{"medium-biter-hatching", 6},
+		{type="fluid", name="sulfuric-acid", amount=300},
     },
     result = "big-biter-hatching",
     energy_required = 4,
@@ -69,7 +68,7 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"big-biter-hatching", 8},
+		{"big-biter-hatching", 10},
 		{type="fluid", name="sulfuric-acid", amount=500},
     },
     result = "behemoth-biter-hatching",
@@ -100,8 +99,8 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"small-spitter-hatching", 2},
-		{type="fluid", name="sulfuric-acid", amount=100},
+		{"small-spitter-hatching", 4},
+		{type="fluid", name="sulfuric-acid", amount=200},
     },
     result = "medium-spitter-hatching",
     energy_required = 2.5,
@@ -115,8 +114,8 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"medium-spitter-hatching", 4},
-		{type="fluid", name="sulfuric-acid", amount=150},
+		{"medium-spitter-hatching", 8},
+		{type="fluid", name="sulfuric-acid", amount=300},
     },
     result = "big-spitter-hatching",
     energy_required = 5,
@@ -130,7 +129,7 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"big-spitter-hatching", 8},
+		{"big-spitter-hatching", 10},
 		{type="fluid", name="sulfuric-acid", amount=500},
     },
     result = "behemoth-spitter-hatching",
@@ -147,7 +146,7 @@ data:extend({
     ingredients =
     {
 		--{"Building_Materials", 1},
-		{"alien-artifact", 1},
+		{"alien-artifact", 2},
 		{"stone", 50},
     },
     result = "small-worm-hatching",
@@ -178,9 +177,9 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		{"Building_Materials", 1},
+		{"Building_Materials", 4},
 		{"stone", 150},
-		{"medium-worm-hatching", 2},
+		{"medium-worm-hatching", 4},
     },
     result = "big-worm-hatching",
     energy_required = 5,

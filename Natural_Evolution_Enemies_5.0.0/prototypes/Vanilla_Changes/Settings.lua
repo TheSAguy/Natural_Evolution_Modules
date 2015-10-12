@@ -5,11 +5,11 @@ Damage = {
 	Small_Biter = Biter_Melee_Attack_Healthy(5),
 	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(8,5),
 	Small_Biter_Mk3 = Biter_Melee_Attack_Mutated(10,5),
-	Medium_Biter = Biter_Melee_Attack_Healthy(18),
+	Medium_Biter = Biter_Melee_Attack_Healthy(20),
 	Medium_Biter_Mk2 = Biter_Melee_Attack_Infected(20,10),
-	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(24,12),
-	Big_Biter = Biter_Melee_Attack_Healthy(40),
-	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(45,24),
+	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(25,15),
+	Big_Biter = Biter_Melee_Attack_Healthy(50),
+	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(45,25),
 	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(50,30),
 	Behemoth_Biter = Biter_Melee_Attack_Healthy(100)
 	}

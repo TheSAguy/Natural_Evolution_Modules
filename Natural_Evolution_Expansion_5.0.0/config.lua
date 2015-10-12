@@ -29,12 +29,6 @@ NE.Expansion = true
 -- A tiered approach that gets a lot more difficult at higher evolution rates.
 
 
-NE.HarderEndGame = true -- Gets a lot harder once you build a rocket silo
-
-
-NE.ScienceCost = true -- Doubles the cost of Science Bottles, so you need to go look for some more resources...
-
-
 NE.EvolutionFactor = true 
 -- Do you want to use the new Evolution rate settings of:
 -- TIME: Only 75% of vanilla. From 0.000004 to 0.000003
@@ -44,6 +38,12 @@ NE.DyTechWar_Evo_override = false
 -- If true, will use DyTech Evolution Factor values and not Natural Evolution's values.
 -- DyTech's values are linear, meaning at Difficulty 1 all 3 values are 1/4 of Vanilla and at Difficulty 5 they are 5x higher than vanilla's. 
 -- N.E. on the other hand has a higher Pollution penalty, but lower Time and Killing Spawner values.
+
+
+NE.HarderEndGame = true -- Gets a lot harder once you build a rocket silo
+
+
+NE.ScienceCost = true -- Doubles the cost of Science Bottles, so you need to go look for some more resources...
 
 
 
