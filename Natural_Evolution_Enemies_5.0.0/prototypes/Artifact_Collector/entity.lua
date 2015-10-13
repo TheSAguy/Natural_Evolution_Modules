@@ -2,7 +2,6 @@ data:extend(
 	{
 		{
 			type = "logistic-container",
-			--type = "container",
 			name = "Artifact-collector",
 			icon = "__Natural_Evolution_Enemies__/graphics/icons/Artifact-chest-icon.png",
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
@@ -34,9 +33,10 @@ data:extend(
 				shift = {0.4, -0.13}
 			}
 		},
+		
+		---- The Artifact collector AREA is used for display only. Showing the 50x50 collection area.
 		{
-			type = "container",
-			--type = "container",
+			type = "logistic-container",
 			name = "Artifact-collector-area",
 			icon = "__Natural_Evolution_Enemies__/graphics/icons/Artifact-chest-icon.png",
 			flags = {"placeable-neutral", "player-creation"},
@@ -49,6 +49,7 @@ data:extend(
 			subgroup = "storage",
 			fast_replaceable_group = "container",
 			inventory_size = 48,
+			logistic_mode = "passive-provider",
 			open_sound = { filename = "__base__/sound/metallic-chest-open.ogg", volume=0.65 },
 			close_sound = { filename = "__base__/sound/metallic-chest-close.ogg", volume = 0.7 },
 			vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
