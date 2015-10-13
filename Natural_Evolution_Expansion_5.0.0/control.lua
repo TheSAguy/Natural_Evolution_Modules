@@ -323,10 +323,9 @@ if NEConfig.Expansion then
 			
 		
 		elseif Expansion_State == "Armageddon" then
-			--- During Armageddon state the player will be attached regardless of Silo built or not.
-			game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},2000)
-			--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 600}
-			writeDebug("Attack wave inbound")	
+			----- Harder Ending
+			Harder_Endgame(0.001,2000)
+			-----
 			Natural_Evolution_Expansion_Settings(6,8,2,20,1,100,200,8,15,30,5,2)
 		
 		end
