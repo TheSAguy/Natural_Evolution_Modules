@@ -71,6 +71,12 @@ function On_Load()
       global.factormultiplier = 0
 	end	
 
+		for i = 1, #game.players, 1 do
+        if game.players[i].force.technologies["AlienUnderstanding"].researched then
+           game.players[i].force.recipes["Thumper"].enabled = true
+        end
+    end
+	
 end
 
 

@@ -67,7 +67,7 @@ Resistances = {
       {type = "laser", decrease = 0, percent = 0}},
 	Medium_Biter = {
 	  {type = "fire", decrease = 0, percent = -35},
-      {type = "physical", decrease = 3, percent = 5},
+      {type = "physical", decrease = 3, percent = 10},
       {type = "impact", decrease = 5, percent = 0},
       {type = "explosion", decrease = 5, percent = 5},
       {type = "acid", decrease = 5, percent = 5},
@@ -83,7 +83,7 @@ Resistances = {
       {type = "laser", decrease = 3, percent = 5}},
 	Medium_Biter_Mk3 = {
 	  {type = "fire", decrease = 0, percent = -30},
-      {type = "physical", decrease = 4, percent = 10},
+      {type = "physical", decrease = 4, percent = 15},
       {type = "impact", decrease = 7, percent = 5},
       {type = "explosion", decrease = 7, percent = 5},
       {type = "acid", decrease = 7, percent = 5},
@@ -91,7 +91,7 @@ Resistances = {
       {type = "laser", decrease = 4, percent = 5}},
 	Big_Biter = {
 	  {type = "fire", decrease = 0, percent = -25},
-      {type = "physical", decrease = 8, percent = 15},
+      {type = "physical", decrease = 8, percent = 20},
       {type = "impact", decrease = 10, percent = 10},
       {type = "explosion", decrease = 10, percent = 10},
       {type = "acid", decrease = 10, percent = 10},
@@ -99,7 +99,7 @@ Resistances = {
       {type = "laser", decrease = 5, percent = 5}},
 	Big_Biter_Mk2 = {
 	  {type = "fire", decrease = 0, percent = -25},
-      {type = "physical", decrease = 10, percent = 15},
+      {type = "physical", decrease = 10, percent = 20},
       {type = "impact", decrease = 11, percent = 10},
       {type = "explosion", decrease = 11, percent = 10},
       {type = "acid", decrease = 11, percent = 10},
@@ -107,7 +107,7 @@ Resistances = {
       {type = "laser", decrease = 5, percent = 10}},
 	Big_Biter_Mk3 = {
 	  {type = "fire", decrease = 0, percent = -25},
-      {type = "physical", decrease = 12, percent = 15},
+      {type = "physical", decrease = 12, percent = 25},
       {type = "impact", decrease = 10, percent = 10},
       {type = "explosion", decrease = 12, percent = 10},
       {type = "acid", decrease = 12, percent = 10},
@@ -115,7 +115,7 @@ Resistances = {
       {type = "laser", decrease = 10, percent = 10}},
 	Behemoth_Biter = {
 	  {type = "fire", decrease = 0, percent = -25},
-      {type = "physical", decrease = 15, percent = 20},
+      {type = "physical", decrease = 15, percent = 30},
       {type = "impact", decrease = 15, percent = 15},
       {type = "explosion", decrease = 15, percent = 15},
       {type = "acid", decrease = 15, percent = 15},

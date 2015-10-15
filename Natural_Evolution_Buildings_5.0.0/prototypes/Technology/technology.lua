@@ -35,17 +35,10 @@ data:extend({
 		type = "technology",
 		name = "AlienUnderstanding-2",
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienUnderstanding.png",
-		effects =
-		{
-			{
-				type = 'unlock-recipe', 
-				recipe='Biological-bullet-magazine'
-			}
-		},
 		prerequisites = {"AlienUnderstanding"},
 		unit =
 		{
-		  count = 50,
+		  count = 100,
 		  ingredients =
 		  {
 			{"science-pack-1", 3},
@@ -66,7 +59,7 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
 		{
-		  count = 50,
+		  count = 150,
 		  ingredients =
 		  {
 			{"science-pack-1", 4},
@@ -140,12 +133,6 @@ data:extend({
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/Alien_Training.png",
 		effects = 
 		{
-			--[[					
-			{
-				type = 'unlock-recipe', 
-				recipe='attractor-on2'
-			}, 
-			--]]
 			{
 				type = 'unlock-recipe', 
 				recipe='attractor-on'
