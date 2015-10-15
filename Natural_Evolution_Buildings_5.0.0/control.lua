@@ -144,7 +144,7 @@ function GetFactorPerTerraformingStation(numTerraformingStations)
    -- Calculate the total evolution reduction.
    if numTerraformingStations > 1 then
 	for i = 1, numTerraformingStations do
-      res = res + math.pow(0.9, i) -- Each consecutive Terraforming station is only 90% as effective.
+      res = res + math.pow(0.85, i) -- Each consecutive Terraforming station is only 85% as effective.
 	end
    end
 
