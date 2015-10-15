@@ -71,7 +71,7 @@ function On_Load()
       global.factormultiplier = 0
 	end	
 
-		for i = 1, #game.players, 1 do
+	for i = 1, #game.players, 1 do
         if game.players[i].force.technologies["AlienUnderstanding"].researched then
            game.players[i].force.recipes["Thumper"].enabled = true
         end
@@ -449,5 +449,9 @@ game.on_load(On_Load)
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-  if NEConfig.QCCode then game.player.print(tostring(message)) end
+	if NEConfig.QCCode then 
+		for i, player in ipairs(game.players) do
+			player.print(tostring(message))
+		end
+	end
 end

@@ -105,9 +105,12 @@ function On_Remove(event)
     end
 	-- Detect killing a Unit spawner.
 	if event.entity.type == "unit-spawner" then
-		writeDebug("YOU KILLED A SPAWNER")
-		game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},(20+math.floor(game.evolution_factor*100)))
-		--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+	writeDebug("YOU KILLED A SPAWNER")
+		for i = 1, #game.players, 1 do
+			player = game.players[i]
+			player.surface.set_multi_command({type=defines.command.attack,target=player.character,distraction=defines.distraction.by_enemy},(20+math.floor(game.evolution_factor*100/#game.players)))
+			--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+		end
 	end
 	
 end
@@ -152,8 +155,14 @@ end
 game.on_init(On_Load)
 game.on_load(On_Load)
 
+
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-  if NEConfig.QCCode then game.player.print(tostring(message)) end
+	if NEConfig.QCCode then 
+		for i, player in ipairs(game.players) do
+			player.print(tostring(message))
+		end
+	end
 end
+

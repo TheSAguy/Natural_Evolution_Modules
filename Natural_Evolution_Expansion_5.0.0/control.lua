@@ -42,24 +42,27 @@ if NEConfig.HarderEndGame then
 	function On_Built(event)
 	  
 	   --- Harder Ending Some action if you built the Rocket-silo!
-			if event.created_entity.name == "rocket-silo" then
+		if event.created_entity.name == "rocket-silo" then
 			
-				global.RocketSiloBuilt = global.RocketSiloBuilt + 1
-				writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
-					-- Increase Evolution factor by 10% once a Rocket Silo is built	
-					if game.evolution_factor < 0.89999 then
-						game.evolution_factor = game.evolution_factor + 0.1
-					else
-						game.evolution_factor = 0.9999
-					end  
+			global.RocketSiloBuilt = global.RocketSiloBuilt + 1
+			writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
+				-- Increase Evolution factor by 10% once a Rocket Silo is built	
+				if game.evolution_factor < 0.89999 then
+					game.evolution_factor = game.evolution_factor + 0.1
+				else
+					game.evolution_factor = 0.9999
+				end  
 					
-				-- Biters will attack the newly built Rocket Silo
-				event.created_entity.surface.set_multi_command({type=defines.command.attack,target=event.created_entity,distraction=defines.distraction.none},2000)
-				--event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(2000 * game.evolution_factor), unit_search_distance = 300}
+			-- Biters will attack the newly built Rocket Silo
+			event.created_entity.surface.set_multi_command({type=defines.command.attack,target=event.created_entity,distraction=defines.distraction.none},2000)
+			--event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(2000 * game.evolution_factor), unit_search_distance = 300}
 			
-				game.player.print("WARNING!")
-				game.player.print("Building a Rocket Silo caused a lot of noise and biter will Attack!!!")
+			for i, player in ipairs(game.players) do
+					player.print("WARNING!")
+					player.print("Building a Rocket Silo caused a lot of noise and biter will Attack!!!")
 			end
+
+		end
 	end
 
 
@@ -353,5 +356,9 @@ game.on_load(On_Load)
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-  if NEConfig.QCCode then game.player.print(tostring(message)) end
+	if NEConfig.QCCode then 
+		for i, player in ipairs(game.players) do
+			player.print(tostring(message))
+		end
+	end
 end
