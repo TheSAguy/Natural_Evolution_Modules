@@ -14,13 +14,13 @@ local max_unit_count = 20
 
 
 ---------------------------------------------
-game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
+script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 
 ---------------------------------------------
-game.on_event(defines.events.on_research_finished, function(event)
+script.on_event(defines.events.on_research_finished, function(event)
   if event.research.name == "Alien_Training" then
     for _, player in pairs(event.research.force.players) do
       player.insert{name="attractor-off",count=1}
@@ -154,7 +154,7 @@ end
 
 
 ----------------Radars Scanning Function -----------------------------
-game.on_event(defines.events.on_sector_scanned, function(event)
+script.on_event(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
@@ -170,7 +170,8 @@ game.on_event(defines.events.on_sector_scanned, function(event)
 	
 	--- Each time a Thumper "Scans", it will attract biters in the area
 	if event.radar.name == "Thumper" then
-        event.radar.surface.set_multi_command({type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},10)
+        --event.radar.surface.set_multi_command({type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},10)
+		event.radar.surface.set_multi_command{command = {type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},unit_count = 10, unit_search_distance = 200}
 		writeDebug("Thumper Scanned, units should attack")   
     end   
 	
@@ -321,7 +322,7 @@ end
 
 
 --------------------------------------------
-game.on_event(defines.events.on_tick, function(event)
+script.on_event(defines.events.on_tick, function(event)
 
  -- check for biters within Alien Control Station's range
 	if (game.tick % (60 * 6) == 0) and global.beacons[1] then
@@ -443,8 +444,8 @@ end
 
 
 ---------------------------------------------
-game.on_init(On_Load)
-game.on_load(On_Load)
+script.on_init(On_Load)
+script.on_load(On_Load)
 
 ---------------------------------------------
 --- DeBug Messages 

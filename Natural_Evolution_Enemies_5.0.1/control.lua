@@ -35,9 +35,9 @@ local filters = {["small-alien-artifact"] = 1,
 
 
 ---------------------------------------------
-game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
+script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 ---------------------------------------------				 
 function On_Load()
@@ -47,7 +47,7 @@ function On_Load()
 		force.reset_technologies() 
 	end
 	if global.ArtifactCollectors ~= nil then
-		game.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
         global.next_check= global.next_check or game.tick+interval
         global.next_collector= global.next_collector or 1
 	end
@@ -58,7 +58,7 @@ end
 function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it
 	--it exists merely for a convenience grouping
-	game.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
+	script.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
 	global.ArtifactCollectors= {}
 	global.next_check=game.tick+interval
 	global.next_collector= 1
@@ -99,7 +99,7 @@ function On_Remove(event)
         if #artifacts==0 then
         --and here artifacts=nil would not cut it.
             global.ArtifactCollectors=nil--I'm not sure this wins much, on it's own
-            game.on_event(defines.events.on_tick, nil);
+            script.on_event(defines.events.on_tick, nil);
             --but it's surely better done here than during on_tick
         end
     end
@@ -108,8 +108,8 @@ function On_Remove(event)
 	writeDebug("YOU KILLED A SPAWNER")
 		for i = 1, #game.players, 1 do
 			player = game.players[i]
-			player.surface.set_multi_command({type=defines.command.attack,target=player.character,distraction=defines.distraction.by_enemy},(20+math.floor(game.evolution_factor*100/#game.players)))
-			--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+			--player.surface.set_multi_command({type=defines.command.attack,target=player.character,distraction=defines.distraction.by_enemy},(20+math.floor(game.evolution_factor*100/#game.players)))
+			player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
 		end
 	end
 	
@@ -152,8 +152,8 @@ function ProcessCollector(collector)
 end
 
 ---------------------------------------------
-game.on_init(On_Load)
-game.on_load(On_Load)
+script.on_init(On_Load)
+script.on_load(On_Load)
 
 
 ---------------------------------------------

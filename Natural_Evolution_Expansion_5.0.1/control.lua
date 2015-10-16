@@ -34,9 +34,9 @@ end
 if NEConfig.HarderEndGame then
 
 	---------------------------------------------
-	game.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-	game.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-	game.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+	script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
+	script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+	script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 ---------------------------------------------
 	function On_Built(event)
@@ -54,8 +54,8 @@ if NEConfig.HarderEndGame then
 				end  
 					
 			-- Biters will attack the newly built Rocket Silo
-			event.created_entity.surface.set_multi_command({type=defines.command.attack,target=event.created_entity,distraction=defines.distraction.none},2000)
-			--event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(2000 * game.evolution_factor), unit_search_distance = 300}
+			--event.created_entity.surface.set_multi_command({type=defines.command.attack,target=event.created_entity,distraction=defines.distraction.none},2000)
+			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(2000 * game.evolution_factor), unit_search_distance = 600}
 			
 			for i, player in ipairs(game.players) do
 					player.print("WARNING!")
@@ -82,7 +82,7 @@ end
 ---------------------------------------------	
 if NEConfig.Expansion then	
 
-	game.on_event(defines.events.on_tick, function(event)
+	script.on_event(defines.events.on_tick, function(event)
 		--------------- Expansion ----------------------------------
 
 			if (game.tick % (60 * 60)  == 0) and (game.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
@@ -196,8 +196,8 @@ if NEConfig.Expansion then
 					game.evolution_factor = 0.99999
 				end  	
 						---- Attack the player, since you have a silo built
-				game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},Enemy_Count)
-				--game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 600}
+				--game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},Enemy_Count)
+				game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 600}
 				writeDebug("Attack wave inbound")					
 			end 
 		end	
@@ -350,8 +350,8 @@ end
 
 
 ---------------------------------------------
-game.on_init(On_Load)
-game.on_load(On_Load)
+script.on_init(On_Load)
+script.on_load(On_Load)
 
 ---------------------------------------------
 --- DeBug Messages 
