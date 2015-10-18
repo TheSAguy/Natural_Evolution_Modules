@@ -41,11 +41,7 @@ script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined
 
 ---------------------------------------------				 
 function On_Load()
- -- Make sure all recipes and technologies are up to date.
-	for k,force in pairs(game.forces) do 
-		force.reset_recipes()
-		force.reset_technologies() 
-	end
+
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
         global.next_check= global.next_check or game.tick+interval

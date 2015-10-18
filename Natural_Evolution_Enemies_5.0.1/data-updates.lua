@@ -70,7 +70,8 @@ if NEConfig.Spawners then
 	Add_Poison_Resist(data.raw["turret"],50)	
 	Add_Poison_Resist(data.raw["ammo-turret"],50)	
 	Add_Poison_Resist(data.raw["electric-turret"],50)	
-	Add_Poison_Resist(data.raw["rail"],50)	
+	Add_Poison_Resist(data.raw["straight-rail"],50)	
+	Add_Poison_Resist(data.raw["curved-rail"],50)	
 	Add_Poison_Resist(data.raw["transport-belt"],50)
 	
 	Add_Acid_Resist(data.raw["wall"],25)
@@ -80,7 +81,8 @@ if NEConfig.Spawners then
 	Add_Acid_Resist(data.raw["turret"],25)	
 	Add_Acid_Resist(data.raw["ammo-turret"],25)	
 	Add_Acid_Resist(data.raw["electric-turret"],25)	
-	Add_Acid_Resist(data.raw["rail"],25)	
+	Add_Acid_Resist(data.raw["straight-rail"],25)	
+	Add_Acid_Resist(data.raw["curved-rail"],25)	
 	Add_Acid_Resist(data.raw["transport-belt"],25)
 	
 	

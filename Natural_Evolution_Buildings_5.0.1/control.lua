@@ -31,12 +31,6 @@ end)
 
 ---------------------------------------------				 
 function On_Load()
-		
- -- Make sure all recipes and technologies are up to date.
-	for k,force in pairs(game.forces) do 
-		force.reset_recipes()
-		force.reset_technologies() 
-	end
  
 ---- Evolution_MOD
 	if global.Evolution_MOD == nil then
@@ -71,11 +65,7 @@ function On_Load()
       global.factormultiplier = 0
 	end	
 
-	for i = 1, #game.players, 1 do
-        if game.players[i].force.technologies["AlienUnderstanding"].researched then
-           game.players[i].force.recipes["Thumper"].enabled = true
-        end
-    end
+
 	
 end
 

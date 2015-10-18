@@ -93,48 +93,48 @@ end
 ---- Biter & Spitter Modifications --------------------------------
 if NEConfig.Spawners then
 	
+	if not NEConfig.mod.DyTechWar then
+		-- Vanilla Unit Adjustments
+		data.raw["unit"]["small-biter"].resistances = Resistances.Small_Biter
+		data.raw["unit"]["small-biter"].max_health = Health.Small_Biter
+		data.raw["unit"]["small-biter"].ammo_type = Damage.Small_Biter
 
-	-- Vanilla Unit Adjustments
-	data.raw["unit"]["small-biter"].resistances = Resistances.Small_Biter
-	data.raw["unit"]["small-biter"].max_health = Health.Small_Biter
-	data.raw["unit"]["small-biter"].ammo_type = Damage.Small_Biter
+		data.raw["unit"]["medium-biter"].resistances = Resistances.Medium_Biter
+		data.raw["unit"]["medium-biter"].max_health = Health.Medium_Biter
+		data.raw["unit"]["medium-biter"].ammo_type = Damage.Medium_Biter
+		data.raw["unit"]["medium-biter"].pollution_to_join_attack = 800
 
-	data.raw["unit"]["medium-biter"].resistances = Resistances.Medium_Biter
-	data.raw["unit"]["medium-biter"].max_health = Health.Medium_Biter
-	data.raw["unit"]["medium-biter"].ammo_type = Damage.Medium_Biter
-	data.raw["unit"]["medium-biter"].pollution_to_join_attack = 800
+		data.raw["unit"]["big-biter"].resistances = Resistances.Big_Biter
+		data.raw["unit"]["big-biter"].max_health = Health.Big_Biter
+		data.raw["unit"]["big-biter"].ammo_type = Damage.Big_Biter
+		data.raw["unit"]["big-biter"].pollution_to_join_attack = 1000
 
-	data.raw["unit"]["big-biter"].resistances = Resistances.Big_Biter
-	data.raw["unit"]["big-biter"].max_health = Health.Big_Biter
-	data.raw["unit"]["big-biter"].ammo_type = Damage.Big_Biter
-	data.raw["unit"]["big-biter"].pollution_to_join_attack = 1000
-
-	data.raw["unit"]["behemoth-biter"].resistances = Resistances.Behemoth_Biter
-	data.raw["unit"]["behemoth-biter"].max_health = Health.Behemoth_Biter
-	data.raw["unit"]["behemoth-biter"].ammo_type = Damage.Behemoth_Biter
-	data.raw["unit"]["behemoth-biter"].pollution_to_join_attack = 2500
+		data.raw["unit"]["behemoth-biter"].resistances = Resistances.Behemoth_Biter
+		data.raw["unit"]["behemoth-biter"].max_health = Health.Behemoth_Biter
+		data.raw["unit"]["behemoth-biter"].ammo_type = Damage.Behemoth_Biter
+		data.raw["unit"]["behemoth-biter"].pollution_to_join_attack = 2500
 
 
 
-	data.raw["unit"]["small-spitter"].resistances = Resistances.Small_Spitter
-	data.raw["unit"]["small-spitter"].max_health = Health.Small_Spitter
+		data.raw["unit"]["small-spitter"].resistances = Resistances.Small_Spitter
+		data.raw["unit"]["small-spitter"].max_health = Health.Small_Spitter
 
-	data.raw["unit"]["medium-spitter"].resistances = Resistances.Medium_Spitter
-	data.raw["unit"]["medium-spitter"].max_health = Health.Medium_Spitter
+		data.raw["unit"]["medium-spitter"].resistances = Resistances.Medium_Spitter
+		data.raw["unit"]["medium-spitter"].max_health = Health.Medium_Spitter
 
-	data.raw["unit"]["big-spitter"].resistances = Resistances.Big_Spitter
-	data.raw["unit"]["big-spitter"].max_health = Health.Big_Spitter
-	data.raw["unit"]["big-spitter"].pollution_to_join_attack = 1200
+		data.raw["unit"]["big-spitter"].resistances = Resistances.Big_Spitter
+		data.raw["unit"]["big-spitter"].max_health = Health.Big_Spitter
+		data.raw["unit"]["big-spitter"].pollution_to_join_attack = 1200
 
-	data.raw["unit"]["behemoth-spitter"].resistances = Resistances.Behemoth_Spitter
-	data.raw["unit"]["behemoth-spitter"].max_health = Health.Behemoth_Spitter
-	data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 5000
+		data.raw["unit"]["behemoth-spitter"].resistances = Resistances.Behemoth_Spitter
+		data.raw["unit"]["behemoth-spitter"].max_health = Health.Behemoth_Spitter
+		data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 5000
 
-	-- Worms
-	data.raw["turret"]["medium-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Infected-Projectile"
-	data.raw["turret"]["big-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Mutated-Projectile"
-	
-
+		-- Worms
+		data.raw["turret"]["medium-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Infected-Projectile"
+		data.raw["turret"]["big-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Mutated-Projectile"
+		
+	end
 	
 	
 -- Bob's Enemies Modifications
