@@ -934,15 +934,15 @@ data:extend({
     },
     result_units = (function()
                      local res = {}
-                     res[1] = {"tame-small-biter", {{0.0, 0.3}, {0.7, 0.0}}}
+                     res[1] = {"tame-small-spitter", {{0.0, 0.3}, {0.7, 0.0}}}
                      
-                       -- from evolution_factor 0.3 the weight for medium-biter is linearly rising from 0 to 0.3
+                       -- from evolution_factor 0.3 the weight for medium-spitter is linearly rising from 0 to 0.3
                        -- this means for example that when the evolution_factor is 0.45 the probability of spawning
-                       -- a small biter is 66% while probability for medium biter is 33%.
-                       res[2] = {"tame-medium-biter", {{0.3, 0.0}, {0.6, 0.3}, {0.8, 0.1}}}
-                       -- for evolution factor of 1 the spawning probabilities are: small-biter 0%, medium-biter 1/7, big-biter 4/7, behemoth biter 3/7
-                       res[3] = {"tame-big-biter", {{0.6, 0.0}, {1.0, 0.4}}}
-                       res[4] = {"tame-behemoth-biter", {{0.99, 0.0}, {1.0, 0.3}}}
+                       -- a small spitter is 66% while probability for medium spitter is 33%.
+                       res[2] = {"tame-medium-spitter", {{0.3, 0.0}, {0.6, 0.3}, {0.8, 0.1}}}
+                       -- for evolution factor of 1 the spawning probabilities are: small-spitter 0%, medium-spitter 1/7, big-spitter 4/7, behemoth spitter 3/7
+                       res[3] = {"tame-big-spitter", {{0.6, 0.0}, {1.0, 0.4}}}
+                       res[4] = {"tame-behemoth-spitter", {{0.99, 0.0}, {1.0, 0.3}}}
 
                      return res
                    end)(),
