@@ -168,6 +168,10 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='Natural_Evolution_Biter-Spawner'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='Natural_Evolution_Biter-Spawner-refresh'
 			}
 		},
 		prerequisites = {"AlienUnderstanding-3"},
@@ -194,6 +198,10 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='Natural_Evolution_Spitter-Spawner'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='Natural_Evolution_Spitter-Spawner-refresh'
 			}
 		},
 		prerequisites = {"AlienUnderstanding-3"},
@@ -258,6 +266,10 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='small-worm-hatching'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='small-worm-hatching-refresh'
 			}
 		},
 		prerequisites = {"Alien_Hatchery"},
@@ -292,6 +304,10 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='medium-worm-hatching'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='medium-worm-hatching-refresh'
 			}
 		},
 		prerequisites = {"Breeding"},
@@ -326,6 +342,10 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='big-worm-hatching'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='big-worm-hatching-refresh'
 			}
 		},
 		prerequisites = {"Breeding-2"},

@@ -735,10 +735,10 @@ data:extend({
     type = "unit-spawner",
     name = "Natural_Evolution_Biter-Spawner",
     icon = "__base__/graphics/icons/biter-spawner.png",
-    flags = {"placeable-player", "placeable-enemy", "not-repairable"},
+    flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
+    minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Biter-Spawner-exhausted"},
     max_health = 750,
     order="b-b-i",
-    subgroup="enemies",
     working_sound =
     {
       sound =
@@ -860,10 +860,10 @@ data:extend({
     type = "unit-spawner",
     name = "Natural_Evolution_Spitter-Spawner",
     icon = "__base__/graphics/icons/biter-spawner.png",
-    flags = {"placeable-player", "placeable-enemy", "not-repairable"},
+    flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
+    minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Spitter-Spawner-exhausted"},
     max_health = 750,
     order="b-b-j",
-    subgroup="enemies",
     working_sound =
     {
       sound =
