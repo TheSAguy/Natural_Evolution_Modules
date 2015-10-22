@@ -1,4 +1,4 @@
---- v.5.0.0
+--- v.5.0.2
 require "defines"
 require "util"
 NEConfig = {}

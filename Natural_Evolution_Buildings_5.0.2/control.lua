@@ -1,4 +1,4 @@
---- v.5.0.0
+--- v.5.0.2
 require "defines"
 require "util"
 NEConfig = {}
@@ -149,14 +149,14 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
    
-   			if game.evolution_factor > 0.05 then
-				game.evolution_factor = game.evolution_factor - ((0.000125 * global.factormultiplier) * (1 - game.evolution_factor))
-			else
-				game.evolution_factor = .0001
-			end 
-   
-		writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)   
+	reduction = ((0.00015 * global.factormultiplier) * game.evolution_factor * (1 - game.evolution_factor))
+		if game.evolution_factor > reduction then
+			game.evolution_factor = game.evolution_factor - reduction
+		end
+		writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)  
+	
 	end
+
 	
 	--- Each time a Thumper "Scans", it will attract biters in the area
 	if event.radar.name == "Thumper" then

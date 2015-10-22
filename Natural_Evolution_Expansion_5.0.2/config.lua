@@ -9,7 +9,7 @@ Albatrosv13 - For his MOD Alien Temple that I’ve used in my MOD.
 FreeER - For his MOD Mind Control that I’ve used in my MOD.
 Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
-ThaPear, Semvoz,  Billw, Adil, Rseding91 & Orzelek   - Coding help!
+ThaPear, Semvoz,  Billw, Adil, Rseding91, Orzelek & Chlue - Coding help!
 DySoch - DyTech and Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
 YuokiTani - Art!!  
 
