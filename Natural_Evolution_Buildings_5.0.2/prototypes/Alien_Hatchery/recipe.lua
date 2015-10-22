@@ -152,6 +152,20 @@ data:extend({
     result = "small-worm-hatching",
     energy_required = 2.5,
   },
+
+  {
+    type = "recipe",
+    name = "small-worm-hatching-refresh",
+    category = "Hatchery",
+    enabled = "false",
+    ingredients =
+    {
+		{"alien-artifact", 1},
+		{"small-worm-hatching-exhausted", 1},
+    },
+    result = "small-worm-hatching",
+    energy_required = 2.5,
+  },
   
 	--- Medium Worm Hatching
   {
@@ -164,6 +178,20 @@ data:extend({
 		{"Building_Materials", 1},
 		{"stone", 100},
 		{"small-worm-hatching", 2},
+    },
+    result = "medium-worm-hatching",
+    energy_required = 3.5,
+  },
+
+  {
+    type = "recipe",
+    name = "medium-worm-hatching-refresh",
+    category = "Hatchery",
+    enabled = "false",
+    ingredients =
+    {
+		{"alien-artifact", 2},
+		{"medium-worm-hatching-exhausted", 1},
     },
     result = "medium-worm-hatching",
     energy_required = 3.5,
@@ -184,6 +212,20 @@ data:extend({
     result = "big-worm-hatching",
     energy_required = 5,
   },
+
+  {
+    type = "recipe",
+    name = "big-worm-hatching-refresh",
+    category = "Hatchery",
+    enabled = "false",
+    ingredients =
+    {
+		{"alien-artifact", 4},
+		{"big-worm-hatching-exhausted", 1},
+    },
+    result = "big-worm-hatching",
+    energy_required = 3.5,
+  },
   
     --- Spawner Biter
 	{
@@ -200,7 +242,21 @@ data:extend({
 		result = "Natural_Evolution_Biter-Spawner",
 		energy_required = 5,
 	},
-  
+
+	{
+		type = "recipe",
+		name = "Natural_Evolution_Biter-Spawner-refresh",
+		category = "Hatchery",
+		enabled = "false",
+		ingredients =
+		{
+		  {"alien-artifact", 25},
+		  {"Natural_Evolution_Biter-Spawner-exhausted", 1},
+		},
+		result = "Natural_Evolution_Biter-Spawner",
+		energy_required = 5,
+	},
+
     --- Spawner Spitter
 	{
 		type = "recipe",
@@ -216,8 +272,19 @@ data:extend({
 		result = "Natural_Evolution_Spitter-Spawner",
 		energy_required = 5,
 	},
-	
-	
-  
-	
+
+	{
+		type = "recipe",
+		name = "Natural_Evolution_Spitter-Spawner-refresh",
+		category = "Hatchery",
+		enabled = "false",
+		ingredients =
+		{
+		  {"alien-artifact", 25},
+		  {"Natural_Evolution_Spitter-Spawner-exhausted", 1},
+		},
+		result = "Natural_Evolution_Spitter-Spawner",
+		energy_required = 5,
+	},
+
 })
