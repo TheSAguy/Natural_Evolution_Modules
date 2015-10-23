@@ -50,6 +50,13 @@ function On_Load()
 end
 
 
+script.on_configuration_changed(function()
+	for k,force in pairs(game.forces) do 
+		force.reset_recipes()
+		force.reset_technologies() 
+	end
+
+end)
 ---------------------------------------------
 function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it

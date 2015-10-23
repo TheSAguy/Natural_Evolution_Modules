@@ -27,7 +27,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=50},
     },
     result = "small-biter-hatching",
-    energy_required = 1,
+    energy_required = 5,
   },
   
     --- Medium Biter Hatching
@@ -42,7 +42,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=150},
     },
     result = "medium-biter-hatching",
-    energy_required = 2,
+    energy_required = 10,
   },
   
     --- Big Biter Hatching
@@ -57,7 +57,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=300},
     },
     result = "big-biter-hatching",
-    energy_required = 4,
+    energy_required = 15,
   },
   
     --- Behemoth Biter Hatching
@@ -72,7 +72,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=500},
     },
     result = "behemoth-biter-hatching",
-    energy_required = 10,
+    energy_required = 20,
   },	
 
   
@@ -88,7 +88,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=50},
     },
     result = "small-spitter-hatching",
-    energy_required = 1.5,
+    energy_required = 5,
   },
 
   --- Medium Spitter Hatching
@@ -103,7 +103,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=200},
     },
     result = "medium-spitter-hatching",
-    energy_required = 2.5,
+    energy_required = 10,
   },
 
   --- Big Spitter Hatching
@@ -118,7 +118,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=300},
     },
     result = "big-spitter-hatching",
-    energy_required = 5,
+    energy_required = 15,
   },
 
   --- Behemoth Spitter Hatching
@@ -133,7 +133,7 @@ data:extend({
 		{type="fluid", name="sulfuric-acid", amount=500},
     },
     result = "behemoth-spitter-hatching",
-    energy_required = 15,
+    energy_required = 20,
   },
   
   
@@ -145,12 +145,11 @@ data:extend({
     enabled = "false",
     ingredients =
     {
-		--{"Building_Materials", 1},
 		{"alien-artifact", 2},
 		{"stone", 50},
     },
     result = "small-worm-hatching",
-    energy_required = 2.5,
+    energy_required = 5,
   },
 
   {
@@ -180,7 +179,7 @@ data:extend({
 		{"small-worm-hatching", 2},
     },
     result = "medium-worm-hatching",
-    energy_required = 3.5,
+    energy_required = 7,
   },
 
   {
@@ -210,7 +209,7 @@ data:extend({
 		{"medium-worm-hatching", 4},
     },
     result = "big-worm-hatching",
-    energy_required = 5,
+    energy_required = 10,
   },
 
   {
@@ -224,7 +223,7 @@ data:extend({
 		{"big-worm-hatching-exhausted", 1},
     },
     result = "big-worm-hatching",
-    energy_required = 3.5,
+    energy_required = 5,
   },
   
     --- Spawner Biter
@@ -240,7 +239,7 @@ data:extend({
 		  {type="fluid", name="sulfuric-acid", amount=500},
 		},
 		result = "Natural_Evolution_Biter-Spawner",
-		energy_required = 5,
+		energy_required = 15,
 	},
 
 	{
@@ -254,7 +253,7 @@ data:extend({
 		  {"Natural_Evolution_Biter-Spawner-exhausted", 1},
 		},
 		result = "Natural_Evolution_Biter-Spawner",
-		energy_required = 5,
+		energy_required = 7.5,
 	},
 
     --- Spawner Spitter
@@ -270,7 +269,7 @@ data:extend({
 		  {type="fluid", name="sulfuric-acid", amount=500},
 		},
 		result = "Natural_Evolution_Spitter-Spawner",
-		energy_required = 5,
+		energy_required = 15,
 	},
 
 	{
@@ -284,7 +283,7 @@ data:extend({
 		  {"Natural_Evolution_Spitter-Spawner-exhausted", 1},
 		},
 		result = "Natural_Evolution_Spitter-Spawner",
-		energy_required = 5,
+		energy_required = 7.5,
 	},
 
 })

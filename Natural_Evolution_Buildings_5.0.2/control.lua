@@ -29,6 +29,15 @@ script.on_event(defines.events.on_research_finished, function(event)
 end)
 
 
+script.on_configuration_changed(function()
+	for k,force in pairs(game.forces) do 
+		force.reset_recipes()
+		force.reset_technologies() 
+	end
+
+end)
+
+
 ---------------------------------------------				 
 function On_Load()
  
