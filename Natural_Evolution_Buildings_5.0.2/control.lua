@@ -11,6 +11,7 @@ local update_com_count = 80
 local agro_area_rad = 40
 local call_back_area_rad = agro_area_rad + 15
 local max_unit_count = 20
+local max_terra_count = 30
 
 
 ---------------------------------------------
@@ -67,11 +68,15 @@ function On_Load()
 
 ---- Terraforming Initialization ----	
 	if not global.numTerraformingStations then
-      global.numTerraformingStations = 0
+          global.numTerraformingStations = 0
+        elseif global.numTerraformingStations < 0 then
+          global.numTerraformingStations = 0
 	end
 	
 	if not global.factormultiplier then
       global.factormultiplier = 0
+        elseif global.factormultiplier < 0 then
+          global.factormultiplier = 0
 	end	
 
 
@@ -84,6 +89,11 @@ function On_Built(event)
      
    --- Terraforming Station has been built
 	if event.created_entity.name == "TerraformingStation" then
+	
+	if global.numTerraformingStations < 0 then
+		global.numTerraformingStations = 0
+	end
+
       global.numTerraformingStations = global.numTerraformingStations + 1
       
       global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
@@ -102,11 +112,16 @@ end
 ---------------------------------------------
 function On_Remove(event)
 	--- Terraforming Station has been removed
-   if event.entity.name == "TerraformingStation" then
+	if event.entity.name == "TerraformingStation" then
       
-      global.numTerraformingStations = global.numTerraformingStations - 1
+		if global.numTerraformingStations > 0 then
+			global.numTerraformingStations = global.numTerraformingStations - 1
+		else
+			global.numTerraformingStations = 0
+		end
+	
       global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
-   end
+	end
     
    --- Alien Control Station has been removed
 	if event.entity.name == "AlienControlStation" then
@@ -445,6 +460,28 @@ end
 ---------------------------------------------
 script.on_init(On_Load)
 script.on_load(On_Load)
+
+---------------------------------------------
+remote.add_interface("nevo", {
+   -- remote.call("nevo", "TerraReset", number)
+   TerraReset = function(new_count)
+	if new_count < 0 then
+		global.numTerraformingStations = 0
+        elseif new_count > max_terra_count then
+		global.numTerraformingStations = max_terra_count 
+	else
+		global.numTerraformingStations = new_count
+	end
+   end,
+
+   -- remote.call("nevo", "TerraCount")
+   TerraCount = function()
+	c = tostring(global.numTerraformingStations)
+	for i, player in ipairs(game.players) do
+		player.print({"","Terraforming Stations = ",{c},"."})
+	end
+   end
+})
 
 ---------------------------------------------
 --- DeBug Messages 
