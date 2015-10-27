@@ -61,30 +61,42 @@ function Add_Acid_Resist(Raw,Percent)
 end
 
 
+function Add_Physical_Resist(Raw,Percent)
+	local Resist = {type = "physical",percent = Percent}
+	for i,d in pairs(Raw) do
+		if d.resistances ==nil then d.resistances={} end
+		table.insert(d.resistances, Resist)
+	end
+end
+
+
+
 if NEConfig.Spawners then
 	--Add resistances to entities.
 	Add_Poison_Resist(data.raw["wall"],50)
 	Add_Poison_Resist(data.raw["gate"],50)
 	Add_Poison_Resist(data.raw["car"],50)
-	Add_Poison_Resist(data.raw["electric-pole"],50)
+	Add_Poison_Resist(data.raw["electric-pole"],100)
 	Add_Poison_Resist(data.raw["turret"],50)	
 	Add_Poison_Resist(data.raw["ammo-turret"],50)	
 	Add_Poison_Resist(data.raw["electric-turret"],50)	
-	Add_Poison_Resist(data.raw["straight-rail"],50)	
-	Add_Poison_Resist(data.raw["curved-rail"],50)	
+	Add_Poison_Resist(data.raw["straight-rail"],100)	
+	Add_Poison_Resist(data.raw["curved-rail"],100)	
 	Add_Poison_Resist(data.raw["transport-belt"],50)
 	
 	Add_Acid_Resist(data.raw["wall"],25)
 	Add_Acid_Resist(data.raw["gate"],25)
 	Add_Acid_Resist(data.raw["car"],25)
-	Add_Acid_Resist(data.raw["electric-pole"],25)
+	Add_Acid_Resist(data.raw["electric-pole"],100)
 	Add_Acid_Resist(data.raw["turret"],25)	
 	Add_Acid_Resist(data.raw["ammo-turret"],25)	
 	Add_Acid_Resist(data.raw["electric-turret"],25)	
-	Add_Acid_Resist(data.raw["straight-rail"],25)	
-	Add_Acid_Resist(data.raw["curved-rail"],25)	
+	Add_Acid_Resist(data.raw["straight-rail"],100)	
+	Add_Acid_Resist(data.raw["curved-rail"],100)	
 	Add_Acid_Resist(data.raw["transport-belt"],25)
-	
+
+	Add_Physical_Resist(data.raw["straight-rail"],100)	
+	Add_Physical_Resist(data.raw["curved-rail"],100)		
 	
 end
 
