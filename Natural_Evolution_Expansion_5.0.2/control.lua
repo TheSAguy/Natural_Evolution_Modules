@@ -1,4 +1,4 @@
---- v.5.0.2
+--- v.5.0.3
 require "defines"
 require "util"
 NEConfig = {}
@@ -234,6 +234,15 @@ if NEConfig.Expansion then
 		
 		Expansion_State = Expansion_State or "Peaceful"
 		
+		-- cause pollution to spread farther
+		game.map_settings.pollution.diffusion_ratio = 0.04
+		game.map_settings.pollution.min_to_diffuse = 50
+	
+		-- allow biters to path from farther away (minor performance hit)
+		if expansion_state ~= "peaceful" then
+			game.map_settings.path_finder.max_steps_worked_per_tick = 500
+		end
+	
 		if Expansion_State == "Peaceful" then
 			game.map_settings.enemy_expansion.enabled = false
 			global.Natural_Evolution_Timer = 0

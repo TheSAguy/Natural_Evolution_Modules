@@ -19,6 +19,8 @@ if NEConfig.Spawners then
 		data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 25
 		data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2
 		--data.raw["unit-spawner"]["biter-spawner"].max_spawn_shift = 0.65
+		data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_absolute = 15
+		data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_proportional = 0.005
 
 		-- Spitter Spawner Adjustments
 		data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 20
@@ -29,6 +31,8 @@ if NEConfig.Spawners then
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2
 		--data.raw["unit-spawner"]["spitter-spawner"].max_spawn_shift = 0.65
+		data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute = 15
+		data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional = 0.005
 
 	end
 	
@@ -72,7 +76,10 @@ if NEConfig.Spawners then
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_radius = 25
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_spacing = 2
 	--data.raw["unit-spawner"]["bob-biter-spawner"].max_spawn_shift = 0.65
-
+	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_absolute = 15
+	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_proportional = 0.005
+	
+	
 	-- Bob's Spitter Spawner Adjustments
 	data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 20
 	data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15
@@ -82,6 +89,8 @@ if NEConfig.Spawners then
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_radius = 20
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_spacing = 2
 	--data.raw["unit-spawner"]["bob-spitter-spawner"].max_spawn_shift = 0.65
+	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_absolute = 15
+	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_proportional = 0.005
 
 	end
 

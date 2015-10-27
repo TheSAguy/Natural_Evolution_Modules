@@ -1,4 +1,4 @@
---- v.5.0.2
+--- v.5.0.3
 require "defines"
 require "util"
 NEConfig = {}
@@ -173,7 +173,7 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
    
-	reduction = ((0.0003 * global.factormultiplier) * game.evolution_factor * (1 - game.evolution_factor))
+	reduction = ((0.00025 * global.factormultiplier) * game.evolution_factor * (1 - game.evolution_factor))
 		if game.evolution_factor > reduction then
 			game.evolution_factor = game.evolution_factor - reduction
 		end
