@@ -9,7 +9,7 @@ data:extend({
 		enabled = "false",
 		ingredients =
         {
-            {"Building_Materials", 1},
+            {"Building_Materials", 10},
             {"alien-artifact", 10},
         },
 		result = "AlienControlStation"

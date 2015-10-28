@@ -98,8 +98,8 @@ if NEConfig.Spawners then
 	Add_Physical_Resist(data.raw["straight-rail"],100)	
 	Add_Physical_Resist(data.raw["curved-rail"],100)		
 	
-	data.raw["straight-rail"]["straight-rail"].destructible = false
-	data.raw["curved-rail"]["curved-rail"].destructible = false
+	data.raw["straight-rail"]["straight-rail"].flags = {"placeable-neutral", "building-direction-8-way"}
+	data.raw["curved-rail"]["curved-rail"].flags = {"placeable-neutral", "building-direction-8-way"}
 	
 end
 
