@@ -14,6 +14,7 @@ require("prototypes.Categories.recipe-category")
 	
 require("prototypes.Alien_Hatchery.entity")
 require("prototypes.Alien_Hatchery.item")
+require("prototypes.Alien_Hatchery.fluid")
 require("prototypes.Alien_Hatchery.recipe")
 require("prototypes.Alien_Hatchery.biters")
 require("prototypes.Alien_Hatchery.spawner")
