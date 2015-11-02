@@ -231,7 +231,19 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='Alien_Hatchery'
-			}
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_basic-alien-nutrientant'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_alien-revitalization'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_enhanced-alien-nutrientant'
+			},
 		},
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =

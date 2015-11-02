@@ -1,3 +1,75 @@
+-- create worm attack variants with spash damage
+
+-- http://stackoverflow.com/questions/640642/how-do-you-copy-a-lua-table-by-value
+local function deepcopy(o, seen)
+  seen = seen or {}
+  if o == nil then return nil end
+  if seen[o] then return seen[o] end
+
+  local no
+  if type(o) == 'table' then
+    no = {}
+    seen[o] = no
+
+    for k, v in next, o, nil do
+      no[deepcopy(k, seen)] = deepcopy(v, seen)
+    end
+    setmetatable(no, deepcopy(getmetatable(o), seen))
+  else -- number, string, boolean, etc
+    no = o
+  end
+  return no
+end
+
+local SpashDmg =
+{
+  type = "nested-result",
+  action =
+  {
+    type = "area",
+    perimeter = 1.5,
+    force = "enemy",
+    action_delivery =
+    {
+      type = "instant",
+      target_effects =
+      {
+        {type = "damage",
+          damage =
+          {
+            amount = 5,
+            type = "acid"
+          }
+        }
+      }
+    }
+  }
+}
+
+--[[
+local AcidProjectileSmallSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
+AcidProjectileSmallSpash.name = "acid-projectile-purple-smallSplash"
+local SmallSplash = deepcopy(SpashDmg)
+SmallSplash.action.perimeter = 2
+table.insert(AcidProjectileSmallSpash.action.action_delivery.target_effects, SmallSplash)
+data:extend{AcidProjectileSmallSpash}
+--]]
+
+local AcidProjectileMediumSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
+AcidProjectileMediumSpash.name = "acid-projectile-purple-mediumSplash"
+local MediumSpash = deepcopy(SpashDmg)
+MediumSpash.action.perimeter = 2.5
+table.insert(AcidProjectileMediumSpash.action.action_delivery.target_effects, MediumSpash)
+data:extend{AcidProjectileMediumSpash}
+
+local AcidProjectileBigSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
+AcidProjectileBigSpash.name = "acid-projectile-purple-bigSplash"
+local BigSplash = deepcopy(SpashDmg)
+BigSplash.action.perimeter = 3
+table.insert(AcidProjectileBigSpash.action.action_delivery.target_effects, BigSplash)
+data:extend{AcidProjectileBigSpash}
+
+
 data:extend(
 {
 
@@ -8,7 +80,7 @@ data:extend(
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[small-worm]",
-    stack_size = 10
+    stack_size = 50
   },
 
   {
@@ -19,7 +91,7 @@ data:extend(
     subgroup = "worms",
     order = "a[small-worm]",
     place_result = "small-worm-turret-player",
-    stack_size = 10
+    stack_size = 50
   },
   
   {
@@ -29,7 +101,7 @@ data:extend(
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[medium-worm]",
-    stack_size = 10
+    stack_size = 50
   },
 
   {
@@ -40,7 +112,7 @@ data:extend(
     subgroup = "worms",
     order = "b[medium-worm]",
     place_result = "medium-worm-turret-player",
-    stack_size = 10
+    stack_size = 50
   },
 
   {
@@ -50,7 +122,7 @@ data:extend(
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[big-worm]",
-    stack_size = 10
+    stack_size = 50
   },
 
   {
@@ -61,7 +133,7 @@ data:extend(
     subgroup = "worms",
     order = "c[big-worm]",
     place_result = "big-worm-turret-player",
-    stack_size = 10
+    stack_size = 50
   },
 
 })
@@ -73,10 +145,28 @@ data:extend(
     name = "small-worm-turret-player",
     icon = "__base__/graphics/icons/small-worm.png",
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation", "breaths-air"},
-    minable = {hardness = 0.2, mining_time = 0.5, result = "small-worm-hatching-exhausted"},
+    minable = {hardness = 1, mining_time = 1, result = "small-worm-hatching-exhausted"},
     order="b-b-d",
-    max_health = 200,
-    healing_per_tick = 0.01,
+    max_health = 400,
+    resistances =
+    {
+      {
+        type = "physical",
+        decrease = 3,
+        percent = 20
+      },
+      {
+        type = "acid",
+        decrease = 3,
+        percent = 30
+      },
+      {
+        type = "explosion",
+        decrease = 2,
+        percent = 20
+      }
+    },
+    healing_per_tick = 0.0222,
     collision_box = {{-0.9, -0.8 }, {0.9, 0.8}},
     selection_box = {{-0.9, -0.8 }, {0.9, 0.8}},
     shooting_cursor_size = 3,
@@ -126,22 +216,28 @@ data:extend(
     name = "medium-worm-turret-player",
     icon = "__base__/graphics/icons/medium-worm.png",
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation", "breaths-air"},
-    minable = {hardness = 0.2, mining_time = 0.5, result = "medium-worm-hatching-exhausted"},
+    minable = {hardness = 1, mining_time = 1, result = "medium-worm-hatching-exhausted"},
     order="b-b-e",
-    max_health = 350,
+    max_health = 700,
     resistances =
     {
       {
         type = "physical",
-        decrease = 4,
+        decrease = 6,
+        percent = 30
       },
       {
         type = "explosion",
+        decrease = 10,
+        percent = 30
+      },
+      {
+        type = "acid",
         decrease = 5,
-        percent = 15,
+        percent = 30
       }
     },
-    healing_per_tick = 0.015,
+    healing_per_tick = 0.0389,
     collision_box = {{-1.1, -1.0}, {1.1, 1.0}},
     selection_box = {{-1.1, -1.0}, {1.1, 1.0}},
     shooting_cursor_size = 3.5,
@@ -168,7 +264,7 @@ data:extend(
     {
       type = "projectile",
       ammo_category = "rocket",
-      cooldown = 100,
+      cooldown = 60,
       range = 20,
       projectile_creation_distance = 1.9,
       damage_modifier = 3,
@@ -181,7 +277,7 @@ data:extend(
           action_delivery =
           {
             type = "projectile",
-            projectile = "acid-projectile-purple",
+            projectile = "acid-projectile-purple-mediumSplash",
             starting_speed = 0.5
           }
         }
@@ -194,22 +290,28 @@ data:extend(
     name = "big-worm-turret-player",
     icon = "__base__/graphics/icons/big-worm.png",
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation", "breaths-air"},
-    minable = {hardness = 0.2, mining_time = 0.5, result = "big-worm-hatching-exhausted"},
-    max_health = 500,
+    minable = {hardness = 1, mining_time = 1, result = "big-worm-hatching-exhausted"},
+    max_health = 1000,
     order="b-b-f",
     resistances =
     {
       {
         type = "physical",
         decrease = 8,
+        percent = 30
+      },
+      {
+        type = "acid",
+        decrease = 7,
+        percent = 30
       },
       {
         type = "explosion",
-        decrease = 10,
-        percent = 30,
+        decrease = 15,
+        percent = 30
       }
     },
-    healing_per_tick = 0.02,
+    healing_per_tick = 0.0556,
     collision_box = {{-1.4, -1.2}, {1.4, 1.2}},
     selection_box = {{-1.4, -1.2}, {1.4, 1.2}},
     shooting_cursor_size = 4,
@@ -237,7 +339,7 @@ data:extend(
     {
       type = "projectile",
       ammo_category = "rocket",
-      cooldown = 100,
+      cooldown = 90,
       range = 25,
       projectile_creation_distance = 2.1,
       damage_modifier = 6,
@@ -250,7 +352,7 @@ data:extend(
           action_delivery =
           {
             type = "projectile",
-            projectile = "acid-projectile-purple",
+            projectile = "acid-projectile-purple-bigSplash",
             starting_speed = 0.5
           }
         }
