@@ -24,6 +24,15 @@ else
 	NEConfig.mod.BobEnemies=false
 end
 
+
+--Detect Bob's Tech
+if data.raw["tool"]["science-pack-4"] ~= nil then
+	NEConfig.mod.BobTech=true
+else 
+	NEConfig.mod.BobTech=false
+end
+
+
 --Detect Supreme Warfare
 if data.raw["technology"]["artillery"] ~= nil and data.raw["technology"]["advanced-artillery"] ~= nil then
 	NEConfig.mod.SupremeWarfare=true
