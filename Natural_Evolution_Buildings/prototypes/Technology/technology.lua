@@ -1,4 +1,5 @@
-data:extend({
+require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+datadata:extend({
 	
 	--- Alien Understanding 1
     {
@@ -227,7 +228,6 @@ data:extend({
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/Alien_Hatchery.png",
 		effects = 
 		{
-		
 			{
 				type = 'unlock-recipe',
 				recipe='Alien_Hatchery'
@@ -244,6 +244,12 @@ data:extend({
 				type = 'unlock-recipe',
 				recipe='NE_enhanced-alien-nutrientant'
 			},
+			if NEConfig.mod.NEEnemies then
+			{
+				type = 'unlock-recipe',
+				recipe='NE_alien_toxin'
+			},
+			end
 		},
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =

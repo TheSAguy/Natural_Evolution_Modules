@@ -30,3 +30,11 @@ if data.raw["technology"]["artillery"] ~= nil and data.raw["technology"]["advanc
 else 
 	NEConfig.mod.SupremeWarfare=false
 end
+
+
+--Detect N.E. Enemies
+if data.raw["unit"]["small-biter-Mk2"] ~= nil and data.raw["unit"]["small-spitter-Mk2"] ~= nil then
+	NEConfig.mod.NEEnemies=true
+else 
+	NEConfig.mod.NEEnemies=false
+end

@@ -18,6 +18,13 @@ data:extend(
 
   {
     type = "item-subgroup",
+    name = "Evolution-fluids",
+    group = "Natural-Evolution",
+    order = "f",
+  },
+  
+  {
+    type = "item-subgroup",
     name = "Materials",
     group = "Natural-Evolution",
     order = "g",

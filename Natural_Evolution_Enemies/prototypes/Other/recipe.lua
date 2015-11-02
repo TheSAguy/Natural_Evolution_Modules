@@ -1,3 +1,5 @@
+require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+
 data:extend({
   
 		
@@ -8,7 +10,6 @@ data:extend({
 		  enabled = "false",
 		  ingredients = 
 		  {
-			--{"iron-plate", 1},
 			{"advanced-circuit", 15},
 			{"stone-brick", 50},       
 			{"steel-plate", 10}, 
@@ -23,13 +24,18 @@ data:extend({
 		enabled = false,
 		energy_required = 5,
 		ingredients =
-		{
-		  {"alien-artifact", 1},
-		  {"plastic-bar", 5},
-		  {"piercing-bullet-magazine", 5},
+		{ 
+		if NEConfig.mod.NEBuildings then
+			{type="fluid", name="NE_alien-toxin", amount=1},
+		else
+			{"alien-artifact", 1},
+		end
+			{"plastic-bar", 5},
+			{"piercing-bullet-magazine", 5},
 		},
 		result = "Biological-bullet-magazine",
 		result_count = 5
-  },
+	},
+	
 	
 })

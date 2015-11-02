@@ -43,14 +43,14 @@ data:extend(
     group = "Natural-Evolution",
     order = "e",
   },
---[[
+
   {
     type = "item-subgroup",
-    name = "Evolution-armors",
+    name = "Evolution-fluids",
     group = "Natural-Evolution",
     order = "f",
   },
-]]
+
   {
     type = "item-subgroup",
     name = "Materials",

@@ -4,6 +4,16 @@ require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 require "prototypes.Vanilla_Changes.Settings"
 
+--- Difficulty settings	
+	if global.NE_Difficulty == nil then
+      global.NE_Difficulty = 1
+	end
+	if NEConfig.NE_Difficulty == Normal then
+		global.NE_Difficulty = 1 -- Normal difficulty
+		else global.NE_Difficulty  = 2 -- Hard difficulty
+	end
+	
+
 ---- Spawner Modifications ----------------------------------------
 if NEConfig.Spawners then
 	
@@ -11,26 +21,24 @@ if NEConfig.Spawners then
 	if not NEConfig.mod.DyTechWar then
 		
 	-- Biter Spawner Adjustments
-		data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 30
-		data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn = 40
-		data.raw["unit-spawner"]["biter-spawner"].spawning_cooldown = {300, 150}
-		data.raw["unit-spawner"]["biter-spawner"].max_health = 2500
+		data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 15 + 15 * global.NE_Difficulty
+		data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn = 25 + 15 * global.NE_Difficulty
+		data.raw["unit-spawner"]["biter-spawner"].spawning_cooldown = {(200+100/NE_Difficulty), (100+50/NE_Difficulty)}
+		data.raw["unit-spawner"]["biter-spawner"].max_health = 1500 + 1000 * global.NE_Difficulty
 		data.raw["unit-spawner"]["biter-spawner"].resistances = Resistances.Spawner
 		data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 25
 		data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2
-		--data.raw["unit-spawner"]["biter-spawner"].max_spawn_shift = 0.65
 		data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_absolute = 15
 		data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_proportional = 0.005
 
 		-- Spitter Spawner Adjustments
-		data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 20
-		data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn = 30
-		data.raw["unit-spawner"]["spitter-spawner"].spawning_cooldown = {400, 180}
-		data.raw["unit-spawner"]["spitter-spawner"].max_health = 3500
+		data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 10 + 10 * global.NE_Difficulty
+		data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * global.NE_Difficulty
+		data.raw["unit-spawner"]["spitter-spawner"].spawning_cooldown = {(300+100/NE_Difficulty), (100+80/NE_Difficulty)}
+		data.raw["unit-spawner"]["spitter-spawner"].max_health = 2500 + 1000 * global.NE_Difficulty
 		data.raw["unit-spawner"]["spitter-spawner"].resistances = Resistances.Spawner
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2
-		--data.raw["unit-spawner"]["spitter-spawner"].max_spawn_shift = 0.65
 		data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute = 15
 		data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional = 0.005
 
@@ -68,27 +76,25 @@ if NEConfig.Spawners then
 	elseif NEConfig.mod.BobEnemies and not NEConfig.mod.DyTechWar then
 
 	-- Bob's Biter Spawner Adjustments
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 30
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 20
-	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_cooldown = {300, 150}
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 2500
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 15 + 15 * global.NE_Difficulty
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 25 + 15 * global.NE_Difficulty
+	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_cooldown = {(200+100/NE_Difficulty), (100+50/NE_Difficulty)}
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 1500 + 1000 * global.NE_Difficulty
 	data.raw["unit-spawner"]["bob-biter-spawner"].resistances = Resistances.Spawner
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_radius = 25
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_spacing = 2
-	--data.raw["unit-spawner"]["bob-biter-spawner"].max_spawn_shift = 0.65
 	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_absolute = 15
 	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_proportional = 0.005
 	
 	
 	-- Bob's Spitter Spawner Adjustments
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 20
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15
-	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_cooldown = {400, 180}
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 3500
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 10 + 10 * global.NE_Difficulty
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * global.NE_Difficulty
+	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_cooldown = {(300+100/NE_Difficulty), (100+80/NE_Difficulty)}
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 2500 + 1000 * global.NE_Difficulty
 	data.raw["unit-spawner"]["bob-spitter-spawner"].resistances = Resistances.Spawner
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_radius = 20
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_spacing = 2
-	--data.raw["unit-spawner"]["bob-spitter-spawner"].max_spawn_shift = 0.65
 	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_absolute = 15
 	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_proportional = 0.005
 
@@ -123,11 +129,14 @@ if NEConfig.Spawners then
 		data.raw["unit"]["behemoth-biter"].ammo_type = Damage.Behemoth_Biter
 		data.raw["unit"]["behemoth-biter"].pollution_to_join_attack = 2500
 
-
-
+		--- Vanilla Spitter Damage
+		data.raw["projectile"]["acid-projectile-purple"].action.action_delivery.target_effects.damage.amount = 10*NE_Difficulty
+		
+		--- Vanilla Spitter Units
 		data.raw["unit"]["small-spitter"].resistances = Resistances.Small_Spitter
 		data.raw["unit"]["small-spitter"].max_health = Health.Small_Spitter
-
+		
+		
 		data.raw["unit"]["medium-spitter"].resistances = Resistances.Medium_Spitter
 		data.raw["unit"]["medium-spitter"].max_health = Health.Medium_Spitter
 

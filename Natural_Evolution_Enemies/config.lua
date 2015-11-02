@@ -25,6 +25,12 @@ YuokiTani - Art!!
 NE.ExtraLoot = true --Extra Loot from Aliens (small-alien-artifact)
 
 
+NE.NE_Difficulty = Normal
+-- Affects difficulty factor
+-- Options: Normal & Hard
+-- Hard is about a 2x factor on everything
+
+
 NE.Spawners = true 
 -- Changes to the games Spawners and Units
 -- Do you want tweaks made to the spawners - Mainly more units around the spawners 

@@ -16,7 +16,7 @@ data:extend({
     {
       {type="fluid", name="NE_nutrient-solution", amount=10},
     },
-    subgroup = "fluid-recipes"
+    subgroup = "Evolution-fluids"
   },
   {
     type = "recipe",
@@ -33,7 +33,7 @@ data:extend({
     {
       {type="fluid", name="NE_revitalization-solution", amount=10},
     },
-    subgroup = "fluid-recipes"
+    subgroup = "Evolution-fluids"
   },
   {
     type = "recipe",
@@ -48,9 +48,12 @@ data:extend({
     },
     results=
     {
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
+		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
+		if NEConfig.mod.NEEnemies then
+		{type="fluid", name="NE_alien-toxin", amount=10},
+		end
     },
-    subgroup = "fluid-recipes"
+    subgroup = "Evolution-fluids"
   },
 
 

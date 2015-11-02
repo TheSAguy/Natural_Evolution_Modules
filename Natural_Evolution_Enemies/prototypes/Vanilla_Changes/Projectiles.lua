@@ -1,3 +1,16 @@
+
+require "config"
+
+--- Difficulty settings	
+	if global.NE_Difficulty == nil then
+      global.NE_Difficulty = 1
+	end
+	if NEConfig.NE_Difficulty == Normal then
+		global.NE_Difficulty = 1 -- Normal difficulty
+		else global.NE_Difficulty  = 2 -- Hard difficulty
+	end
+	
+
 data:extend(
 {
 --[[ Vanilla Spitter Projectile 
@@ -112,11 +125,11 @@ data:extend(
           },
 		  {
             type = "damage",
-            damage = {amount = 5, type = "explosion"}
+            damage = {amount = 5*NE_Difficulty, type = "explosion"}
           },
           {
             type = "damage",
-            damage = {amount = 12, type = "poison"}
+            damage = {amount = 12*NE_Difficulty, type = "poison"}
           }
         }
       }
@@ -196,11 +209,11 @@ data:extend(
                 {
                   {
 					type = "damage",
-					damage = {amount = 5, type = "explosion"}
+					damage = {amount = 5*NE_Difficulty, type = "explosion"}
 				  },
 				  {
                     type = "damage",
-                    damage = {amount = 14, type = "acid"}
+                    damage = {amount = 14*NE_Difficulty, type = "acid"}
                   },
                 }
               }
@@ -275,7 +288,7 @@ data:extend(
               target_effects =
               {
                 type = "damage",
-                damage = { amount = 6, type = "poison"}
+                damage = { amount = 6*NE_Difficulty, type = "poison"}
               }
             }
           }
