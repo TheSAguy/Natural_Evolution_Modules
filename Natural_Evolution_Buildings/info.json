@@ -6,5 +6,5 @@
   "contact": "vvwmisc@hotmail.com",
   "homepage": "http://www.factorioforums.com/forum/viewtopic.php?f=91&t=13562&p",
   "description": "All things Alien! Adds buildings to help you fight the Enemy Expansion...",
-  "dependencies": ["base >= 0.12.11", "? bobenemies >= 0.12.5", "? MAIN-DyTech-War >= 1.1.1", "? SupremeWarfare >=1.0.5", "? Natural_Evolution_Enemies >=5.0.1"]
+  "dependencies": ["base >= 0.12.11", "? bobenemies >= 0.12.5", "? MAIN-DyTech-War >= 1.1.1"]
 }

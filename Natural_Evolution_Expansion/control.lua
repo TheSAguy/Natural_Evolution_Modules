@@ -1,4 +1,4 @@
---- v.5.0.3
+--- v.5.0.4
 require "defines"
 require "util"
 NEConfig = {}
@@ -54,8 +54,7 @@ if NEConfig.HarderEndGame then
 				end  
 					
 			-- Biters will attack the newly built Rocket Silo
-			--event.created_entity.surface.set_multi_command({type=defines.command.attack,target=event.created_entity,distraction=defines.distraction.none},2000)
-			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(2000 * game.evolution_factor), unit_search_distance = 600}
+			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 1000}
 			
 			for i, player in ipairs(game.players) do
 					player.print("WARNING!")
@@ -195,9 +194,8 @@ if NEConfig.Expansion then
 				else
 					game.evolution_factor = 0.99999
 				end  	
-						---- Attack the player, since you have a silo built
-				--game.player.surface.set_multi_command({type=defines.command.attack,target=game.player.character,distraction=defines.distraction.by_enemy},Enemy_Count)
-				game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 600}
+				---- Attack the player, since you have a silo built			
+				game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1000}
 				writeDebug("Attack wave inbound")					
 			end 
 		end	
@@ -301,42 +299,42 @@ if NEConfig.Expansion then
 				
 		elseif Expansion_State == "Phase 6" then
 			----- Harder Ending
-			Harder_Endgame(0.025,1000)
+			Harder_Endgame(0.025,1500)
 			-----
 			Natural_Evolution_Expansion_Settings(4,7,4,14,6,12,19,15,20,30,5,1.4)
 			
 				
 		elseif Expansion_State == "Phase 7" then
 			----- Harder Ending
-			Harder_Endgame(0.015,1000)
+			Harder_Endgame(0.015,2000)
 			-----
 			Natural_Evolution_Expansion_Settings(5,7,4,15,5,14,22,15,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 8" then
 			----- Harder Ending
-			Harder_Endgame(0.015,1500)
+			Harder_Endgame(0.015,2500)
 			-----
 			Natural_Evolution_Expansion_Settings(5,7,4,16,4,16,25,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 9" then
 			----- Harder Ending
-			Harder_Endgame(0.01,1500)
+			Harder_Endgame(0.01,3000)
 			-----
 			Natural_Evolution_Expansion_Settings(5,8,3,18,3,18,28,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 10" then
 			----- Harder Ending
-			Harder_Endgame(0.01,2000)
+			Harder_Endgame(0.01,3000)
 			-----
 			Natural_Evolution_Expansion_Settings(6,8,3,20,1,30,75,15,20,30,5,2)
 			
 		
 		elseif Expansion_State == "Armageddon" then
 			----- Harder Ending
-			Harder_Endgame(0.001,2000)
+			Harder_Endgame(0.001,3000)
 			-----
 			Natural_Evolution_Expansion_Settings(6,8,2,20,1,100,200,8,15,30,5,2)
 		

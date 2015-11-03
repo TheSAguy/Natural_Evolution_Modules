@@ -4,12 +4,13 @@ require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
 --- Difficulty settings	
-	if global.NE_Difficulty == nil then
-      global.NE_Difficulty = 1
+	if NE_Difficulty == nil then
+      NE_Difficulty = 1
 	end
-	if NEConfig.NE_Difficulty == Normal then
-		global.NE_Difficulty = 1 -- Normal difficulty
-		else global.NE_Difficulty  = 2 -- Hard difficulty
+
+	if NEConfig.Set_Difficulty == 1 then
+		NE_Difficulty = 1 -- Normal difficulty
+		else NE_Difficulty  = 2 -- Hard difficulty
 	end
 
 
@@ -91,27 +92,27 @@ end
 
 if NEConfig.Spawners then
 	--Add resistances to entities.
-	Add_Poison_Resist(data.raw["wall"],(25/global.NE_Difficulty))
-	Add_Poison_Resist(data.raw["gate"],(25/global.NE_Difficulty))
-	Add_Poison_Resist(data.raw["car"],(25/global.NE_Difficulty))
+	Add_Poison_Resist(data.raw["wall"],(25/NE_Difficulty))
+	Add_Poison_Resist(data.raw["gate"],(25/NE_Difficulty))
+	Add_Poison_Resist(data.raw["car"],(25/NE_Difficulty))
 	Add_Poison_Resist(data.raw["electric-pole"],100)
-	Add_Poison_Resist(data.raw["turret"],(25/global.NE_Difficulty))	
-	Add_Poison_Resist(data.raw["ammo-turret"],(25/global.NE_Difficulty))	
-	Add_Poison_Resist(data.raw["electric-turret"],(25/global.NE_Difficulty))	
+	Add_Poison_Resist(data.raw["turret"],(25/NE_Difficulty))	
+	Add_Poison_Resist(data.raw["ammo-turret"],(25/NE_Difficulty))	
+	Add_Poison_Resist(data.raw["electric-turret"],(25/NE_Difficulty))	
 	Add_Poison_Resist(data.raw["straight-rail"],100)	
 	Add_Poison_Resist(data.raw["curved-rail"],100)	
-	Add_Poison_Resist(data.raw["transport-belt"],(25/global.NE_Difficulty))
+	Add_Poison_Resist(data.raw["transport-belt"],(25/NE_Difficulty))
 	
-	Add_Acid_Resist(data.raw["wall"],(25/global.NE_Difficulty))
-	Add_Acid_Resist(data.raw["gate"],(25/global.NE_Difficulty))
-	Add_Acid_Resist(data.raw["car"],(25/global.NE_Difficulty))
+	Add_Acid_Resist(data.raw["wall"],(25/NE_Difficulty))
+	Add_Acid_Resist(data.raw["gate"],(25/NE_Difficulty))
+	Add_Acid_Resist(data.raw["car"],(25/NE_Difficulty))
 	Add_Acid_Resist(data.raw["electric-pole"],100)
-	Add_Acid_Resist(data.raw["turret"],(25/global.NE_Difficulty))	
-	Add_Acid_Resist(data.raw["ammo-turret"],(25/global.NE_Difficulty))	
-	Add_Acid_Resist(data.raw["electric-turret"],(25/global.NE_Difficulty))	
+	Add_Acid_Resist(data.raw["turret"],(25/NE_Difficulty))	
+	Add_Acid_Resist(data.raw["ammo-turret"],(25/NE_Difficulty))	
+	Add_Acid_Resist(data.raw["electric-turret"],(25/NE_Difficulty))	
 	Add_Acid_Resist(data.raw["straight-rail"],100)	
 	Add_Acid_Resist(data.raw["curved-rail"],100)	
-	Add_Acid_Resist(data.raw["transport-belt"],(25/global.NE_Difficulty))
+	Add_Acid_Resist(data.raw["transport-belt"],(25/NE_Difficulty))
 
 	Add_Physical_Resist(data.raw["straight-rail"],100)	
 	Add_Physical_Resist(data.raw["curved-rail"],100)		

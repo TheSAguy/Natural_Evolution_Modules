@@ -25,9 +25,11 @@ YuokiTani - Art!!
 NE.ExtraLoot = true --Extra Loot from Aliens (small-alien-artifact)
 
 
-NE.NE_Difficulty = Normal
+NE.Set_Difficulty = 2
 -- Affects difficulty factor
--- Options: Normal & Hard
+-- Options: 
+--			1 = Normal
+--			2 = Hard
 -- Hard is about a 2x factor on everything
 
 

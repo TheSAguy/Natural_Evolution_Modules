@@ -17,7 +17,10 @@ data:extend({
 		  result = "Building_Materials"
 	},
 	
-	--- Biological Bullet
+
+})
+
+data:extend({
 	{
 		type = "recipe",
 		name = "Biological-bullet-magazine",
@@ -25,17 +28,13 @@ data:extend({
 		energy_required = 5,
 		ingredients =
 		{ 
-		if NEConfig.mod.NEBuildings then
-			{type="fluid", name="NE_alien-toxin", amount=1},
-		else
 			{"alien-artifact", 1},
-		end
 			{"plastic-bar", 5},
 			{"piercing-bullet-magazine", 5},
 		},
 		result = "Biological-bullet-magazine",
 		result_count = 5
 	},
-	
+
 	
 })

@@ -1,3 +1,25 @@
+
+
+data:extend({
+  {
+    type = "recipe",
+    name = "NE_alien-revitalization",
+    category = "chemistry",
+    energy_required = 10,
+    enabled = false,
+    ingredients =
+    {
+      {type="item", name="alien-artifact", amount=1},
+      {type="fluid", name="water", amount=10}
+    },
+    results=
+    {
+      {type="fluid", name="NE_revitalization-solution", amount=10},
+    },
+    subgroup = "Evolution-fluids"
+  },
+})
+
 data:extend({
 
   ---- special liquids for hatchery operation
@@ -20,23 +42,6 @@ data:extend({
   },
   {
     type = "recipe",
-    name = "NE_alien-revitalization",
-    category = "chemistry",
-    energy_required = 10,
-    enabled = false,
-    ingredients =
-    {
-      {type="item", name="alien-artifact", amount=1},
-      {type="fluid", name="water", amount=10}
-    },
-    results=
-    {
-      {type="fluid", name="NE_revitalization-solution", amount=10},
-    },
-    subgroup = "Evolution-fluids"
-  },
-  {
-    type = "recipe",
     name = "NE_enhanced-alien-nutrientant",
     category = "chemistry",
     energy_required = 10,
@@ -49,9 +54,6 @@ data:extend({
     results=
     {
 		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
-		if NEConfig.mod.NEEnemies then
-		{type="fluid", name="NE_alien-toxin", amount=10},
-		end
     },
     subgroup = "Evolution-fluids"
   },

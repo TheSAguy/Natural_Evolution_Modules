@@ -23,6 +23,7 @@ require("prototypes.Artifact_Collector.recipe")
 require("prototypes.Other.item")
 require("prototypes.Other.recipe")
 require("prototypes.Other.damage-type")
+
 ---------------------------------------------------------------
 
 

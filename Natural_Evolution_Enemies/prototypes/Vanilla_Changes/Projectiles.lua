@@ -2,12 +2,12 @@
 require "config"
 
 --- Difficulty settings	
-	if global.NE_Difficulty == nil then
-      global.NE_Difficulty = 1
+	if NE_Difficulty == nil then
+      NE_Difficulty = 1
 	end
-	if NEConfig.NE_Difficulty == Normal then
-		global.NE_Difficulty = 1 -- Normal difficulty
-		else global.NE_Difficulty  = 2 -- Hard difficulty
+	if NEConfig.Set_Difficulty == 1 then
+		NE_Difficulty = 1 -- Normal difficulty
+		else NE_Difficulty  = 2 -- Hard difficulty
 	end
 	
 

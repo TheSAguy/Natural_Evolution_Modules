@@ -1,5 +1,5 @@
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
-datadata:extend({
+
+data:extend({
 	
 	--- Alien Understanding 1
     {
@@ -221,51 +221,6 @@ datadata:extend({
 		order = "a-h-c",
 	},
 
-			--- Alien Hatchery
-	{
-		type = "technology",
-		name = "Alien_Hatchery",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Alien_Hatchery.png",
-		effects = 
-		{
-			{
-				type = 'unlock-recipe',
-				recipe='Alien_Hatchery'
-			},
-			{
-				type = 'unlock-recipe',
-				recipe='NE_basic-alien-nutrientant'
-			},
-			{
-				type = 'unlock-recipe',
-				recipe='NE_alien-revitalization'
-			},
-			{
-				type = 'unlock-recipe',
-				recipe='NE_enhanced-alien-nutrientant'
-			},
-			if NEConfig.mod.NEEnemies then
-			{
-				type = 'unlock-recipe',
-				recipe='NE_alien_toxin'
-			},
-			end
-		},
-		prerequisites = {"AlienUnderstanding-2"},
-		unit =
-		{
-		  count = 75,
-		  ingredients =
-		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
-			{"science-pack-3", 1}
-		  },
-		  time = 50
-		},
-		order = "a-h-c",
-	},
-	
 	-- Biter & Spitters
 	{
 		type = "technology",
@@ -288,7 +243,11 @@ datadata:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='small-worm-hatching-refresh'
-			}
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_enhanced-alien-nutrientant'
+			},
 		},
 		prerequisites = {"Alien_Hatchery"},
 		unit =
@@ -413,4 +372,44 @@ datadata:extend({
 		upgrade = true,
 		order = "a-h-d",
 	},
+})
+
+data:extend({
+
+			--- Alien Hatchery
+	{
+		type = "technology",
+		name = "Alien_Hatchery",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/Alien_Hatchery.png",
+		effects = 
+		{
+			{
+				type = 'unlock-recipe',
+				recipe='Alien_Hatchery'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_basic-alien-nutrientant'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_alien-revitalization'
+			},
+
+		},
+		prerequisites = {"AlienUnderstanding-2"},
+		unit =
+		{
+		  count = 75,
+		  ingredients =
+		  {
+			{"science-pack-1", 3},
+			{"science-pack-2", 2},
+			{"science-pack-3", 1}
+		  },
+		  time = 50
+		},
+		order = "a-h-c",
+	},
+	
 })
