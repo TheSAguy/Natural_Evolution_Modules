@@ -109,7 +109,7 @@ function On_Remove(event)
     end
 	-- Detect killing a Unit spawner.
 	
-	
+	--[[	
    if event.entity.type == "unit-spawner" then
 	writeDebug("YOU KILLED A SPAWNER")
        local surface = game.get_surface(0) -- i'm really not sure how surfaces work between different forces and entities so i mostly use this.
@@ -126,17 +126,20 @@ function On_Remove(event)
         end
 
    end
-	
-	--[[
+		]]
+
+
 	if event.entity.type == "unit-spawner" then
-	writeDebug("YOU KILLED A SPAWNER")
-		for i = 1, #game.players, 1 do
+		writeDebug("YOU KILLED A SPAWNER")
+	    for i = 1, #game.players, 1 do
 			player = game.players[i]
-			
-			player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
+         
+			if player.connected then
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
+			end
 		end
-	end
-	]]
+   end
+	
 	
 end
 
