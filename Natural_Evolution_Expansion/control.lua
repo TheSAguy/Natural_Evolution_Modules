@@ -1,4 +1,4 @@
---- v.5.0.4
+--- v.5.0.5
 require "defines"
 require "util"
 NEConfig = {}
@@ -193,9 +193,17 @@ if NEConfig.Expansion then
 						
 				else
 					game.evolution_factor = 0.99999
-				end  	
-				---- Attack the player, since you have a silo built			
-				game.player.surface.set_multi_command{command = {type=defines.command.attack, target=game.player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1000}
+	
+				end  
+			
+			---- Attack the player, since you have a silo built						
+				for i = 1, #game.players, 1 do
+				player = game.players[i]
+			 
+					if player.connected then
+						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1000}
+					end
+				end
 				writeDebug("Attack wave inbound")					
 			end 
 		end	

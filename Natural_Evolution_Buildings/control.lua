@@ -1,4 +1,4 @@
---- v.5.0.4
+--- v.5.0.5
 require "defines"
 require "util"
 NEConfig = {}
@@ -350,7 +350,7 @@ script.on_event(defines.events.on_tick, function(event)
 	
 	if event.tick % update_com_count == 0 then
 		for index, player in ipairs(game.players) do
-			if player.character then
+			if player.connected and player.character then
 				UpdateUnitsCommands(index)		
 			end
 		end
