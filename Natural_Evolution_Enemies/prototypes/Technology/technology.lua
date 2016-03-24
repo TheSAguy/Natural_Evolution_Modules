@@ -10,11 +10,8 @@ data:extend({
 			{
 				type = 'unlock-recipe', 
 				recipe='Artifact-collector'
-			},
-			{
-				type = 'unlock-recipe', 
-				recipe='Building_Materials'
 			}
+
 		},
 		prerequisites = {"advanced-electronics"},
 		unit =

@@ -1,18 +1,6 @@
 data:extend({
 
   
-  	---- Building Materials
-	{
-		type = "item",
-		name = "Building_Materials",
-		icon = "__Natural_Evolution_Enemies__/graphics/icons/Building_Materials.png",
-		flags = {"goes-to-main-inventory"},
-		subgroup = "Materials",
-		order = "b[Building_Materials]",
-		stack_size = 10
-	},
-	
-
 	--- Biological Bullet
 	{
 		type = "ammo",
@@ -41,7 +29,7 @@ data:extend({
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 25 , type = "Biological"}
+				  damage = { amount = 20 , type = "Biological"}
 				},
 				{
 				  type = "damage",

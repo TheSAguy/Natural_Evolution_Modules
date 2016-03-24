@@ -1,24 +1,4 @@
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
-data:extend({
-  
-		
-		---- Building Materials
-	{
-      type = "recipe",
-		  name = "Building_Materials",
-		  enabled = "false",
-		  ingredients = 
-		  {
-			{"advanced-circuit", 15},
-			{"stone-brick", 50},       
-			{"steel-plate", 10}, 
-		  },
-		  result = "Building_Materials"
-	},
-	
-
-})
 
 data:extend({
 	{
