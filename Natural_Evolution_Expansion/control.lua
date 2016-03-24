@@ -1,4 +1,4 @@
---- v.5.0.5
+--- v.5.0.6
 require "defines"
 require "util"
 NEConfig = {}
@@ -200,7 +200,7 @@ if NEConfig.Expansion then
 				for i = 1, #game.players, 1 do
 				player = game.players[i]
 			 
-					if player.connected then
+					if player.connected and player.character.valid then
 						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1000}
 					end
 				end
