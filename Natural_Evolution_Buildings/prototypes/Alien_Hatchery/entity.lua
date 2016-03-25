@@ -326,7 +326,7 @@ data:extend({
   {
     type = "capsule",
     name = "behemoth-biter-hatching",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-biter.png",
+    icon = "__base__/graphics/icons/behemoth-biter.png",
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -364,7 +364,7 @@ data:extend({
   {
     type = "capsule",
     name = "behemoth-spitter-hatching",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-biter.png",
+    icon = "__base__/graphics/icons/behemoth-biter.png",
     flags = {"goes-to-quickbar"},
     capsule_action =
     {

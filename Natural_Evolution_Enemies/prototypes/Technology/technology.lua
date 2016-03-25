@@ -4,6 +4,7 @@ data:extend({
     {
 		type = "technology",
 		name = "AlienUnderstanding",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Enemies__/graphics/technology/AlienUnderstanding.png",
 		effects =
 		{
@@ -31,6 +32,7 @@ data:extend({
     {
 		type = "technology",
 		name = "AlienUnderstanding-2",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Enemies__/graphics/technology/AlienUnderstanding.png",
 		effects =
 		{

@@ -5,6 +5,7 @@ data:extend({
     {
 		type = "technology",
 		name = "AlienUnderstanding",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienUnderstanding.png",
 		effects =
 		{
@@ -35,6 +36,7 @@ data:extend({
     {
 		type = "technology",
 		name = "AlienUnderstanding-2",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienUnderstanding.png",
 		prerequisites = {"AlienUnderstanding"},
 		unit =
@@ -56,6 +58,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "AlienUnderstanding-3",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienUnderstanding.png",
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
@@ -78,6 +81,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "TerraformingStation",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/TerraformingStation.png",
 		effects =
 		{
@@ -104,6 +108,7 @@ data:extend({
     {
 		type = "technology",
 		name = "AlienControlStation",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienControlStation.png",
 		effects =
 		{
@@ -131,6 +136,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "Alien_Training",
+		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/Alien_Training.png",
 		effects = 
 		{
@@ -163,7 +169,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Biter_Spawners",
-		icon = "__base__/graphics/icons/biter-spawner.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/spawner.png",
 		effects = 
 		{
 			{
@@ -193,7 +200,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Spitter_Spawners",
-		icon = "__base__/graphics/icons/biter-spawner.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/spawner.png",
 				effects = 
 		{
 			{
@@ -344,7 +352,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Breeding-4",
-		icon = "__Natural_Evolution_Buildings__/graphics/technology/behemoth-biter.png",
+		icon = "__base__/graphics/icons/behemoth-biter.png",
+		
 		effects = 
 		{
 			{
@@ -380,7 +389,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Alien_Hatchery",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Alien_Hatchery.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/Alien_Hatchery.png",
 		effects = 
 		{
 			{
