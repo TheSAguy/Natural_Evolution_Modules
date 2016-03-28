@@ -89,6 +89,18 @@ function Add_Explosion_Resist(Raw,Percent)
 end
 
 
+function Biters_Dont_Attack(Raw)
+	for i,d in pairs(Raw) do
+		local newflags = {}
+		for pos=1,#d.flags do
+		if not (d.flags[pos] == "player-creation") then
+			table.insert(newflags, d.flags[pos])
+		end
+	end
+	d.flags = newflags
+end
+
+
 
 if NEConfig.Spawners then
 	--Add resistances to entities.
@@ -119,12 +131,13 @@ if NEConfig.Spawners then
 
 	Add_Explosion_Resist(data.raw["straight-rail"],100)	
 	Add_Explosion_Resist(data.raw["curved-rail"],100)		
+
+	Biters_Dont_Attack(data.raw["curved-rail"])
+	Biters_Dont_Attack(data.raw["straight-rail"])
+	Biters_Dont_Attack(data.raw["rail-signal"])
+	Biters_Dont_Attack(data.raw["rail-chain-signal"])
+	Biters_Dont_Attack(data.raw["train-stop"])
 	
-	--data.raw["straight-rail"]["straight-rail"].flags = {"placeable-neutral", "building-direction-8-way"}
-	--data.raw["curved-rail"]["curved-rail"].flags = {"placeable-neutral", "building-direction-8-way"}
-
-
-		
 end
 
 
