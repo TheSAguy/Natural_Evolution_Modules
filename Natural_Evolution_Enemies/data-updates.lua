@@ -93,11 +93,13 @@ function Biters_Dont_Attack(Raw)
 	for i,d in pairs(Raw) do
 		local newflags = {}
 		for pos=1,#d.flags do
-		if not (d.flags[pos] == "player-creation") then
-			table.insert(newflags, d.flags[pos])
+			if not (d.flags[pos] == "player-creation") then
+				table.insert(newflags, d.flags[pos])
+			end
 		end
+		d.flags = newflags
+	
 	end
-	d.flags = newflags
 end
 
 
