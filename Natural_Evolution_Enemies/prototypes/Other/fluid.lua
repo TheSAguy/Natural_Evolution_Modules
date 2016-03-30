@@ -1,4 +1,7 @@
+----Not currently implemented!
+
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+
 
  
  if NEConfig.mod.NEEnemies then

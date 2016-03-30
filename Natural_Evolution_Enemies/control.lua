@@ -4,7 +4,7 @@ require "util"
 NEConfig = {}
 
 require "config"
-
+require 'libs/pathfinder_demo'
 
 --- Artifact Collector
 local interval = 60 -- this is an interval between the consecutive updates of a single collector
@@ -48,6 +48,12 @@ function On_Load()
         global.next_collector= global.next_collector or 1
 	end
 end
+
+script.on_event(defines.events.on_tick, function(event)
+
+	pathfinder_demo.tick()
+	
+end)
 
 
 script.on_configuration_changed(function()

@@ -19,6 +19,7 @@ if NEConfig.ScienceCost then
 	if not NEConfig.mod.DyTechCore then
 		ChangeRecipe("science-pack-1", "iron-gear-wheel", "iron-gear-wheel", 2)
 	end
+	
 	ChangeRecipe("science-pack-1", "copper-plate", "copper-plate", 2)
 	ChangeRecipe("science-pack-2", "basic-transport-belt", "basic-transport-belt", 2)
 	ChangeRecipe("science-pack-2", "basic-inserter", "basic-inserter", 2)
@@ -59,6 +60,25 @@ if NEConfig.mod.DyTechWar then
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_absolute = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute
 
 
+end
+
+if NEConfig.mod.NEEnemies then
+	function add_technology_recipe (technology, recipe)
+	  if data.raw.technology[technology] and data.raw.recipe[recipe] then
+		local addit = true
+		if not data.raw.technology[technology].effects then
+		  data.raw.technology[technology].effects = {}
+		end
+		for i, effect in pairs(data.raw.technology[technology].effects) do
+		  if effect.type == "unlock-recipe" and effect.recipe == recipe then addit = false end
+		end
+		if addit then table.insert(data.raw.technology[technology].effects,{type = "unlock-recipe", recipe = recipe}) end
+	  end
+	end
+
+	add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
+	add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
+	
 end
 
 
