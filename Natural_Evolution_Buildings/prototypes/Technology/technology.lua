@@ -11,10 +11,6 @@ data:extend({
 		{
 			{
 				type = 'unlock-recipe', 
-				recipe='Thumper'
-			},
-			{
-				type = 'unlock-recipe', 
 				recipe='Building_Materials'
 			}
 		},
@@ -38,6 +34,13 @@ data:extend({
 		name = "AlienUnderstanding-2",
 		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienUnderstanding.png",
+		effects =
+		{
+			{
+				type = 'unlock-recipe', 
+				recipe='Thumper'
+			}
+		},
 		prerequisites = {"AlienUnderstanding"},
 		unit =
 		{

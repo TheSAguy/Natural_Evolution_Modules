@@ -143,3 +143,26 @@ if NEConfig.Spawners then
 end
 
 
+
+if NEConfig.mod.NEBuildings then
+	function add_technology_recipe (technology, recipe)
+	  if data.raw.technology[technology] and data.raw.recipe[recipe] then
+		local addit = true
+		if not data.raw.technology[technology].effects then
+		  data.raw.technology[technology].effects = {}
+		end
+		for i, effect in pairs(data.raw.technology[technology].effects) do
+		  if effect.type == "unlock-recipe" and effect.recipe == recipe then addit = false end
+		end
+		if addit then table.insert(data.raw.technology[technology].effects,{type = "unlock-recipe", recipe = recipe}) end
+	  end
+	end
+
+
+	add_technology_recipe ("AlienUnderstanding", "Building_Materials")
+	add_technology_recipe ("AlienUnderstanding-2", "Thumper")
+	
+end
+
+
+
