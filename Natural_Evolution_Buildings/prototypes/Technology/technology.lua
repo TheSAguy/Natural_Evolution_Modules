@@ -200,6 +200,8 @@ data:extend({
 		},
 		order = "a-h-c",
 	},
+	
+	
 	{
 		type = "technology",
 		name = "Spitter_Spawners",
@@ -232,11 +234,12 @@ data:extend({
 		order = "a-h-c",
 	},
 
-	-- Biter & Spitters
+	-- Biter & Spitters Breeding
 	{
 		type = "technology",
 		name = "Breeding",
-		icon = "__base__/graphics/icons/small-biter.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/small-biter.png",
 		effects = 
 		{
 			{
@@ -278,7 +281,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Breeding-2",
-		icon = "__base__/graphics/icons/medium-biter.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/medium-biter.png",
 		effects = 
 		{
 			{
@@ -316,7 +320,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Breeding-3",
-		icon = "__base__/graphics/icons/big-biter.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/big-biter.png",
 		effects = 
 		{
 			{
@@ -355,7 +360,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "Breeding-4",
-		icon = "__base__/graphics/icons/behemoth-biter.png",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/behemoth-biter.png",
 		
 		effects = 
 		{

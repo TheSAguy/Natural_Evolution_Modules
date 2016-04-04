@@ -136,7 +136,7 @@ data:extend({
   {
     type = "capsule",
     name = "small-spitter-hatching",
-    icon = "__base__/graphics/icons/small-biter.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/small-spitter_32.png",
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -212,7 +212,7 @@ data:extend({
   {
     type = "capsule",
     name = "medium-spitter-hatching",
-    icon = "__base__/graphics/icons/medium-biter.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-spitter_32.png",
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -288,7 +288,7 @@ data:extend({
   {
     type = "capsule",
     name = "big-spitter-hatching",
-    icon = "__base__/graphics/icons/big-biter.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/big-spitter_32.png",
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -364,7 +364,7 @@ data:extend({
   {
     type = "capsule",
     name = "behemoth-spitter-hatching",
-    icon = "__base__/graphics/icons/behemoth-biter.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-spitter_32.png",
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
