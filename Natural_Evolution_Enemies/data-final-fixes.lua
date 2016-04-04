@@ -175,22 +175,10 @@ if NEConfig.Spawners then
 
 ---- END Biter & Spitter Modifications --------------------------------
 
--------- New Units
-	if not NEConfig.mod.DyTechWar then
-		require "prototypes.Vanilla_Changes.New_Biter_Units"
-		require "prototypes.Vanilla_Changes.Biter_Evolution"
-		require "prototypes.Vanilla_Changes.New_Spitter_Units"
-		require "prototypes.Vanilla_Changes.Spitter_Evolution"
-	
-	end
+
 		
 end
 		
-		--- Extra Loot
-if NEConfig.ExtraLoot then
-	require("prototypes.Extra_Loot.item")
-	require("prototypes.Extra_Loot.recipe")
-	require("prototypes.Extra_Loot.extra_loot")
-end
+
 
 ---------------------------------------------------------------
