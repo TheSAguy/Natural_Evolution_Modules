@@ -1,3 +1,5 @@
+require "config"
+
 data:extend({
 
   
@@ -29,7 +31,7 @@ data:extend({
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 20 , type = "Biological"}
+				  damage = { amount = NE.BioDamage/NE.Set_Difficulty , type = "Biological"}
 				},
 				{
 				  type = "damage",

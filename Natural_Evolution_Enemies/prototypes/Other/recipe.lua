@@ -8,7 +8,7 @@ data:extend({
 		energy_required = 5,
 		ingredients =
 		{ 
-			{"alien-artifact", 1},
+			{"alien-artifact", 2},
 			{"plastic-bar", 5},
 			{"piercing-bullet-magazine", 5},
 		},
