@@ -46,7 +46,7 @@ NE.Spawners = true
 -- Adjusted Resistances of units
 
 
-NE.BioDamage = 20
+NE.BioDamage = 15
 
 
 ----------------------------- END -------------------------------------------
