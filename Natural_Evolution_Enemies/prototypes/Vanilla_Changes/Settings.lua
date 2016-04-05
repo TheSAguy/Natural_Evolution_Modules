@@ -46,7 +46,12 @@ Health = {
 	Big_Spitter = 200*NE_Difficulty,
 	Big_Spitter_Mk2 = 450*NE_Difficulty,
 	Big_Spitter_Mk3 = 700*NE_Difficulty,
-	Behemoth_Spitter = 2000*NE_Difficulty
+	Behemoth_Spitter = 2000*NE_Difficulty,
+	Small_Worm = 400*NE_Difficulty,
+	Medium_Worm = 700*NE_Difficulty,
+	Big_Worm = 1000*NE_Difficulty
+	
+	
 	}
 
 
@@ -54,7 +59,7 @@ Health = {
 Resistances = {
 	-- Healthy
 	Small_Biter = {
-	  {type = "fire", decrease = 0, percent = -45},
+	  {type = "fire", decrease = 0, percent = -90},
       {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 1, percent = 0},
@@ -64,7 +69,7 @@ Resistances = {
 	
 	-- Infected  
 	Small_Biter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -45},
+	  {type = "fire", decrease = 0, percent = -90},
       {type = "physical", decrease = 3, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 2, percent = 0},
       {type = "explosion", decrease = 2, percent = 0},
@@ -74,7 +79,7 @@ Resistances = {
 	  
 	-- Mutated  
 	Small_Biter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -40},
+	  {type = "fire", decrease = 0, percent = -80},
       {type = "physical", decrease = 0, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 3, percent = 0},
       {type = "explosion", decrease = 3, percent = 0},
@@ -84,7 +89,7 @@ Resistances = {
 	
 	-- Healthy
 	Medium_Biter = {
-	  {type = "fire", decrease = 0, percent = -35},
+	  {type = "fire", decrease = 0, percent = -70},
       {type = "physical", decrease = 5, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 0},
       {type = "explosion", decrease = 5, percent = 5*NE_Difficulty},
@@ -94,7 +99,7 @@ Resistances = {
 	
 	-- Infected  
 	Medium_Biter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -35},
+	  {type = "fire", decrease = 0, percent = -70},
       {type = "physical", decrease = 10, percent = 10*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 5*NE_Difficulty},
@@ -104,7 +109,7 @@ Resistances = {
 	
 	-- Mutated  
 	Medium_Biter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -30},
+	  {type = "fire", decrease = 0, percent = -60},
       {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 5*NE_Difficulty},
@@ -114,7 +119,7 @@ Resistances = {
 	
 	-- Healthy
 	Big_Biter = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 10, percent = 20*NE_Difficulty},
       {type = "impact", decrease = 10, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
@@ -124,7 +129,7 @@ Resistances = {
 	
 	-- Infected  
 	Big_Biter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 15, percent = 25*NE_Difficulty},
       {type = "impact", decrease = 10, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
@@ -134,7 +139,7 @@ Resistances = {
 	
 	-- Mutated  
 	Big_Biter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 5, percent = 20*NE_Difficulty},
       {type = "impact", decrease = 10, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
@@ -144,7 +149,7 @@ Resistances = {
 	
 	-- Healthy	
 	Behemoth_Biter = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 15, percent = 30*NE_Difficulty},
       {type = "impact", decrease = 15, percent = 15*NE_Difficulty},
       {type = "explosion", decrease = 15, percent = 15*NE_Difficulty},
@@ -154,7 +159,7 @@ Resistances = {
 	
 	-- Healthy
 	Small_Spitter = {
-	  {type = "fire", decrease = 0, percent = -45},
+	  {type = "fire", decrease = 0, percent = -90},
       {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 1, percent = 5*NE_Difficulty},
@@ -164,7 +169,7 @@ Resistances = {
 	
 	-- Infected  
 	Small_Spitter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -45},
+	  {type = "fire", decrease = 0, percent = -90},
       {type = "physical", decrease = 2, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 2, percent = 5*NE_Difficulty},
@@ -174,7 +179,7 @@ Resistances = {
 	
 	-- Mutated  
 	Small_Spitter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -40},
+	  {type = "fire", decrease = 0, percent = -80},
       {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 3, percent = 5*NE_Difficulty},
@@ -184,7 +189,7 @@ Resistances = {
 	
 	-- Healthy
 	Medium_Spitter = {
-	  {type = "fire", decrease = 0, percent = -35},
+	  {type = "fire", decrease = 0, percent = -70},
       {type = "physical", decrease = 5, percent = 0},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 10*NE_Difficulty},
@@ -194,7 +199,7 @@ Resistances = {
 	
 	-- Infected  
 	Medium_Spitter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -35},
+	  {type = "fire", decrease = 0, percent = -70},
       {type = "physical", decrease = 10, percent = 10*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 10*NE_Difficulty},
@@ -204,7 +209,7 @@ Resistances = {
 	
 	-- Mutated  
 	Medium_Spitter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -30},
+	  {type = "fire", decrease = 0, percent = -60},
       {type = "physical", decrease = 0, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 10*NE_Difficulty},
@@ -214,7 +219,7 @@ Resistances = {
 	
 	-- Healthy
 	Big_Spitter = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 5, percent = 10*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 20*NE_Difficulty},
@@ -224,7 +229,7 @@ Resistances = {
 	
 	-- Infected  
 	Big_Spitter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 10, percent = 15*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 20*NE_Difficulty},
@@ -234,7 +239,7 @@ Resistances = {
 	
 	-- Mutated  
 	Big_Spitter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 5, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 20*NE_Difficulty},
@@ -244,7 +249,7 @@ Resistances = {
 	
 	-- Healthy
 	Behemoth_Spitter = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -50},
       {type = "physical", decrease = 10, percent = 10*NE_Difficulty},
       {type = "impact", decrease = 15, percent = 15*NE_Difficulty},
       {type = "explosion", decrease = 15, percent = 30*NE_Difficulty},
@@ -252,9 +257,39 @@ Resistances = {
       {type = "poison", decrease = 0, percent = 15*NE_Difficulty},
       {type = "laser", decrease = 15, percent = 15*NE_Difficulty}},
 	
+	---- Worms
+	Small_Worm = {
+	  {type = "fire", decrease = 0, percent = -90},
+      {type = "physical", decrease = 0, percent = 5},
+      {type = "impact", decrease = 0, percent = 0},
+      {type = "explosion", decrease = 5, percent = 0},
+      {type = "acid", decrease = 1, percent = 0},
+      {type = "poison", decrease = 0, percent = 0},
+      {type = "laser", decrease = 5, percent = 5}},
+	
+	Medium_Worm = {
+	  {type = "fire", decrease = 0, percent = -90},
+      {type = "physical", decrease = 10, percent = 10},
+      {type = "impact", decrease = 0, percent = 0},
+      {type = "explosion", decrease = 10, percent = 10},
+      {type = "acid", decrease = 1, percent = 0},
+      {type = "poison", decrease = 0, percent = 0},
+      {type = "laser", decrease = 10, percent = 10}},
+
+	
+	Big_Worm = {
+	  {type = "fire", decrease = 0, percent = -90},
+      {type = "physical", decrease = 15, percent = 15},
+      {type = "impact", decrease = 0, percent = 0},
+      {type = "explosion", decrease = 15, percent = 15},
+      {type = "acid", decrease = 1, percent = 0},
+      {type = "poison", decrease = 0, percent = 0},
+      {type = "laser", decrease = 15, percent = 15}},
+	  	  
+	  --- Spawner
 	
 	Spawner = {
-	  {type = "fire", decrease = 0, percent = -25},
+	  {type = "fire", decrease = 0, percent = -100},
       {type = "physical", decrease = 5, percent = 10*NE_Difficulty},
       {type = "impact", decrease = 15, percent = 15*NE_Difficulty},
       {type = "explosion", decrease = 15, percent = 30*NE_Difficulty},

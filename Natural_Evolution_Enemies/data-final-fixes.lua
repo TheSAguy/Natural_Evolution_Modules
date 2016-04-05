@@ -129,8 +129,6 @@ if NEConfig.Spawners then
 		data.raw["unit"]["behemoth-biter"].ammo_type = Damage.Behemoth_Biter
 		data.raw["unit"]["behemoth-biter"].pollution_to_join_attack = 2500
 
-		--- Vanilla Spitter Damage
-		--data.raw["projectile"]["acid-projectile-purple"].action.action_delivery.target_effects.damage.amount = 10*NE_Difficulty
 		
 		--- Vanilla Spitter Units
 		data.raw["unit"]["small-spitter"].resistances = Resistances.Small_Spitter
@@ -149,8 +147,19 @@ if NEConfig.Spawners then
 		data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 5000
 
 		-- Worms
+		data.raw["turret"]["small-worm-turret"].max_health = Health.Small_Worm
+		data.raw["turret"]["small-worm-turret"].attack_parameters.range = 17 + NE_Difficulty
+		data.raw["turret"]["small-worm-turret"].resistances = Resistances.Small_Worm
+
 		data.raw["turret"]["medium-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Infected-Projectile"
+		data.raw["turret"]["medium-worm-turret"].max_health = Health.Medium_Worm
+		data.raw["turret"]["medium-worm-turret"].attack_parameters.range = 20 + NE_Difficulty
+		data.raw["turret"]["medium-worm-turret"].resistances = Resistances.Medium_Worm
+		
 		data.raw["turret"]["big-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Mutated-Projectile"
+		data.raw["turret"]["big-worm-turret"].max_health = Health.Big_Worm
+		data.raw["turret"]["big-worm-turret"].attack_parameters.range = 25 + NE_Difficulty
+		data.raw["turret"]["big-worm-turret"].resistances = Resistances.Big_Worm
 		
 	end
 	
