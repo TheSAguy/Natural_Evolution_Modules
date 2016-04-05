@@ -1,4 +1,4 @@
---- v.5.0.7
+--- v.5.0.8
 require "defines"
 require "util"
 NEConfig = {}
@@ -47,6 +47,27 @@ function On_Load()
         global.next_check= global.next_check or game.tick+interval
         global.next_collector= global.next_collector or 1
 	end
+	
+
+	for k,force in pairs(game.forces) do 
+		force.reset_recipes()
+		force.reset_technologies() 
+	end
+	
+	--- Used for Unit Turrets
+	if not global.tick then
+		global.tick = game.tick
+	end
+	if not global.evoFactorFloor then
+		if game.evolution_factor > 0.995 then
+			global.evoFactorFloor = 10
+		else
+			global.evoFactorFloor = math.floor(game.evolution_factor * 10)
+		end
+		global.tick = global.tick + 1800
+	end
+	
+	
 end
 
 script.on_event(defines.events.on_tick, function(event)
@@ -56,13 +77,6 @@ script.on_event(defines.events.on_tick, function(event)
 end)
 
 
-script.on_configuration_changed(function()
-	for k,force in pairs(game.forces) do 
-		force.reset_recipes()
-		force.reset_technologies() 
-	end
-
-end)
 ---------------------------------------------
 function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it
@@ -113,8 +127,9 @@ function On_Remove(event)
             --but it's surely better done here than during on_tick
         end
     end
-	-- Detect killing a Unit spawner.
 	
+	
+	-- Detect killing a Unit spawner.
 	--[[	
    if event.entity.type == "unit-spawner" then
 	writeDebug("YOU KILLED A SPAWNER")
@@ -144,10 +159,45 @@ function On_Remove(event)
 				player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
 			end
 		end
-   end
+	end
 	
+	
+	---- Unit Launcher
+	if global.tick < event.tick then
+		if game.evolution_factor > 0.995 then
+			global.evoFactorFloor = 10
+		else
+			global.evoFactorFloor = math.floor(game.evolution_factor * 10)
+		end
+		global.tick = global.tick + 1800
+	end
+	if (event.entity.name == "unit-cluster") then
+		SpawnLaunchedUnits(event.entity)
+	end
 	
 end
+
+
+---------------------------------------------
+-- Spawn Launched Units
+
+function SpawnLaunchedUnits(enemy)
+	local subEnemyName = subEnemyNameTable[enemy.name]
+	if not subEnemyName then
+		return
+	end
+	if subEnemyNameTable[enemy.name][global.evoFactorFloor] then
+		subEnemyName = subEnemyNameTable[enemy.name][global.evoFactorFloor]
+	end
+	local number = subEnemyNumberTable[enemy.name][global.evoFactorFloor]
+	for i = 1, number do
+		local subEnemyPosition = enemy.surface.find_non_colliding_position(subEnemyName, enemy.position, 2, 0.5)
+		if subEnemyPosition then
+			enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
+		end
+	end
+end
+
 
 ---------------------------------------------
 function ticker(tick)
@@ -188,6 +238,7 @@ end
 ---------------------------------------------
 script.on_init(On_Load)
 script.on_load(On_Load)
+script.on_configuration_changed(On_Load)
 
 
 ---------------------------------------------

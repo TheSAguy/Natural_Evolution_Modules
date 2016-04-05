@@ -1,5 +1,6 @@
 require "prototypes.Vanilla_Changes.Settings"
 
+
 smallbiterscale = 0.5
 small_biter_tint1 = {r=0.56, g=0.46, b=0.42, a=0.65}
 small_biter_tint2 = {r=1, g=0.63, b=0, a=0.4}
@@ -44,6 +45,10 @@ behemothbiterscale = 2
 behemoth_biter_tint1 = {r=0.3, g=0.9, b=0.3, a=0.75}
 behemoth_biter_tint2 = {r=0.88, g=0.24, b=0.24, a=0.9}
 
+
+unit_cluster_scale = 0.00001
+unit_cluster_tint1 = {r=0, g=0, b=0, a=0}
+unit_cluster_tint2 = {r=0, g=0, b=0, a=0}
 
 
 
@@ -423,6 +428,62 @@ data:extend(
     run_animation = biterrunanimation(behemothbiterscale, behemoth_biter_tint1, behemoth_biter_tint2)
   },
 --]]
+})
+
+
+--- Unit Cluster Unit
+data:extend(
+{
+
+ {
+    type = "unit",
+    name = "unit-cluster",
+    icon = "__base__/graphics/icons/creeper.png",
+    flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air"},
+    max_health = 1,
+    order = "b-b-a",
+    subgroup="enemies",
+	healing_per_tick = -2,
+    collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
+    selection_box = {{-0.4, -0.7}, {0.7, 0.4}},
+    attack_parameters =
+    {
+      type = "projectile",
+      range = 0.05,
+      cooldown = 300,
+      ammo_category = "melee",
+      ammo_type = make_unit_melee_ammo_type(0),
+      sound = make_biter_roars(0),
+      animation = biterattackanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+    },
+    vision_distance = 30,
+    movement_speed = 0.2,
+    distance_per_frame = 0.1,
+    pollution_to_join_attack = 200,
+    distraction_cooldown = 300,
+    corpse = "unit-cluster-corpse",
+    dying_explosion = "blood-explosion-small",
+    dying_sound =  make_biter_dying_sounds(0),
+    working_sound =  make_biter_calls(0),
+    run_animation = biterrunanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+  },
+
+    {
+    type = "corpse",
+    name = "unit-cluster-corpse",
+    icon = "__base__/graphics/icons/small-biter-corpse.png",
+    selection_box = {{-0.8, -0.8}, {0.8, 0.8}},
+    selectable_in_game = false,
+    subgroup="corpses",
+    order = "c[corpse]-a[biter]-a[small]",
+    flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-repairable", "not-on-map"},
+    dying_speed = 1,
+    time_before_removed = 1,
+    final_render_layer = "corpse",
+    animation = biterdieanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+  },
+
+  
 })
   
 
