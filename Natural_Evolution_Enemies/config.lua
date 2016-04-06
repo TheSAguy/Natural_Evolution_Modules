@@ -9,6 +9,8 @@ Albatrosv13 - For his MOD Alien Temple that I’ve used in my MOD.
 FreeER - For his MOD Mind Control that I’ve used in my MOD.
 Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
+Supercheese - Swarm Mod.
+Afforess - Misanthrope Mod.
 ThaPear, Semvoz,  Billw, Adil, Rseding91, Orzelek & Chlue - Coding help!
 DySoch - DyTech and Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
 YuokiTani - Art!!  
@@ -22,7 +24,8 @@ YuokiTani - Art!!
 --- false = Off / No
 ---------------------------------------------------------------------------]]
 
-NE.ExtraLoot = true --Extra Loot from Aliens (small-alien-artifact)
+NE.ExtraLoot = true 
+--Extra Loot from Aliens (small-alien-artifact)
 
 
 NE.Set_Difficulty = 2
@@ -42,28 +45,23 @@ NE.Spawners = true
 -- Currently not adjusting DyTech, until tested a little more 
 -- Do you want tweaks made to the games biter & spitters
 -- Lower Pollution levels before attacking.
--- New Enemy Units
+-- New Enemy Units and a new worm
 -- Adjusted Resistances of units
 
 
 NE.BioDamage = 15
+-- Able to adjust the damage of the Bio Ammo.
+-- Some people complained it was too high... Be warned though, the game is very tough at the end. You're going to need this.
 
 
------------------------------ END -------------------------------------------
-
-NE.QCCode = false
--- Used for QC
--- Displays messages used for checking my code
 
 
---------- Used for Unit Launcher
+--------- Used for Unit Launcher - Thanks Supercheese for this code :)
 -- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
 -- For spawners, the current evolution factor rounded down to the nearest 10% (though 99% is rounded up to 100%) is used to look up which enemy appears.
 
 subEnemyNameTable = {}
 
-
--- Natural Evolution Enemies
 subEnemyNameTable["unit-cluster"] = {}
 subEnemyNameTable["unit-cluster"][0] = 			"small-biter"
 subEnemyNameTable["unit-cluster"][1] = 			"small-biter-Mk2"
@@ -79,7 +77,6 @@ subEnemyNameTable["unit-cluster"][10] =			"behemoth-biter"
 
 
 -- NUMBERS
-
 -- The result in the right column is the number of enemies that appear when the enemy in the left column dies.
 -- The current evolution factor rounded down to the nearest 10% is also used to look up which enemy appears.
 subEnemyNumberTable = {}
@@ -98,4 +95,10 @@ subEnemyNumberTable["unit-cluster"][9] = 			2    --behemoth
 subEnemyNumberTable["unit-cluster"][10] =			4    --behemoth
 
 
+
+----------------------------- END -------------------------------------------
+
+NE.QCCode = false
+-- Used for QC
+-- Displays messages used for checking my code
 

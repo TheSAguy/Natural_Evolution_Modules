@@ -9,6 +9,8 @@ Albatrosv13 - For his MOD Alien Temple that I’ve used in my MOD.
 FreeER - For his MOD Mind Control that I’ve used in my MOD.
 Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
+Supercheese - Swarm Mod.
+Afforess - Misanthrope Mod.
 ThaPear, Semvoz,  Billw, Adil, Rseding91, Orzelek & Chlue - Coding help!
 DySoch - DyTech and Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
 YuokiTani - Art!!  
@@ -34,16 +36,18 @@ NE.EvolutionFactor = true
 -- TIME: Only 75% of vanilla. From 0.000004 to 0.000003
 -- POLLUTION: Quadruple the vanilla Pollution Evolution, so don't pollute! From 0.00003 to 0.00006
 -- KILLING EMENY SPAWNERS: 10% of Vanilla for killing Enemy Spawners. From 0.002 to 0.0002
+
 NE.DyTechWar_Evo_override = false
 -- If true, will use DyTech Evolution Factor values and not Natural Evolution's values.
 -- DyTech's values are linear, meaning at Difficulty 1 all 3 values are 1/4 of Vanilla and at Difficulty 5 they are 5x higher than vanilla's. 
 -- N.E. on the other hand has a higher Pollution penalty, but lower Time and Killing Spawner values.
 
+NE.HarderEndGame = true 
+-- Gets a lot harder once you build a rocket silo. Expect enemies trying to destroy the rocket silo.
+-- Cost of Rocket parts doubled.
 
-NE.HarderEndGame = true -- Gets a lot harder once you build a rocket silo
-
-
-NE.ScienceCost = true -- Doubles the cost of Science Bottles, so you need to go look for some more resources...
+NE.ScienceCost = true 
+-- Doubles the cost of Science Bottles, so you need to go look for some more resources...
 
 
 
