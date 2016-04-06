@@ -2,11 +2,13 @@ require "util"
 require "prototypes.Vanilla_Changes.Settings"
 require "prototypes.Vanilla_Changes.Projectiles"
 
-medium_launcher_worm_scale = 0.95
-medium_worm_launcher__tint = {r=0.92, g=0.97, b=0.55, a=1.0}
 
-big_worm_launcher__scale = 1.05
-big_worm_launcher__tint = {r=0.16, g=0.87, b=0.26, a=1.0}
+medium_launcher_worm_scale = 0.95
+medium_launcher_worm_tint = {r=0.92, g=0.97, b=0.55, a=1.0}
+
+big_launcher_worm_scale = 1
+big_launcher_worm_tint = {r=0.16, g=0.87, b=0.26, a=1.0}
+
 
 function shift_medium_worm(shiftx, shifty)
   return {shiftx - 0.15, shifty + 0.15}
@@ -16,6 +18,7 @@ end
 function shift_big_worm(shiftx, shifty)
   return {shiftx - 0.2, shifty + 0.2}
 end
+
 
 
 data:extend(
@@ -66,7 +69,7 @@ data:extend(
       type = "projectile",
       ammo_category = "rocket",
       cooldown = 50,
-      range = 23,
+      range = 25,
       projectile_creation_distance = 1.9,
       damage_modifier = 3,
       ammo_type =
@@ -79,7 +82,7 @@ data:extend(
           {
             type = "projectile",
             projectile = "medium-unit-projectile",
-            starting_speed = 0.5
+            starting_speed = 0.8
           }
         }
       },
@@ -99,13 +102,13 @@ data:extend(
           starting_area_weight_max_range = 2,
         },
         {
-          influence = 0.22,
+          influence = 0.14,
           noise_layer = "enemy-base",
           noise_octaves_difference = -1.8,
           noise_persistence = 0.5,
         },
         {
-          influence = 0.3,
+          influence = 0.38,
           noise_layer = "enemy-base",
           noise_octaves_difference = -1.8,
           noise_persistence = 0.5,
@@ -119,7 +122,7 @@ data:extend(
 
   {
     type = "turret",
-    name = "big-worm-turret",
+    name = "big-launcher-worm-turret",
     icon = "__base__/graphics/icons/big-worm.png",
     flags = {"placeable-player", "placeable-enemy", "not-repairable", "breaths-air"},
     max_health = 1500,
@@ -164,7 +167,7 @@ data:extend(
       type = "projectile",
       ammo_category = "rocket",
       cooldown = 50,
-      range = 28,
+      range = 30,
       projectile_creation_distance = 2.1,
       damage_modifier = 6,
       ammo_type =
@@ -177,7 +180,7 @@ data:extend(
           {
             type = "projectile",
             projectile = "big-unit-projectile",
-            starting_speed = 0.5
+            starting_speed = 1
           }
         }
       }
@@ -203,7 +206,7 @@ data:extend(
           noise_persistence = 0.5,
         },
         {
-          influence = 0.38,
+          influence = 0.3,
           noise_layer = "enemy-base",
           noise_octaves_difference = -1.8,
           noise_persistence = 0.5,

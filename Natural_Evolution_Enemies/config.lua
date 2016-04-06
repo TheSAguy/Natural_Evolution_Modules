@@ -64,7 +64,7 @@ subEnemyNameTable = {}
 
 
 -- Natural Evolution Enemies
-
+subEnemyNameTable["unit-cluster"] = {}
 subEnemyNameTable["unit-cluster"][0] = 			"small-biter"
 subEnemyNameTable["unit-cluster"][1] = 			"small-biter-Mk2"
 subEnemyNameTable["unit-cluster"][2] = 			"small-biter-Mk3"

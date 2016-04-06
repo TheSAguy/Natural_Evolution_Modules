@@ -308,7 +308,7 @@ data:extend(
     type = "projectile",
     name = "medium-unit-projectile",
     flags = {"not-on-map"},
-    acceleration = 0.005,
+    acceleration = 0.025,
 
   action =
     {
@@ -321,7 +321,7 @@ data:extend(
           {
 			type = "create-entity",
 			trigger_created_entity = "true",
-			entity_name = "medium-biter-Mk2"
+			entity_name = "unit-cluster"
           },
         }
       }
@@ -355,7 +355,7 @@ data:extend(
     type = "projectile",
     name = "big-unit-projectile",
     flags = {"not-on-map"},
-    acceleration = 0.005,
+    acceleration = 0.05,
 
   action =
     {
@@ -368,7 +368,7 @@ data:extend(
           {
 			type = "create-entity",
 			trigger_created_entity = "true",
-			entity_name = "big-biter-Mk2"
+			entity_name = "unit-cluster"
           },
         }
       }

@@ -26,8 +26,9 @@ require("prototypes.Other.damage-type")
 
 ---------------------------------------------------------------
 
+--[[
 ------- Remove Default Worms - FOR TESTING
 data.raw.turret["small-worm-turret"].autoplace = {}
 data.raw.turret["medium-worm-turret"].autoplace = {}
 data.raw.turret["big-worm-turret"].autoplace = {}
-
+]]
