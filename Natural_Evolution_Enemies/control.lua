@@ -1,4 +1,4 @@
---- v.5.0.8
+--- v.5.0.9
 require "defines"
 require "util"
 NEConfig = {}
@@ -49,11 +49,12 @@ function On_Load()
 	end
 	
 
+--[[
 	for k,force in pairs(game.forces) do 
 		force.reset_recipes()
 		force.reset_technologies() 
 	end
-	
+	]]
 	--- Used for Unit Turrets
 	if not global.tick then
 		global.tick = game.tick
