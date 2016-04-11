@@ -1,4 +1,4 @@
---- v.5.0.9
+--- ENEMIES v.5.0.10
 require "defines"
 require "util"
 NEConfig = {}
@@ -39,6 +39,7 @@ script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(e
 script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
 script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
+
 ---------------------------------------------				 
 function On_Load()
 
@@ -47,18 +48,16 @@ function On_Load()
         global.next_check= global.next_check or game.tick+interval
         global.next_collector= global.next_collector or 1
 	end
-	
+end
 
---[[
-	for k,force in pairs(game.forces) do 
-		force.reset_recipes()
-		force.reset_technologies() 
-	end
-	]]
+---------------------------------------------				 
+function On_Init()
+
 	--- Used for Unit Turrets
 	if not global.tick then
 		global.tick = game.tick
 	end
+	
 	if not global.evoFactorFloor then
 		if game.evolution_factor > 0.995 then
 			global.evoFactorFloor = 10
@@ -237,10 +236,11 @@ function ProcessCollector(collector)
 end
 
 ---------------------------------------------
-script.on_init(On_Load)
+--script.on_init(On_Load)
 script.on_load(On_Load)
-script.on_configuration_changed(On_Load)
 
+script.on_configuration_changed(On_Init)
+script.on_init(On_Init)
 
 ---------------------------------------------
 --- DeBug Messages 

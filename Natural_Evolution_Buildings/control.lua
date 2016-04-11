@@ -1,4 +1,4 @@
---- v.5.0.8
+---BUILDINGS - v.5.0.9
 require "defines"
 require "util"
 NEConfig = {}
@@ -366,10 +366,54 @@ function UpdateUnitsCommands(player_index)
 	local pos = player.position
     local aggression_area = {{pos.x - agro_area_rad, pos.y - agro_area_rad}, {pos.x + agro_area_rad, pos.y + agro_area_rad}}
 	if not player.surface.valid then return end
-	local targets = player.surface.find_entities(aggression_area)
 	local min_dist = agro_area_rad + 10;
 	local closest_index = -1
 	local surface = player.surface
+	
+	local attOn = player.get_item_count("attractor-on")
+	local attOff = player.get_item_count("attractor-off")
+	local lastState = nil
+	if global.Evolution_MOD[player.name] and global.Evolution_MOD[player.name].lastState then
+		lastState = global.Evolution_MOD[player.name].lastState
+	else
+		if global.Evolution_MOD[player.name] == nil then
+			global.Evolution_MOD[player.name] = {}
+		end
+		global.Evolution_MOD[player.name].lastState = nil
+	end
+	
+	if attOn > 0 and attOff == 0 then
+		if attOn > 1 then
+			player.remove_item({name="attractor-on", count=(attOn - 1)})
+		end
+		lastState = "on"
+	elseif attOn == 0 and attOff > 0 then
+		if attOff > 1 then
+			player.remove_item({name="attractor-off", count=(attOff - 1)})
+		end
+		lastState = "off"
+	elseif attOn > 0 and attOff > 0 then
+		if lastState ~= nil and lastState == "off" then
+			player.remove_item({name="attractor-off", count=attOff})
+			if attOn > 1 then
+				player.remove_item({name="attractor-on", count=(attOn - 1)})
+			end
+			lastState = "on"
+		else
+			player.remove_item({name="attractor-on", count=attOn})
+			if attOn > 1 then
+				player.remove_item({name="attractor-on", count=(attOn - 1)})
+			end
+			lastState = "off"
+		end
+	else
+		lastState = "off"
+	end
+	global.Evolution_MOD[player.name].lastState = lastState
+	
+	if lastState == "off" then return end
+
+	local targets = player.surface.find_entities(aggression_area)
 	
 	for index, target in ipairs(targets) do
 		if target.health then
@@ -385,48 +429,6 @@ function UpdateUnitsCommands(player_index)
 	
 	local unit_count = 0
 	if closest_index == -1 then	
-		local attOn = player.get_item_count("attractor-on")
-		local attOff = player.get_item_count("attractor-off")
-		local lastState = nil
-		if global.Evolution_MOD[player.name] and global.Evolution_MOD[player.name].lastState then
-			lastState = global.Evolution_MOD[player.name].lastState
-		else
-			if global.Evolution_MOD[player.name] == nil then
-				global.Evolution_MOD[player.name] = {}
-			end
-			global.Evolution_MOD[player.name].lastState = nil
-		end
-		
-		if attOn > 0 and attOff == 0 then
-			if attOn > 1 then
-				player.remove_item({name="attractor-on", count=(attOn - 1)})
-			end
-			lastState = "on"
-		elseif attOn == 0 and attOff > 0 then
-			if attOff > 1 then
-				player.remove_item({name="attractor-off", count=(attOff - 1)})
-			end
-			lastState = "off"
-		elseif attOn > 0 and attOff > 0 then
-			if lastState ~= nil and lastState == "off" then
-				player.remove_item({name="attractor-off", count=attOff})
-				if attOn > 1 then
-					player.remove_item({name="attractor-on", count=(attOn - 1)})
-				end
-				lastState = "on"
-			else
-				player.remove_item({name="attractor-on", count=attOn})
-				if attOn > 1 then
-					player.remove_item({name="attractor-on", count=(attOn - 1)})
-				end
-				lastState = "off"
-			end
-		else
-			lastState = "off"
-		end
-		global.Evolution_MOD[player.name].lastState = lastState
-		
-		if lastState == "off" then return end
 		local call_back_area = {{pos.x -  call_back_area_rad, pos.y -  call_back_area_rad}, {pos.x +  call_back_area_rad, pos.y +  call_back_area_rad}}
 		local biters = surface.find_entities_filtered{area = call_back_area, type = "unit"}
 		for index, biter in ipairs(biters) do
