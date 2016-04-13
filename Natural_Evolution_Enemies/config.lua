@@ -35,6 +35,10 @@ NE.Set_Difficulty = 2
 --			2 = Hard
 -- Hard is about a 2x factor on everything
 
+NE.SafeRail = false
+-- If true, biters won't attack rail, BUT rail will also not show up on the mini map or be able to add rail to blueprints. 
+-- So maybe set to true one you're rail is built :)
+
 
 NE.Spawners = true 
 -- Changes to the games Spawners and Units

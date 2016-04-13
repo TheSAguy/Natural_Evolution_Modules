@@ -134,15 +134,19 @@ if NEConfig.Spawners then
 	Add_Explosion_Resist(data.raw["straight-rail"],100)	
 	Add_Explosion_Resist(data.raw["curved-rail"],100)		
 
+
+
+
+	
+end
+
+if NEConfig.SafeRail then
 	Biters_Dont_Attack(data.raw["curved-rail"])
 	Biters_Dont_Attack(data.raw["straight-rail"])
 	Biters_Dont_Attack(data.raw["rail-signal"])
 	Biters_Dont_Attack(data.raw["rail-chain-signal"])
 	Biters_Dont_Attack(data.raw["train-stop"])
-	
 end
-
-
 
 if NEConfig.mod.NEBuildings then
 	function add_technology_recipe (technology, recipe)

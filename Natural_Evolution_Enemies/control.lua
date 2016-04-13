@@ -1,4 +1,4 @@
---- ENEMIES v.5.0.10
+---ENEMIES v.5.1.0
 require "defines"
 require "util"
 NEConfig = {}
