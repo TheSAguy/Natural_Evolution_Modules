@@ -175,7 +175,7 @@ if NEConfig.Spawners then
 		require "prototypes.Vanilla_Changes.Biter_Evolution"
 		require "prototypes.Vanilla_Changes.New_Spitter_Units"
 		require "prototypes.Vanilla_Changes.Spitter_Evolution"
-		require "prototypes.Vanilla_Changes.New_Worm_Units"
+		--require "prototypes.Vanilla_Changes.New_Worm_Units" -- Adds new worms. Removed for now.
 		
 	end
 		

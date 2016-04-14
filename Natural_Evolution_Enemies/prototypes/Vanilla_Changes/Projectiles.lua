@@ -119,6 +119,11 @@ data:extend(
               }
             }
           },
+		  {
+			type = "create-entity",
+			trigger_created_entity = "true",
+			entity_name = "unit-cluster"
+          },
           {
             type = "create-entity",
             entity_name = "Infected-Poison-Cloud"
@@ -191,6 +196,11 @@ data:extend(
                 volume = 0.8
               }
             }
+          },
+		  {
+			type = "create-entity",
+			trigger_created_entity = "true",
+			entity_name = "unit-cluster"
           },
           {
             type = "create-entity",

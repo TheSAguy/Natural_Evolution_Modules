@@ -6,5 +6,5 @@
   "contact": "vvwmisc@hotmail.com",
   "homepage": "http://www.factorioforums.com/forum/viewtopic.php?f=91&t=13562&p",
   "description": "All things Alien! Manages Evolution & Expansion",
-  "dependencies": ["base >= 0.12.28"]
+  "dependencies": ["base >= 0.12.28"," ? EvoGUI"]
 }

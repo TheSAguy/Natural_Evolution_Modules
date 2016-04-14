@@ -1,11 +1,12 @@
---- EXPANSION v.5.0.8
+--- EXPANSION v.5.2.0
+NEConfig = {}
 require "defines"
 require "util"
-NEConfig = {}
+require 'libs/EvoGUI'
+require 'config'
 
-require "config"
-
-
+	---	 EvoGUI
+local evo_gui = nil
 
 ---------------------------------------------
 function On_Load()
@@ -26,7 +27,15 @@ function On_Load()
 	if not global.RocketSiloBuilt then
 	  global.RocketSiloBuilt = 0
 	end
+	
+	---	 EvoGUI
+	if not evo_gui then
+		--evo_gui = EvoGUI.new(Natural_Evolution_state)
+		evo_gui = EvoGUI.new(Expansion_State)
 		
+	end	
+	
+	
 end
 
 
@@ -82,6 +91,10 @@ end
 if NEConfig.Expansion then	
 
 	script.on_event(defines.events.on_tick, function(event)
+		
+		---	 EvoGUI
+		evo_gui:tick()
+		
 		--------------- Expansion ----------------------------------
 
 			if (game.tick % (60 * 60)  == 0) and (game.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
