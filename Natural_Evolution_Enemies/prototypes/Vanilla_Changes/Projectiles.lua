@@ -119,11 +119,6 @@ data:extend(
               }
             }
           },
-		  {
-			type = "create-entity",
-			trigger_created_entity = "true",
-			entity_name = "unit-cluster"
-          },
           {
             type = "create-entity",
             entity_name = "Infected-Poison-Cloud"
@@ -197,11 +192,6 @@ data:extend(
               }
             }
           },
-		  {
-			type = "create-entity",
-			trigger_created_entity = "true",
-			entity_name = "unit-cluster"
-          },
           {
             type = "create-entity",
             entity_name = "acid-splash-purple"
@@ -224,6 +214,177 @@ data:extend(
 				  {
                     type = "damage",
                     damage = {amount = 14*NE_Difficulty, type = "acid"}
+                  },
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    animation =
+    {
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-red.png",
+      line_length = 5,
+      width = 16,
+      height = 18,
+      frame_count = 33,
+      priority = "high"
+    },
+    shadow =
+    {
+      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      line_length = 5,
+      width = 28,
+      height = 16,
+      frame_count = 33,
+      priority = "high",
+      shift = {-0.09, 0.395}
+    },
+    rotatable = false
+  },
+----------- WORM Projectiles -------
+
+{
+    type = "projectile",
+    name = "Infected-Projectile-Worm",
+    flags = {"not-on-map"},
+    acceleration = 0.05,
+    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          {
+            type = "play-sound",
+            sound =
+            {
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-1.ogg",
+                volume = 0.8
+              },
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-2.ogg",
+                volume = 0.8
+              },
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-long-1.ogg",
+                volume = 0.8
+              },
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-long-2.ogg",
+                volume = 0.8
+              }
+            }
+          },
+		  {
+			type = "create-entity",
+			trigger_created_entity = "true",
+			entity_name = "unit-cluster"
+          },
+          {
+            type = "create-entity",
+            entity_name = "Infected-Poison-Cloud"
+          },
+		  {
+            type = "damage",
+            damage = {amount = 10*NE_Difficulty, type = "explosion"}
+          },
+          {
+            type = "damage",
+            damage = {amount = 20*NE_Difficulty, type = "poison"}
+          }
+        }
+      }
+    },
+    animation =
+    {
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-yellow.png",
+      line_length = 5,
+      width = 16,
+      height = 18,
+      frame_count = 33,
+      priority = "high"
+    },
+    shadow =
+    {
+      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      line_length = 5,
+      width = 28,
+      height = 16,
+      frame_count = 33,
+      priority = "high",
+      shift = {-0.09, 0.395}
+    },
+    rotatable = false
+  },
+
+  --- Mutated Projectile
+  {
+    type = "projectile",
+    name = "Mutated-Projectile-Worm",
+    flags = {"not-on-map"},
+    acceleration = 0.005,
+    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          {
+            type = "play-sound",
+            sound =
+            {
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-1.ogg",
+                volume = 0.8
+              },
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-2.ogg",
+                volume = 0.8
+              },
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-long-1.ogg",
+                volume = 0.8
+              },
+              {
+                filename = "__base__/sound/creatures/projectile-acid-burn-long-2.ogg",
+                volume = 0.8
+              }
+            }
+          },
+		  {
+			type = "create-entity",
+			trigger_created_entity = "true",
+			entity_name = "unit-cluster"
+          },
+          {
+            type = "create-entity",
+            entity_name = "acid-splash-purple"
+          },
+          {
+            type = "nested-result",
+            action =
+            {
+              type = "area",
+              perimeter = 2,
+              action_delivery =
+              {
+                type = "instant",
+                target_effects =
+                {
+                  {
+					type = "damage",
+					damage = {amount = 10*NE_Difficulty, type = "explosion"}
+				  },
+				  {
+                    type = "damage",
+                    damage = {amount = 20*NE_Difficulty, type = "acid"}
                   },
                 }
               }
