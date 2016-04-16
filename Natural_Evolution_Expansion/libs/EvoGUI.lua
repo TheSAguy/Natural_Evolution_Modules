@@ -1,8 +1,7 @@
 
 EvoGUI = {}
 
-function EvoGUI.new(expansion_phases)
-    local EvoGUI = { expansion_phases = expansion_phases}
+function EvoGUI.new()
 
     function EvoGUI:createEvolutionRateText()
         local diff = game.evolution_factor - global.exponential_moving_average
@@ -32,9 +31,8 @@ function EvoGUI.new(expansion_phases)
     end
 
     function EvoGUI:createEvolutionText()
-        local expansion_data = self.expansion_phases[global.expansion_index]
-        local text = "Evolution State: " .. expansion_data.name
-        text = text .. " ( " .. math.floor(global.expansion_timer / 60) .. "s )"
+        local text = "Evolution State: " .. global.Natural_Evolution_state
+        text = text .. " ( " .. math.floor(global.Natural_Evolution_Timer / 60) .. "s )"
         return text
     end
     
@@ -43,13 +41,13 @@ function EvoGUI.new(expansion_phases)
             global.evo_gui.detected = true
 
             remote.call("EvoGUI", "create_remote_sensor", {
-                mod_name = "Misanthrope",
+                mod_name = "Natural Evolution",
                 name = "evolution_state",
                 text = "Evolution State:",
                 caption = "Evolution State"
             })
             remote.call("EvoGUI", "create_remote_sensor", {
-                mod_name = "Misanthrope",
+                mod_name = "Natural Evolution",
                 name = "evolution_rate",
                 text = "Evolution Rate:",
                 caption = "Evolution Rate"
@@ -76,8 +74,10 @@ function EvoGUI.new(expansion_phases)
     end
 
     function EvoGUI:updateGUI()
-        local expansion_data = self.expansion_phases[global.expansion_index]
-        remote.call("EvoGUI", "update_remote_sensor", "evolution_state", self:createEvolutionText(), expansion_data.color)
+        -- figure out what color to make the text here (if any)
+        local color = { r = 255, g = 255, b = 255 }
+
+        remote.call("EvoGUI", "update_remote_sensor", "evolution_state", self:createEvolutionText(), color)
         remote.call("EvoGUI", "update_remote_sensor", "evolution_rate", self:createEvolutionRateText(), self:calculateEvolutionRateColor())
     end
 
