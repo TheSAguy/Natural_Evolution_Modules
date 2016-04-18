@@ -100,7 +100,7 @@ Resistances = {
 	-- Infected  
 	Medium_Biter_Mk2 = {
 	  {type = "fire", decrease = 0, percent = -70},
-      {type = "physical", decrease = 10, percent = 10*NE_Difficulty},
+      {type = "physical", decrease = 8, percent = 8*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 5*NE_Difficulty},
       {type = "acid", decrease = 5, percent = 5*NE_Difficulty},
@@ -115,22 +115,22 @@ Resistances = {
       {type = "explosion", decrease = 5, percent = 5*NE_Difficulty},
       {type = "acid", decrease = 5, percent = 5*NE_Difficulty},
       {type = "poison", decrease = 0, percent = 5*NE_Difficulty},
-      {type = "laser", decrease = 10, percent = 10*NE_Difficulty}},
+      {type = "laser", decrease = 8, percent = 8*NE_Difficulty}},
 	
 	-- Healthy
 	Big_Biter = {
 	  {type = "fire", decrease = 0, percent = -50},
-      {type = "physical", decrease = 10, percent = 20*NE_Difficulty},
-      {type = "impact", decrease = 10, percent = 10*NE_Difficulty},
-      {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
-      {type = "acid", decrease = 10, percent = 10*NE_Difficulty},
-      {type = "poison", decrease = 0, percent = 10*NE_Difficulty},
-      {type = "laser", decrease = 10, percent = 10*NE_Difficulty}},
+      {type = "physical", decrease = 8, percent = 15*NE_Difficulty},
+      {type = "impact", decrease = 8, percent = 8*NE_Difficulty},
+      {type = "explosion", decrease = 8, percent = 8*NE_Difficulty},
+      {type = "acid", decrease = 8, percent = 8*NE_Difficulty},
+      {type = "poison", decrease = 0, percent = 8*NE_Difficulty},
+      {type = "laser", decrease = 8, percent = 8*NE_Difficulty}},
 	
 	-- Infected  
 	Big_Biter_Mk2 = {
 	  {type = "fire", decrease = 0, percent = -50},
-      {type = "physical", decrease = 15, percent = 25*NE_Difficulty},
+      {type = "physical", decrease = 15, percent = 20*NE_Difficulty},
       {type = "impact", decrease = 10, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
       {type = "acid", decrease = 10, percent = 10*NE_Difficulty},
@@ -145,7 +145,7 @@ Resistances = {
       {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
       {type = "acid", decrease = 10, percent = 10*NE_Difficulty},
       {type = "poison", decrease = 0, percent = 10*NE_Difficulty},
-      {type = "laser", decrease = 15, percent = 25*NE_Difficulty}},
+      {type = "laser", decrease = 15, percent = 20*NE_Difficulty}},
 	
 	-- Healthy	
 	Behemoth_Biter = {
