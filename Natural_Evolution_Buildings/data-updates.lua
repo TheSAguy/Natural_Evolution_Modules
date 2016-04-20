@@ -3,9 +3,10 @@ NEConfig = {}
 require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
-data.raw.player.player.build_distance = 12
-data.raw.player.player.reach_distance = 10
-
+data.raw.player.player.build_distance = 120
+data.raw.player.player.reach_distance = 100
+data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 0.4, mining_time = 0.8, result = "alien-artifact"}
+data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 0.4, mining_time = 0.8, result = "alien-artifact"}
 
 if NEConfig.ScienceCost then
 

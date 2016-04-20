@@ -1,10 +1,10 @@
 {
   "name": "Natural_Evolution_Expansion",
-  "version": "5.0.8",
+  "version": "5.2.0",
   "title": "Natural_Evolution_Expansion",
   "author": "TheSAguy",
   "contact": "vvwmisc@hotmail.com",
   "homepage": "http://www.factorioforums.com/forum/viewtopic.php?f=91&t=13562&p",
   "description": "All things Alien! Manages Evolution & Expansion",
-  "dependencies": ["base >= 0.12.28"," ? EvoGUI"]
+  "dependencies": ["base >= 0.12.28","? EvoGUI"]
 }

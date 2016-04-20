@@ -4,8 +4,8 @@ require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
 
-data.raw.player.player.build_distance = 12
-data.raw.player.player.reach_distance = 10
+data.raw.player.player.build_distance = 120
+data.raw.player.player.reach_distance = 100
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png"
 
 --- Difficulty settings	

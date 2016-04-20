@@ -45,7 +45,7 @@ if NEConfig.HarderEndGame then
 	---------------------------------------------
 	script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 	script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-	script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined_item,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+	script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 ---------------------------------------------
 	function On_Built(event)
