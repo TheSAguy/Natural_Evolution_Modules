@@ -46,7 +46,7 @@ behemoth_biter_tint1 = {r=0.3, g=0.9, b=0.3, a=0.75}
 behemoth_biter_tint2 = {r=0.88, g=0.24, b=0.24, a=0.9}
 
 
-unit_cluster_scale = 0.00001
+unit_cluster_scale = 0.001
 unit_cluster_tint1 = {r=0, g=0, b=0, a=0}
 unit_cluster_tint2 = {r=0, g=0, b=0, a=0}
 
@@ -454,18 +454,40 @@ data:extend(
       ammo_category = "melee",
       ammo_type = make_unit_melee_ammo_type(0),
       sound = make_biter_roars(0),
-      animation = biterattackanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+      --animation = biterattackanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+	  animation = 
+	  		{
+			filename = "__Natural_Evolution_Buildings__/graphics/entity/Web_64.png",
+			priority = "high",
+			width = 64,
+			height = 64,
+			frame_count = 1,
+			line_length = 1,
+			shift = {0, 0},
+			animation_speed=0,
+		},
     },
-    vision_distance = 30,
-    movement_speed = 0.2,
+    vision_distance = 1,
+    movement_speed = 0.00002,
     distance_per_frame = 0.1,
-    pollution_to_join_attack = 200,
+    pollution_to_join_attack = 200000,
     distraction_cooldown = 300,
     corpse = "unit-cluster-corpse",
     dying_explosion = "blood-explosion-small",
     dying_sound =  make_biter_dying_sounds(0),
     working_sound =  make_biter_calls(0),
-    run_animation = biterrunanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+    --run_animation = biterrunanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+	run_animation =
+		{
+			filename = "__Natural_Evolution_Buildings__/graphics/entity/Web_64.png",
+			priority = "high",
+			width = 64,
+			height = 64,
+			frame_count = 1,
+			line_length = 1,
+			shift = {0, 0},
+			animation_speed=0,
+		},
   },
 
     {

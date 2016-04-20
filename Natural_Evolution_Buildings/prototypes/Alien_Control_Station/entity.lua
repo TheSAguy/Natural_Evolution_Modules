@@ -10,8 +10,8 @@ data:extend({
     name = "AlienControlStation",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/AlienControlStation.png",
     flags = {"placeable-neutral", "placeable-player", "player-creation"},   
-	minable = {hardness = 0.8, mining_time = 1.5, result = "Building_Materials"},
-	--minable = {hardness = 0.8, mining_time = 1.5, results = {type="item", name="Building_Materials", amount=5}},
+	--minable = {hardness = 0.8, mining_time = 1.5, result = "Building_Materials"},
+	minable = {hardness = 0.8, mining_time = 1.5, results = {{type="item", name="Building_Materials", amount=5},}},
 	--- NOTE, when mined, you will lose the Alien artifacts! ----
     max_health = 250,
     corpse = "big-remnants",
