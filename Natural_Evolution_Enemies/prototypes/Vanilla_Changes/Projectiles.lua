@@ -494,6 +494,10 @@ data:extend(
 			trigger_created_entity = "true",
 			entity_name = "unit-cluster"
           },
+		  {
+          type = "create-sticker",
+          sticker = "slowdown-sticker"
+          }
         }
       }
     },
@@ -541,6 +545,10 @@ data:extend(
 			trigger_created_entity = "true",
 			entity_name = "unit-cluster"
           },
+		  {
+          type = "create-sticker",
+          sticker = "slowdown-sticker"
+          }
         }
       }
     },

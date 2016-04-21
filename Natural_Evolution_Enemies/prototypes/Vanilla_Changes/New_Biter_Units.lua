@@ -46,9 +46,64 @@ behemoth_biter_tint1 = {r=0.3, g=0.9, b=0.3, a=0.75}
 behemoth_biter_tint2 = {r=0.88, g=0.24, b=0.24, a=0.9}
 
 
-unit_cluster_scale = 0.001
-unit_cluster_tint1 = {r=0, g=0, b=0, a=0}
-unit_cluster_tint2 = {r=0, g=0, b=0, a=0}
+unit_cluster_scale = 1.2
+unit_cluster_tint1 = {r=0.34, g=0.68, b=0.30, a=0.6}
+unit_cluster_tint2 = {r=0.78, g=0.75, b=0.15, a=0.6}
+
+
+function web_animation(scale, tint1, tint2)
+  return
+  {
+    layers=
+    {
+      {
+        width = 64,
+        height = 64,
+        frame_count = 1,
+        direction_count = 1,
+        shift = {scale * 0.714844, scale * -0.246094},
+        scale = scale,
+        stripes =
+        {
+         {
+          filename = "__Natural_Evolution_Enemies__/graphics/entity/Web_64_shadow.png",
+          width_in_frames = 1,
+          height_in_frames = 1,
+         },
+         {
+          filename = "__Natural_Evolution_Enemies__/graphics/entity/Web_64.png",
+          width_in_frames = 1,
+          height_in_frames = 1,
+         }
+        }
+      },
+
+      {
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/Web_64_shadow.png",
+        width = 64,
+        height = 64,
+        frame_count = 1,
+        direction_count = 1,
+        shift = {scale * 0.117188, scale * -0.867188},
+        scale = scale,
+        tint = tint1
+      },
+
+      {
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/Web_64.png",
+        line_length = 1,
+        width = 64,
+        height = 64,
+        frame_count = 1,
+        direction_count = 1,
+        shift = {scale * 0.117188, scale * -0.855469},
+        scale = scale,
+        tint = tint2
+      }
+	  
+    }
+  }
+end
 
 
 
@@ -454,18 +509,8 @@ data:extend(
       ammo_category = "melee",
       ammo_type = make_unit_melee_ammo_type(0),
       sound = make_biter_roars(0),
-      --animation = biterattackanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
-	  animation = 
-	  		{
-			filename = "__Natural_Evolution_Buildings__/graphics/entity/Web_64.png",
-			priority = "high",
-			width = 64,
-			height = 64,
-			frame_count = 1,
-			line_length = 1,
-			shift = {0, 0},
-			animation_speed=0,
-		},
+      animation = web_animation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+
     },
     vision_distance = 1,
     movement_speed = 0.00002,
@@ -476,18 +521,8 @@ data:extend(
     dying_explosion = "blood-explosion-small",
     dying_sound =  make_biter_dying_sounds(0),
     working_sound =  make_biter_calls(0),
-    --run_animation = biterrunanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
-	run_animation =
-		{
-			filename = "__Natural_Evolution_Buildings__/graphics/entity/Web_64.png",
-			priority = "high",
-			width = 64,
-			height = 64,
-			frame_count = 1,
-			line_length = 1,
-			shift = {0, 0},
-			animation_speed=0,
-		},
+    run_animation = web_animation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+
   },
 
     {
@@ -502,7 +537,7 @@ data:extend(
     dying_speed = 1,
     time_before_removed = 1,
     final_render_layer = "corpse",
-    animation = biterdieanimation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
+    animation = web_animation(unit_cluster_scale, unit_cluster_tint1, unit_cluster_tint2)
   },
 
   
