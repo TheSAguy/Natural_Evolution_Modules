@@ -12,6 +12,12 @@ end
 data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
 data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
 
+if NEConfig.mod.BobEnemies then
+	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
+	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
+end
+
+
 if NEConfig.ScienceCost then
 
 	function ChangeRecipe(Name, Ingredient1, Ingredient2, Amount)

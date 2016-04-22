@@ -37,8 +37,8 @@ local filters = {["small-alien-artifact"] = 1,
 ---------------------------------------------
 script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
 script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
-
+script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+script.on_event({defines.events.on_entity_died,},function(event) On_Death(event) end)
 
 ---------------------------------------------				 
 function On_Load()
@@ -110,6 +110,27 @@ end
 
 ---------------------------------------------
 function On_Remove(event)
+    --Artifact collector
+    if event.entity.name=="Artifact-collector" then
+        local artifacts=global.ArtifactCollectors;
+        for i=1,#artifacts do
+            if artifacts[i]==event.entity then
+                table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
+                if global.next_collector>(#artifacts) then global.next_collector=(#artifacts) end 
+                break
+            end
+        end
+        if #artifacts==0 then
+        --and here artifacts=nil would not cut it.
+            global.ArtifactCollectors=nil--I'm not sure this wins much, on it's own
+            script.on_event(defines.events.on_tick, nil);
+            --but it's surely better done here than during on_tick
+        end
+    end
+
+end
+
+function On_Death(event)
     --Artifact collector
     if event.entity.name=="Artifact-collector" then
         local artifacts=global.ArtifactCollectors;

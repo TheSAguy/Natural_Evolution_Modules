@@ -464,28 +464,6 @@ script.on_init(On_Load)
 script.on_load(On_Load)
 
 ---------------------------------------------
-remote.add_interface("nevo", {
-   -- remote.call("nevo", "TerraReset", number)
-   TerraReset = function(new_count)
-	if new_count < 0 then
-		global.numTerraformingStations = 0
-        elseif new_count > max_terra_count then
-		global.numTerraformingStations = max_terra_count 
-	else
-		global.numTerraformingStations = new_count
-	end
-   end,
-
-   -- remote.call("nevo", "TerraCount")
-   TerraCount = function()
-	c = tostring(global.numTerraformingStations)
-	for i, player in ipairs(game.players) do
-		player.print({"","Terraforming Stations = ",{c},"."})
-	end
-   end
-})
-
----------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
 	if NEConfig.QCCode then 
