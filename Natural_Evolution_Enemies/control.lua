@@ -171,7 +171,7 @@ function On_Death(event)
 		]]
 
 
-	if event.entity.type == "unit-spawner" then
+	if event.entity.type == "unit-spawner" and event.entity.force == "enemy" then
 		writeDebug("YOU KILLED A SPAWNER")
 	    for i = 1, #game.players, 1 do
 			player = game.players[i]
