@@ -1,9 +1,61 @@
---require ("prototypes.belt-balancer-pictures")
+require ("prototypes.Belt_Balancer.belt-balancer-pictures")
 
 
 data:extend(
 	{
-		
+	
+	  {
+		type = "transport-belt",
+		name = "NE-belt-balancer",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/belt-balancer.png",
+		flags = {"placeable-neutral", "player-creation"},
+		minable = {hardness = 0.2, mining_time = 0.3, result = "NE-belt-balancer"},
+		max_health = 50,
+		corpse = "small-remnants",
+		resistances =
+		{
+		  {
+			type = "fire",
+			percent = 50
+		  }
+		},
+		collision_box = {{-0.4, -0.4}, {0.4, 0.4}},
+		selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+		working_sound =
+		{
+		  sound =
+		  {
+			filename = "__base__/sound/express-transport-belt.ogg",
+			volume = 0.4
+		  },
+		  max_sounds_per_type = 3
+		},
+		animation_speed_coefficient = 32,
+		animations =
+		{
+		  filename = "__Natural_Evolution_Buildings__/graphics/entity/NE-belt-balancer-east.png",
+		  priority = "extra-high",
+		  width = 64,
+		  height = 64,
+		  frame_count = 4,
+		  direction_count = 4
+		},
+		belt_horizontal = belt_balancer_horizontal, -- specified in transport-belt-pictures.lua
+		belt_vertical = belt_balancer_vertical,
+		ending_top = belt_balancer_ending_top,
+		ending_bottom = belt_balancer_ending_bottom,
+		ending_side = belt_balancer_ending_side,
+		starting_top = belt_balancer_starting_top,
+		starting_bottom = belt_balancer_starting_bottom,
+		starting_side = belt_balancer_starting_side,
+		ending_patch = ending_patch_prototype,
+		ending_patch = ending_patch_prototype,
+		fast_replaceable_group = "transport-belt",
+		speed = 0.09375
+	  },
+	  
+	  --[[
+	
 	  {
 		type = "splitter",
 		name = "NE-belt-balancer",
@@ -91,5 +143,6 @@ data:extend(
 		
 	  },
  
-	}
-)
+ ]]
+ 
+	})
