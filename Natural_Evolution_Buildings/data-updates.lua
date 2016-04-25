@@ -3,9 +3,12 @@ NEConfig = {}
 require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
-if data.raw.player.player.build_distance < 120 then
-	data.raw.player.player.build_distance = 120
-	data.raw.player.player.reach_distance = 100
+--- Got tierd of reaching limits...
+if data.raw.player.player.build_distance < 220 then
+	data.raw.player.player.build_distance = 220
+	data.raw.player.player.reach_distance = 200
+	data.raw.player.player.reach_resource_distance = 200
+	data.raw.player.player.drop_item_distance = 200	
 end 
 
 -- Make it so that you can mine spawners, since you are able to convert them, you can now remove them. You will lose them though and get some artifacts.
