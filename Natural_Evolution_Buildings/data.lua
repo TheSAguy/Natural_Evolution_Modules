@@ -50,6 +50,10 @@ require("prototypes.Other.item")
 require("prototypes.Other.recipe")
 ---------------------------------------------------------------
 
-
+    --- Belt Balancer
+require("prototypes.Belt_Balancer.entity")
+require("prototypes.Belt_Balancer.item")
+require("prototypes.Belt_Balancer.recipe")
+table.insert(data.raw.technology["logistics-2"].effects,{type = "unlock-recipe", recipe = "NE-belt-balancer"})
 
 
