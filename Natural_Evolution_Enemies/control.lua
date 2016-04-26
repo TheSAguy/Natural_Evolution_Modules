@@ -106,6 +106,10 @@ function On_Built(event)
 
 	end
 	
+	if event.created_entity.name == "unit-cluster" then
+	entity.damage(1)
+	end
+	
 end
 
 ---------------------------------------------

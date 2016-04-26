@@ -492,7 +492,8 @@ data:extend(
           {
 			type = "create-entity",
 			trigger_created_entity = "true",
-			entity_name = "unit-cluster"
+			entity_name = "unit-cluster",
+			check_buildability = false,			
           },
 		  {
           type = "create-sticker",
@@ -543,7 +544,8 @@ data:extend(
           {
 			type = "create-entity",
 			trigger_created_entity = "true",
-			entity_name = "unit-cluster"
+			entity_name = "unit-cluster",
+			check_buildability = false,
           },
 		  {
           type = "create-sticker",
