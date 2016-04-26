@@ -107,8 +107,9 @@ function On_Built(event)
 	end
 	
 	if event.created_entity.name == "unit-cluster" then
-	entity.damage(1)
+		event.created_entity.damage(1, game.forces.neutral)
 	end
+	
 	
 end
 
@@ -184,6 +185,10 @@ function On_Death(event)
 				player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
 			end
 		end
+	end
+	
+	if event.entity.type == "unit-spawner" and event.entity.force <> game.forces.enemy then
+		game.evolution_factor = game.evolution_factor - data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor
 	end
 	
 	
