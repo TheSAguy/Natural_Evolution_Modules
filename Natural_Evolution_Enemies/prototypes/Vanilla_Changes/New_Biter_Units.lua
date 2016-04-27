@@ -486,7 +486,7 @@ data:extend(
 })
 
 
---- Unit Cluster Unit
+--- Unit Cluster Entity. A unit that will be killed once it's generated, to spwan the actual units.
 data:extend(
 {
 
@@ -495,17 +495,17 @@ data:extend(
     name = "unit-cluster",
     icon = "__base__/graphics/icons/creeper.png",
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air"},
-    max_health = 3,
+    max_health = 2.5,
     order = "b-b-a",
     subgroup="enemies",
-	healing_per_tick = -1,
+	healing_per_tick = -2,
     collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
     selection_box = {{-0.4, -0.7}, {0.7, 0.4}},
     attack_parameters =
     {
       type = "projectile",
-      range = 0.05,
-      cooldown = 300,
+      range = 0.0005,
+      cooldown = 3000,
       ammo_category = "melee",
       ammo_type = make_unit_melee_ammo_type(0),
       sound = make_biter_roars(0),

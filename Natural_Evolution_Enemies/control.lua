@@ -35,10 +35,11 @@ local filters = {["small-alien-artifact"] = 1,
 
 
 ---------------------------------------------
-script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
 script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
-script.on_event({defines.events.on_entity_died,},function(event) On_Death(event) end)
+script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
+script.on_event(defines.events.on_trigger_created_entity,function(event) Trigger_Built(event) end)
+
 
 ---------------------------------------------				 
 function On_Load()
@@ -71,11 +72,8 @@ function On_Init()
 end
 
 script.on_event(defines.events.on_tick, function(event)
-
 	pathfinder_demo.tick()
-	
 end)
-
 
 ---------------------------------------------
 function subscribe_ticker(tick)
@@ -85,6 +83,17 @@ function subscribe_ticker(tick)
 	global.ArtifactCollectors= {}
 	global.next_check=game.tick+interval
 	global.next_collector= 1
+end
+
+
+
+---------------------------------------------
+function Trigger_Built(event)
+	--- Unit Cluster created by Worm Launcher Projectile 
+	if event.created_entity.name == "unit-cluster" then
+		writeDebug("Cluster Unit Created")
+		event.created_entity.damage(1, game.forces.neutral,Biological)
+	end
 end
 
 ---------------------------------------------
@@ -101,17 +110,11 @@ function On_Built(event)
 		if global.ArtifactCollectors == nil then
 			subscribe_ticker(event.tick)
 		end
-		
 		table.insert(global.ArtifactCollectors, newCollector)
-
 	end
-	
-	if event.created_entity.name == "unit-cluster" then
-		event.created_entity.damage(1, game.forces.neutral)
-	end
-	
-	
+		
 end
+
 
 ---------------------------------------------
 function On_Remove(event)
@@ -155,7 +158,6 @@ function On_Death(event)
     end
 	
 	
-	-- Detect killing a Unit spawner.
 	--[[	
    if event.entity.type == "unit-spawner" then
 	writeDebug("YOU KILLED A SPAWNER")
@@ -175,7 +177,7 @@ function On_Death(event)
    end
 		]]
 
-
+	-- Detect killing a Unit spawner.
 	if event.entity.type == "unit-spawner" and event.entity.force == game.forces.enemy then
 		writeDebug("YOU KILLED A SPAWNER")
 	    for i = 1, #game.players, 1 do
@@ -187,9 +189,11 @@ function On_Death(event)
 		end
 	end
 	
-	if event.entity.type == "unit-spawner" and event.entity.force <> game.forces.enemy then
+	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
+	if event.entity.type == "unit-spawner" and not event.entity.force == game.forces.enemy then
 		game.evolution_factor = game.evolution_factor - data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor
 	end
+	
 	
 	
 	---- Unit Launcher

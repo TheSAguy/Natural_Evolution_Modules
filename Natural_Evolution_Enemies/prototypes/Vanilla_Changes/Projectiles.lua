@@ -243,9 +243,13 @@ data:extend(
     },
     rotatable = false
   },
------------ WORM Projectiles -------
 
-{
+  ------------------------------------
+  ----------- WORM Projectiles -------
+  ------------------------------------
+  
+  --- Infected WORM Projectile
+  {
     type = "projectile",
     name = "Infected-Projectile-Worm",
     flags = {"not-on-map"},
@@ -282,8 +286,12 @@ data:extend(
           },
 		  {
 			type = "create-entity",
-			trigger_created_entity = "true",
-			entity_name = "unit-cluster"
+			entity_name = "unit-cluster",
+			trigger_created_entity = "true"
+          },
+		  {
+			type = "create-sticker",
+			sticker = "slowdown-sticker"
           },
           {
             type = "create-entity",
@@ -322,7 +330,7 @@ data:extend(
     rotatable = false
   },
 
-  --- Mutated Projectile
+  --- Mutated WORM Projectile
   {
     type = "projectile",
     name = "Mutated-Projectile-Worm",
@@ -360,8 +368,12 @@ data:extend(
           },
 		  {
 			type = "create-entity",
-			trigger_created_entity = "true",
-			entity_name = "unit-cluster"
+			entity_name = "unit-cluster",
+			trigger_created_entity = "true"
+          },
+		  {
+			type = "create-sticker",
+			sticker = "slowdown-sticker"
           },
           {
             type = "create-entity",
@@ -415,6 +427,7 @@ data:extend(
     rotatable = false
   },
 
+  --------------------------
   --- Infected Poison Cloud
   {
     type = "smoke",
@@ -471,10 +484,12 @@ data:extend(
 }
 )
 
+---- Not Being Used
+--[[
 ------- Unit Projectiles
 data:extend(
 {
-
+-- Med Worm
   {
     type = "projectile",
     name = "medium-unit-projectile",
@@ -526,7 +541,7 @@ data:extend(
     rotatable = false
   },
 
- 
+ -- Big Worm
   {
     type = "projectile",
     name = "big-unit-projectile",
@@ -579,6 +594,5 @@ data:extend(
   },
 
  
-}
-)
-
+})
+]]
