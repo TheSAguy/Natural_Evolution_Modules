@@ -6,6 +6,8 @@ NEConfig = {}
 require "config"
 require 'libs/pathfinder_demo'
 
+
+	
 --- Artifact Collector
 local interval = 60 -- this is an interval between the consecutive updates of a single collector
 local radius = 25
@@ -38,7 +40,7 @@ local filters = {["small-alien-artifact"] = 1,
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
 script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
-script.on_event(defines.events.on_trigger_created_entity,function(event) Trigger_Built(event) end)
+--script.on_event(defines.events.on_trigger_created_entity,function(event) Trigger_Built(event) end)
 
 
 ---------------------------------------------				 
@@ -68,7 +70,9 @@ function On_Init()
 		global.tick = global.tick + 1800
 	end
 	
-	
+	global.launch_units={}--this is used to define which equipment is put initially
+	global.launch_units["unit-cluster"]="unit-cluster"
+
 end
 
 script.on_event(defines.events.on_tick, function(event)
@@ -88,13 +92,20 @@ end
 
 
 ---------------------------------------------
-function Trigger_Built(event)
+script.on_event(defines.events.on_trigger_created_entity,
+function(event)
 	--- Unit Cluster created by Worm Launcher Projectile 
-	if event.created_entity.name == "unit-cluster" then
+	local ent=event.entity;
+    if global.launch_units[ent.name] then
 		writeDebug("Cluster Unit Created")
-		event.created_entity.damage(1, game.forces.neutral,Biological)
-	end
-end
+		--event.created_entity.damage(1, game.forces.neutral,Biological)	
+		--ent.damage(1, game.forces.neutral)	
+		--ent.destroy()
+		ent.die()
+    end
+	
+end)
+
 
 ---------------------------------------------
 function On_Built(event)
@@ -188,12 +199,14 @@ function On_Death(event)
 			end
 		end
 	end
-	
+	--[[
 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
-	if event.entity.type == "unit-spawner" and not event.entity.force == game.forces.enemy then
+	if (event.entity.type == "unit-spawner") and (not event.entity.force == game.forces.enemy) then
+		writeDebug("Did it")
 		game.evolution_factor = game.evolution_factor - data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor
 	end
-	
+	--]]
+
 	
 	
 	---- Unit Launcher

@@ -495,10 +495,10 @@ data:extend(
     name = "unit-cluster",
     icon = "__base__/graphics/icons/creeper.png",
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air"},
-    max_health = 2.5,
+    max_health = 10,
     order = "b-b-a",
     subgroup="enemies",
-	healing_per_tick = -2,
+	healing_per_tick = -1,
     collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
     selection_box = {{-0.4, -0.7}, {0.7, 0.4}},
     attack_parameters =
