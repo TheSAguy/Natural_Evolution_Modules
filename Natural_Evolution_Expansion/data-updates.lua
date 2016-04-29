@@ -5,11 +5,13 @@ require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob
 
 
 --- Got tierd of reaching limits...
-if data.raw.player.player.build_distance < 24 then
-	data.raw.player.player.build_distance = 24
-	data.raw.player.player.reach_distance = 20
-	data.raw.player.player.reach_resource_distance = 20
-	data.raw.player.player.drop_item_distance = 20
+if NEConfig.LongReach then
+	if data.raw.player.player.build_distance < 24 then
+		data.raw.player.player.build_distance = 24
+		data.raw.player.player.reach_distance = 20
+		data.raw.player.player.reach_resource_distance = 20
+		data.raw.player.player.drop_item_distance = 20
+	end	
 end 
 
 

@@ -31,6 +31,12 @@ NE.Expansion = true
 -- A tiered approach that gets a lot more difficult at higher evolution rates.
 
 
+
+NE.LongReach = false
+--- Long Reach
+--- Do you want double the vanilla reach
+
+
 NE.EvolutionFactor = true 
 -- Do you want to use the new Evolution rate settings of:
 -- TIME: Only 75% of vanilla. From 0.000004 to 0.000003

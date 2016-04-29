@@ -199,15 +199,19 @@ function On_Death(event)
 			end
 		end
 	end
-	--[[
-	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
-	if (event.entity.type == "unit-spawner") and (not event.entity.force == game.forces.enemy) then
-		writeDebug("Did it")
-		game.evolution_factor = game.evolution_factor - data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor
-	end
-	--]]
 
+	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
+	if (event.entity.type == "unit-spawner") then
+		if event.entity.force == game.forces.enemy then
+				writeDebug("Enemy Spawner")
+		else
+				writeDebug("Friendly Spawner")
+				game.evolution_factor = game.evolution_factor - 0.0002 * (1-game.evolution_factor)			
+		end
 	
+	end
+	
+
 	
 	---- Unit Launcher
 	if global.tick < event.tick then
@@ -222,7 +226,10 @@ function On_Death(event)
 		SpawnLaunchedUnits(event.entity)
 	end
 	
+
+
 end
+
 
 
 ---------------------------------------------

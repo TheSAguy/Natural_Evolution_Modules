@@ -33,7 +33,7 @@ data:extend({
 				{
 				  type = "damage",
 				  
-				  damage = { amount = (NEConfig.BioDamage/NEConfig.Set_Difficulty) + 5, type = "Biological"}
+				  damage = { amount = (NEConfig.BioDamage/NEConfig.Set_Difficulty) + 10, type = "Biological"}
 				},
 				{
 				  type = "damage",

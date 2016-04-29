@@ -24,9 +24,6 @@ YuokiTani - Art!!
 --- false = Off / No
 ---------------------------------------------------------------------------]]
 
-NE.ExtraLoot = true 
---Extra Loot from Aliens (small-alien-artifact)
-
 
 NE.Set_Difficulty = 2
 -- Affects difficulty factor
@@ -34,6 +31,16 @@ NE.Set_Difficulty = 2
 --			1 = Normal
 --			2 = Hard
 -- Hard is about a 2x factor on everything
+
+
+NE.ExtraLoot = true 
+--Extra Loot from Aliens (small-alien-artifact)
+
+
+NE.LongReach = false
+--- Long Reach
+--- Do you want double the vanilla reach
+
 
 NE.SafeRail = false
 -- If true, biters won't attack rail, BUT rail will also not show up on the mini map or be able to add rail to blueprints. 
