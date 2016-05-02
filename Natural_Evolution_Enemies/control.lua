@@ -1,4 +1,4 @@
----ENEMIES v.5.2.0
+---ENEMIES v.5.2.2
 require "defines"
 require "util"
 NEConfig = {}
@@ -76,6 +76,7 @@ function On_Init()
 end
 
 script.on_event(defines.events.on_tick, function(event)
+	--- Hopefully this will improve path finding...
 	pathfinder_demo.tick()
 end)
 

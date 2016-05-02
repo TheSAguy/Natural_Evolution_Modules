@@ -1,8 +1,9 @@
---- EXPANSION v.5.2.0
+--- EXPANSION v.5.2.2
 NEConfig = {}
 require "defines"
 require "util"
 require 'libs/EvoGUI'
+require 'libs/pathfinder_demo'
 require 'config'
 
 	---	 EvoGUI
@@ -92,6 +93,10 @@ if NEConfig.Expansion then
 
 	script.on_event(defines.events.on_tick, function(event)
 		
+		--- Hopefully this will improve path finding...
+		pathfinder_demo.tick()
+			
+			
 		---	 EvoGUI
 		evo_gui:tick()
 		

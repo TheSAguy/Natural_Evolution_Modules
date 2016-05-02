@@ -161,6 +161,8 @@ if NEConfig.SafeRail then
 	Biters_Dont_Attack(data.raw["train-stop"])
 end
 
+
+----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 if NEConfig.mod.NEBuildings then
 	function add_technology_recipe (technology, recipe)
 	  if data.raw.technology[technology] and data.raw.recipe[recipe] then
@@ -188,7 +190,7 @@ if NEConfig.Spawners then
 		require "prototypes.Vanilla_Changes.Biter_Evolution"
 		require "prototypes.Vanilla_Changes.New_Spitter_Units"
 		require "prototypes.Vanilla_Changes.Spitter_Evolution"
-		--require "prototypes.Vanilla_Changes.New_Worm_Units" -- Adds new worms. Removed for now.
+		--require "prototypes.Vanilla_Changes.New_Worm_Units" -- Adds new worms. Removed, rather added to vanilla worms.
 		
 	end
 		
