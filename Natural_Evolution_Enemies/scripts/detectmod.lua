@@ -18,7 +18,7 @@ else
 end
 
 --Detect Bob's Enemies
-if data.raw["unit"]["bob-bigger-biter"] ~= nil and data.raw["unit"]["bob-bigger-spitter"] ~= nil then
+if data.raw["unit"]["bob-big-piercing-biter"] ~= nil and data.raw["unit"]["bob-big-electric-spitter"] ~= nil then
 	NEConfig.mod.BobEnemies=true
 else 
 	NEConfig.mod.BobEnemies=false

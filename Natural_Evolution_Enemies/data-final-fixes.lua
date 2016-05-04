@@ -24,7 +24,7 @@ if NEConfig.Spawners then
 		data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Difficulty
 		data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Difficulty
 		data.raw["unit-spawner"]["biter-spawner"].spawning_cooldown = {(200+100/NE_Difficulty), (100+50/NE_Difficulty)}
-		data.raw["unit-spawner"]["biter-spawner"].max_health = 1500 + 1000 * NE_Difficulty
+		data.raw["unit-spawner"]["biter-spawner"].max_health = 500 + (1000 * NE_Difficulty)
 		data.raw["unit-spawner"]["biter-spawner"].resistances = Resistances.Spawner
 		data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 25
 		data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2
@@ -35,7 +35,7 @@ if NEConfig.Spawners then
 		data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Difficulty
 		data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Difficulty
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_cooldown = {(300+100/NE_Difficulty), (100+80/NE_Difficulty)}
-		data.raw["unit-spawner"]["spitter-spawner"].max_health = 2500 + 1000 * NE_Difficulty
+		data.raw["unit-spawner"]["spitter-spawner"].max_health = 1000 + (1000 * NE_Difficulty)
 		data.raw["unit-spawner"]["spitter-spawner"].resistances = Resistances.Spawner
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20
 		data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2
@@ -79,7 +79,7 @@ if NEConfig.Spawners then
 	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Difficulty
 	data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Difficulty
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_cooldown = {(200+100/NE_Difficulty), (100+50/NE_Difficulty)}
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 1500 + 1000 * NE_Difficulty
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 500 + (1000 * NE_Difficulty)
 	data.raw["unit-spawner"]["bob-biter-spawner"].resistances = Resistances.Spawner
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_radius = 25
 	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_spacing = 2
@@ -91,7 +91,7 @@ if NEConfig.Spawners then
 	data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Difficulty
 	data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Difficulty
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_cooldown = {(300+100/NE_Difficulty), (100+80/NE_Difficulty)}
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 2500 + 1000 * NE_Difficulty
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 1000 + (1000 * NE_Difficulty)
 	data.raw["unit-spawner"]["bob-spitter-spawner"].resistances = Resistances.Spawner
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_radius = 20
 	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_spacing = 2
@@ -167,24 +167,32 @@ if NEConfig.Spawners then
 	
 -- Bob's Enemies Modifications
 	if NEConfig.mod.BobEnemies then
-
-		data.raw["unit"]["bob-bigger-biter"].pollution_to_join_attack = 1000
-		data.raw["unit"]["bob-biggest-biter"].pollution_to_join_attack = 2500
-		data.raw["unit"]["bob-fire-biter"].pollution_to_join_attack = 5000
-		data.raw["unit"]["bob-bigger-spitter"].pollution_to_join_attack = 1000
-		data.raw["unit"]["bob-biggest-spitter"].pollution_to_join_attack = 2500
-		data.raw["unit"]["bob-poison-spitter"].pollution_to_join_attack = 5000
+		data.raw["unit"]["bob-big-piercing-biter"].pollution_to_join_attack = 1000
+		data.raw["unit"]["bob-huge-acid-biter"].pollution_to_join_attack = 2000
+		data.raw["unit"]["bob-huge-explosive-biter"].pollution_to_join_attack = 3000
+		data.raw["unit"]["bob-giant-poison-biter"].pollution_to_join_attack = 4000
+		data.raw["unit"]["bob-giant-fire-biter"].pollution_to_join_attack = 5000
+		data.raw["unit"]["bob-titan-biter"].pollution_to_join_attack = 6000
+		data.raw["unit"]["bob-behemoth-biter"].pollution_to_join_attack = 7000
+		data.raw["unit"]["bob-leviathan-biter"].pollution_to_join_attack = 8000	
+		
+		data.raw["unit"]["bob-big-electric-spitter"].pollution_to_join_attack = 1500
+		data.raw["unit"]["bob-huge-explosive-spitter"].pollution_to_join_attack = 2500
+		data.raw["unit"]["bob-huge-acid-spitter"].pollution_to_join_attack = 3500
+		data.raw["unit"]["bob-giant-fire-spitter"].pollution_to_join_attack = 4500
+		data.raw["unit"]["bob-giant-poison-spitter"].pollution_to_join_attack = 5500
+		data.raw["unit"]["bob-titan-spitter"].pollution_to_join_attack = 6500
+		data.raw["unit"]["bob-behemoth-spitter"].pollution_to_join_attack = 7500
+		data.raw["unit"]["bob-leviathan-spitter"].pollution_to_join_attack = 8500	
 
 		if NEConfig.Spawners and not NEConfig.mod.DyTechWar then
 			require "prototypes.Vanilla_Changes.Bobs_Spawners"				
 		end
-
 		
 	end
 
 
 ---- END Biter & Spitter Modifications --------------------------------
-
 
 		
 end

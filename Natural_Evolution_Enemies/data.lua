@@ -1,7 +1,7 @@
 NEConfig = {}
 
 require "config"
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies
+--require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies
 
 
 require("prototypes.Technology.technology")
