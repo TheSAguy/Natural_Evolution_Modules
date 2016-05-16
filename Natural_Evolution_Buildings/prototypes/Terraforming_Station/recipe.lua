@@ -3,12 +3,12 @@ data:extend({
 	{
         type = "recipe",
         name = "TerraformingStation",
-        energy_required = 20,
+        energy_required = 35,
         enabled = "false",
         ingredients =
         {
             {"Building_Materials", 15},
-            {"alien-artifact", 10},
+            {"alien-artifact", 20},
         },
         result = "TerraformingStation"
     },

@@ -1,4 +1,4 @@
----ENEMIES v.5.2.2
+---ENEMIES v.5.2.3
 require "defines"
 require "util"
 NEConfig = {}
@@ -9,8 +9,9 @@ require 'libs/pathfinder_demo'
 
 	
 --- Artifact Collector
-local interval = 60 -- this is an interval between the consecutive updates of a single collector
+local interval = 300 -- this is an interval between the consecutive updates of a single collector
 local radius = 25
+local itemCount = 6
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
                  ["alien-artifact"] = 1,
@@ -279,12 +280,16 @@ function ProcessCollector(collector)
 	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
 	if #items > 0 then
 		inventory = collector.get_inventory(chestInventoryIndex)
+		local counter = 0
 		for i=1,#items do
 			local stack = items[i].stack
 			if filters[stack.name] == 1 and inventory.can_insert(stack) then
 				 inventory.insert(stack)
 				 items[i].destroy()
-				 break
+				 counter = counter + 1
+				 if counter == itemCount then
+					 break
+				 end
 			end
 		end
 	end

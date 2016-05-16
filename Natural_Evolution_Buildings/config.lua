@@ -11,8 +11,10 @@ Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.
-ThaPear, Semvoz,  Billw, Adil, Rseding91, Orzelek & Chlue - Coding help!
-DySoch - DyTech and Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
+Orzelek - RSO, Coding help and answering questions!
+ThaPear, Semvoz,  Billw, Adil, Rseding91 Chlue - Coding help!
+DySoch - DyTech
+Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
 YuokiTani - Art!!  
 
 
@@ -22,6 +24,7 @@ YuokiTani - Art!!
 ---------------------------------------------------------------------------
 --- true = On / Yes
 --- false = Off / No
+-- NOTE -- When changing most of the below values, this will only affect new games, not existing games.
 ---------------------------------------------------------------------------]]
 
 

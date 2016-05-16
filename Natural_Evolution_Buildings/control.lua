@@ -1,4 +1,4 @@
----BUILDINGS - v.5.2.2
+---BUILDINGS - v.5.2.3
 require "defines"
 require "util"
 NEConfig = {}

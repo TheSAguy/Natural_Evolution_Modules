@@ -11,8 +11,10 @@ Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.
-ThaPear, Semvoz,  Billw, Adil, Rseding91, Orzelek & Chlue - Coding help!
-DySoch - DyTech and Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
+Orzelek - RSO, Coding help and answering questions!
+ThaPear, Semvoz,  Billw, Adil, Rseding91 Chlue - Coding help!
+DySoch - DyTech
+Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
 YuokiTani - Art!!  
 
 ---------------------------------------------------------------------------
@@ -21,6 +23,8 @@ YuokiTani - Art!!
 ---------------------------------------------------------------------------
 --- true = On / Yes
 --- false = Off / No
+-- NOTE -- When changing most of the below values, this will only affect new games, not existing games.
+
 ---------------------------------------------------------------------------]]
 
 
@@ -37,10 +41,10 @@ NE.LongReach = false
 --- Do you want double the vanilla reach
 
 
-NE.EvolutionFactor = true 
+NE.EvolutionFactor = true -- Changing this will only affect new games, not existing games
 -- Do you want to use the new Evolution rate settings of:
 -- TIME: Only 75% of vanilla. From 0.000004 to 0.000003
--- POLLUTION: Quadruple the vanilla Pollution Evolution, so don't pollute! From 0.00003 to 0.00006
+-- POLLUTION: Double the vanilla Pollution Evolution, so don't pollute! From 0.000015 to 0.00003
 -- KILLING EMENY SPAWNERS: 10% of Vanilla for killing Enemy Spawners. From 0.002 to 0.0002
 
 NE.DyTechWar_Evo_override = false

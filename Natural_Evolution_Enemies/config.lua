@@ -11,8 +11,10 @@ Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.
-ThaPear, Semvoz,  Billw, Adil, Rseding91, Orzelek & Chlue - Coding help!
-DySoch - DyTech and Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
+Orzelek - RSO, Coding help and answering questions!
+ThaPear, Semvoz,  Billw, Adil, Rseding91 Chlue - Coding help!
+DySoch - DyTech
+Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
 YuokiTani - Art!!  
 
 
@@ -22,6 +24,8 @@ YuokiTani - Art!!
 ---------------------------------------------------------------------------
 --- true = On / Yes
 --- false = Off / No
+-- NOTE -- When changing most of the below values, this will only affect new games, not existing games.
+
 ---------------------------------------------------------------------------]]
 
 
@@ -42,7 +46,7 @@ NE.LongReach = false
 --- Do you want double the vanilla reach
 
 
-NE.SafeRail = false
+NE.SafeRail = false -- Changing this will only affect new games, not existing games
 -- If true, biters won't attack rail, BUT rail will also not show up on the mini map or be able to add rail to blueprints. 
 -- So maybe set to true one you're rail is built :)
 

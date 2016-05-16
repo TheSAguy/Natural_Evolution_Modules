@@ -1,4 +1,4 @@
---- EXPANSION v.5.2.2
+--- EXPANSION v.5.2.3
 NEConfig = {}
 require "defines"
 require "util"
@@ -206,8 +206,16 @@ if NEConfig.Expansion then
 	function Harder_Endgame(Evo_Increase,Enemy_Count)
 		if NEConfig.HarderEndGame then	
 			if global.RocketSiloBuilt > 0 then
+			local E_Increase = 0
+				if ((1-game.evolution_factor) / (10 * Evo_Increase)) > 0.05 then
+					E_Increase = 0.05
+				else 
+					E_Increase = ((1-game.evolution_factor) / (10 * Evo_Increase))
+				end
+				 
 				if game.evolution_factor < 0.9899 then
-					game.evolution_factor = game.evolution_factor + Evo_Increase
+					--game.evolution_factor = game.evolution_factor + Evo_Increase
+					game.evolution_factor = game.evolution_factor + E_Increase
 						
 				else
 					game.evolution_factor = 0.99999
@@ -277,8 +285,8 @@ if NEConfig.Expansion then
 				game.evolution_factor = game.evolution_factor		
 			else 
 				-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
-				game.evolution_factor = game.evolution_factor - (0.002 * (1 - game.evolution_factor))
-				writeDebug("Evolution Deduction during Expansion: " .. (0.002 * (1 - game.evolution_factor)))	
+				game.evolution_factor = game.evolution_factor - (0.003 * (1 - game.evolution_factor))
+				writeDebug("Evolution Deduction during Expansion: " .. (0.003 * (1 - game.evolution_factor)))	
 			end
 						
 		end	
@@ -290,77 +298,77 @@ if NEConfig.Expansion then
 		
 		elseif Expansion_State == "Phase 1" then
 			----- Harder Ending
-			Harder_Endgame(0.1,500)
+			Harder_Endgame(1,500)
 			-----
 			Natural_Evolution_Expansion_Settings(2,4,5,6,10,2,4,40,60,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 2" then
 			----- Harder Ending
-			Harder_Endgame(0.1,500)
+			Harder_Endgame(1,500)
 			-----
 			Natural_Evolution_Expansion_Settings(2,4,5,8,9,4,7,24,30,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 3" then
 			----- Harder Ending
-			Harder_Endgame(0.05,500)
+			Harder_Endgame(1,500)
 			-----
 			Natural_Evolution_Expansion_Settings(3,5,5,10,8,6,10,20,30,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 4" then
 			----- Harder Ending
-			Harder_Endgame(0.05,500)
+			Harder_Endgame(1,500)
 			-----
 			Natural_Evolution_Expansion_Settings(4,6,5,12,8,8,13,20,24,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 5" then
 			----- Harder Ending
-			Harder_Endgame(0.025,1000)
+			Harder_Endgame(1,1000)
 			-----
 			Natural_Evolution_Expansion_Settings(4,6,4,13,7,10,16,20,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 6" then
 			----- Harder Ending
-			Harder_Endgame(0.025,1500)
+			Harder_Endgame(1.5,1500)
 			-----
 			Natural_Evolution_Expansion_Settings(4,7,4,14,6,12,19,15,20,30,5,1.4)
 			
 				
 		elseif Expansion_State == "Phase 7" then
 			----- Harder Ending
-			Harder_Endgame(0.015,2000)
+			Harder_Endgame(1.5,2000)
 			-----
 			Natural_Evolution_Expansion_Settings(5,7,4,15,5,14,22,15,20,30,5,1.4)
 
 				
 		elseif Expansion_State == "Phase 8" then
 			----- Harder Ending
-			Harder_Endgame(0.015,2500)
+			Harder_Endgame(1.5,2500)
 			-----
 			Natural_Evolution_Expansion_Settings(5,7,4,16,4,16,25,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 9" then
 			----- Harder Ending
-			Harder_Endgame(0.01,3000)
+			Harder_Endgame(2,3000)
 			-----
 			Natural_Evolution_Expansion_Settings(5,8,3,18,3,18,28,15,20,30,5,1.4)
 
 
 		elseif Expansion_State == "Phase 10" then
 			----- Harder Ending
-			Harder_Endgame(0.01,3000)
+			Harder_Endgame(2,3000)
 			-----
 			Natural_Evolution_Expansion_Settings(6,8,3,20,1,30,75,15,20,30,5,2)
 			
 		
 		elseif Expansion_State == "Armageddon" then
 			----- Harder Ending
-			Harder_Endgame(0.001,3000)
+			Harder_Endgame(2.5,3000)
 			-----
 			Natural_Evolution_Expansion_Settings(6,8,2,20,1,100,200,8,15,30,5,2)
 		
