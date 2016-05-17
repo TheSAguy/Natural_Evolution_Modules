@@ -1,4 +1,4 @@
---- EXPANSION v.5.2.3
+--- EXPANSION v.5.3.0
 NEConfig = {}
 require "defines"
 require "util"

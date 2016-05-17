@@ -1,4 +1,4 @@
----ENEMIES v.5.2.3
+---ENEMIES v.5.3.0
 require "defines"
 require "util"
 NEConfig = {}
@@ -49,7 +49,8 @@ function On_Load()
 
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-        global.next_check= global.next_check or game.tick+interval
+		global.update_check = true
+		--global.next_check= global.next_check or game.tick+interval
         global.next_collector= global.next_collector or 1
 	end
 end
@@ -257,8 +258,16 @@ end
 
 ---------------------------------------------
 function ticker(tick)
+	local player = game.players[1]
 	--this function provides the smooth handling of all collectors within certain span of time
 	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
+	if global.update_check then
+		global.update_check = false
+		if global.next_check < game.tick then
+			global.next_check = game.tick
+		end
+	end
+		
 	if game.tick==global.next_check then
 		local collectors=global.ArtifactCollectors
          writeDebug(#collectors)
