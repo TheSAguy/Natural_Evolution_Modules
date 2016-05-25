@@ -30,7 +30,7 @@ if NEConfig.LongReach then
 	end	
 end 
 
---[[
+
 if NEConfig.ScienceCost then
 
 	--- Science Pack Cost Tweaks
@@ -55,4 +55,4 @@ if NEConfig.HarderEndGame then
 	Double_Cost("satellite")	
 	
 end
-]]
+

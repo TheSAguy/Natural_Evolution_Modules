@@ -67,39 +67,17 @@ data:extend(
 end
 
 
-function Add_Poison_Resist(Raw,Percent)
-	local Resist = {type = "poison",percent = Percent}
-	for i,d in pairs(Raw) do
-		if d.resistances ==nil then d.resistances={} end
-		table.insert(d.resistances, Resist)
+
+function Add_Damage_Resists(D_Type,Raw,Percent)
+	if data.raw["damage-type"][D_Type] ~= nil then
+		local Resist = {type = D_Type,percent = Percent}
+		for i,d in pairs(Raw) do
+			if d.resistances ==nil then d.resistances={} end
+			table.insert(d.resistances, Resist)
+		end
 	end
 end
 
-function Add_Acid_Resist(Raw,Percent)
-	local Resist = {type = "acid",percent = Percent}
-	for i,d in pairs(Raw) do
-		if d.resistances ==nil then d.resistances={} end
-		table.insert(d.resistances, Resist)
-	end
-end
-
-
-function Add_Physical_Resist(Raw,Percent)
-	local Resist = {type = "physical",percent = Percent}
-	for i,d in pairs(Raw) do
-		if d.resistances ==nil then d.resistances={} end
-		table.insert(d.resistances, Resist)
-	end
-end
-
-
-function Add_Explosion_Resist(Raw,Percent)
-	local Resist = {type = "explosion",percent = Percent}
-	for i,d in pairs(Raw) do
-		if d.resistances ==nil then d.resistances={} end
-		table.insert(d.resistances, Resist)
-	end
-end
 
 
 function Biters_Dont_Attack(Raw)
@@ -119,37 +97,50 @@ end
 
 if NEConfig.Spawners then
 	--Add resistances to entities.
-	Add_Poison_Resist(data.raw["wall"],(25/NE_Difficulty))
-	Add_Poison_Resist(data.raw["gate"],(25/NE_Difficulty))
-	Add_Poison_Resist(data.raw["car"],(25/NE_Difficulty))
-	Add_Poison_Resist(data.raw["electric-pole"],100)
-	Add_Poison_Resist(data.raw["turret"],(25/NE_Difficulty))	
-	Add_Poison_Resist(data.raw["ammo-turret"],(25/NE_Difficulty))	
-	Add_Poison_Resist(data.raw["electric-turret"],(25/NE_Difficulty))	
-	Add_Poison_Resist(data.raw["straight-rail"],100)	
-	Add_Poison_Resist(data.raw["curved-rail"],100)	
-	Add_Poison_Resist(data.raw["transport-belt"],(25/NE_Difficulty))
+	-- poison
+	Add_Damage_Resists("poison",data.raw["wall"],(25/NE_Difficulty))
+	Add_Damage_Resists("poison",data.raw["gate"],(25/NE_Difficulty))
+	Add_Damage_Resists("poison",data.raw["car"],(25/NE_Difficulty))
+	Add_Damage_Resists("poison",data.raw["electric-pole"],100)
+	Add_Damage_Resists("poison",data.raw["turret"],(25/NE_Difficulty))	
+	Add_Damage_Resists("poison",data.raw["ammo-turret"],(25/NE_Difficulty))	
+	Add_Damage_Resists("poison",data.raw["electric-turret"],(25/NE_Difficulty))	
+	Add_Damage_Resists("poison",data.raw["transport-belt"],(25/NE_Difficulty))
 	
-	Add_Acid_Resist(data.raw["wall"],(25/NE_Difficulty))
-	Add_Acid_Resist(data.raw["gate"],(25/NE_Difficulty))
-	Add_Acid_Resist(data.raw["car"],(25/NE_Difficulty))
-	Add_Acid_Resist(data.raw["electric-pole"],100)
-	Add_Acid_Resist(data.raw["turret"],(25/NE_Difficulty))	
-	Add_Acid_Resist(data.raw["ammo-turret"],(25/NE_Difficulty))	
-	Add_Acid_Resist(data.raw["electric-turret"],(25/NE_Difficulty))	
-	Add_Acid_Resist(data.raw["straight-rail"],100)	
-	Add_Acid_Resist(data.raw["curved-rail"],100)	
-	Add_Acid_Resist(data.raw["transport-belt"],(25/NE_Difficulty))
+	-- Acid
+	Add_Damage_Resists("acid",data.raw["wall"],(25/NE_Difficulty))
+	Add_Damage_Resists("acid",data.raw["gate"],(25/NE_Difficulty))
+	Add_Damage_Resists("acid",data.raw["car"],(25/NE_Difficulty))
+	Add_Damage_Resists("acid",data.raw["electric-pole"],100)
+	Add_Damage_Resists("acid",data.raw["turret"],(25/NE_Difficulty))	
+	Add_Damage_Resists("acid",data.raw["ammo-turret"],(25/NE_Difficulty))	
+	Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
+	Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))
+	
+	
+	--- Make Rail immune to damage
+	Add_Damage_Resists("poison",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("poison",data.raw["curved-rail"],100)	
+	Add_Damage_Resists("acid",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("acid",data.raw["curved-rail"],100)	
+	Add_Damage_Resists("physical",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("physical",data.raw["curved-rail"],100)		
+	Add_Damage_Resists("explosion",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("explosion",data.raw["curved-rail"],100)		
+	Add_Damage_Resists("laser",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("laser",data.raw["curved-rail"],100)		
+	Add_Damage_Resists("impact",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("impact",data.raw["curved-rail"],100)		
+	Add_Damage_Resists("fire",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("fire",data.raw["curved-rail"],100)		
+	Add_Damage_Resists("electric",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("electric",data.raw["curved-rail"],100)		
+	Add_Damage_Resists("bob-pierce",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("bob-pierce",data.raw["curved-rail"],100)	
+	Add_Damage_Resists("Biological",data.raw["straight-rail"],100)	
+	Add_Damage_Resists("Biological",data.raw["curved-rail"],100)	
 
-	Add_Physical_Resist(data.raw["straight-rail"],100)	
-	Add_Physical_Resist(data.raw["curved-rail"],100)		
-
-	Add_Explosion_Resist(data.raw["straight-rail"],100)	
-	Add_Explosion_Resist(data.raw["curved-rail"],100)		
-
-
-
-
+	
 	
 end
 
