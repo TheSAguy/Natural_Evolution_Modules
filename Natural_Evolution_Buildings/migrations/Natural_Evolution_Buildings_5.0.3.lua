@@ -11,7 +11,7 @@ for index, force in pairs(game.forces) do
   
 	if technologies["Breeding"].researched then
 		recipes["small-worm-hatching-refresh"].enabled = true
-		recipes["small-worm-hatching-refresh"].reload()
+		force.recipes["Hive_Buster_Poison_Ammo"].reload()
 	end
 
     if technologies["Breeding-2"].researched then

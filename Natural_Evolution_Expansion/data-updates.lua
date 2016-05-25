@@ -4,6 +4,22 @@ require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
 
+function Double_Cost(Input)	
+	if data.raw.recipe[Input] ~= nil then
+		for _, recipe in pairs({Input}) do
+			for _, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
+				if ingredient[2] ~= nil then
+					ingredient[2] = ingredient[2] * 2
+				else
+					ingredient.amount = ingredient.amount * 2
+				end   
+			end
+		end
+	end
+end	
+	
+
+
 --- Got tierd of reaching limits...
 if NEConfig.LongReach then
 	if data.raw.player.player.build_distance < 24 then
@@ -14,33 +30,29 @@ if NEConfig.LongReach then
 	end	
 end 
 
-
+--[[
 if NEConfig.ScienceCost then
 
 	--- Science Pack Cost Tweaks
-	for _, recipe in pairs({"science-pack-1", "science-pack-2", "science-pack-3", "alien-science-pack"}) do
-		for _, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
-			ingredient[2] = ingredient[2] * 2
-		end
-	end
+	Double_Cost("science-pack-1")
+	Double_Cost("science-pack-2")
+	Double_Cost("science-pack-3")
+	Double_Cost("alien-science-pack")
 
-	if NEConfig.mod.BobTech then
-		for _, recipe in pairs({"science-pack-4"}) do
-			for _, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
-				ingredient[2] = ingredient[2] * 2
-			end
-		end
-	end
-
+	--- If Bob Tech
+	Double_Cost("science-pack-4")	
+	
 end
 
 
 	--- Rocket Part Cost Tweaks	
 if NEConfig.HarderEndGame then
-	for _, recipe in pairs({"low-density-structure", "rocket-fuel", "rocket-control-unit", "rocket-part", "satellite"}) do
-		for _, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
-			ingredient[2] = ingredient[2] * 2
-		end
-	end
-end
 
+	Double_Cost("low-density-structure")	
+	Double_Cost("rocket-fuel")	
+	Double_Cost("rocket-control-unit")	
+	Double_Cost("rocket-part")	
+	Double_Cost("satellite")	
+	
+end
+]]
