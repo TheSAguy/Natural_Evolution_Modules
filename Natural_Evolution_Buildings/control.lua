@@ -1,4 +1,4 @@
----BUILDINGS - v.5.3.0
+---BUILDINGS - v.5.3.1
 require "defines"
 require "util"
 NEConfig = {}
@@ -100,12 +100,24 @@ function On_Built(event)
 	  writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
 	  
 	end   
-   
+   --[[
    --- Alien Control Station has been built
     if event.created_entity.name == "AlienControlStation" then
 		table.insert(global.beacons, event.created_entity)
 	end
+	]]
+	--- Alien Control Station has been built
+	local newAlienControlStation
+	
+	if event.created_entity.name == "AlienControlStation_Area" then
+		local surface = event.created_entity.surface
+		local force = event.created_entity.force
+		newAlienControlStation = surface.create_entity({name = "AlienControlStation", position = event.created_entity.position, force = force})
+		event.created_entity.destroy()
 
+		table.insert(global.ArtifactCollectors, newAlienControlStation)
+	end	
+	
 end
 
 
