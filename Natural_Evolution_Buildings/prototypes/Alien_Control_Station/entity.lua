@@ -42,6 +42,8 @@ data:extend({
 		height = 1130,
 		axially_symmetrical = false,
 		apply_projection = false,
+		direction_count = 1,
+		line_length = 1,
 		scale = 2,	
     },
   },

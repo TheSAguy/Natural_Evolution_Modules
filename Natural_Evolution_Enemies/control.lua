@@ -102,9 +102,6 @@ function(event)
 	local ent=event.entity;
     if global.launch_units[ent.name] then
 		writeDebug("Cluster Unit Created")
-		--event.created_entity.damage(1, game.forces.neutral,Biological)	
-		--ent.damage(1, game.forces.neutral)	
-		--ent.destroy()
 		ent.die()
     end
 	

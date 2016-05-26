@@ -116,7 +116,7 @@ function On_Built(event)
 		newAlienControlStation = surface.create_entity({name = "AlienControlStation", position = event.created_entity.position, force = force})
 		event.created_entity.destroy()
 
-		table.insert(global.ArtifactCollectors, newAlienControlStation)
+		table.insert(global.beacons, newAlienControlStation)
 	end	
 	
 end
