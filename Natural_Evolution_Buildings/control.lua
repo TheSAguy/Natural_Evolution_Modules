@@ -1,4 +1,4 @@
----BUILDINGS - v.5.3.2
+---BUILDINGS - v.5.3.3
 
 require "defines"
 require "util"
@@ -31,17 +31,10 @@ script.on_event(defines.events.on_research_finished, function(event)
 end)
 
 
-script.on_configuration_changed(function()
-	for k,force in pairs(game.forces) do 
-		force.reset_recipes()
-		force.reset_technologies() 
-	end
-
-end)
-
-
 ---------------------------------------------				 
 function On_Load()
+ 
+	global.load = true
  
 ---- Evolution_MOD
 	if global.Evolution_MOD == nil then
@@ -350,6 +343,16 @@ end
 
 --------------------------------------------
 script.on_event(defines.events.on_tick, function(event)
+
+		if global.load == true then
+		for i, player in ipairs(game.players) do 
+		player.force.reset_recipes() 
+		player.force.reset_technologies()
+		end
+		global.load = false
+		end
+
+
 
  -- check for biters within Alien Control Station's range
 	if (game.tick % (60 * 6) == 0) and global.beacons[1] then

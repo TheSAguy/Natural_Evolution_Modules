@@ -1,4 +1,4 @@
---- EXPANSION v.5.3.2
+--- EXPANSION v.5.3.3
 
 NEConfig = {}
 require "defines"
@@ -13,6 +13,8 @@ local evo_gui = nil
 ---------------------------------------------
 function On_Load()
 		
+	global.load = true
+	
 ---- Expansion Initialization ----	
 	if not global.Natural_Evolution_state then
 		global.Natural_Evolution_state = "Peaceful"
@@ -96,7 +98,14 @@ if NEConfig.Expansion then
 		
 		--- Hopefully this will improve path finding...
 		pathfinder_demo.tick()
-			
+		
+		if global.load == true then
+			for i, player in ipairs(game.players) do 
+				player.force.reset_recipes() 
+				player.force.reset_technologies()
+			end
+			global.load = false
+		end
 			
 		---	 EvoGUI
 		evo_gui:tick()

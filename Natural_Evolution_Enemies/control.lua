@@ -1,4 +1,4 @@
----ENEMIES v.5.3.2
+---ENEMIES v.5.3.3
 
 require "defines"
 require "util"
@@ -48,6 +48,8 @@ script.on_event(defines.events.on_entity_died,function(event) On_Death(event) en
 ---------------------------------------------				 
 function On_Load()
 
+	global.load = true
+	
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 		global.update_check = true
@@ -59,6 +61,8 @@ end
 ---------------------------------------------				 
 function On_Init()
 
+	global.load = true
+	
 	--- Used for Unit Turrets
 	if not global.tick then
 		global.tick = game.tick
@@ -81,6 +85,14 @@ end
 script.on_event(defines.events.on_tick, function(event)
 	--- Hopefully this will improve path finding...
 	pathfinder_demo.tick()
+	
+	if global.load == true then
+		for i, player in ipairs(game.players) do 
+			player.force.reset_recipes() 
+			player.force.reset_technologies()
+		end
+		global.load = false
+	end
 end)
 
 ---------------------------------------------
