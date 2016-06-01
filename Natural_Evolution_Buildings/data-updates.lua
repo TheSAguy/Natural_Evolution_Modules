@@ -2,6 +2,10 @@ NEConfig = {}
 
 require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require "scripts.item-functions" -- From Bob's Libary 
+require "scripts.recipe-functions" -- From Bob's Libary 
+require "scripts.technology-functions" -- From Bob's Libary 
+
 
 --- Got tierd of reaching limits...
 if NEConfig.LongReach then
@@ -13,42 +17,15 @@ if NEConfig.LongReach then
 	end	
 end 
 
--- Make it so that you can mine spawners, since you are able to convert them, you can now remove them. You will lose them though and get some artifacts.
-data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
-data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
+
+
+-- Make it so that you can mine spawners, since you are able to convert them, you can now remove them. 
+data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
+data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 
 if NEConfig.mod.BobEnemies then
-	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
-	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="alien-artifact", amount=5},}}
-end
-
-
-if NEConfig.ScienceCost then
-
-	function ChangeRecipe(Name, Ingredient1, Ingredient2, Amount)
-		for k, v in pairs(data.raw["recipe"][Name].ingredients) do
-			if v[1] == Ingredient1 then table.remove(data.raw["recipe"][Name].ingredients, k) end
-		end
-	table.insert(data.raw["recipe"][Name].ingredients,{Ingredient2, Amount})
-	end
-
-	if NEConfig.mod.DyTechCore then
-		ChangeRecipe("science-pack-1", "stone-gear-wheel", "stone-gear-wheel", 2)
-	end
-	if not NEConfig.mod.DyTechCore then
-		ChangeRecipe("science-pack-1", "iron-gear-wheel", "iron-gear-wheel", 2)
-	end
-	
-	ChangeRecipe("science-pack-1", "copper-plate", "copper-plate", 2)
-	ChangeRecipe("science-pack-2", "basic-transport-belt", "basic-transport-belt", 2)
-	ChangeRecipe("science-pack-2", "basic-inserter", "basic-inserter", 2)
-	ChangeRecipe("science-pack-3", "advanced-circuit", "advanced-circuit", 2)
-	ChangeRecipe("science-pack-3", "smart-inserter", "smart-inserter", 2)
-	ChangeRecipe("science-pack-3", "battery", "battery", 2)
-	ChangeRecipe("science-pack-3", "steel-plate", "steel-plate", 2)
-	ChangeRecipe("alien-science-pack", "alien-artifact", "alien-artifact", 2)
-
-
+	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
+	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 end
 
 
@@ -82,21 +59,16 @@ if NEConfig.mod.DyTechWar then
 end
 
 if NEConfig.mod.NEEnemies then
-	function add_technology_recipe (technology, recipe)
-	  if data.raw.technology[technology] and data.raw.recipe[recipe] then
-		local addit = true
-		if not data.raw.technology[technology].effects then
-		  data.raw.technology[technology].effects = {}
-		end
-		for i, effect in pairs(data.raw.technology[technology].effects) do
-		  if effect.type == "unlock-recipe" and effect.recipe == recipe then addit = false end
-		end
-		if addit then table.insert(data.raw.technology[technology].effects,{type = "unlock-recipe", recipe = recipe}) end
-	  end
-	end
 
-	add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
-	add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
+	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
+	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
+	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
+	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
+	
+	---- Add Alien Toxin as a result if NE Enemies
+	
+	bobmods.lib.add_recipe_result ("NE_enhanced-alien-nutrientant", {type="fluid", name="NE_alien_toxin", amount=5})
+
 	
 end
 

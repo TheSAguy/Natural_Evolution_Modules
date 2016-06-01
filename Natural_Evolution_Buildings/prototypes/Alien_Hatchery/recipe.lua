@@ -10,7 +10,7 @@ data:extend({
     ingredients =
     {
       {type="item", name="alien-artifact", amount=1},
-      {type="fluid", name="water", amount=10}
+      {type="fluid", name="water", amount=25}
     },
     results=
     {
@@ -40,6 +40,7 @@ data:extend({
     },
     subgroup = "Evolution-fluids"
   },
+  
   {
     type = "recipe",
     name = "NE_enhanced-alien-nutrientant",

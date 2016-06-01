@@ -2,7 +2,9 @@ NEConfig = {}
 
 require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
-
+require "scripts.item-functions" -- From Bob's Libary 
+require "scripts.recipe-functions" -- From Bob's Libary 
+require "scripts.technology-functions" -- From Bob's Libary 
 
 --- Got tierd of reaching limits...
 if NEConfig.LongReach then
@@ -144,6 +146,7 @@ if NEConfig.Spawners then
 	
 end
 
+-- Biters don't attack the rail, but it also does not appear on the mini-map or blue-prints.
 if NEConfig.SafeRail then
 	Biters_Dont_Attack(data.raw["curved-rail"])
 	Biters_Dont_Attack(data.raw["straight-rail"])
@@ -153,24 +156,16 @@ if NEConfig.SafeRail then
 end
 
 
------ Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
+
 if NEConfig.mod.NEBuildings then
-	function add_technology_recipe (technology, recipe)
-	  if data.raw.technology[technology] and data.raw.recipe[recipe] then
-		local addit = true
-		if not data.raw.technology[technology].effects then
-		  data.raw.technology[technology].effects = {}
-		end
-		for i, effect in pairs(data.raw.technology[technology].effects) do
-		  if effect.type == "unlock-recipe" and effect.recipe == recipe then addit = false end
-		end
-		if addit then table.insert(data.raw.technology[technology].effects,{type = "unlock-recipe", recipe = recipe}) end
-	  end
-	end
+	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
+	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
+	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
+	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Thumper")
 
-
-	add_technology_recipe ("AlienUnderstanding", "Building_Materials")
-	add_technology_recipe ("AlienUnderstanding-2", "Thumper")
+	-- Add Alien Toxin as a ingriedient for Bio Ammo 
+	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
+	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
 	
 end
 
@@ -181,8 +176,7 @@ if NEConfig.Spawners then
 		require "prototypes.Vanilla_Changes.Biter_Evolution"
 		require "prototypes.Vanilla_Changes.New_Spitter_Units"
 		require "prototypes.Vanilla_Changes.Spitter_Evolution"
-		--require "prototypes.Vanilla_Changes.New_Worm_Units" -- Adds new worms. Removed, rather added to vanilla worms.
-		
+				
 	end
 		
 end

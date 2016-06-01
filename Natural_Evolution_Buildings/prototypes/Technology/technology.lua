@@ -173,7 +173,7 @@ data:extend({
 		type = "technology",
 		name = "Biter_Spawners",
 		icon_size = 128,
-		icon = "__Natural_Evolution_Buildings__/graphics/technology/spawner.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/biter_spawner.png",
 		effects = 
 		{
 			{
@@ -206,7 +206,7 @@ data:extend({
 		type = "technology",
 		name = "Spitter_Spawners",
 		icon_size = 128,
-		icon = "__Natural_Evolution_Buildings__/graphics/technology/spawner.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/spitter_spawner.png",
 				effects = 
 		{
 			{
