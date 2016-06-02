@@ -54,8 +54,12 @@ data:extend({
     },
     results=
     {
+		
 		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
+		--{type="fluid", name="NE_alien_toxin", amount=5},
+		
     },
+	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant.png",
     subgroup = "Evolution-fluids"
   },
 

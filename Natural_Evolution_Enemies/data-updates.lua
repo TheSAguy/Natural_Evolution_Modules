@@ -1,10 +1,12 @@
 NEConfig = {}
+if not bobmods then bobmods = {} end
+if not bobmods.lib then bobmods.lib = {} end
 
 require "config"
 require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
-require "scripts.item-functions" -- From Bob's Libary 
-require "scripts.recipe-functions" -- From Bob's Libary 
-require "scripts.technology-functions" -- From Bob's Libary 
+require ("scripts.item-functions") -- From Bob's Libary 
+require ("scripts.recipe-functions") -- From Bob's Libary 
+require ("scripts.technology-functions") -- From Bob's Libary 
 
 --- Got tierd of reaching limits...
 if NEConfig.LongReach then
@@ -163,9 +165,7 @@ if NEConfig.mod.NEBuildings then
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Thumper")
 
-	-- Add Alien Toxin as a ingriedient for Bio Ammo 
-	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
-	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
+
 	
 end
 

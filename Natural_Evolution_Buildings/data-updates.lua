@@ -1,10 +1,15 @@
-NEConfig = {}
+
+if not bobmods then bobmods = {} end
+if not bobmods.lib then bobmods.lib = {} end
+
+if not NEConfig then NEConfig = {} end
+if not NEConfig.mod then NEConfig.mod = {} end
 
 require "config"
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
-require "scripts.item-functions" -- From Bob's Libary 
-require "scripts.recipe-functions" -- From Bob's Libary 
-require "scripts.technology-functions" -- From Bob's Libary 
+require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("scripts.item-functions") -- From Bob's Libary 
+require ("scripts.recipe-functions") -- From Bob's Libary 
+require ("scripts.technology-functions") -- From Bob's Libary 
 
 
 --- Got tierd of reaching limits...
@@ -57,7 +62,7 @@ if NEConfig.mod.DyTechWar then
 
 
 end
-
+   
 if NEConfig.mod.NEEnemies then
 
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
@@ -66,11 +71,14 @@ if NEConfig.mod.NEEnemies then
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
 	
 	---- Add Alien Toxin as a result if NE Enemies
-	
-	bobmods.lib.add_recipe_result ("NE_enhanced-alien-nutrientant", {type="fluid", name="NE_alien_toxin", amount=5})
 
+	bobmods.lib.add_recipe_result ("NE_enhanced-alien-nutrientant", {type="fluid", name="NE_alien_toxin", amount=5})
+	
+	-- Add Alien Toxin as a ingriedient for Bio Ammo 
+
+	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
+	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
+	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
 	
 end
-
-
 

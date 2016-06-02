@@ -2,8 +2,6 @@ NEConfig = {}
 
 require "config"
 
-
-
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")
 require("prototypes.Categories.recipe-category")
