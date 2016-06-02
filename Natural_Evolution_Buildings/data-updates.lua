@@ -75,10 +75,10 @@ if NEConfig.mod.NEEnemies then
 	bobmods.lib.add_recipe_result ("NE_enhanced-alien-nutrientant", {type="fluid", name="NE_alien_toxin", amount=5})
 	
 	-- Add Alien Toxin as a ingriedient for Bio Ammo 
-
+--[[
 	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
 	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
 	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
-	
+	]]
 end
 

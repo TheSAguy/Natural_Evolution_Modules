@@ -33,7 +33,7 @@ end
 
 
 --Detect N.E. Enemies
-if data.raw["unit"]["small-biter-Mk2"] ~= nil and data.raw["unit"]["small-spitter-Mk2"] ~= nil then
+if data.raw["unit"]["small-biter-Mk2"] ~= nil or data.raw["unit"]["small-spitter-Mk2"] ~= nil or data.raw["logistic-container"]["Artifact-collector-area"] ~= nil then
 	NEConfig.mod.NEEnemies=true
 else 
 	NEConfig.mod.NEEnemies=false

@@ -165,6 +165,10 @@ if NEConfig.mod.NEBuildings then
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Thumper")
 
+	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
+	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
+	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
+	
 
 	
 end
