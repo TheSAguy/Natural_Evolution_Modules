@@ -1,11 +1,10 @@
-NEConfig = {}
 
-require "config"
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("config")
+require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
 
 --- Got tierd of reaching limits...
-if NEConfig.LongReach then
+if NE_Expansion_Config.LongReach then
 	if data.raw.player.player.build_distance < 24 then
 		data.raw.player.player.build_distance = 24
 		data.raw.player.player.reach_distance = 20
@@ -30,7 +29,7 @@ function Double_Cost(Input)
 end	
 	
 
-if NEConfig.ScienceCost then
+if NE_Expansion_Config.ScienceCost then
 
 	--- Science Pack Cost Tweaks
 	Double_Cost("science-pack-1")
@@ -45,8 +44,7 @@ end
 
 
 	--- Rocket Part Cost Tweaks	
-if NEConfig.HarderEndGame then
-
+if NE_Expansion_Config.HarderEndGame then
 	Double_Cost("low-density-structure")	
 	Double_Cost("rocket-fuel")	
 	Double_Cost("rocket-control-unit")	

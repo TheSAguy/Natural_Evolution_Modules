@@ -1,13 +1,13 @@
-NEConfig = {}
 
-require "config"
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+
+require ("config")
+require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
 
 
 ---- Evolution Modifications ----------------------------------
-if NEConfig.EvolutionFactor then
-	if (not NEConfig.mod.DyTechWar) or (NEConfig.mod.DyTechWar and NEConfig.DyTechWar_Evo_override) then
+if NE_Expansion_Config.EvolutionFactor then
+	if (not NE_Expansion_Config.mod.DyTechWar) or (NE_Expansion_Config.mod.DyTechWar and NE_Expansion_Config.DyTechWar_Evo_override) then
 		-- TIME: Only 75% of vanilla
 		-- percentual increase in the evolve factor for every second (60 ticks). Default = 0.000004
 		data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor = 0.000003

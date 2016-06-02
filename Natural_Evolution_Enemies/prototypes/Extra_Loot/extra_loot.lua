@@ -118,7 +118,7 @@ end
 
 
 ---- New Units (If no DyTech and you're using the Spawner Adjustments)
-if not NEConfig.mod.DyTechWar and NEConfig.Spawners then
+if not NE_Enemies_Config.mod.DyTechWar and NE_Enemies_Config.Spawners then
 	--- Biters
 		
 	if data.raw.unit["small-biter-Mk2"] then
@@ -242,7 +242,7 @@ end
 
 ------- DyTech Check --------
 -- if DyTechW and enableDyTech then
-if NEConfig.mod.DyTechWar then
+if NE_Enemies_Config.mod.DyTechWar then
 
 	-- biter --
 	

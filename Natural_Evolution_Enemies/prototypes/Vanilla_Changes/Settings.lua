@@ -6,7 +6,7 @@ require "config"
 	if NE_Difficulty == nil then
       NE_Difficulty = 1
 	end
-	if NEConfig.Set_Difficulty == 1 then
+	if NE_Enemies_Config.Set_Difficulty == 1 then
 		NE_Difficulty = 1 -- Normal difficulty
 		else NE_Difficulty  = 2 -- Hard difficulty
 	end

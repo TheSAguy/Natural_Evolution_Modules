@@ -1,6 +1,11 @@
-NEConfig = {}
 
-require "config"
+if not bobmods then bobmods = {} end
+if not bobmods.lib then bobmods.lib = {} end
+
+if not NE_Buildings_Config then NE_Buildings_Config = {} end
+if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
+
+require ("config")
 
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")

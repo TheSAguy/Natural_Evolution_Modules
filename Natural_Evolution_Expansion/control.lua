@@ -1,11 +1,14 @@
---- EXPANSION v.5.3.3
+--- EXPANSION v.5.4.0
 
-NEConfig = {}
-require "defines"
-require "util"
-require 'libs/EvoGUI'
-require 'libs/pathfinder_demo'
-require 'config'
+if not NE_Expansion_Config then NE_Expansion_Config = {} end
+if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
+
+require ("defines")
+require ("util")
+require ("config")
+require ("libs/EvoGUI")
+require ("libs/pathfinder_demo")
+
 
 	---	 EvoGUI
 local evo_gui = nil
@@ -44,7 +47,7 @@ end
 
 
 ---------------------------------------------
-if NEConfig.HarderEndGame then
+if NE_Expansion_Config.HarderEndGame then
 
 	---------------------------------------------
 	script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
@@ -92,7 +95,7 @@ end
 
 	
 ---------------------------------------------	
-if NEConfig.Expansion then	
+if NE_Expansion_Config.Expansion then	
 
 	script.on_event(defines.events.on_tick, function(event)
 		
@@ -214,7 +217,7 @@ if NEConfig.Expansion then
 	
 	----Harder Endgame Function
 	function Harder_Endgame(Evo_Increase,Enemy_Count)
-		if NEConfig.HarderEndGame then	
+		if NE_Expansion_Config.HarderEndGame then	
 			if global.RocketSiloBuilt > 0 then
 			local E_Increase = 0
 				if ((1-game.evolution_factor) / (10 * Evo_Increase)) > 0.05 then
@@ -407,7 +410,7 @@ script.on_load(On_Load)
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-	if NEConfig.QCCode then 
+	if NE_Expansion_Config.QCCode then 
 		for i, player in ipairs(game.players) do
 			player.print(tostring(message))
 		end

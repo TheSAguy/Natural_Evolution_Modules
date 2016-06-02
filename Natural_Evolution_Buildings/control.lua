@@ -1,10 +1,10 @@
----BUILDINGS - v.5.3.3
+---BUILDINGS - v.5.4.0
+if not NE_Buildings_Config then NE_Buildings_Config = {} end
+if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
-require "defines"
-require "util"
-NEConfig = {}
-
-require "config"
+require ("defines")
+require ("util")
+require ("config")
 
 
 ---- Evolution_MOD
@@ -53,9 +53,9 @@ function On_Load()
 	end
 
 --- Alien_Control_Station Difficulty settings	
-	if NEConfig.Conversion_Difficulty == Easy then
+	if NE_Buildings_Config.Conversion_Difficulty == Easy then
       global.minds.difficulty = 3 -- Easy difficulty
-	elseif NEConfig.Conversion_Difficulty == Normal then
+	elseif NE_Buildings_Config.Conversion_Difficulty == Normal then
 	  global.minds.difficulty = 5 -- Normal 
 	else global.minds.difficulty = 10 -- Hard
 	end
@@ -210,7 +210,7 @@ function Control_Enemies()
 	
       if beacon.energy > 0 then
         
-		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NEConfig.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
+		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NE_Buildings_Config.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
 		
         if #bases > 0 then
           for i, base in ipairs(bases) do
@@ -220,7 +220,7 @@ function Control_Enemies()
           end
         else -- no bases in range 
        
-		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, NEConfig.Unit_Search_Distance)) do --search area of ten around each ACS
+		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, NE_Buildings_Config.Unit_Search_Distance)) do --search area of ten around each ACS
 		  
             if enemy.force == (enemyForce) then --do only if not already controlled
               if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
@@ -255,7 +255,7 @@ function Remove_Mind_Control()
         table.remove(global.minds, k)
       else -- is valid
         local controlled = false --assume out of range
-        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, NEConfig.Unit_Search_Distance)}[1] then --a AlienControlStation is in range
+        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, NE_Buildings_Config.Unit_Search_Distance)}[1] then --a AlienControlStation is in range
           controlled = true
           break
         end
@@ -271,7 +271,7 @@ function Convert_Base(base, died, newforce)
   
   local surface = game.surfaces['nauvis'] -- Old Code, need to fix
   --local surface = base.surface
-  local enemies=Get_Bounding_Box(base.position, NEConfig.Unit_Search_Distance)
+  local enemies=Get_Bounding_Box(base.position, NE_Buildings_Config.Unit_Search_Distance)
   local units={}
   local hives={}
   local worms={}
@@ -504,7 +504,7 @@ remote.add_interface("nevo", {
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-	if NEConfig.QCCode then 
+	if NE_Buildings_Config.QCCode then 
 		for i, player in ipairs(game.players) do
 			player.print(tostring(message))
 		end

@@ -1,15 +1,13 @@
-NEConfig = {}
-if not bobmods then bobmods = {} end
-if not bobmods.lib then bobmods.lib = {} end
 
-require "config"
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+
+require ("config")
+require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 require ("scripts.item-functions") -- From Bob's Libary 
 require ("scripts.recipe-functions") -- From Bob's Libary 
 require ("scripts.technology-functions") -- From Bob's Libary 
 
 --- Got tierd of reaching limits...
-if NEConfig.LongReach then
+if NE_Enemies_Config.LongReach then
 	if data.raw.player.player.build_distance < 24 then
 		data.raw.player.player.build_distance = 24
 		data.raw.player.player.reach_distance = 20
@@ -18,23 +16,22 @@ if NEConfig.LongReach then
 	end	
 end 
 
-data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png"
-
 --- Difficulty settings	
 	if NE_Difficulty == nil then
       NE_Difficulty = 1
 	end
 
-	if NEConfig.Set_Difficulty == 1 then
+	if NE_Enemies_Config.Set_Difficulty == 1 then
 		NE_Difficulty = 1 -- Normal difficulty
 		else NE_Difficulty  = 2 -- Hard difficulty
 	end
 
-
+----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].subgroup = "Materials"
+data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png"
 
---- Bob's Enemies
-if NEConfig.mod.BobEnemies and NEConfig.ExtraLoot then
+--- Bob's Enemies - Update the Small Artifact Recipe.
+if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
 data:extend(
 {
 	  {
@@ -52,8 +49,8 @@ data:extend(
 })
 end
 
-  --- SupremeWarfare_1.0.5
-if NEConfig.mod.SupremeWarfare and NEConfig.ExtraLoot then
+  --- SupremeWarfare_1.0.5 - Update the Small Artifact Recipe.
+if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 
 data:extend(
 {
@@ -99,7 +96,7 @@ end
 
 
 
-if NEConfig.Spawners then
+if NE_Enemies_Config.Spawners then
 	--Add resistances to entities.
 	-- poison
 	Add_Damage_Resists("poison",data.raw["wall"],(25/NE_Difficulty))
@@ -149,7 +146,7 @@ if NEConfig.Spawners then
 end
 
 -- Biters don't attack the rail, but it also does not appear on the mini-map or blue-prints.
-if NEConfig.SafeRail then
+if NE_Enemies_Config.SafeRail then
 	Biters_Dont_Attack(data.raw["curved-rail"])
 	Biters_Dont_Attack(data.raw["straight-rail"])
 	Biters_Dont_Attack(data.raw["rail-signal"])
@@ -159,7 +156,7 @@ end
 
 
 
-if NEConfig.mod.NEBuildings then
+if NE_Enemies_Config.mod.NEBuildings then
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
@@ -169,13 +166,12 @@ if NEConfig.mod.NEBuildings then
 	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
 	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
 	
-
 	
 end
 
-if NEConfig.Spawners then
+if NE_Enemies_Config.Spawners then
 -------- New Units
-	if not NEConfig.mod.DyTechWar then
+	if not NE_Enemies_Config.mod.DyTechWar then
 		require "prototypes.Vanilla_Changes.New_Biter_Units"
 		require "prototypes.Vanilla_Changes.Biter_Evolution"
 		require "prototypes.Vanilla_Changes.New_Spitter_Units"
@@ -186,8 +182,8 @@ if NEConfig.Spawners then
 end
 
 
-		--- Extra Loot
-if NEConfig.ExtraLoot then
+		--- Extra Loot - Small Alient Atrifacts
+if NE_Enemies_Config.ExtraLoot then
 	require("prototypes.Extra_Loot.item")
 	require("prototypes.Extra_Loot.recipe")
 	require("prototypes.Extra_Loot.extra_loot")

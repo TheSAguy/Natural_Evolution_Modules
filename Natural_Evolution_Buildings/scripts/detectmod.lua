@@ -1,40 +1,44 @@
 -----------------------
 --Cross Mod Detection--
 -----------------------
-NEConfig.mod = {}
+
+if not NE_Buildings_Config then NE_Buildings_Config = {} end
+if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
+
+-----------------------
 
 --Detect DyTechWar
 if data.raw["unit"]["young-berserk-biter"] ~= nil and data.raw["unit"]["young-berserk-spitter"] ~= nil then
-	NEConfig.mod.DyTechWar=true
+	NE_Buildings_Config.mod.DyTechWar=true
 else 
-	NEConfig.mod.DyTechWar=false
+	NE_Buildings_Config.mod.DyTechWar=false
 end
 
 --Detect DyTech Core
 if data.raw["item"]["stone-gear-wheel"] ~= nil then
-	NEConfig.mod.DyTechCore=true
+	NE_Buildings_Config.mod.DyTechCore=true
 else 
-	NEConfig.mod.DyTechCore=false
+	NE_Buildings_Config.mod.DyTechCore=false
 end
 
 --Detect Bob's Enemies
 if data.raw["unit"]["bob-big-piercing-biter"] ~= nil and data.raw["unit"]["bob-big-electric-spitter"] ~= nil then
-	NEConfig.mod.BobEnemies=true
+	NE_Buildings_Config.mod.BobEnemies=true
 else 
-	NEConfig.mod.BobEnemies=false
+	NE_Buildings_Config.mod.BobEnemies=false
 end
 
 --Detect Supreme Warfare
 if data.raw["technology"]["artillery"] ~= nil and data.raw["technology"]["advanced-artillery"] ~= nil then
-	NEConfig.mod.SupremeWarfare=true
+	NE_Buildings_Config.mod.SupremeWarfare=true
 else 
-	NEConfig.mod.SupremeWarfare=false
+	NE_Buildings_Config.mod.SupremeWarfare=false
 end
 
 
 --Detect N.E. Enemies
 if data.raw["unit"]["small-biter-Mk2"] ~= nil or data.raw["unit"]["small-spitter-Mk2"] ~= nil or data.raw["logistic-container"]["Artifact-collector-area"] ~= nil then
-	NEConfig.mod.NEEnemies=true
+	NE_Buildings_Config.mod.NEEnemies=true
 else 
-	NEConfig.mod.NEEnemies=false
+	NE_Buildings_Config.mod.NEEnemies=false
 end

@@ -1,24 +1,24 @@
-NEConfig = {}
 
-require "config"
-require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
-require "prototypes.Vanilla_Changes.Settings"
+
+require ("config")
+require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("prototypes.Vanilla_Changes.Settings")
 
 --- Difficulty settings	
 	if NE_Difficulty == nil then
       NE_Difficulty = 1
 	end
-	if NEConfig.Set_Difficulty == 1 then
+	if NE_Enemies_Config.Set_Difficulty == 1 then
 		NE_Difficulty = 1 -- Normal difficulty
 		else NE_Difficulty  = 2 -- Hard difficulty
 	end
 	
 
 ---- Spawner Modifications ----------------------------------------
-if NEConfig.Spawners then
+if NE_Enemies_Config.Spawners then
 	
 	-- If you're using DyTech, I will not adjust the values of the Spawners, but use DyTech's values.
-	if not NEConfig.mod.DyTechWar then
+	if not NE_Enemies_Config.mod.DyTechWar then
 		
 	-- Biter Spawner Adjustments
 		data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Difficulty
@@ -45,7 +45,7 @@ if NEConfig.Spawners then
 	end
 	
 	-- Bob's Enemies Modifications
-	if NEConfig.mod.BobEnemies and NEConfig.mod.DyTechWar then
+	if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.mod.DyTechWar then
 
 	-- Bob's Biter Spawner Adjustments
 	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units
@@ -73,7 +73,7 @@ if NEConfig.Spawners then
 
 	
 	
-	elseif NEConfig.mod.BobEnemies and not NEConfig.mod.DyTechWar then
+	elseif NE_Enemies_Config.mod.BobEnemies and not NE_Enemies_Config.mod.DyTechWar then
 
 	-- Bob's Biter Spawner Adjustments
 	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Difficulty
@@ -106,9 +106,9 @@ end
 
 
 ---- Biter & Spitter Modifications --------------------------------
-if NEConfig.Spawners then
+if NE_Enemies_Config.Spawners then
 	
-	if not NEConfig.mod.DyTechWar then
+	if not NE_Enemies_Config.mod.DyTechWar then
 		-- Vanilla Unit Adjustments
 		data.raw["unit"]["small-biter"].resistances = Resistances.Small_Biter
 		data.raw["unit"]["small-biter"].max_health = Health.Small_Biter
@@ -166,7 +166,7 @@ if NEConfig.Spawners then
 	
 	
 -- Bob's Enemies Modifications
-	if NEConfig.mod.BobEnemies then
+	if NE_Enemies_Config.mod.BobEnemies then
 		data.raw["unit"]["bob-big-piercing-biter"].pollution_to_join_attack = 1000
 		data.raw["unit"]["bob-huge-acid-biter"].pollution_to_join_attack = 2000
 		data.raw["unit"]["bob-huge-explosive-biter"].pollution_to_join_attack = 3000
@@ -185,7 +185,7 @@ if NEConfig.Spawners then
 		data.raw["unit"]["bob-behemoth-spitter"].pollution_to_join_attack = 7500
 		data.raw["unit"]["bob-leviathan-spitter"].pollution_to_join_attack = 8500	
 
-		if NEConfig.Spawners and not NEConfig.mod.DyTechWar then
+		if NE_Enemies_Config.Spawners and not NE_Enemies_Config.mod.DyTechWar then
 			require "prototypes.Vanilla_Changes.Bobs_Spawners"				
 		end
 		

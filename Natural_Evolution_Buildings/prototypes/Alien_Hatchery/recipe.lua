@@ -1,68 +1,5 @@
 
-
 data:extend({
-  {
-    type = "recipe",
-    name = "NE_alien-revitalization",
-    category = "chemistry",
-    energy_required = 10,
-    enabled = false,
-    ingredients =
-    {
-      {type="item", name="alien-artifact", amount=1},
-      {type="fluid", name="water", amount=25}
-    },
-    results=
-    {
-      {type="fluid", name="NE_revitalization-solution", amount=10},
-    },
-    subgroup = "Evolution-fluids"
-  },
-})
-
-data:extend({
-
-  ---- special liquids for hatchery operation
-  {
-    type = "recipe",
-    name = "NE_basic-alien-nutrientant",
-    category = "chemistry",
-    energy_required = 10,
-    enabled = false,
-    ingredients =
-    {
-      {type="item", name="stone", amount=5},
-      {type="fluid", name="sulfuric-acid", amount=10}
-    },
-    results=
-    {
-      {type="fluid", name="NE_nutrient-solution", amount=10},
-    },
-    subgroup = "Evolution-fluids"
-  },
-  
-  {
-    type = "recipe",
-    name = "NE_enhanced-alien-nutrientant",
-    category = "chemistry",
-    energy_required = 10,
-    enabled = false,
-    ingredients =
-    {
-      {type="fluid", name="NE_nutrient-solution", amount=10},
-      {type="fluid", name="NE_revitalization-solution", amount=10},
-    },
-    results=
-    {
-		
-		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
-		--{type="fluid", name="NE_alien_toxin", amount=5},
-		
-    },
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant.png",
-    subgroup = "Evolution-fluids"
-  },
-
 
   ---- Alien Hatchery
   {
@@ -347,4 +284,68 @@ data:extend({
     energy_required = 75,
   },
 
+})
+
+
+
+data:extend({
+
+  ---- special liquids for hatchery operation
+  {
+    type = "recipe",
+    name = "NE_alien-revitalization",
+    category = "chemistry",
+    energy_required = 10,
+    enabled = false,
+    ingredients =
+    {
+      {type="item", name="alien-artifact", amount=1},
+      {type="fluid", name="water", amount=25}
+    },
+    results=
+    {
+      {type="fluid", name="NE_revitalization-solution", amount=10},
+    },
+    subgroup = "Evolution-fluids"
+  },
+
+  {
+    type = "recipe",
+    name = "NE_basic-alien-nutrientant",
+    category = "chemistry",
+    energy_required = 10,
+    enabled = false,
+    ingredients =
+    {
+      {type="item", name="stone", amount=5},
+      {type="fluid", name="sulfuric-acid", amount=10}
+    },
+    results=
+    {
+      {type="fluid", name="NE_nutrient-solution", amount=10},
+    },
+    subgroup = "Evolution-fluids"
+  },
+  
+  {
+    type = "recipe",
+    name = "NE_enhanced-alien-nutrientant",
+    category = "chemistry",
+    energy_required = 10,
+    enabled = false,
+    ingredients =
+    {
+      {type="fluid", name="NE_nutrient-solution", amount=10},
+      {type="fluid", name="NE_revitalization-solution", amount=10},
+    },
+    results=
+    {
+		
+		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
+		--{type="fluid", name="NE_alien_toxin", amount=5},
+		
+    },
+	--icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant_toxin.png",
+    subgroup = "Evolution-fluids"
+  },
 })

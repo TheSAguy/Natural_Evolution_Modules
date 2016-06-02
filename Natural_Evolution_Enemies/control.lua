@@ -1,12 +1,11 @@
----ENEMIES v.5.3.3
+---ENEMIES v.5.4.0
+if not NE_Enemies_Config then NE_Enemies_Config = {} end
+if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
-require "defines"
-require "util"
-NEConfig = {}
-
-require "config"
-require 'libs/pathfinder_demo'
-
+require ("defines")
+require ("util")
+require ("config")
+require ("libs/pathfinder_demo")
 
 	
 --- Artifact Collector
@@ -324,7 +323,7 @@ script.on_init(On_Init)
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-	if NEConfig.QCCode then 
+	if NE_Enemies_Config.QCCode then 
 		for i, player in ipairs(game.players) do
 			player.print(tostring(message))
 		end

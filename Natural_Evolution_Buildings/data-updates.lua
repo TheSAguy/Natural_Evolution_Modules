@@ -1,11 +1,5 @@
 
-if not bobmods then bobmods = {} end
-if not bobmods.lib then bobmods.lib = {} end
-
-if not NEConfig then NEConfig = {} end
-if not NEConfig.mod then NEConfig.mod = {} end
-
-require "config"
+require ("config")
 require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 require ("scripts.item-functions") -- From Bob's Libary 
 require ("scripts.recipe-functions") -- From Bob's Libary 
@@ -13,7 +7,7 @@ require ("scripts.technology-functions") -- From Bob's Libary
 
 
 --- Got tierd of reaching limits...
-if NEConfig.LongReach then
+if NE_Buildings_Config.LongReach then
 	if data.raw.player.player.build_distance < 24 then
 		data.raw.player.player.build_distance = 24
 		data.raw.player.player.reach_distance = 20
@@ -28,14 +22,14 @@ end
 data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
 data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 
-if NEConfig.mod.BobEnemies then
+if NE_Buildings_Config.mod.BobEnemies then
 	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
 	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 end
 
 
 --- Adjust N.E. to DyTech War
-if NEConfig.mod.DyTechWar then
+if NE_Buildings_Config.mod.DyTechWar then
 
 	-- Natural Evolution Biter Spawner Adjustment to DyTech War
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].max_count_of_owned_units = data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units
@@ -63,7 +57,7 @@ if NEConfig.mod.DyTechWar then
 
 end
    
-if NEConfig.mod.NEEnemies then
+if NE_Buildings_Config.mod.NEEnemies then
 
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
@@ -71,7 +65,7 @@ if NEConfig.mod.NEEnemies then
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
 	
 	---- Add Alien Toxin as a result if NE Enemies
-
+	data.raw.recipe["NE_enhanced-alien-nutrientant"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant_toxin.png",
 	bobmods.lib.add_recipe_result ("NE_enhanced-alien-nutrientant", {type="fluid", name="NE_alien_toxin", amount=5})
 	
 	-- Add Alien Toxin as a ingriedient for Bio Ammo 

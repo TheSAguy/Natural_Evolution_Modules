@@ -1,7 +1,11 @@
-NEConfig = {}
+if not bobmods then bobmods = {} end
+if not bobmods.lib then bobmods.lib = {} end
 
-require "config"
---require "scripts.detectmod" --Detect supported Mods, currently DyTechWar and Bob's Enemies
+if not NE_Enemies_Config then NE_Enemies_Config = {} end
+if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
+
+require ("config")
+require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies
 
 
 require("prototypes.Technology.technology")
