@@ -27,20 +27,21 @@ local SpashDmg =
   action =
   {
     type = "area",
-    perimeter = 1.5,
-    force = "enemy",
+    perimeter = 2.5,
+    --force = "enemy",
     action_delivery =
     {
       type = "instant",
       target_effects =
-      {
-        {type = "damage",
-          damage =
+	  {
           {
-            amount = 5,
-            type = "acid"
+            type = "damage",
+            damage = { amount = 10 , type = "acid"}
+          },
+          {
+            type = "damage",
+            damage = { amount = 10 , type = "explosion"}
           }
-        }
       }
     }
   }
@@ -58,14 +59,14 @@ data:extend{AcidProjectileSmallSpash}
 local AcidProjectileMediumSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
 AcidProjectileMediumSpash.name = "acid-projectile-purple-mediumSplash"
 local MediumSpash = deepcopy(SpashDmg)
-MediumSpash.action.perimeter = 2.5
+MediumSpash.action.perimeter = 3
 table.insert(AcidProjectileMediumSpash.action.action_delivery.target_effects, MediumSpash)
 data:extend{AcidProjectileMediumSpash}
 
 local AcidProjectileBigSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
 AcidProjectileBigSpash.name = "acid-projectile-purple-bigSplash"
 local BigSplash = deepcopy(SpashDmg)
-BigSplash.action.perimeter = 3
+BigSplash.action.perimeter = 3.5
 table.insert(AcidProjectileBigSpash.action.action_delivery.target_effects, BigSplash)
 data:extend{AcidProjectileBigSpash}
 
@@ -138,6 +139,7 @@ data:extend(
 
 })
 
+----- Worm Entities
 data:extend(
 {
   {
@@ -167,7 +169,7 @@ data:extend(
       }
     },
     healing_per_tick = 0.0222,
-    collision_box = {{-0.9, -0.8 }, {0.9, 0.8}},
+    collision_box = {{-0.6, -0.5 }, {0.6, 0.5}},
     selection_box = {{-0.9, -0.8 }, {0.9, 0.8}},
     shooting_cursor_size = 3,
     corpse = "small-worm-corpse",
@@ -238,7 +240,7 @@ data:extend(
       }
     },
     healing_per_tick = 0.0389,
-    collision_box = {{-1.1, -1.0}, {1.1, 1.0}},
+    collision_box = {{-0.8, -0.7}, {0.8, 0.7}},
     selection_box = {{-1.1, -1.0}, {1.1, 1.0}},
     shooting_cursor_size = 3.5,
     rotation_speed = 1,
@@ -312,7 +314,7 @@ data:extend(
       }
     },
     healing_per_tick = 0.0556,
-    collision_box = {{-1.4, -1.2}, {1.4, 1.2}},
+    collision_box = {{-1.1, -0.9}, {1.1, 0.9}},
     selection_box = {{-1.4, -1.2}, {1.4, 1.2}},
     shooting_cursor_size = 4,
     rotation_speed = 1,

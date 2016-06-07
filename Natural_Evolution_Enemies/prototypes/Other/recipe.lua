@@ -10,9 +10,9 @@ data:extend({
 		ingredients =
 		{ 
 			{"alien-artifact", 2},
-			{"plastic-bar", 5},
+			--{"plastic-bar", 5},
 			{"piercing-bullet-magazine", 5},
-			{type="fluid", name="sulfuric-acid", amount=10}
+			{type="fluid", name="sulfuric-acid", amount=15}
 		},
 		result = "Biological-bullet-magazine",
 		result_count = 5

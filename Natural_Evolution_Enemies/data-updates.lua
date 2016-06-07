@@ -32,114 +32,67 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/i
 
 --- Bob's Enemies - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
-data:extend(
-{
-	  {
-		type = "recipe",
-		name = "alien-artifact-from-small",
-		result = "alien-artifact",
-		ingredients =
-		{
-		  {"small-alien-artifact", 100}
-		},
-		energy_required = 5,
-		enabled = "true",
-		category = "crafting"
-	  },
-})
+
+	bobmods.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
+	bobmods.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
+
 end
 
   --- SupremeWarfare_1.0.5 - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 
-data:extend(
-{
-	{
-		type = "recipe",
-		name = "alien-artifact",
-		result= "alien-artifact",
-		ingredients= { {"small-alien-artifact", 100} },
-		energy_required= 5,
-		enabled= "true",
-		category= "crafting"
-  },
-  
-})
+	bobmods.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
+	bobmods.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
+
 end
 
-
-
-function Add_Damage_Resists(D_Type,Raw,Percent)
-	if data.raw["damage-type"][D_Type] ~= nil then
-		local Resist = {type = D_Type,percent = Percent}
-		for i,d in pairs(Raw) do
-			if d.resistances ==nil then d.resistances={} end
-			table.insert(d.resistances, Resist)
-		end
-	end
-end
-
-
-
-function Biters_Dont_Attack(Raw)
-	for i,d in pairs(Raw) do
-		local newflags = {}
-		for pos=1,#d.flags do
-			if not (d.flags[pos] == "player-creation") then
-				table.insert(newflags, d.flags[pos])
-			end
-		end
-		d.flags = newflags
-	
-	end
-end
 
 
 
 if NE_Enemies_Config.Spawners then
 	--Add resistances to entities.
-	-- poison
-	Add_Damage_Resists("poison",data.raw["wall"],(25/NE_Difficulty))
-	Add_Damage_Resists("poison",data.raw["gate"],(25/NE_Difficulty))
-	Add_Damage_Resists("poison",data.raw["car"],(25/NE_Difficulty))
-	Add_Damage_Resists("poison",data.raw["electric-pole"],100)
-	Add_Damage_Resists("poison",data.raw["turret"],(25/NE_Difficulty))	
-	Add_Damage_Resists("poison",data.raw["ammo-turret"],(25/NE_Difficulty))	
-	Add_Damage_Resists("poison",data.raw["electric-turret"],(25/NE_Difficulty))	
-	Add_Damage_Resists("poison",data.raw["transport-belt"],(25/NE_Difficulty))
+	-- Poison
+	NE_Functions.Add_Damage_Resists("poison",data.raw["wall"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("poison",data.raw["gate"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("poison",data.raw["car"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("poison",data.raw["electric-pole"],100)
+	NE_Functions.Add_Damage_Resists("poison",data.raw["turret"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("poison",data.raw["ammo-turret"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("poison",data.raw["electric-turret"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("poison",data.raw["transport-belt"],(25/NE_Difficulty))
 	
 	-- Acid
-	Add_Damage_Resists("acid",data.raw["wall"],(25/NE_Difficulty))
-	Add_Damage_Resists("acid",data.raw["gate"],(25/NE_Difficulty))
-	Add_Damage_Resists("acid",data.raw["car"],(25/NE_Difficulty))
-	Add_Damage_Resists("acid",data.raw["electric-pole"],100)
-	Add_Damage_Resists("acid",data.raw["turret"],(25/NE_Difficulty))	
-	Add_Damage_Resists("acid",data.raw["ammo-turret"],(25/NE_Difficulty))	
-	Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
-	Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("acid",data.raw["wall"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("acid",data.raw["gate"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("acid",data.raw["car"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("acid",data.raw["electric-pole"],100)
+	NE_Functions.Add_Damage_Resists("acid",data.raw["turret"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["ammo-turret"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))
 	
 	
 	--- Make Rail immune to damage
-	Add_Damage_Resists("poison",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("poison",data.raw["curved-rail"],100)	
-	Add_Damage_Resists("acid",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("acid",data.raw["curved-rail"],100)	
-	Add_Damage_Resists("physical",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("physical",data.raw["curved-rail"],100)		
-	Add_Damage_Resists("explosion",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("explosion",data.raw["curved-rail"],100)		
-	Add_Damage_Resists("laser",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("laser",data.raw["curved-rail"],100)		
-	Add_Damage_Resists("impact",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("impact",data.raw["curved-rail"],100)		
-	Add_Damage_Resists("fire",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("fire",data.raw["curved-rail"],100)		
-	Add_Damage_Resists("electric",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("electric",data.raw["curved-rail"],100)		
-	Add_Damage_Resists("bob-pierce",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("bob-pierce",data.raw["curved-rail"],100)	
-	Add_Damage_Resists("Biological",data.raw["straight-rail"],100)	
-	Add_Damage_Resists("Biological",data.raw["curved-rail"],100)	
+	NE_Functions.Add_Damage_Resists("poison",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("poison",data.raw["curved-rail"],100)	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["curved-rail"],100)	
+	NE_Functions.Add_Damage_Resists("physical",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("physical",data.raw["curved-rail"],100)		
+	NE_Functions.Add_Damage_Resists("explosion",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("explosion",data.raw["curved-rail"],100)		
+	NE_Functions.Add_Damage_Resists("laser",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("laser",data.raw["curved-rail"],100)		
+	NE_Functions.Add_Damage_Resists("impact",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("impact",data.raw["curved-rail"],100)		
+	NE_Functions.Add_Damage_Resists("fire",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("fire",data.raw["curved-rail"],100)		
+	NE_Functions.Add_Damage_Resists("electric",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("electric",data.raw["curved-rail"],100)		
+	NE_Functions.Add_Damage_Resists("bob-pierce",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("bob-pierce",data.raw["curved-rail"],100)	
+	NE_Functions.Add_Damage_Resists("Biological",data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists("Biological",data.raw["curved-rail"],100)	
 
 	
 	
@@ -147,11 +100,11 @@ end
 
 -- Biters don't attack the rail, but it also does not appear on the mini-map or blue-prints.
 if NE_Enemies_Config.SafeRail then
-	Biters_Dont_Attack(data.raw["curved-rail"])
-	Biters_Dont_Attack(data.raw["straight-rail"])
-	Biters_Dont_Attack(data.raw["rail-signal"])
-	Biters_Dont_Attack(data.raw["rail-chain-signal"])
-	Biters_Dont_Attack(data.raw["train-stop"])
+	NE_Functions.Biters_Dont_Attack(data.raw["curved-rail"])
+	NE_Functions.Biters_Dont_Attack(data.raw["straight-rail"])
+	NE_Functions.Biters_Dont_Attack(data.raw["rail-signal"])
+	NE_Functions.Biters_Dont_Attack(data.raw["rail-chain-signal"])
+	NE_Functions.Biters_Dont_Attack(data.raw["train-stop"])
 end
 
 

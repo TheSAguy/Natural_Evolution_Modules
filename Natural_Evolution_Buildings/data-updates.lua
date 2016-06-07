@@ -16,15 +16,22 @@ if NE_Buildings_Config.LongReach then
 	end	
 end 
 
+----- Update the Alien Atrifact Graphic
+data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"
 
-
--- Make it so that you can mine spawners, since you are able to convert them, you can now remove them. 
-data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
-data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
+-- Make it so that you can mine spawners & worms, since you are able to convert them, you can now remove them. 
+data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
+data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
+data.raw["turret"]["small-worm-turret"].minable = {hardness = 0.5, mining_time = 1.6, results = {{type="item", name="small-worm-hatching-exhausted", amount=1},}}
+data.raw["turret"]["medium-worm-turret"].minable = {hardness = 1.0, mining_time = 1.6, results = {{type="item", name="medium-worm-hatching-exhausted", amount=1},}}
+data.raw["turret"]["big-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 
 if NE_Buildings_Config.mod.BobEnemies then
-	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
-	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 0.8, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
+	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
+	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
+	data.raw["turret"]["bob-big-explosive-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	data.raw["turret"]["bob-big-fire-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	data.raw["turret"]["bob-big-poison-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 end
 
 
@@ -65,8 +72,8 @@ if NE_Buildings_Config.mod.NEEnemies then
 	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
 	
 	---- Add Alien Toxin as a result if NE Enemies
-	data.raw.recipe["NE_enhanced-alien-nutrientant"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant_toxin.png",
-	bobmods.lib.add_recipe_result ("NE_enhanced-alien-nutrientant", {type="fluid", name="NE_alien_toxin", amount=5})
+	data.raw.recipe["NE_alien-revitalization"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization_toxin.png",
+	bobmods.lib.add_recipe_result ("NE_alien-revitalization", {type="fluid", name="NE_alien_toxin", amount=5})
 	
 	-- Add Alien Toxin as a ingriedient for Bio Ammo 
 --[[

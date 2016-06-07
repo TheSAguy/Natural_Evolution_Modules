@@ -3,10 +3,11 @@ if not bobmods.lib then bobmods.lib = {} end
 
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
+if not NE_Functions then NE_Functions = {} end
 
 require ("config")
 require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies
-
+require ("scripts.NE_Functions")
 
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")
