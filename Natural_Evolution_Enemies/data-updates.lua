@@ -32,10 +32,55 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/i
 
 --- Bob's Enemies - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
+<<<<<<< HEAD
+=======
+
+
+	bobmods.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
+	bobmods.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
+--[[	
+data:extend(
+{
+	  {
+		type = "recipe",
+		name = "alien-artifact-from-small",
+		result = "alien-artifact",
+		ingredients =
+		{
+		  {"small-alien-artifact", 100}
+		},
+		energy_required = 5,
+		enabled = "true",
+		category = "crafting"
+	  },
+})
+]]
+end
+>>>>>>> origin/master
 
 	bobmods.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
 	bobmods.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
 
+<<<<<<< HEAD
+=======
+	bobmods.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
+	bobmods.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
+	--[[
+data:extend(
+{
+	{
+		type = "recipe",
+		name = "alien-artifact",
+		result= "alien-artifact",
+		ingredients= { {"small-alien-artifact", 100} },
+		energy_required= 5,
+		enabled= "true",
+		category= "crafting"
+  },
+  
+})
+]]
+>>>>>>> origin/master
 end
 
   --- SupremeWarfare_1.0.5 - Update the Small Artifact Recipe.
@@ -44,6 +89,7 @@ if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 	bobmods.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
 	bobmods.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
 
+<<<<<<< HEAD
 end
 
 
@@ -52,6 +98,12 @@ end
 if NE_Enemies_Config.Spawners then
 	--Add resistances to entities.
 	-- Poison
+=======
+
+if NE_Enemies_Config.Spawners then
+	--Add resistances to entities.
+	-- poison
+>>>>>>> origin/master
 	NE_Functions.Add_Damage_Resists("poison",data.raw["wall"],(25/NE_Difficulty))
 	NE_Functions.Add_Damage_Resists("poison",data.raw["gate"],(25/NE_Difficulty))
 	NE_Functions.Add_Damage_Resists("poison",data.raw["car"],(25/NE_Difficulty))
