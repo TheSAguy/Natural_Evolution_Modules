@@ -1,4 +1,4 @@
----ENEMIES v.5.4.0
+---ENEMIES v.6.0.0
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
