@@ -30,58 +30,15 @@ end
 data.raw.item["alien-artifact"].subgroup = "Materials"
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png"
 
+
 --- Bob's Enemies - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
-<<<<<<< HEAD
-=======
-
-
-	bobmods.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
-	bobmods.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
---[[	
-data:extend(
-{
-	  {
-		type = "recipe",
-		name = "alien-artifact-from-small",
-		result = "alien-artifact",
-		ingredients =
-		{
-		  {"small-alien-artifact", 100}
-		},
-		energy_required = 5,
-		enabled = "true",
-		category = "crafting"
-	  },
-})
-]]
-end
->>>>>>> origin/master
 
 	bobmods.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
 	bobmods.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
 
-<<<<<<< HEAD
-=======
-	bobmods.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
-	bobmods.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
-	--[[
-data:extend(
-{
-	{
-		type = "recipe",
-		name = "alien-artifact",
-		result= "alien-artifact",
-		ingredients= { {"small-alien-artifact", 100} },
-		energy_required= 5,
-		enabled= "true",
-		category= "crafting"
-  },
-  
-})
-]]
->>>>>>> origin/master
 end
+
 
   --- SupremeWarfare_1.0.5 - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
@@ -89,7 +46,6 @@ if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 	bobmods.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
 	bobmods.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
 
-<<<<<<< HEAD
 end
 
 
@@ -98,12 +54,6 @@ end
 if NE_Enemies_Config.Spawners then
 	--Add resistances to entities.
 	-- Poison
-=======
-
-if NE_Enemies_Config.Spawners then
-	--Add resistances to entities.
-	-- poison
->>>>>>> origin/master
 	NE_Functions.Add_Damage_Resists("poison",data.raw["wall"],(25/NE_Difficulty))
 	NE_Functions.Add_Damage_Resists("poison",data.raw["gate"],(25/NE_Difficulty))
 	NE_Functions.Add_Damage_Resists("poison",data.raw["car"],(25/NE_Difficulty))
@@ -121,8 +71,7 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("acid",data.raw["turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["ammo-turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
-	NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))
-	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))	
 	
 	--- Make Rail immune to damage
 	NE_Functions.Add_Damage_Resists("poison",data.raw["straight-rail"],100)	
@@ -145,8 +94,6 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("bob-pierce",data.raw["curved-rail"],100)	
 	NE_Functions.Add_Damage_Resists("Biological",data.raw["straight-rail"],100)	
 	NE_Functions.Add_Damage_Resists("Biological",data.raw["curved-rail"],100)	
-
-	
 	
 end
 
@@ -180,14 +127,12 @@ if NE_Enemies_Config.Spawners then
 		require "prototypes.Vanilla_Changes.New_Biter_Units"
 		require "prototypes.Vanilla_Changes.Biter_Evolution"
 		require "prototypes.Vanilla_Changes.New_Spitter_Units"
-		require "prototypes.Vanilla_Changes.Spitter_Evolution"
-				
+		require "prototypes.Vanilla_Changes.Spitter_Evolution"			
 	end
-		
 end
 
 
-		--- Extra Loot - Small Alient Atrifacts
+--- Extra Loot - Small Alient Atrifacts
 if NE_Enemies_Config.ExtraLoot then
 	require("prototypes.Extra_Loot.item")
 	require("prototypes.Extra_Loot.recipe")
