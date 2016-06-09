@@ -27,7 +27,6 @@ end
 	end
 
 ----- Update the Alien Atrifact Graphic
-data.raw.item["alien-artifact"].subgroup = "Materials"
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png"
 
 

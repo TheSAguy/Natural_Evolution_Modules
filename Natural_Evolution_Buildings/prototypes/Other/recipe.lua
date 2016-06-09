@@ -12,7 +12,7 @@ data:extend({
 			{"stone-brick", 50},       
 			{"steel-plate", 10}, 
 		  },
-		  result = "Building_Materials"
+		  result = "Building_Materials",
 		  energy_required= 2.5,
 	},
 	
