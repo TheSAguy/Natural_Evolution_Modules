@@ -8,12 +8,12 @@ data:extend({
 		  enabled = "false",
 		  ingredients = 
 		  {
-			--{"iron-plate", 1},
 			{"advanced-circuit", 15},
 			{"stone-brick", 50},       
 			{"steel-plate", 10}, 
 		  },
 		  result = "Building_Materials"
+		  energy_required= 2.5,
 	},
 	
 	--- Attractor ON

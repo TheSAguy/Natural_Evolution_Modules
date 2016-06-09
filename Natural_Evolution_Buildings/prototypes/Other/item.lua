@@ -7,8 +7,9 @@ data:extend({
 		name = "Building_Materials",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/Building_Materials.png",
 		flags = {"goes-to-main-inventory"},
-		subgroup = "Materials",
-		order = "b[Building_Materials]",
+		--subgroup = "Materials", -- NE Sub Group
+		subgroup = "intermediate-product",
+		order = "a[iron-stick]-b[Building_Materials]",
 		stack_size = 10
 	},
 	
