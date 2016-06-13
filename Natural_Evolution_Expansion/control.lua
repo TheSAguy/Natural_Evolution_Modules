@@ -37,7 +37,6 @@ function On_Load()
 	
 	---	 EvoGUI
 	if not evo_gui then
-		--evo_gui = EvoGUI.new(Natural_Evolution_state)
 		evo_gui = EvoGUI.new(Expansion_State)
 		
 	end	

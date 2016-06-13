@@ -5,6 +5,11 @@ if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 require ("defines")
 require ("util")
 require ("config")
+require ("libs/EvoGUI")
+
+
+	---	 EvoGUI
+local evo_gui = nil
 
 
 ---- Evolution_MOD
@@ -52,7 +57,7 @@ function On_Load()
       global.hiveminds = {} -- Bases / Spawners
 	end
 
---- Alien_Control_Station Difficulty settings	
+	--- Alien_Control_Station Difficulty settings	
 	if NE_Buildings_Config.Conversion_Difficulty == Easy then
       global.minds.difficulty = 3 -- Easy difficulty
 	elseif NE_Buildings_Config.Conversion_Difficulty == Normal then
@@ -60,7 +65,7 @@ function On_Load()
 	else global.minds.difficulty = 10 -- Hard
 	end
 
----- Terraforming Initialization ----	
+	---- Terraforming Initialization ----	
 	if not global.numTerraformingStations then
           global.numTerraformingStations = 0
         elseif global.numTerraformingStations < 0 then
@@ -73,7 +78,17 @@ function On_Load()
           global.factormultiplier = 0
 	end	
 
+	if not global.Total_TerraformingStations_Evo_Deduction then
+          global.Total_TerraformingStations_Evo_Deduction = 0
+        elseif global.Total_TerraformingStations_Evo_Deduction < 0 then
+          global.Total_TerraformingStations_Evo_Deduction = 0
+	end
 
+	---	 EvoGUI
+	if not evo_gui then
+		evo_gui = EvoGUI.new(Total_TerraformingStations_Evo_Deduction)
+		
+	end	
 	
 end
 
@@ -94,12 +109,8 @@ function On_Built(event)
 	  writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
 	  
 	end   
-   --[[
-   --- Alien Control Station has been built
-    if event.created_entity.name == "AlienControlStation" then
-		table.insert(global.beacons, event.created_entity)
-	end
-	]]
+
+	
 	--- Alien Control Station has been built
 	local newAlienControlStation
 	
@@ -173,24 +184,25 @@ function GetFactorPerTerraformingStation(numTerraformingStations)
 end
 
 
-----------------Radars Scanning Function -----------------------------
+----------------Radars Scanning Function, used by Terraforming Sataion and Thumper -----------------------------
 script.on_event(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
    
-	reduction = ((0.00025 * global.factormultiplier) * game.evolution_factor * (1 - game.evolution_factor))
+		reduction = ((0.00025 * global.factormultiplier) * game.evolution_factor * (1 - game.evolution_factor))
 		if game.evolution_factor > reduction then
 			game.evolution_factor = game.evolution_factor - reduction
+			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction
 		end
 		writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)  
+		writeDebug("The total Evolution Deduction due to Terraforming Stations is: " .. global.Total_TerraformingStations_Evo_Deduction)  
 	
 	end
 
 	
 	--- Each time a Thumper "Scans", it will attract biters in the area
 	if event.radar.name == "Thumper" then
-        --event.radar.surface.set_multi_command({type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},10)
 		event.radar.surface.set_multi_command{command = {type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},unit_count = 10, unit_search_distance = 200}
 		writeDebug("Thumper Scanned, units should attack")   
     end   

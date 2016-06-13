@@ -7,7 +7,7 @@ if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 if not NE_Functions then NE_Functions = {} end
 
 require ("config")
-require ("scripts.NE_Functions")
+require ("libs.NE_Functions")
 
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")

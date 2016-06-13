@@ -1,9 +1,9 @@
 
 require ("config")
-require ("scripts.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
-require ("scripts.item-functions") -- From Bob's Libary 
-require ("scripts.recipe-functions") -- From Bob's Libary 
-require ("scripts.technology-functions") -- From Bob's Libary 
+require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("libs.item-functions") -- From Bob's Libary 
+require ("libs.recipe-functions") -- From Bob's Libary 
+require ("libs.technology-functions") -- From Bob's Libary 
 
 
 --- Got tierd of reaching limits...
