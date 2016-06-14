@@ -7,7 +7,7 @@ require ("libs.technology-functions") -- From Bob's Libary
 
 
 --- Got tierd of reaching limits...
-if NE_Buildings_Config.LongReach then
+if NE_Buildings_Config.LongReach or NE_Buildings_Config.QCCode then
 	if data.raw.player.player.build_distance < 24 then
 		data.raw.player.player.build_distance = 24
 		data.raw.player.player.reach_distance = 20

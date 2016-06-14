@@ -4,7 +4,7 @@ require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob'
 require ("libs.NE_Functions")
 
 --- Got tierd of reaching limits...
-if NE_Expansion_Config.LongReach then
+if NE_Expansion_Config.LongReach or NE_Expansion_Config.QCCode then
 	if data.raw.player.player.build_distance < 24 then
 		data.raw.player.player.build_distance = 24
 		data.raw.player.player.reach_distance = 20

@@ -3,26 +3,14 @@ EvoGUI = {}
 
 function EvoGUI.new()
 
---[[
-    function EvoGUI:createEvolutionRateText()
-        local diff = global.Total_TerraformingStations_Evo_Deduction
-        -- percentage is decimal * 100, * 60 for per minute value
-        local evo_rate_per_min = math.abs(diff * 100 * 60)
-        
-        -- this nonsense is because string.format(%.3f) is not safe in MP across platforms, but integer math is
-        local whole_number = math.floor(evo_rate_per_min)
-        local fractional_component = math.floor((evo_rate_per_min - whole_number) * 1000)
-        local text = string.format("%d.%04d%%", whole_number, fractional_component)
-        if diff > 0 then
-            return "The total Evolution Deduction due to Terraforming Stations is: +" .. text .. " / min"
-        else
-            return "The total Evolution Deduction due to Terraforming Stations is: -" .. text .. " / min"
-        end
-    end
-]]
 
     function EvoGUI:createEvolutionText()
-        local text = "The total Evolution Deduction due to Terraforming Stations is: " .. global.Total_TerraformingStations_Evo_Deduction
+
+		local whole_number = math.floor(global.Total_TerraformingStations_Evo_Deduction*100)
+        local fractional_component = math.floor((global.Total_TerraformingStations_Evo_Deduction*100 - whole_number) * 1000)
+        local text2 = string.format("%d.%03d%%", whole_number, fractional_component)	
+        local text = "Evolution Deduction by T-Stations: " .. text2
+
         return text
     end
     

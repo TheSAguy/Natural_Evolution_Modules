@@ -364,7 +364,8 @@ script.on_event(defines.events.on_tick, function(event)
 		global.load = false
 		end
 
-
+		---	 EvoGUI
+		evo_gui:tick()
 
  -- check for biters within Alien Control Station's range
 	if (game.tick % (60 * 6) == 0) and global.beacons[1] then

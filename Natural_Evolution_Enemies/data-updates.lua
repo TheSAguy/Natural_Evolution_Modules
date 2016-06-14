@@ -9,7 +9,7 @@ require ("prototypes.Vanilla_Changes.Settings")
 
 
 --- Got tierd of reaching limits...
-if NE_Enemies_Config.LongReach then
+if NE_Enemies_Config.LongReach or NE_Enemies_Config.QCCode then
 	if data.raw.player.player.build_distance < 24 then
 		data.raw.player.player.build_distance = 24
 		data.raw.player.player.reach_distance = 20
