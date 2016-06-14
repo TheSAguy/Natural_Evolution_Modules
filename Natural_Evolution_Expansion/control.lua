@@ -42,8 +42,18 @@ function On_Load()
 	end	
 	
 	
+	if not global.Total_Phase_Evo_Deduction then
+          global.Total_Phase_Evo_Deduction = 0
+        elseif global.Total_Phase_Evo_Deduction < 0 then
+          global.Total_Phase_Evo_Deduction = 0
+	end
+	
+	
 end
 
+-- cause pollution to spread farther
+game.map_settings.pollution.diffusion_ratio = 0.04
+game.map_settings.pollution.min_to_diffuse = 50
 
 ---------------------------------------------
 if NE_Expansion_Config.HarderEndGame then
@@ -226,12 +236,10 @@ if NE_Expansion_Config.Expansion then
 				end
 				 
 				if game.evolution_factor < 0.9899 then
-					--game.evolution_factor = game.evolution_factor + Evo_Increase
 					game.evolution_factor = game.evolution_factor + E_Increase
 						
 				else
 					game.evolution_factor = 0.99999
-	
 				end  
 			
 			---- Attack the player, since you have a silo built						
@@ -278,30 +286,33 @@ if NE_Expansion_Config.Expansion then
 		
 		Expansion_State = Expansion_State or "Peaceful"
 		
-		-- cause pollution to spread farther
-		game.map_settings.pollution.diffusion_ratio = 0.04
-		game.map_settings.pollution.min_to_diffuse = 50
 	
 		-- allow biters to path from farther away (minor performance hit)
 		if expansion_state ~= "peaceful" then
 			game.map_settings.path_finder.max_steps_worked_per_tick = 500
+		else
+			game.map_settings.path_finder.max_steps_worked_per_tick = 100
 		end
 	
 		if Expansion_State == "Peaceful" then
+		
 			game.map_settings.enemy_expansion.enabled = false
-			global.Natural_Evolution_Timer = 0
-			
+			global.Natural_Evolution_Timer = 0			
 									
-		if game.evolution_factor > 0.05 then
-			if global.Natural_Evolution_state == "Awakening" then
-				game.evolution_factor = game.evolution_factor		
-			else 
-				-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.
-				game.evolution_factor = game.evolution_factor - (0.003 * (1 - game.evolution_factor))
-				writeDebug("Evolution Deduction during Expansion: " .. (0.003 * (1 - game.evolution_factor)))	
-			end
-						
-		end	
+			if game.evolution_factor > 0.05 then
+				if global.Natural_Evolution_state == "Awakening" then
+					game.evolution_factor = game.evolution_factor		
+				else
+				-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.						
+					local Evo_Deduction = (0.003 * (1 - game.evolution_factor))
+					
+					game.evolution_factor = game.evolution_factor - Evo_Deduction
+					global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction
+					writeDebug("Evolution Deduction during Expansion: " .. Evo_Deduction)	
+					writeDebug("Total Evolution Deduction from Phase Switch: " .. global.Total_Phase_Evo_Deduction)	
+				end
+							
+			end	
 			
 		-- Defines the values for the different Evolution States.
 		elseif Expansion_State == "Awakening" then

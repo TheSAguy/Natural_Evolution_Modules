@@ -19,6 +19,25 @@ function EvoGUI.new()
         end
     end
 
+
+    function EvoGUI:createEvolutionText()
+        local text = "Evolution State: " .. global.Natural_Evolution_state
+        text = text .. " ( " .. math.floor(global.Natural_Evolution_Timer / 60) .. "s )"
+        return text
+    end
+
+	
+    function EvoGUI:createPhaseText()
+
+		local whole_number = math.floor(global.Total_Phase_Evo_Deduction*100)
+        local fractional_component = math.floor((global.Total_Phase_Evo_Deduction*100 - whole_number) * 1000)
+        local text2 = string.format("%d.%03d%%", whole_number, fractional_component)	
+        local text = "Evo Deduction from Exp Phases: " .. text2
+
+        return text
+    end
+	
+	
     function EvoGUI:calculateEvolutionRateColor()
         local diff = game.evolution_factor - global.exponential_moving_average
         
@@ -30,11 +49,6 @@ function EvoGUI.new()
         end
     end
 
-    function EvoGUI:createEvolutionText()
-        local text = "Evolution State: " .. global.Natural_Evolution_state
-        text = text .. " ( " .. math.floor(global.Natural_Evolution_Timer / 60) .. "s )"
-        return text
-    end
     
     function EvoGUI:setup()
         if remote.interfaces.EvoGUI and remote.interfaces.EvoGUI.create_remote_sensor then
@@ -51,6 +65,12 @@ function EvoGUI.new()
                 name = "evolution_rate",
                 text = "Evolution Rate:",
                 caption = "Evolution Rate"
+            })
+			    remote.call("EvoGUI", "create_remote_sensor", {
+                mod_name = "Natural Evolution",
+                name = "phase_deduction",
+                text = "Total Phase Evo Deduction:",
+                caption = "Total Phase Evo Deduction"
             })
             self:updateGUI()
         end
@@ -79,6 +99,7 @@ function EvoGUI.new()
 
         remote.call("EvoGUI", "update_remote_sensor", "evolution_state", self:createEvolutionText(), color)
         remote.call("EvoGUI", "update_remote_sensor", "evolution_rate", self:createEvolutionRateText(), self:calculateEvolutionRateColor())
+		remote.call("EvoGUI", "update_remote_sensor", "phase_deduction", self:createPhaseText(), color)
     end
 
     return EvoGUI

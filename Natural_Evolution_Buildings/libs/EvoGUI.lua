@@ -4,7 +4,7 @@ EvoGUI = {}
 function EvoGUI.new()
 
 
-    function EvoGUI:createEvolutionText()
+    function EvoGUI:createEvoDeductionText()
 
 		local whole_number = math.floor(global.Total_TerraformingStations_Evo_Deduction*100)
         local fractional_component = math.floor((global.Total_TerraformingStations_Evo_Deduction*100 - whole_number) * 1000)
@@ -32,7 +32,6 @@ function EvoGUI.new()
     function EvoGUI:tick()
         if not global.evo_gui then global.evo_gui = {} end
 
-
         if not global.evo_gui.detected then
             self:setup()
         end
@@ -45,7 +44,7 @@ function EvoGUI.new()
         -- figure out what color to make the text here (if any)
         local color = { r = 255, g = 255, b = 255 }
 
-        remote.call("EvoGUI", "update_remote_sensor", "evolution_deduction", self:createEvolutionText(), color)
+        remote.call("EvoGUI", "update_remote_sensor", "evolution_deduction", self:createEvoDeductionText(), color)
 
     end
 
