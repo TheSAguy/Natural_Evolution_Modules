@@ -51,9 +51,6 @@ function On_Load()
 	
 end
 
--- cause pollution to spread farther
-game.map_settings.pollution.diffusion_ratio = 0.04
-game.map_settings.pollution.min_to_diffuse = 50
 
 ---------------------------------------------
 if NE_Expansion_Config.HarderEndGame then
@@ -262,7 +259,7 @@ if NE_Expansion_Config.Expansion then
 		local enemy_expansion = game.map_settings.enemy_expansion
 		local unit_group = game.map_settings.unit_group
 		-----
-		global.Natural_Evolution_Timer = math.random(Evolution_Timer_Min * 3600, Evolution_Timer_Max * 3600)
+		global.Natural_Evolution_Timer = math.random(Evolution_Timer_Min * 3600, Evolution_Timer_Max * 7200)
 		enemy_expansion.enabled = true
 		enemy_expansion.min_base_spacing = NE_Min_Base_Spacing
 		enemy_expansion.max_expansion_distance = NE_Max_Expansion_Distance
@@ -285,7 +282,7 @@ if NE_Expansion_Config.Expansion then
 	function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		
 		Expansion_State = Expansion_State or "Peaceful"
-		
+
 	
 		-- allow biters to path from farther away (minor performance hit)
 		if expansion_state ~= "peaceful" then
@@ -304,7 +301,7 @@ if NE_Expansion_Config.Expansion then
 					game.evolution_factor = game.evolution_factor		
 				else
 				-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.						
-					local Evo_Deduction = (0.003 * (1 - game.evolution_factor))
+					local Evo_Deduction = (0.002 * (1 - game.evolution_factor))
 					
 					game.evolution_factor = game.evolution_factor - Evo_Deduction
 					global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction

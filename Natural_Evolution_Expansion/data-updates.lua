@@ -13,8 +13,9 @@ if NE_Expansion_Config.LongReach or NE_Expansion_Config.QCCode then
 	end	
 end 
 
-
-
+-- cause pollution to spread farther
+data.raw["map-settings"]["map-settings"].pollution.diffusion_ratio = 0.04
+data.raw["map-settings"]["map-settings"].pollution.min_to_diffuse = 50
 
 
 ---- Evolution Modifications ----------------------------------
