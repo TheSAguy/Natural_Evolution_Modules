@@ -95,7 +95,7 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("bob-pierce",data.raw["curved-rail"],100)	
 	NE_Functions.Add_Damage_Resists("Biological",data.raw["straight-rail"],100)	
 	NE_Functions.Add_Damage_Resists("Biological",data.raw["curved-rail"],100)	
-	
+
 end
 
 -- Biters don't attack the rail, but it also does not appear on the mini-map or blue-prints.
@@ -106,6 +106,7 @@ if NE_Enemies_Config.SafeRail then
 	NE_Functions.Biters_Dont_Attack(data.raw["rail-chain-signal"])
 	NE_Functions.Biters_Dont_Attack(data.raw["train-stop"])
 end
+
 
 
 
