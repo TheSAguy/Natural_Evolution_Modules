@@ -258,10 +258,7 @@ data:extend({
 				type = 'unlock-recipe',
 				recipe='small-worm-hatching-refresh'
 			},
-			{
-				type = 'unlock-recipe',
-				recipe='NE_enhanced-alien-nutrientant'
-			},
+
 		},
 		prerequisites = {"Alien_Hatchery"},
 		unit =
@@ -390,11 +387,8 @@ data:extend({
 		upgrade = true,
 		order = "a-h-d",
 	},
-})
 
-data:extend({
-
-			--- Alien Hatchery
+	--- Alien Hatchery
 	{
 		type = "technology",
 		name = "Alien_Hatchery",
@@ -413,6 +407,10 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='NE_alien-revitalization'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='NE_enhanced-alien-nutrientant'
 			},
 
 		},
