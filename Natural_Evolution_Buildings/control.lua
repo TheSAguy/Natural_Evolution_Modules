@@ -2,7 +2,7 @@
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
-require ("defines")
+--require ("defines")
 require ("util")
 require ("config")
 require ("libs/EvoGUI")

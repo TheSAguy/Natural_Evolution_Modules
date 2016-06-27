@@ -11,7 +11,7 @@ data:extend({
 		{ 
 			{"alien-artifact", 2},
 			--{"plastic-bar", 5},
-			{"piercing-bullet-magazine", 5},
+			{"piercing-rounds-magazine", 5},
 			{type="fluid", name="sulfuric-acid", amount=15}
 		},
 		result = "Biological-bullet-magazine",

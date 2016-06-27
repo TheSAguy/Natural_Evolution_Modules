@@ -2,7 +2,7 @@
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
-require ("defines")
+--require ("defines")
 require ("util")
 require ("config")
 require ("libs/pathfinder_demo")
@@ -185,7 +185,7 @@ function On_Death(event)
 	--[[	
    if event.entity.type == "unit-spawner" then
 	writeDebug("YOU KILLED A SPAWNER")
-       local surface = game.get_surface(0) -- i'm really not sure how surfaces work between different forces and entities so i mostly use this.
+	   local surface = game.surfaces['nauvis']
        local radius = 25
        local pos = event.entity.position
        local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}

@@ -3,7 +3,7 @@
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
 
-require ("defines")
+--require ("defines")
 require ("util")
 require ("config")
 require ("libs/EvoGUI")

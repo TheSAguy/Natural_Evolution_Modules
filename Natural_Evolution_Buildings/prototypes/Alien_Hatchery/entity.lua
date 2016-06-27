@@ -831,7 +831,7 @@ data:extend({
     spawning_spacing = 3,
     max_spawn_shift = 0,
     max_richness_for_spawn_shift = 100,
-
+	call_for_help_radius = 50,
   },
 
   {
@@ -952,7 +952,7 @@ data:extend({
     spawning_spacing = 3,
     max_spawn_shift = 0,
     max_richness_for_spawn_shift = 100,
-
+	call_for_help_radius = 50,
   },
 
   {

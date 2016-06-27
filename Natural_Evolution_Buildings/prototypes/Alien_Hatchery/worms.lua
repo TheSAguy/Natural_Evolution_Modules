@@ -211,6 +211,7 @@ data:extend(
         }
       }
     },
+	call_for_help_radius = 40,
   },
 
   {
@@ -285,6 +286,7 @@ data:extend(
         }
       }
     },
+	call_for_help_radius = 40,
   },
 
   {
@@ -360,6 +362,7 @@ data:extend(
         }
       }
     },
+	call_for_help_radius = 40,
   },
 }
 )

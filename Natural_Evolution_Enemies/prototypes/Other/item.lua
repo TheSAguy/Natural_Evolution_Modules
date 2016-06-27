@@ -45,7 +45,7 @@ data:extend({
 		},
 		magazine_size = 10,
 		subgroup = "ammo",
-		order = "a[basic-clips]-b[piercing-bullet-magazine]-c[Biological-bullet-magazine]",
+		order = "a[basic-clips]-b[piercing-rounds-magazine]-c[Biological-bullet-magazine]",
 		stack_size = 100
   },
 })
