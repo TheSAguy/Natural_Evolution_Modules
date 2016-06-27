@@ -106,7 +106,7 @@ if NE_Expansion_Config.Expansion then
 	script.on_event(defines.events.on_tick, function(event)
 		
 		--- Hopefully this will improve path finding...
-		pathfinder_demo.tick()
+		--pathfinder_demo.tick() <-- Disables for now
 		
 		if global.load == true then
 			for i, player in ipairs(game.players) do 
