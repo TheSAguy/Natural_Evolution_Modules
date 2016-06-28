@@ -357,7 +357,7 @@ end
 script.on_event(defines.events.on_tick, function(event)
 
 		if global.load == true then
-		for i, player in ipairs(game.players) do 
+		for i, player in pairs(game.players) do 
 		player.force.reset_recipes() 
 		player.force.reset_technologies()
 		end
@@ -376,30 +376,23 @@ script.on_event(defines.events.on_tick, function(event)
 	end
 
 	--	Evolution_MOD
+
 	if event.tick % update_com_count == 0 then
-		for index, player in ipairs(game.players[1]) do
+		for index, player in pairs(game.players) do
 			if player.connected and player.character then
 				UpdateUnitsCommands(index)		
 			end
 		end
 	end
-	
-	--[[
-	if event.tick % update_com_count == 0 then
-		for index, player in ipairs(game.players) do
-			if player.connected and player.character then
-				UpdateUnitsCommands(index)		
-			end
-		end
-	end
-	]]
+
 end)
 
 
 ---------------------------------------------
 ---- Evolution_MOD
 function UpdateUnitsCommands(player_index)
-	local player = game.get_player(player_index)
+	
+	local player = game.players[player_index]
 	local pos = player.position
     local aggression_area = {{pos.x - agro_area_rad, pos.y - agro_area_rad}, {pos.x + agro_area_rad, pos.y + agro_area_rad}}
 	if not player.surface.valid then return end
@@ -502,19 +495,11 @@ script.on_load(On_Load)
 
 
 ---------------------------------------------
+
 --- DeBug Messages 
---[[
 function writeDebug(message)
-	if NE_Buildings_Config.QCCode then 
-		for i, player in ipairs(game.players) do
-			player.print(tostring(message))
-		end
-	end
-end
-]]
-function writeDebug(message)
-	if NE_Buildings_Config.QCCode then 
-		for i, player in ipairs(game.players[1]) do
+	if NE_Expansion_Config.QCCode then 
+		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end
 	end

@@ -2,10 +2,10 @@
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
---require ("defines")
+
 require ("util")
 require ("config")
-require ("libs/pathfinder_demo")
+
 
 	
 --- Artifact Collector
@@ -51,7 +51,6 @@ function On_Load()
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 		global.update_check = true
-		--global.next_check= global.next_check or game.tick+interval
         global.next_collector= global.next_collector or 1
 	end
 end
@@ -82,11 +81,9 @@ end
 
 script.on_event(defines.events.on_tick, function(event)
 	
-	--- Hopefully this will improve path finding...
-	--pathfinder_demo.tick() <-- Disables for now
 	
 	if global.load == true then
-		for i, player in ipairs(game.players) do 
+		for i, player in pairs(game.players) do 
 			player.force.reset_recipes() 
 			player.force.reset_technologies()
 		end
@@ -321,7 +318,7 @@ script.on_init(On_Init)
 --- DeBug Messages 
 function writeDebug(message)
 	if NE_Enemies_Config.QCCode then 
-		for i, player in ipairs(game.players) do
+		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end
 	end

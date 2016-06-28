@@ -3,11 +3,10 @@
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
 
---require ("defines")
+
 require ("util")
 require ("config")
 require ("libs/EvoGUI")
-require ("libs/pathfinder_demo")
 
 
 	---	 EvoGUI
@@ -78,7 +77,7 @@ if NE_Expansion_Config.HarderEndGame then
 			-- Biters will attack the newly built Rocket Silo
 			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 1000}
 			
-			for i, player in ipairs(game.players) do
+			for i, player in pairs(game.players) do
 					player.print("WARNING!")
 					player.print("Building a Rocket Silo caused a lot of noise and biter will Attack!!!")
 			end
@@ -105,11 +104,9 @@ if NE_Expansion_Config.Expansion then
 
 	script.on_event(defines.events.on_tick, function(event)
 		
-		--- Hopefully this will improve path finding...
-		--pathfinder_demo.tick() <-- Disables for now
 		
 		if global.load == true then
-			for i, player in ipairs(game.players) do 
+			for i, player in pairs(game.players) do 
 				player.force.reset_recipes() 
 				player.force.reset_technologies()
 			end
@@ -418,7 +415,7 @@ script.on_load(On_Load)
 --- DeBug Messages 
 function writeDebug(message)
 	if NE_Expansion_Config.QCCode then 
-		for i, player in ipairs(game.players) do
+		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end
 	end
