@@ -1,5 +1,5 @@
-if not bobmods then bobmods = {} end
-if not bobmods.lib then bobmods.lib = {} end
+if not thxbob then thxbob = {} end
+if not thxbob.lib then thxbob.lib = {} end
 
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
@@ -8,9 +8,14 @@ if not NE_Functions then NE_Functions = {} end
 require ("config")
 require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies
 require ("libs.NE_Functions")
-
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")
+
+require ("libs.legacy") -- From Bob's Libary 
+require ("libs.item-functions") -- From Bob's Libary 
+require ("libs.recipe-functions") -- From Bob's Libary 
+require ("libs.technology-functions") -- From Bob's Libary 
+
 
 ---------------------------------------------------------------
 
@@ -31,9 +36,3 @@ require("prototypes.Other.damage-type")
 
 ---------------------------------------------------------------
 
---[[
-------- Remove Default Worms - FOR TESTING
-data.raw.turret["small-worm-turret"].autoplace = {}
-data.raw.turret["medium-worm-turret"].autoplace = {}
-data.raw.turret["big-worm-turret"].autoplace = {}
-]]

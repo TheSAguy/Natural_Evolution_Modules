@@ -1,6 +1,7 @@
 
 require ("config")
 require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
@@ -70,18 +71,18 @@ if NE_Buildings_Config.mod.NEEnemies then
 
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
-	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
-	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
+	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
+	thxbob.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
 	
 	---- Add Alien Toxin as a result if NE Enemies
 	data.raw.recipe["NE_alien-revitalization"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization_toxin.png",
-	bobmods.lib.add_recipe_result ("NE_alien-revitalization", {type="fluid", name="NE_alien_toxin", amount=5})
+	thxbob.lib.add_recipe_result ("NE_alien-revitalization", {type="fluid", name="NE_alien_toxin", amount=5})
 	
 	-- Add Alien Toxin as a ingriedient for Bio Ammo 
 --[[
-	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
-	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
-	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
+	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
+	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
+	thxbob.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
 	]]
 end
 

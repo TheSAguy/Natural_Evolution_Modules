@@ -1,6 +1,6 @@
 
-if not bobmods then bobmods = {} end
-if not bobmods.lib then bobmods.lib = {} end
+if not thxbob then thxbob = {} end
+if not thxbob.lib then thxbob.lib = {} end
 
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
@@ -8,6 +8,10 @@ if not NE_Functions then NE_Functions = {} end
 
 require ("config")
 require ("libs.NE_Functions")
+require ("libs.legacy") -- From Bob's Libary 
+require ("libs.item-functions") -- From Bob's Libary 
+require ("libs.recipe-functions") -- From Bob's Libary 
+require ("libs.technology-functions") -- From Bob's Libary 
 
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")

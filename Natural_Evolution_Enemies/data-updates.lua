@@ -2,6 +2,7 @@
 
 require ("config")
 require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
@@ -35,8 +36,8 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/i
 --- Bob's Enemies - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
 
-	bobmods.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
-	bobmods.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
+	thxbob.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
+	thxbob.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
 
 end
 
@@ -44,8 +45,8 @@ end
   --- SupremeWarfare_1.0.5 - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 
-	bobmods.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
-	bobmods.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
+	thxbob.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
+	thxbob.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
 
 end
 
@@ -113,12 +114,12 @@ end
 if NE_Enemies_Config.mod.NEBuildings then
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
-	bobmods.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
-	bobmods.lib.add_technology_recipe ("AlienUnderstanding-2", "Thumper")
+	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
+	thxbob.lib.add_technology_recipe ("AlienUnderstanding-2", "Thumper")
 
-	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
-	bobmods.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
-	bobmods.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
+	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
+	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
+	thxbob.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
 		
 end
 
