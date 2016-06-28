@@ -41,7 +41,6 @@ local filters = {["small-alien-artifact"] = 1,
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
 script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
---script.on_event(defines.events.on_trigger_created_entity,function(event) Trigger_Built(event) end)
 
 
 ---------------------------------------------				 
@@ -201,25 +200,22 @@ function On_Death(event)
    end
 		]]
 
-	-- Detect killing a Unit spawner.
-	if event.entity.type == "unit-spawner" and event.entity.force == game.forces.enemy then
-		writeDebug("YOU KILLED A SPAWNER")
-	    for i = 1, #game.players, 1 do
-			player = game.players[i]
-         
-			if player.connected and player.character.valid then
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
-			end
-		end
-	end
+ 
 
 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
 	if (event.entity.type == "unit-spawner") then
 		if event.entity.force == game.forces.enemy then
-				writeDebug("Enemy Spawner")
+			writeDebug("Enemy Spawner")
+			for i = 1, #game.players, 1 do
+			player = game.players[i]
+         
+				if player.connected and player.character.valid then
+					player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
+				end
+			end						
 		else
 				writeDebug("Friendly Spawner")
-				game.evolution_factor = game.evolution_factor - 0.0002 * (1-game.evolution_factor)			
+				game.evolution_factor = game.evolution_factor - 0.0002 * (1-game.evolution_factor)	* (1-game.evolution_factor)		
 		end
 	
 	end
@@ -330,4 +326,51 @@ function writeDebug(message)
 		end
 	end
 end
+
+
+if NE_Enemies_Config.QCCode then 
+
+	script.on_event(defines.events.on_player_created, function(event)
+		local player = game.players[event.player_index]
+		start_items_A(player)
+		start_items_B(player)
+	end)
+
+
+	function start_items_A(player)
+
+		player.insert{name="iron-plate", count=100}
+		player.insert{name="electronic-circuit", count=200}
+		player.insert{name="steel-plate", count=50}
+		player.insert{name="copper-plate", count=50}
+		player.insert{name="iron-gear-wheel", count=50}
+		player.insert{name="stone", count=50}
+		player.insert{name="steel-axe", count=3}				  
+		player.insert{name="submachine-gun", count=1}
+		player.insert{name="piercing-rounds-magazine", count=150}  
+		player.insert{name="combat-shotgun", count=1}
+		player.insert{name="piercing-shotgun-shell", count=50}  
+		player.insert{name="rail", count=50}  
+		player.insert{name="burner-inserter", count=50}
+		player.insert{name="inserter", count=30}
+		player.insert{name="transport-belt", count=200}
+		player.insert{name="small-electric-pole", count=20}
+		player.insert{name="burner-mining-drill", count=20}
+		player.insert{name="stone-furnace", count=35}
+		player.insert{name="assembling-machine-1", count=20}
+		player.insert{name="rocket-silo", count=2}
+
+
+	end
+	
+	function start_items_B(player)
+	
+		player.insert{name="Artifact-collector-area", count=20}
+		player.insert{name="small-alien-artifact", count=100}
+		player.insert{name="Biological-bullet-magazine", count=200}
+
+		
+	end
+end
+
 

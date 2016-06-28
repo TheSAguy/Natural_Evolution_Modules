@@ -376,7 +376,15 @@ script.on_event(defines.events.on_tick, function(event)
 	end
 
 	--	Evolution_MOD
+	if event.tick % update_com_count == 0 then
+		for index, player in ipairs(game.players[1]) do
+			if player.connected and player.character then
+				UpdateUnitsCommands(index)		
+			end
+		end
+	end
 	
+	--[[
 	if event.tick % update_com_count == 0 then
 		for index, player in ipairs(game.players) do
 			if player.connected and player.character then
@@ -384,7 +392,7 @@ script.on_event(defines.events.on_tick, function(event)
 			end
 		end
 	end
-	
+	]]
 end)
 
 
@@ -495,6 +503,7 @@ script.on_load(On_Load)
 
 ---------------------------------------------
 --- DeBug Messages 
+--[[
 function writeDebug(message)
 	if NE_Buildings_Config.QCCode then 
 		for i, player in ipairs(game.players) do
@@ -502,3 +511,61 @@ function writeDebug(message)
 		end
 	end
 end
+]]
+function writeDebug(message)
+	if NE_Buildings_Config.QCCode then 
+		for i, player in ipairs(game.players[1]) do
+			player.print(tostring(message))
+		end
+	end
+end
+
+if NE_Buildings_Config.QCCode then 
+
+	script.on_event(defines.events.on_player_created, function(event)
+		local player = game.players[event.player_index]
+		--start_items_A(player)
+		start_items_B(player)
+	end)
+
+
+	function start_items_A(player)
+
+		player.insert{name="iron-plate", count=100}
+		player.insert{name="electronic-circuit", count=200}
+		player.insert{name="steel-plate", count=50}
+		player.insert{name="copper-plate", count=50}
+		player.insert{name="iron-gear-wheel", count=50}
+		player.insert{name="stone", count=50}
+		player.insert{name="steel-axe", count=3}				  
+		player.insert{name="submachine-gun", count=1}
+		player.insert{name="piercing-rounds-magazine", count=150}  
+		player.insert{name="combat-shotgun", count=1}
+		player.insert{name="piercing-shotgun-shell", count=50}  
+		player.insert{name="rail", count=50}  
+		player.insert{name="burner-inserter", count=50}
+		player.insert{name="inserter", count=30}
+		player.insert{name="transport-belt", count=200}
+		player.insert{name="small-electric-pole", count=20}
+		player.insert{name="burner-mining-drill", count=20}
+		player.insert{name="stone-furnace", count=35}
+		player.insert{name="assembling-machine-1", count=20}
+
+
+	end
+	
+	function start_items_B(player)
+	
+		player.insert{name="Alien_Hatchery", count=20}
+		player.insert{name="small-biter-hatching", count=20}
+		player.insert{name="behemoth-biter-hatching", count=20}
+		player.insert{name="Natural_Evolution_Biter-Spawner", count=10}
+		player.insert{name="Natural_Evolution_Spitter-Spawner", count=20}
+		player.insert{name="AlienControlStation_Area", count=10}
+		player.insert{name="Building_Materials", count=100}
+		player.insert{name="attractor-off", count=1}
+		player.insert{name="TerraformingStation", count=10}
+		
+	end
+end
+
