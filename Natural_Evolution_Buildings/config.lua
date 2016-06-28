@@ -45,7 +45,7 @@ NE.Conversion_Difficulty = Hard  -- Easy , Normal or Hard
 
 ----------------------------- END -------------------------------------------
 
-NE.QCCode = true
+NE.QCCode = false
 -- Used for QC
 -- Displays messages used for checking my code
 
