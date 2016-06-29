@@ -1,4 +1,11 @@
 
+if not thxbob then thxbob = {} end
+if not thxbob.lib then thxbob.lib = {} end
+
+if not NE_Buildings_Config then NE_Buildings_Config = {} end
+if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
+if not NE_Functions then NE_Functions = {} end
+
 require ("config")
 require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 require ("libs.legacy") -- From Bob's Libary 
@@ -66,23 +73,23 @@ if NE_Buildings_Config.mod.DyTechWar then
 
 
 end
+ 
    
 if NE_Buildings_Config.mod.NEEnemies then
+
 
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
 	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
 	thxbob.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
-	
-	---- Add Alien Toxin as a result if NE Enemies
-	data.raw.recipe["NE_alien-revitalization"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization_toxin.png",
-	thxbob.lib.add_recipe_result ("NE_alien-revitalization", {type="fluid", name="NE_alien_toxin", amount=5})
-	
-	-- Add Alien Toxin as a ingriedient for Bio Ammo 
---[[
-	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
-	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
-	thxbob.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
-	]]
-end
 
+end
+ 
+
+if not (NE_Buildings_Config.mod.NEEnemies or data.raw.item["Bio_Cannon_Area"]) then
+	---- Remove Alien Toxin as a result if NOT NE Enemies or Bio-Industries
+	data.raw.recipe["NE_alien-revitalization"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization.png"
+	thxbob.lib.recipe.remove_result	("NE_alien-revitalization", "NE_alien_toxin")
+	
+	
+end

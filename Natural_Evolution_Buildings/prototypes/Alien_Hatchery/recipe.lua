@@ -294,6 +294,7 @@ data:extend({
   {
     type = "recipe",
     name = "NE_alien-revitalization",
+	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant_toxin.png",
     category = "chemistry",
     energy_required = 10,
     enabled = false,
@@ -305,6 +306,7 @@ data:extend({
     results=
     {
       {type="fluid", name="NE_revitalization-solution", amount=10},
+	  {type="fluid", name="NE_alien_toxin", amount=5},
     },
     subgroup = "Evolution-fluids"
   },
@@ -339,13 +341,10 @@ data:extend({
       {type="fluid", name="NE_revitalization-solution", amount=10},
     },
     results=
-    {
-		
-		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},
-		--{type="fluid", name="NE_alien_toxin", amount=5},
-		
+    {		
+		{type="fluid", name="NE_enhanced-nutrient-solution", amount=10},		
     },
-	--icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant_toxin.png",
+
     subgroup = "Evolution-fluids"
   },
 })
