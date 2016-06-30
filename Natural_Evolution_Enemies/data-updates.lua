@@ -19,6 +19,10 @@ if NE_Enemies_Config.LongReach or NE_Enemies_Config.QCCode then
 	end	
 end 
 
+if data.raw.player.player.loot_pickup_distance < 2 then
+	data.raw.player.player.loot_pickup_distance = 4
+end	
+
 --- Difficulty settings	
 	if NE_Difficulty == nil then
       NE_Difficulty = 1
