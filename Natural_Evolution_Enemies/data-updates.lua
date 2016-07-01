@@ -19,7 +19,7 @@ if NE_Enemies_Config.LongReach or NE_Enemies_Config.QCCode then
 	end	
 end 
 
-if data.raw.player.player.loot_pickup_distance < 2 then
+if data.raw.player.player.loot_pickup_distance < 4 then
 	data.raw.player.player.loot_pickup_distance = 4
 end	
 

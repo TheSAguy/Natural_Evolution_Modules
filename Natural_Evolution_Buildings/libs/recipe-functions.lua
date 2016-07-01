@@ -107,7 +107,7 @@ end
 
 function thxbob.lib.recipe.remove_result(recipe, item)
   if data.raw.recipe[recipe] then
-   -- thxbob.lib.result_check(data.raw.recipe[recipe])
+    thxbob.lib.result_check(data.raw.recipe[recipe])
     thxbob.lib.item.remove(data.raw.recipe[recipe].results, item)
   else
     log("Recipe " .. recipe .. " does not exist.")
