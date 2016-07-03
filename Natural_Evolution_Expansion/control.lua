@@ -1,4 +1,4 @@
---- EXPANSION v.6.0.3
+--- EXPANSION v.6.0.4
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
@@ -14,8 +14,6 @@ local evo_gui = nil
 
 ---------------------------------------------
 function On_Load()
-		
-	global.load = true
 	
 ---- Expansion Initialization ----	
 	if not global.Natural_Evolution_state then
@@ -104,15 +102,6 @@ if NE_Expansion_Config.Expansion then
 
 	script.on_event(defines.events.on_tick, function(event)
 		
-		
-		if global.load == true then
-			for i, player in pairs(game.players) do 
-				player.force.reset_recipes() 
-				player.force.reset_technologies()
-			end
-			global.load = false
-		end
-			
 		---	 EvoGUI
 		evo_gui:tick()
 		
@@ -409,7 +398,8 @@ end
 
 ---------------------------------------------
 script.on_init(On_Load)
-script.on_load(On_Load)
+--script.on_load(On_Load)
+script.on_configuration_changed(On_Load)
 
 ---------------------------------------------
 --- DeBug Messages 

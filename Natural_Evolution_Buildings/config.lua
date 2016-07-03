@@ -28,7 +28,7 @@ YuokiTani - Art!!
 ---------------------------------------------------------------------------]]
 
 
-NE.LongReach = false
+NE.LongReach = true
 --- Long Reach
 --- Do you want double the vanilla reach
 

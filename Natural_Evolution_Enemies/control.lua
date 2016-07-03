@@ -46,20 +46,19 @@ script.on_event(defines.events.on_entity_died,function(event) On_Death(event) en
 ---------------------------------------------				 
 function On_Load()
 
-	global.load = true
+
 	
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-		global.update_check = true
-        global.next_collector= global.next_collector or 1
+		--global.update_check = true
+        --global.next_collector = global.next_collector or 1
 	end
 end
 
 ---------------------------------------------				 
 function On_Init()
 
-	global.load = true
-	
+
 	--- Used for Unit Turrets
 	if not global.tick then
 		global.tick = game.tick
@@ -76,20 +75,13 @@ function On_Init()
 	
 	global.launch_units={}--this is used to define which equipment is put initially
 	global.launch_units["unit-cluster"]="unit-cluster"
-
-end
-
-script.on_event(defines.events.on_tick, function(event)
 	
-	
-	if global.load == true then
-		for i, player in pairs(game.players) do 
-			player.force.reset_recipes() 
-			player.force.reset_technologies()
-		end
-		global.load = false
+	if global.ArtifactCollectors ~= nil then
+		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		global.update_check = true
+        global.next_collector = global.next_collector or 1
 	end
-end)
+end
 
 ---------------------------------------------
 function subscribe_ticker(tick)

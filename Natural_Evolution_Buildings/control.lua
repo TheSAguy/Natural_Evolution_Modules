@@ -1,4 +1,4 @@
----BUILDINGS - v.6.0.3
+---BUILDINGS - v.6.0.4
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -39,7 +39,6 @@ end)
 ---------------------------------------------				 
 function On_Load()
  
-	global.load = true
  
 ---- Evolution_MOD
 	if global.Evolution_MOD == nil then
@@ -356,14 +355,6 @@ end
 --------------------------------------------
 script.on_event(defines.events.on_tick, function(event)
 
-		if global.load == true then
-		for i, player in pairs(game.players) do 
-		player.force.reset_recipes() 
-		player.force.reset_technologies()
-		end
-		global.load = false
-		end
-
 		---	 EvoGUI
 		evo_gui:tick()
 
@@ -491,14 +482,15 @@ end
 
 ---------------------------------------------
 script.on_init(On_Load)
-script.on_load(On_Load)
+--script.on_load(On_Load)
+script.on_configuration_changed(On_Load)
 
 
 ---------------------------------------------
 
 --- DeBug Messages 
 function writeDebug(message)
-	if NE_Expansion_Config.QCCode then 
+	if NE_Buildings_Config.QCCode then 
 		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end
