@@ -28,6 +28,9 @@ YuokiTani - Art!!
 ---------------------------------------------------------------------------]]
 
 
+NE.Single_Player_Only = true
+--- Some people have reported lag and crashes with MP. So if you do, set this to false if you're playing a MP and hopefully that should work.
+--- You will not have any EVO_GUI info if set to false.
 
 NE.Expansion = true 
 -- Kinda defeats the purpose of this mod if you turn this off...

@@ -1,15 +1,15 @@
----BUILDINGS - v.6.0.4
+---BUILDINGS - v.6.0.5
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
 --require ("defines")
 require ("util")
 require ("config")
-require ("libs/EvoGUI")
+require ("libs/event")
 
-
-	---	 EvoGUI
-local evo_gui = nil
+if NE_Buildings_Config.Single_Player_Only then
+	require ("libs/EvoGUI")
+end
 
 
 ---- Evolution_MOD
@@ -37,7 +37,7 @@ end)
 
 
 ---------------------------------------------				 
-function On_Load()
+function On_Init()
  
  
 ---- Evolution_MOD
@@ -83,11 +83,6 @@ function On_Load()
           global.Total_TerraformingStations_Evo_Deduction = 0
 	end
 
-	---	 EvoGUI
-	if not evo_gui then
-		evo_gui = EvoGUI.new(Total_TerraformingStations_Evo_Deduction)
-		
-	end	
 	
 end
 
@@ -353,10 +348,9 @@ end
 
 
 --------------------------------------------
-script.on_event(defines.events.on_tick, function(event)
 
-		---	 EvoGUI
-		evo_gui:tick()
+Event.register(defines.events.on_tick, function(event)	
+
 
  -- check for biters within Alien Control Station's range
 	if (game.tick % (60 * 6) == 0) and global.beacons[1] then
@@ -365,7 +359,9 @@ script.on_event(defines.events.on_tick, function(event)
 		Control_Enemies() --control newly in range biters
 
 	end
-
+end)
+	
+Event.register(defines.events.on_tick, function(event)	
 	--	Evolution_MOD
 
 	if event.tick % update_com_count == 0 then
@@ -481,7 +477,7 @@ end
 
 
 ---------------------------------------------
-script.on_init(On_Load)
+script.on_init(On_Init)
 --script.on_load(On_Load)
 script.on_configuration_changed(On_Load)
 
@@ -496,53 +492,3 @@ function writeDebug(message)
 		end
 	end
 end
-
-if NE_Buildings_Config.QCCode then 
-
-	script.on_event(defines.events.on_player_created, function(event)
-		local player = game.players[event.player_index]
-		--start_items_A(player)
-		start_items_B(player)
-	end)
-
-
-	function start_items_A(player)
-
-		player.insert{name="iron-plate", count=100}
-		player.insert{name="electronic-circuit", count=200}
-		player.insert{name="steel-plate", count=50}
-		player.insert{name="copper-plate", count=50}
-		player.insert{name="iron-gear-wheel", count=50}
-		player.insert{name="stone", count=50}
-		player.insert{name="steel-axe", count=3}				  
-		player.insert{name="submachine-gun", count=1}
-		player.insert{name="piercing-rounds-magazine", count=150}  
-		player.insert{name="combat-shotgun", count=1}
-		player.insert{name="piercing-shotgun-shell", count=50}  
-		player.insert{name="rail", count=50}  
-		player.insert{name="burner-inserter", count=50}
-		player.insert{name="inserter", count=30}
-		player.insert{name="transport-belt", count=200}
-		player.insert{name="small-electric-pole", count=20}
-		player.insert{name="burner-mining-drill", count=20}
-		player.insert{name="stone-furnace", count=35}
-		player.insert{name="assembling-machine-1", count=20}
-
-
-	end
-	
-	function start_items_B(player)
-	
-		player.insert{name="Alien_Hatchery", count=20}
-		player.insert{name="small-biter-hatching", count=20}
-		player.insert{name="behemoth-biter-hatching", count=20}
-		player.insert{name="Natural_Evolution_Biter-Spawner", count=10}
-		player.insert{name="Natural_Evolution_Spitter-Spawner", count=20}
-		player.insert{name="AlienControlStation_Area", count=10}
-		player.insert{name="Building_Materials", count=100}
-		player.insert{name="attractor-off", count=1}
-		player.insert{name="TerraformingStation", count=10}
-		
-	end
-end
-

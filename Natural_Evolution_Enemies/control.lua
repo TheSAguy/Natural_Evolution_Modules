@@ -1,4 +1,4 @@
----ENEMIES v.6.0.4
+---ENEMIES v.6.0.5
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -169,32 +169,36 @@ function On_Death(event)
         end
     end
 	
+
+ 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
+	if (event.entity.type == "unit-spawner") then
+		if event.entity.force == game.forces.enemy then
+			writeDebug("Enemy Spawner Killed")
+			local surface = event.entity.surface
+			local radius = 30
+			local pos = event.entity.position
+			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 	
-	--[[	
-   if event.entity.type == "unit-spawner" then
-	writeDebug("YOU KILLED A SPAWNER")
-	   local surface = game.surfaces['nauvis']
-       local radius = 25
-       local pos = event.entity.position
-       local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
+		-- find nearby players
+			local players = surface.find_entities_filtered{area=area, type="player"}
 
-       -- find nearby players
-       local players = surface.find_entities_filtered{area=area, type="player"}
-
-        -- send attacks to all nearby players
-        for i,player in pairs(players) do
-            surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
-        end
-
-   end
-		]]
-
- 
-
+	           -- send attacks to all nearby players
+			for i,player in pairs(players) do
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+			end
+					
+		else
+			writeDebug("Friendly Spawner")
+			game.evolution_factor = game.evolution_factor - 0.0002 * (1-game.evolution_factor)	* (1-game.evolution_factor)		
+		end
+	
+	end
+	
+--[[
 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
 	if (event.entity.type == "unit-spawner") then
 		if event.entity.force == game.forces.enemy then
-			writeDebug("Enemy Spawner")
+			writeDebug("Enemy Spawner Killed")
 			for i = 1, #game.players, 1 do
 			player = game.players[i]
          
@@ -208,7 +212,7 @@ function On_Death(event)
 		end
 	
 	end
-	
+	]]
 
 	
 	---- Unit Launcher

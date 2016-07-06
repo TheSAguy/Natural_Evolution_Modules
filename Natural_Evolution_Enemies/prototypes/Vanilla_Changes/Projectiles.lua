@@ -119,17 +119,19 @@ data:extend(
               }
             }
           },
+		  --[[
           {
             type = "create-entity",
             entity_name = "Infected-Poison-Cloud"
           },
+		  ]]
 		  {
             type = "damage",
-            damage = {amount = 5*NE_Difficulty, type = "explosion"}
+            damage = {amount = 7*NE_Difficulty, type = "explosion"}
           },
           {
             type = "damage",
-            damage = {amount = 12*NE_Difficulty, type = "poison"}
+            damage = {amount = 14*NE_Difficulty, type = "poison"}
           }
         }
       }
@@ -293,17 +295,19 @@ data:extend(
 			type = "create-sticker",
 			sticker = "slowdown-sticker"
           },
+		  --[[
           {
             type = "create-entity",
             entity_name = "Infected-Poison-Cloud"
           },
+		  ]]
 		  {
             type = "damage",
-            damage = {amount = 10*NE_Difficulty, type = "explosion"}
+            damage = {amount = 12*NE_Difficulty, type = "explosion"}
           },
           {
             type = "damage",
-            damage = {amount = 20*NE_Difficulty, type = "poison"}
+            damage = {amount = 24*NE_Difficulty, type = "poison"}
           }
         }
       }

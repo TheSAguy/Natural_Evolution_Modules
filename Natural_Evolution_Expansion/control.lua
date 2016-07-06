@@ -1,4 +1,4 @@
---- EXPANSION v.6.0.4
+--- EXPANSION v.6.0.5
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
@@ -6,11 +6,14 @@ if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
 
 require ("util")
 require ("config")
-require ("libs/EvoGUI")
+require ("libs/event")
 
+if NE_Expansion_Config.Single_Player_Only then
+	require ("libs/EvoGUI")
+end
 
 	---	 EvoGUI
-local evo_gui = nil
+--local evo_gui = nil
 
 ---------------------------------------------
 function On_Load()
@@ -33,10 +36,10 @@ function On_Load()
 	end
 	
 	---	 EvoGUI
-	if not evo_gui then
-		evo_gui = EvoGUI.new(Expansion_State)
+	--if not evo_gui then
+	--	evo_gui = EvoGUI.new(Expansion_State)
 		
-	end	
+	--end	
 	
 	
 	if not global.Total_Phase_Evo_Deduction then
@@ -73,7 +76,7 @@ if NE_Expansion_Config.HarderEndGame then
 				end  
 					
 			-- Biters will attack the newly built Rocket Silo
-			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 1000}
+			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 1500}
 			
 			for i, player in pairs(game.players) do
 					player.print("WARNING!")
@@ -100,10 +103,10 @@ end
 ---------------------------------------------	
 if NE_Expansion_Config.Expansion then	
 
-	script.on_event(defines.events.on_tick, function(event)
-		
+	--script.on_event(defines.events.on_tick, function(event)
+	Event.register(defines.events.on_tick, function(event)		
 		---	 EvoGUI
-		evo_gui:tick()
+		--evo_gui:tick()
 		
 		--------------- Expansion ----------------------------------
 
@@ -229,8 +232,14 @@ if NE_Expansion_Config.Expansion then
 				for i = 1, #game.players, 1 do
 				player = game.players[i]
 			 
-					if player.connected and player.character.valid then
-						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1000}
+					if player then
+					if player.valid then
+					if player.character.valid then
+					if player.connected then
+						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1500}
+					end
+					end
+					end
 					end
 				end
 				writeDebug("Attack wave inbound")					

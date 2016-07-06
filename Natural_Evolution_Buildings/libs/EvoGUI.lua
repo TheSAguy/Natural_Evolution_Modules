@@ -1,10 +1,9 @@
+require ("libs/event")
 
 EvoGUI = {}
 
-function EvoGUI.new()
 
-
-    function EvoGUI:createEvoDeductionText()
+    function EvoGUI.create_Evo_Deduction_Text()
 
 		local whole_number = math.floor(global.Total_TerraformingStations_Evo_Deduction*100)
         local fractional_component = math.floor((global.Total_TerraformingStations_Evo_Deduction*100 - whole_number) * 1000)
@@ -14,7 +13,7 @@ function EvoGUI.new()
         return text
     end
     
-    function EvoGUI:setup()
+    function EvoGUI.setup()
         if remote.interfaces.EvoGUI and remote.interfaces.EvoGUI.create_remote_sensor then
             global.evo_gui.detected = true
 
@@ -25,30 +24,33 @@ function EvoGUI.new()
                 caption = "Evolution Deduction"
             })
 
-            self:updateGUI()
+            EvoGUI.update_gui()
         end
     end
 
-    function EvoGUI:tick()
-        if not global.evo_gui then global.evo_gui = {} end
+Event.register(defines.events.on_tick, function(event)	
+
+    if not global.evo_gui then global.evo_gui = {} end
 
         if not global.evo_gui.detected then
-            self:setup()
+            EvoGUI.setup()
         end
-        if global.evo_gui.detected and game.tick % 3 == 0 then
-            self:updateGUI()
+		
+		if global.evo_gui.detected and game.tick % 10 == 0 then
+            if remote.interfaces.EvoGUI then
+				EvoGUI.update_gui()
+            end
         end
-    end
 
-    function EvoGUI:updateGUI()
+end)	
+
+    function EvoGUI.update_gui()
         -- figure out what color to make the text here (if any)
         local color = { r = 255, g = 255, b = 255 }
 
-        remote.call("EvoGUI", "update_remote_sensor", "evolution_deduction", self:createEvoDeductionText(), color)
+        remote.call("EvoGUI", "update_remote_sensor", "evolution_deduction", EvoGUI.create_Evo_Deduction_Text(), color)
 
     end
 
-    return EvoGUI
-end
 
 return EvoGUI
