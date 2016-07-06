@@ -1,4 +1,4 @@
---- EXPANSION v.6.0.5
+--- EXPANSION v.6.1.0
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
@@ -8,15 +8,13 @@ require ("util")
 require ("config")
 require ("libs/event")
 
-if NE_Expansion_Config.Single_Player_Only then
+if NE_Expansion_Config.Single_Player_Only and remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
-	---	 EvoGUI
---local evo_gui = nil
 
 ---------------------------------------------
-function On_Load()
+function On_Init()
 	
 ---- Expansion Initialization ----	
 	if not global.Natural_Evolution_state then
@@ -34,25 +32,20 @@ function On_Load()
 	if not global.RocketSiloBuilt then
 	  global.RocketSiloBuilt = 0
 	end
-	
-	---	 EvoGUI
-	--if not evo_gui then
-	--	evo_gui = EvoGUI.new(Expansion_State)
-		
-	--end	
-	
+
 	
 	if not global.Total_Phase_Evo_Deduction then
           global.Total_Phase_Evo_Deduction = 0
         elseif global.Total_Phase_Evo_Deduction < 0 then
           global.Total_Phase_Evo_Deduction = 0
 	end
-	
-	
+		
 end
 
 
 ---------------------------------------------
+
+
 if NE_Expansion_Config.HarderEndGame then
 
 	---------------------------------------------
@@ -103,10 +96,9 @@ end
 ---------------------------------------------	
 if NE_Expansion_Config.Expansion then	
 
-	--script.on_event(defines.events.on_tick, function(event)
+
 	Event.register(defines.events.on_tick, function(event)		
-		---	 EvoGUI
-		--evo_gui:tick()
+
 		
 		--------------- Expansion ----------------------------------
 
@@ -229,6 +221,14 @@ if NE_Expansion_Config.Expansion then
 				end  
 			
 			---- Attack the player, since you have a silo built						
+				for _, player in pairs(game.players) do
+					if player.connected and player.valid and player.character and player.character.valid then
+						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1500}
+					end
+				end	
+					
+				--[[ 
+				-- previous code
 				for i = 1, #game.players, 1 do
 				player = game.players[i]
 			 
@@ -242,6 +242,7 @@ if NE_Expansion_Config.Expansion then
 					end
 					end
 				end
+				]]
 				writeDebug("Attack wave inbound")					
 			end 
 		end	
@@ -406,8 +407,8 @@ end
 
 
 ---------------------------------------------
-script.on_init(On_Load)
---script.on_load(On_Load)
+script.on_init(On_Init)
+script.on_load(On_Load)
 script.on_configuration_changed(On_Load)
 
 ---------------------------------------------

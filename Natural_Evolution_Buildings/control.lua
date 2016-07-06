@@ -1,4 +1,4 @@
----BUILDINGS - v.6.0.5
+---BUILDINGS - v.6.1.0
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -7,7 +7,7 @@ require ("util")
 require ("config")
 require ("libs/event")
 
-if NE_Buildings_Config.Single_Player_Only then
+if NE_Buildings_Config.Single_Player_Only and remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 

@@ -15,14 +15,15 @@ end
 
 -- cause pollution to spread farther
 data.raw["map-settings"]["map-settings"].pollution.diffusion_ratio = 0.04
-data.raw["map-settings"]["map-settings"].pollution.min_to_diffuse = 50
+data.raw["map-settings"]["map-settings"].pollution.min_to_diffuse = 10
+
 
 
 ---- Evolution Modifications ----------------------------------
 if NE_Expansion_Config.EvolutionFactor then
 	if (not NE_Expansion_Config.mod.DyTechWar) or (NE_Expansion_Config.mod.DyTechWar and NE_Expansion_Config.DyTechWar_Evo_override) then
 		-- TIME: Only 75% of vanilla
-		-- percentual increase in the evolve factor for every second (60 ticks). Default = 0.000004
+		-- percentual increase in the evolve factor for every second (60 ticks). Default = 0.000004																						 
 		data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor * 0.75
 
 		-- POLLUTION: Two times the vanilla Pollution Evolution, so don't pollute!

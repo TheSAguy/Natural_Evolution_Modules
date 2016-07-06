@@ -1,4 +1,4 @@
----ENEMIES v.6.0.5
+---ENEMIES v.6.1.0
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -46,18 +46,14 @@ script.on_event(defines.events.on_entity_died,function(event) On_Death(event) en
 ---------------------------------------------				 
 function On_Load()
 
-
-	
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-		--global.update_check = true
-        --global.next_collector = global.next_collector or 1
-	end
+	end	
+	
 end
 
 ---------------------------------------------				 
 function On_Init()
-
 
 	--- Used for Unit Turrets
 	if not global.tick then
@@ -74,13 +70,14 @@ function On_Init()
 	end
 	
 	global.launch_units={}--this is used to define which equipment is put initially
-	global.launch_units["unit-cluster"]="unit-cluster"
+	global.launch_units["unit-cluster"] = "unit-cluster"
 	
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 		global.update_check = true
         global.next_collector = global.next_collector or 1
 	end
+	
 end
 
 ---------------------------------------------
@@ -88,9 +85,9 @@ function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it
 	--it exists merely for a convenience grouping
 	script.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
-	global.ArtifactCollectors= {}
-	global.next_check=game.tick+interval
-	global.next_collector= 1
+	global.ArtifactCollectors = {}
+	global.next_check = game.tick + interval
+	global.next_collector = 1
 end
 
 
@@ -304,9 +301,8 @@ function ProcessCollector(collector)
 end
 
 ---------------------------------------------
---script.on_init(On_Load)
-script.on_load(On_Load)
 
+script.on_load(On_Load)
 script.on_configuration_changed(On_Init)
 script.on_init(On_Init)
 
@@ -317,52 +313,6 @@ function writeDebug(message)
 		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end
-	end
-end
-
-
-if NE_Enemies_Config.QCCode then 
-
-	script.on_event(defines.events.on_player_created, function(event)
-		local player = game.players[event.player_index]
-		start_items_A(player)
-		start_items_B(player)
-	end)
-
-
-	function start_items_A(player)
-
-		player.insert{name="iron-plate", count=100}
-		player.insert{name="electronic-circuit", count=200}
-		player.insert{name="steel-plate", count=50}
-		player.insert{name="copper-plate", count=50}
-		player.insert{name="iron-gear-wheel", count=50}
-		player.insert{name="stone", count=50}
-		player.insert{name="steel-axe", count=3}				  
-		player.insert{name="submachine-gun", count=1}
-		player.insert{name="piercing-rounds-magazine", count=150}  
-		player.insert{name="combat-shotgun", count=1}
-		player.insert{name="piercing-shotgun-shell", count=50}  
-		player.insert{name="rail", count=50}  
-		player.insert{name="burner-inserter", count=50}
-		player.insert{name="inserter", count=30}
-		player.insert{name="transport-belt", count=200}
-		player.insert{name="small-electric-pole", count=20}
-		player.insert{name="burner-mining-drill", count=20}
-		player.insert{name="stone-furnace", count=35}
-		player.insert{name="assembling-machine-1", count=20}
-		player.insert{name="rocket-silo", count=2}
-
-
-	end
-	
-	function start_items_B(player)
-	
-		player.insert{name="Artifact-collector-area", count=20}
-		player.insert{name="small-alien-artifact", count=100}
-		player.insert{name="Biological-bullet-magazine", count=200}
-
-		
 	end
 end
 
