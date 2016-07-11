@@ -256,7 +256,12 @@ if NE_Expansion_Config.Expansion then
 		local unit_group = game.map_settings.unit_group
 		-----
 		global.Natural_Evolution_Timer = math.random(Evolution_Timer_Min * 3600, Evolution_Timer_Max * 7200)
-		enemy_expansion.enabled = true
+		if game.evolution_factor > 0.05 then
+			enemy_expansion.enabled = true
+		else
+			enemy_expansion.enabled = false
+		end
+		
 		enemy_expansion.min_base_spacing = NE_Min_Base_Spacing
 		enemy_expansion.max_expansion_distance = NE_Max_Expansion_Distance
 		enemy_expansion.min_player_base_distance = NE_Min_Player_Base_Distance
@@ -284,7 +289,7 @@ if NE_Expansion_Config.Expansion then
 		if expansion_state ~= "peaceful" then
 			game.map_settings.path_finder.max_steps_worked_per_tick = 500
 		else
-			game.map_settings.path_finder.max_steps_worked_per_tick = 100
+			game.map_settings.path_finder.max_steps_worked_per_tick = 50
 		end
 	
 		if Expansion_State == "Peaceful" then
@@ -309,7 +314,7 @@ if NE_Expansion_Config.Expansion then
 			
 		-- Defines the values for the different Evolution States.
 		elseif Expansion_State == "Awakening" then
-			Natural_Evolution_Expansion_Settings(2,4,3,5,20,2,4,60,120,10,5,1.4)
+			Natural_Evolution_Expansion_Settings(2,4,5,5,20,2,4,60,120,10,5,1.4)
 			
 		
 		elseif Expansion_State == "Phase 1" then

@@ -20,8 +20,17 @@ if NE_Enemies_Config.LongReach or NE_Enemies_Config.QCCode then
 end 
 
 if data.raw.player.player.loot_pickup_distance < 4 then
-	data.raw.player.player.loot_pickup_distance = 4
+	data.raw.player.player.loot_pickup_distance = 4 -- default 2
 end	
+
+if data.raw.player.player.running_speed < 0.15 then
+	data.raw.player.player.running_speed = 0.25 -- default 0.15
+end	
+
+data.raw.player.player.healing_per_tick = 0.005   -- default 0.01
+
+
+
 
 --- Difficulty settings	
 	if NE_Difficulty == nil then
@@ -286,11 +295,13 @@ if NE_Enemies_Config.Spawners then
 		data.raw["turret"]["medium-worm-turret"].max_health = Health.Medium_Worm
 		data.raw["turret"]["medium-worm-turret"].attack_parameters.range = 20 + NE_Difficulty
 		data.raw["turret"]["medium-worm-turret"].resistances = Resistances.Medium_Worm
+		data.raw["turret"]["medium-worm-turret"].call_for_help_radius = 60
 		
 		data.raw["turret"]["big-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Mutated-Projectile-Worm"
 		data.raw["turret"]["big-worm-turret"].max_health = Health.Big_Worm
 		data.raw["turret"]["big-worm-turret"].attack_parameters.range = 25 + NE_Difficulty
 		data.raw["turret"]["big-worm-turret"].resistances = Resistances.Big_Worm
+		data.raw["turret"]["big-worm-turret"].call_for_help_radius = 120
 		
 	end
 	
