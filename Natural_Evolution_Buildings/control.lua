@@ -84,12 +84,17 @@ function On_Init()
 	end
 
 	
+	if global.Living_Walls_Table == nil then
+          global.Living_Walls_Table = {}
+	end
+	
+	
 end
 
 
 ---------------------------------------------
 function On_Built(event)
-     
+
    --- Terraforming Station has been built
 	if event.created_entity.name == "TerraformingStation" then
 	
@@ -116,6 +121,19 @@ function On_Built(event)
 
 		table.insert(global.beacons, newAlienControlStation)
 	end	
+	
+	--- Livinh Wall built
+	if event.created_entity.name == "ne-living-wall" then
+		if global.Living_Walls_Table == nil then
+          global.Living_Walls_Table = {}
+		end
+		writeDebug("Living Wall has been built")				
+
+		local Created_L_Wall = event.created_entity
+		
+		table.insert(global.Living_Walls_Table, Created_L_Wall)
+		
+	end
 	
 end
 
@@ -348,6 +366,31 @@ end
 
 
 --------------------------------------------
+
+
+---- Living Wall Stuff
+Event.register(defines.events.on_tick, function(event)	
+
+	if game.tick % 60 == 0 and global.Living_Walls_Table ~= nil then
+
+		for k,Living_Wall in pairs(global.Living_Walls_Table) do
+			if Living_Wall.valid then
+				local LW_Health = Living_Wall.health
+				local Regen = 0.5
+				if LW_Health < 600 then
+					New_LW_Health = LW_Health + Regen
+					Living_Wall.health = New_LW_Health 
+				end
+			else
+				table.remove(global.Living_Walls_Table, k)
+			end
+		end
+	end
+	
+
+end)
+
+
 
 Event.register(defines.events.on_tick, function(event)	
 

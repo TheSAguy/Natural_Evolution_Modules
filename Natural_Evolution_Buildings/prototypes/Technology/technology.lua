@@ -412,6 +412,10 @@ data:extend({
 				type = 'unlock-recipe',
 				recipe='NE_enhanced-alien-nutrientant'
 			},
+			{
+				type = 'unlock-recipe',
+				recipe='ne-living-wall'
+			},		
 
 		},
 		prerequisites = {"AlienUnderstanding-2"},

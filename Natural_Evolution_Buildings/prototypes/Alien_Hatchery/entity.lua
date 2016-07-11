@@ -1,7 +1,9 @@
-
+require ("prototypes.Alien_Hatchery.walls_tint")
 
 Natural_Evolution_Biter_Spawner_tint = {r=0.92, g=0.54, b=0, a=0.5}
 Natural_Evolution_Spitter_Spawner_tint = {r=0.54, g=0.92, b=0.3, a=1.0}
+
+Living_Wall = {}
 
 
 data:extend({
@@ -976,5 +978,135 @@ data:extend({
     }
   },
 
-	
+	---- Living Wall
+  {
+    type = "wall",
+    name = "ne-living-wall",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
+    flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable"},
+    collision_box = {{-0.32, -0.32}, {0.32, 0.32}},
+    selection_box = {{-0.48, -0.48}, {0.48, 0.48}},
+    minable = {mining_time = 0.5, result = "ne-living-wall"},
+    fast_replaceable_group = "wall",
+    max_health = 600,
+    repair_speed_modifier = 2,
+    corpse = "wall-remnants",
+    repair_sound = { filename = "__base__/sound/manual-repair-simple.ogg" },
+    mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
+    vehicle_impact_sound =  { filename = "__base__/sound/car-stone-impact.ogg", volume = 1.0 },
+    -- this kind of code can be used for having walls mirror the effect
+    -- there can be multiple reaction items
+    attack_reaction =
+    {
+      {
+        ---- how far the mirroring works
+        range = 4,
+        ---- what kind of damage triggers the mirroring
+        ---- if not present then anything triggers the mirroring
+        --damage_type = "physical",
+        ---- caused damage will be multiplied by this and added to the subsequent damages
+        reaction_modifier = 0.2,
+        action =
+        {
+          type = "direct",
+          action_delivery =
+          {
+            type = "instant",
+            target_effects =
+            {
+              type = "damage",
+              ---- always use at least 0.1 damage
+              damage = {amount = 5, type = "Biological"}
+            }
+          }
+        },
+      }
+    },
+    connected_gate_visualization =
+    {
+      filename = "__core__/graphics/arrows/underground-lines.png",
+      priority = "high",
+      width = 64,
+      height = 64,
+      scale = 0.5
+    },
+    resistances =
+    {
+      {
+        type = "physical",
+        decrease = 5,
+        percent = 25
+      },
+      {
+        type = "impact",
+        decrease = 45,
+        percent = 60
+      },
+      {
+        type = "explosion",
+        decrease = 10,
+        percent = 30
+      },
+      {
+        type = "fire",
+        percent = 80
+      },
+      {
+        type = "laser",
+        percent = 20
+      }
+    },
+    pictures = WallSetup(Living_Wall),
+
+    wall_diode_green =
+    {
+      filename = "__base__/graphics/entity/gate/wall-diode-green.png",
+      width = 21,
+      height = 22,
+      shift = {0, -0.78125}
+    },
+    wall_diode_green_light =
+    {
+      minimum_darkness = 0.3,
+      color = {g=1},
+      shift = {0, -0.78125},
+      size = 1,
+      intensity = 0.3
+    },
+    wall_diode_red =
+    {
+      filename = "__base__/graphics/entity/gate/wall-diode-red.png",
+      width = 21,
+      height = 22,
+      shift = {0, -0.78125}
+    },
+    wall_diode_red_light =
+    {
+      minimum_darkness = 0.3,
+      color = {r=1},
+      shift = {0, -0.78125},
+      size = 1,
+      intensity = 0.3
+    },
+
+    circuit_wire_connection_point =
+    {
+      shadow =
+      {
+        red = {0.890625, 0.828125},
+        green = {0.890625, 0.703125}
+      },
+      wire =
+      {
+        red = {-0.28125, -0.71875},
+        green = {-0.28125, -0.84375}
+      }
+    },
+    circuit_wire_max_distance = 7.5,
+    circuit_connector_sprites = get_circuit_connector_sprites({0, -0.59375}, nil, 6),
+    default_output_signal = "signal-G"
+  },
+
+
+  
 })

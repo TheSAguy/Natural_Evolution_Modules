@@ -13,4 +13,17 @@ data:extend({
 		stack_size = 10,
 	},
 
+	
+	  ---- Living Wall
+	{
+		type = "item",
+		name = "ne-living-wall",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
+		flags = {"goes-to-quickbar"},
+		subgroup = "defensive-structure",
+		order = "a[stone-wall]-a[living-wall]",
+		place_result = "ne-living-wall",
+		stack_size = 50
+  },
+
 })
