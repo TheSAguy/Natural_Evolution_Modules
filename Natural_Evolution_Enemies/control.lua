@@ -10,7 +10,7 @@ require ("config")
 	
 --- Artifact Collector
 local interval = 300 -- this is an interval between the consecutive updates of a single collector
-local radius = 25
+local artifactCollectorRadius = NE_Enemies_Config.ArtifactCollectorRadius
 local itemCount = 6
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
@@ -282,7 +282,7 @@ function ProcessCollector(collector)
      writeDebug("mod looking for items")
 	local items
 	local inventory
-	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - radius, y = collector.position.y - radius}, {x = collector.position.x + radius, y = collector.position.y + radius}}, name = "item-on-ground"})
+	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - artifactCollectorRadius, y = collector.position.y - artifactCollectorRadius}, {x = collector.position.x + artifactCollectorRadius, y = collector.position.y + artifactCollectorRadius}}, name = "item-on-ground"})
 	if #items > 0 then
 		inventory = collector.get_inventory(chestInventoryIndex)
 		local counter = 0
