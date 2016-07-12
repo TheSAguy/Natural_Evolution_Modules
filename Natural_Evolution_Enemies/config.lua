@@ -70,6 +70,11 @@ NE.BioDamage = 15
 
 
 
+NE.ArtifactCollectorRadius = 25
+-- The radius around the artifact collector that it will grab items.
+-- Note: changing the size here won't change the visual effect when placing it.
+
+
 
 --------- Used for Unit Launcher - Thanks Supercheese for this code :)
 -- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
@@ -110,9 +115,6 @@ subEnemyNumberTable["unit-cluster"][9] = 			2    --behemoth
 subEnemyNumberTable["unit-cluster"][10] =			4    --behemoth
 
 
-NE.ArtifactCollectorRadius = 25
--- The radius around the artifact collector that it will grab items.
--- Note: changing the size here won't change the visual effect when placing it.
 
 ----------------------------- END -------------------------------------------
 

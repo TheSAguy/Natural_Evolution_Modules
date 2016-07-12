@@ -74,8 +74,14 @@ NE.Min_Base_Spacing = 0          -- Amount added to the number of chunks between
 NE.Max_Expansion_Distance = 0    -- Amount added to the number of maximum number of chunks between an enemy base and any new expansion.
                                  -- Smaller values = slower (but denser) spread.
 
-NE.Min_Player_Base_Distance = 0  -- Amount added to the minimum number of chunks between player structures and new expansions.
-                                 -- Smaller values = enemy bases are built closer to the player.
+
+--- the 4 valuse below now replaces "Min_Player_Base_Distance" in 0.13 -- Smaller values = enemy bases are built closer to the player.
+--NE.building_coefficient = 0.1
+--NE.other_base_coefficient = 2.0
+--NE.neighbouring_chunk_coefficient = 0.5
+--NE.neighbouring_base_chunk_coefficient = 0.4
+								 
+								 
 
 NE.Settler_Group_Size = 1.0      -- Multiplier to the number of biters that are sent to build each new expansion.
                                  -- Larger values are probably harder, I guess?
