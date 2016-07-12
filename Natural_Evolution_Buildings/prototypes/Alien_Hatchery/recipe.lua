@@ -13,7 +13,22 @@ data:extend({
     result = "Alien_Hatchery"
   },
 
-
+---- Living Wall
+    {
+    type = "recipe",
+    name = "ne-living-wall",
+    enabled = false,
+	category = "Hatchery",
+    ingredients = 
+	{
+		{"stone-wall", 1},
+		{type="fluid", name="NE_alien_toxin", amount=2},
+	},
+    result = "ne-living-wall",
+	energy_required = 10,
+    requester_paste_multiplier = 10
+  },
+  
 
   --- Small Biter Hatching
   {
