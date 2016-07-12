@@ -63,6 +63,28 @@ NE.ScienceCost = true
 -- Doubles the cost of Science Bottles, so you need to go look for some more resources...
 
 
+NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave.
+
+NE.Evolution_Timer_Min = 0       -- Time added to the number of minutes for the evolution phase
+NE.Evolution_Timer_Max = 0       -- Larger values = harder, negative values = shorter aggressive phases.
+
+NE.Min_Base_Spacing = 0          -- Amount added to the number of chunks between each enemy base.
+                                 -- Smaller values = harder.
+
+NE.Max_Expansion_Distance = 0    -- Amount added to the number of maximum number of chunks between an enemy base and any new expansion.
+                                 -- Smaller values = slower (but denser) spread.
+
+NE.Min_Player_Base_Distance = 0  -- Amount added to the minimum number of chunks between player structures and new expansions.
+                                 -- Smaller values = enemy bases are built closer to the player.
+
+NE.Settler_Group_Size = 1.0      -- Multiplier to the number of biters that are sent to build each new expansion.
+                                 -- Larger values are probably harder, I guess?
+
+NE.Expansion_Cooldown = 1.0      -- Multiplier to the time in between each expansion attempt.
+                                 -- Stock is 5-60 minutes.  NE defaults to around 15-30 seconds depending on the Evolution level.
+
+NE.Enemy_Speedup = 1.4           -- Adjustment to the speed of enemies when they've fallen behind the group they're following.  Default is 40% speed up (same as stock).
+NE.Enemy_Speedup_Endgame = 2     -- Adjustment to the speed of enemies when they've fallen behind the group they're following.  100% speed up during armageddon!
 
 
 ----------------------------- END -------------------------------------------
