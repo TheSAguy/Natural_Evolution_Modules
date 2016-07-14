@@ -8,14 +8,15 @@ AlyxDeLunar - For his MOD Dynamic Expansion that I’ve used in my MOD.
 Albatrosv13 - For his MOD Alien Temple that I’ve used in my MOD.
 FreeER - For his MOD Mind Control that I’ve used in my MOD.
 Darkshadow1809  - For his Evolution MOD .
+Bonesbro - His tweaks to improve the mod.
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.
 Orzelek - RSO, Coding help and answering questions!
-ThaPear, Semvoz,  Billw, Adil, Rseding91 Chlue - Coding help!
-DySoch - DyTech
+ThaPear, Semvoz,  Billw, Adil, Rseding91, Chlue - Coding help!
+DySoch - DyTech, showing me what was possible
 Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
-YuokiTani - Art!!  
+YuokiTani - Art!!  Amazing work! 
 
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
@@ -50,10 +51,6 @@ NE.EvolutionFactor = true -- Changing this will only affect new games, not exist
 -- POLLUTION: Double the vanilla Pollution Evolution, so don't pollute! From 0.000015 to 0.00003
 -- KILLING EMENY SPAWNERS: 10% of Vanilla for killing Enemy Spawners. From 0.002 to 0.0002
 
-NE.DyTechWar_Evo_override = false
--- If true, will use DyTech Evolution Factor values and not Natural Evolution's values.
--- DyTech's values are linear, meaning at Difficulty 1 all 3 values are 1/4 of Vanilla and at Difficulty 5 they are 5x higher than vanilla's. 
--- N.E. on the other hand has a higher Pollution penalty, but lower Time and Killing Spawner values.
 
 NE.HarderEndGame = true 
 -- Gets a lot harder once you build a rocket silo. Expect enemies trying to destroy the rocket silo.
@@ -62,6 +59,9 @@ NE.HarderEndGame = true
 NE.ScienceCost = true 
 -- Doubles the cost of Science Bottles, so you need to go look for some more resources...
 
+
+
+--------- If you want to tweak the Expansion Phase settings, you can adjust the below. AT YOUR OWN RISK :)
 
 NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave.
 
@@ -73,16 +73,7 @@ NE.Min_Base_Spacing = 0          -- Amount added to the number of chunks between
 
 NE.Max_Expansion_Distance = 0    -- Amount added to the number of maximum number of chunks between an enemy base and any new expansion.
                                  -- Smaller values = slower (but denser) spread.
-
-
---- the 4 valuse below now replaces "Min_Player_Base_Distance" in 0.13 -- Smaller values = enemy bases are built closer to the player.
---NE.building_coefficient = 0.1
---NE.other_base_coefficient = 2.0
---NE.neighbouring_chunk_coefficient = 0.5
---NE.neighbouring_base_chunk_coefficient = 0.4
-								 
-								 
-
+								 							 
 NE.Settler_Group_Size = 1.0      -- Multiplier to the number of biters that are sent to build each new expansion.
                                  -- Larger values are probably harder, I guess?
 

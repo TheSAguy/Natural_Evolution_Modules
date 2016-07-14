@@ -7,7 +7,7 @@ if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 if not NE_Functions then NE_Functions = {} end
 
 require ("config")
-require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
@@ -45,10 +45,10 @@ if NE_Buildings_Config.mod.BobEnemies then
 end
 
 
---- Adjust N.E. to DyTech War
-if NE_Buildings_Config.mod.DyTechWar then
+--- Adjust N.E. Building spawners to N.E. Enemy Settings
+if NE_Buildings_Config.mod.NEEnemies then
 
-	-- Natural Evolution Biter Spawner Adjustment to DyTech War
+	-- Natural Evolution Biter Spawner Adjustments 
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].max_count_of_owned_units = data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].max_friends_around_to_spawn = data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].spawning_cooldown = data.raw["unit-spawner"]["biter-spawner"].spawning_cooldown
@@ -60,7 +60,7 @@ if NE_Buildings_Config.mod.DyTechWar then
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].pollution_absorbtion_absolute = data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_absolute
 
 
-	-- Natural Evolution Spitter Spawner Adjustment to DyTech
+	-- Natural Evolution Spitter Spawner Adjustments 
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].max_count_of_owned_units = data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].max_friends_around_to_spawn = data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].spawning_cooldown = data.raw["unit-spawner"]["spitter-spawner"].spawning_cooldown

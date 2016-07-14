@@ -1,6 +1,6 @@
 
 require ("config")
-require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
+require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.NE_Functions")
 
 --- Got tierd of reaching limits...
@@ -21,20 +21,19 @@ data.raw["map-settings"]["map-settings"].pollution.min_to_diffuse = 10
 
 ---- Evolution Modifications ----------------------------------
 if NE_Expansion_Config.EvolutionFactor then
-	if (not NE_Expansion_Config.mod.DyTechWar) or (NE_Expansion_Config.mod.DyTechWar and NE_Expansion_Config.DyTechWar_Evo_override) then
-		-- TIME: Only 75% of vanilla
-		-- percentual increase in the evolve factor for every second (60 ticks). Default = 0.000004																						 
-		data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor * 0.75
 
-		-- POLLUTION: Two times the vanilla Pollution Evolution, so don't pollute!
-		-- percentual increase in the evolve factor for 1000 PU. Default = 0.000015          
-		data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor * 2
+	-- TIME: Only 75% of vanilla
+	-- percentual increase in the evolve factor for every second (60 ticks). Default = 0.000004																						 
+	data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor * 0.75
 
-		-- KILLING EMENY SPAWNERS: 10% of vanilla. You are going to kill a lot more bases...
-		-- percentual increase in the evolve factor for every destroyed spawner. Default = 0.002
-		data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor * 0.1
+	-- POLLUTION: Two times the vanilla Pollution Evolution, so don't pollute!
+	-- percentual increase in the evolve factor for 1000 PU. Default = 0.000015          
+	data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor * 2
 
-	end
+	-- KILLING EMENY SPAWNERS: 10% of vanilla. You are going to kill a lot more bases...
+	-- percentual increase in the evolve factor for every destroyed spawner. Default = 0.002
+	data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].destroy_factor * 0.1
+
 end
 ---- END Evolution Modifications ----------------------------------
 

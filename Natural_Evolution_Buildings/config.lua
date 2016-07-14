@@ -12,10 +12,10 @@ Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.
 Orzelek - RSO, Coding help and answering questions!
-ThaPear, Semvoz,  Billw, Adil, Rseding91 Chlue - Coding help!
-DySoch - DyTech
+ThaPear, Semvoz,  Billw, Adil, Rseding91, Chlue - Coding help!
+DySoch - DyTech, showing me what was possible
 Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
-YuokiTani - Art!!  
+YuokiTani - Art!!  Amazing work!
 
 
 ---------------------------------------------------------------------------

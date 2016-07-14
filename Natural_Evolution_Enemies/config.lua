@@ -12,10 +12,10 @@ Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.
 Orzelek - RSO, Coding help and answering questions!
-ThaPear, Semvoz,  Billw, Adil, Rseding91 Chlue - Coding help!
-DySoch - DyTech
+ThaPear, Semvoz,  Billw, Adil, Rseding91, Chlue - Coding help!
+DySoch - DyTech, showing me what was possible
 Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
-YuokiTani - Art!!  
+YuokiTani - Art!!  Amazing work!
 
 
 ---------------------------------------------------------------------------
@@ -56,8 +56,7 @@ NE.Spawners = true
 -- Do you want tweaks made to the spawners - Mainly more units around the spawners 
 -- More units around the spawners 
 -- Vanilla Spawners will be higher than currently.
--- Bob's be higher and will be be adjusted to match DyTech's it you're playing with DyTech
--- Currently not adjusting DyTech, until tested a little more 
+-- Bob's will be higher 
 -- Do you want tweaks made to the games biter & spitters
 -- Lower Pollution levels before attacking.
 -- New Enemy Units and a new worm
@@ -70,9 +69,9 @@ NE.BioDamage = 15
 
 
 
-NE.ArtifactCollectorRadius = 25
+NE.ArtifactCollectorRadius = 30
 -- The radius around the artifact collector that it will grab items.
--- Note: changing the size here won't change the visual effect when placing it.
+-- Note: technically it's not a radius, but a square pickup area, but the visual overlay is a circle and not a square.
 
 
 

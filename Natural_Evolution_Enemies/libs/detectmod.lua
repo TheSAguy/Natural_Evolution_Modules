@@ -6,19 +6,6 @@ if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
 -----------------------
 
---Detect DyTechWar
-if data.raw["unit"]["young-berserk-biter"] ~= nil and data.raw["unit"]["young-berserk-spitter"] ~= nil then
-	NE_Enemies_Config.mod.DyTechWar=true
-else 
-	NE_Enemies_Config.mod.DyTechWar=false
-end
-
---Detect DyTech Core
-if data.raw["item"]["stone-gear-wheel"] ~= nil then
-	NE_Enemies_Config.mod.DyTechCore=true
-else 
-	NE_Enemies_Config.mod.DyTechCore=false
-end
 
 --Detect Bob's Enemies
 if data.raw["unit"]["bob-big-piercing-biter"] ~= nil and data.raw["unit"]["bob-big-electric-spitter"] ~= nil then
