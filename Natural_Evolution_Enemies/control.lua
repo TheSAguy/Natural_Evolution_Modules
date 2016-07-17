@@ -218,7 +218,53 @@ function On_Death(event)
 		SpawnLaunchedUnits(event.entity)
 	end
 	
-
+    -- check for civil war 
+    if event.force ~= nil then
+        if ((event.force.name == "enemy") and (event.force.name == event.entity.force.name)) then
+            if NE_Enemies_Config.allowCivilWar then
+                -- let the enemy die but prevent loot drop
+                event.entity.destroy()
+            else 
+                -- check if player or player things are near the area of combat
+                local playerBattle = false
+                local battleRadius = 60
+                local playerObject = event.entity.surface.find_nearest_enemy({position = event.entity.position,
+                                                                              max_distance = battleRadius,
+                                                                              force = "enemy"})
+                if playerObject ~= nil then
+                    playerBattle = true
+                end
+                
+                -- get bitters that have been affected by splash damage
+                local deathRadius = 8
+                local enemyEntities = event.entity.surface.find_entities_filtered({area = {{x = event.entity.position.x - deathRadius, y = event.entity.position.y - deathRadius}, 
+                                                                                           {x = event.entity.position.x + deathRadius, y = event.entity.position.y + deathRadius}}, 
+                                                                                   force = "enemy"})
+                if not playerBattle then
+                    -- kill around dead enemy to quell war
+                    for _, enemyEntity in ipairs(enemyEntities) do
+                        if (enemyEntity.type == "unit") and (enemyEntity.has_command()) then
+                            enemyEntity.destroy()
+                        end
+                    end
+                else
+                    -- retarget each splash affected bitter to enemies first, then they might turn on themselves once everything around them is dead
+                    local searchRadius = 60
+                    for _, enemyEntity in ipairs(enemyEntities) do
+                        local newTarget = event.entity.surface.find_nearest_enemy({position = enemyEntity.position,
+                                                                                   max_distance = searchRadius,
+                                                                                   force = "enemy"})
+                        if newTarget ~= nil then
+                            if (enemyEntity.type == "unit") and (enemyEntity.has_command()) then
+                                enemyEntity.set_command({type=defines.command.attack, 
+                                                         target=newTarget})
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
 
 end
 
