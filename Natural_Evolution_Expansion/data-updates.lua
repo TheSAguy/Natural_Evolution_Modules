@@ -26,9 +26,9 @@ if NE_Expansion_Config.EvolutionFactor then
 	-- percentual increase in the evolve factor for every second (60 ticks). Default = 0.000004																						 
 	data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].time_factor * 0.75
 
-	-- POLLUTION: Two times the vanilla Pollution Evolution, so don't pollute!
+	-- POLLUTION: 2.5 times the vanilla Pollution Evolution, so don't pollute!
 	-- percentual increase in the evolve factor for 1000 PU. Default = 0.000015          
-	data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor * 2
+	data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor = data.raw["map-settings"]["map-settings"]["enemy_evolution"].pollution_factor * 2.5
 
 	-- KILLING EMENY SPAWNERS: 10% of vanilla. You are going to kill a lot more bases...
 	-- percentual increase in the evolve factor for every destroyed spawner. Default = 0.002

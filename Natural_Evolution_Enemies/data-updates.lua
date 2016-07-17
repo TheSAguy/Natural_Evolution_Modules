@@ -293,7 +293,15 @@ if NE_Enemies_Config.Spawners then
 		data.raw["unit"]["bob-titan-spitter"].pollution_to_join_attack = 6500
 		data.raw["unit"]["bob-behemoth-spitter"].pollution_to_join_attack = 7500
 		data.raw["unit"]["bob-leviathan-spitter"].pollution_to_join_attack = 8500	
-
+		
+		--- Bob's Worms
+		data.raw["turret"]["bob-big-explosive-worm-turret"].call_for_help_radius = 120
+		data.raw["turret"]["bob-big-fire-worm-turret"].call_for_help_radius = 120
+		data.raw["turret"]["bob-big-poison-worm-turret"].call_for_help_radius = 120
+		data.raw["turret"]["bob-big-piercing-worm-turret"].call_for_help_radius = 120
+		data.raw["turret"]["bob-big-electric-worm-turret"].call_for_help_radius = 120
+		data.raw["turret"]["bob-giant-worm-turret"].call_for_help_radius = 200
+		
 		if NE_Enemies_Config.Spawners then
 			require "prototypes.Vanilla_Changes.Bobs_Spawners"				
 		end
