@@ -1,4 +1,4 @@
----ENEMIES v.6.1.0
+---ENEMIES v.6.1.1
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -160,7 +160,7 @@ function On_Death(event)
     end
 	
 
- 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
+ 	--------- If you kill a spawner, enemies will attach you.
 	if (event.entity.type == "unit-spawner") then
 		if event.entity.force == game.forces.enemy then
 			writeDebug("Enemy Spawner Killed")
@@ -179,7 +179,7 @@ function On_Death(event)
 					
 		else
 			writeDebug("Friendly Spawner")
-			game.evolution_factor = game.evolution_factor - 0.0002 * (1-game.evolution_factor)	* (1-game.evolution_factor)		
+			
 		end
 	
 	end

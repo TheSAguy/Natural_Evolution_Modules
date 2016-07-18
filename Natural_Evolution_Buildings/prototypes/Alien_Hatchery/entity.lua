@@ -798,8 +798,8 @@ data:extend({
     loot =
     {
       {
-        count_min = 5,
-        count_max = 15,
+        count_min = 1,
+        count_max = 1,
         item = "alien-artifact",
         probability = 1
       },
@@ -919,8 +919,8 @@ data:extend({
     loot =
     {
       {
-        count_min = 5,
-        count_max = 15,
+        count_min = 1,
+        count_max = 1,
         item = "alien-artifact",
         probability = 1
       },

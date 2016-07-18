@@ -1,4 +1,4 @@
----BUILDINGS - v.6.1.0
+---BUILDINGS - v.6.1.1
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -21,9 +21,11 @@ local max_terra_count = 30
 
 
 ---------------------------------------------
-script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
-script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+
+script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
+script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
+script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
+
 
 
 ---------------------------------------------
@@ -156,9 +158,40 @@ function On_Remove(event)
 	if event.entity.name == "AlienControlStation" then
 		ACS_Remove()
 	end
+
 	
 end
 
+function On_Death(event)
+
+	--- Terraforming Station has been removed
+	if event.entity.name == "TerraformingStation" then
+      
+		if global.numTerraformingStations > 0 then
+			global.numTerraformingStations = global.numTerraformingStations - 1
+		else
+			global.numTerraformingStations = 0
+		end
+	
+      global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
+	end
+    
+   --- Alien Control Station has been removed
+	if event.entity.name == "AlienControlStation" then
+		ACS_Remove()
+	end
+	
+ 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
+	if (event.entity.type == "unit-spawner") then
+		if event.entity.force == game.forces.enemy then
+			writeDebug("Enemy Spawner Killed")
+		else
+			writeDebug("Friendly Spawner")
+			game.evolution_factor = game.evolution_factor - (game.map_settings.enemy_evolution.destroy_factor * (1-game.evolution_factor)^2)		
+		end
+	
+	end
+end
 
 ---- Removes the Alien Control Station ---
 function ACS_Remove(index)
