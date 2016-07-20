@@ -85,7 +85,7 @@ if NE_Buildings_Config.mod.NEEnemies then
 
 end
  
-
+--[[
 if not (NE_Buildings_Config.mod.NEEnemies or data.raw.item["Bio_Cannon_Area"]) then
 	---- Remove Alien Toxin as a result if NOT NE Enemies or Bio-Industries
 	data.raw.recipe["NE_alien-revitalization"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization.png"
@@ -93,3 +93,4 @@ if not (NE_Buildings_Config.mod.NEEnemies or data.raw.item["Bio_Cannon_Area"]) t
 	
 	
 end
+]]

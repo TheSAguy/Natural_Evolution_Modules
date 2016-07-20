@@ -97,8 +97,24 @@ end
 ---------------------------------------------
 function On_Built(event)
 
+local entity = event.created_entity
+
+	
+	--- Living Wall built
+	if entity and entity.name == "ne-living-wall" then
+		if global.Living_Walls_Table == nil then
+          global.Living_Walls_Table = {}
+		end
+		writeDebug("Living Wall has been built")				
+
+		local Created_L_Wall = event.created_entity
+		
+		table.insert(global.Living_Walls_Table, Created_L_Wall)
+		
+	end
+
    --- Terraforming Station has been built
-	if event.created_entity.name == "TerraformingStation" then
+	if entity and entity.name == "TerraformingStation" then
 	
 	if global.numTerraformingStations < 0 then
 		global.numTerraformingStations = 0
@@ -113,29 +129,19 @@ function On_Built(event)
 
 	
 	--- Alien Control Station has been built
-	local newAlienControlStation
 	
-	if event.created_entity.name == "AlienControlStation_Area" then
-		local surface = event.created_entity.surface
-		local force = event.created_entity.force
+	
+	if entity and entity.name == "AlienControlStation_Area" then
+	local newAlienControlStation
+	local surface = event.created_entity.surface
+	local force = event.created_entity.force
+		
 		newAlienControlStation = surface.create_entity({name = "AlienControlStation", position = event.created_entity.position, force = force})
 		event.created_entity.destroy()
 
 		table.insert(global.beacons, newAlienControlStation)
 	end	
-	
-	--- Livinh Wall built
-	if event.created_entity.name == "ne-living-wall" then
-		if global.Living_Walls_Table == nil then
-          global.Living_Walls_Table = {}
-		end
-		writeDebug("Living Wall has been built")				
 
-		local Created_L_Wall = event.created_entity
-		
-		table.insert(global.Living_Walls_Table, Created_L_Wall)
-		
-	end
 	
 end
 
