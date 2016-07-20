@@ -65,8 +65,8 @@ NE.ScienceCost = true
 
 NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave.
 
-NE.Evolution_Timer_Min = 0       -- Time added to the number of minutes for the evolution phase
-NE.Evolution_Timer_Max = 0       -- Larger values = harder, negative values = shorter aggressive phases.
+NE.Evolution_Timer = 5       -- Time Per Phase in Min. At 0% Evo, peace will be 30min and expansion will be at 5min Formula: Evolution_Timer + ((1-game.evolution_factor) * 100 * Evolution_Timer)^2 
+
 
 NE.Min_Base_Spacing = 0          -- Amount added to the number of chunks between each enemy base.
                                  -- Smaller values = harder.
@@ -77,8 +77,6 @@ NE.Max_Expansion_Distance = 0    -- Amount added to the number of maximum number
 NE.Settler_Group_Size = 1.0      -- Multiplier to the number of biters that are sent to build each new expansion.
                                  -- Larger values are probably harder, I guess?
 
-NE.Expansion_Cooldown = 1.0      -- Multiplier to the time in between each expansion attempt.
-                                 -- Stock is 5-60 minutes.  NE defaults to around 15-30 seconds depending on the Evolution level.
 
 NE.Enemy_Speedup = 1.4           -- Adjustment to the speed of enemies when they've fallen behind the group they're following.  Default is 40% speed up (same as stock).
 NE.Enemy_Speedup_Endgame = 2     -- Adjustment to the speed of enemies when they've fallen behind the group they're following.  100% speed up during armageddon!
