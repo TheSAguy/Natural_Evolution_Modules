@@ -51,6 +51,14 @@ function On_Init()
 end
 
 
+function On_Load()
+	
+	if not global.Peace_Timer then
+		global.Peace_Timer = 0
+	end
+	
+end
+
 ---------------------------------------------
 
 
@@ -608,7 +616,7 @@ end
 
 ---------------------------------------------
 script.on_init(On_Init)
-script.on_load(On_Load)
+--script.on_load(On_Load)
 script.on_configuration_changed(On_Load)
 
 ---------------------------------------------
