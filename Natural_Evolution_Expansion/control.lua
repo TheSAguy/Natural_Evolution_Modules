@@ -46,6 +46,7 @@ function On_Init()
           global.Total_Phase_Evo_Deduction = 0
 	end
 		
+	---  Initial Expansion Values	
 	Expansion_Initial_Setup() 
 	
 end
@@ -65,8 +66,7 @@ end
 if NE_Expansion_Config.HarderEndGame then
 
 	---------------------------------------------
-	script.on_event(defines.events.on_robot_built_entity, function(event) On_Built(event) end)
-	script.on_event(defines.events.on_built_entity, function(event) On_Built(event) end)
+	script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
 	script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 ---------------------------------------------
@@ -115,8 +115,8 @@ function Expansion_Initial_Setup()
 	local unit_group = game.map_settings.unit_group
 		
 	enemy_expansion.enabled = false -- Disable Initial Expansion	
-	enemy_expansion.min_base_spacing = 5 -- Vanilla 3
-	enemy_expansion.max_expansion_distance = 6 -- Vanilla 7
+	enemy_expansion.min_base_spacing = 3 -- Vanilla 3
+	enemy_expansion.max_expansion_distance = 5 -- Vanilla 7
 	enemy_expansion.building_coefficient = 0.8 -- vanilla 0.1
 	enemy_expansion.other_base_coefficient = 2.2 -- vanilla 2.0
 	enemy_expansion.neighbouring_chunk_coefficient = 0.6 -- vanilla 0.5
@@ -136,7 +136,7 @@ end
 ---------------------------------------------	
 if NE_Expansion_Config.Expansion then	
 
-	local evolution_Timer_Peace = (NE_Expansion_Config.Evolution_Timer * 3600) 
+	local evolution_Timer_Peace = (NE_Expansion_Config.Evolution_Timer * 3600) * 2 -- Default is 10min. There will thus be a random 0-10min peace after each Phase.
 	--- global.Peace_Timer is only used for EvoGui value
 	global.Peace_Timer = evolution_Timer_Peace
 	
@@ -154,7 +154,6 @@ if NE_Expansion_Config.Expansion then
 
 			--- Check every minute. Nothing will happen until at leasst 5% evolution
 			if (game.tick % (evolution_Timer_Peace)  == 0) and (game.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
-			--if (game.tick % (60 * 60)  == 0) and (game.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
 				
 				if global.Peaceful_Sleep_Time > 0 then
 					-- Extra sleep between expansion waves
@@ -301,7 +300,7 @@ if NE_Expansion_Config.Expansion then
 		-----
 
 		--Current formula 5 min + 0min @ 0% evo and 10min @ 100% evo. So A phase can last 5 - 15min.
-		global.Natural_Evolution_Timer = (evolution_Timer + math.floor(game.evolution_factor * evolution_Timer) * 2)
+		global.Natural_Evolution_Timer = (evolution_Timer + (game.evolution_factor * evolution_Timer) * 2)
 		
 		if game.evolution_factor > 0.05 then
 			enemy_expansion.enabled = true
@@ -329,8 +328,7 @@ if NE_Expansion_Config.Expansion then
 		
 		
 		
-		writeDebug("The Global.Natural_Evolution_Timer is: " .. global.Natural_Evolution_Timer)	
-		
+		writeDebug("The Global.Natural_Evolution_Timer is: " .. global.Natural_Evolution_Timer)		
 		writeDebug("The Min Cooldown is: " .. (global.Natural_Evolution_Timer / 4))
 		writeDebug("The Max Cooldown is: " .. (global.Natural_Evolution_Timer / 2))
 	
@@ -350,7 +348,7 @@ if NE_Expansion_Config.Expansion then
 			game.map_settings.path_finder.max_steps_worked_per_tick = 50
 		end
 
-		-- default expansion settings for the "Awakening" state
+		-- default expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
 
 		local min_Base_Spacing = 3 -- Vanilla 3
 		local max_Expansion_Distance = 5 -- Vanilla 7
@@ -380,7 +378,7 @@ if NE_Expansion_Config.Expansion then
 						game.evolution_factor = game.evolution_factor		
 					else
 										
-						local Evo_Deduction = (0.002 * (1 - game.evolution_factor))
+						local Evo_Deduction = (0.0035 * (1 - game.evolution_factor))
 						
 						game.evolution_factor = game.evolution_factor - Evo_Deduction
 						global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction

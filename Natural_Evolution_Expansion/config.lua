@@ -67,7 +67,7 @@ NE.ScienceCost = true
 
 NE.Reduce_Evo_on_Phase_Change = true
 
-NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave.
+NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave. (This will not show up in EvoGUI)
 
 NE.Evolution_Timer = 5       -- Time Per Phase in Min. At 0% Evo, peace will be 30min and expansion will be at 5min Formula: Evolution_Timer + ((1-game.evolution_factor) * 100 * Evolution_Timer)^2 
 
