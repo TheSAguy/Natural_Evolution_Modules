@@ -23,7 +23,11 @@ EvoGUI = {}
 
     function EvoGUI.create_Evolution_Text()
         local text = "Evolution State: " .. global.Natural_Evolution_state
+		if global.Natural_Evolution_state ~= "Peaceful" then
         text = text .. " ( " .. math.floor(global.Natural_Evolution_Timer / 60) .. "s )"
+		else 
+		text = text .. " ( " .. math.floor(global.Peace_Timer / 60) .. "s )"
+		end
         return text
     end
 

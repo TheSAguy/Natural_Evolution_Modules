@@ -32,6 +32,7 @@ YuokiTani - Art!!  Amazing work!
 NE.Single_Player_Only = true
 --- Some people have reported lag and crashes with MP. So if you do, set this to false if you're playing a MP and hopefully that should work.
 --- You will not have any EVO_GUI info if set to false.
+--- AGAIN MP should be fixed now, but if you do have problems, try setting this to false.
 
 NE.Expansion = true 
 -- Kinda defeats the purpose of this mod if you turn this off...
@@ -47,7 +48,7 @@ NE.LongReach = false
 
 NE.EvolutionFactor = true -- Changing this will only affect new games, not existing games
 -- Do you want to use the new Evolution rate settings of:
--- TIME: Only 75% of vanilla. From 0.000004 to 0.000003
+-- TIME: Only 87.5% of vanilla. From 0.000004 to 0.0000035
 -- POLLUTION: Double the vanilla Pollution Evolution, so don't pollute! From 0.000015 to 0.00003
 -- KILLING EMENY SPAWNERS: 10% of Vanilla for killing Enemy Spawners. From 0.002 to 0.0002
 
@@ -61,7 +62,10 @@ NE.ScienceCost = true
 
 
 
+
 --------- If you want to tweak the Expansion Phase settings, you can adjust the below. AT YOUR OWN RISK :)
+
+NE.Reduce_Evo_on_Phase_Change = true
 
 NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave.
 
