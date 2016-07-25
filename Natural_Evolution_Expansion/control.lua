@@ -1,4 +1,4 @@
---- EXPANSION v.6.1.1
+--- EXPANSION v.6.1.2
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
@@ -29,9 +29,7 @@ function On_Init()
 	if not global.Natural_Evolution_Counter then
 		global.Natural_Evolution_Counter = 0
 	end
-	if not global.Peaceful_Sleep_Time then
-		global.Peaceful_Sleep_Time = 0
-	end
+
 
 	--- Harder End Game
 	---- Rocket Silo Initialization ----	
@@ -58,6 +56,7 @@ function On_Change()
 		global.Peace_Timer = 0
 	end
 	
+
 end
 
 ---------------------------------------------
@@ -118,9 +117,9 @@ function Expansion_Initial_Setup()
 	enemy_expansion.min_base_spacing = 3 -- Vanilla 3
 	enemy_expansion.max_expansion_distance = 5 -- Vanilla 7
 	enemy_expansion.building_coefficient = 0.8 -- vanilla 0.1
-	enemy_expansion.other_base_coefficient = 2.2 -- vanilla 2.0
+	enemy_expansion.other_base_coefficient = 2.1 -- vanilla 2.0
 	enemy_expansion.neighbouring_chunk_coefficient = 0.6 -- vanilla 0.5
-	enemy_expansion.neighbouring_base_chunk_coefficient = 0.6 -- vanilla 0.4	
+	enemy_expansion.neighbouring_base_chunk_coefficient = 0.5 -- vanilla 0.4	
 	enemy_expansion.settler_group_min_size = 2 -- Vanilla 5
 	enemy_expansion.settler_group_max_size = 4 -- Vanilla 20
 	---
@@ -155,11 +154,6 @@ if NE_Expansion_Config.Expansion then
 			--- Check every minute. Nothing will happen until at leasst 5% evolution
 			if (game.tick % (evolution_Timer_Peace)  == 0) and (game.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
 				
-				if global.Peaceful_Sleep_Time > 0 then
-					-- Extra sleep between expansion waves
-					global.Peaceful_Sleep_Time = global.Peaceful_Sleep_Time - 1
-					return
-				end
 				
 				--- Should generate a random value between 0 and 200
 				local expansionChance = math.random(math.floor((game.evolution_factor * 100) + global.Natural_Evolution_Counter), math.floor((game.evolution_factor * 100) + 100))
@@ -254,7 +248,6 @@ if NE_Expansion_Config.Expansion then
 					global.Natural_Evolution_Timer = global.Natural_Evolution_Timer - 1
 				else
 					Natural_Evolution_SetExpansionLevel("Peaceful")
-					global.Peaceful_Sleep_Time = NE_Expansion_Config.Extra_Peaceful_Time
 					global.Peace_Timer = evolution_Timer_Peace
 				end	
 			end
@@ -354,9 +347,9 @@ if NE_Expansion_Config.Expansion then
 		local max_Expansion_Distance = 5 -- Vanilla 7
 		
 		local building_coefficient = 0.6 -- vanilla 0.1
-		local other_base_coefficient = 2.2 -- vanilla 2.0
+		local other_base_coefficient = 2.1 -- vanilla 2.0
 		local neighbouring_chunk_coefficient = 0.6 -- vanilla 0.5
-		local neighbouring_base_chunk_coefficient = 0.5 -- vanilla 0.4
+		local neighbouring_base_chunk_coefficient = 0.45 -- vanilla 0.4
 		
 		
 		local settler_Group_Min_Size = 2 -- Vanilla 5
@@ -401,7 +394,7 @@ if NE_Expansion_Config.Expansion then
 			max_Expansion_Distance = max_Expansion_Distance + 1
 		
 			building_coefficient = 0.4 -- vanilla 0.1
-			other_base_coefficient = 2.1 -- vanilla 2.0
+			other_base_coefficient = 2.0 -- vanilla 2.0
 			neighbouring_chunk_coefficient = 0.55 -- vanilla 0.5
 			neighbouring_base_chunk_coefficient = 0.45 -- vanilla 0.4			
 		
@@ -419,7 +412,7 @@ if NE_Expansion_Config.Expansion then
 			building_coefficient = 0.4 -- vanilla 0.1
 			other_base_coefficient = 2.0 -- vanilla 2.0
 			neighbouring_chunk_coefficient = 0.55 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.45 -- vanilla 0.4	
+			neighbouring_base_chunk_coefficient = 0.4 -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 4
 			settler_Group_Max_Size = 7
@@ -596,8 +589,7 @@ if NE_Expansion_Config.Expansion then
 			-- adjust the expansion settings based on any customizations from the config settings, making sure they stay above zero
 
 			evolution_Timer = (NE_Expansion_Config.Evolution_Timer * 3600)
-			min_Base_Spacing = math.max(1, min_Base_Spacing + NE_Expansion_Config.Min_Base_Spacing)
-			max_Expansion_Distance = math.max(1, max_Expansion_Distance + NE_Expansion_Config.Max_Expansion_Distance)
+
 			settler_Group_Min_Size = math.max(1, settler_Group_Min_Size * NE_Expansion_Config.Settler_Group_Size)
 			settler_Group_Max_Size = math.max(1, settler_Group_Max_Size * NE_Expansion_Config.Settler_Group_Size)
 

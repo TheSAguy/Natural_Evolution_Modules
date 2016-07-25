@@ -67,17 +67,8 @@ NE.ScienceCost = true
 
 NE.Reduce_Evo_on_Phase_Change = true
 
-NE.Extra_Peaceful_Time = 0       -- Additional number of minutes to wait in Peaceful phase before checking for an expansion wave. (This will not show up in EvoGUI)
-
-NE.Evolution_Timer = 5       -- Time Per Phase in Min. At 0% Evo, peace will be 30min and expansion will be at 5min Formula: Evolution_Timer + ((1-game.evolution_factor) * 100 * Evolution_Timer)^2 
-
-
-NE.Min_Base_Spacing = 0          -- Amount added to the number of chunks between each enemy base.
-                                 -- Smaller values = harder.
-
-NE.Max_Expansion_Distance = 0    -- Amount added to the number of maximum number of chunks between an enemy base and any new expansion.
-                                 -- Smaller values = slower (but denser) spread.
-								 							 
+NE.Evolution_Timer = 5       -- Time Per Phase in Min. At 0% Evo, Each Phase will be 5Min at 100% Evo Each Phase will be 15Min. Formula: Natural_Evolution_Timer = (evolution_Timer + (game.evolution_factor * evolution_Timer) * 2) 
+							 							 
 NE.Settler_Group_Size = 1.0      -- Multiplier to the number of biters that are sent to build each new expansion.
                                  -- Larger values are probably harder, I guess?
 
