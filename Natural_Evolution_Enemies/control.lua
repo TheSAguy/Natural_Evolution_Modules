@@ -1,4 +1,4 @@
----ENEMIES v.6.1.1
+---ENEMIES v.6.1.2
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -165,10 +165,17 @@ function On_Death(event)
 		if event.entity.force == game.forces.enemy then
 			writeDebug("Enemy Spawner Killed")
 			local surface = event.entity.surface
+			local force = event.entity.force
 			local radius = 30
 			local pos = event.entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
+
+		
 	
+
+			--local boom = surface.create_entity{name = "NE-Acid-explosion", position = pos, force =  force}
+
+			
 		-- find nearby players
 			local players = surface.find_entities_filtered{area=area, type="player"}
 
@@ -184,7 +191,8 @@ function On_Death(event)
 	
 	end
 	
---[[
+--[[ Moved to NE Buildings
+
 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
 	if (event.entity.type == "unit-spawner") then
 		if event.entity.force == game.forces.enemy then
@@ -217,6 +225,8 @@ function On_Death(event)
 	if (event.entity.name == "unit-cluster") then
 		SpawnLaunchedUnits(event.entity)
 	end
+	
+
 	
     -- check for civil war 
     if event.force ~= nil then

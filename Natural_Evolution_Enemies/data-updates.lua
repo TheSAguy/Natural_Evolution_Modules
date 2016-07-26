@@ -76,7 +76,7 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("poison",data.raw["turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("poison",data.raw["ammo-turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("poison",data.raw["electric-turret"],(25/NE_Difficulty))	
-	NE_Functions.Add_Damage_Resists("poison",data.raw["transport-belt"],(25/NE_Difficulty))
+	NE_Functions.Add_Damage_Resists("poison",data.raw["inserter"],(25/NE_Difficulty))
 	
 	-- Acid
 	NE_Functions.Add_Damage_Resists("acid",data.raw["wall"],(25/NE_Difficulty))
@@ -87,6 +87,7 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("acid",data.raw["ammo-turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))	
+	NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Difficulty))
 	
 	--- Make Rail immune to damage
 	NE_Functions.Add_Damage_Resists("poison",data.raw["straight-rail"],100)	

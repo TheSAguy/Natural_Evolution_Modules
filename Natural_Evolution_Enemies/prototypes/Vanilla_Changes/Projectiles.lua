@@ -1,5 +1,6 @@
 
 require "config"
+require("prototypes.Vanilla_Changes.Explosions")
 
 --- Difficulty settings	
 	if NE_Difficulty == nil then
@@ -119,12 +120,12 @@ data:extend(
               }
             }
           },
-		  --[[
+		  
           {
             type = "create-entity",
             entity_name = "Infected-Poison-Cloud"
           },
-		  ]]
+		  
 		  {
             type = "damage",
             damage = {amount = 7*NE_Difficulty, type = "explosion"}
@@ -295,12 +296,12 @@ data:extend(
 			type = "create-sticker",
 			sticker = "slowdown-sticker"
           },
-		  --[[
+
           {
             type = "create-entity",
             entity_name = "Infected-Poison-Cloud"
           },
-		  ]]
+
 		  {
             type = "damage",
             damage = {amount = 12*NE_Difficulty, type = "explosion"}
@@ -485,6 +486,80 @@ data:extend(
     },
     action_frequency = 30
   },
+  
+
+   --- Huge Acid Splash Continue
+   {
+    type = "explosion",
+    name = "NE-Acid-explosion",
+    flags = {"not-on-map"},
+    acceleration = 0.005,
+    created_effect =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          {
+            type = "create-entity",
+            entity_name = "acid-explosion-huge"
+          },
+		  {
+            type = "create-entity",
+            entity_name = "acid-splash"
+          },
+          {
+            type = "nested-result",
+            action =
+            {
+				{
+				type = "area",
+				perimeter = 1,
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 21, type = "acid" }}}},
+				{
+				type = "area",
+				perimeter = 2,
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
+				{
+				type = "area",
+				perimeter = 3,
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
+				{
+				type = "area",
+				perimeter = 4,
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
+				{
+				type = "area",
+				perimeter = 5,
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}},
+				{
+				type = "area",
+				perimeter = 6,
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}}
+            },
+          }
+        }
+      }
+    },
+    light = {intensity = 0.5, size = 4},
+    animations =
+    {{
+      filename = "__base__/graphics/entity/grenade/grenade-shadow.png",
+      frame_count = 1,
+      width = 1,
+      height = 1,
+      priority = "high"
+    }}
+  },
+  
 }
 )
 
