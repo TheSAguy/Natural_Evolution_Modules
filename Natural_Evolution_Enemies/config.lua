@@ -119,7 +119,7 @@ subEnemyNumberTable["unit-cluster"][10] =			4    --behemoth
 
 ----------------------------- END -------------------------------------------
 
-NE.QCCode = false
+NE.QCCode = true
 -- Used for QC
 -- Displays messages used for checking my code
 

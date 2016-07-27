@@ -29,6 +29,15 @@ local filters = {["small-alien-artifact"] = 1,
 				 ["small-alien-artifact-purple"] = 1
 				 }
 
+local replaceableTiles =
+{
+  ["grass"] = "grass-medium",
+  ["grass-medium"] = "grass-dry",
+  ["grass-dry"] = "sand",
+  ["sand"] = "sand-dark",
+  ["sand-dark"] = "dirt",
+  ["dirt"] = "dirt-dark"		
+}
 
 ---------------------------------------------
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
@@ -170,11 +179,7 @@ function On_Death(event)
 			local pos = event.entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 
-		
-	
-
 			--local boom = surface.create_entity{name = "NE-Acid-explosion", position = pos, force =  force}
-
 			
 		-- find nearby players
 			local players = surface.find_entities_filtered{area=area, type="player"}
@@ -190,6 +195,38 @@ function On_Death(event)
 		end
 	
 	end
+	
+	 	--------- An Enemy Unit Died
+	if event.entity.force == game.forces.enemy and (event.entity.type == "unit") then
+	
+		local surface = event.entity.surface
+		local force = event.entity.force
+		local pos = event.entity.position	
+		local currentTilename = surface.get_tile(pos.x, pos.y).name
+		local New_tiles = {}
+		writeDebug("The current tile is: " .. currentTilename)
+	    	
+		 for xxx=-2,2 do
+			for yyy=-2,2 do
+				new_position = {x = pos.x + xxx,y = pos.y + yyy}
+				currentTilename = surface.get_tile(new_position.x, new_position.y).name
+				if replaceableTiles[currentTilename] then
+				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
+				end
+			end
+		end
+	--[[	
+		if replaceableTiles[currentTilename] then
+		table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=pos})	
+			--surface.set_tiles({{name=replaceableTiles[currentTilename], position=pos},{name=replaceableTiles[currentTilename], position={x=pos.x+1, y=pos.y+1}},{name=replaceableTiles[currentTilename], position={x=pos.x-1, y=pos.y+1}},{name=replaceableTiles[currentTilename], position={x=pos.x+1, y=pos.y-1}},{name=replaceableTiles[currentTilename], position={x=pos.x-1, y=pos.y-1}}})
+		end
+		]]
+		
+	surface.set_tiles(New_tiles)
+	end
+	
+	
+	
 	
 --[[ Moved to NE Buildings
 
