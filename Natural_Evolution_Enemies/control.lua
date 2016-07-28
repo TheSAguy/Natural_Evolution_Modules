@@ -6,7 +6,6 @@ if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 require ("util")
 require ("config")
 
-
 	
 --- Artifact Collector
 local interval = 300 -- this is an interval between the consecutive updates of a single collector
@@ -29,6 +28,7 @@ local filters = {["small-alien-artifact"] = 1,
 				 ["small-alien-artifact-purple"] = 1
 				 }
 
+				 --- Scorched Earth
 local replaceableTiles =
 {
   ["grass"] = "grass-medium",
@@ -36,9 +36,11 @@ local replaceableTiles =
   ["grass-dry"] = "sand",
   ["sand"] = "sand-dark",
   ["sand-dark"] = "dirt",
-  ["dirt"] = "dirt-dark"		
+  ["dirt"] = "dirt-dark"
+  --["dirt-dark"] = "small-fire-cloud"
 }
 
+-- Auto Rail repair
 local autoRepair = 
 {
     ["straight-rail"] = true,
@@ -46,7 +48,25 @@ local autoRepair =
     ["rail-signal"] = true,
     ["rail-chain-signal"] = true 
 }
-    --"train-stop" = true }
+
+
+local tree_names = {
+	["tree-01"] = true,
+	["tree-02"] = true,
+	["tree-02-red"] = true,
+	["tree-03"] = true,
+	["tree-04"] = true,
+	["tree-05"] = true,
+	["tree-06"] = true,
+	["tree-06-brown"] = true,
+	["tree-07"] = true,
+	["tree-08"] = true,
+	["tree-08-brown"] = true,
+	["tree-08-red"] = true,
+	["tree-09"] = true,
+	["tree-09-brown"] = true,
+	["tree-09-red"] = true
+}
 
 
 ---------------------------------------------
@@ -157,6 +177,32 @@ function On_Remove(event)
         end
     end
 
+		
+ 	--------- Did you really just kill that tree...
+	if (event.entity.type == "tree") and tree_names[event.entity.name] then
+	--if (event.entity.type == "tree") and (event.entity.name == "tree-01" or event.entity.name == "tree-02" or event.entity.name == "tree-02-red" or event.entity.name == "tree-03" or event.entity.name == "tree-04" or event.entity.name == "tree-05" or event.entity.name == "tree-06" or event.entity.name == "tree-06-brown" or event.entity.name == "tree-07" or event.entity.name == "tree-08" or event.entity.name == "tree-08-red" or event.entity.name == "tree-08-brown" or event.entity.name == "tree-09" or event.entity.name == "tree-09-red" or event.entity.name == "tree-09-brown") then
+	
+		writeDebug("Tree Mined")
+		local surface = event.entity.surface
+		local force = event.entity.force
+		local radius = 30
+		local pos = event.entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		-- find nearby players
+		local players = surface.find_entities_filtered{area=area, type="player"}
+		local attack_chance = math.random(100)
+
+		writeDebug("Attack Chance: "..attack_chance)
+		writeDebug("Evo Factor: "..math.floor(game.evolution_factor*100))
+		if attack_chance < math.floor(game.evolution_factor*100) then
+			-- send attacks to all nearby players
+			for i,player in pairs(players) do
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+			end
+		end
+
+	end
+	
 end
 
 function On_Death(event)
@@ -198,7 +244,11 @@ function On_Death(event)
 			for i,player in pairs(players) do
 				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
 			end
-					
+			
+			if NE_Enemies_Config.Scorched_Earth then
+				Scorched_Earth(surface, pos, 4)		
+			end
+			
 		else
 			writeDebug("Friendly Spawner")
 			
@@ -208,57 +258,37 @@ function On_Death(event)
 	
 	 	--------- An Enemy Unit Died
 	if event.entity.force == game.forces.enemy and (event.entity.type == "unit") then
+		local surface = event.entity.surface
+		local pos = event.entity.position	
+
+		if NE_Enemies_Config.Scorched_Earth then
+			Scorched_Earth(surface, pos, 2)		
+		end
+	end
+
 	
+ 	--------- Did you really just kill that tree...
+	if (event.entity.type == "tree") and tree_names[event.entity.name] then
+	--if (event.entity.type == "tree") and (event.entity.name == "tree-01" or event.entity.name == "tree-02" or event.entity.name == "tree-02-red" or event.entity.name == "tree-03" or event.entity.name == "tree-04" or event.entity.name == "tree-05" or event.entity.name == "tree-06" or event.entity.name == "tree-06-brown" or event.entity.name == "tree-07" or event.entity.name == "tree-08" or event.entity.name == "tree-08-red" or event.entity.name == "tree-08-brown" or event.entity.name == "tree-09" or event.entity.name == "tree-09-red" or event.entity.name == "tree-09-brown") then
+		writeDebug("Tree Killed")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local pos = event.entity.position	
-		local currentTilename = surface.get_tile(pos.x, pos.y).name
-		local New_tiles = {}
-		writeDebug("The current tile is: " .. currentTilename)
-	    	
-		 for xxx=-2,2 do
-			for yyy=-2,2 do
-				new_position = {x = pos.x + xxx,y = pos.y + yyy}
-				currentTilename = surface.get_tile(new_position.x, new_position.y).name
-				if replaceableTiles[currentTilename] then
-				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
-				end
+		local radius = 30
+		local pos = event.entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		-- find nearby players
+		local players = surface.find_entities_filtered{area=area, type="player"}
+		local attack_chance = math.random(100)
+
+		writeDebug("Attack Chance: "..attack_chance)
+		writeDebug("Evo Factor: "..math.floor(game.evolution_factor*100))
+		if attack_chance < math.floor(game.evolution_factor*100) then
+			-- send attacks to all nearby players
+			for i,player in pairs(players) do
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
 			end
 		end
-	--[[	
-		if replaceableTiles[currentTilename] then
-		table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=pos})	
-			--surface.set_tiles({{name=replaceableTiles[currentTilename], position=pos},{name=replaceableTiles[currentTilename], position={x=pos.x+1, y=pos.y+1}},{name=replaceableTiles[currentTilename], position={x=pos.x-1, y=pos.y+1}},{name=replaceableTiles[currentTilename], position={x=pos.x+1, y=pos.y-1}},{name=replaceableTiles[currentTilename], position={x=pos.x-1, y=pos.y-1}}})
-		end
-		]]
-		
-	surface.set_tiles(New_tiles)
 	end
-	
-	
-	
-	
---[[ Moved to NE Buildings
-
-	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
-	if (event.entity.type == "unit-spawner") then
-		if event.entity.force == game.forces.enemy then
-			writeDebug("Enemy Spawner Killed")
-			for i = 1, #game.players, 1 do
-			player = game.players[i]
-         
-				if player.connected and player.character.valid then
-					player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100/#game.players)), unit_search_distance = 600}
-				end
-			end						
-		else
-				writeDebug("Friendly Spawner")
-				game.evolution_factor = game.evolution_factor - 0.0002 * (1-game.evolution_factor)	* (1-game.evolution_factor)		
-		end
-	
-	end
-	]]
-
 	
 	---- Unit Launcher
 	if global.tick < event.tick then
@@ -269,6 +299,7 @@ function On_Death(event)
 		end
 		global.tick = global.tick + 1800
 	end
+	
 	if (event.entity.name == "unit-cluster") then
 		SpawnLaunchedUnits(event.entity)
 	end
@@ -295,62 +326,12 @@ function On_Death(event)
         end
     end
 
-	--[[ this chunk of code is not needed due to 13.10 friendly-fire doesn't cause aggressiveness
-    -- check for civil war 
-    if event.force ~= nil then
-        if ((event.force.name == "enemy") and (event.force.name == event.entity.force.name)) then
-            if NE_Enemies_Config.allowCivilWar then
-                -- let the enemy die but prevent loot drop
-                event.entity.destroy()
-            else 
-                -- check if player or player things are near the area of combat
-                local playerBattle = false
-                local battleRadius = 60
-                local playerObject = event.entity.surface.find_nearest_enemy({position = event.entity.position,
-                                                                              max_distance = battleRadius,
-                                                                              force = "enemy"})
-                if playerObject ~= nil then
-                    playerBattle = true
-                end
-                
-                -- get bitters that have been affected by splash damage
-                local deathRadius = 8
-                local enemyEntities = event.entity.surface.find_entities_filtered({area = {{x = event.entity.position.x - deathRadius, y = event.entity.position.y - deathRadius}, 
-                                                                                           {x = event.entity.position.x + deathRadius, y = event.entity.position.y + deathRadius}}, 
-                                                                                   force = "enemy"})
-                if not playerBattle then
-                    -- kill around dead enemy to quell war
-                    for _, enemyEntity in ipairs(enemyEntities) do
-                        if (enemyEntity.type == "unit") and (enemyEntity.has_command()) then
-                            enemyEntity.destroy()
-                        end
-                    end
-                else
-                    -- retarget each splash affected bitter to enemies first, then they might turn on themselves once everything around them is dead
-                    local searchRadius = 60
-                    for _, enemyEntity in ipairs(enemyEntities) do
-                        local newTarget = event.entity.surface.find_nearest_enemy({position = enemyEntity.position,
-                                                                                   max_distance = searchRadius,
-                                                                                   force = "enemy"})
-                        if newTarget ~= nil then
-                            if (enemyEntity.type == "unit") and (enemyEntity.has_command()) then
-                                enemyEntity.set_command({type=defines.command.attack, 
-                                                         target=newTarget})
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-    ]]--
 end
 
 
 
 ---------------------------------------------
 -- Spawn Launched Units
-
 function SpawnLaunchedUnits(enemy)
 	local subEnemyName = subEnemyNameTable[enemy.name]
 	if not subEnemyName then
@@ -417,6 +398,28 @@ function ProcessCollector(collector)
 	end
 end
 
+
+---------------------------------------------
+
+function Scorched_Earth(surface, pos, size)
+	--- Turn the terrain into desert
+	local currentTilename = surface.get_tile(pos.x, pos.y).name
+	local New_tiles = {}
+	writeDebug("The current tile is: " .. currentTilename)
+	    	
+	 for xxx=-size,size do
+		for yyy=-size,size do
+			new_position = {x = pos.x + xxx,y = pos.y + yyy}
+			currentTilename = surface.get_tile(new_position.x, new_position.y).name
+			if replaceableTiles[currentTilename] then
+			table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
+			end
+		end
+	end
+	
+	surface.set_tiles(New_tiles)	
+
+end
 ---------------------------------------------
 
 script.on_load(On_Load)

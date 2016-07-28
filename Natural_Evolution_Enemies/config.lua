@@ -73,9 +73,9 @@ NE.ArtifactCollectorRadius = 30
 -- The radius around the artifact collector that it will grab items.
 -- Note: technically it's not a radius, but a square pickup area, but the visual overlay is a circle and not a square.
 
--- 13.10 fixed issue
--- NE.allowCivilWar = false
--- biters will start killing each other occasionally
+
+NE.Scorched_Earth = true
+-- Turns terrain into desert when you kill an enemy on it.
 
 
 --------- Used for Unit Launcher - Thanks Supercheese for this code :)
@@ -120,7 +120,7 @@ subEnemyNumberTable["unit-cluster"][10] =			4    --behemoth
 
 ----------------------------- END -------------------------------------------
 
-NE.QCCode = true
+NE.QCCode = false
 -- Used for QC
 -- Displays messages used for checking my code
 
