@@ -39,6 +39,16 @@ local replaceableTiles =
   ["dirt"] = "dirt-dark"		
 }
 
+local autoRepair = 
+{
+    ["straight-rail"] = true,
+    ["curved-rail"] = true,
+    ["rail-signal"] = true,
+    ["rail-chain-signal"] = true 
+}
+    --"train-stop" = true }
+
+
 ---------------------------------------------
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
 script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
@@ -263,8 +273,28 @@ function On_Death(event)
 		SpawnLaunchedUnits(event.entity)
 	end
 	
+    -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
+    if (event.force == game.forces.enemy) and autoRepair[event.entity.name] then
+        local repairPosition = event.entity.position
+        local repairName = event.entity.name
+        local repairForce = event.entity.force
+        local repairDirection = event.entity.direction
+        event.entity.destroy()
+        local entityRepaired = game.surfaces[1].create_entity({position=repairPosition,
+                                                               name=repairName,
+                                                               direction=repairDirection,
+                                                               force=repairForce})
+        local enemies = game.surfaces[1].find_entities_filtered({area = {{x=repairPosition.x-20, y=repairPosition.y-20},
+                                                                         {x=repairPosition.x+20, y=repairPosition.y+20}},
+                                                                 type = "unit"})
+        for i=1, #enemies do
+            local enemy = enemies[i]
+            enemy.set_command({type=defines.command.wander,
+                               distraction=defines.distraction.by_enemy})
+        end
+    end
 
-	
+	--[[ this chunk of code is not needed due to 13.10 friendly-fire doesn't cause aggressiveness
     -- check for civil war 
     if event.force ~= nil then
         if ((event.force.name == "enemy") and (event.force.name == event.entity.force.name)) then
@@ -312,7 +342,7 @@ function On_Death(event)
             end
         end
     end
-
+    ]]--
 end
 
 
