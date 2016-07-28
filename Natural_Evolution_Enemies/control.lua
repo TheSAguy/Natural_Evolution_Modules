@@ -286,7 +286,8 @@ function On_Death(event)
                                                                force=repairForce})
         local enemies = game.surfaces[1].find_entities_filtered({area = {{x=repairPosition.x-20, y=repairPosition.y-20},
                                                                          {x=repairPosition.x+20, y=repairPosition.y+20}},
-                                                                 type = "unit"})
+                                                                 type = "unit",
+                                                                 force = game.forces.enemy})
         for i=1, #enemies do
             local enemy = enemies[i]
             enemy.set_command({type=defines.command.wander,
