@@ -73,7 +73,8 @@ NE.ArtifactCollectorRadius = 30
 -- The radius around the artifact collector that it will grab items.
 -- Note: technically it's not a radius, but a square pickup area, but the visual overlay is a circle and not a square.
 
-NE.allowCivilWar = false
+-- 13.10 fixed issue
+-- NE.allowCivilWar = false
 -- biters will start killing each other occasionally
 
 
