@@ -28,7 +28,7 @@ local filters = {["small-alien-artifact"] = 1,
 				 ["small-alien-artifact-purple"] = 1
 				 }
 
-				 --- Scorched Earth
+--- Scorched Earth
 local replaceableTiles =
 {
   ["grass"] = "grass-medium",
@@ -50,6 +50,7 @@ local autoRepair =
 }
 
 
+--- Killing Trees
 local tree_names = {
 	["tree-01"] = true,
 	["tree-02"] = true,
@@ -125,8 +126,7 @@ end
 
 
 ---------------------------------------------
-script.on_event(defines.events.on_trigger_created_entity,
-function(event)
+script.on_event(defines.events.on_trigger_created_entity, function(event)
 	--- Unit Cluster created by Worm Launcher Projectile 
 	local ent=event.entity;
     if global.launch_units[ent.name] then
@@ -180,12 +180,11 @@ function On_Remove(event)
 		
  	--------- Did you really just kill that tree...
 	if (event.entity.type == "tree") and tree_names[event.entity.name] then
-	--if (event.entity.type == "tree") and (event.entity.name == "tree-01" or event.entity.name == "tree-02" or event.entity.name == "tree-02-red" or event.entity.name == "tree-03" or event.entity.name == "tree-04" or event.entity.name == "tree-05" or event.entity.name == "tree-06" or event.entity.name == "tree-06-brown" or event.entity.name == "tree-07" or event.entity.name == "tree-08" or event.entity.name == "tree-08-red" or event.entity.name == "tree-08-brown" or event.entity.name == "tree-09" or event.entity.name == "tree-09-red" or event.entity.name == "tree-09-brown") then
 	
 		writeDebug("Tree Mined")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local radius = 30
+		local radius = 15
 		local pos = event.entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
@@ -197,7 +196,7 @@ function On_Remove(event)
 		if attack_chance < math.floor(game.evolution_factor*100) then
 			-- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*30)), unit_search_distance = 600}
 			end
 		end
 
@@ -269,11 +268,10 @@ function On_Death(event)
 	
  	--------- Did you really just kill that tree...
 	if (event.entity.type == "tree") and tree_names[event.entity.name] then
-	--if (event.entity.type == "tree") and (event.entity.name == "tree-01" or event.entity.name == "tree-02" or event.entity.name == "tree-02-red" or event.entity.name == "tree-03" or event.entity.name == "tree-04" or event.entity.name == "tree-05" or event.entity.name == "tree-06" or event.entity.name == "tree-06-brown" or event.entity.name == "tree-07" or event.entity.name == "tree-08" or event.entity.name == "tree-08-red" or event.entity.name == "tree-08-brown" or event.entity.name == "tree-09" or event.entity.name == "tree-09-red" or event.entity.name == "tree-09-brown") then
 		writeDebug("Tree Killed")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local radius = 30
+		local radius = 15
 		local pos = event.entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
@@ -285,7 +283,7 @@ function On_Death(event)
 		if attack_chance < math.floor(game.evolution_factor*100) then
 			-- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*30)), unit_search_distance = 600}
 			end
 		end
 	end
@@ -400,14 +398,17 @@ end
 
 
 ---------------------------------------------
-
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
 	local currentTilename = surface.get_tile(pos.x, pos.y).name
 	local New_tiles = {}
 	writeDebug("The current tile is: " .. currentTilename)
-	    	
-	 for xxx=-size,size do
+	--[[
+	if 	currentTilename == "dirt-dark" then
+		surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+	end	
+	]]
+	for xxx=-size,size do
 		for yyy=-size,size do
 			new_position = {x = pos.x + xxx,y = pos.y + yyy}
 			currentTilename = surface.get_tile(new_position.x, new_position.y).name
@@ -417,7 +418,8 @@ function Scorched_Earth(surface, pos, size)
 		end
 	end
 	
-	surface.set_tiles(New_tiles)	
+	surface.set_tiles(New_tiles)
+	
 
 end
 ---------------------------------------------
