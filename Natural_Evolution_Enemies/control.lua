@@ -1,4 +1,4 @@
----ENEMIES v.6.1.2
+---ENEMIES v.6.1.3
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -9,8 +9,8 @@ require ("config")
 	
 --- Artifact Collector
 local interval = 300 -- this is an interval between the consecutive updates of a single collector
-local artifactCollectorRadius = NE_Enemies_Config.ArtifactCollectorRadius
-local itemCount = 6
+local artifactCollectorRadius = NE_Enemies_Config.Artifact_Collector_Radius
+local itemCount = NE_Enemies_Config.Artifact_Collector_Item_Count
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
                  ["alien-artifact"] = 1,

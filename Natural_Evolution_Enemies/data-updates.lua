@@ -90,26 +90,11 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Difficulty))
 	
 	--- Make Rail immune to damage
-	-- NE_Functions.Add_Damage_Resists("poison",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("poison",data.raw["curved-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("acid",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("acid",data.raw["curved-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("physical",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("physical",data.raw["curved-rail"],100)		
-	-- NE_Functions.Add_Damage_Resists("explosion",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("explosion",data.raw["curved-rail"],100)		
-	-- NE_Functions.Add_Damage_Resists("laser",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("laser",data.raw["curved-rail"],100)		
-	-- NE_Functions.Add_Damage_Resists("impact",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("impact",data.raw["curved-rail"],100)		
-	-- NE_Functions.Add_Damage_Resists("fire",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("fire",data.raw["curved-rail"],100)		
-	-- NE_Functions.Add_Damage_Resists("electric",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("electric",data.raw["curved-rail"],100)		
-	-- NE_Functions.Add_Damage_Resists("bob-pierce",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("bob-pierce",data.raw["curved-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("Biological",data.raw["straight-rail"],100)	
-	-- NE_Functions.Add_Damage_Resists("Biological",data.raw["curved-rail"],100)	
+	NE_Functions.Add_ALL_Damage_Resists(data.raw["straight-rail"],100)	
+	NE_Functions.Add_Damage_Resists(data.raw["curved-rail"],100)	
+	NE_Functions.Add_Damage_Resists(data.raw["rail-signal"],100)	
+	NE_Functions.Add_Damage_Resists(data.raw["rail-chain-signal"],100)	
+
 
 end
 

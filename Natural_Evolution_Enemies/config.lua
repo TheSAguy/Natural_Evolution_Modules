@@ -69,9 +69,11 @@ NE.BioDamage = 15
 
 
 
-NE.ArtifactCollectorRadius = 30
+NE.Artifact_Collector_Radius = 30
 -- The radius around the artifact collector that it will grab items.
 -- Note: technically it's not a radius, but a square pickup area, but the visual overlay is a circle and not a square.
+NE.Artifact_Collector_Item_Count = 8
+-- The number of artifacts that will be collected per sweep.
 
 
 NE.Scorched_Earth = true

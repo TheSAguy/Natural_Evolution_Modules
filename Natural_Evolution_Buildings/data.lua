@@ -57,10 +57,11 @@ require("prototypes.Thumper.recipe")
 ---------------------------------------------------------------
 
 
-    --- Other - Building Materials, Attractors
+    --- Other - Building Materials, Attractors & Damage Type
 
 require("prototypes.Other.item")
 require("prototypes.Other.recipe")
+require("prototypes.Other.damage-type") 
 ---------------------------------------------------------------
 
 

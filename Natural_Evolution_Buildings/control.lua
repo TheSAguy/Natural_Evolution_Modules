@@ -1,4 +1,4 @@
----BUILDINGS - v.6.1.1
+---BUILDINGS - v.6.1.3
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 

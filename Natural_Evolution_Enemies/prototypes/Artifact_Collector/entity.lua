@@ -1,6 +1,6 @@
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 
-local CollectorRadius = NE_Enemies_Config.ArtifactCollectorRadius
+local CollectorRadius = NE_Enemies_Config.Artifact_Collector_Radius
 
 require ("util")
 require ("config")

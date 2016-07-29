@@ -17,16 +17,31 @@ function NE_Functions.Ingredient_Multiplier(Input, Multiplier)
 	end
 end	
 	
--- Adds a resitance to an entity
+-- Adds a resitance of a single damage type to an entity
 function NE_Functions.Add_Damage_Resists(D_Type,Raw,Percent)
 	if data.raw["damage-type"][D_Type] ~= nil then
-		local Resist = {type = D_Type,percent = Percent}
+		local Resist = {type = D_Type, percent = Percent}
 		for i,d in pairs(Raw) do
-			if d.resistances ==nil then d.resistances={} end
+			if d.resistances == nil then d.resistances = {} end
 			table.insert(d.resistances, Resist)
 		end
 	end
 end
+
+-- Adds a resitance of all damage types to an entity
+function NE_Functions.Add_ALL_Damage_Resists(Raw,Percent)
+	if Raw ~= nil then	
+		for k, v in pairs(data.raw["damage-type"]) do
+		
+			local Resist = {type = v.name, percent = Percent} -- or you could use k, and not v.name
+			for i,d in pairs(Raw) do
+				if d.resistances == nil then d.resistances = {} end
+				table.insert(d.resistances, Resist)
+			end
+		end
+	end
+end
+
 
 
 ---- Makes it that Biters don't attack rail. Side effect though is that rails don't show up on mini-map or blue-prints
