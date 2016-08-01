@@ -1,4 +1,4 @@
---- EXPANSION v.6.1.2
+--- EXPANSION v.6.1.5
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
@@ -113,7 +113,7 @@ function Expansion_Initial_Setup()
 	local enemy_expansion = game.map_settings.enemy_expansion
 	local unit_group = game.map_settings.unit_group
 		
-	enemy_expansion.enabled = false -- Disable Initial Expansion	
+	enemy_expansion.enabled = false -- Disable Initial Expansion - Vanilla = True	
 	enemy_expansion.min_base_spacing = 3 -- Vanilla 3
 	enemy_expansion.max_expansion_distance = 5 -- Vanilla 7
 	enemy_expansion.building_coefficient = 0.8 -- vanilla 0.1
@@ -295,6 +295,8 @@ if NE_Expansion_Config.Expansion then
 		--Current formula 5 min + 0min @ 0% evo and 10min @ 100% evo. So A phase can last 5 - 15min.
 		global.Natural_Evolution_Timer = (evolution_Timer + (game.evolution_factor * evolution_Timer) * 2)
 		
+		
+		-- Below 5% evolution, no expansion
 		if game.evolution_factor > 0.05 then
 			enemy_expansion.enabled = true
 		else
@@ -346,10 +348,10 @@ if NE_Expansion_Config.Expansion then
 		local min_Base_Spacing = 3 -- Vanilla 3
 		local max_Expansion_Distance = 5 -- Vanilla 7
 		
-		local building_coefficient = 0.6 -- vanilla 0.1
-		local other_base_coefficient = 2.1 -- vanilla 2.0
-		local neighbouring_chunk_coefficient = 0.6 -- vanilla 0.5
-		local neighbouring_base_chunk_coefficient = 0.45 -- vanilla 0.4
+		local building_coefficient = 0.6 - (global.Natural_Evolution_Counter / 250) -- vanilla 0.1
+		local other_base_coefficient = 2.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+		local neighbouring_chunk_coefficient = 0.6 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+		local neighbouring_base_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4
 		
 		
 		local settler_Group_Min_Size = 2 -- Vanilla 5
@@ -393,10 +395,10 @@ if NE_Expansion_Config.Expansion then
 			-----
 			max_Expansion_Distance = max_Expansion_Distance + 1
 		
-			building_coefficient = 0.4 -- vanilla 0.1
-			other_base_coefficient = 2.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.55 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.45 -- vanilla 0.4			
+			building_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.55 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4			
 		
 			settler_Group_Min_Size = 2
 			settler_Group_Max_Size = 4
@@ -409,10 +411,10 @@ if NE_Expansion_Config.Expansion then
 			-----
 			max_Expansion_Distance = max_Expansion_Distance + 3
 			
-			building_coefficient = 0.4 -- vanilla 0.1
-			other_base_coefficient = 2.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.55 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.4 -- vanilla 0.4	
+			building_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.55 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 4
 			settler_Group_Max_Size = 7
@@ -426,10 +428,10 @@ if NE_Expansion_Config.Expansion then
 
 			max_Expansion_Distance = max_Expansion_Distance + 5
 			
-			building_coefficient = 0.2 -- vanilla 0.1
-			other_base_coefficient = 2.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.45 -- vanilla 0.4		
+			building_coefficient = 0.2 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4		
 			
 			settler_Group_Min_Size = 6
 			settler_Group_Max_Size = 10
@@ -443,10 +445,10 @@ if NE_Expansion_Config.Expansion then
 
 			max_Expansion_Distance = max_Expansion_Distance + 7
 			
-			building_coefficient = 0.15 -- vanilla 0.1
-			other_base_coefficient = 2.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.4 -- vanilla 0.4	
+			building_coefficient = 0.15 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 8
 			settler_Group_Max_Size = 13
@@ -461,10 +463,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 1
 			max_Expansion_Distance = max_Expansion_Distance + 8
 			
-			building_coefficient = 0.1 -- vanilla 0.1
-			other_base_coefficient = 2.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.4 -- vanilla 0.4	
+			building_coefficient = 0.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 10
 			settler_Group_Max_Size = 16
@@ -479,10 +481,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 1
 			max_Expansion_Distance = max_Expansion_Distance + 9
 			
-			building_coefficient = 0.1 -- vanilla 0.1
-			other_base_coefficient = 2.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.35 -- vanilla 0.4	
+			building_coefficient = 0.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.35 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 12
 			settler_Group_Max_Size = 19
@@ -497,10 +499,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 1
 			max_Expansion_Distance = max_Expansion_Distance + 10
 			
-			building_coefficient = 0.1 -- vanilla 0.1
-			other_base_coefficient = 1.8 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.45 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.35 -- vanilla 0.4
+			building_coefficient = 0.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 1.8 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.35 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4
 			
 			settler_Group_Min_Size = 14
 			settler_Group_Max_Size = 22
@@ -515,10 +517,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 1
 			max_Expansion_Distance = max_Expansion_Distance + 11
 			
-			building_coefficient = 0.08 -- vanilla 0.1
-			other_base_coefficient = 1.8 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.4 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.32 -- vanilla 0.4	
+			building_coefficient = 0.08 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 1.8 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.32 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 16
 			settler_Group_Max_Size = 25
@@ -533,10 +535,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 2
 			max_Expansion_Distance = max_Expansion_Distance + 13
 			
-			building_coefficient = 0.06 -- vanilla 0.1
-			other_base_coefficient = 1.6 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.38 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.32 -- vanilla 0.4	
+			building_coefficient = 0.06 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 1.6 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.38 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.32 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 18
 			settler_Group_Max_Size = 28
@@ -551,10 +553,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 2
 			max_Expansion_Distance = max_Expansion_Distance + 15
 			
-			building_coefficient = 0.04 -- vanilla 0.1
-			other_base_coefficient = 1.4 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.34 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.3 -- vanilla 0.4	
+			building_coefficient = 0.04 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 1.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.34 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.3 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 30
 			settler_Group_Max_Size = 75
@@ -570,10 +572,10 @@ if NE_Expansion_Config.Expansion then
 			min_Base_Spacing = min_Base_Spacing - 2
 			max_Expansion_Distance = max_Expansion_Distance + 20
 			
-			building_coefficient = 0.04 -- vanilla 0.1
-			other_base_coefficient = 1.0 -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.3 -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.3 -- vanilla 0.4	
+			building_coefficient = 0.04 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
+			other_base_coefficient = 1.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+			neighbouring_chunk_coefficient = 0.3 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+			neighbouring_base_chunk_coefficient = 0.3 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
 			
 			settler_Group_Min_Size = 100
 			settler_Group_Max_Size = 200

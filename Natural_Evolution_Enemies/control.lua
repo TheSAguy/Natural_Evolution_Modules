@@ -1,4 +1,4 @@
----ENEMIES v.6.1.3
+---ENEMIES v.6.1.5
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -37,7 +37,6 @@ local replaceableTiles =
   ["sand"] = "sand-dark",
   ["sand-dark"] = "dirt",
   ["dirt"] = "dirt-dark"
-  --["dirt-dark"] = "small-fire-cloud"
 }
 
 -- Auto Rail repair
@@ -47,6 +46,26 @@ local autoRepair =
     ["curved-rail"] = true,
     ["rail-signal"] = true,
     ["rail-chain-signal"] = true 
+}
+
+-- List of Entities that can catch fire if destoyed
+local catchFire = 
+{
+    ["furnace"] = true,
+    ["generator"] = true,
+    ["offshore-pump"] = true,
+	["inserter"] = true,
+	["radar"] = true,
+	["assembling-machine"] = true,
+	["car"] = true,
+	["solar-panel"] = true,
+	["locomotive"] = true,
+	["cargo-wagon"] = true,
+	["lab"] = true,
+	["rocket-silo"] = true,
+	["roboport"] = true,
+	["accumulator"] = true,
+	["beacon"] = true
 }
 
 
@@ -324,6 +343,17 @@ function On_Death(event)
         end
     end
 
+	
+	--- Buildings catch fire if destroyed.
+	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
+	if catchFire[event.entity.type] then
+		local surface = event.entity.surface
+		local force = event.entity.force	
+		local pos = event.entity.position
+		surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+	end	
+	
+	
 end
 
 
@@ -400,14 +430,10 @@ end
 ---------------------------------------------
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
-	local currentTilename = surface.get_tile(pos.x, pos.y).name
+	--local currentTilename = surface.get_tile(pos.x, pos.y).name
 	local New_tiles = {}
-	writeDebug("The current tile is: " .. currentTilename)
-	--[[
-	if 	currentTilename == "dirt-dark" then
-		surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
-	end	
-	]]
+	--writeDebug("The current tile is: " .. currentTilename)
+
 	for xxx=-size,size do
 		for yyy=-size,size do
 			new_position = {x = pos.x + xxx,y = pos.y + yyy}
@@ -417,10 +443,7 @@ function Scorched_Earth(surface, pos, size)
 			end
 		end
 	end
-	
 	surface.set_tiles(New_tiles)
-	
-
 end
 ---------------------------------------------
 

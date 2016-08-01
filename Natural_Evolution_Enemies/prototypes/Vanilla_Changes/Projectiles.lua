@@ -567,7 +567,7 @@ data:extend(
     show_when_smoke_off = true,
     animation =
     {
-      filename = "__bobenemies__/graphics/entities/fire.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
       priority = "low",
       width = 30,
       height = 50,
