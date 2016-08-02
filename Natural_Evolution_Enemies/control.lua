@@ -264,7 +264,7 @@ function On_Death(event)
 			end
 			
 			if NE_Enemies_Config.Scorched_Earth then
-				Scorched_Earth(surface, pos, 4)		
+				Scorched_Earth(surface, pos, 6)		
 			end
 			
 		else
@@ -443,7 +443,7 @@ function Scorched_Earth(surface, pos, size)
 			end
 		end
 	end
-	surface.set_tiles(New_tiles)
+	surface.set_tiles(New_tiles, false)
 end
 ---------------------------------------------
 
