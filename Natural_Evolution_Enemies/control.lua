@@ -48,24 +48,82 @@ local autoRepair =
     ["rail-chain-signal"] = true 
 }
 
--- List of Entities that can catch fire if destoyed
+
+-- List of Entities Types that can catch fire if destoyed
 local catchFire = 
 {
     ["furnace"] = true,
+	["transport-belt"] = false,
+	["boiler"] = false,
+	["container"] = false,
+	["electric-pole"] = false,
     ["generator"] = true,
     ["offshore-pump"] = true,
 	["inserter"] = true,
 	["radar"] = true,
+	["lamp"] = false,
+	["pipe-to-ground"] = false,
 	["assembling-machine"] = true,
+	["wall"] = false,
+	["underground-belt"] = false,
+	["loader"] = true,
+	["splitter"] = false,
 	["car"] = true,
 	["solar-panel"] = true,
 	["locomotive"] = true,
 	["cargo-wagon"] = true,
+	["gate"] = false,
 	["lab"] = true,
 	["rocket-silo"] = true,
 	["roboport"] = true,
+	["storage-tank"] = true,
+	["pump"] = true,
+	["market"] = true,
 	["accumulator"] = true,
-	["beacon"] = true
+	["beacon"] = true,
+	["mining-drill"] = true,
+	["electric-turret"] = true,
+	["ammo-turret"] = true,
+	["turret"] = false
+	
+}
+
+-- Corpse Size = Fire Size
+local corpseSize = 
+{
+    ["furnace"] = "medium-remnants",
+	["transport-belt"] = "small-remnants",
+	["boiler"] = "small-remnants",
+	["container"] = "small-remnants",
+	["electric-pole"] = "small-remnants",
+    ["generator"] = "big-remnants",
+    ["offshore-pump"] = "small-remnants",
+	["inserter"] = "small-remnants",
+	["radar"] = "big-remnants",
+	["lamp"] = "small-remnants",
+	["pipe-to-ground"] = "small-remnants",
+	["assembling-machine"] = "big-remnants",
+	["wall"] = "small-remnants",
+	["underground-belt"] = "small-remnants",
+	["loader"] = "small-remnants",
+	["splitter"] = "medium-remnants",
+	["car"] = "medium-remnants",
+	["solar-panel"] = "big-remnants",
+	["locomotive"] = "big-remnants",
+	["cargo-wagon"] = "medium-remnants",
+	["gate"] = "small-remnants",
+	["lab"] = "big-remnants",
+	["rocket-silo"] = "big-remnants",
+	["roboport"] = "big-remnants",
+	["storage-tank"] = "medium-remnants",
+	["pump"] = "small-remnants",
+	["market"] = "big-remnants",
+	["accumulator"] = "medium-remnants",
+	["beacon"] = "big-remnants",
+	["mining-drill"] = "big-remnants",
+	["electric-turret"] = "big-remnants",
+	["ammo-turret"] = "big-remnants",
+	["turret"] = "big-remnants"
 }
 
 
@@ -346,14 +404,25 @@ function On_Death(event)
 	
 	--- Buildings catch fire if destroyed.
 	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
-	if catchFire[event.entity.type] then
+	if NE_Enemies_Config.Burning_Buildings and catchFire[event.entity.type] then
 		local surface = event.entity.surface
 		local force = event.entity.force	
 		local pos = event.entity.position
-		surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+		local e_corpse = corpseSize[event.entity.type]
+		
+		writeDebug("Corpse Size: "..e_corpse)
+		if (force == game.forces.enemy) then
+		-- do nothing
+		elseif e_corpse == "medium-remnants" then
+			surface.create_entity({name="medium-fire-cloud", position=pos, force= "enemy"})
+		elseif e_corpse == "big-remnants" then
+			surface.create_entity({name="big-fire-cloud", position=pos, force= "enemy"})
+		else
+			surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+		end	
+		
 	end	
-	
-	
+
 end
 
 
@@ -430,14 +499,13 @@ end
 ---------------------------------------------
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
-	--local currentTilename = surface.get_tile(pos.x, pos.y).name
 	local New_tiles = {}
-	--writeDebug("The current tile is: " .. currentTilename)
-
+	
 	for xxx=-size,size do
 		for yyy=-size,size do
 			new_position = {x = pos.x + xxx,y = pos.y + yyy}
 			currentTilename = surface.get_tile(new_position.x, new_position.y).name
+			writeDebug("The current tile is: " .. currentTilename)
 			if replaceableTiles[currentTilename] then
 			table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
 			end

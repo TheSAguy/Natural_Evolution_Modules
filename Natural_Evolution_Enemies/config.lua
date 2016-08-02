@@ -80,6 +80,10 @@ NE.Scorched_Earth = true
 -- Turns terrain into desert when you kill an enemy on it.
 
 
+NE.Burning_Buildings = true
+-- When an entity is destroyed, it will catch fire.
+
+
 --------- Used for Unit Launcher - Thanks Supercheese for this code :)
 -- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
 -- For spawners, the current evolution factor rounded down to the nearest 10% (though 99% is rounded up to 100%) is used to look up which enemy appears.

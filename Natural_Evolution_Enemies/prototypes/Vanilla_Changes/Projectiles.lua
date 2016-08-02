@@ -560,9 +560,64 @@ data:extend(
     }}
   },
   
+  
+  ----- Fire Clouds. 
+  ---- Small Fire Cloud
    {
     type = "smoke-with-trigger",
     name = "small-fire-cloud",
+    flags = {"not-on-map"},
+    show_when_smoke_off = true,
+    animation =
+    {
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
+      priority = "low",
+      width = 30,
+      height = 50,
+      frame_count = 30,
+      animation_speed = 1,
+      line_length = 30,
+      scale = 3,
+    },
+    slow_down_factor = 0,
+    affected_by_wind = false,
+    cyclic = true,
+    duration = 60 * 8,
+    fade_away_duration = 2 * 60,
+    spread_duration = 8,
+    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          type = "nested-result",
+          action =
+          {
+            type = "area",
+            perimeter = 3,
+            action_delivery =
+            {
+              type = "instant",
+              target_effects =
+              {
+                type = "damage",
+                damage = { amount = 3, type = "fire"}
+              }
+            }
+          }
+        }
+      }
+    },
+    action_frequency = 30
+  },
+  
+  --- medium File Cloud
+    {
+    type = "smoke-with-trigger",
+    name = "medium-fire-cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
     animation =
@@ -611,120 +666,56 @@ data:extend(
     action_frequency = 30
   },
   
+   --- big File Cloud
+    {
+    type = "smoke-with-trigger",
+    name = "big-fire-cloud",
+    flags = {"not-on-map"},
+    show_when_smoke_off = true,
+    animation =
+    {
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
+      priority = "low",
+      width = 30,
+      height = 50,
+      frame_count = 30,
+      animation_speed = 1,
+      line_length = 30,
+      scale = 3,
+    },
+    slow_down_factor = 0,
+    affected_by_wind = false,
+    cyclic = true,
+    duration = 60 * 12,
+    fade_away_duration = 2 * 60,
+    spread_duration = 12,
+    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          type = "nested-result",
+          action =
+          {
+            type = "area",
+            perimeter = 5,
+            action_delivery =
+            {
+              type = "instant",
+              target_effects =
+              {
+                type = "damage",
+                damage = { amount = 5, type = "fire"}
+              }
+            }
+          }
+        }
+      }
+    },
+    action_frequency = 30
+  },
 }
 )
-
----- Not Being Used
---[[
-------- Unit Projectiles
-data:extend(
-{
--- Med Worm
-  {
-    type = "projectile",
-    name = "medium-unit-projectile",
-    flags = {"not-on-map"},
-    acceleration = 0.025,
-
-  action =
-    {
-      type = "direct",
-      action_delivery =
-      {
-        type = "instant",
-        target_effects =
-        {
-          {
-			type = "create-entity",
-			trigger_created_entity = "true",
-			entity_name = "unit-cluster",
-			check_buildability = false,			
-          },
-		  {
-          type = "create-sticker",
-          sticker = "slowdown-sticker"
-          }
-        }
-      }
-    },
-	
-	
-    animation =
-    {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple.png",
-      line_length = 5,
-      width = 16,
-      height = 18,
-      frame_count = 33,
-      priority = "high"
-    },
-    shadow =
-    {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
-      line_length = 5,
-      width = 28,
-      height = 16,
-      frame_count = 33,
-      priority = "high",
-      shift = {-0.09, 0.395}
-    },
-    rotatable = false
-  },
-
- -- Big Worm
-  {
-    type = "projectile",
-    name = "big-unit-projectile",
-    flags = {"not-on-map"},
-    acceleration = 0.05,
-
-  action =
-    {
-      type = "direct",
-      action_delivery =
-      {
-        type = "instant",
-        target_effects =
-        {
-          {
-			type = "create-entity",
-			trigger_created_entity = "true",
-			entity_name = "unit-cluster",
-			check_buildability = false,
-          },
-		  {
-          type = "create-sticker",
-          sticker = "slowdown-sticker"
-          }
-        }
-      }
-    },
-	
-	
-    animation =
-    {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple.png",
-      line_length = 5,
-      width = 16,
-      height = 18,
-      frame_count = 33,
-      priority = "high"
-    },
-    shadow =
-    {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
-      line_length = 5,
-      width = 28,
-      height = 16,
-      frame_count = 33,
-      priority = "high",
-      shift = {-0.09, 0.395}
-    },
-    rotatable = false
-  },
-
- 
-})
-
-
-]]
