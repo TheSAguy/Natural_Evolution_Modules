@@ -22,8 +22,26 @@ function NE_Functions.Add_Damage_Resists(D_Type,Raw,Percent)
 	if data.raw["damage-type"][D_Type] ~= nil then
 		local Resist = {type = D_Type, percent = Percent}
 		for i,d in pairs(Raw) do
-			if d.resistances == nil then d.resistances = {} end
-			table.insert(d.resistances, Resist)
+			if d.resistances == nil then 
+				d.resistances = {}
+				table.insert(d.resistances, Resist)
+			else
+				local found = false
+				for _, resistance in pairs(d.resistances) do
+					if resistance.type == Resist.type and resistance.percent > Resist.percent then
+                           Resist.percent = resistance.percent					   
+                           found = true
+						   table.insert(d.resistances, Resist)
+                           break
+					end
+				end
+					
+			
+				if not found then
+					table.insert(d.resistances, Resist)
+				end
+			
+			end
 		end
 	end
 end
@@ -35,15 +53,30 @@ function NE_Functions.Add_ALL_Damage_Resists(Raw,Percent)
 		
 			local Resist = {type = v.name, percent = Percent} -- or you could use k, and not v.name
 			for i,d in pairs(Raw) do
-				if d.resistances == nil then d.resistances = {} end
-				--if d.resistances < Resist then
+				if d.resistances == nil then 
+					d.resistances = {}
 					table.insert(d.resistances, Resist)
-				--end
+				else
+					local found = false
+					for _, resistance in pairs(d.resistances) do
+						if resistance.type == Resist.type and resistance.percent > Resist.percent then
+                            Resist.percent = resistance.percent
+							
+                            found = true
+							table.insert(d.resistances, Resist)
+                            break
+						end
+					end
+                
+					if not found then
+						table.insert(d.resistances, Resist)
+					end
+				
+				end
 			end
 		end
 	end
 end
-
 
 
 ---- Makes it that Biters don't attack rail. Side effect though is that rails don't show up on mini-map or blue-prints

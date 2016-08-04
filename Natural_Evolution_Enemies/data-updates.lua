@@ -94,14 +94,6 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists(data.raw["curved-rail"],100)	
 	NE_Functions.Add_Damage_Resists(data.raw["rail-signal"],100)	
 	NE_Functions.Add_Damage_Resists(data.raw["rail-chain-signal"],100)	
-
-	if data.raw.inserter["combat-inserter"] then
-		for k, v in pairs(data.raw["damage-type"]) do
-		local Resist = {type = v.name, percent = 75} -- or you could use k, and not v.name		
-			if data.raw.inserter["combat-inserter"].resistances == nil then data.raw.inserter["combat-inserter"].resistances = {} end
-			table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
-		end
-	end
 	
 end
 
