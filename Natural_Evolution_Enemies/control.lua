@@ -1,4 +1,4 @@
----ENEMIES v.6.1.5
+---ENEMIES v.6.1.6
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -236,24 +236,6 @@ end
 
 ---------------------------------------------
 function On_Remove(event)
-    --Artifact collector
-    if event.entity.name=="Artifact-collector" then
-        local artifacts=global.ArtifactCollectors;
-        for i=1,#artifacts do
-            if artifacts[i]==event.entity then
-                table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
-                if global.next_collector>(#artifacts) then global.next_collector=(#artifacts) end 
-                break
-            end
-        end
-        if #artifacts==0 then
-        --and here artifacts=nil would not cut it.
-            global.ArtifactCollectors=nil--I'm not sure this wins much, on it's own
-            script.on_event(defines.events.on_tick, nil);
-            --but it's surely better done here than during on_tick
-        end
-    end
-
 		
  	--------- Did you really just kill that tree...
 	if (event.entity.type == "tree") and tree_names[event.entity.name] then
@@ -278,28 +260,30 @@ function On_Remove(event)
 		end
 
 	end
-	
-end
 
-function On_Death(event)
     --Artifact collector
-    if event.entity.name=="Artifact-collector" then
-        local artifacts=global.ArtifactCollectors;
+    if event.entity.name == "Artifact-collector" then
+        local artifacts = global.ArtifactCollectors;
         for i=1,#artifacts do
-            if artifacts[i]==event.entity then
+            if artifacts[i] == event.entity then
                 table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
-                if global.next_collector>(#artifacts) then global.next_collector=(#artifacts) end 
+                if global.next_collector > (#artifacts) then global.next_collector = (#artifacts) end 
                 break
             end
         end
-        if #artifacts==0 then
+        if #artifacts == 0 then
         --and here artifacts=nil would not cut it.
-            global.ArtifactCollectors=nil--I'm not sure this wins much, on it's own
+            global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
             script.on_event(defines.events.on_tick, nil);
             --but it's surely better done here than during on_tick
         end
     end
+
 	
+end
+
+function On_Death(event)
+
 
  	--------- If you kill a spawner, enemies will attach you.
 	if (event.entity.type == "unit-spawner") then
@@ -423,6 +407,25 @@ function On_Death(event)
 		
 	end	
 
+	--Artifact collector
+    if event.entity.name == "Artifact-collector" then
+        local artifacts=global.ArtifactCollectors;
+        for i=1,#artifacts do
+            if artifacts[i] == event.entity then
+                table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
+                if global.next_collector > (#artifacts) then global.next_collector = (#artifacts) end 
+                break
+            end
+        end
+        if #artifacts == 0 then
+        --and here artifacts=nil would not cut it.
+            global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
+            script.on_event(defines.events.on_tick, nil);
+            --but it's surely better done here than during on_tick
+        end
+    end
+	
+	
 end
 
 
@@ -459,15 +462,15 @@ function ticker(tick)
 		end
 	end
 		
-	if game.tick==global.next_check then
+	if game.tick == global.next_check then
 		local collectors=global.ArtifactCollectors
          writeDebug(#collectors)
 		for i=global.next_collector,#collectors,interval do
 			ProcessCollector(collectors[i])
 		end
-		local time_interval=(collectors[global.next_collector+1] and 1) or (interval- #collectors +1)
-		global.next_collector=(global.next_collector)%(#collectors)+1
-		global.next_check=game.tick+time_interval
+		local time_interval = (collectors[global.next_collector + 1] and 1) or (interval- #collectors + 1)
+		global.next_collector = (global.next_collector) % (#collectors) + 1
+		global.next_check = game.tick + time_interval
 	end
 end
 

@@ -57,6 +57,13 @@ require("prototypes.Thumper.recipe")
 ---------------------------------------------------------------
 
 
+	--- Combat Inserter
+
+require("prototypes.Combat_Inserter.entity")
+require("prototypes.Combat_Inserter.item")
+require("prototypes.Combat_Inserter.recipe")
+---------------------------------------------------------------
+
     --- Other - Building Materials, Attractors & Damage Type
 
 require("prototypes.Other.item")
