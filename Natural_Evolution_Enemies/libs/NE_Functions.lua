@@ -28,14 +28,19 @@ function NE_Functions.Add_Damage_Resists(D_Type,Raw,Percent)
 			else
 				local found = false
 				for _, resistance in pairs(d.resistances) do
-					if resistance.type == Resist.type and resistance.percent > Resist.percent then
-                           Resist.percent = resistance.percent					   
-                           found = true
-						   table.insert(d.resistances, Resist)
+					if resistance.type == Resist.D_Type and resistance.percent > Resist.Percent then
+                           Resist.percent = resistance.percent 
+						   found = true
+						   table.insert(d.resistances, resistance.percent)
                            break
-					end
-				end
 					
+					elseif resistance.type == Resist.D_Type and resistance.percent < Resist.Percent then
+                            resistance.percent = Resist.percent
+                            found = true
+							table.insert(d.resistances, Resist)
+                            break
+					end
+				end				
 			
 				if not found then
 					table.insert(d.resistances, Resist)
@@ -45,6 +50,7 @@ function NE_Functions.Add_Damage_Resists(D_Type,Raw,Percent)
 		end
 	end
 end
+
 
 -- Adds a resistance of all damage types to an entity
 function NE_Functions.Add_ALL_Damage_Resists(Raw,Percent)
@@ -62,6 +68,12 @@ function NE_Functions.Add_ALL_Damage_Resists(Raw,Percent)
 						if resistance.type == Resist.type and resistance.percent > Resist.percent then
                             Resist.percent = resistance.percent
 							
+                            found = true
+							table.insert(d.resistances, Resist)
+                            break
+						
+						elseif resistance.type == Resist.type and resistance.percent < Resist.percent then
+                            resistance.percent = Resist.percent
                             found = true
 							table.insert(d.resistances, Resist)
                             break

@@ -88,12 +88,40 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Difficulty))
-	
+
+	if data.raw.inserter["combat-inserter"] then
+		for k, v in pairs(data.raw["damage-type"]) do
+		local Resist = {type = v.name, percent = 70} -- or you could use k, and not v.name		
+		
+					if data.raw.inserter["combat-inserter"].resistances == nil then 
+						data.raw.inserter["combat-inserter"].resistances = {}
+						table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
+					else
+						local found = false
+						for _, resistance in pairs(data.raw.inserter["combat-inserter"].resistances) do
+							if resistance.type == Resist.type and resistance.percent > Resist.percent then
+								found = true
+								break
+							elseif resistance.type == Resist.type and resistance.percent < Resist.percent then
+								found = true
+								table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
+								break
+							end
+						end
+					
+						if not found then
+						table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
+						end
+					
+					end
+		
+		end
+	end
 	--- Make Rail immune to damage
 	NE_Functions.Add_ALL_Damage_Resists(data.raw["straight-rail"],100)	
-	NE_Functions.Add_Damage_Resists(data.raw["curved-rail"],100)	
-	NE_Functions.Add_Damage_Resists(data.raw["rail-signal"],100)	
-	NE_Functions.Add_Damage_Resists(data.raw["rail-chain-signal"],100)	
+	NE_Functions.Add_ALL_Damage_Resists(data.raw["curved-rail"],100)	
+	NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-signal"],100)	
+	NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-chain-signal"],100)	
 	
 end
 

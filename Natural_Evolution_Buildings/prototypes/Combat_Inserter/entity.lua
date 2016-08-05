@@ -1,5 +1,5 @@
 --- Combat Inserter
-Combat_Inserter_tint = {r=0, g=0, b=0, a=0.5}
+Combat_Inserter_tint = {r=0, g=0, b=0, a=1}
 
 data:extend({
 
@@ -21,7 +21,15 @@ data:extend({
       {
         type = "fire",
         percent = 90
-      }
+      },
+	  {
+        type = "acid",
+        percent = 70
+      },
+	  {
+        type = "poison",
+        percent = 70
+      },
     },
     collision_box = {{-0.15, -0.15}, {0.15, 0.15}},
     selection_box = {{-0.4, -0.35}, {0.4, 0.45}},

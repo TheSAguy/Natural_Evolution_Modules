@@ -17,13 +17,74 @@ function NE_Functions.Ingredient_Multiplier(Input, Multiplier)
 	end
 end	
 	
--- Adds a resitance to an entity
+-- Adds a resistance of a single damage type to an entity
 function NE_Functions.Add_Damage_Resists(D_Type,Raw,Percent)
 	if data.raw["damage-type"][D_Type] ~= nil then
-		local Resist = {type = D_Type,percent = Percent}
+		local Resist = {type = D_Type, percent = Percent}
 		for i,d in pairs(Raw) do
-			if d.resistances ==nil then d.resistances={} end
-			table.insert(d.resistances, Resist)
+			if d.resistances == nil then 
+				d.resistances = {}
+				table.insert(d.resistances, Resist)
+			else
+				local found = false
+				for _, resistance in pairs(d.resistances) do
+					if resistance.type == Resist.D_Type and resistance.percent > Resist.Percent then
+                           Resist.percent = resistance.percent 
+						   found = true
+						   table.insert(d.resistances, resistance.percent)
+                           break
+					
+					elseif resistance.type == Resist.D_Type and resistance.percent < Resist.Percent then
+                            resistance.percent = Resist.percent
+                            found = true
+							table.insert(d.resistances, Resist)
+                            break
+					end
+				end				
+			
+				if not found then
+					table.insert(d.resistances, Resist)
+				end
+			
+			end
+		end
+	end
+end
+
+-- Adds a resistance of all damage types to an entity
+function NE_Functions.Add_ALL_Damage_Resists(Raw,Percent)
+	if Raw ~= nil then	
+		for k, v in pairs(data.raw["damage-type"]) do
+		
+			local Resist = {type = v.name, percent = Percent} -- or you could use k, and not v.name
+			for i,d in pairs(Raw) do
+				if d.resistances == nil then 
+					d.resistances = {}
+					table.insert(d.resistances, Resist)
+				else
+					local found = false
+					for _, resistance in pairs(d.resistances) do
+						if resistance.type == Resist.type and resistance.percent > Resist.percent then
+                            Resist.percent = resistance.percent
+							
+                            found = true
+							table.insert(d.resistances, Resist)
+                            break
+						
+						elseif resistance.type == Resist.type and resistance.percent < Resist.percent then
+                            resistance.percent = Resist.percent
+                            found = true
+							table.insert(d.resistances, Resist)
+                            break
+						end
+					end
+                
+					if not found then
+						table.insert(d.resistances, Resist)
+					end
+				
+				end
+			end
 		end
 	end
 end

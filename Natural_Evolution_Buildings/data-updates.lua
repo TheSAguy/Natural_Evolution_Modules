@@ -84,21 +84,12 @@ if NE_Buildings_Config.mod.NEEnemies then
 	thxbob.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
 
 end
- 
---[[
-if not (NE_Buildings_Config.mod.NEEnemies or data.raw.item["Bio_Cannon_Area"]) then
-	---- Remove Alien Toxin as a result if NOT NE Enemies or Bio-Industries
-	data.raw.recipe["NE_alien-revitalization"].icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization.png"
-	thxbob.lib.recipe.remove_result	("NE_alien-revitalization", "NE_alien_toxin")
-	
-	
-end
-]]
+
 
 thxbob.lib.add_technology_recipe ("AlienUnderstanding", "ne-combat-inserter")
 -- Adds a resitance of all damage types to an entity
 for k, v in pairs(data.raw["damage-type"]) do
-	local Resist = {type = v.name, percent = 75} -- or you could use k, and not v.name		
+	local Resist = {type = v.name, percent = 70} -- or you could use k, and not v.name		
 	
 				if data.raw.inserter["combat-inserter"].resistances == nil then 
 					data.raw.inserter["combat-inserter"].resistances = {}
@@ -107,8 +98,9 @@ for k, v in pairs(data.raw["damage-type"]) do
 					local found = false
 					for _, resistance in pairs(data.raw.inserter["combat-inserter"].resistances) do
 						if resistance.type == Resist.type and resistance.percent > Resist.percent then
-                            Resist.percent = resistance.percent
-							
+                            found = true
+                            break
+						elseif resistance.type == Resist.type and resistance.percent < Resist.percent then
                             found = true
 							table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
                             break
@@ -121,17 +113,8 @@ for k, v in pairs(data.raw["damage-type"]) do
 				
 				end
 	
-
 end
 
---[[
--- Adds a resitance of all damage types to an entity
-for k, v in pairs(data.raw["damage-type"]) do
-	local Resist = {type = v.name, percent = 75} -- or you could use k, and not v.name		
-		if data.raw.inserter["combat-inserter"].resistances == nil then data.raw.inserter["combat-inserter"].resistances = {} end
-		table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
-end
-]]
 
 
 
