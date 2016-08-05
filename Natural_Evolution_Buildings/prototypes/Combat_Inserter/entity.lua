@@ -76,27 +76,27 @@ data:extend({
     },
     hand_base_picture =
     {
-      filename = "__base__/graphics/entity/fast-inserter/fast-inserter-hand-base.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-hand-base.png",
       priority = "extra-high",
       width = 8,
       height = 34,
-	  tint = Combat_Inserter_tint
+	  --tint = Combat_Inserter_tint
     },
     hand_closed_picture =
     {
-      filename = "__base__/graphics/entity/fast-inserter/fast-inserter-hand-closed.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-hand-closed.png",
       priority = "extra-high",
       width = 18,
       height = 41,
-	  tint = Combat_Inserter_tint
+	  --tint = Combat_Inserter_tint
     },
     hand_open_picture =
     {
-      filename = "__base__/graphics/entity/fast-inserter/fast-inserter-hand-open.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-hand-open.png",
       priority = "extra-high",
       width = 18,
       height = 41,
-	  tint = Combat_Inserter_tint
+	  --tint = Combat_Inserter_tint
     },
     hand_base_shadow =
     {
@@ -123,11 +123,11 @@ data:extend({
     {
       sheet =
       {
-        filename = "__base__/graphics/entity/fast-inserter/fast-inserter-platform.png",
+        filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-platform.png",
         priority = "extra-high",
         width = 46,
         height = 46,
-		tint = Combat_Inserter_tint,
+		--tint = Combat_Inserter_tint,
         shift = {0.09375, 0}
       }
     },
