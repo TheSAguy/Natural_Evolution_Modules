@@ -84,8 +84,11 @@ local catchFire =
 	["mining-drill"] = true,
 	["electric-turret"] = true,
 	["ammo-turret"] = true,
-	["turret"] = false
-	
+	["turret"] = false,
+	["straight-rail"] = false,
+    ["curved-rail"] = false,
+    ["rail-signal"] = false,
+    ["rail-chain-signal"] = false	
 }
 
 -- Corpse Size = Fire Size
@@ -123,7 +126,11 @@ local corpseSize =
 	["mining-drill"] = "big-remnants",
 	["electric-turret"] = "big-remnants",
 	["ammo-turret"] = "big-remnants",
-	["turret"] = "big-remnants"
+	["turret"] = "big-remnants",
+	["straight-rail"] = "small-remnants",
+    ["curved-rail"] = "small-remnants",
+    ["rail-signal"] = "small-remnants",
+    ["rail-chain-signal"] = "small-remnants"
 }
 
 

@@ -87,33 +87,37 @@ end
 
 
 thxbob.lib.add_technology_recipe ("AlienUnderstanding", "ne-combat-inserter")
+--log("Resistances before")
+--log(serpent.block(data.raw.inserter["combat-inserter"].resistances))
+
 -- Adds a resitance of all damage types to an entity
 for k, v in pairs(data.raw["damage-type"]) do
 	local Resist = {type = v.name, percent = 70} -- or you could use k, and not v.name		
-	
+
 	if data.raw.inserter["combat-inserter"].resistances == nil then 
 		data.raw.inserter["combat-inserter"].resistances = {}
 		table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
 	else
 		local found = false
 		for _, resistance in pairs(data.raw.inserter["combat-inserter"].resistances) do
-			if resistance.type == Resist.type and resistance.percent > Resist.percent then
-                found = true
-                break
-			elseif resistance.type == Resist.type and resistance.percent < Resist.percent then
-                    found = true
-					table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
-                    break
-			end
+			if resistance.type == Resist.type and resistance.percent then
+				if resistance.percent < Resist.percent then
+					resistance.percent = Resist.percent
+				end
+				found = true
+			end            
 		end
-               
+		
 		if not found then
 			table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
 		end
-			
 	end
-	
 end
+
+
+--log("Resistances after")
+
+--log(serpent.block(data.raw.inserter["combat-inserter"].resistances))
 
 
 
