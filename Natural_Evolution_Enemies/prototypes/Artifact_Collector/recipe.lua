@@ -3,7 +3,7 @@ data:extend(
 		{
 			type = "recipe",
 			name = "Artifact-collector",
-			enabled = "false",
+			enabled = false,
 			ingredients =
 			{
 				{"steel-chest", 4},

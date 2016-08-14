@@ -6,7 +6,7 @@ data:extend({
 		type = "recipe",
 		name = "AlienControlStation",
         energy_required = 20,
-		enabled = "false",
+		enabled = false,
 		ingredients =
         {
             {"Building_Materials", 10},
@@ -20,7 +20,7 @@ data:extend({
 		type = "recipe",
 		name = "AlienControlStation",
         energy_required = 20,
-		enabled = "false",
+		enabled = false,
 		ingredients =
         {
             {"Building_Materials", 10},

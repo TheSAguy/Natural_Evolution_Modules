@@ -4,7 +4,7 @@ data:extend({
         type = "recipe",
         name = "TerraformingStation",
         energy_required = 35,
-        enabled = "false",
+        enabled = false,
         ingredients =
         {
             {"Building_Materials", 15},

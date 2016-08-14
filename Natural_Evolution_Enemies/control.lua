@@ -1,4 +1,4 @@
----ENEMIES v.6.2.0
+---ENEMIES v.6.2.1
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -39,6 +39,13 @@ local replaceableTiles =
   ["dirt"] = "dirt-dark"
 }
 
+local waterTiles =
+{
+  ["deepwater"] = true,
+  ["deepwater-green"] = true,
+  ["water"] = true,
+  ["water-green"] = true
+}
 -- Auto Rail repair
 local autoRepair = 
 {
@@ -298,7 +305,7 @@ function On_Death(event)
 			writeDebug("Enemy Spawner Killed")
 			local surface = event.entity.surface
 			local force = event.entity.force
-			local radius = 30
+			local radius = 60
 			local pos = event.entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 
@@ -510,18 +517,49 @@ end
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
 	local New_tiles = {}
+	local Water_Nearby = false
 	
 	for xxx=-size,size do
 		for yyy=-size,size do
 			new_position = {x = pos.x + xxx,y = pos.y + yyy}
 			currentTilename = surface.get_tile(new_position.x, new_position.y).name
 			writeDebug("The current tile is: " .. currentTilename)
+			
+			if waterTiles[currentTilename] then
+				Water_Nearby = true
+			end
+			
 			if replaceableTiles[currentTilename] then
-			table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
+				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
 			end
 		end
 	end
-	surface.set_tiles(New_tiles, false)
+	
+	if Water_Nearby then
+		surface.set_tiles(New_tiles, false)
+	else
+	
+		for xxx=-(size+6),(size+6) do
+			for yyy=-(size+6),(size+6) do
+				new_position = {x = pos.x + xxx,y = pos.y + yyy}
+				currentTilename = surface.get_tile(new_position.x, new_position.y).name
+				
+				if waterTiles[currentTilename] then
+					Water_Nearby = true
+				end
+				
+			end
+		end
+	
+		if Water_Nearby then 
+			surface.set_tiles(New_tiles, false)
+		else
+			surface.set_tiles(New_tiles)
+		end
+		
+	end
+	
+	
 end
 ---------------------------------------------
 

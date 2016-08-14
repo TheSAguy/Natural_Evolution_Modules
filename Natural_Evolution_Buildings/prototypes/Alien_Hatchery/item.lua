@@ -24,6 +24,17 @@ data:extend({
 		order = "a[stone-wall]-a[living-wall]",
 		place_result = "ne-living-wall",
 		stack_size = 50
-  },
-
+	},
+  
+  	{
+		type = "item",
+		name = "ne-living-wall-exhausted",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall_exhausted.png",
+		flags = {"goes-to-quickbar"},
+		subgroup = "defensive-structure",
+		order = "a[stone-wall]-a[living-wall]",
+		stack_size = 50
+	},
+	
+	
 })

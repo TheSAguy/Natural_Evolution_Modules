@@ -28,7 +28,7 @@ local SpashDmg =
   {
     type = "area",
     perimeter = 2.5,
-    --force = "enemy",
+    force = "enemy",
     action_delivery =
     {
       type = "instant",
@@ -162,6 +162,11 @@ data:extend(
         decrease = 3,
         percent = 30
       },
+	  {
+        type = "poison",
+        decrease = 3,
+        percent = 30
+      },
       {
         type = "explosion",
         decrease = 2,
@@ -224,21 +229,26 @@ data:extend(
     max_health = 700,
     resistances =
     {
-      {
+	  {
         type = "physical",
         decrease = 6,
-        percent = 30
-      },
-      {
-        type = "explosion",
-        decrease = 10,
         percent = 30
       },
       {
         type = "acid",
         decrease = 5,
         percent = 30
-      }
+      },
+	  {
+        type = "poison",
+        decrease = 5,
+        percent = 30
+      },
+      {
+        type = "explosion",
+        decrease = 10,
+        percent = 20
+      }   
     },
     healing_per_tick = 0.0389,
     collision_box = {{-0.8, -0.7}, {0.8, 0.7}},
@@ -299,7 +309,7 @@ data:extend(
     order="b-b-f",
     resistances =
     {
-      {
+	  {
         type = "physical",
         decrease = 8,
         percent = 30
@@ -309,11 +319,16 @@ data:extend(
         decrease = 7,
         percent = 30
       },
+	  {
+        type = "poison",
+        decrease = 7,
+        percent = 30
+      },
       {
         type = "explosion",
         decrease = 15,
-        percent = 30
-      }
+        percent = 20
+      }  
     },
     healing_per_tick = 0.0556,
     collision_box = {{-1.1, -0.9}, {1.1, 0.9}},

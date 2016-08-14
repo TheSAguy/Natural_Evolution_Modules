@@ -4,7 +4,7 @@ data:extend(
 	{
 		type = "item",
 		name = "Natural_Evolution_Biter-Spawner",
-		icon = "__base__/graphics/icons/biter-spawner.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "Spawners",
 		order = "a[Natural_Evolution_Biter-Spawner]",
@@ -14,7 +14,7 @@ data:extend(
 	{
 		type = "item",
 		name = "Natural_Evolution_Biter-Spawner-exhausted",
-		icon = "__base__/graphics/icons/biter-spawner.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner-exhausted.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "Spawners",
 		order = "a[Natural_Evolution_Biter-Spawner]",
@@ -23,7 +23,7 @@ data:extend(
 	{
 		type = "item",
 		name = "Natural_Evolution_Spitter-Spawner",
-		icon = "__base__/graphics/icons/biter-spawner.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "Spawners",
 		order = "b[Natural_Evolution_Biter-Spawner]",
@@ -33,7 +33,7 @@ data:extend(
 	{
 		type = "item",
 		name = "Natural_Evolution_Spitter-Spawner-exhausted",
-		icon = "__base__/graphics/icons/biter-spawner.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner-exhausted.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "Spawners",
 		order = "b[Natural_Evolution_Biter-Spawner]",

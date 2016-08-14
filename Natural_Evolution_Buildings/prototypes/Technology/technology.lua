@@ -416,6 +416,10 @@ data:extend({
 				type = 'unlock-recipe',
 				recipe='ne-living-wall'
 			},		
+			{
+				type = 'unlock-recipe',
+				recipe='ne-living-wall-refresh'
+			},	
 
 		},
 		prerequisites = {"AlienUnderstanding-2"},

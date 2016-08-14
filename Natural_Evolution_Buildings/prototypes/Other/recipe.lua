@@ -5,7 +5,7 @@ data:extend({
 	{
       type = "recipe",
 		  name = "Building_Materials",
-		  enabled = "false",
+		  enabled = false,
 		  ingredients = 
 		  {
 			{"advanced-circuit", 15},
@@ -20,7 +20,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "attractor-on",
-		enabled = "false",
+		enabled = false,
 		ingredients =
 		{
 		  {"attractor-off", 1},
@@ -33,7 +33,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "attractor-off",
-		enabled = "false",
+		enabled = false,
 		ingredients =
 		{
 		  {"attractor-on", 1},

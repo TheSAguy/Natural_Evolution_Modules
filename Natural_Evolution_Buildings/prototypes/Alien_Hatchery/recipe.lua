@@ -5,7 +5,7 @@ data:extend({
   {
     type = "recipe",
     name = "Alien_Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"Building_Materials", 5},
@@ -28,6 +28,24 @@ data:extend({
 	energy_required = 10,
     requester_paste_multiplier = 10
   },
+
+
+    {
+    type = "recipe",
+    name = "ne-living-wall-refresh",
+    enabled = false,
+	category = "Hatchery",
+    ingredients = 
+	{
+      {"ne-living-wall-exhausted", 1},
+      {type="fluid", name="NE_revitalization-solution", amount=2},
+	},
+    result = "ne-living-wall",
+	energy_required = 6,
+    requester_paste_multiplier = 10
+  },
+  
+
   
 
   --- Small Biter Hatching
@@ -35,7 +53,7 @@ data:extend({
     type = "recipe",
     name = "small-biter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"alien-artifact", 2},
@@ -50,7 +68,7 @@ data:extend({
     type = "recipe",
     name = "medium-biter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"small-biter-hatching", 1},
@@ -65,7 +83,7 @@ data:extend({
     type = "recipe",
     name = "big-biter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"medium-biter-hatching", 1},
@@ -80,7 +98,7 @@ data:extend({
     type = "recipe",
     name = "behemoth-biter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"big-biter-hatching", 1},
@@ -96,7 +114,7 @@ data:extend({
     type = "recipe",
     name = "small-spitter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"alien-artifact", 2},
@@ -111,7 +129,7 @@ data:extend({
     type = "recipe",
     name = "medium-spitter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"small-spitter-hatching", 1},
@@ -126,7 +144,7 @@ data:extend({
     type = "recipe",
     name = "big-spitter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"medium-spitter-hatching", 1},
@@ -141,7 +159,7 @@ data:extend({
     type = "recipe",
     name = "behemoth-spitter-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"big-spitter-hatching", 1},
@@ -157,7 +175,7 @@ data:extend({
     type = "recipe",
     name = "small-worm-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"alien-artifact", 2},
@@ -171,7 +189,7 @@ data:extend({
     type = "recipe",
     name = "small-worm-hatching-refresh",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"small-worm-hatching-exhausted", 1},
@@ -186,7 +204,7 @@ data:extend({
     type = "recipe",
     name = "medium-worm-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"small-worm-hatching", 1},
@@ -200,7 +218,7 @@ data:extend({
     type = "recipe",
     name = "medium-worm-hatching-refresh",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"medium-worm-hatching-exhausted", 1},
@@ -215,7 +233,7 @@ data:extend({
     type = "recipe",
     name = "big-worm-hatching",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"medium-worm-hatching", 1},
@@ -229,7 +247,7 @@ data:extend({
     type = "recipe",
     name = "big-worm-hatching-refresh",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"big-worm-hatching-exhausted", 1},
@@ -244,7 +262,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Biter-Spawner",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"Building_Materials", 4},
@@ -259,7 +277,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Biter-Spawner-refresh",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"Natural_Evolution_Biter-Spawner-exhausted", 1},
@@ -274,7 +292,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Spitter-Spawner",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"Building_Materials", 4},
@@ -289,7 +307,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Spitter-Spawner-refresh",
     category = "Hatchery",
-    enabled = "false",
+    enabled = false,
     ingredients =
     {
       {"Natural_Evolution_Spitter-Spawner-exhausted", 1},

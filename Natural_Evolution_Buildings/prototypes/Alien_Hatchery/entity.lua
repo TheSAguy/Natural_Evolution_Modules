@@ -736,7 +736,7 @@ data:extend({
   {
     type = "unit-spawner",
     name = "Natural_Evolution_Biter-Spawner",
-    icon = "__base__/graphics/icons/biter-spawner.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner.png",
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Biter-Spawner-exhausted"},
     max_health = 750,
@@ -861,7 +861,7 @@ data:extend({
   {
     type = "unit-spawner",
     name = "Natural_Evolution_Spitter-Spawner",
-    icon = "__base__/graphics/icons/biter-spawner.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner.png",
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Spitter-Spawner-exhausted"},
     max_health = 750,
@@ -986,7 +986,7 @@ data:extend({
     flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable"},
     collision_box = {{-0.32, -0.32}, {0.32, 0.32}},
     selection_box = {{-0.48, -0.48}, {0.48, 0.48}},
-    minable = {mining_time = 0.5, result = "ne-living-wall"},
+    minable = {mining_time = 0.5, result = "ne-living-wall-exhausted"},
     fast_replaceable_group = "wall",
     max_health = 600,
     repair_speed_modifier = 2,

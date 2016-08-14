@@ -1,4 +1,4 @@
----BUILDINGS - v.6.2.0
+---BUILDINGS - v.6.2.1
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -165,6 +165,19 @@ function On_Remove(event)
 		ACS_Remove()
 	end
 
+	  --- fully heal the items that need a refresh in the alien hatchery anyway to avoid having multiple item stacks for damaged items.
+	if event.name ~= defines.events.on_entity_died then
+		if (
+				event.entity.name == "small-worm-turret-player" or
+				event.entity.name == "medium-worm-turret-player" or
+				event.entity.name == "big-worm-turret-player" or
+				event.entity.name == "Natural_Evolution_Biter-Spawner" or
+				event.entity.name == "Natural_Evolution_Spitter-Spawner" or
+				event.entity.name == "ne-living-wall" 
+			) then
+			event.entity.health = 100000 -- Note: Just needs to be higher or identical to maxhealth
+		end
+  end
 	
 end
 
