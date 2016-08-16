@@ -5,7 +5,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "Thumper",
-        energy_required = 20,
+        energy_required = 10,
 		enabled = false,
 		ingredients =
         {
