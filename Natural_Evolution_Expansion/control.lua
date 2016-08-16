@@ -1,4 +1,4 @@
---- EXPANSION v.6.2.0
+--- EXPANSION v.6.2.1
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
@@ -343,7 +343,7 @@ if NE_Expansion_Config.Expansion then
 			game.map_settings.path_finder.max_steps_worked_per_tick = 50
 		end
 
-		-- default expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
+		-- DEFAULT expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
 
 		local min_Base_Spacing = 3 -- Vanilla 3
 		local max_Expansion_Distance = 5 -- Vanilla 7
@@ -373,7 +373,7 @@ if NE_Expansion_Config.Expansion then
 						game.evolution_factor = game.evolution_factor		
 					else
 										
-						local Evo_Deduction = (0.0035 * (1 - game.evolution_factor))
+						local Evo_Deduction = (0.003 * (1 - game.evolution_factor))
 						
 						game.evolution_factor = game.evolution_factor - Evo_Deduction
 						global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction

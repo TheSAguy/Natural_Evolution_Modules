@@ -65,8 +65,8 @@ NE.ScienceCost = true
 
 --------- If you want to tweak the Expansion Phase settings, you can adjust the below. AT YOUR OWN RISK :)
 
-NE.Reduce_Evo_on_Phase_Change = true
-
+NE.Reduce_Evo_on_Phase_Change = true --- A small deduction in the Evolution factor after aeach Phase.
+	
 NE.Evolution_Timer = 5       -- Time Per Phase in Min. At 0% Evo, Each Phase will be 5Min at 100% Evo Each Phase will be 15Min. Formula: Natural_Evolution_Timer = (evolution_Timer + (game.evolution_factor * evolution_Timer) * 2) 
 							 							 
 NE.Settler_Group_Size = 1.0      -- Multiplier to the number of biters that are sent to build each new expansion.
