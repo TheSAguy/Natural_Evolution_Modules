@@ -373,7 +373,7 @@ if NE_Expansion_Config.Expansion then
 						game.evolution_factor = game.evolution_factor		
 					else
 										
-						local Evo_Deduction = (0.003 * (1 - game.evolution_factor))
+						local Evo_Deduction = (0.0025 * (1 - game.evolution_factor))
 						
 						game.evolution_factor = game.evolution_factor - Evo_Deduction
 						global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction
