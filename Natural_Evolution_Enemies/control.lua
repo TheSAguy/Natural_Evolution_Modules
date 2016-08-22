@@ -1,4 +1,4 @@
----ENEMIES v.6.2.1
+---ENEMIES v.6.2.2
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -52,7 +52,10 @@ local autoRepair =
     ["straight-rail"] = true,
     ["curved-rail"] = true,
     ["rail-signal"] = true,
-    ["rail-chain-signal"] = true 
+    ["rail-chain-signal"] = true,
+	["bi-straight-rail-wood"] = true,
+    ["bi-curved-rail-wood"] = true
+	
 }
 
 
@@ -299,6 +302,28 @@ end
 function On_Death(event)
 
 
+	
+	--- Buildings catch fire if destroyed.
+	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
+	if NE_Enemies_Config.Burning_Buildings and catchFire[event.entity.type] then
+		local surface = event.entity.surface
+		local force = event.entity.force	
+		local pos = event.entity.position
+		local e_corpse = corpseSize[event.entity.type]
+		
+		writeDebug("Corpse Size: "..e_corpse)
+		if (force == game.forces.enemy) then
+		-- do nothing
+		elseif e_corpse == "medium-remnants" then
+			surface.create_entity({name="medium-fire-cloud", position=pos, force= "enemy"})
+		elseif e_corpse == "big-remnants" then
+			surface.create_entity({name="big-fire-cloud", position=pos, force= "enemy"})
+		else
+			surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+		end	
+		
+	end	
+
  	--------- If you kill a spawner, enemies will attach you.
 	if (event.entity.type == "unit-spawner") then
 		if event.entity.force == game.forces.enemy then
@@ -376,50 +401,7 @@ function On_Death(event)
 	if (event.entity.name == "unit-cluster") then
 		SpawnLaunchedUnits(event.entity)
 	end
-	
-    -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
-    if (event.force == game.forces.enemy) and autoRepair[event.entity.name] then
-        local repairPosition = event.entity.position
-        local repairName = event.entity.name
-        local repairForce = event.entity.force
-        local repairDirection = event.entity.direction
-        event.entity.destroy()
-        local entityRepaired = game.surfaces[1].create_entity({position=repairPosition,
-                                                               name=repairName,
-                                                               direction=repairDirection,
-                                                               force=repairForce})
-        local enemies = game.surfaces[1].find_entities_filtered({area = {{x=repairPosition.x-20, y=repairPosition.y-20},
-                                                                         {x=repairPosition.x+20, y=repairPosition.y+20}},
-                                                                 type = "unit",
-                                                                 force = game.forces.enemy})
-        for i=1, #enemies do
-            local enemy = enemies[i]
-            enemy.set_command({type=defines.command.wander,
-                               distraction=defines.distraction.by_enemy})
-        end
-    end
 
-	
-	--- Buildings catch fire if destroyed.
-	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
-	if NE_Enemies_Config.Burning_Buildings and catchFire[event.entity.type] then
-		local surface = event.entity.surface
-		local force = event.entity.force	
-		local pos = event.entity.position
-		local e_corpse = corpseSize[event.entity.type]
-		
-		writeDebug("Corpse Size: "..e_corpse)
-		if (force == game.forces.enemy) then
-		-- do nothing
-		elseif e_corpse == "medium-remnants" then
-			surface.create_entity({name="medium-fire-cloud", position=pos, force= "enemy"})
-		elseif e_corpse == "big-remnants" then
-			surface.create_entity({name="big-fire-cloud", position=pos, force= "enemy"})
-		else
-			surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
-		end	
-		
-	end	
 
 	--Artifact collector
     if event.entity.name == "Artifact-collector" then
@@ -440,6 +422,30 @@ function On_Death(event)
     end
 	
 	
+		
+    -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
+    if (event.force == game.forces.enemy) and autoRepair[event.entity.type] then
+        local repairPosition = event.entity.position
+        local repairName = event.entity.name
+        local repairForce = event.entity.force
+        local repairDirection = event.entity.direction
+        event.entity.destroy()
+        local entityRepaired = game.surfaces[1].create_entity({position=repairPosition,
+                                                               name=repairName,
+                                                               direction=repairDirection,
+                                                               force=repairForce})
+        local enemies = game.surfaces[1].find_entities_filtered({area = {{x=repairPosition.x-20, y=repairPosition.y-20},
+                                                                         {x=repairPosition.x+20, y=repairPosition.y+20}},
+                                                                 type = "unit",
+                                                                 force = game.forces.enemy})
+        for i=1, #enemies do
+            local enemy = enemies[i]
+            enemy.set_command({type=defines.command.wander,
+                               distraction=defines.distraction.by_enemy})
+        end
+    end
+
+
 end
 
 

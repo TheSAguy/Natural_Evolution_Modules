@@ -117,21 +117,17 @@ if NE_Enemies_Config.Spawners then
 		
 		end
 	end
-	--- Make Rail immune to damage
-	NE_Functions.Add_ALL_Damage_Resists(data.raw["straight-rail"],100)	
-	NE_Functions.Add_ALL_Damage_Resists(data.raw["curved-rail"],100)	
-	NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-signal"],100)	
-	NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-chain-signal"],100)	
 	
-end
-
--- Biters don't attack the rail, but it also does not appear on the mini-map or blue-prints.
-if NE_Enemies_Config.SafeRail then
-	NE_Functions.Biters_Dont_Attack(data.raw["curved-rail"])
-	NE_Functions.Biters_Dont_Attack(data.raw["straight-rail"])
-	NE_Functions.Biters_Dont_Attack(data.raw["rail-signal"])
-	NE_Functions.Biters_Dont_Attack(data.raw["rail-chain-signal"])
-	NE_Functions.Biters_Dont_Attack(data.raw["train-stop"])
+	if NE_Enemies_Config.SafeRail then
+		--- Make Rail immune to damage
+		NE_Functions.Add_ALL_Damage_Resists(data.raw["straight-rail"],100)	
+		NE_Functions.Add_ALL_Damage_Resists(data.raw["curved-rail"],100)	
+		NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-signal"],100)	
+		NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-chain-signal"],100)	
+		NE_Functions.Add_ALL_Damage_Resists(data.raw["train-stop"],100)	
+	end
+	
+	
 end
 
 

@@ -46,9 +46,9 @@ NE.LongReach = false
 --- Do you want double the vanilla reach
 
 
-NE.SafeRail = false -- Changing this will only affect new games, not existing games
--- If true, biters won't attack rail, BUT rail will also not show up on the mini map or be able to add rail to blueprints. 
--- So maybe set to true one you're rail is built :)
+NE.SafeRail = false -- 
+-- If true, rail will have 100% immunity to damage.
+-- Currently rail auto repairs itself by default with this mod tough.
 
 
 NE.Spawners = true 
