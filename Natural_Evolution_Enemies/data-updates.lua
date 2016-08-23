@@ -88,6 +88,8 @@ if NE_Enemies_Config.Spawners then
 	NE_Functions.Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Difficulty))	
 	NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Difficulty))
+	
+	NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
 
 	if data.raw.inserter["combat-inserter"] then
 		for k, v in pairs(data.raw["damage-type"]) do

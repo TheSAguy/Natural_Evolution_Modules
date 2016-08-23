@@ -1,4 +1,4 @@
----ENEMIES v.6.2.2
+---ENEMIES v.6.2.3
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -52,9 +52,7 @@ local autoRepair =
     ["straight-rail"] = true,
     ["curved-rail"] = true,
     ["rail-signal"] = true,
-    ["rail-chain-signal"] = true,
-	["bi-straight-rail-wood"] = true,
-    ["bi-curved-rail-wood"] = true
+    ["rail-chain-signal"] = true
 	
 }
 
@@ -521,53 +519,65 @@ end
 
 ---------------------------------------------
 function Scorched_Earth(surface, pos, size)
-	--- Turn the terrain into desert
-	local New_tiles = {}
-	local Water_Nearby = false
-	
-	for xxx=-size,size do
-		for yyy=-size,size do
-			new_position = {x = pos.x + xxx,y = pos.y + yyy}
-			currentTilename = surface.get_tile(new_position.x, new_position.y).name
-			writeDebug("The current tile is: " .. currentTilename)
-			
-			if waterTiles[currentTilename] then
-				Water_Nearby = true
-			end
-			
-			if replaceableTiles[currentTilename] then
-				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})	
-			end
-		end
-	end
-	
-	if Water_Nearby then
-		surface.set_tiles(New_tiles, false)
-	else
-	
-		for xxx=-(size+6),(size+6) do
-			for yyy=-(size+6),(size+6) do
-				new_position = {x = pos.x + xxx,y = pos.y + yyy}
-				currentTilename = surface.get_tile(new_position.x, new_position.y).name
-				
-				if waterTiles[currentTilename] then
-					Water_Nearby = true
-				end
-				
-			end
-		end
-	
-		if Water_Nearby then 
-			surface.set_tiles(New_tiles, false)
-		else
-			surface.set_tiles(New_tiles)
-		end
-		
-	end
-	
-	
-end
----------------------------------------------
+   --- Turn the terrain into desert
+   local New_tiles = {}
+   local Water_Nearby = false
+   
+   for xxx = -size, size do
+      for yyy = -size, size do
+         --made local
+         local new_position = {x = pos.x + xxx,y = pos.y + yyy}
+         local currentTilename = surface.get_tile(new_position.x, new_position.y).name
+         writeDebug("The current tile is: " .. currentTilename)
+
+         if waterTiles[currentTilename] then
+            Water_Nearby = true
+            --added break to stop this loop
+            break
+         --replaced if with elseif
+         elseif replaceableTiles[currentTilename] then
+            table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
+         end
+      end
+      --if water nearby then stop loop
+      if Water_Nearby then
+         break
+      end
+   end
+
+   if Water_Nearby then
+      surface.set_tiles(New_tiles, false)
+   else
+      for xxx = -(size+6), (size+6) do
+         for yyy = -(size+6), (size+6) do
+            --no need to go through the tiles you already checked above
+            --so only check tiles that are outside the square that was checked in the above for loops
+            if xxx < -size or xxx > size or
+               yyy < -size or yyy > size then
+               --made local
+               local new_position = {x = pos.x + xxx,y = pos.y + yyy}
+               local currentTilename = surface.get_tile(new_position.x, new_position.y).name
+
+               if waterTiles[currentTilename] then
+                  Water_Nearby = true
+                  --added break to stop this loop
+                  break
+               end
+            end
+         end
+         --if water nearby then stop loop
+         if Water_Nearby then
+            break
+         end
+      end
+
+      if Water_Nearby then 
+         surface.set_tiles(New_tiles, false)
+      else
+         surface.set_tiles(New_tiles)
+      end
+   end
+end----------------------------------------
 
 script.on_load(On_Load)
 script.on_configuration_changed(On_Init)
