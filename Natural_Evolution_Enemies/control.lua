@@ -1,4 +1,4 @@
----ENEMIES v.6.2.3
+---ENEMIES v.6.2.4
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -38,7 +38,6 @@ local replaceableTiles =
   ["sand-dark"] = "dirt",
   ["dirt"] = "dirt-dark"
 }
-
 local waterTiles =
 {
   ["deepwater"] = true,
@@ -46,14 +45,19 @@ local waterTiles =
   ["water"] = true,
   ["water-green"] = true
 }
--- Auto Rail repair
-local autoRepair = 
+
+
+-- Auto repair items
+local autoRepairType = 
 {
     ["straight-rail"] = true,
     ["curved-rail"] = true,
     ["rail-signal"] = true,
     ["rail-chain-signal"] = true
-	
+}
+local autoRepairName = 
+{
+    ["bi-big-wooden-pole"] = true,
 }
 
 
@@ -422,7 +426,7 @@ function On_Death(event)
 	
 		
     -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
-    if (event.force == game.forces.enemy) and autoRepair[event.entity.type] then
+    if (event.force == game.forces.enemy) and (autoRepairType[event.entity.type] or autoRepairName[event.entity.name]) then
         local repairPosition = event.entity.position
         local repairName = event.entity.name
         local repairForce = event.entity.force
@@ -492,6 +496,7 @@ function ticker(tick)
 	end
 end
 
+
 ---------------------------------------------
 function ProcessCollector(collector)
 	--This makes collectors collect items.
@@ -519,65 +524,94 @@ end
 
 ---------------------------------------------
 function Scorched_Earth(surface, pos, size)
-   --- Turn the terrain into desert
-   local New_tiles = {}
-   local Water_Nearby = false
+	--- Turn the terrain into desert
+	local New_tiles = {}
+	local Water_Nearby_near = false
+	local Water_Nearby_far = false
+	local search_size = size + 1
    
-   for xxx = -size, size do
-      for yyy = -size, size do
-         --made local
-         local new_position = {x = pos.x + xxx,y = pos.y + yyy}
-         local currentTilename = surface.get_tile(new_position.x, new_position.y).name
-         writeDebug("The current tile is: " .. currentTilename)
+	for xxx = -size, size do
+		for yyy = -size, size do
+			--made local
+			local new_position = {x = pos.x + xxx,y = pos.y + yyy}
+			local currentTilename = surface.get_tile(new_position.x, new_position.y).name
+			writeDebug("The current tile is: " .. currentTilename)
 
-         if waterTiles[currentTilename] then
-            Water_Nearby = true
-            --added break to stop this loop
-            break
-         --replaced if with elseif
-         elseif replaceableTiles[currentTilename] then
-            table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
-         end
-      end
-      --if water nearby then stop loop
-      if Water_Nearby then
-         break
-      end
-   end
+			if waterTiles[currentTilename] then
+				Water_Nearby_near = true
+				--added break to stop this loop
+				break
+			--replaced if with elseif
+			elseif replaceableTiles[currentTilename] then
+				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
+			end
+		end
+		--if water nearby then stop loop
+		if Water_Nearby_near then
+			break
+		end
+		
+		for xxx = -(search_size), (search_size) do
+			for yyy = -(search_size), (search_size) do
+				--no need to go through the tiles you already checked above
+				--so only check tiles that are outside the square that was checked in the above for loops
+				if xxx < -size or xxx > size or
+					yyy < -size or yyy > size then
+					--made local
+					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
+					local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 
-   if Water_Nearby then
-      surface.set_tiles(New_tiles, false)
-   else
-      for xxx = -(size+6), (size+6) do
-         for yyy = -(size+6), (size+6) do
-            --no need to go through the tiles you already checked above
-            --so only check tiles that are outside the square that was checked in the above for loops
-            if xxx < -size or xxx > size or
-               yyy < -size or yyy > size then
-               --made local
-               local new_position = {x = pos.x + xxx,y = pos.y + yyy}
-               local currentTilename = surface.get_tile(new_position.x, new_position.y).name
+					if waterTiles[currentTilename] then
+						Water_Nearby_near = true
+						--added break to stop this loop
+						break
+					end
+				end
+			end
+			--if water nearby then stop loop
+			if Water_Nearby_near then
+				break
+			end
+		end
+		
+	end
 
-               if waterTiles[currentTilename] then
-                  Water_Nearby = true
-                  --added break to stop this loop
-                  break
-               end
-            end
-         end
-         --if water nearby then stop loop
-         if Water_Nearby then
-            break
-         end
-      end
+	if Water_Nearby_near then
+		-- Water found, so don't replace any tiles.	
+		--surface.set_tiles(New_tiles, false)
+	else
+		for xxx = -(search_size+5), (search_size+5) do
+			for yyy = -(search_size+5), (search_size+5) do
+				--no need to go through the tiles you already checked above
+				--so only check tiles that are outside the square that was checked in the above for loops
+				if xxx < -search_size or xxx > search_size or
+					yyy < -search_size or yyy > search_size then
+					--made local
+					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
+					local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 
-      if Water_Nearby then 
-         surface.set_tiles(New_tiles, false)
-      else
-         surface.set_tiles(New_tiles)
-      end
-   end
-end----------------------------------------
+					if waterTiles[currentTilename] then
+						Water_Nearby_far = true
+						--added break to stop this loop
+						break
+					end
+				end
+			end
+			--if water nearby then stop loop
+			if Water_Nearby_far then
+				break
+			end
+		end
+
+		if Water_Nearby_far then 
+			surface.set_tiles(New_tiles, false)
+		else
+			surface.set_tiles(New_tiles)
+		end
+	end
+end
+
+----------------------------------------
 
 script.on_load(On_Load)
 script.on_configuration_changed(On_Init)
