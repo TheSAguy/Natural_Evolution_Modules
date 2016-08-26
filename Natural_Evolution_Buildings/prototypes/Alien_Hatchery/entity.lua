@@ -1,4 +1,4 @@
-require ("prototypes.Alien_Hatchery.walls_tint")
+require ("prototypes.Alien_Hatchery.walls_pictures")
 
 Natural_Evolution_Biter_Spawner_tint = {r=0.92, g=0.54, b=0, a=0.5}
 Natural_Evolution_Spitter_Spawner_tint = {r=0.54, g=0.92, b=0.3, a=1.0}
@@ -984,8 +984,8 @@ data:extend({
     name = "ne-living-wall",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
     flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable"},
-    collision_box = {{-0.32, -0.32}, {0.32, 0.32}},
-    selection_box = {{-0.48, -0.48}, {0.48, 0.48}},
+    collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
+    selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
     minable = {mining_time = 0.5, result = "ne-living-wall-exhausted"},
     fast_replaceable_group = "wall",
     max_health = 600,

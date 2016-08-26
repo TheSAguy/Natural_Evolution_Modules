@@ -199,7 +199,7 @@ data:extend(
       type = "projectile",
       ammo_category = "bullet",
       cooldown = 15,
-      range = 17,
+      range = 18,
       projectile_creation_distance = 1.8,
       ammo_type =
       {
@@ -278,7 +278,7 @@ data:extend(
       type = "projectile",
       ammo_category = "rocket",
       cooldown = 60,
-      range = 20,
+      range = 22,
       projectile_creation_distance = 1.9,
       damage_modifier = 3,
       ammo_type =
@@ -359,7 +359,7 @@ data:extend(
       type = "projectile",
       ammo_category = "rocket",
       cooldown = 90,
-      range = 25,
+      range = 28,
       projectile_creation_distance = 2.1,
       damage_modifier = 6,
       ammo_type =
