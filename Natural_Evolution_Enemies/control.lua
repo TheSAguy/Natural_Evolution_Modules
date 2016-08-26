@@ -1,4 +1,4 @@
----ENEMIES v.6.2.4
+---ENEMIES v.6.3.0
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -167,10 +167,10 @@ local tree_names = {
 
 
 ---------------------------------------------
-
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
 script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
+
 
 ---------------------------------------------				 
 function On_Load()
@@ -301,11 +301,12 @@ function On_Remove(event)
 	
 end
 
-
 function On_Death(event)
+
+
 	
 	--- Buildings catch fire if destroyed.
-
+	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
 	if NE_Enemies_Config.Burning_Buildings and catchFire[event.entity.type] then
 		local surface = event.entity.surface
 		local force = event.entity.force	
@@ -335,6 +336,7 @@ function On_Death(event)
 			local pos = event.entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 
+			--local boom = surface.create_entity{name = "NE-Acid-explosion", position = pos, force =  force}
 			
 		-- find nearby players
 			local players = surface.find_entities_filtered{area=area, type="player"}

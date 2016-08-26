@@ -23,7 +23,7 @@ function Biter_Melee_Attack_Healthy(damagevalue)
 end
 
 
----- Biter Attack Function - Infected Biter: POISON
+---- Biter Attack Function - Infected Biter
 function Biter_Melee_Attack_Infected(damagevalue, damagevalue2)
   return
   {
@@ -50,7 +50,7 @@ function Biter_Melee_Attack_Infected(damagevalue, damagevalue2)
 end
 
 
----- Biter Attack Function - Mutated Biter: ACID
+---- Biter Attack Function - Mutated Biter
 function Biter_Melee_Attack_Mutated(damagevalue, damagevalue2)
   return
   {

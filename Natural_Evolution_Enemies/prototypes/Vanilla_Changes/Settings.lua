@@ -11,7 +11,7 @@ require "config"
 		else NE_Difficulty  = 2 -- Hard difficulty
 	end
 	
-	-- Infected Biters has Poison Attack and Mutated Biters have Acid Attack.
+	
 Damage = {
 	Small_Biter = Biter_Melee_Attack_Healthy(5*NE_Difficulty),
 	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(8*NE_Difficulty,5*NE_Difficulty),
@@ -73,8 +73,8 @@ Resistances = {
       {type = "physical", decrease = 3, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 2, percent = 0},
       {type = "explosion", decrease = 2, percent = 0},
-      {type = "acid", decrease = 0, percent = 0},
-      {type = "poison", decrease = 2, percent = 5},
+      {type = "acid", decrease = 2, percent = 0},
+      {type = "poison", decrease = 0, percent = 0},
       {type = "laser", decrease = 0, percent = 0}},
 	  
 	-- Mutated  
@@ -83,7 +83,7 @@ Resistances = {
       {type = "physical", decrease = 0, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 3, percent = 0},
       {type = "explosion", decrease = 3, percent = 0},
-      {type = "acid", decrease = 2, percent = 5},
+      {type = "acid", decrease = 3, percent = 0},
       {type = "poison", decrease = 0, percent = 0},
       {type = "laser", decrease = 3, percent = 5*NE_Difficulty}},
 	
@@ -103,8 +103,8 @@ Resistances = {
       {type = "physical", decrease = 8, percent = 8*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 5*NE_Difficulty},
-      {type = "acid", decrease = 0, percent = 5*NE_Difficulty},
-      {type = "poison", decrease = 5, percent = 5*NE_Difficulty},
+      {type = "acid", decrease = 5, percent = 5*NE_Difficulty},
+      {type = "poison", decrease = 0, percent = 5*NE_Difficulty},
       {type = "laser", decrease = 0, percent = 0}},
 	
 	-- Mutated  
@@ -133,8 +133,8 @@ Resistances = {
       {type = "physical", decrease = 15, percent = 20*NE_Difficulty},
       {type = "impact", decrease = 10, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 10*NE_Difficulty},
-      {type = "acid", decrease = 0, percent = 10*NE_Difficulty},
-      {type = "poison", decrease = 10, percent = 10*NE_Difficulty},
+      {type = "acid", decrease = 10, percent = 10*NE_Difficulty},
+      {type = "poison", decrease = 0, percent = 10*NE_Difficulty},
       {type = "laser", decrease = 5, percent = 10*NE_Difficulty}},
 	
 	-- Mutated  
@@ -173,8 +173,8 @@ Resistances = {
       {type = "physical", decrease = 2, percent = 5*NE_Difficulty},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 2, percent = 5*NE_Difficulty},
-      {type = "acid", decrease = 0, percent = 0},
-      {type = "poison", decrease = 2, percent = 5},
+      {type = "acid", decrease = 2, percent = 0},
+      {type = "poison", decrease = 0, percent = 0},
       {type = "laser", decrease = 0, percent = 0}},
 	
 	-- Mutated  
@@ -183,7 +183,7 @@ Resistances = {
       {type = "physical", decrease = 0, percent = 0},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 3, percent = 5*NE_Difficulty},
-      {type = "acid", decrease = 2, percent = 5},
+      {type = "acid", decrease = 3, percent = 0},
       {type = "poison", decrease = 0, percent = 0},
       {type = "laser", decrease = 2, percent = 5*NE_Difficulty}},
 	
@@ -203,8 +203,8 @@ Resistances = {
       {type = "physical", decrease = 10, percent = 10*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 5*NE_Difficulty},
       {type = "explosion", decrease = 5, percent = 10*NE_Difficulty},
-      {type = "acid", decrease = 0, percent = 5*NE_Difficulty},
-      {type = "poison", decrease = 5, percent = 5*NE_Difficulty},
+      {type = "acid", decrease = 5, percent = 5*NE_Difficulty},
+      {type = "poison", decrease = 0, percent = 5*NE_Difficulty},
       {type = "laser", decrease = 0, percent = 5*NE_Difficulty}},
 	
 	-- Mutated  
@@ -233,8 +233,8 @@ Resistances = {
       {type = "physical", decrease = 10, percent = 15*NE_Difficulty},
       {type = "impact", decrease = 5, percent = 10*NE_Difficulty},
       {type = "explosion", decrease = 10, percent = 20*NE_Difficulty},
-      {type = "acid", decrease = 0, percent = 10*NE_Difficulty},
-      {type = "poison", decrease = 10, percent = 10*NE_Difficulty},
+      {type = "acid", decrease = 10, percent = 10*NE_Difficulty},
+      {type = "poison", decrease = 0, percent = 10*NE_Difficulty},
       {type = "laser", decrease = 0, percent = 10*NE_Difficulty}},
 	
 	-- Mutated  
