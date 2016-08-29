@@ -13,16 +13,16 @@ require "config"
 	
 	
 Damage = {
-	Small_Biter = Biter_Melee_Attack_Healthy(5*NE_Difficulty),
-	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(8*NE_Difficulty,5*NE_Difficulty),
-	Small_Biter_Mk3 = Biter_Melee_Attack_Mutated(10*NE_Difficulty,5*NE_Difficulty),
-	Medium_Biter = Biter_Melee_Attack_Healthy(25*NE_Difficulty),
-	Medium_Biter_Mk2 = Biter_Melee_Attack_Infected(25*NE_Difficulty,10*NE_Difficulty),
-	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(30*NE_Difficulty,15*NE_Difficulty),
-	Big_Biter = Biter_Melee_Attack_Healthy(65*NE_Difficulty),
-	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(60*NE_Difficulty,30*NE_Difficulty),
-	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(65*NE_Difficulty,35*NE_Difficulty),
-	Behemoth_Biter = Biter_Melee_Attack_Healthy(150*NE_Difficulty)
+	Small_Biter = Biter_Melee_Attack_Healthy(7*NE_Difficulty),
+	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(10*NE_Difficulty,5*NE_Difficulty),
+	Small_Biter_Mk3 = Biter_Melee_Attack_Mutated(13*NE_Difficulty,5*NE_Difficulty),
+	Medium_Biter = Biter_Melee_Attack_Healthy(32*NE_Difficulty),
+	Medium_Biter_Mk2 = Biter_Melee_Attack_Infected(32*NE_Difficulty,10*NE_Difficulty),
+	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(38*NE_Difficulty,15*NE_Difficulty),
+	Big_Biter = Biter_Melee_Attack_Healthy(82*NE_Difficulty),
+	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(75*NE_Difficulty,30*NE_Difficulty),
+	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(82*NE_Difficulty,35*NE_Difficulty),
+	Behemoth_Biter = Biter_Melee_Attack_Healthy(175*NE_Difficulty)
 	}
 	
 	
@@ -33,9 +33,9 @@ Health = {
 	Medium_Biter = 75*NE_Difficulty,
 	Medium_Biter_Mk2 = 150*NE_Difficulty,
 	Medium_Biter_Mk3 = 225*NE_Difficulty,
-	Big_Biter = 375*NE_Difficulty,
-	Big_Biter_Mk2 = 750*NE_Difficulty,
-	Big_Biter_Mk3 = 1125*NE_Difficulty,
+	Big_Biter = 450*NE_Difficulty,
+	Big_Biter_Mk2 = 900*NE_Difficulty,
+	Big_Biter_Mk3 = 1800*NE_Difficulty,
 	Behemoth_Biter = 5000*NE_Difficulty,
 	Small_Spitter = 10,
 	Small_Spitter_Mk2 = 15*NE_Difficulty,
@@ -149,7 +149,7 @@ Resistances = {
 	
 	-- Healthy	
 	Behemoth_Biter = {
-	  {type = "fire", decrease = 0, percent = -50},
+	  {type = "fire", decrease = 0, percent = -30},
       {type = "physical", decrease = 15, percent = 30*NE_Difficulty},
       {type = "impact", decrease = 15, percent = 15*NE_Difficulty},
       {type = "explosion", decrease = 15, percent = 15*NE_Difficulty},

@@ -2,6 +2,12 @@ require ("libs/event")
 
 EvoGUI = {}
 
+	if not global.Total_TerraformingStations_Evo_Deduction then
+          global.Total_TerraformingStations_Evo_Deduction = 0
+        elseif global.Total_TerraformingStations_Evo_Deduction < 0 then
+          global.Total_TerraformingStations_Evo_Deduction = 0
+	end
+
 
     function EvoGUI.create_Evo_Deduction_Text()
 

@@ -3,6 +3,12 @@ require ("libs/event")
 EvoGUI = {}
 
 
+	
+	if not global.Total_Phase_Evo_Deduction then
+          global.Total_Phase_Evo_Deduction = 0
+        elseif global.Total_Phase_Evo_Deduction < 0 then
+          global.Total_Phase_Evo_Deduction = 0
+	end
 
     function EvoGUI.create_Evolution_Rate_Text()
         local diff = game.evolution_factor - global.exponential_moving_average

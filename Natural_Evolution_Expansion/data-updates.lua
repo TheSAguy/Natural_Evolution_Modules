@@ -15,7 +15,8 @@ end
 
 -- cause pollution to spread farther
 data.raw["map-settings"]["map-settings"].pollution.diffusion_ratio = 0.04
-data.raw["map-settings"]["map-settings"].pollution.min_to_diffuse = 10
+data.raw["map-settings"]["map-settings"].pollution.min_to_diffuse = 25
+data.raw["map-settings"]["map-settings"].min_pollution_to_damage_trees = 1500
 
 
 

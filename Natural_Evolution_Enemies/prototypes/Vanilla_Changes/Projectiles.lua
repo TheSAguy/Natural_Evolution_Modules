@@ -198,7 +198,11 @@ data:extend(
           {
             type = "create-entity",
             entity_name = "acid-splash-purple"
-          },
+          },		  
+		  {
+            type = "create-entity",
+            entity_name = "acid-splash-mutated"
+          },		  		  
           {
             type = "nested-result",
             action =
@@ -212,7 +216,7 @@ data:extend(
                 {
                   {
 					type = "damage",
-					damage = {amount = 5*NE_Difficulty, type = "explosion"}
+					damage = {amount = 7*NE_Difficulty, type = "explosion"}
 				  },
 				  {
                     type = "damage",
@@ -717,5 +721,71 @@ data:extend(
     },
     action_frequency = 30
   },
+  
+  
+    {
+    type = "explosion",
+    name = "acid-splash-mutated",
+    flags = {"not-on-map"},
+	animations =
+    {
+      {
+        filename = "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+        priority = "extra-high",
+        width = 64,
+        height = 64,
+		scale = 1.4,
+		tint = {r=0, g=0.6, b=0.6, a=1},
+        frame_count = 64,
+        line_length = 8,
+		animation_speed = 0.7,
+      },
+	  {
+        filename = "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+        priority = "extra-high",
+        width = 64,
+        height = 64,
+		scale = 1.6,
+		tint = {r=0, g=0.7, b=0.5, a=1},
+        frame_count = 64,
+        line_length = 8,
+		animation_speed = 0.7,
+      },
+	  {
+        filename = "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+        priority = "extra-high",
+        width = 64,
+        height = 64,
+		scale = 1.8,
+		tint = {r=0.3, g=0.8, b=0.4, a=1},
+        frame_count = 64,
+        line_length = 8,
+		animation_speed = 0.7,
+      },
+	  {
+        filename = "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+        priority = "extra-high",
+        width = 64,
+        height = 64,
+		scale = 2,
+		tint = {r=0, g=0.9, b=0.3, a=1},
+        frame_count = 64,
+        line_length = 8,
+		animation_speed = 0.7,
+      },
+	  {
+        filename = "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+        priority = "extra-high",
+        width = 64,
+        height = 64,
+		scale = 2.2,
+		tint = {r=0, g=1, b=0.2, a=1},
+        frame_count = 64,
+        line_length = 8,
+		animation_speed = 1,
+      },
+    },
+  },
+  
 }
 )
