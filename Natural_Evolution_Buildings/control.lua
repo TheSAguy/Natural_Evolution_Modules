@@ -254,11 +254,21 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
    
-		reduction = ((0.00025 * global.factormultiplier) * game.evolution_factor * (1 - game.evolution_factor))
-		if game.evolution_factor > reduction then
+		reduction = ((0.00025 * global.factormultiplier) * (1 - game.evolution_factor) * (1 - game.evolution_factor))
+		reduction95 = ((0.00025 * global.factormultiplier) * (1 - 0.95) * (1 - 0.95))
+		
+		if game.evolution_factor > 0.95 and  game.evolution_factor > reduction95 then
+		
+			game.evolution_factor = game.evolution_factor - reduction95
+			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction95
+				
+		elseif game.evolution_factor > reduction then
+		
 			game.evolution_factor = game.evolution_factor - reduction
 			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction
+			
 		end
+		
 		writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)  
 		writeDebug("The total Evolution Deduction due to Terraforming Stations is: " .. global.Total_TerraformingStations_Evo_Deduction)  
 	
