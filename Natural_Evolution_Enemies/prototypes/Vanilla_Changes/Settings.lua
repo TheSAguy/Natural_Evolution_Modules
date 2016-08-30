@@ -11,17 +11,27 @@ require "config"
 		else NE_Difficulty  = 2 -- Hard difficulty
 	end
 	
+	-- Healthy
+	-- Damage 1 = Physical
+	
+	-- Infected:
+	-- Damage 1 = Poison
+	-- Damage 2 = Physical
+	
+	-- Mutated:
+	-- Damage 1 = Acid
+	-- Damage 2 = Physical
 	
 Damage = {
-	Small_Biter = Biter_Melee_Attack_Healthy(7*NE_Difficulty),
-	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(10*NE_Difficulty,5*NE_Difficulty),
-	Small_Biter_Mk3 = Biter_Melee_Attack_Mutated(13*NE_Difficulty,5*NE_Difficulty),
-	Medium_Biter = Biter_Melee_Attack_Healthy(32*NE_Difficulty),
-	Medium_Biter_Mk2 = Biter_Melee_Attack_Infected(32*NE_Difficulty,10*NE_Difficulty),
-	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(38*NE_Difficulty,15*NE_Difficulty),
-	Big_Biter = Biter_Melee_Attack_Healthy(82*NE_Difficulty),
-	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(75*NE_Difficulty,30*NE_Difficulty),
-	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(82*NE_Difficulty,35*NE_Difficulty),
+	Small_Biter = Biter_Melee_Attack_Healthy(10*NE_Difficulty),
+	Small_Biter_Mk2 = Biter_Melee_Attack_Infected(8*NE_Difficulty,5*NE_Difficulty),
+	Small_Biter_Mk3 = Biter_Melee_Attack_Mutated(12*NE_Difficulty,5*NE_Difficulty),
+	Medium_Biter = Biter_Melee_Attack_Healthy(35*NE_Difficulty),
+	Medium_Biter_Mk2 = Biter_Melee_Attack_Infected(30*NE_Difficulty,10*NE_Difficulty),
+	Medium_Biter_Mk3 = Biter_Melee_Attack_Mutated(35*NE_Difficulty,10*NE_Difficulty),
+	Big_Biter = Biter_Melee_Attack_Healthy(80*NE_Difficulty),
+	Big_Biter_Mk2 = Biter_Melee_Attack_Infected(70*NE_Difficulty,30*NE_Difficulty),
+	Big_Biter_Mk3 = Biter_Melee_Attack_Mutated(80*NE_Difficulty,30*NE_Difficulty),
 	Behemoth_Biter = Biter_Melee_Attack_Healthy(175*NE_Difficulty)
 	}
 	
