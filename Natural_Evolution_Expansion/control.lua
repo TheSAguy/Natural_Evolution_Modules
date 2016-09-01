@@ -84,11 +84,11 @@ if NE_Expansion_Config.HarderEndGame then
 				end  
 					
 			-- Biters will attack the newly built Rocket Silo
-			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 1500}
+			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 2500}
 			
 			for i, player in pairs(game.players) do
 					player.print("WARNING!")
-					player.print("Building a Rocket Silo caused a lot of noise and biter will Attack!!!")
+					player.print("Building a Rocket Silo caused a lot of noise and biters will attack!!!")
 			end
 
 		end
