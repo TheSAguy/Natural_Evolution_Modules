@@ -249,6 +249,10 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
+		
+		if global.deduction_constant == nil or global.deduction_constant == 0 then
+			global.deduction_constant = 0.0002 -------- DEDUCTION CONSTANT
+		end
    
 		reduction = ((global.deduction_constant * global.factormultiplier) * (1 - game.evolution_factor) * (1 - game.evolution_factor))
 		reduction95 = ((global.deduction_constant * global.factormultiplier) * (1 - 0.95) * (1 - 0.95))
