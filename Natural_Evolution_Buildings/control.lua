@@ -1,4 +1,4 @@
----BUILDINGS - v.6.3.1
+---BUILDINGS - v.6.3.2
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -28,16 +28,6 @@ script.on_event(defines.events.on_entity_died,function(event) On_Death(event) en
 
 
 
----------------------------------------------
-script.on_event(defines.events.on_research_finished, function(event)
-  if event.research.name == "Alien_Training" then
-    for _, player in pairs(event.research.force.players) do
-      player.insert{name="attractor-off",count=1}
-    end
-  end
-end)
-
-
 ---------------------------------------------				 
 function On_Init()
  
@@ -49,43 +39,49 @@ function On_Init()
 	
 	---- Alien Control Initialization ----	
 	if not global.beacons then
-      global.beacons = {}
+		global.beacons = {}
 	end
 	if not global.minds then
-      global.minds = {}
+		global.minds = {}
 	end
 	if not global.hiveminds then
-      global.hiveminds = {} -- Bases / Spawners
+		global.hiveminds = {} -- Bases / Spawners
 	end
 
 	--- Alien_Control_Station Difficulty settings	
 	if NE_Buildings_Config.Conversion_Difficulty == Easy then
-      global.minds.difficulty = 3 -- Easy difficulty
+		global.minds.difficulty = 3 -- Easy difficulty
 	elseif NE_Buildings_Config.Conversion_Difficulty == Normal then
-	  global.minds.difficulty = 5 -- Normal 
-	else global.minds.difficulty = 10 -- Hard
+		global.minds.difficulty = 5 -- Normal 
+	else 
+		global.minds.difficulty = 10 -- Hard
 	end
 
 	---- Terraforming Initialization ----	
 	if not global.numTerraformingStations then
           global.numTerraformingStations = 0
-        elseif global.numTerraformingStations < 0 then
+    elseif global.numTerraformingStations < 0 then
           global.numTerraformingStations = 0
 	end
 	
 	if not global.factormultiplier then
-      global.factormultiplier = 0
-        elseif global.factormultiplier < 0 then
-          global.factormultiplier = 0
+		global.factormultiplier = 0
+    elseif global.factormultiplier < 0 then
+       global.factormultiplier = 0
 	end	
 
 	if not global.Total_TerraformingStations_Evo_Deduction then
-          global.Total_TerraformingStations_Evo_Deduction = 0
-        elseif global.Total_TerraformingStations_Evo_Deduction < 0 then
-          global.Total_TerraformingStations_Evo_Deduction = 0
+        global.Total_TerraformingStations_Evo_Deduction = 0
+    elseif global.Total_TerraformingStations_Evo_Deduction < 0 then
+        global.Total_TerraformingStations_Evo_Deduction = 0
 	end
 
 	
+	if global.deduction_constant == nil or global.deduction_constant == 0 then
+		global.deduction_constant = 0.0002 -------- DEDUCTION CONSTANT
+	end
+	
+	---- Living Wall Init
 	if global.Living_Walls_Table == nil then
           global.Living_Walls_Table = {}
 	end
@@ -145,7 +141,6 @@ local entity = event.created_entity
 	
 end
 
-
 ---------------------------------------------
 function On_Remove(event)
 	--- Terraforming Station has been removed
@@ -180,6 +175,7 @@ function On_Remove(event)
   end
 	
 end
+
 
 function On_Death(event)
 
@@ -254,8 +250,8 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation" then
    
-		reduction = ((0.00025 * global.factormultiplier) * (1 - game.evolution_factor) * (1 - game.evolution_factor))
-		reduction95 = ((0.00025 * global.factormultiplier) * (1 - 0.95) * (1 - 0.95))
+		reduction = ((global.deduction_constant * global.factormultiplier) * (1 - game.evolution_factor) * (1 - game.evolution_factor))
+		reduction95 = ((global.deduction_constant * global.factormultiplier) * (1 - 0.95) * (1 - 0.95))
 		
 		if game.evolution_factor > 0.95 and  game.evolution_factor > reduction95 then
 		
@@ -585,6 +581,28 @@ end
 script.on_init(On_Init)
 --script.on_load(On_Load)
 script.on_configuration_changed(On_Load)
+
+
+---------------------------------------------
+
+script.on_event(defines.events.on_research_finished, function(event)
+
+	local research = event.research.name
+	if research == "Alien_Training" then
+		for _, player in pairs(event.research.force.players) do
+			player.insert{name="attractor-off",count=1}
+		end
+	end
+  
+    if research == "TerraformingStation-2" then
+        global.deduction_constant = global.deduction_constant + (global.deduction_constant / 4)
+    end      
+
+    if research == "TerraformingStation-3" then
+        global.deduction_constant = global.deduction_constant + (global.deduction_constant / 4)
+    end    	
+  
+end)
 
 
 ---------------------------------------------

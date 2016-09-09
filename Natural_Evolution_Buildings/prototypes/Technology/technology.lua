@@ -104,9 +104,69 @@ data:extend({
 		  },
 		  time = 50
 		},
-		order = "a-h-c",
+		order = "a-i-a",
 	},
 
+	
+	{
+		type = "technology",
+		name = "TerraformingStation-2",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/TerraformingStation.png",
+		effects =
+		{
+		  {
+				type = "unlock-recipe",
+				recipe = "TerraformingStation"
+		  }
+		},
+		prerequisites = {"AlienUnderstanding-2","TerraformingStation"},
+		unit =
+		{
+		  count = 75,
+		  ingredients =
+		  {
+			{"science-pack-1", 3},
+			{"science-pack-2", 2},
+			{"alien-science-pack", 50}
+		  },
+		  time = 50
+		},
+		upgrade = true,
+		order = "a-i-b",
+	},
+	
+	
+	{
+		type = "technology",
+		name = "TerraformingStation-3",
+		icon_size = 128,
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/TerraformingStation.png",
+		effects =
+		{
+		  {
+				type = "unlock-recipe",
+				recipe = "TerraformingStation"
+		  }
+		},
+		prerequisites = {"AlienUnderstanding-3","TerraformingStation-2"},
+		unit =
+		{
+		  count = 75,
+		  ingredients =
+		  {
+			{"science-pack-1", 4},
+			{"science-pack-2", 3},
+			{"science-pack-3", 2},
+			{"alien-science-pack", 100}
+		  },
+		  time = 50
+		},
+		upgrade = true,
+		order = "a-i-c",
+	},
+	
+	
 	--- Alien Control Station
     {
 		type = "technology",
