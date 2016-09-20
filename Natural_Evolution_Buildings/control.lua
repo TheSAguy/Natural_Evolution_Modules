@@ -1,4 +1,4 @@
----BUILDINGS - v.6.3.2
+---BUILDINGS - v.6.3.3
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -254,8 +254,8 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 			global.deduction_constant = 0.0002 -------- DEDUCTION CONSTANT
 		end
    
-		reduction = ((global.deduction_constant * global.factormultiplier) * (1 - game.evolution_factor) * (1 - game.evolution_factor))
-		reduction95 = ((global.deduction_constant * global.factormultiplier) * (1 - 0.95) * (1 - 0.95))
+		reduction = ((global.deduction_constant * global.factormultiplier) * ((((1 - game.evolution_factor)^2) * 2) + (game.evolution_factor * (1 - game.evolution_factor)))/3) -- Tweak:  ((1 - evo) ^ 2 * 2 + (Evo * (1 - evo))) / 3 see: http://i.imgur.com/gxJOqco.png 
+		reduction95 = ((global.deduction_constant * global.factormultiplier) * (1 - 0.95)^2) --- Last 5% will be a constant.
 		
 		if game.evolution_factor > 0.95 and  game.evolution_factor > reduction95 then
 		

@@ -128,7 +128,7 @@ data:extend({
 		  {
 			{"science-pack-1", 3},
 			{"science-pack-2", 2},
-			{"alien-science-pack", 50}
+			{"alien-science-pack", 100}
 		  },
 		  time = 50
 		},
@@ -158,7 +158,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"alien-science-pack", 100}
+			{"alien-science-pack", 200}
 		  },
 		  time = 50
 		},
