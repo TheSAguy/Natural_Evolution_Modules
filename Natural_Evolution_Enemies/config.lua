@@ -46,10 +46,6 @@ NE.LongReach = false
 --- Do you want double the vanilla reach
 
 
-NE.SafeRail = false -- 
--- If true, rail will have 100% immunity to damage.
--- Currently rail auto repairs itself by default with this mod tough.
-
 
 NE.Spawners = true 
 -- Changes to the games Spawners and Units
@@ -69,7 +65,7 @@ NE.BioDamage = 15
 
 
 
-NE.Artifact_Collector_Radius = 30
+NE.Artifact_Collector_Radius = 40
 -- The radius around the artifact collector that it will grab items.
 -- Note: technically it's not a radius, but a square pickup area, but the visual overlay is a circle and not a square.
 NE.Artifact_Collector_Item_Count = 8
@@ -83,6 +79,10 @@ NE.Scorched_Earth = true
 NE.Burning_Buildings = true
 -- When an entity is destroyed, it will catch fire.
 
+
+NE.SafeRail = false -- Kinda obsolete... so just leave it alone
+-- If true, rail will have 100% immunity to damage.
+-- Currently rail auto repairs itself by default with this mod tough.
 
 --------- Used for Unit Launcher - Thanks Supercheese for this code :)
 -- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
