@@ -79,6 +79,8 @@ NE.Scorched_Earth = true
 NE.Burning_Buildings = true
 -- When an entity is destroyed, it will catch fire.
 
+NE.Tree_Hugger = true
+-- When tree hugger is enabled, you may be attacked for cutting down trees
 
 NE.SafeRail = false -- Kinda obsolete... so just leave it alone
 -- If true, rail will have 100% immunity to damage.
