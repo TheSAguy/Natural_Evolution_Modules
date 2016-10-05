@@ -45,7 +45,7 @@ function NE_Functions.Add_Damage_Resists(D_Type,Raw,percent)
 end
 
 
--- Adds a resistance of all damage types to an entity
+-- Adds a resistance of all damage types to an item type
 function NE_Functions.Add_ALL_Damage_Resists(Raw,Percent)
 	if Raw ~= nil then	
 		for k, v in pairs(data.raw["damage-type"]) do
@@ -56,6 +56,7 @@ end
 
 
 ---- Makes it that Biters don't attack rail. Side effect though is that rails don't show up on mini-map or blue-prints
+---- Not used anymore
 function NE_Functions.Biters_Dont_Attack(Raw)
 	for i,d in pairs(Raw) do
 		local newflags = {}

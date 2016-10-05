@@ -14,7 +14,7 @@ Afforess - Misanthrope Mod.
 Orzelek - RSO, Coding help and answering questions!
 ThaPear, Semvoz,  Billw, Adil, Rseding91, Chlue - Coding help!
 DySoch - DyTech, showing me what was possible
-Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
+Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work and am using a lot of your great code!
 YuokiTani - Art!!  Amazing work!
 
 
@@ -34,11 +34,11 @@ NE.Set_Difficulty = 2
 -- Options: 
 --			1 = Normal
 --			2 = Hard
--- Hard is about a 2x factor on everything
+-- WARNING, Hard means HARD...First complete a game on normal before trying hard.
 
 
 NE.ExtraLoot = true 
---Extra Loot from Aliens (small-alien-artifact)
+--Extra Loot from Aliens (small-alien-artifact) - Used for a lot ot things, so I'd leave this as is :)
 
 
 NE.LongReach = false
@@ -73,11 +73,11 @@ NE.Artifact_Collector_Item_Count = 8
 
 
 NE.Scorched_Earth = true
--- Turns terrain into desert when you kill an enemy on it.
+-- Turns terrain into desert when you kill an enemy on it. Samll chance of cearting landfill
 
 
 NE.Burning_Buildings = true
--- When an entity is destroyed, it will catch fire.
+-- When an entity is destroyed, it will catch fire. Makes things a little more difficult.
 
 NE.Tree_Hugger = true
 -- When tree hugger is enabled, you may be attacked for cutting down trees
@@ -85,45 +85,6 @@ NE.Tree_Hugger = true
 NE.SafeRail = false -- Kinda obsolete... so just leave it alone
 -- If true, rail will have 100% immunity to damage.
 -- Currently rail auto repairs itself by default with this mod tough.
-
---------- Used for Unit Launcher - Thanks Supercheese for this code :)
--- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
--- For spawners, the current evolution factor rounded down to the nearest 10% (though 99% is rounded up to 100%) is used to look up which enemy appears.
-
-subEnemyNameTable = {}
-
-subEnemyNameTable["unit-cluster"] = {}
-subEnemyNameTable["unit-cluster"][0] = 			"small-biter"
-subEnemyNameTable["unit-cluster"][1] = 			"small-biter-Mk2"
-subEnemyNameTable["unit-cluster"][2] = 			"small-biter-Mk3"
-subEnemyNameTable["unit-cluster"][3] = 			"medium-biter"
-subEnemyNameTable["unit-cluster"][4] = 			"medium-biter-Mk2"
-subEnemyNameTable["unit-cluster"][5] = 			"medium-biter-Mk3"
-subEnemyNameTable["unit-cluster"][6] = 			"big-biter"
-subEnemyNameTable["unit-cluster"][7] = 			"big-biter-Mk2"
-subEnemyNameTable["unit-cluster"][8] = 			"big-biter-Mk3"
-subEnemyNameTable["unit-cluster"][9] = 			"behemoth-biter"
-subEnemyNameTable["unit-cluster"][10] =			"behemoth-biter"
-
-
--- NUMBERS
--- The result in the right column is the number of enemies that appear when the enemy in the left column dies.
--- The current evolution factor rounded down to the nearest 10% is also used to look up which enemy appears.
-subEnemyNumberTable = {}
-
-subEnemyNumberTable["unit-cluster"] = {}
-subEnemyNumberTable["unit-cluster"][0] = 			2    --small
-subEnemyNumberTable["unit-cluster"][1] = 			3    --small
-subEnemyNumberTable["unit-cluster"][2] = 			4    --small
-subEnemyNumberTable["unit-cluster"][3] = 			2    --medium
-subEnemyNumberTable["unit-cluster"][4] = 			3    --medium
-subEnemyNumberTable["unit-cluster"][5] = 			4    --medium
-subEnemyNumberTable["unit-cluster"][6] = 			2    --big
-subEnemyNumberTable["unit-cluster"][7] = 			3    --big
-subEnemyNumberTable["unit-cluster"][8] = 			4    --big
-subEnemyNumberTable["unit-cluster"][9] = 			2    --behemoth
-subEnemyNumberTable["unit-cluster"][10] =			4    --behemoth
-
 
 
 ----------------------------- END -------------------------------------------

@@ -50,7 +50,7 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/i
 if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
 
 	thxbob.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
-	thxbob.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
+	thxbob.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100*NE_Difficulty})
 
 end
 
@@ -59,7 +59,7 @@ end
 if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 
 	thxbob.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
-	thxbob.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
+	thxbob.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100*NE_Difficulty})
 
 end
 
@@ -120,8 +120,10 @@ if NE_Enemies_Config.Spawners then
 		end
 	end
 	
+	--- Make Rail immune to damage
+	--- Obsolete, since rail auto heal once destroyed now
 	if NE_Enemies_Config.SafeRail then
-		--- Make Rail immune to damage
+		
 		NE_Functions.Add_ALL_Damage_Resists(data.raw["straight-rail"],100)	
 		NE_Functions.Add_ALL_Damage_Resists(data.raw["curved-rail"],100)	
 		NE_Functions.Add_ALL_Damage_Resists(data.raw["rail-signal"],100)	

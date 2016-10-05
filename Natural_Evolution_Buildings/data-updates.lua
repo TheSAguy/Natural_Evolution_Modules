@@ -87,8 +87,7 @@ end
 
 
 thxbob.lib.add_technology_recipe ("AlienUnderstanding", "ne-combat-inserter")
---log("Resistances before")
---log(serpent.block(data.raw.inserter["combat-inserter"].resistances))
+
 
 -- Adds a resitance of all damage types to an entity
 for k, v in pairs(data.raw["damage-type"]) do
@@ -115,9 +114,6 @@ for k, v in pairs(data.raw["damage-type"]) do
 end
 
 
---log("Resistances after")
-
---log(serpent.block(data.raw.inserter["combat-inserter"].resistances))
 
 
 

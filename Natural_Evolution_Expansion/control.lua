@@ -1,4 +1,4 @@
---- EXPANSION v.6.3.1
+--- EXPANSION v.6.4.0
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end

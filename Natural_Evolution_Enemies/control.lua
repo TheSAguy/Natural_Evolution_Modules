@@ -1,11 +1,11 @@
----ENEMIES v.6.3.5
+---ENEMIES v.6.4.0
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
 
 require ("util")
 require ("config")
-
+require ("prototypes.Vanilla_Changes.Unit_Launcher_Cluster")
 	
 --- Artifact Collector
 local interval = 300 -- this is an interval between the consecutive updates of a single collector
@@ -165,6 +165,19 @@ local tree_names = {
 	["tree-09-red"] = true
 }
 
+---------------------------------------------
+
+--- Difficulty settings	
+	if NE_Difficulty == nil then
+      NE_Difficulty = 1
+	end
+
+	if NE_Enemies_Config.Set_Difficulty == 1 then
+		NE_Difficulty = 1 -- Normal difficulty
+		else NE_Difficulty  = 2 -- Hard difficulty
+	end
+
+
 
 ---------------------------------------------
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
@@ -262,7 +275,7 @@ function On_Remove(event)
 		writeDebug("Tree Mined")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local radius = 15
+		local radius = 15 * NE_Difficulty
 		local pos = event.entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
@@ -274,7 +287,7 @@ function On_Remove(event)
 		if attack_chance < math.floor(game.evolution_factor*100) then
 			-- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*30)), unit_search_distance = 600}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Difficulty + math.floor(game.evolution_factor * 30)), unit_search_distance = 600 * NE_Difficulty}
 			end
 		end
 
@@ -332,18 +345,16 @@ function On_Death(event)
 			writeDebug("Enemy Spawner Killed")
 			local surface = event.entity.surface
 			local force = event.entity.force
-			local radius = 60
+			local radius = 60 * NE_Difficulty
 			local pos = event.entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
-
-			--local boom = surface.create_entity{name = "NE-Acid-explosion", position = pos, force =  force}
-			
+				
 		-- find nearby players
 			local players = surface.find_entities_filtered{area=area, type="player"}
 
 	           -- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20+math.floor(game.evolution_factor*100)), unit_search_distance = 600}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20 * NE_Difficulty + math.floor(game.evolution_factor * 100)), unit_search_distance = 600 * NE_Difficulty}
 			end
 			
 			if NE_Enemies_Config.Scorched_Earth then
@@ -373,7 +384,7 @@ function On_Death(event)
 		writeDebug("Tree Killed")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local radius = 15
+		local radius = 15 * NE_Difficulty
 		local pos = event.entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
@@ -385,7 +396,7 @@ function On_Death(event)
 		if attack_chance < math.floor(game.evolution_factor*100) then
 			-- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (1+math.floor(game.evolution_factor*30)), unit_search_distance = 600}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Difficulty + math.floor(game.evolution_factor * 30)), unit_search_distance = 600 * NE_Difficulty}
 			end
 		end
 	end
@@ -578,7 +589,7 @@ function Scorched_Earth(surface, pos, size)
 
 	if Water_Nearby_near then
 		-- Water found, so don't replace any tiles.	
-		--surface.set_tiles(New_tiles, false)
+
 	else
 		for xxx = -(search_size+5), (search_size+5) do
 			for yyy = -(search_size+5), (search_size+5) do

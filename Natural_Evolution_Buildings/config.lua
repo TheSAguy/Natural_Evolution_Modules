@@ -14,7 +14,7 @@ Afforess - Misanthrope Mod.
 Orzelek - RSO, Coding help and answering questions!
 ThaPear, Semvoz,  Billw, Adil, Rseding91, Chlue - Coding help!
 DySoch - DyTech, showing me what was possible
-Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work. 
+Bobingabout - Bob's Mods - Learned a lot from looking at your amazing work and am using a lot of your great code!
 YuokiTani - Art!!  Amazing work!
 
 
@@ -25,23 +25,32 @@ YuokiTani - Art!!  Amazing work!
 --- true = On / Yes
 --- false = Off / No
 -- NOTE -- When changing most of the below values, this will only affect new games, not existing games.
+
 ---------------------------------------------------------------------------]]
+
+NE.Set_Difficulty = 2
+-- Affects difficulty factor
+-- Options: 
+--			1 = Normal
+--			2 = Hard
+-- WARNING, Hard means HARD...First complete a game on normal before trying hard.
+
 
 
 NE.LongReach = true
 --- Long Reach
 --- Do you want double the vanilla reach
 
-NE.Single_Player_Only = true
+NE.Single_Player_Only = true -- This should be fixes, so unless you're having issues in MP leave as is.
 --- Some people have reported lag and crashes with MP. So if you do, set this to false if you're playing a MP and hopefully that should work.
 --- You will not have any EVO_GUI info if set to false.
 
 
 --- Alien_Control_Station settings
-NE.Spawner_Search_Distance = 35 -- Radius
-NE.Unit_Search_Distance = 25 -- Radius
+NE.Spawner_Search_Distance = 35 -- Radius it looks for spawners.
+NE.Unit_Search_Distance = 25 -- Radius it looks for Units
 NE.Conversion_Difficulty = Hard  -- Easy , Normal or Hard
--- Spawner Conversion chanse per scan: Easy = 16.5% chance, Normal = 10%, Hard = 5%
+-- Spawner Conversion chanse: Easy = 16.5% chance, Normal = 10%, Hard = 5%
 -- Unit Conversion chanse per scan: Easy = 16.5% chance, Normal = 10%, Hard = 5%
 
 
