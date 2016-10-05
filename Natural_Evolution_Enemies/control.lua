@@ -270,7 +270,7 @@ end
 function On_Remove(event)
 		
  	--------- Did you really just kill that tree...
-	if NE.Tree_Hugger != false and (event.entity.type == "tree") and tree_names[event.entity.name] then
+	if NE_Enemies_Config.Tree_Hugger and (event.entity.type == "tree") and tree_names[event.entity.name] then
 	
 		writeDebug("Tree Mined")
 		local surface = event.entity.surface
@@ -380,7 +380,7 @@ function On_Death(event)
 
 	
  	--------- Did you really just kill that tree...
-	if NE.Tree_Hugger != false and (event.entity.type == "tree") and tree_names[event.entity.name] then
+	if NE_Enemies_Config.Tree_Hugger and (event.entity.type == "tree") and tree_names[event.entity.name] then
 		writeDebug("Tree Killed")
 		local surface = event.entity.surface
 		local force = event.entity.force
