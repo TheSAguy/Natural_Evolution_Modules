@@ -50,7 +50,7 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Enemies__/graphics/i
 if NE_Enemies_Config.mod.BobEnemies and NE_Enemies_Config.ExtraLoot then
 
 	thxbob.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
-	thxbob.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100*NE_Difficulty})
+	thxbob.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
 
 end
 
@@ -59,7 +59,7 @@ end
 if NE_Enemies_Config.mod.SupremeWarfare and NE_Enemies_Config.ExtraLoot then
 
 	thxbob.lib.remove_recipe_item ("alien-artifact", "small-alien-artifact")
-	thxbob.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100*NE_Difficulty})
+	thxbob.lib.add_new_recipe_item ("alien-artifact", {type="item", name="small-alien-artifact", amount=100})
 
 end
 
