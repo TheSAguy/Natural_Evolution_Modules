@@ -1,5 +1,9 @@
-require ("config")
-local NE = NE_Enemies_Config
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
+
+NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+
+
 
 --------- Used for Unit Launcher - Thanks Supercheese for this code :)
 -- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
@@ -27,17 +31,17 @@ subEnemyNameTable["unit-cluster"][10] =			"behemoth-biter"
 subEnemyNumberTable = {}
 
 subEnemyNumberTable["unit-cluster"] = {}
-subEnemyNumberTable["unit-cluster"][0] = 			2 * NE.Set_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][1] = 			3 * NE.Set_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][2] = 			4 * NE.Set_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][3] = 			2 * NE.Set_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][4] = 			3 * NE.Set_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][5] = 			4 * NE.Set_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][6] = 			2 * NE.Set_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][7] = 			3 * NE.Set_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][8] = 			4 * NE.Set_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][9] = 			2 * NE.Set_Difficulty    --behemoth
-subEnemyNumberTable["unit-cluster"][10] =			4 * NE.Set_Difficulty    --behemoth
+subEnemyNumberTable["unit-cluster"][0] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][1] = 			3 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][2] = 			4 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][3] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
+subEnemyNumberTable["unit-cluster"][4] = 			3 * NE_Enemies.Settings.NE_Difficulty    --medium
+subEnemyNumberTable["unit-cluster"][5] = 			4 * NE_Enemies.Settings.NE_Difficulty    --medium
+subEnemyNumberTable["unit-cluster"][6] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
+subEnemyNumberTable["unit-cluster"][7] = 			3 * NE_Enemies.Settings.NE_Difficulty    --big
+subEnemyNumberTable["unit-cluster"][8] = 			4 * NE_Enemies.Settings.NE_Difficulty    --big
+subEnemyNumberTable["unit-cluster"][9] = 			2 * NE_Enemies.Settings.NE_Difficulty    --behemoth
+subEnemyNumberTable["unit-cluster"][10] =			4 * NE_Enemies.Settings.NE_Difficulty    --behemoth
 
 
 

@@ -5,6 +5,7 @@ data:extend(
     type = "item-group",
     name = "Natural-Evolution",
 	icon = "__Natural_Evolution_Enemies__/graphics/icons/AlienUnderstanding.png",
+	icon_size = 64,
     inventory_order = "y",
     order = "z",
   },

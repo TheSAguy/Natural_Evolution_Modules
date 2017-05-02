@@ -1,9 +1,15 @@
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
+
+NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+
+
 
 
 local loot =
 {
   item = "small-alien-artifact",
-  probability = 0.5,
+  probability = 1/NE_Enemies.Settings.NE_Difficulty,
   count_min = 1,
   count_max = 1 
 }
@@ -11,7 +17,7 @@ local loot =
 local lootB =
 {
   item = "small-alien-artifact",
-  probability = 0.6,
+  probability = 1/NE_Enemies.Settings.NE_Difficulty,
   count_min = 1,
   count_max = 2 
 }
@@ -19,7 +25,7 @@ local lootB =
 local lootC =
 {
   item = "small-alien-artifact",
-  probability = 0.7,
+  probability = 1/NE_Enemies.Settings.NE_Difficulty,
   count_min = 2,
   count_max = 5 
 }
@@ -27,7 +33,7 @@ local lootC =
 local lootD =
 {
   item = "small-alien-artifact",
-  probability = 0.8,
+  probability = 1/NE_Enemies.Settings.NE_Difficulty,
   count_min = 5,
   count_max = 5 
 }
@@ -118,7 +124,7 @@ end
 
 
 ---- New Units 
-if NE_Enemies_Config.Spawners then
+
 	--- Biters
 		
 	if data.raw.unit["small-biter-Mk2"] then
@@ -236,6 +242,23 @@ if NE_Enemies_Config.Spawners then
 	  end
 	end
 
+	---- Spawners
+	
+	if data.raw["unit-spawner"]["biter-spawner"].loot == nil then 
+		data.raw["unit-spawner"]["biter-spawner"].loot = {}
+	end
+	if data.raw.item["alien-artifact"] then
+		table.insert(data.raw["unit-spawner"]["biter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
+	end
 
-end
+  
+  	if data.raw["unit-spawner"]["spitter-spawner"].loot == nil then 
+		data.raw["unit-spawner"]["spitter-spawner"].loot = {}
+	end
+	if data.raw.item["alien-artifact"] then
+		table.insert(data.raw["unit-spawner"]["spitter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
+	end
+  
+	
+
 ------------------

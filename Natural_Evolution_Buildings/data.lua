@@ -6,7 +6,6 @@ if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 if not NE_Functions then NE_Functions = {} end
 
-require ("config")
 require ("libs.NE_Functions")
 require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
@@ -21,7 +20,8 @@ require("prototypes.Categories.recipe-category")
 
 
 	--- Alien_Hatchery
-	
+
+require("prototypes.Alien_Hatchery.alien-artifact")
 require("prototypes.Alien_Hatchery.entity")
 require("prototypes.Alien_Hatchery.item")
 require("prototypes.Alien_Hatchery.fluid")

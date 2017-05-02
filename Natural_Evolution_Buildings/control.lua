@@ -1,15 +1,22 @@
----BUILDINGS - v.6.4.0
+---BUILDINGS - v.7.0.0
+local QC_Mod = false
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
---require ("defines")
+if not NE_Buildings then NE_Buildings = {} end
+if not NE_Buildings.Settings then NE_Buildings.Settings = {} end
+
+
 require ("util")
-require ("config")
 require ("libs/event")
 
-if NE_Buildings_Config.Single_Player_Only and remote.interfaces.EvoGUI then
+if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
+
+NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
+NE_Buildings.Settings.Unit_Search_Distance = settings.startup["NE_Unit_Search_Distance"].value
+NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 
 
 ---- Evolution_MOD
@@ -49,9 +56,9 @@ function On_Init()
 	end
 
 	--- Alien_Control_Station Difficulty settings	
-	if NE_Buildings_Config.Conversion_Difficulty == Easy then
+	if NE_Buildings.Settings.Conversion_Difficulty == 1 then
 		global.minds.difficulty = 3 -- Easy difficulty
-	elseif NE_Buildings_Config.Conversion_Difficulty == Normal then
+	elseif NE_Buildings.Settings.Conversion_Difficulty == 2 then
 		global.minds.difficulty = 5 -- Normal 
 	else 
 		global.minds.difficulty = 10 -- Hard
@@ -196,16 +203,6 @@ function On_Death(event)
 		ACS_Remove()
 	end
 	
- 	--------- Currently the Evolution Factor gets affected even if you or the enemy kills your Spawners. So this should help with that.
-	if (event.entity.type == "unit-spawner") then
-		if event.entity.force == game.forces.enemy then
-			writeDebug("Enemy Spawner Killed")
-		else
-			writeDebug("Friendly Spawner")
-			game.evolution_factor = game.evolution_factor - (game.map_settings.enemy_evolution.destroy_factor * (1-game.evolution_factor)^2)		
-		end
-	
-	end
 end
 
 ---- Removes the Alien Control Station ---
@@ -254,17 +251,17 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 			global.deduction_constant = 0.0002 -------- DEDUCTION CONSTANT
 		end
    
-		reduction = ((global.deduction_constant * global.factormultiplier) * ((((1 - game.evolution_factor)^2) * 2) + (game.evolution_factor * (1 - game.evolution_factor)))/3) -- Tweak:  ((1 - evo) ^ 2 * 2 + (Evo * (1 - evo))) / 3 see: http://i.imgur.com/gxJOqco.png 
+		reduction = ((global.deduction_constant * global.factormultiplier) * ((((1 - game.forces.enemy.evolution_factor)^2) * 2) + (game.forces.enemy.evolution_factor * (1 - game.forces.enemy.evolution_factor)))/3) -- Tweak:  ((1 - evo) ^ 2 * 2 + (Evo * (1 - evo))) / 3 see: http://i.imgur.com/gxJOqco.png 
 		reduction95 = ((global.deduction_constant * global.factormultiplier) * (1 - 0.95)^2) --- Last 5% will be a constant.
 		
-		if game.evolution_factor > 0.95 and  game.evolution_factor > reduction95 then
+		if game.forces.enemy.evolution_factor > 0.95 and  game.forces.enemy.evolution_factor > reduction95 then
 		
-			game.evolution_factor = game.evolution_factor - reduction95
+			game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - reduction95
 			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction95
 				
-		elseif game.evolution_factor > reduction then
+		elseif game.forces.enemy.evolution_factor > reduction then
 		
-			game.evolution_factor = game.evolution_factor - reduction
+			game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - reduction
 			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction
 			
 		end
@@ -296,7 +293,7 @@ function Control_Enemies()
 	
       if beacon.energy > 0 then
         
-		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NE_Buildings_Config.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
+		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NE_Buildings.Settings.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
 		
         if #bases > 0 then
           for i, base in ipairs(bases) do
@@ -306,7 +303,7 @@ function Control_Enemies()
           end
         else -- no bases in range 
        
-		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, NE_Buildings_Config.Unit_Search_Distance)) do --search area of ten around each ACS
+		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, NE_Buildings.Settings.Unit_Search_Distance)) do --search area of ten around each ACS
 		  
             if enemy.force == (enemyForce) then --do only if not already controlled
               if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
@@ -341,7 +338,7 @@ function Remove_Mind_Control()
         table.remove(global.minds, k)
       else -- is valid
         local controlled = false --assume out of range
-        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, NE_Buildings_Config.Unit_Search_Distance)}[1] then --a AlienControlStation is in range
+        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, NE_Buildings.Settings.Unit_Search_Distance)}[1] then --a AlienControlStation is in range
           controlled = true
           break
         end
@@ -613,7 +610,7 @@ end)
 
 --- DeBug Messages 
 function writeDebug(message)
-	if NE_Buildings_Config.QCCode then 
+	if QC_Mod == true then  
 		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end

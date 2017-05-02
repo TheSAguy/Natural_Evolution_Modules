@@ -6,14 +6,14 @@ if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 if not NE_Functions then NE_Functions = {} end
 
-require ("config")
+
 require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
 
-
+--[[
 --- Got tierd of reaching limits...
 if NE_Buildings_Config.LongReach or NE_Buildings_Config.QCCode then
 	if data.raw.player.player.build_distance < 24 then
@@ -23,6 +23,7 @@ if NE_Buildings_Config.LongReach or NE_Buildings_Config.QCCode then
 		data.raw.player.player.drop_item_distance = 20
 	end	
 end 
+]]
 
 ----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"

@@ -8,12 +8,18 @@ data:extend({
 		icon = "__Natural_Evolution_Enemies__/graphics/technology/AlienUnderstanding.png",
 		effects =
 		{
+			
+		},
+		--[[
+		effects =
+		{
 			{
 				type = 'unlock-recipe', 
 				recipe='Artifact-collector'
 			}
 
 		},
+		]]
 		prerequisites = {"advanced-electronics"},
 		unit =
 		{

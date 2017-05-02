@@ -72,7 +72,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"alien-science-pack", 1}
+			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -128,7 +128,7 @@ data:extend({
 		  {
 			{"science-pack-1", 3},
 			{"science-pack-2", 2},
-			{"alien-science-pack", 100}
+			{"production-science-pack", 100}
 		  },
 		  time = 50
 		},
@@ -158,7 +158,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"alien-science-pack", 200}
+			{"high-tech-science-pack", 100}
 		  },
 		  time = 50
 		},
@@ -180,7 +180,8 @@ data:extend({
 			  recipe = "AlienControlStation"
 		  }
 		},
-		prerequisites = {"alien-technology", "AlienUnderstanding-2", "effect-transmission"},
+		--prerequisites = {"alien-technology", "AlienUnderstanding-2", "effect-transmission"},
+		prerequisites = {"AlienUnderstanding-2", "effect-transmission"},
 		unit =
 		{
 		  count = 50,
@@ -254,7 +255,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"alien-science-pack", 1}
+			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -287,7 +288,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"alien-science-pack", 1}
+			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -407,7 +408,7 @@ data:extend({
 			{"science-pack-1", 3},
 			{"science-pack-2", 2},
 			{"science-pack-3", 1},
-			{"alien-science-pack", 1}
+			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -440,7 +441,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"alien-science-pack", 1}
+			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},

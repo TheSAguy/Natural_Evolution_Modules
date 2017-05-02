@@ -1,5 +1,10 @@
-require "config"
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
+NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+NE_Enemies.Settings.Bio_Ammo_Damage = settings.startup["NE_Bio_Ammo_Damage"].value
+
+require ("util")
 
 data:extend({
 
@@ -33,7 +38,8 @@ data:extend({
 				{
 				  type = "damage",
 				  
-				  damage = { amount = (NE_Enemies_Config.BioDamage/NE_Enemies_Config.Set_Difficulty) + 10, type = "Biological"}
+				 damage = { amount = ((NE_Enemies.Settings.Bio_Ammo_Damage + 10)/NE_Enemies.Settings.NE_Difficulty) + NE_Enemies.Settings.NE_Difficulty, type = "Biological"}
+				 
 				},
 				{
 				  type = "damage",
@@ -48,4 +54,6 @@ data:extend({
 		order = "a[basic-clips]-b[piercing-rounds-magazine]-c[Biological-bullet-magazine]",
 		stack_size = 100
   },
+  
+
 })

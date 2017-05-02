@@ -5,11 +5,16 @@ if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 if not NE_Functions then NE_Functions = {} end
 
-require ("config")
+
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
+
+
+
 require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.NE_Functions")
 require("prototypes.Technology.technology")
-require("prototypes.Item-Groups.item-groups")
+--require("prototypes.Item-Groups.item-groups")
 
 require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
@@ -20,11 +25,21 @@ require ("libs.functions") -- From Bob's Libary
 ---------------------------------------------------------------
 
 
-	--- Artifact Collector
+--- Extra Loot - Small Alient Atrifacts
 
-require("prototypes.Artifact_Collector.entity")
-require("prototypes.Artifact_Collector.item")
-require("prototypes.Artifact_Collector.recipe")
+if settings.startup["NE_Alien_Artifacts"].value == true then
+	require("prototypes.Extra_Loot.alien-artifact")
+	require("prototypes.Extra_Loot.item")
+	require("prototypes.Extra_Loot.recipe")
+	require("prototypes.Extra_Loot.extra_loot")
+
+	--- Artifact Collector
+	require("prototypes.Artifact_Collector.entity")
+	require("prototypes.Artifact_Collector.item")
+	require("prototypes.Artifact_Collector.recipe")
+	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
+
+end
 ---------------------------------------------------------------
 
 

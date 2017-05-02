@@ -1,9 +1,9 @@
-if not NE_Enemies_Config then NE_Enemies_Config = {} end
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
-local CollectorRadius = NE_Enemies_Config.Artifact_Collector_Radius
+NE_Enemies.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
 
-require ("util")
-require ("config")
+
 
 inv_extension2 =
 {
@@ -77,7 +77,7 @@ data:extend(
 			type = "projectile",
 			ammo_category = "bullet",
 			cooldown = 2,
-			range = CollectorRadius,
+			range = NE_Enemies.Settings.Artifact_Collector_Radius,
 			projectile_creation_distance = 1.8,
 			action ={}
 		},
@@ -97,35 +97,5 @@ data:extend(
 		call_for_help_radius = 1			   
 
 		},
-		--[[
-		---- The Artifact collector AREA is used for display only. Showing the 50x50 collection area.
-		{
-			type = "logistic-container",
-			name = "Artifact-collector-area",
-			icon = "__Natural_Evolution_Enemies__/graphics/icons/Artifact-chest-icon.png",
-			flags = {"placeable-neutral", "player-creation"},
-			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
-			max_health = 150,
-			corpse = "small-remnants",
-			collision_box = {{-0.35, -0.35}, {0.35, 0.35}},
-			selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
-			order = "i[items]-i[Artifact-collector]",
-			subgroup = "storage",
-			fast_replaceable_group = "container",
-			inventory_size = 48,
-			logistic_mode = "passive-provider",
-			open_sound = { filename = "__base__/sound/metallic-chest-open.ogg", volume=0.65 },
-			close_sound = { filename = "__base__/sound/metallic-chest-close.ogg", volume = 0.7 },
-			vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
-			picture =
-			{
-				filename = "__Natural_Evolution_Enemies__/graphics/entity/Artifact-chest-area.png",
-				priority = "extra-high",
-				width = 1600,
-				height = 1600,
-				shift = {0.4, -0.13}
-			}
-		}
-		]]
 	}
 )

@@ -1,16 +1,24 @@
----ENEMIES v.6.4.0
+---ENEMIES v.7.0.0
+local QC_Mod = false
+
+
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
+
+NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+
 
 require ("util")
-require ("config")
 require ("prototypes.Vanilla_Changes.Unit_Launcher_Cluster")
+
 	
 --- Artifact Collector
 local interval = 300 -- this is an interval between the consecutive updates of a single collector
-local artifactCollectorRadius = NE_Enemies_Config.Artifact_Collector_Radius
-local itemCount = NE_Enemies_Config.Artifact_Collector_Item_Count
+local artifactCollectorRadius = settings.startup["NE_Artifact_Collector_Radius"].value
+local itemCount = settings.startup["NE_Artifact_Item_Count"].value
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
                  ["alien-artifact"] = 1,
@@ -165,19 +173,6 @@ local tree_names = {
 	["tree-09-red"] = true
 }
 
----------------------------------------------
-
---- Difficulty settings	
-	if NE_Difficulty == nil then
-      NE_Difficulty = 1
-	end
-
-	if NE_Enemies_Config.Set_Difficulty == 1 then
-		NE_Difficulty = 1 -- Normal difficulty
-		else NE_Difficulty  = 2 -- Hard difficulty
-	end
-
-
 
 ---------------------------------------------
 script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
@@ -203,10 +198,10 @@ function On_Init()
 	end
 	
 	if not global.evoFactorFloor then
-		if game.evolution_factor > 0.995 then
+		if game.forces.enemy.evolution_factor > 0.995 then
 			global.evoFactorFloor = 10
 		else
-			global.evoFactorFloor = math.floor(game.evolution_factor * 10)
+			global.evoFactorFloor = math.floor(game.forces.enemy.evolution_factor * 10)
 		end
 		global.tick = global.tick + 1800
 	end
@@ -270,12 +265,12 @@ end
 function On_Remove(event)
 		
  	--------- Did you really just kill that tree...
-	if NE_Enemies_Config.Tree_Hugger and (event.entity.type == "tree") and tree_names[event.entity.name] then
+	if settings.startup["NE_Tree_Hugger"].value and (event.entity.type == "tree") and tree_names[event.entity.name] then
 	
 		writeDebug("Tree Mined")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local radius = 15 * NE_Difficulty
+		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
 		local pos = event.entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
@@ -283,11 +278,11 @@ function On_Remove(event)
 		local attack_chance = math.random(100)
 
 		writeDebug("Attack Chance: "..attack_chance)
-		writeDebug("Evo Factor: "..math.floor(game.evolution_factor*100))
-		if attack_chance < math.floor(game.evolution_factor*100) then
+		writeDebug("Evo Factor: "..math.floor(game.forces.enemy.evolution_factor*100))
+		if attack_chance < math.floor(game.forces.enemy.evolution_factor*100) then
 			-- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Difficulty + math.floor(game.evolution_factor * 30)), unit_search_distance = 600 * NE_Difficulty}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 30)), unit_search_distance = 600 * NE_Enemies.Settings.NE_Difficulty}
 			end
 		end
 
@@ -320,7 +315,7 @@ function On_Death(event)
 	
 	--- Buildings catch fire if destroyed.
 	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
-	if NE_Enemies_Config.Burning_Buildings and catchFire[event.entity.type] then
+	if settings.startup["NE_Burning_Buildings"].value and catchFire[event.entity.type] then
 		local surface = event.entity.surface
 		local force = event.entity.force	
 		local pos = event.entity.position
@@ -345,7 +340,7 @@ function On_Death(event)
 			writeDebug("Enemy Spawner Killed")
 			local surface = event.entity.surface
 			local force = event.entity.force
-			local radius = 60 * NE_Difficulty
+			local radius = 60 * NE_Enemies.Settings.NE_Difficulty
 			local pos = event.entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 				
@@ -354,10 +349,10 @@ function On_Death(event)
 
 	           -- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20 * NE_Difficulty + math.floor(game.evolution_factor * 100)), unit_search_distance = 600 * NE_Difficulty}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 100)), unit_search_distance = 600 * NE_Enemies.Settings.NE_Difficulty}
 			end
 			
-			if NE_Enemies_Config.Scorched_Earth then
+			if settings.startup["NE_Scorched_Earth"].value then
 				Scorched_Earth(surface, pos, 6)		
 			end
 			
@@ -373,18 +368,18 @@ function On_Death(event)
 		local surface = event.entity.surface
 		local pos = event.entity.position	
 
-		if NE_Enemies_Config.Scorched_Earth then
+		if settings.startup["NE_Scorched_Earth"].value then
 			Scorched_Earth(surface, pos, 2)		
 		end
 	end
 
 	
  	--------- Did you really just kill that tree...
-	if NE_Enemies_Config.Tree_Hugger and (event.entity.type == "tree") and tree_names[event.entity.name] then
+	if settings.startup["NE_Tree_Hugger"].value and (event.entity.type == "tree") and tree_names[event.entity.name] then
 		writeDebug("Tree Killed")
 		local surface = event.entity.surface
 		local force = event.entity.force
-		local radius = 15 * NE_Difficulty
+		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
 		local pos = event.entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
@@ -392,21 +387,21 @@ function On_Death(event)
 		local attack_chance = math.random(100)
 
 		writeDebug("Attack Chance: "..attack_chance)
-		writeDebug("Evo Factor: "..math.floor(game.evolution_factor*100))
-		if attack_chance < math.floor(game.evolution_factor*100) then
+		writeDebug("Evo Factor: "..math.floor(game.forces.enemy.evolution_factor*100))
+		if attack_chance < math.floor(game.forces.enemy.evolution_factor*100) then
 			-- send attacks to all nearby players
 			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Difficulty + math.floor(game.evolution_factor * 30)), unit_search_distance = 600 * NE_Difficulty}
+				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 30)), unit_search_distance = 600 * NE_Enemies.Settings.NE_Difficulty}
 			end
 		end
 	end
 	
 	---- Unit Launcher
 	if global.tick < event.tick then
-		if game.evolution_factor > 0.995 then
+		if game.forces.enemy.evolution_factor > 0.995 then
 			global.evoFactorFloor = 10
 		else
-			global.evoFactorFloor = math.floor(game.evolution_factor * 10)
+			global.evoFactorFloor = math.floor(game.forces.enemy.evolution_factor * 10)
 		end
 		global.tick = global.tick + 1800
 	end
@@ -631,7 +626,7 @@ script.on_init(On_Init)
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-	if NE_Enemies_Config.QCCode then 
+	if QC_Mod == true then  
 		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end

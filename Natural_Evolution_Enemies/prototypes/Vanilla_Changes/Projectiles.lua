@@ -1,16 +1,15 @@
 
-require "config"
+if not NE_Enemies then NE_Enemies = {} end
+if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
+
+NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+
+
+
+
 require("prototypes.Vanilla_Changes.Explosions")
 
---- Difficulty settings	
-	if NE_Difficulty == nil then
-      NE_Difficulty = 1
-	end
-	if NE_Enemies_Config.Set_Difficulty == 1 then
-		NE_Difficulty = 1 -- Normal difficulty
-		else NE_Difficulty  = 2 -- Hard difficulty
-	end
-	
+
 
 data:extend(
 {
@@ -128,11 +127,11 @@ data:extend(
 		  
 		  {
             type = "damage",
-            damage = {amount = 7*NE_Difficulty, type = "explosion"}
+            damage = {amount = 7*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
           },
           {
             type = "damage",
-            damage = {amount = 14*NE_Difficulty, type = "poison"}
+            damage = {amount = 14*NE_Enemies.Settings.NE_Difficulty, type = "poison"}
           }
         }
       }
@@ -216,11 +215,11 @@ data:extend(
                 {
                   {
 					type = "damage",
-					damage = {amount = 7*NE_Difficulty, type = "explosion"}
+					damage = {amount = 7*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
 				  },
 				  {
                     type = "damage",
-                    damage = {amount = 14*NE_Difficulty, type = "acid"}
+                    damage = {amount = 14*NE_Enemies.Settings.NE_Difficulty, type = "acid"}
                   },
                 }
               }
@@ -308,11 +307,11 @@ data:extend(
 
 		  {
             type = "damage",
-            damage = {amount = 12*NE_Difficulty, type = "explosion"}
+            damage = {amount = 12*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
           },
           {
             type = "damage",
-            damage = {amount = 24*NE_Difficulty, type = "poison"}
+            damage = {amount = 24*NE_Enemies.Settings.NE_Difficulty, type = "poison"}
           }
         }
       }
@@ -401,11 +400,11 @@ data:extend(
                 {
                   {
 					type = "damage",
-					damage = {amount = 10*NE_Difficulty, type = "explosion"}
+					damage = {amount = 10*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
 				  },
 				  {
                     type = "damage",
-                    damage = {amount = 20*NE_Difficulty, type = "acid"}
+                    damage = {amount = 20*NE_Enemies.Settings.NE_Difficulty, type = "acid"}
                   },
                 }
               }
@@ -481,7 +480,7 @@ data:extend(
               target_effects =
               {
                 type = "damage",
-                damage = { amount = 6*NE_Difficulty, type = "poison"}
+                damage = { amount = 6*NE_Enemies.Settings.NE_Difficulty, type = "poison"}
               }
             }
           }
