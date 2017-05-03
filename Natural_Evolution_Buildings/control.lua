@@ -14,10 +14,7 @@ if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
---NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
-
-settings.startup["NE_Spawner_Search_Distance"].value
-
+NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
 --settings.startup["NE_Unit_Search_Distance"].value = settings.startup["NE_Unit_Search_Distance"].value
 NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 
@@ -141,7 +138,13 @@ local entity = event.created_entity
 	local newAlienControlStation
 	local surface = event.created_entity.surface
 	local force = event.created_entity.force
-		
+	
+	writeDebug("ACS has been built")		
+	writeDebug("The ACS search area is (Spawner): " .. settings.startup["NE_Spawner_Search_Distance"].value)  	
+	writeDebug("The ACS search area is (Unit): " .. settings.startup["NE_Unit_Search_Distance"].value)  	
+	writeDebug("The ACS Difficulty is: " .. settings.startup["NE_Conversion_Difficulty"].value)  	
+	writeDebug("The ACS Difficulty is: " .. global.minds.difficulty)  					
+			
 		newAlienControlStation = surface.create_entity({name = "AlienControlStation", position = event.created_entity.position, force = force})
 		event.created_entity.destroy()
 
@@ -297,7 +300,6 @@ function Control_Enemies()
       if beacon.energy > 0 then
         
 		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Spawner_Search_Distance"].value)} --search area of thirty around each ACS for spawners
-		--local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NE_Buildings.Settings.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
 		
         if #bases > 0 then
           for i, base in ipairs(bases) do
@@ -343,7 +345,8 @@ function Remove_Mind_Control()
       else -- is valid
         local controlled = false --assume out of range
         if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Unit_Search_Distance"].value)}[1] then --a AlienControlStation is in range
-          controlled = true
+
+		controlled = true
           break
         end
         if not controlled then mind.force=enemyForce end
@@ -358,7 +361,7 @@ function Convert_Base(base, died, newforce)
   
   local surface = game.surfaces['nauvis'] -- Old Code, need to fix
   --local surface = base.surface
-  local enemies=Get_Bounding_Box(base.position, NE_Buildings_Config.Unit_Search_Distance)
+  local enemies=Get_Bounding_Box(base.position, settings.startup["NE_Spawner_Search_Distance"].value)
   local units={}
   local hives={}
   local worms={}
