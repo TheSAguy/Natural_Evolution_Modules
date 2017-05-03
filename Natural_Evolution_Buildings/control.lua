@@ -14,8 +14,11 @@ if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
-NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
-NE_Buildings.Settings.Unit_Search_Distance = settings.startup["NE_Unit_Search_Distance"].value
+--NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
+
+settings.startup["NE_Spawner_Search_Distance"].value
+
+--settings.startup["NE_Unit_Search_Distance"].value = settings.startup["NE_Unit_Search_Distance"].value
 NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 
 
@@ -293,7 +296,8 @@ function Control_Enemies()
 	
       if beacon.energy > 0 then
         
-		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NE_Buildings.Settings.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
+		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Spawner_Search_Distance"].value)} --search area of thirty around each ACS for spawners
+		--local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, NE_Buildings.Settings.Spawner_Search_Distance)} --search area of thirty around each ACS for spawners
 		
         if #bases > 0 then
           for i, base in ipairs(bases) do
@@ -303,7 +307,7 @@ function Control_Enemies()
           end
         else -- no bases in range 
        
-		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, NE_Buildings.Settings.Unit_Search_Distance)) do --search area of ten around each ACS
+		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, settings.startup["NE_Unit_Search_Distance"].value)) do --search area of ten around each ACS
 		  
             if enemy.force == (enemyForce) then --do only if not already controlled
               if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
@@ -338,7 +342,7 @@ function Remove_Mind_Control()
         table.remove(global.minds, k)
       else -- is valid
         local controlled = false --assume out of range
-        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, NE_Buildings.Settings.Unit_Search_Distance)}[1] then --a AlienControlStation is in range
+        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Unit_Search_Distance"].value)}[1] then --a AlienControlStation is in range
           controlled = true
           break
         end
