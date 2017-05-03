@@ -14,8 +14,8 @@ if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
-NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
---settings.startup["NE_Unit_Search_Distance"].value = settings.startup["NE_Unit_Search_Distance"].value
+--NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
+--NE_Buildings.Settings.Unit_Search_Distance = settings.startup["NE_Unit_Search_Distance"].value
 NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 
 
