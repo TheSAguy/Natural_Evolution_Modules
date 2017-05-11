@@ -1,14 +1,14 @@
---- EXPANSION v.6.4.0
+--- EXPANSION v.7.0.0
+local QC_Mod = true
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
 if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
 
 
 require ("util")
-require ("config")
 require ("libs/event")
 
-if NE_Expansion_Config.Single_Player_Only and remote.interfaces.EvoGUI then
+if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
@@ -62,50 +62,57 @@ end
 ---------------------------------------------
 
 
-if NE_Expansion_Config.HarderEndGame then
+if settings.startup["NE_Harder_Endgame"].value then
 
-	---------------------------------------------
-	script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
-	script.on_event({defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
 
 ---------------------------------------------
-	function On_Built(event)
+local function On_Built(event)
 	  
-	   --- Harder Ending Some action if you built the Rocket-silo!
-		if event.created_entity.name == "rocket-silo" then
-			
-			global.RocketSiloBuilt = global.RocketSiloBuilt + 1
-			writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
-				-- Increase Evolution factor by 10% of remaining evolution once a Rocket Silo is built	
-				if game.evolution_factor < 0.89999 then
-					game.evolution_factor = game.evolution_factor + (1 - game.evolution_factor)/10
-				else
-					game.evolution_factor = 0.9999
-				end  
-					
-			-- Biters will attack the newly built Rocket Silo
-			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.evolution_factor), unit_search_distance = 2500}
-			
-			for i, player in pairs(game.players) do
-					player.print("WARNING!")
-					player.print("Building a Rocket Silo caused a lot of noise and biters will attack!!!")
-			end
-
+  --- Harder Ending Some action if you built the Rocket-silo!
+	if event.created_entity.name == "rocket-silo" then
+		
+		global.RocketSiloBuilt = global.RocketSiloBuilt + 1
+		writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
+			-- Increase Evolution factor by 10% of remaining evolution once a Rocket Silo is built	
+			if game.forces.enemy.evolution_factor < 0.89999 then
+				game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor + (1 - game.forces.enemy.evolution_factor)/10
+			else
+				game.forces.enemy.evolution_factor = 0.9999
+			end  
+				
+		-- Biters will attack the newly built Rocket Silo
+		event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.forces.enemy.evolution_factor), unit_search_distance = 2500}
+		
+		for i, player in pairs(game.players) do
+				player.print("WARNING!")
+				player.print("Building a Rocket Silo caused a lot of noise and biters will attack!!!")
 		end
 	end
-
-
-	---------------------------------------------
-	function On_Remove(event)
-
-	   ---- Remove Rocket Silo count
-	   if event.entity.name == "rocket-silo" then
-			 global.RocketSiloBuilt = global.RocketSiloBuilt - 1      
-			 writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
-	   end
-	end
-
 end
+
+
+--------------------------------------------
+local function On_Remove(event)
+
+   ---- Remove Rocket Silo count
+  if event.entity.name == "rocket-silo" then
+	 global.RocketSiloBuilt = global.RocketSiloBuilt - 1      
+	 writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
+   end
+end
+
+	
+local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+script.on_event(build_events, On_Built)
+
+local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined, defines.events.on_entity_died}
+script.on_event(pre_remove_events, On_Remove)
+
+	
+end
+
+
+
 
 	--------------------
 function Expansion_Initial_Setup() 
@@ -115,15 +122,18 @@ function Expansion_Initial_Setup()
 		
 	enemy_expansion.enabled = false -- Disable Initial Expansion - Vanilla = True	
 	enemy_expansion.min_base_spacing = 3 -- Vanilla 3
-	enemy_expansion.max_expansion_distance = 5 -- Vanilla 7
+	enemy_expansion.max_expansion_distance = 7 -- Vanilla 7
+	enemy_expansion.settler_group_min_size = 5 -- Vanilla 5
+	enemy_expansion.settler_group_max_size = 20 -- Vanilla 20
+	enemy_expansion.min_expansion_cooldown = 4 -- 4 Min
+	enemy_expansion.max_expansion_cooldown = 60 -- 10 Min
+	---
 	enemy_expansion.building_coefficient = 0.8 -- vanilla 0.1
 	enemy_expansion.other_base_coefficient = 2.1 -- vanilla 2.0
 	enemy_expansion.neighbouring_chunk_coefficient = 0.6 -- vanilla 0.5
 	enemy_expansion.neighbouring_base_chunk_coefficient = 0.5 -- vanilla 0.4	
-	enemy_expansion.settler_group_min_size = 2 -- Vanilla 5
-	enemy_expansion.settler_group_max_size = 4 -- Vanilla 20
 	---
-	unit_group.max_group_radius = 20 -- Vanilla 30
+	unit_group.max_group_radius = 30 -- Vanilla 30
 	unit_group.min_group_radius = 5 -- Vanilla 5		
 		
 end
@@ -131,13 +141,15 @@ end
 
 
 
+
+
 	
 ---------------------------------------------	
-if NE_Expansion_Config.Expansion then	
 
-	local evolution_Timer_Peace = (NE_Expansion_Config.Evolution_Timer * 3600) * 2 -- Default is 10min. There will thus be a random 0-10min peace after each Phase.
-	--- global.Peace_Timer is only used for EvoGui value
-	global.Peace_Timer = evolution_Timer_Peace
+
+local evolution_Timer_Peace = (settings.startup["NE_Evolution_Timer"].value * 3600) * 2 -- Default is 10min. There will thus be a random 0-10min peace after each Phase.
+--- global.Peace_Timer is only used for EvoGui value
+global.Peace_Timer = evolution_Timer_Peace
 	
 	
 	Event.register(defines.events.on_tick, function(event)		
@@ -152,11 +164,11 @@ if NE_Expansion_Config.Expansion then
 		--------------- Expansion ----------------------------------
 
 			--- Check every minute. Nothing will happen until at leasst 5% evolution
-			if (game.tick % (evolution_Timer_Peace)  == 0) and (game.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
+			if (game.tick % (evolution_Timer_Peace)  == 0) and (game.forces.enemy.evolution_factor >= .005) and (global.Natural_Evolution_state == "Peaceful") then
 				
 				
 				--- Should generate a random value between 0 and 200
-				local expansionChance = math.random(math.floor((game.evolution_factor * 100) + global.Natural_Evolution_Counter), math.floor((game.evolution_factor * 100) + 100))
+				local expansionChance = math.random(math.floor((game.forces.enemy.evolution_factor * 100) + global.Natural_Evolution_Counter), math.floor((game.forces.enemy.evolution_factor * 100) + 100))
 
 				-- For Early game, has about a 25% change to start Evolution
 				if expansionChance >= 75 and expansionChance < 100 then
@@ -166,70 +178,70 @@ if NE_Expansion_Config.Expansion then
 				-- Evolution Factor = 1% - 9%:
 				elseif expansionChance >= 100 and expansionChance < 110 then
 					Natural_Evolution_SetExpansionLevel("Phase 1")
-					if game.evolution_factor >.1 and global.Natural_Evolution_Counter < 10 then
+					if game.forces.enemy.evolution_factor >.1 and global.Natural_Evolution_Counter < 10 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 10% - 19%:
 				elseif expansionChance >= 110 and expansionChance < 120 then
 					Natural_Evolution_SetExpansionLevel("Phase 2")
-					if game.evolution_factor >.2 and global.Natural_Evolution_Counter < 15 then
+					if game.forces.enemy.evolution_factor >.2 and global.Natural_Evolution_Counter < 15 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 20% - 29%:
 				elseif expansionChance >= 120 and expansionChance < 130 then
 					Natural_Evolution_SetExpansionLevel("Phase 3")
-					if game.evolution_factor >.3 and global.Natural_Evolution_Counter < 20 then
+					if game.forces.enemy.evolution_factor >.3 and global.Natural_Evolution_Counter < 20 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 				
 				-- Evolution Factor = 30% - 39%:
 				elseif expansionChance >= 130 and expansionChance < 140 then
 					Natural_Evolution_SetExpansionLevel("Phase 4")
-					if game.evolution_factor >.4 and global.Natural_Evolution_Counter < 25 then
+					if game.forces.enemy.evolution_factor >.4 and global.Natural_Evolution_Counter < 25 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 40% - 49%:
 				elseif expansionChance >= 140 and expansionChance < 150 then
 					Natural_Evolution_SetExpansionLevel("Phase 5")
-					if game.evolution_factor >.5 and global.Natural_Evolution_Counter < 30 then
+					if game.forces.enemy.evolution_factor >.5 and global.Natural_Evolution_Counter < 30 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 50% - 59%:
 				elseif expansionChance >= 150 and expansionChance < 160 then
 					Natural_Evolution_SetExpansionLevel("Phase 6")
-					if game.evolution_factor >.6 and global.Natural_Evolution_Counter < 35 then
+					if game.forces.enemy.evolution_factor >.6 and global.Natural_Evolution_Counter < 35 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 60% - 69%:
 				elseif expansionChance >= 160 and expansionChance < 170 then
 					Natural_Evolution_SetExpansionLevel("Phase 7")
-					if game.evolution_factor >.7 and global.Natural_Evolution_Counter < 40 then
+					if game.forces.enemy.evolution_factor >.7 and global.Natural_Evolution_Counter < 40 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 70% - 79%:
 				elseif expansionChance >= 170 and expansionChance < 180 then
 					Natural_Evolution_SetExpansionLevel("Phase 8")
-					if game.evolution_factor >.7 and global.Natural_Evolution_Counter < 45 then
+					if game.forces.enemy.evolution_factor >.7 and global.Natural_Evolution_Counter < 45 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 				
 				-- Evolution Factor = 80% - 89%:
 				elseif expansionChance >= 180 and expansionChance < 190 then
 					Natural_Evolution_SetExpansionLevel("Phase 9")
-					if game.evolution_factor >.8 and global.Natural_Evolution_Counter < 50 then
+					if game.forces.enemy.evolution_factor >.8 and global.Natural_Evolution_Counter < 50 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 					
 				-- Evolution Factor = 90% - 98%:
 				elseif expansionChance >= 190 and expansionChance < 199 then
 					Natural_Evolution_SetExpansionLevel("Phase 10")
-					if game.evolution_factor >.9 and global.Natural_Evolution_Counter < 50 then
+					if game.forces.enemy.evolution_factor >.9 and global.Natural_Evolution_Counter < 50 then
 					global.Natural_Evolution_Counter = global.Natural_Evolution_Counter + 1
 					end
 				
@@ -256,26 +268,26 @@ if NE_Expansion_Config.Expansion then
 
 	----Harder Endgame Function - Will send waves of enemies to attack the player once the Rocket Silo is built. Will also increase the Evolutio factor slightly with each wave.
 	function Harder_Endgame(Evo_Increase,Enemy_Count)
-		if NE_Expansion_Config.HarderEndGame then	
+		if settings.startup["NE_Harder_Endgame"].value then	
 			if global.RocketSiloBuilt > 0 then
 			local E_Increase = 0
-				if ((1-game.evolution_factor) / (10 * Evo_Increase)) > 0.05 then
+				if ((1-game.forces.enemy.evolution_factor) / (10 * Evo_Increase)) > 0.05 then
 					E_Increase = 0.05
 				else 
-					E_Increase = ((1-game.evolution_factor) / (10 * Evo_Increase))
+					E_Increase = ((1-game.forces.enemy.evolution_factor) / (10 * Evo_Increase))
 				end
 				 
-				if game.evolution_factor < 0.9899 then
-					game.evolution_factor = game.evolution_factor + E_Increase
+				if game.forces.enemy.evolution_factor < 0.9899 then
+					game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor + E_Increase
 						
 				else
-					game.evolution_factor = 0.99999
+					game.forces.enemy.evolution_factor = 0.99999
 				end  
 			
 			---- Attack the player, since you have a silo built						
 				for _, player in pairs(game.players) do
 					if player.connected and player.valid and player.character and player.character.valid then
-						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.evolution_factor), unit_search_distance = 1500}
+						player.surface.set_multi_command{command = {type=defines.command.attack, target=player.character, distraction=defines.distraction.by_enemy},unit_count = math.floor(Enemy_Count * game.forces.enemy.evolution_factor), unit_search_distance = 1500}
 					end
 				end	
 
@@ -292,12 +304,12 @@ if NE_Expansion_Config.Expansion then
 		local unit_group = game.map_settings.unit_group
 		-----
 
-		--Current formula 5 min + 0min @ 0% evo and 10min @ 100% evo. So A phase can last 5 - 15min.
-		global.Natural_Evolution_Timer = (evolution_Timer + (game.evolution_factor * evolution_Timer) * 2)
+		--Current formula 5 min @ 0% evo and 10min @ 100% evo. So A phase can last 5 - 15min.
+		global.Natural_Evolution_Timer = (evolution_Timer + (game.forces.enemy.evolution_factor * evolution_Timer) * 2)
 		
 		
 		-- Below 5% evolution, no expansion
-		if game.evolution_factor > 0.05 then
+		if game.forces.enemy.evolution_factor > 0.05 then
 			enemy_expansion.enabled = true
 		else
 			enemy_expansion.enabled = false
@@ -346,45 +358,48 @@ if NE_Expansion_Config.Expansion then
 		end
 
 		-- DEFAULT expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
-
-		local min_Base_Spacing = 3 -- Vanilla 3
-		local max_Expansion_Distance = 5 -- Vanilla 7
+		local enemy_expansion = game.map_settings.enemy_expansion
+		local unit_group = game.map_settings.unit_group
 		
-		local building_coefficient = 0.6 - (global.Natural_Evolution_Counter / 250) -- vanilla 0.1
-		local other_base_coefficient = 2.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-		local neighbouring_chunk_coefficient = 0.6 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-		local neighbouring_base_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4
+		local min_Base_Spacing = 3 -- math.floor(enemy_expansion.min_base_spacing * 2) -- Vanilla 3
+		local max_Expansion_Distance = math.floor(enemy_expansion.max_expansion_distance / 2) -- Vanilla 7
+		
+		local building_coefficient = (enemy_expansion.building_coefficient * 2) - (global.Natural_Evolution_Counter / 250) -- vanilla 0.1
+		local other_base_coefficient = (enemy_expansion.other_base_coefficient * 2) - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
+		local neighbouring_chunk_coefficient = (enemy_expansion.neighbouring_chunk_coefficient * 1.2) - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
+		local neighbouring_base_chunk_coefficient = math.floor(enemy_expansion.neighbouring_base_chunk_coefficient * 1.2) - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4
 		
 		
-		local settler_Group_Min_Size = 2 -- Vanilla 5
-		local settler_Group_Max_Size = 4 -- Vanilla 20
+		local settler_Group_Min_Size = math.floor(enemy_expansion.settler_group_min_size / 2) -- Vanilla 5
+		local settler_Group_Max_Size = math.floor(enemy_expansion.settler_group_max_size / 2)-- Vanilla 20
 
-		local max_Group_Radius = 20 -- Vanilla 30
-		local min_Group_Radius = 5 -- Vanilla 5
-		local enemy_speedup = NE_Expansion_Config.Enemy_Speedup_Endgame
+		local max_Group_Radius = math.floor(unit_group.max_group_radius * 0.8) -- Vanilla 30
+		local min_Group_Radius = math.floor(unit_group.min_group_radius * 0.8) -- Vanilla 5
+		local enemy_speedup = 1.5
 
+		
 		if Expansion_State == "Peaceful" then
-		
+			writeDebug("The Max Unit Group Radius is: " .. max_Group_Radius)
 			game.map_settings.enemy_expansion.enabled = false   --- No Expansion during Peaceful time
 			global.Natural_Evolution_Timer = 0			
 			
 			-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.				
-			if NE_Expansion_Config.Reduce_Evo_on_Phase_Change then			
-				if game.evolution_factor > 0.05 then
+		
+				if game.forces.enemy.evolution_factor > 0.05 then
 					if global.Natural_Evolution_state == "Awakening" then
-						game.evolution_factor = game.evolution_factor		
+						game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor		
 					else
 										
-						local Evo_Deduction = (0.0025 * (1 - game.evolution_factor)*(1 - game.evolution_factor))
+						local Evo_Deduction = (0.0025 * (1 - game.forces.enemy.evolution_factor)*(1 - game.forces.enemy.evolution_factor))
 						
-						game.evolution_factor = game.evolution_factor - Evo_Deduction
+						game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - Evo_Deduction
 						global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction
 						writeDebug("Evolution Deduction during Expansion: " .. Evo_Deduction)	
 						writeDebug("Total Evolution Deduction from Phase Switch: " .. global.Total_Phase_Evo_Deduction)	
 					end
 								
 				end
-			end
+
 			
 		-- Defines the values for the different Evolution States.
 		elseif Expansion_State == "Awakening" then
@@ -563,7 +578,7 @@ if NE_Expansion_Config.Expansion then
 			settler_Group_Min_Size = 30
 			settler_Group_Max_Size = 75
 
-		    enemy_speedup = NE_Expansion_Config.Enemy_Speedup_Endgame
+		    enemy_speedup = 2
 			
 		
 		elseif Expansion_State == "Armageddon" then
@@ -582,7 +597,7 @@ if NE_Expansion_Config.Expansion then
 			settler_Group_Min_Size = 100
 			settler_Group_Max_Size = 200
 
-		    enemy_speedup = NE_Expansion_Config.Enemy_Speedup_Endgame
+		    enemy_speedup = 2
 
 			
 		end	
@@ -592,10 +607,10 @@ if NE_Expansion_Config.Expansion then
 		if Expansion_State ~= "Peaceful" then
 			-- adjust the expansion settings based on any customizations from the config settings, making sure they stay above zero
 
-			evolution_Timer = (NE_Expansion_Config.Evolution_Timer * 3600)
+			evolution_Timer = (settings.startup["NE_Evolution_Timer"].value * 3600)
 
-			settler_Group_Min_Size = math.max(1, settler_Group_Min_Size * NE_Expansion_Config.Settler_Group_Size)
-			settler_Group_Max_Size = math.max(1, settler_Group_Max_Size * NE_Expansion_Config.Settler_Group_Size)
+			settler_Group_Min_Size = math.max(1, settler_Group_Min_Size)
+			settler_Group_Max_Size = math.max(1, settler_Group_Max_Size)
 
 		
 			-- apply the expansion settings
@@ -605,20 +620,19 @@ if NE_Expansion_Config.Expansion then
 			
 	end
 
-end
 
 
 ---------------------------------------------
 script.on_init(On_Init)
---script.on_load(On_Load)
 script.on_configuration_changed(On_Change)
 
 ---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
-	if NE_Expansion_Config.QCCode then 
+	if QC_Mod == true then  
 		for i, player in pairs(game.players) do
 			player.print(tostring(message))
 		end
 	end
 end
+

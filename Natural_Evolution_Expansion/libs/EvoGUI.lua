@@ -11,7 +11,7 @@ EvoGUI = {}
 	end
 
     function EvoGUI.create_Evolution_Rate_Text()
-        local diff = game.evolution_factor - global.exponential_moving_average
+        local diff = game.forces.enemy.evolution_factor - global.exponential_moving_average
         -- percentage is decimal * 100, * 60 for per minute value
         local evo_rate_per_min = math.abs(diff * 100 * 60)
         
@@ -50,7 +50,7 @@ EvoGUI = {}
 	
 		
     function EvoGUI.calculate_Evolution_Rate_Color()
-        local diff = game.evolution_factor - global.exponential_moving_average
+        local diff = game.forces.enemy.evolution_factor - global.exponential_moving_average
         
         if diff > 0 then
             local red = (100 * 255 * diff) / 0.0035
@@ -92,7 +92,7 @@ EvoGUI = {}
 Event.register(defines.events.on_tick, function(event)
         if not global.evo_gui then global.evo_gui = {} end
         if not global.exponential_moving_average then
-            global.exponential_moving_average = game.evolution_factor
+            global.exponential_moving_average = game.forces.enemy.evolution_factor
         end
 
         if not global.evo_gui.detected then
@@ -101,7 +101,7 @@ Event.register(defines.events.on_tick, function(event)
         if global.evo_gui.detected and game.tick % 10 == 0 then
             if remote.interfaces.EvoGUI then
 				EvoGUI.update_gui()
-                global.exponential_moving_average = global.exponential_moving_average + (0.8 * (game.evolution_factor - global.exponential_moving_average))
+                global.exponential_moving_average = global.exponential_moving_average + (0.8 * (game.forces.enemy.evolution_factor - global.exponential_moving_average))
             end
         end
     end)
