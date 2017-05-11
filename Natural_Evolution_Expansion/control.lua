@@ -45,7 +45,7 @@ function On_Init()
 	end
 		
 	---  Initial Expansion Values	
-	Expansion_Initial_Setup() 
+	--Expansion_Initial_Setup() 
 	
 end
 
@@ -54,8 +54,7 @@ function On_Change()
 	
 	if not global.Peace_Timer then
 		global.Peace_Timer = 0
-	end
-	
+	end	
 
 end
 
@@ -63,7 +62,6 @@ end
 
 
 if settings.startup["NE_Harder_Endgame"].value then
-
 
 ---------------------------------------------
 local function On_Built(event)
@@ -114,7 +112,7 @@ end
 
 
 
-	--------------------
+	-------Not currently used-------------
 function Expansion_Initial_Setup() 
 		
 	local enemy_expansion = game.map_settings.enemy_expansion
@@ -137,8 +135,6 @@ function Expansion_Initial_Setup()
 	unit_group.min_group_radius = 5 -- Vanilla 5		
 		
 end
-
-
 
 
 
@@ -323,17 +319,18 @@ global.Peace_Timer = evolution_Timer_Peace
 		enemy_expansion.other_base_coefficient = NE_other_base_coefficient
 		enemy_expansion.neighbouring_chunk_coefficient = NE_neighbouring_chunk_coefficient
 		enemy_expansion.neighbouring_base_chunk_coefficient = NE_neighbouring_base_chunk_coefficient
-		enemy_expansion.settler_group_min_size = NE_Settler_Group_Min_Size + global.Natural_Evolution_Counter
-		enemy_expansion.settler_group_max_size = NE_Settler_Group_Max_Size + global.Natural_Evolution_Counter
+		
+		enemy_expansion.settler_group_min_size = NE_Settler_Group_Min_Size
+		enemy_expansion.settler_group_max_size = NE_Settler_Group_Max_Size
+		
 		enemy_expansion.min_Expansion_Cooldown = math.floor(global.Natural_Evolution_Timer / 4)
 		enemy_expansion.max_Expansion_Cooldown = math.floor(global.Natural_Evolution_Timer / 2)
-			
 		unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 4)
 		unit_group.max_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
 		unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 8)
-		unit_group.max_group_radius = NE_Max_Group_Radius + (global.Natural_Evolution_Counter / 2)
-		unit_group.min_group_radius = NE_Min_Group_Radius + (global.Natural_Evolution_Counter / 2)
-		unit_group.max_member_speedup_when_behind = NE_Speedup + (global.Natural_Evolution_Counter / 10)		
+		unit_group.max_group_radius = NE_Max_Group_Radius
+		unit_group.min_group_radius = NE_Min_Group_Radius
+		unit_group.max_member_speedup_when_behind = NE_Speedup		
 		
 		
 		
@@ -345,266 +342,300 @@ global.Peace_Timer = evolution_Timer_Peace
 	end
 	
 	--------------------	
-	function Natural_Evolution_SetExpansionLevel(Expansion_State)
+function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		
-		Expansion_State = Expansion_State or "Peaceful"
+	Expansion_State = Expansion_State or "Peaceful"
 
 	
-		-- allow biters to path from farther away (minor performance hit)
-		if expansion_state ~= "Peaceful" then
-			game.map_settings.path_finder.max_steps_worked_per_tick = 500
-		else
-			game.map_settings.path_finder.max_steps_worked_per_tick = 50
-		end
+	-- allow biters to path from farther away (minor performance hit)
+	if expansion_state ~= "Peaceful" then
+		game.map_settings.path_finder.max_steps_worked_per_tick = 500
+	else
+		game.map_settings.path_finder.max_steps_worked_per_tick = 50
+	end
 
 	-- DEFAULT expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
 	local enemy_expansion = game.map_settings.enemy_expansion
 	local unit_group = game.map_settings.unit_group
-	local multiplier = (0.6 + (global.Natural_Evolution_Counter / 50))
-		
-	
+
 	--local min_Base_Spacing = game.map_settings.enemy_expansion.min_base_spacing
-	local min_Base_Spacing = 3 * multiplier
-	local max_Expansion_Distance = enemy_expansion.max_expansion_distance * multiplier
-	local settler_Group_Min_Size = enemy_expansion.settler_group_min_size * multiplier
-	local settler_Group_Max_Size = enemy_expansion.settler_group_max_size * multiplier
-	--enemy_expansion.min_expansion_cooldown = 4 -- 4 Min
-	--enemy_expansion.max_expansion_cooldown = 60 -- 10 Min
+	local min_Base_Spacing = 3
+	local max_Base_Expansion_Distance = enemy_expansion.max_expansion_distance
+	local settler_Group_Min_Size = enemy_expansion.settler_group_min_size
+	local settler_Group_Max_Size = enemy_expansion.settler_group_max_size
 	---
 	local building_coefficient = enemy_expansion.building_coefficient
 	local other_base_coefficient = enemy_expansion.other_base_coefficient
 	local neighbouring_chunk_coefficient = enemy_expansion.neighbouring_chunk_coefficient
 	local neighbouring_base_chunk_coefficient = enemy_expansion.neighbouring_base_chunk_coefficient
 	---
-	local max_Group_Radius = unit_group.max_group_radius 
 	local min_Group_Radius = unit_group.min_group_radius	
-	local enemy_speedup = 1.5
+	local max_Group_Radius = unit_group.max_group_radius 
+	local enemy_speedup = 1
 	
 	
 		
 		
 
 		
-		if Expansion_State == "Peaceful" then
-			writeDebug("The Max Unit Group Radius is: " .. max_Group_Radius)
-			game.map_settings.enemy_expansion.enabled = false   --- No Expansion during Peaceful time
-			global.Natural_Evolution_Timer = 0			
+	if Expansion_State == "Peaceful" then
+
+		game.map_settings.enemy_expansion.enabled = false   --- No Expansion during Peaceful time
+		global.Natural_Evolution_Timer = 0			
 			
-			-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.				
+		-- Each time a Phase is triggered, the Evolution Factor is decreased slightly, just during the Phase.				
 		
-				if game.forces.enemy.evolution_factor > 0.05 then
-					if global.Natural_Evolution_state == "Awakening" then
-						game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor		
-					else
-										
-						local Evo_Deduction = (0.0025 * (1 - game.forces.enemy.evolution_factor)*(1 - game.forces.enemy.evolution_factor))
-						
-						game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - Evo_Deduction
-						global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction
-						writeDebug("Evolution Deduction during Expansion: " .. Evo_Deduction)	
-						writeDebug("Total Evolution Deduction from Phase Switch: " .. global.Total_Phase_Evo_Deduction)	
-					end
-								
+			if game.forces.enemy.evolution_factor > 0.05 then
+				if global.Natural_Evolution_state == "Awakening" then
+					game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor		
+				else
+									
+					local Evo_Deduction = (0.0025 * (1 - game.forces.enemy.evolution_factor)*(1 - game.forces.enemy.evolution_factor))
+					
+					game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - Evo_Deduction
+					global.Total_Phase_Evo_Deduction = global.Total_Phase_Evo_Deduction + Evo_Deduction
+					writeDebug("Evolution Deduction during Expansion: " .. Evo_Deduction)	
+					writeDebug("Total Evolution Deduction from Phase Switch: " .. global.Total_Phase_Evo_Deduction)	
 				end
+							
+			end
 
 			
-		-- Defines the values for the different Evolution States.
-		elseif Expansion_State == "Awakening" then
-			-- No adjustments needed - Awakening is the default.
+	-- Defines the values for the different Evolution States.
+	elseif Expansion_State == "Awakening" then
+		-- No adjustments needed - Awakening is the default.
 
 
-		elseif Expansion_State == "Phase 1" then
-			----- Harder Ending
-			Harder_Endgame(1,500)
-			-----
-			max_Expansion_Distance = max_Expansion_Distance + 1
+	elseif Expansion_State == "Phase 1" then
+		----- Harder Ending
+		Harder_Endgame(1,500)
+		-----
+
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance - 2
+		settler_Group_Min_Size = settler_Group_Min_Size + 1
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.05
+		other_base_coefficient = other_base_coefficient - 0.05
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.01
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.01
+		---
+		min_Group_Radius = min_Group_Radius - 2
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.1 + (global.Natural_Evolution_Counter / 50)
 		
-			building_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.55 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4			
-		
-			settler_Group_Min_Size = 2
-			settler_Group_Max_Size = 4
 
 
 
-		elseif Expansion_State == "Phase 2" then
-			----- Harder Ending
-			Harder_Endgame(1,500)
-			-----
-			max_Expansion_Distance = max_Expansion_Distance + 3
-			
-			building_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.55 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 6
-			settler_Group_Max_Size = 12
+	elseif Expansion_State == "Phase 2" then
+		----- Harder Ending
+		Harder_Endgame(1,500)
+		-----
+
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance - 1 
+		settler_Group_Min_Size = settler_Group_Min_Size + 2
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.10
+		other_base_coefficient = other_base_coefficient - 0.10
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.02
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.02
+		---
+		min_Group_Radius = min_Group_Radius - 1
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.2 + (global.Natural_Evolution_Counter / 50)
 
 
 
-		elseif Expansion_State == "Phase 3" then
-			----- Harder Ending
-			Harder_Endgame(1,500)
-			-----
+	elseif Expansion_State == "Phase 3" then
+		----- Harder Ending
+		Harder_Endgame(1,500)
+		-----
 
-			max_Expansion_Distance = max_Expansion_Distance + 5
-			
-			building_coefficient = 0.2 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4		
-			
-			settler_Group_Min_Size = 8
-			settler_Group_Max_Size = 16
-
-
-
-		elseif Expansion_State == "Phase 4" then
-			----- Harder Ending
-			Harder_Endgame(1,500)
-			-----
-
-			max_Expansion_Distance = max_Expansion_Distance + 7
-			
-			building_coefficient = 0.15 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 10
-			settler_Group_Max_Size = 20
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance
+		settler_Group_Min_Size = settler_Group_Min_Size + 3
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.15
+		other_base_coefficient = other_base_coefficient - 0.15
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.03
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.03
+		---
+		min_Group_Radius = min_Group_Radius 
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.3 + (global.Natural_Evolution_Counter / 50)
 
 
+	elseif Expansion_State == "Phase 4" then
+		----- Harder Ending
+		Harder_Endgame(1,500)
+		-----
 
-		elseif Expansion_State == "Phase 5" then
-			----- Harder Ending
-			Harder_Endgame(1,1000)
-			-----
-
-			min_Base_Spacing = min_Base_Spacing - 1
-			max_Expansion_Distance = max_Expansion_Distance + 8
-			
-			building_coefficient = 0.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 12
-			settler_Group_Max_Size = 24
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 2
+		settler_Group_Min_Size = settler_Group_Min_Size + 4
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.20
+		other_base_coefficient = other_base_coefficient - 0.20
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.04
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.04
+		---
+		min_Group_Radius = min_Group_Radius + 2
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.4 + (global.Natural_Evolution_Counter / 50)
 
 
 
-		elseif Expansion_State == "Phase 6" then
-			----- Harder Ending
-			Harder_Endgame(1.5,1500)
-			-----
 
-			min_Base_Spacing = min_Base_Spacing - 1
-			max_Expansion_Distance = max_Expansion_Distance + 9
-			
-			building_coefficient = 0.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 2.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.5 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.35 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 14
-			settler_Group_Max_Size = 28
+	elseif Expansion_State == "Phase 5" then
+		----- Harder Ending
+		Harder_Endgame(1,1000)
+		-----
+
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 4
+		settler_Group_Min_Size = settler_Group_Min_Size + 5
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.25
+		other_base_coefficient = other_base_coefficient - 0.25
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.05
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.05
+		---
+		min_Group_Radius = min_Group_Radius + 4
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.5 + (global.Natural_Evolution_Counter / 50)
+
+
+	elseif Expansion_State == "Phase 6" then
+		----- Harder Ending
+		Harder_Endgame(1.5,1500)
+		-----
+
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 6
+		settler_Group_Min_Size = settler_Group_Min_Size + 7
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.30
+		other_base_coefficient = other_base_coefficient - 0.30
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.06
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.06
+		---
+		min_Group_Radius = min_Group_Radius + 6
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.6 + (global.Natural_Evolution_Counter / 50)
 
 
 
-		elseif Expansion_State == "Phase 7" then
-			----- Harder Ending
-			Harder_Endgame(1.5,2000)
-			-----
+	elseif Expansion_State == "Phase 7" then
+		----- Harder Ending
+		Harder_Endgame(1.5,2000)
+		-----
 
-			min_Base_Spacing = min_Base_Spacing - 1
-			max_Expansion_Distance = max_Expansion_Distance + 10
-			
-			building_coefficient = 0.1 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 1.8 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.45 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.35 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4
-			
-			settler_Group_Min_Size = 16
-			settler_Group_Max_Size = 36
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 9
+		settler_Group_Min_Size = settler_Group_Min_Size + 9
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.35
+		other_base_coefficient = other_base_coefficient - 0.35
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.07
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.07
+		---
+		min_Group_Radius = min_Group_Radius + 9
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.7 + (global.Natural_Evolution_Counter / 50)
 
 
 				
-		elseif Expansion_State == "Phase 8" then
-			----- Harder Ending
-			Harder_Endgame(1.5,2500)
-			-----
+	elseif Expansion_State == "Phase 8" then
+		----- Harder Ending
+		Harder_Endgame(1.5,2500)
+		-----
 
-			min_Base_Spacing = min_Base_Spacing - 1
-			max_Expansion_Distance = max_Expansion_Distance + 11
-			
-			building_coefficient = 0.08 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 1.8 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.32 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 20
-			settler_Group_Max_Size = 44
-
-
-
-		elseif Expansion_State == "Phase 9" then
-			----- Harder Ending
-			Harder_Endgame(2,3000)
-			-----
-
-			min_Base_Spacing = min_Base_Spacing - 2
-			max_Expansion_Distance = max_Expansion_Distance + 13
-			
-			building_coefficient = 0.06 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 1.6 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.38 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.32 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 22
-			settler_Group_Max_Size = 56
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 12
+		settler_Group_Min_Size = settler_Group_Min_Size + 12
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.40
+		other_base_coefficient = other_base_coefficient - 0.40
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.08
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.08
+		---
+		min_Group_Radius = min_Group_Radius + 12
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.8 + (global.Natural_Evolution_Counter / 50)
 
 
 
-		elseif Expansion_State == "Phase 10" then
-			----- Harder Ending
-			Harder_Endgame(2,3000)
-			-----
+	elseif Expansion_State == "Phase 9" then
+		----- Harder Ending
+		Harder_Endgame(2,3000)
+		-----
 
-			min_Base_Spacing = min_Base_Spacing - 2
-			max_Expansion_Distance = max_Expansion_Distance + 15
-			
-			building_coefficient = 0.04 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 1.4 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.34 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.3 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 30
-			settler_Group_Max_Size = 75
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 15
+		settler_Group_Min_Size = settler_Group_Min_Size + 15
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.45
+		other_base_coefficient = other_base_coefficient - 0.45
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.09
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.09
+		---
+		min_Group_Radius = min_Group_Radius + 15
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 0.9 + (global.Natural_Evolution_Counter / 50)
 
-		    enemy_speedup = 2
+
+
+
+	elseif Expansion_State == "Phase 10" then
+		----- Harder Ending
+		Harder_Endgame(2,3000)
+		-----
+
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 20
+		settler_Group_Min_Size = settler_Group_Min_Size + 20
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.50
+		other_base_coefficient = other_base_coefficient - 0.50
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.10
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.10
+		---
+		min_Group_Radius = min_Group_Radius + 20
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 1.0 + (global.Natural_Evolution_Counter / 50)
+
+
 			
 		
-		elseif Expansion_State == "Armageddon" then
-			----- Harder Ending
-			Harder_Endgame(2.5,3000)
-			-----
+	elseif Expansion_State == "Armageddon" then
+		----- Harder Ending
+		Harder_Endgame(2.5,3000)
+		-----
 
-			min_Base_Spacing = min_Base_Spacing - 2
-			max_Expansion_Distance = max_Expansion_Distance + 20
-			
-			building_coefficient = 0.04 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.1
-			other_base_coefficient = 1.0 - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-			neighbouring_chunk_coefficient = 0.3 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-			neighbouring_base_chunk_coefficient = 0.3 - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4	
-			
-			settler_Group_Min_Size = 100
-			settler_Group_Max_Size = 200
-
-		    enemy_speedup = 2
+		min_Base_Spacing = min_Base_Spacing 
+		max_Base_Expansion_Distance = max_Base_Expansion_Distance + 30
+		settler_Group_Min_Size = settler_Group_Min_Size + 40
+		settler_Group_Max_Size = settler_Group_Max_Size + (settler_Group_Min_Size * 2) + global.Natural_Evolution_Counter
+		---
+		building_coefficient = building_coefficient - 0.55
+		other_base_coefficient = other_base_coefficient - 0.55
+		neighbouring_chunk_coefficient = neighbouring_chunk_coefficient - 0.11
+		neighbouring_base_chunk_coefficient = neighbouring_base_chunk_coefficient - 0.11
+		---
+		min_Group_Radius = min_Group_Radius + 25
+		max_Group_Radius = max_Group_Radius + (min_Group_Radius * 2) + global.Natural_Evolution_Counter
+		enemy_speedup = enemy_speedup + 1.0 + (global.Natural_Evolution_Counter / 50)
 
 			
 		end	
@@ -618,28 +649,29 @@ global.Peace_Timer = evolution_Timer_Peace
 
 			settler_Group_Min_Size = math.max(1, settler_Group_Min_Size)
 			settler_Group_Max_Size = math.max(1, settler_Group_Max_Size)
+			min_Group_Radius = math.max(1, min_Group_Radius)
+			max_Group_Radius = math.max(1, max_Group_Radius)
+			min_Base_Spacing = math.max(1, min_Base_Spacing)
+			max_Base_Expansion_Distance = math.max(min_Base_Spacing, max_Base_Expansion_Distance)
 
-		
-
-			
 	-- display values
-	writeDebug("The multiplier is: " ..multiplier)
+	
 	writeDebug("The min_Base_Spacing is: " ..min_Base_Spacing)		
-	writeDebug("The max_Expansion_Distance is: " ..max_Expansion_Distance)
-	writeDebug("The settler_Group_Min_Size is: " ..settler_Group_Min_Size)
-	writeDebug("The settler_Group_Max_Size is: " ..settler_Group_Max_Size)
-	writeDebug("The building_coefficient is: " ..building_coefficient)
-	writeDebug("The other_base_coefficient is: " ..other_base_coefficient)
-	writeDebug("The neighbouring_chunk_coefficient is: " ..neighbouring_chunk_coefficient)
-	writeDebug("The neighbouring_base_chunk_coefficient is: " ..neighbouring_base_chunk_coefficient)
-	writeDebug("The max_Group_Radius is: " ..max_Group_Radius)
-	writeDebug("The min_Group_Radius is: " ..min_Group_Radius)
+	writeDebug("The max_Expansion_Distance is: " ..max_Base_Expansion_Distance..", Base: " ..game.map_settings.enemy_expansion.max_expansion_distance)
+	writeDebug("The settler_Group_Min_Size is: " ..settler_Group_Min_Size..", Base: " ..game.map_settings.enemy_expansion.settler_group_min_size)
+	writeDebug("The settler_Group_Max_Size is: " ..settler_Group_Max_Size..", Base: " ..game.map_settings.enemy_expansion.settler_group_max_size)
+	writeDebug("The building_coefficient is: " ..building_coefficient..", Base: " ..game.map_settings.enemy_expansion.building_coefficient)
+	writeDebug("The other_base_coefficient is: " ..other_base_coefficient..", Base: " ..game.map_settings.enemy_expansion.other_base_coefficient)
+	writeDebug("The neighbouring_chunk_coefficient is: " ..neighbouring_chunk_coefficient..", Base: " ..game.map_settings.enemy_expansion.neighbouring_chunk_coefficient)
+	writeDebug("The neighbouring_base_chunk_coefficient is: " ..neighbouring_base_chunk_coefficient..", Base: " ..game.map_settings.enemy_expansion.neighbouring_base_chunk_coefficient)
+	writeDebug("The max_Group_Radius is: " ..max_Group_Radius..", Base: " ..game.map_settings.unit_group.max_group_radius)
+	writeDebug("The min_Group_Radius is: " ..min_Group_Radius..", Base: " ..game.map_settings.unit_group.min_group_radius)
 	writeDebug("The enemy_speedup is: " ..enemy_speedup)
 
-		
+
 			
 		-- apply the expansion settings			
-		Natural_Evolution_Expansion_Settings(evolution_Timer, min_Base_Spacing, max_Expansion_Distance, building_coefficient, settler_Group_Min_Size, settler_Group_Max_Size, max_Group_Radius, min_Group_Radius, enemy_speedup, other_base_coefficient, neighbouring_chunk_coefficient, neighbouring_base_chunk_coefficient)
+		Natural_Evolution_Expansion_Settings(evolution_Timer, min_Base_Spacing, max_Base_Expansion_Distance, building_coefficient, settler_Group_Min_Size, settler_Group_Max_Size, max_Group_Radius, min_Group_Radius, enemy_speedup, other_base_coefficient, neighbouring_chunk_coefficient, neighbouring_base_chunk_coefficient)
 
 	end
 			
