@@ -357,25 +357,32 @@ global.Peace_Timer = evolution_Timer_Peace
 			game.map_settings.path_finder.max_steps_worked_per_tick = 50
 		end
 
-		-- DEFAULT expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
-		local enemy_expansion = game.map_settings.enemy_expansion
-		local unit_group = game.map_settings.unit_group
+	-- DEFAULT expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
+	local enemy_expansion = game.map_settings.enemy_expansion
+	local unit_group = game.map_settings.unit_group
+	local multiplier = (0.6 + (global.Natural_Evolution_Counter / 50))
 		
-		local min_Base_Spacing = 3 -- math.floor(enemy_expansion.min_base_spacing * 2) -- Vanilla 3
-		local max_Expansion_Distance = math.floor(enemy_expansion.max_expansion_distance / 2) -- Vanilla 7
+	
+	--local min_Base_Spacing = game.map_settings.enemy_expansion.min_base_spacing
+	local min_Base_Spacing = 3 * multiplier
+	local max_Expansion_Distance = enemy_expansion.max_expansion_distance * multiplier
+	local settler_Group_Min_Size = enemy_expansion.settler_group_min_size * multiplier
+	local settler_Group_Max_Size = enemy_expansion.settler_group_max_size * multiplier
+	--enemy_expansion.min_expansion_cooldown = 4 -- 4 Min
+	--enemy_expansion.max_expansion_cooldown = 60 -- 10 Min
+	---
+	local building_coefficient = enemy_expansion.building_coefficient
+	local other_base_coefficient = enemy_expansion.other_base_coefficient
+	local neighbouring_chunk_coefficient = enemy_expansion.neighbouring_chunk_coefficient
+	local neighbouring_base_chunk_coefficient = enemy_expansion.neighbouring_base_chunk_coefficient
+	---
+	local max_Group_Radius = unit_group.max_group_radius 
+	local min_Group_Radius = unit_group.min_group_radius	
+	local enemy_speedup = 1.5
+	
+	
 		
-		local building_coefficient = (enemy_expansion.building_coefficient * 2) - (global.Natural_Evolution_Counter / 250) -- vanilla 0.1
-		local other_base_coefficient = (enemy_expansion.other_base_coefficient * 2) - (global.Natural_Evolution_Counter / 1000) -- vanilla 2.0
-		local neighbouring_chunk_coefficient = (enemy_expansion.neighbouring_chunk_coefficient * 1.2) - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.5
-		local neighbouring_base_chunk_coefficient = math.floor(enemy_expansion.neighbouring_base_chunk_coefficient * 1.2) - (global.Natural_Evolution_Counter / 1000) -- vanilla 0.4
 		
-		
-		local settler_Group_Min_Size = math.floor(enemy_expansion.settler_group_min_size / 2) -- Vanilla 5
-		local settler_Group_Max_Size = math.floor(enemy_expansion.settler_group_max_size / 2)-- Vanilla 20
-
-		local max_Group_Radius = math.floor(unit_group.max_group_radius * 0.8) -- Vanilla 30
-		local min_Group_Radius = math.floor(unit_group.min_group_radius * 0.8) -- Vanilla 5
-		local enemy_speedup = 1.5
 
 		
 		if Expansion_State == "Peaceful" then
@@ -613,12 +620,30 @@ global.Peace_Timer = evolution_Timer_Peace
 			settler_Group_Max_Size = math.max(1, settler_Group_Max_Size)
 
 		
-			-- apply the expansion settings
-			Natural_Evolution_Expansion_Settings(evolution_Timer, min_Base_Spacing, max_Expansion_Distance, building_coefficient, settler_Group_Min_Size, settler_Group_Max_Size, max_Group_Radius, min_Group_Radius, enemy_speedup, other_base_coefficient, neighbouring_chunk_coefficient, neighbouring_base_chunk_coefficient)
 
-		end
 			
+	-- display values
+	writeDebug("The multiplier is: " ..multiplier)
+	writeDebug("The min_Base_Spacing is: " ..min_Base_Spacing)		
+	writeDebug("The max_Expansion_Distance is: " ..max_Expansion_Distance)
+	writeDebug("The settler_Group_Min_Size is: " ..settler_Group_Min_Size)
+	writeDebug("The settler_Group_Max_Size is: " ..settler_Group_Max_Size)
+	writeDebug("The building_coefficient is: " ..building_coefficient)
+	writeDebug("The other_base_coefficient is: " ..other_base_coefficient)
+	writeDebug("The neighbouring_chunk_coefficient is: " ..neighbouring_chunk_coefficient)
+	writeDebug("The neighbouring_base_chunk_coefficient is: " ..neighbouring_base_chunk_coefficient)
+	writeDebug("The max_Group_Radius is: " ..max_Group_Radius)
+	writeDebug("The min_Group_Radius is: " ..min_Group_Radius)
+	writeDebug("The enemy_speedup is: " ..enemy_speedup)
+
+		
+			
+		-- apply the expansion settings			
+		Natural_Evolution_Expansion_Settings(evolution_Timer, min_Base_Spacing, max_Expansion_Distance, building_coefficient, settler_Group_Min_Size, settler_Group_Max_Size, max_Group_Radius, min_Group_Radius, enemy_speedup, other_base_coefficient, neighbouring_chunk_coefficient, neighbouring_base_chunk_coefficient)
+
 	end
+			
+end
 
 
 
