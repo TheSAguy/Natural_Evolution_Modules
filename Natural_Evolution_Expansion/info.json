@@ -7,6 +7,6 @@
 	"contact": "vvwmisc@hotmail.com",
 	"homepage": "http://www.factorioforums.com/forum/viewtopic.php?f=91&t=13562&p",
 	"description": "Manages Evolution & Expansion. Expansion now comes in Phases: Peacefull to Armageddron. At each Phase the Expansion becomes largeer and tougher. Part of the N.E. Mods, but can be used as Standalone. Please visit home page for more details.",
-	"dependencies": ["base >= 0.15", "? EvoGUI"],
+	"dependencies": ["base >= 0.15", "? EvoGUI"]
 
 }

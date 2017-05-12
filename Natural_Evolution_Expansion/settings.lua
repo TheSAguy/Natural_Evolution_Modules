@@ -17,7 +17,7 @@ data:extend(
     default_value = true,
     per_user = false,
   },
-
+--[[
   {
     type = "int-setting",
     name = "NE_Evolution_Timer",
@@ -27,7 +27,7 @@ data:extend(
     minimum_value = 1,
     per_user = false,
   },
-  
+  ]]
 }
 )
 
