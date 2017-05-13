@@ -1,5 +1,5 @@
----BUILDINGS - v.7.0.0
-local QC_Mod = false
+---BUILDINGS - v.7.0.1
+local QC_Mod = true
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -14,8 +14,7 @@ if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
---NE_Buildings.Settings.Spawner_Search_Distance = settings.startup["NE_Spawner_Search_Distance"].value
---NE_Buildings.Settings.Unit_Search_Distance = settings.startup["NE_Unit_Search_Distance"].value
+--- Settup Settings
 NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 
 
@@ -27,17 +26,11 @@ local max_unit_count = 20
 local max_terra_count = 30
 
 
----------------------------------------------
-
-script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
-script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
-script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
-
 
 
 ---------------------------------------------				 
-function On_Init()
- 
+local function On_Init()
+ writeDebug("NE Buildings Initialize")
  
 ---- Evolution_MOD
 	if global.Evolution_MOD == nil then
@@ -98,7 +91,7 @@ end
 
 
 ---------------------------------------------
-function On_Built(event)
+local function On_Built(event)
 
 local entity = event.created_entity
 
@@ -155,7 +148,7 @@ local entity = event.created_entity
 end
 
 ---------------------------------------------
-function On_Remove(event)
+local function On_Remove(event)
 	--- Terraforming Station has been removed
 	if event.entity.name == "TerraformingStation" then
       
@@ -190,7 +183,7 @@ function On_Remove(event)
 end
 
 
-function On_Death(event)
+local function On_Death(event)
 
 	--- Terraforming Station has been removed
 	if event.entity.name == "TerraformingStation" then
@@ -210,6 +203,9 @@ function On_Death(event)
 	end
 	
 end
+
+
+
 
 ---- Removes the Alien Control Station ---
 function ACS_Remove(index)
@@ -587,8 +583,17 @@ end
 
 ---------------------------------------------
 script.on_init(On_Init)
---script.on_load(On_Load)
 script.on_configuration_changed(On_Load)
+
+local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+script.on_event(build_events, On_Built)
+
+local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
+script.on_event(pre_remove_events, On_Remove)
+
+local death_events = {defines.events.on_entity_died}
+script.on_event(death_events, On_Death)
+
 
 
 ---------------------------------------------
@@ -611,6 +616,9 @@ script.on_event(defines.events.on_research_finished, function(event)
     end    	
   
 end)
+
+
+---------------------------------------------
 
 
 ---------------------------------------------
