@@ -44,8 +44,8 @@ local replaceableTiles =
   ["grass-dry"] = "sand",
   ["sand"] = "sand-dark",
   ["sand-dark"] = "dirt",
-  ["dirt"] = "dirt-dark"
-  ["dirt-dark"] = "red-desert"
+  ["dirt"] = "dirt-dark",
+  ["dirt-dark"] = "red-desert",
   ["red-desert"] = "red-desert-dark"
 }
 local waterTiles =

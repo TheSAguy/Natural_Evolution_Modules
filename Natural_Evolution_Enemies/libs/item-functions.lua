@@ -1,7 +1,7 @@
-if not bobmods.lib.item then bobmods.lib.item = {} end
+if not thxbob.lib.item then thxbob.lib.item = {} end
 
 
-function bobmods.lib.item.get_type(name)
+function thxbob.lib.item.get_type(name)
   local item_types = {"ammo", "armor", "capsule", "fluid", "gun", "item", "mining-tool", "module", "tool", "item-with-entity-data"}
   local item_type = nil
   for i, type_name in pairs(item_types) do
@@ -10,14 +10,14 @@ function bobmods.lib.item.get_type(name)
   return item_type
 end
 
-function bobmods.lib.item.get_basic_type(name)
+function thxbob.lib.item.get_basic_type(name)
   local item_type = "item"
   if data.raw.fluid[name] then item_type = "fluid" end
   return item_type
 end
 
 
-function bobmods.lib.item.basic_item(inputs)
+function thxbob.lib.item.basic_item(inputs)
   local item = {}
 
   if inputs.name then
@@ -40,7 +40,7 @@ function bobmods.lib.item.basic_item(inputs)
   if inputs.type then
     item.type = inputs.type
   else
-    item.type = bobmods.lib.item.get_basic_type(item.name)
+    item.type = thxbob.lib.item.get_basic_type(item.name)
   end
 
   if item.type == "item" then
@@ -54,7 +54,7 @@ function bobmods.lib.item.basic_item(inputs)
   return item
 end
 
-function bobmods.lib.item.item(inputs)
+function thxbob.lib.item.item(inputs)
   local item = {}
 
   if inputs.name then
@@ -83,17 +83,17 @@ function bobmods.lib.item.item(inputs)
   if inputs.type then
     item.type = inputs.type
   else
-    item.type = bobmods.lib.item.get_basic_type(item.name)
+    item.type = thxbob.lib.item.get_basic_type(item.name)
   end
 
   return item
 end
 
 
-function bobmods.lib.item.combine(item1_in, item2_in)
+function thxbob.lib.item.combine(item1_in, item2_in)
   local item = {}
-  local item1 = bobmods.lib.item.item(item1_in)
-  local item2 = bobmods.lib.item.item(item2_in)
+  local item1 = thxbob.lib.item.item(item1_in)
+  local item2 = thxbob.lib.item.item(item2_in)
 
   item.name = item1.name
   item.type = item1.type
@@ -125,28 +125,28 @@ function bobmods.lib.item.combine(item1_in, item2_in)
 end
 
 
-function bobmods.lib.item.add(list, item_in) --increments amount if exists
-  local item = bobmods.lib.item.item(item_in)
+function thxbob.lib.item.add(list, item_in) --increments amount if exists
+  local item = thxbob.lib.item.item(item_in)
   local addit = true
   for i, object in pairs(list) do
     if object[1] == item.name or object.name == item.name then
       addit = false
-      list[i] = bobmods.lib.item.combine(object, item)
+      list[i] = thxbob.lib.item.combine(object, item)
     end
   end
   if addit then table.insert(list, item) end
 end
 
-function bobmods.lib.item.add_new(list, item_in) --ignores if exists
-  local item = bobmods.lib.item.item(item_in)
+function thxbob.lib.item.add_new(list, item_in) --ignores if exists
+  local item = thxbob.lib.item.item(item_in)
   local addit = true
   for i, object in pairs(list) do
-    if item.name == bobmods.lib.item.basic_item(object).name then addit = false end
+    if item.name == thxbob.lib.item.basic_item(object).name then addit = false end
   end
   if addit then table.insert(list, item) end
 end
 
-function bobmods.lib.item.remove(list, item)
+function thxbob.lib.item.remove(list, item)
   for i, object in ipairs(list) do
     if object[1] == item or object.name == item then
       table.remove(list, i)

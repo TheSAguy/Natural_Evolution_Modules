@@ -1,8 +1,8 @@
 -- Merges table2's contents into table1.
-function bobmods.lib.table_merge(table1, table2)
+function thxbob.lib.table_merge(table1, table2)
   for index, value in pairs(table2) do
     if type(value) == "table" then
-      bobmods.lib.table_merge(table1[index], table2[index])
+      thxbob.lib.table_merge(table1[index], table2[index])
     else
       table1[index] = value
     end
@@ -10,19 +10,19 @@ function bobmods.lib.table_merge(table1, table2)
 end
 
 
-function bobmods.lib.result_check(object)
+function thxbob.lib.result_check(object)
   if object then
     if object.results == nil then 
       object.results = {}
     end
 
     if object.result then
-      local item = bobmods.lib.item.basic_item({name = object.result})
+      local item = thxbob.lib.item.basic_item({name = object.result})
       if object.result_count then
         item.amount = object.result_count
         object.result_count = nil
       end
-      bobmods.lib.item.add_new(object.results, item)
+      thxbob.lib.item.add_new(object.results, item)
 
       if object.ingredients then  -- It's a recipe
         if not object.main_product then

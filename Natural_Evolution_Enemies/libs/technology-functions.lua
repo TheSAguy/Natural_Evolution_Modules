@@ -1,7 +1,7 @@
-if not bobmods.lib.tech then bobmods.lib.tech = {} end
+if not thxbob.lib.tech then thxbob.lib.tech = {} end
 
 
-function bobmods.lib.tech.replace_science_pack(technology, old, new)
+function thxbob.lib.tech.replace_science_pack(technology, old, new)
   if data.raw.technology[technology] and data.raw.tool[new] then
     local doit = false
     local amount = 0
@@ -16,8 +16,8 @@ function bobmods.lib.tech.replace_science_pack(technology, old, new)
       end
     end
     if doit then
-      bobmods.lib.tech.remove_science_pack(technology, old)
-      bobmods.lib.tech.add_science_pack(technology, new, amount)
+      thxbob.lib.tech.remove_science_pack(technology, old)
+      thxbob.lib.tech.add_science_pack(technology, new, amount)
     end
   else
     if not data.raw.technology[technology] then
@@ -29,7 +29,7 @@ function bobmods.lib.tech.replace_science_pack(technology, old, new)
   end
 end
 
-function bobmods.lib.tech.add_new_science_pack(technology, pack, amount)
+function thxbob.lib.tech.add_new_science_pack(technology, pack, amount)
   if data.raw.technology[technology] and data.raw.tool[pack] then
     local addit = true
     for i, ingredient in pairs(data.raw.technology[technology].unit.ingredients) do
@@ -46,7 +46,7 @@ function bobmods.lib.tech.add_new_science_pack(technology, pack, amount)
   end
 end
 
-function bobmods.lib.tech.add_science_pack(technology, pack, amount)
+function thxbob.lib.tech.add_science_pack(technology, pack, amount)
   if data.raw.technology[technology] and data.raw.tool[pack] then
     local addit = true
     for i, ingredient in pairs(data.raw.technology[technology].unit.ingredients) do
@@ -70,7 +70,7 @@ function bobmods.lib.tech.add_science_pack(technology, pack, amount)
   end
 end
 
-function bobmods.lib.tech.remove_science_pack(technology, pack)
+function thxbob.lib.tech.remove_science_pack(technology, pack)
   if data.raw.technology[technology] then
     for i, ingredient in pairs(data.raw.technology[technology].unit.ingredients) do
       if ingredient[1] == pack or ingredient.name == pack then
@@ -83,7 +83,7 @@ function bobmods.lib.tech.remove_science_pack(technology, pack)
 end
 
 
-function bobmods.lib.tech.add_recipe_unlock(technology, recipe)
+function thxbob.lib.tech.add_recipe_unlock(technology, recipe)
   if data.raw.technology[technology] and data.raw.recipe[recipe] then
     local addit = true
     if not data.raw.technology[technology].effects then
@@ -103,7 +103,7 @@ function bobmods.lib.tech.add_recipe_unlock(technology, recipe)
   end
 end
 
-function bobmods.lib.tech.remove_recipe_unlock(technology, recipe)
+function thxbob.lib.tech.remove_recipe_unlock(technology, recipe)
   if data.raw.technology[technology] and data.raw.technology[technology].effects then
     for i, effect in pairs(data.raw.technology[technology].effects) do
       if effect.type == "unlock-recipe" and effect.recipe == recipe then
@@ -118,12 +118,12 @@ function bobmods.lib.tech.remove_recipe_unlock(technology, recipe)
 end
 
 
-function bobmods.lib.tech.replace_prerequisite(technology, old, new)
+function thxbob.lib.tech.replace_prerequisite(technology, old, new)
   if data.raw.technology[technology] and data.raw.technology[new] then
     for i, prerequisite in ipairs(data.raw.technology[technology].prerequisites) do
       if prerequisite == old then 
-        bobmods.lib.tech.remove_prerequisite(technology, old)
-        bobmods.lib.tech.add_prerequisite(technology, new)
+        thxbob.lib.tech.remove_prerequisite(technology, old)
+        thxbob.lib.tech.add_prerequisite(technology, new)
       end
     end
   else
@@ -136,7 +136,7 @@ function bobmods.lib.tech.replace_prerequisite(technology, old, new)
   end
 end
 
-function bobmods.lib.tech.add_prerequisite(technology, prerequisite)
+function thxbob.lib.tech.add_prerequisite(technology, prerequisite)
   if data.raw.technology[technology] and data.raw.technology[prerequisite] then
     local addit = true
     if data.raw.technology[technology].prerequisites then
@@ -157,7 +157,7 @@ function bobmods.lib.tech.add_prerequisite(technology, prerequisite)
   end
 end
 
-function bobmods.lib.tech.remove_prerequisite(technology, prerequisite)
+function thxbob.lib.tech.remove_prerequisite(technology, prerequisite)
   if data.raw.technology[technology] then
     for i, check in ipairs(data.raw.technology[technology].prerequisites) do
       if check == prerequisite then

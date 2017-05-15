@@ -3,11 +3,7 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
-
-
-
 require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
-require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
