@@ -14,9 +14,8 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.NE_Functions")
 require("prototypes.Technology.technology")
---require("prototypes.Item-Groups.item-groups")
 
-require ("libs.legacy") -- From Bob's Libary 
+
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
@@ -37,7 +36,7 @@ if settings.startup["NE_Alien_Artifacts"].value == true then
 	require("prototypes.Artifact_Collector.entity")
 	require("prototypes.Artifact_Collector.item")
 	require("prototypes.Artifact_Collector.recipe")
-	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Artifact-collector")
 
 end
 ---------------------------------------------------------------

@@ -1,26 +1,26 @@
-if not thxbob.lib.recipe then thxbob.lib.recipe = {} end
+if not bobmods.lib.recipe then bobmods.lib.recipe = {} end
 
 
-function thxbob.lib.recipe.replace_ingredient(recipe, old, new)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(new) then
+function bobmods.lib.recipe.replace_ingredient(recipe, old, new)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(new) then
 
     local amount = 0
     if data.raw.recipe[recipe].ingredients and not data.raw.recipe[recipe].normal and not data.raw.recipe[recipe].expensive then
       for i, ingredient in pairs(data.raw.recipe[recipe].ingredients) do
-        local item = thxbob.lib.item.basic_item(ingredient)
+        local item = bobmods.lib.item.basic_item(ingredient)
         if item.name == old then
           amount = item.amount + amount
         end
       end
       if amount > 0 then
-        if thxbob.lib.item.get_type(old) == "fluid" and thxbob.lib.item.get_type(new) == "item" then
+        if bobmods.lib.item.get_type(old) == "fluid" and bobmods.lib.item.get_type(new) == "item" then
           amount = math.ceil(amount / 10)
         end
-        if thxbob.lib.item.get_type(old) == "item" and thxbob.lib.item.get_type(new) == "fluid" then
+        if bobmods.lib.item.get_type(old) == "item" and bobmods.lib.item.get_type(new) == "fluid" then
           amount = amount * 10
         end
-        thxbob.lib.recipe.remove_ingredient(recipe, old)
-        thxbob.lib.recipe.add_ingredient(recipe, {new, amount})
+        bobmods.lib.recipe.remove_ingredient(recipe, old)
+        bobmods.lib.recipe.add_ingredient(recipe, {new, amount})
         return true
       else
         return false
@@ -31,20 +31,20 @@ function thxbob.lib.recipe.replace_ingredient(recipe, old, new)
     if data.raw.recipe[recipe].normal then
       amount = 0
       for i, ingredient in pairs(data.raw.recipe[recipe].normal.ingredients) do
-        local item = thxbob.lib.item.basic_item(ingredient)
+        local item = bobmods.lib.item.basic_item(ingredient)
         if item.name == old then
           amount = item.amount + amount
         end
       end
       if amount > 0 then
-        if thxbob.lib.item.get_type(old) == "fluid" and thxbob.lib.item.get_type(new) == "item" then
+        if bobmods.lib.item.get_type(old) == "fluid" and bobmods.lib.item.get_type(new) == "item" then
           amount = math.ceil(amount / 10)
         end
-        if thxbob.lib.item.get_type(old) == "item" and thxbob.lib.item.get_type(new) == "fluid" then
+        if bobmods.lib.item.get_type(old) == "item" and bobmods.lib.item.get_type(new) == "fluid" then
           amount = amount * 10
         end
-        thxbob.lib.recipe.remove_difficulty_ingredient(recipe, "normal", old)
-        thxbob.lib.recipe.add_difficulty_ingredient(recipe, "normal", {new, amount})
+        bobmods.lib.recipe.remove_difficulty_ingredient(recipe, "normal", old)
+        bobmods.lib.recipe.add_difficulty_ingredient(recipe, "normal", {new, amount})
         retval = true
       end
     end
@@ -52,20 +52,20 @@ function thxbob.lib.recipe.replace_ingredient(recipe, old, new)
     if data.raw.recipe[recipe].expensive then
       amount = 0
       for i, ingredient in pairs(data.raw.recipe[recipe].expensive.ingredients) do
-        local item = thxbob.lib.item.basic_item(ingredient)
+        local item = bobmods.lib.item.basic_item(ingredient)
         if item.name == old then
           amount = item.amount + amount
         end
       end
       if amount > 0 then
-        if thxbob.lib.item.get_type(old) == "fluid" and thxbob.lib.item.get_type(new) == "item" then
+        if bobmods.lib.item.get_type(old) == "fluid" and bobmods.lib.item.get_type(new) == "item" then
           amount = math.ceil(amount / 10)
         end
-        if thxbob.lib.item.get_type(old) == "item" and thxbob.lib.item.get_type(new) == "fluid" then
+        if bobmods.lib.item.get_type(old) == "item" and bobmods.lib.item.get_type(new) == "fluid" then
           amount = amount * 10
         end
-        thxbob.lib.recipe.remove_difficulty_ingredient(recipe, "expensive", old)
-        thxbob.lib.recipe.add_difficulty_ingredient(recipe, "expensive", {new, amount})
+        bobmods.lib.recipe.remove_difficulty_ingredient(recipe, "expensive", old)
+        bobmods.lib.recipe.add_difficulty_ingredient(recipe, "expensive", {new, amount})
         retval = true
       end
     end
@@ -75,7 +75,7 @@ function thxbob.lib.recipe.replace_ingredient(recipe, old, new)
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_type(new) then
+    if not bobmods.lib.item.get_type(new) then
       log("Ingredient " .. new .. " does not exist.")
     end
     return false
@@ -83,10 +83,10 @@ function thxbob.lib.recipe.replace_ingredient(recipe, old, new)
 end
 
 
-function thxbob.lib.recipe.replace_ingredient_in_all(old, new)
-  if thxbob.lib.item.get_basic_type(new) then
+function bobmods.lib.recipe.replace_ingredient_in_all(old, new)
+  if bobmods.lib.item.get_basic_type(new) then
     for i, recipe in pairs(data.raw.recipe) do
-      thxbob.lib.recipe.replace_ingredient(recipe.name, old, new)
+      bobmods.lib.recipe.replace_ingredient(recipe.name, old, new)
     end
   else
     log("Ingredient " .. new .. " does not exist.")
@@ -94,17 +94,17 @@ function thxbob.lib.recipe.replace_ingredient_in_all(old, new)
 end
 
 
-function thxbob.lib.recipe.remove_ingredient(recipe, item)
+function bobmods.lib.recipe.remove_ingredient(recipe, item)
   if data.raw.recipe[recipe] then
 
     if data.raw.recipe[recipe].expensive then
-      thxbob.lib.item.remove(data.raw.recipe[recipe].expensive.ingredients, item)
+      bobmods.lib.item.remove(data.raw.recipe[recipe].expensive.ingredients, item)
     end
     if data.raw.recipe[recipe].normal then
-      thxbob.lib.item.remove(data.raw.recipe[recipe].normal.ingredients, item)
+      bobmods.lib.item.remove(data.raw.recipe[recipe].normal.ingredients, item)
     end
     if data.raw.recipe[recipe].ingredients then
-      thxbob.lib.item.remove(data.raw.recipe[recipe].ingredients, item)
+      bobmods.lib.item.remove(data.raw.recipe[recipe].ingredients, item)
     end
 
   else
@@ -113,93 +113,93 @@ function thxbob.lib.recipe.remove_ingredient(recipe, item)
 end
 
 
-function thxbob.lib.recipe.add_new_ingredient(recipe, item)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(thxbob.lib.item.basic_item(item).name) then
+function bobmods.lib.recipe.add_new_ingredient(recipe, item)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(bobmods.lib.item.basic_item(item).name) then
 
     if data.raw.recipe[recipe].expensive then
-      thxbob.lib.item.add_new(data.raw.recipe[recipe].expensive.ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add_new(data.raw.recipe[recipe].expensive.ingredients, bobmods.lib.item.basic_item(item))
     end
     if data.raw.recipe[recipe].normal then
-      thxbob.lib.item.add_new(data.raw.recipe[recipe].normal.ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add_new(data.raw.recipe[recipe].normal.ingredients, bobmods.lib.item.basic_item(item))
     end
     if data.raw.recipe[recipe].ingredients then
-      thxbob.lib.item.add_new(data.raw.recipe[recipe].ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add_new(data.raw.recipe[recipe].ingredients, bobmods.lib.item.basic_item(item))
     end
 
   else
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_type(item) then
-      log("Ingredient " .. thxbob.lib.item.basic_item(item).name .. " does not exist.")
+    if not bobmods.lib.item.get_type(item) then
+      log("Ingredient " .. bobmods.lib.item.basic_item(item).name .. " does not exist.")
     end
   end
 end
 
-function thxbob.lib.recipe.add_ingredient(recipe, item)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(thxbob.lib.item.basic_item(item).name) then
+function bobmods.lib.recipe.add_ingredient(recipe, item)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(bobmods.lib.item.basic_item(item).name) then
 
     if data.raw.recipe[recipe].expensive then
-      thxbob.lib.item.add(data.raw.recipe[recipe].expensive.ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add(data.raw.recipe[recipe].expensive.ingredients, bobmods.lib.item.basic_item(item))
     end
     if data.raw.recipe[recipe].normal then
-      thxbob.lib.item.add(data.raw.recipe[recipe].normal.ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add(data.raw.recipe[recipe].normal.ingredients, bobmods.lib.item.basic_item(item))
     end
     if data.raw.recipe[recipe].ingredients then
-      thxbob.lib.item.add(data.raw.recipe[recipe].ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add(data.raw.recipe[recipe].ingredients, bobmods.lib.item.basic_item(item))
     end
 
   else
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_basic_type(thxbob.lib.item.basic_item(item).name) then
-      log("Ingredient " .. thxbob.lib.item.basic_item(item).name .. " does not exist.")
+    if not bobmods.lib.item.get_basic_type(bobmods.lib.item.basic_item(item).name) then
+      log("Ingredient " .. bobmods.lib.item.basic_item(item).name .. " does not exist.")
     end
   end
 end
 
 
-function thxbob.lib.recipe.add_result(recipe, item)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(thxbob.lib.item.basic_item(item).name) then
+function bobmods.lib.recipe.add_result(recipe, item)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(bobmods.lib.item.basic_item(item).name) then
 
     if data.raw.recipe[recipe].expensive then
-      thxbob.lib.result_check(data.raw.recipe[recipe].expensive)
-      thxbob.lib.item.add(data.raw.recipe[recipe].expensive.results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe].expensive)
+      bobmods.lib.item.add(data.raw.recipe[recipe].expensive.results, item)
     end
     if data.raw.recipe[recipe].normal then
-      thxbob.lib.result_check(data.raw.recipe[recipe].normal)
-      thxbob.lib.item.add(data.raw.recipe[recipe].normal.results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe].normal)
+      bobmods.lib.item.add(data.raw.recipe[recipe].normal.results, item)
     end
     if data.raw.recipe[recipe].result or data.raw.recipe[recipe].results then
-      thxbob.lib.result_check(data.raw.recipe[recipe])
-      thxbob.lib.item.add(data.raw.recipe[recipe].results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe])
+      bobmods.lib.item.add(data.raw.recipe[recipe].results, item)
     end
 
   else
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_basic_type(thxbob.lib.item.basic_item(item).name) then
-      log("Item " .. thxbob.lib.item.basic_item(item).name .. " does not exist.")
+    if not bobmods.lib.item.get_basic_type(bobmods.lib.item.basic_item(item).name) then
+      log("Item " .. bobmods.lib.item.basic_item(item).name .. " does not exist.")
     end
   end
 end
 
-function thxbob.lib.recipe.remove_result(recipe, item)
+function bobmods.lib.recipe.remove_result(recipe, item)
   if data.raw.recipe[recipe] then
 
     if data.raw.recipe[recipe].expensive then
-      thxbob.lib.result_check(data.raw.recipe[recipe].expensive)
-      thxbob.lib.item.remove(data.raw.recipe[recipe].expensive.results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe].expensive)
+      bobmods.lib.item.remove(data.raw.recipe[recipe].expensive.results, item)
     end
     if data.raw.recipe[recipe].normal then
-      thxbob.lib.result_check(data.raw.recipe[recipe].normal)
-      thxbob.lib.item.remove(data.raw.recipe[recipe].normal.results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe].normal)
+      bobmods.lib.item.remove(data.raw.recipe[recipe].normal.results, item)
     end
     if data.raw.recipe[recipe].result or data.raw.recipe[recipe].results then
-      thxbob.lib.result_check(data.raw.recipe[recipe])
-      thxbob.lib.item.remove(data.raw.recipe[recipe].results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe])
+      bobmods.lib.item.remove(data.raw.recipe[recipe].results, item)
     end
 
   else
@@ -209,11 +209,11 @@ end
 
 
 
-function thxbob.lib.recipe.remove_difficulty_ingredient(recipe, difficulty, item)
+function bobmods.lib.recipe.remove_difficulty_ingredient(recipe, difficulty, item)
   if data.raw.recipe[recipe] then
 
     if data.raw.recipe[recipe][difficulty] then
-      thxbob.lib.item.remove(data.raw.recipe[recipe][difficulty].ingredients, item)
+      bobmods.lib.item.remove(data.raw.recipe[recipe][difficulty].ingredients, item)
     end
 
   else
@@ -222,19 +222,19 @@ function thxbob.lib.recipe.remove_difficulty_ingredient(recipe, difficulty, item
 end
 
 
-function thxbob.lib.recipe.add_new_difficulty_ingredient(recipe, difficulty, item)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(thxbob.lib.item.basic_item(item).name) and (difficulty == "normal" or difficulty == "expensive") then
+function bobmods.lib.recipe.add_new_difficulty_ingredient(recipe, difficulty, item)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(bobmods.lib.item.basic_item(item).name) and (difficulty == "normal" or difficulty == "expensive") then
 
     if data.raw.recipe[recipe][difficulty] then
-      thxbob.lib.item.add_new(data.raw.recipe[recipe][difficulty].ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add_new(data.raw.recipe[recipe][difficulty].ingredients, bobmods.lib.item.basic_item(item))
     end
 
   else
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_type(item) then
-      log("Ingredient " .. thxbob.lib.item.basic_item(item).name .. " does not exist.")
+    if not bobmods.lib.item.get_type(item) then
+      log("Ingredient " .. bobmods.lib.item.basic_item(item).name .. " does not exist.")
     end
     if not (difficulty == "normal" or difficulty == "expensive") then
       log("Difficulty " .. difficulty .. " is invalid.")
@@ -242,19 +242,19 @@ function thxbob.lib.recipe.add_new_difficulty_ingredient(recipe, difficulty, ite
   end
 end
 
-function thxbob.lib.recipe.add_difficulty_ingredient(recipe, difficulty, item)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(thxbob.lib.item.basic_item(item).name) and (difficulty == "normal" or difficulty == "expensive") then
+function bobmods.lib.recipe.add_difficulty_ingredient(recipe, difficulty, item)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(bobmods.lib.item.basic_item(item).name) and (difficulty == "normal" or difficulty == "expensive") then
 
     if data.raw.recipe[recipe][difficulty] then
-      thxbob.lib.item.add(data.raw.recipe[recipe][difficulty].ingredients, thxbob.lib.item.basic_item(item))
+      bobmods.lib.item.add(data.raw.recipe[recipe][difficulty].ingredients, bobmods.lib.item.basic_item(item))
     end
 
   else
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_basic_type(thxbob.lib.item.basic_item(item).name) then
-      log("Ingredient " .. thxbob.lib.item.basic_item(item).name .. " does not exist.")
+    if not bobmods.lib.item.get_basic_type(bobmods.lib.item.basic_item(item).name) then
+      log("Ingredient " .. bobmods.lib.item.basic_item(item).name .. " does not exist.")
     end
     if not (difficulty == "normal" or difficulty == "expensive") then
       log("Difficulty " .. difficulty .. " is invalid.")
@@ -263,20 +263,20 @@ function thxbob.lib.recipe.add_difficulty_ingredient(recipe, difficulty, item)
 end
 
 
-function thxbob.lib.recipe.add_difficulty_result(recipe, difficulty, item)
-  if data.raw.recipe[recipe] and thxbob.lib.item.get_type(thxbob.lib.item.basic_item(item).name) and (difficulty == "normal" or difficulty == "expensive") then
+function bobmods.lib.recipe.add_difficulty_result(recipe, difficulty, item)
+  if data.raw.recipe[recipe] and bobmods.lib.item.get_type(bobmods.lib.item.basic_item(item).name) and (difficulty == "normal" or difficulty == "expensive") then
 
     if data.raw.recipe[recipe][difficulty] then
-      thxbob.lib.result_check(data.raw.recipe[recipe][difficulty])
-      thxbob.lib.item.add(data.raw.recipe[recipe][difficulty].results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe][difficulty])
+      bobmods.lib.item.add(data.raw.recipe[recipe][difficulty].results, item)
     end
 
   else
     if not data.raw.recipe[recipe] then
       log("Recipe " .. recipe .. " does not exist.")
     end
-    if not thxbob.lib.item.get_basic_type(thxbob.lib.item.basic_item(item).name) then
-      log("Item " .. thxbob.lib.item.basic_item(item).name .. " does not exist.")
+    if not bobmods.lib.item.get_basic_type(bobmods.lib.item.basic_item(item).name) then
+      log("Item " .. bobmods.lib.item.basic_item(item).name .. " does not exist.")
     end
     if not (difficulty == "normal" or difficulty == "expensive") then
       log("Difficulty " .. difficulty .. " is invalid.")
@@ -284,12 +284,12 @@ function thxbob.lib.recipe.add_difficulty_result(recipe, difficulty, item)
   end
 end
 
-function thxbob.lib.recipe.remove_difficulty_result(recipe, difficulty, item)
+function bobmods.lib.recipe.remove_difficulty_result(recipe, difficulty, item)
   if data.raw.recipe[recipe] and (difficulty == "normal" or difficulty == "expensive") then
 
     if data.raw.recipe[recipe][difficulty] then
-      thxbob.lib.result_check(data.raw.recipe[recipe][difficulty])
-      thxbob.lib.item.remove(data.raw.recipe[recipe][difficulty].results, item)
+      bobmods.lib.result_check(data.raw.recipe[recipe][difficulty])
+      bobmods.lib.item.remove(data.raw.recipe[recipe][difficulty].results, item)
     end
 
   else

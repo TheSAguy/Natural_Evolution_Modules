@@ -13,17 +13,7 @@ require ("libs.item-functions") -- From Bob's Libary
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
 
---[[
---- Got tierd of reaching limits...
-if NE_Buildings_Config.LongReach or NE_Buildings_Config.QCCode then
-	if data.raw.player.player.build_distance < 24 then
-		data.raw.player.player.build_distance = 24
-		data.raw.player.player.reach_distance = 20
-		data.raw.player.player.reach_resource_distance = 20
-		data.raw.player.player.drop_item_distance = 20
-	end	
-end 
-]]
+
 
 ----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"

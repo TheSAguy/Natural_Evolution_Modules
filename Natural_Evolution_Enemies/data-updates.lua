@@ -48,15 +48,15 @@ data.raw.player.player.healing_per_tick = 0.005   -- default 0.01
 --- Bob's Enemies - Update the Small Artifact Recipe.
 if NE_Enemies_Config.mod.BobEnemies and settings.startup["NE_Alien_Artifacts"].value and data.raw.item["alien-artifact-from-small"] then
 
-	thxbob.lib.remove_recipe_item ("alien-artifact-from-small", "small-alien-artifact")
-	thxbob.lib.add_new_recipe_item ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
-
+	thxbob.lib.recipe.remove_ingredient ("alien-artifact-from-small", "small-alien-artifact")
+	thxbob.lib.recipe.add_new_ingredient ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
+	
 end
 
 --- if the Alien Artifact is in the game, use if for some recipes
 if data.raw.item["alien-artifact"] or settings.startup["NE_Alien_Artifacts"].value then
 
-	thxbob.lib.add_new_recipe_item("Biological-bullet-magazine", {type="item", name="alien-artifact", amount=5})
+	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="item", name="alien-artifact", amount=5})
 	
 else
 
@@ -127,12 +127,12 @@ end
 if NE_Enemies_Config.mod.NEBuildings then
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
-	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Building_Materials")
-	thxbob.lib.add_technology_recipe ("AlienUnderstanding-2", "Thumper")
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Building_Materials")
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "Thumper")
 
-	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "alien-artifact")
-	thxbob.lib.remove_recipe_item ("Biological-bullet-magazine", "sulfuric-acid")
-	thxbob.lib.add_new_recipe_item ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
+	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "alien-artifact")
+	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "sulfuric-acid")
+	thxbob.lib.recipe.add_new_ingredient ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
 		
 end
 
@@ -148,10 +148,11 @@ end
 data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
 data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Enemies.Settings.NE_Difficulty
 data.raw["unit-spawner"]["biter-spawner"].spawning_cooldown = {(200+100/NE_Enemies.Settings.NE_Difficulty), (100+50/NE_Enemies.Settings.NE_Difficulty)}
-data.raw["unit-spawner"]["biter-spawner"].max_health = 500 + (1000 * NE_Enemies.Settings.NE_Difficulty)
+data.raw["unit-spawner"]["biter-spawner"].max_health = 500 + (500 * NE_Enemies.Settings.NE_Difficulty)
 data.raw["unit-spawner"]["biter-spawner"].resistances = Resistances.Spawner
 data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 25
 data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2
+data.raw["unit-spawner"]["biter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
 data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_absolute = 15
 data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_proportional = 0.005
 
@@ -159,44 +160,13 @@ data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_proportional = 0.
 data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Enemies.Settings.NE_Difficulty
 data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
 data.raw["unit-spawner"]["spitter-spawner"].spawning_cooldown = {(300+100/NE_Enemies.Settings.NE_Difficulty), (100+80/NE_Enemies.Settings.NE_Difficulty)}
-data.raw["unit-spawner"]["spitter-spawner"].max_health = 1000 + (1000 * NE_Enemies.Settings.NE_Difficulty)
+data.raw["unit-spawner"]["spitter-spawner"].max_health = 1000 + (500 * NE_Enemies.Settings.NE_Difficulty)
 data.raw["unit-spawner"]["spitter-spawner"].resistances = Resistances.Spawner
 data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20
 data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2
+data.raw["unit-spawner"]["spitter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
 data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute = 15
 data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional = 0.005
-
-
-	
--- Bob's Enemies Modifications
-if NE_Enemies_Config.mod.BobEnemies then
-	-- Bob's Biter Spawner Adjustments
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Enemies.Settings.NE_Difficulty
-	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_cooldown = {(200+100/NE_Enemies.Settings.NE_Difficulty), (100+50/NE_Enemies.Settings.NE_Difficulty)}
-	data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 500 + (1000 * NE_Enemies.Settings.NE_Difficulty)
-	data.raw["unit-spawner"]["bob-biter-spawner"].resistances = Resistances.Spawner
-	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_radius = 25
-	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_spacing = 2
-	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_absolute = 15
-	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_proportional = 0.005
-		
-			
-	-- Bob's Spitter Spawner Adjustments
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Enemies.Settings.NE_Difficulty
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
-	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_cooldown = {(300+100/NE_Enemies.Settings.NE_Difficulty), (100+80/NE_Enemies.Settings.NE_Difficulty)}
-	data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 1000 + (1000 * NE_Enemies.Settings.NE_Difficulty)
-	data.raw["unit-spawner"]["bob-spitter-spawner"].resistances = Resistances.Spawner
-	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_radius = 20
-	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_spacing = 2
-	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_absolute = 15
-	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_proportional = 0.005
-end
-
-
----- END Spawner Modifications ----------------------------------------
-
 
 
 ---- Biter & Spitter Modifications --------------------------------
@@ -257,10 +227,37 @@ data.raw["turret"]["big-worm-turret"].resistances = Resistances.Big_Worm
 data.raw["turret"]["big-worm-turret"].call_for_help_radius = 120
 		
 
-		
+	
 -- Bob's Enemies Modifications
 if NE_Enemies_Config.mod.BobEnemies then
-	require "prototypes.Vanilla_Changes.Bobs_Spawners"				
+
+	require "prototypes.Vanilla_Changes.Bobs_Spawners"		
+
+	-- Bob's Biter Spawner Adjustments
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Enemies.Settings.NE_Difficulty
+	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_cooldown = {(200+100/NE_Enemies.Settings.NE_Difficulty), (100+50/NE_Enemies.Settings.NE_Difficulty)}
+	data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 500 + (500 * NE_Enemies.Settings.NE_Difficulty)
+	data.raw["unit-spawner"]["bob-biter-spawner"].resistances = Resistances.Spawner
+	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_radius = 25
+	data.raw["unit-spawner"]["bob-biter-spawner"].spawning_spacing = 2
+	data.raw["unit-spawner"]["bob-biter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
+	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_absolute = 15
+	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_proportional = 0.005
+		
+			
+	-- Bob's Spitter Spawner Adjustments
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Enemies.Settings.NE_Difficulty
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
+	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_cooldown = {(300+100/NE_Enemies.Settings.NE_Difficulty), (100+80/NE_Enemies.Settings.NE_Difficulty)}
+	data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 1000 + (500 * NE_Enemies.Settings.NE_Difficulty)
+	data.raw["unit-spawner"]["bob-spitter-spawner"].resistances = Resistances.Spawner
+	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_radius = 20
+	data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_spacing = 2
+	data.raw["unit-spawner"]["bob-spitter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
+	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_absolute = 15
+	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_proportional = 0.005
+		
 	
 	data.raw["unit"]["bob-big-piercing-biter"].pollution_to_join_attack = 1000
 	data.raw["unit"]["bob-huge-acid-biter"].pollution_to_join_attack = 2000

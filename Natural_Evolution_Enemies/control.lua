@@ -1,4 +1,4 @@
----ENEMIES v.7.0.0
+---ENEMIES v.7.0.1
 local QC_Mod = false
 
 
@@ -45,6 +45,8 @@ local replaceableTiles =
   ["sand"] = "sand-dark",
   ["sand-dark"] = "dirt",
   ["dirt"] = "dirt-dark"
+  ["dirt-dark"] = "red-desert"
+  ["red-desert"] = "red-desert-dark"
 }
 local waterTiles =
 {
@@ -174,14 +176,8 @@ local tree_names = {
 }
 
 
----------------------------------------------
-script.on_event({defines.events.on_robot_built_entity,defines.events.on_built_entity,},function(event) On_Built(event) end)
-script.on_event({defines.events.on_robot_pre_mined,defines.events.on_preplayer_mined_item,},function(event) On_Remove(event) end)
-script.on_event(defines.events.on_entity_died,function(event) On_Death(event) end)
-
-
 ---------------------------------------------				 
-function On_Load()
+local function On_Load()
 
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
@@ -190,7 +186,7 @@ function On_Load()
 end
 
 ---------------------------------------------				 
-function On_Init()
+local function On_Init()
 
 	--- Used for Unit Turrets
 	if not global.tick then
@@ -242,7 +238,7 @@ end)
 
 
 ---------------------------------------------
-function On_Built(event)
+local function On_Built(event)
 	--- Artifact Collector	
 	local newCollector
 	
@@ -262,7 +258,7 @@ end
 
 
 ---------------------------------------------
-function On_Remove(event)
+local function On_Remove(event)
 		
  	--------- Did you really just kill that tree...
 	if settings.startup["NE_Tree_Hugger"].value and (event.entity.type == "tree") and tree_names[event.entity.name] then
@@ -309,7 +305,7 @@ function On_Remove(event)
 	
 end
 
-function On_Death(event)
+local function On_Death(event)
 
 
 	
@@ -622,6 +618,18 @@ end
 script.on_load(On_Load)
 script.on_configuration_changed(On_Init)
 script.on_init(On_Init)
+
+local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+script.on_event(build_events, On_Built)
+
+local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
+script.on_event(pre_remove_events, On_Remove)
+
+local death_events = {defines.events.on_entity_died}
+script.on_event(death_events, On_Death)
+
+
+
 
 ---------------------------------------------
 --- DeBug Messages 
