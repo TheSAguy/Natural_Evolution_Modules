@@ -53,9 +53,9 @@ Health = {
 	Big_Spitter_Mk2 = 450*NE_Enemies.Settings.NE_Difficulty,
 	Big_Spitter_Mk3 = 700*NE_Enemies.Settings.NE_Difficulty,
 	Behemoth_Spitter = 2000*NE_Enemies.Settings.NE_Difficulty,
-	Small_Worm = 250*NE_Enemies.Settings.NE_Difficulty,
-	Medium_Worm = 450*NE_Enemies.Settings.NE_Difficulty,
-	Big_Worm = 600*NE_Enemies.Settings.NE_Difficulty
+	Small_Worm = 200 + 100 * NE_Enemies.Settings.NE_Difficulty,
+	Medium_Worm = 200 + 200 * NE_Enemies.Settings.NE_Difficulty,
+	Big_Worm = 400 + 200 * NE_Enemies.Settings.NE_Difficulty,
 	
 	
 	}

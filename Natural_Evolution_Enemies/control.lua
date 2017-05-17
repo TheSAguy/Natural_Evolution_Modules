@@ -1,4 +1,4 @@
----ENEMIES v.7.0.2
+---ENEMIES v.7.0.3
 local QC_Mod = false
 
 
@@ -425,13 +425,68 @@ local function On_Death(event)
         end
     end
 	
-	
 		
+    -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
+    if (event.force == game.forces.enemy) and (autoRepairType[event.entity.type] or autoRepairName[event.entity.name]) then
+		local entity = event.entity
+        local repairPosition = entity.position
+        local repairName = entity.name
+        local repairForce = entity.force
+		local surface = entity.surface
+        local repairDirection = entity.direction
+		local wires
+		
+		if (entity.type == "electric-pole") then
+			wires = entity.neighbours
+		end
+		
+        entity.destroy()
+        local entityRepaired = surface.create_entity({position=repairPosition,
+                                                               name=repairName,
+                                                               direction=repairDirection,
+                                                               force=repairForce})
+															   
+
+		if wires then
+			for connectType,neighbourGroup in pairs(wires) do
+				if connectType == "copper" then
+				for _,v in pairs(neighbourGroup) do
+					entityRepaired.connect_neighbour(v);
+				end
+				elseif connectType == "red" then
+				for _,v in pairs(neighbourGroup) do
+					entityRepaired.connect_neighbour({wire = defines.wire_type.red, target_entity = v});
+				end
+				elseif connectType == "green" then
+				for _,v in pairs(neighbourGroup) do
+					entityRepaired.connect_neighbour({wire = defines.wire_type.green, target_entity = v});
+				end
+				end
+			end
+		end
+		
+		
+        local enemies = surface.find_entities_filtered({area = {{x=repairPosition.x-20, y=repairPosition.y-20},
+                                                                         {x=repairPosition.x+20, y=repairPosition.y+20}},
+                                                                 type = "unit",
+																force = game.forces.enemy})    
+																
+        for i=1, #enemies do
+            local enemy = enemies[i]
+            enemy.set_command({type=defines.command.wander,
+                               distraction=defines.distraction.by_enemy})
+        end
+    end
+
+	
+	
+	--[[
     -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
     if (event.force == game.forces.enemy) and (autoRepairType[event.entity.type] or autoRepairName[event.entity.name]) then
         local repairPosition = event.entity.position
         local repairName = event.entity.name
         local repairForce = event.entity.force
+		local surface = event.entity.surface
         local repairDirection = event.entity.direction
         event.entity.destroy()
         local entityRepaired = game.surfaces[1].create_entity({position=repairPosition,
@@ -448,7 +503,7 @@ local function On_Death(event)
                                distraction=defines.distraction.by_enemy})
         end
     end
-
+]]
 
 end
 

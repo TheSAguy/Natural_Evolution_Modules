@@ -30,18 +30,34 @@ subEnemyNameTable["unit-cluster"][10] =			"behemoth-biter"
 -- The current evolution factor rounded down to the nearest 10% is also used to look up which enemy appears.
 subEnemyNumberTable = {}
 
-subEnemyNumberTable["unit-cluster"] = {}
-subEnemyNumberTable["unit-cluster"][0] = 			1 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][1] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][2] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][3] = 			3 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][4] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][5] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][6] = 			3 * NE_Enemies.Settings.NE_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][7] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][8] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][9] = 			3 * NE_Enemies.Settings.NE_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][10] =			2 * NE_Enemies.Settings.NE_Difficulty    --behemoth
+if settings.startup["rampant-useNEUnitLaunchers"] and settings.startup["rampant-useNEUnitLaunchers"].value then
 
+	subEnemyNumberTable["unit-cluster"] = {}
+	subEnemyNumberTable["unit-cluster"][0] = 			math.floor( 1 * NE_Enemies.Settings.NE_Difficulty / 2 )   --small
+	subEnemyNumberTable["unit-cluster"][1] = 			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --small
+	subEnemyNumberTable["unit-cluster"][2] = 			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --small
+	subEnemyNumberTable["unit-cluster"][3] = 			math.floor( 3 * NE_Enemies.Settings.NE_Difficulty / 2 )    --small
+	subEnemyNumberTable["unit-cluster"][4] = 			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --medium
+	subEnemyNumberTable["unit-cluster"][5] = 			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --medium
+	subEnemyNumberTable["unit-cluster"][6] = 			math.floor( 3 * NE_Enemies.Settings.NE_Difficulty / 2 )    --medium
+	subEnemyNumberTable["unit-cluster"][7] = 			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --big
+	subEnemyNumberTable["unit-cluster"][8] = 			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --big
+	subEnemyNumberTable["unit-cluster"][9] = 			math.floor( 3 * NE_Enemies.Settings.NE_Difficulty / 2 )    --big
+	subEnemyNumberTable["unit-cluster"][10] =			math.floor( 2 * NE_Enemies.Settings.NE_Difficulty / 2 )    --behemoth
+else
 
+	subEnemyNumberTable["unit-cluster"] = {}
+	subEnemyNumberTable["unit-cluster"][0] = 			1 * NE_Enemies.Settings.NE_Difficulty    --small
+	subEnemyNumberTable["unit-cluster"][1] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
+	subEnemyNumberTable["unit-cluster"][2] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
+	subEnemyNumberTable["unit-cluster"][3] = 			3 * NE_Enemies.Settings.NE_Difficulty    --small
+	subEnemyNumberTable["unit-cluster"][4] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
+	subEnemyNumberTable["unit-cluster"][5] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
+	subEnemyNumberTable["unit-cluster"][6] = 			3 * NE_Enemies.Settings.NE_Difficulty    --medium
+	subEnemyNumberTable["unit-cluster"][7] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
+	subEnemyNumberTable["unit-cluster"][8] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
+	subEnemyNumberTable["unit-cluster"][9] = 			3 * NE_Enemies.Settings.NE_Difficulty    --big
+	subEnemyNumberTable["unit-cluster"][10] =			2 * NE_Enemies.Settings.NE_Difficulty    --behemoth
+
+end
 
