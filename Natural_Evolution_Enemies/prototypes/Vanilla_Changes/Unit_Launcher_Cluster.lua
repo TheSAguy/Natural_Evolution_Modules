@@ -13,15 +13,15 @@ subEnemyNameTable = {}
 
 subEnemyNameTable["unit-cluster"] = {}
 subEnemyNameTable["unit-cluster"][0] = 			"small-biter"
-subEnemyNameTable["unit-cluster"][1] = 			"small-biter-Mk2"
-subEnemyNameTable["unit-cluster"][2] = 			"small-biter-Mk3"
-subEnemyNameTable["unit-cluster"][3] = 			"medium-biter"
-subEnemyNameTable["unit-cluster"][4] = 			"medium-biter-Mk2"
-subEnemyNameTable["unit-cluster"][5] = 			"medium-biter-Mk3"
-subEnemyNameTable["unit-cluster"][6] = 			"big-biter"
-subEnemyNameTable["unit-cluster"][7] = 			"big-biter-Mk2"
-subEnemyNameTable["unit-cluster"][8] = 			"big-biter-Mk3"
-subEnemyNameTable["unit-cluster"][9] = 			"behemoth-biter"
+subEnemyNameTable["unit-cluster"][1] = 			"small-biter"
+subEnemyNameTable["unit-cluster"][2] = 			"small-biter-Mk2"
+subEnemyNameTable["unit-cluster"][3] = 			"small-biter-Mk3"
+subEnemyNameTable["unit-cluster"][4] = 			"medium-biter"
+subEnemyNameTable["unit-cluster"][5] = 			"medium-biter-Mk2"
+subEnemyNameTable["unit-cluster"][6] = 			"medium-biter-Mk3"
+subEnemyNameTable["unit-cluster"][7] = 			"big-biter"
+subEnemyNameTable["unit-cluster"][8] = 			"big-biter-Mk2"
+subEnemyNameTable["unit-cluster"][9] = 			"big-biter-Mk3"
 subEnemyNameTable["unit-cluster"][10] =			"behemoth-biter"
 
 
@@ -31,17 +31,17 @@ subEnemyNameTable["unit-cluster"][10] =			"behemoth-biter"
 subEnemyNumberTable = {}
 
 subEnemyNumberTable["unit-cluster"] = {}
-subEnemyNumberTable["unit-cluster"][0] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][1] = 			3 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][2] = 			4 * NE_Enemies.Settings.NE_Difficulty    --small
-subEnemyNumberTable["unit-cluster"][3] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][4] = 			3 * NE_Enemies.Settings.NE_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][5] = 			4 * NE_Enemies.Settings.NE_Difficulty    --medium
-subEnemyNumberTable["unit-cluster"][6] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][7] = 			3 * NE_Enemies.Settings.NE_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][8] = 			4 * NE_Enemies.Settings.NE_Difficulty    --big
-subEnemyNumberTable["unit-cluster"][9] = 			2 * NE_Enemies.Settings.NE_Difficulty    --behemoth
-subEnemyNumberTable["unit-cluster"][10] =			4 * NE_Enemies.Settings.NE_Difficulty    --behemoth
+subEnemyNumberTable["unit-cluster"][0] = 			1 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][1] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][2] = 			2 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][3] = 			3 * NE_Enemies.Settings.NE_Difficulty    --small
+subEnemyNumberTable["unit-cluster"][4] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
+subEnemyNumberTable["unit-cluster"][5] = 			2 * NE_Enemies.Settings.NE_Difficulty    --medium
+subEnemyNumberTable["unit-cluster"][6] = 			3 * NE_Enemies.Settings.NE_Difficulty    --medium
+subEnemyNumberTable["unit-cluster"][7] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
+subEnemyNumberTable["unit-cluster"][8] = 			2 * NE_Enemies.Settings.NE_Difficulty    --big
+subEnemyNumberTable["unit-cluster"][9] = 			3 * NE_Enemies.Settings.NE_Difficulty    --big
+subEnemyNumberTable["unit-cluster"][10] =			2 * NE_Enemies.Settings.NE_Difficulty    --behemoth
 
 
 

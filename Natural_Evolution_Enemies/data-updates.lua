@@ -16,19 +16,6 @@ require "prototypes.Vanilla_Changes.New_Spitter_Units"
 require "prototypes.Vanilla_Changes.Spitter_Evolution"			
 
 
---[[
---- Got tierd of reaching limits...
-if NE_Enemies.Settings.NE_QC then
-	if data.raw.player.player.build_distance < 24 then
-		data.raw.player.player.build_distance = 24
-		data.raw.player.player.reach_distance = 20
-		data.raw.player.player.reach_resource_distance = 20
-		data.raw.player.player.drop_item_distance = 20
-	end	
-end 
-]]
-
-
 if data.raw.player.player.loot_pickup_distance < 4 then
 	data.raw.player.player.loot_pickup_distance = 4 -- default 2
 end	
@@ -207,18 +194,20 @@ data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 5000
 -- Worms
 --data.raw["turret"]["small-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Infected-Projectile-Worm" -- Testing
 data.raw["turret"]["small-worm-turret"].max_health = Health.Small_Worm
-data.raw["turret"]["small-worm-turret"].attack_parameters.range = 17 + NE_Enemies.Settings.NE_Difficulty
+data.raw["turret"]["small-worm-turret"].attack_parameters.range = 11 + NE_Enemies.Settings.NE_Difficulty
 data.raw["turret"]["small-worm-turret"].resistances = Resistances.Small_Worm
 
 data.raw["turret"]["medium-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Infected-Projectile-Worm"
 data.raw["turret"]["medium-worm-turret"].max_health = Health.Medium_Worm
-data.raw["turret"]["medium-worm-turret"].attack_parameters.range = 20 + NE_Enemies.Settings.NE_Difficulty
+data.raw["turret"]["medium-worm-turret"].attack_parameters.range = 17 + NE_Enemies.Settings.NE_Difficulty
+data.raw["turret"]["big-worm-turret"].attack_parameters.cooldown = 85 - NE_Enemies.Settings.NE_Difficulty
 data.raw["turret"]["medium-worm-turret"].resistances = Resistances.Medium_Worm
 data.raw["turret"]["medium-worm-turret"].call_for_help_radius = 60
 		
 data.raw["turret"]["big-worm-turret"].attack_parameters.ammo_type.action.action_delivery.projectile = "Mutated-Projectile-Worm"
 data.raw["turret"]["big-worm-turret"].max_health = Health.Big_Worm
-data.raw["turret"]["big-worm-turret"].attack_parameters.range = 25 + NE_Enemies.Settings.NE_Difficulty
+data.raw["turret"]["big-worm-turret"].attack_parameters.range = 22 + NE_Enemies.Settings.NE_Difficulty
+data.raw["turret"]["big-worm-turret"].attack_parameters.cooldown = 95 - NE_Enemies.Settings.NE_Difficulty
 data.raw["turret"]["big-worm-turret"].resistances = Resistances.Big_Worm
 data.raw["turret"]["big-worm-turret"].call_for_help_radius = 120
 		
