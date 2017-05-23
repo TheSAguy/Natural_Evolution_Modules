@@ -4,13 +4,14 @@
 data:extend({
 
  
-	---- Alien Control Station
+	---- Alien Control Station Area Overlay
 
   {
     type = "radar",
     name = "AlienControlStation_Area",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/AlienControlStation.png",
-    flags = {"placeable-neutral", "placeable-player", "player-creation"},   
+    --flags = {"placeable-neutral", "placeable-player", "player-creation"},   
+	flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable", "not-blueprintable"},
 	minable = {hardness = 0.8, mining_time = 1.5, result = "AlienControlStation_Area"},
     max_health = 250,
     corpse = "big-remnants",
@@ -54,7 +55,7 @@ data:extend({
     type = "radar",
     name = "AlienControlStation",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/AlienControlStation.png",
-    flags = {"placeable-neutral", "placeable-player", "player-creation"},   
+    flags = {"placeable-neutral", "placeable-player", "player-creation", "not-blueprintable"},   
 	minable = {hardness = 0.8, mining_time = 1.5, results = {{type="item", name="Building_Materials", amount=5},}},
 	--- NOTE, when mined, you will lose the Alien artifacts! ----
     max_health = 250,

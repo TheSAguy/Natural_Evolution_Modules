@@ -1,4 +1,4 @@
----BUILDINGS - v.7.0.2
+---BUILDINGS - v.7.0.5
 local QC_Mod = false
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
@@ -85,12 +85,31 @@ local function On_Init()
 	if global.Living_Walls_Table == nil then
           global.Living_Walls_Table = {}
 	end
-	
+
+end
+
+---------------------------------------------
+
+local function On_Config_Change()
+
+	-- enable researched recipes
+	for i, force in pairs(game.forces) do
+		for _, tech in pairs(force.technologies) do
+			if tech.researched then
+				for _, effect in pairs(tech.effects) do
+					if effect.type == "unlock-recipe" then          
+						force.recipes[effect.recipe].enabled = true
+					end
+				end
+			end
+		end
+	end
 	
 end
 
 
 ---------------------------------------------
+
 local function On_Built(event)
 
 local entity = event.created_entity
@@ -582,21 +601,6 @@ end
 
 
 ---------------------------------------------
-script.on_init(On_Init)
-script.on_configuration_changed(On_Load)
-
-local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
-script.on_event(build_events, On_Built)
-
-local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
-script.on_event(pre_remove_events, On_Remove)
-
-local death_events = {defines.events.on_entity_died}
-script.on_event(death_events, On_Death)
-
-
-
----------------------------------------------
 
 script.on_event(defines.events.on_research_finished, function(event)
 
@@ -618,7 +622,27 @@ script.on_event(defines.events.on_research_finished, function(event)
 end)
 
 
----------------------------------------------
+
+----------------------------------------
+
+
+script.on_configuration_changed(On_Config_Change)
+script.on_init(On_Init)
+
+
+
+local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+script.on_event(build_events, On_Built)
+
+local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
+script.on_event(pre_remove_events, On_Remove)
+
+local death_events = {defines.events.on_entity_died}
+script.on_event(death_events, On_Death)
+
+
+
+
 
 
 ---------------------------------------------

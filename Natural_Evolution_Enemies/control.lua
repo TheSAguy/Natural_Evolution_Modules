@@ -1,4 +1,4 @@
----ENEMIES v.7.0.3
+---ENEMIES v.7.0.5
 local QC_Mod = false
 
 
@@ -177,16 +177,12 @@ local tree_names = {
 
 
 ---------------------------------------------				 
-local function On_Load()
+local function On_Init()
 
+	
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 	end	
-	
-end
-
----------------------------------------------				 
-local function On_Init()
 
 	--- Used for Unit Turrets
 	if not global.tick then
@@ -209,6 +205,37 @@ local function On_Init()
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 		global.update_check = true
         global.next_collector = global.next_collector or 1
+	end
+	
+
+	
+end
+
+
+---------------------------------------------				 
+local function On_Load()
+
+	if global.ArtifactCollectors ~= nil then
+		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+	end	
+	
+end
+
+
+---------------------------------------------				 
+local function On_Config_Change()
+
+	-- enable researched recipes
+	for i, force in pairs(game.forces) do
+		for _, tech in pairs(force.technologies) do
+			if tech.researched then
+				for _, effect in pairs(tech.effects) do
+					if effect.type == "unlock-recipe" then          
+						force.recipes[effect.recipe].enabled = true
+					end
+				end
+			end
+		end
 	end
 	
 end
@@ -286,6 +313,7 @@ local function On_Remove(event)
 
     --Artifact collector
     if event.entity.name == "Artifact-collector" then
+
         local artifacts = global.ArtifactCollectors;
         for i=1,#artifacts do
             if artifacts[i] == event.entity then
@@ -409,6 +437,7 @@ local function On_Death(event)
 
 	--Artifact collector
     if event.entity.name == "Artifact-collector" then
+
         local artifacts=global.ArtifactCollectors;
         for i=1,#artifacts do
             if artifacts[i] == event.entity then
@@ -670,8 +699,9 @@ end
 
 ----------------------------------------
 
+
+script.on_configuration_changed(On_Config_Change)
 script.on_load(On_Load)
-script.on_configuration_changed(On_Init)
 script.on_init(On_Init)
 
 local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}

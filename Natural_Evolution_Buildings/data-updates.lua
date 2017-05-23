@@ -106,22 +106,23 @@ end
 
 
 ---------- Adds Alient Artifacts back for recipies in NE Buildings
-if data.raw["unit-spawner"]["biter-spawner"] then
-  if data.raw["unit-spawner"]["biter-spawner"].loot == nil then 
-    data.raw["unit-spawner"]["biter-spawner"].loot = {}
-  end
-  if data.raw.item["alien-artifact"] then
-    table.insert(data.raw["unit-spawner"]["biter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 15,  probability = 1 } )
-  end
+if data.raw["unit-spawner"]["biter-spawner"]  and data.raw.item["alien-artifact"] then
+	if data.raw["unit-spawner"]["biter-spawner"].loot == nil then 
+		data.raw["unit-spawner"]["biter-spawner"].loot = {}
+		
+		data.raw["unit-spawner"]["biter-spawner"].loot = {}
+		table.insert(data.raw["unit-spawner"]["biter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
+		
+	end
 end
 
-if data.raw["unit-spawner"]["spitter-spawner"] then
-  if data.raw["unit-spawner"]["spitter-spawner"].loot == nil then 
-    data.raw["unit-spawner"]["spitter-spawner"].loot = {}
-  end
-  if data.raw.item["alien-artifact"] then
-    table.insert(data.raw["unit-spawner"]["spitter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 15,  probability = 1 } )
-  end
+if data.raw["unit-spawner"]["spitter-spawner"] and data.raw.item["alien-artifact"] then
+	if data.raw["unit-spawner"]["spitter-spawner"].loot == nil then 
+		
+		data.raw["unit-spawner"]["spitter-spawner"].loot = {}
+		table.insert(data.raw["unit-spawner"]["spitter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
+		
+	end
 end
 
 
