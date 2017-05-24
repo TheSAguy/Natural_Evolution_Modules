@@ -182,8 +182,14 @@ local function On_Init()
 	
 	if global.ArtifactCollectors ~= nil then
 		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-	end	
-
+	end
+	
+	if global.ArtifactCollectors ~= nil then
+		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		global.update_check = true
+        global.next_collector = global.next_collector or 1
+	end
+	
 	--- Used for Unit Turrets
 	if not global.tick then
 		global.tick = game.tick
@@ -201,13 +207,13 @@ local function On_Init()
 	global.launch_units={}--this is used to define which equipment is put initially
 	global.launch_units["unit-cluster"] = "unit-cluster"
 	
-	if global.ArtifactCollectors ~= nil then
-		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-		global.update_check = true
-        global.next_collector = global.next_collector or 1
-	end
-	
 
+	
+	-- enable researched recipes
+	for i, force in pairs(game.forces) do
+		force.reset_technologies()
+		force.reset_recipes()
+	end
 	
 end
 

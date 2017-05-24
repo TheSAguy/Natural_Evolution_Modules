@@ -86,6 +86,12 @@ local function On_Init()
           global.Living_Walls_Table = {}
 	end
 
+	-- enable researched recipes
+	for i, force in pairs(game.forces) do
+		force.reset_technologies()
+		force.reset_recipes()
+	end
+	
 end
 
 ---------------------------------------------
