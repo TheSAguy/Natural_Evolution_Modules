@@ -1,5 +1,5 @@
----BUILDINGS - v.7.0.5
-local QC_Mod = false
+---BUILDINGS - v.7.0.6
+local QC_Mod = true
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -169,7 +169,40 @@ local entity = event.created_entity
 		table.insert(global.beacons, newAlienControlStation)
 	end	
 
+	--------- Battle Marker Built
+	if entity and entity.name == "battle_marker" then
+
+			writeDebug("Battle Marker Built")
+			local surface = event.created_entity.surface
+			local force = event.created_entity.force
+			local pos = event.created_entity.position
+			local dir = event.created_entity.direction
+						
+			for i=1, 5000 do
+				surface.create_entity{name = "battle_marker_hidden", position = pos, force = force, direction = dir}
+				writeDebug("Hidden Marker built: " ..i)
+			end
 	
+	end
+	
+	
+end
+
+---------------------------------------------
+
+
+function RemoveInvisible(entity)
+  local e = entity
+  local s = e.surface
+  local p = e.position
+  for i=1, 5000 do
+    if s.find_entity('battle_marker_hidden', p) then
+      s.find_entity('battle_marker_hidden', p).destroy()
+	  writeDebug("Hidden Marker Removed: " ..i)
+	 else
+					writeDebug("Hidden Marker not found")		 
+    end
+  end
 end
 
 ---------------------------------------------
@@ -205,6 +238,31 @@ local function On_Remove(event)
 		end
   end
 	
+	
+	--------- Remove Battle Marker
+	if (event.entity.name == "battle_marker") then
+
+	
+	
+	
+			writeDebug("Battle Marker Removed")
+	RemoveInvisible(event.entity)
+
+--[[	
+			local surface = event.entity.surface
+			local pos = event.entity.position
+			
+			for i=1, 5000 do
+				if surface.find_entity("battle_marker_hidden", pos) then
+					surface.find_entity("battle_marker_hidden", pos).destroy()
+					writeDebug("Hidden Marker Removed: " ..i)
+				else
+					writeDebug("Hidden Marker not found")				
+				end
+			end
+		]]	
+	end
+	
 end
 
 
@@ -226,6 +284,43 @@ local function On_Death(event)
 	if event.entity.name == "AlienControlStation" then
 		ACS_Remove()
 	end
+	
+	
+	
+	 	--------- Spawner killed
+	if (event.entity.type == "unit-spawner") and (event.entity.force == game.forces.enemy) then
+
+			writeDebug("Enemy Spawner Killed")
+			local surface = event.entity.surface
+			local force = event.force
+			local pos = event.entity.position
+
+			Battle_Marker = surface.create_entity({name = "battle_marker", position = pos, force = force})
+			
+			for i=1, 5000 do
+				surface.create_entity{name = "battle_marker_hidden", position = pos, force = force}
+				writeDebug("Hidden Marker Created: " ..i)
+			end
+	
+	end
+	
+	--------- Remove Battle Marker
+	if (event.entity.name == "battle_marker") then
+
+			writeDebug("Battle Marker Removed")
+			local surface = event.entity.surface
+			local pos = event.entity.position
+			
+			for i=1, 5000 do
+				if surface.find_entity("battle_marker_hidden", pos) then
+					surface.find_entity("battle_marker_hidden", pos).destroy()
+					writeDebug("Hidden Marker Removed: " ..i)
+				end
+			end
+			
+	end
+	
+	
 	
 end
 

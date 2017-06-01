@@ -3,17 +3,17 @@ data:extend({
 		
 		---- Building Materials
 	{
-      type = "recipe",
-		  name = "Building_Materials",
-		  enabled = false,
-		  ingredients = 
-		  {
+		type = "recipe",
+		name = "Building_Materials",
+		enabled = false,
+		ingredients = 
+		{
 			{"advanced-circuit", 15},
 			{"stone-brick", 50},       
 			{"steel-plate", 10}, 
-		  },
-		  result = "Building_Materials",
-		  energy_required= 2.5,
+		},
+		result = "Building_Materials",
+		energy_required= 2.5,
 	},
 	
 	--- Attractor ON
@@ -42,4 +42,21 @@ data:extend({
 		energy_required = 0.5,
 	},
 
+	
+	---- Battle Marker
+	{
+		type = "recipe",
+		name = "battle_marker",
+		enabled = true,
+		ingredients = 
+		{
+			
+			{"stone", 10},       
+			
+		},
+		result = "battle_marker",
+		energy_required= 0.5,
+	},
+	
+	
 })

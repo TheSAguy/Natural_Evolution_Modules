@@ -68,6 +68,7 @@ require("prototypes.Combat_Inserter.recipe")
 
 require("prototypes.Other.item")
 require("prototypes.Other.recipe")
+require("prototypes.Other.entity") 
 require("prototypes.Other.damage-type") 
 ---------------------------------------------------------------
 

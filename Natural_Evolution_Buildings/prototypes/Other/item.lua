@@ -33,4 +33,30 @@ data:extend({
 		order = "b[attractor-off]",
 		stack_size = 1
 	},
+	
+	{
+		type = "item",
+		name = "battle_marker",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/Battle_Marker_1_32.png",
+		flags = {"goes-to-main-inventory"},
+		subgroup = "defensive-structure",
+		order = "x[battle_marker]",
+		place_result = "battle_marker",
+		stack_size = 50
+  },
+	
+	
+	{
+		type = "item",
+		name = "battle_marker_hidden",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/Battle_Marker_1_32.png",
+		flags = {"goes-to-main-inventory"},
+		enable = false,
+		subgroup = "defensive-structure",
+		order = "y[battle_marker]",
+		place_result = "battle_marker_hidden",
+		stack_size = 50
+  },
+	
+	
 })
