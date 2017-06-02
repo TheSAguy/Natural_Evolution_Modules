@@ -6,16 +6,24 @@ data:extend({
     type = "electric-pole",
     name = "battle_marker",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/Battle_Marker_1_32.png",
-    flags = {"placeable-neutral", "player-creation"},
-    minable = {hardness = 0.2, mining_time = 0.5, results = {{type="item", name="stone", amount=10},}},
-    max_health = 50,
-    corpse = "medium-remnants",
+    flags = {"placeable-neutral", "player-creation", "not-blueprintable", "not-repairable"},
+	minable = {hardness = 0.2, mining_time = 0.5, results = {{type="item", name="stone", amount=10},}},
+    max_health = 150,
+    corpse = "small-remnants",
     resistances =
     {
       {
         type = "fire",
         percent = 100
-      }
+      },
+	  {
+        type = "explosion",
+        percent = 100
+      },
+	  {
+        type = "explosion",
+        percent = 80
+      },
     },
     resistances = {{type = "fire", percent = 100}},
     collision_box = {{-0.65, -0.65}, {0.65, 0.65}},
@@ -65,7 +73,7 @@ data:extend({
     },
   },
   
-
+--[[
   {
     type = "simple-entity",
     name = "battle_marker_hidden",
@@ -85,14 +93,14 @@ data:extend({
       shift = {0, 0}
     }
   },
+]]
 
-  --[[
  {
     type = "electric-pole",
     name = "battle_marker_hidden",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/Battle_Marker_1_32.png",
-	--flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable", "not-blueprintable"},
-	flags = {"not-on-map", "player-creation"},
+	flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable", "not-blueprintable"},
+	--flags = {"not-on-map", "player-creation"},
 	selectable_in_game = false,
     max_health = 1,
     resistances = {{type = "fire", percent = 100}},
@@ -139,7 +147,6 @@ data:extend({
     },
   },
 
-]]
 
   
 })

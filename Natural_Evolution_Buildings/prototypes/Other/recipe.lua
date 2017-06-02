@@ -47,7 +47,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "battle_marker",
-		enabled = true,
+		enabled = false,
 		ingredients = 
 		{
 			
