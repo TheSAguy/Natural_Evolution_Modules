@@ -1,5 +1,5 @@
----BUILDINGS - v.7.0.6
-local QC_Mod = false
+---BUILDINGS - v.7.0.7
+local QC_Mod = true
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
 
@@ -281,8 +281,11 @@ local function On_Death(event)
 			Battle_Marker = surface.create_entity({name = "battle_marker", position = pos, force = force})
 			
 			for i=1, 500 do
-				surface.create_entity{name = "battle_marker_hidden", position = pos, force = force}
+				local hidden_marker = surface.create_entity{name = "battle_marker_hidden", position = pos, force = force}
 				writeDebug("Hidden Marker Created: " ..i)
+				hidden_marker.minable = false
+				hidden_marker.destructible = false
+				
 			end
 	
 	end
