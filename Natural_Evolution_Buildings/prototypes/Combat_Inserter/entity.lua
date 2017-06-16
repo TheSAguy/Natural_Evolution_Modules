@@ -14,21 +14,21 @@ data:extend({
       mining_time = 0.8,
       result = "combat-inserter"
     },
-    max_health = 100,
+    max_health = 1500,
     corpse = "small-remnants",
     resistances =
     {
       {
         type = "fire",
-        percent = 90
+        percent = 95
       },
 	  {
         type = "acid",
-        percent = 70
+        percent = 95
       },
 	  {
         type = "poison",
-        percent = 70
+        percent = 95
       },
     },
     collision_box = {{-0.15, -0.15}, {0.15, 0.15}},
