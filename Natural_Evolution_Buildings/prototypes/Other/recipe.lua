@@ -5,15 +5,33 @@ data:extend({
 	{
 		type = "recipe",
 		name = "Building_Materials",
-		enabled = false,
-		ingredients = 
+		normal =
 		{
-			{"advanced-circuit", 15},
-			{"stone-brick", 50},       
-			{"steel-plate", 10}, 
+			enabled = false,
+			energy_required = 4,
+			ingredients = 
+			{
+				{"advanced-circuit", 15},
+				{"stone-brick", 50},       
+				{"steel-plate", 10}, 
+			},
+		  result = "Building_Materials",
+		  result_count = 1,
 		},
-		result = "Building_Materials",
-		energy_required= 2.5,
+		expensive =
+		{
+			enabled = false,
+			energy_required = 8,
+			ingredients = 
+			{
+				{"advanced-circuit", 20},
+				{"stone-brick", 50},       
+				{"steel-plate", 15}, 
+			},
+		  result = "Building_Materials",
+		  result_count = 1,
+		},
+		
 	},
 	
 	--- Attractor ON
@@ -42,7 +60,7 @@ data:extend({
 		energy_required = 0.5,
 	},
 
-	
+--[[	
 	---- Battle Marker
 	{
 		type = "recipe",
@@ -58,5 +76,5 @@ data:extend({
 		energy_required= 0.5,
 	},
 	
-	
+]]	
 })

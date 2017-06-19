@@ -5,29 +5,30 @@ data:extend({
 	{
 		type = "recipe",
 		name = "AlienControlStation",
-        energy_required = 20,
-		enabled = false,
-		ingredients =
-        {
-            {"Building_Materials", 10},
-            {"alien-artifact", 10},
-        },
-		result = "AlienControlStation_Area"
-	}, 
---[[
-		--- Alien Control Station
-	{
-		type = "recipe",
-		name = "AlienControlStation",
-        energy_required = 20,
-		enabled = false,
-		ingredients =
-        {
-            {"Building_Materials", 10},
-            {"alien-artifact", 10},
-        },
-		result = "AlienControlStation"
-	}, 
-]]
+		normal =
+		{
+			enabled = false,
+			energy_required = 20,
+			ingredients = 
+			{
+			  {"Building_Materials", 10},    
+			  {"alien-artifact", 10},
+			},
+		  result = "AlienControlStation_Area",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 30,
+			ingredients = 
+			{
+			  {"Building_Materials", 10},    
+			  {"alien-artifact", 40},
+			},
+		  result = "AlienControlStation_Area",
+		  result_count = 1,
+		},
+	}, 	
 	
 })

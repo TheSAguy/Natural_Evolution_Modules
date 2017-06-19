@@ -295,7 +295,7 @@ Resistances = {
 	  --- Spawner
 	
 	Spawner = {
-	  {type = "fire", decrease = 0, percent = -100},
+	  {type = "fire", decrease = 0, percent = -75},
       {type = "physical", decrease = 5, percent = 10*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 15, percent = 15*NE_Enemies.Settings.NE_Difficulty},
       {type = "explosion", decrease = 15, percent = 30*NE_Enemies.Settings.NE_Difficulty},

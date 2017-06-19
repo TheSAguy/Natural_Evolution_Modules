@@ -45,6 +45,10 @@ data:extend({
 			{
 				type = 'unlock-recipe', 
 				recipe='Biological-bullet-magazine'
+			},
+			{
+				type = 'unlock-recipe', 
+				recipe='bio_land_mine'
 			}
 		},
 		prerequisites = {"AlienUnderstanding"},

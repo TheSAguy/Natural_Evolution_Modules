@@ -44,6 +44,7 @@ end
 
     --- Other - Building Materials, Biological Damage & Ammo
 
+require("prototypes.Other.entity")
 require("prototypes.Other.item")
 require("prototypes.Other.recipe")
 require("prototypes.Other.damage-type")

@@ -30,6 +30,15 @@ data:extend({
         type = "poison",
         percent = 95
       },
+	  	  {
+        type = "explosion",
+        percent = 95
+      },
+	  	  {
+        type = "physical",
+        percent = 50
+      },
+	  
     },
     collision_box = {{-0.15, -0.15}, {0.15, 0.15}},
     selection_box = {{-0.4, -0.35}, {0.4, 0.45}},

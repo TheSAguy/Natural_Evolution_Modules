@@ -82,7 +82,7 @@ thxbob.lib.add_technology_recipe ("AlienUnderstanding", "ne-combat-inserter")
 
 -- Adds a resitance of all damage types to an entity
 for k, v in pairs(data.raw["damage-type"]) do
-	local Resist = {type = v.name, percent = 70} -- or you could use k, and not v.name		
+	local Resist = {type = v.name, percent = 80} -- or you could use k, and not v.name		
 
 	if data.raw.inserter["combat-inserter"].resistances == nil then 
 		data.raw.inserter["combat-inserter"].resistances = {}
