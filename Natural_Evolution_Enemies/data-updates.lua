@@ -40,11 +40,13 @@ end
 if data.raw.item["alien-artifact"] or settings.startup["NE_Alien_Artifacts"].value then
 
 	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="item", name="alien-artifact", amount=5})
+	thxbob.lib.recipe.add_new_ingredient("bio_land_mine", {type="item", name="alien-artifact", amount=5})
 	
 else
 
 	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="fluid", name="sulfuric-acid", amount=15})
-
+	thxbob.lib.recipe.add_new_ingredient("bio_land_mine", {type="fluid", name="sulfuric-acid", amount=25})
+	
 end	
 
 
@@ -73,6 +75,7 @@ NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Enemies.Setti
 	
 NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
 
+--- Add all resistances.
 if data.raw.inserter["combat-inserter"] then
 	for k, v in pairs(data.raw["damage-type"]) do
 	local Resist = {type = v.name, percent = 70} -- or you could use k, and not v.name		
@@ -116,6 +119,12 @@ if NE_Enemies_Config.mod.NEBuildings then
 	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "alien-artifact")
 	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "sulfuric-acid")
 	thxbob.lib.recipe.add_new_ingredient ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
+	
+	
+	thxbob.lib.recipe.remove_ingredient ("bio_land_mine", "alien-artifact")
+	thxbob.lib.recipe.remove_ingredient ("bio_land_mine", "sulfuric-acid")
+	thxbob.lib.recipe.add_new_ingredient ("bio_land_mine", {type="fluid", name="NE_alien_toxin", amount=15})
+	
 		
 end
 

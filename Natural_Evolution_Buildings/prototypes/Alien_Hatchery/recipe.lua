@@ -2,16 +2,34 @@
 data:extend({
 
   ---- Alien Hatchery
-  {
+	{
     type = "recipe",
     name = "Alien_Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"Building_Materials", 5},
-    },
-    result = "Alien_Hatchery"
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 10,
+			ingredients = 
+			{
+			  {"Building_Materials", 5},    
+			},
+		  result = "Alien_Hatchery",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 20,
+			ingredients = 
+			{
+			  {"Building_Materials", 10},    
+			},
+		  result = "Alien_Hatchery",
+		  result_count = 1,
+		},
+	}, 	   
+
+
 
 ---- Living Wall
     {
@@ -51,64 +69,135 @@ data:extend({
   
 
   --- Small Biter Hatching
-  {
+	{
     type = "recipe",
     name = "small-biter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"alien-artifact", 2},
-      {type="fluid", name="NE_nutrient-solution", amount=25},
-    },
-    result = "small-biter-hatching",
-    energy_required = 50,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 50,
+			ingredients = 
+			{
+			  {"alien-artifact", 2},
+			  {type="fluid", name="NE_nutrient-solution", amount=25},  
+			},
+		  result = "small-biter-hatching",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 80,
+			ingredients = 
+			{
+			  {"alien-artifact", 4},
+			  {type="fluid", name="NE_nutrient-solution", amount=40},  
+			},
+		  result = "small-biter-hatching",
+		  result_count = 1,
+		},
+	}, 	 
+
+
 
   --- Medium Biter Hatching
-  {
+	{
     type = "recipe",
     name = "medium-biter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"small-biter-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=25},
-    },
-    result = "medium-biter-hatching",
-    energy_required = 100,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 100,
+			ingredients = 
+			{
+			  {"small-biter-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=25},  
+			},
+		  result = "medium-biter-hatching",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"small-biter-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=40},  
+			},
+		  result = "medium-biter-hatching",
+		  result_count = 1,
+		},
+	}, 	 
+
+ 
+	
+
 
   --- Big Biter Hatching
-  {
+	{
     type = "recipe",
     name = "big-biter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"medium-biter-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=50},
-    },
-    result = "big-biter-hatching",
-    energy_required = 150,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"medium-biter-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=50},  
+			},
+		  result = "big-biter-hatching",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 250,
+			ingredients = 
+			{
+			  {"medium-biter-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=75},  
+			},
+		  result = "big-biter-hatching",
+		  result_count = 1,
+		},
+	}, 	 
+
 
   --- Behemoth Biter Hatching
-  {
+	{
     type = "recipe",
     name = "behemoth-biter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"big-biter-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=100},
-    },
-    result = "behemoth-biter-hatching",
-    energy_required = 200,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"big-biter-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=100},  
+			},
+		  result = "behemoth-biter-hatching",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 250,
+			ingredients = 
+			{
+			  {"big-biter-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=150},  
+			},
+		  result = "behemoth-biter-hatching",
+		  result_count = 1,
+		},
+	}, 
 
 
   --- Small Spitter Hatching
@@ -116,60 +205,127 @@ data:extend({
     type = "recipe",
     name = "small-spitter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"alien-artifact", 2},
-      {type="fluid", name="NE_nutrient-solution", amount=25},
-    },
-    result = "small-spitter-hatching",
-    energy_required = 50,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 50,
+			ingredients = 
+			{
+			  {"alien-artifact", 2},
+			  {type="fluid", name="NE_nutrient-solution", amount=25},
+			},
+		  result = "small-spitter-hatching",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"alien-artifact", 4},
+			  {type="fluid", name="NE_nutrient-solution", amount=30},
+			},
+		  result = "small-spitter-hatching",
+		  result_count = 1,
+		},
+  
+	},
 
   --- Medium Spitter Hatching
   {
     type = "recipe",
     name = "medium-spitter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"small-spitter-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=25},
-    },
-    result = "medium-spitter-hatching",
-    energy_required = 100,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 100,
+			ingredients = 
+			{
+			  {"small-spitter-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=25},
+			},
+		  result = "medium-spitter-hatching",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 125,
+			ingredients = 
+			{
+			  {"small-spitter-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=35},
+			},
+		  result = "medium-spitter-hatching",
+		  result_count = 1,
+		},
+  
+	},
 
   --- Big Spitter Hatching
   {
     type = "recipe",
     name = "big-spitter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"medium-spitter-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=50},
-    },
-    result = "big-spitter-hatching",
-    energy_required = 150,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"medium-spitter-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=50},
+			},
+		  result = "big-spitter-hatching",
+		  result_count = 1,
+		},
+		{
+			enabled = false,
+			energy_required = 180,
+			ingredients = 
+			{
+			  {"medium-spitter-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=75},
+			},
+		  result = "big-spitter-hatching",
+		  result_count = 1,
+		},
+  
+	},
+
 
   --- Behemoth Spitter Hatching
   {
     type = "recipe",
     name = "behemoth-spitter-hatching",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"big-spitter-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=100},
-    },
-    result = "behemoth-spitter-hatching",
-    energy_required = 200,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 200,
+			ingredients = 
+			{
+			  {"big-spitter-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=100},
+			},
+		  result = "behemoth-spitter-hatching",
+		  result_count = 1,
+		},
+		{
+			enabled = false,
+			energy_required = 250,
+			ingredients = 
+			{
+			  {"big-spitter-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=125},
+			},
+		  result = "behemoth-spitter-hatching",
+		  result_count = 1,
+		},
+  
+	},
 
 
   --- Small Worm Hatching
@@ -178,15 +334,31 @@ data:extend({
     name = "small-worm-hatching",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-worm.png",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"alien-artifact", 2},
-      {type="fluid", name="NE_nutrient-solution", amount=50},
-    },
-    result = "small-worm-hatching",
-    energy_required = 50,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 50,
+			ingredients = 
+			{
+			  {"alien-artifact", 2},
+			  {type="fluid", name="NE_nutrient-solution", amount=50},
+			},
+		  result = "small-worm-hatching",
+		  result_count = 1,
+		},
+		{
+			enabled = false,
+			energy_required = 75,
+			ingredients = 
+			{
+			  {"alien-artifact", 4},
+			  {type="fluid", name="NE_nutrient-solution", amount=75},
+			},
+		  result = "small-worm-hatching",
+		  result_count = 1,
+		},
+  
+	},
 
   {
     type = "recipe",
@@ -209,15 +381,33 @@ data:extend({
     name = "medium-worm-hatching",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-worm.png",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"small-worm-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=50},
-    },
-    result = "medium-worm-hatching",
-    energy_required = 70,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 50,
+			ingredients = 
+			{
+			  {"small-worm-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=50},
+			},
+		  result = "medium-worm-hatching",
+		  result_count = 1,
+		},
+		{
+			enabled = false,
+			energy_required = 80,
+			ingredients = 
+			{
+			  {"small-worm-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=75},
+			},
+		  result = "medium-worm-hatching",
+		  result_count = 1,
+		},
+  
+	},
+	
+
 
   {
     type = "recipe",
@@ -240,15 +430,32 @@ data:extend({
     name = "big-worm-hatching",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/big-worm.png",
     category = "Hatchery",
-    enabled = false,
-    ingredients =
-    {
-      {"medium-worm-hatching", 1},
-      {type="fluid", name="NE_enhanced-nutrient-solution", amount=100},
-    },
-    result = "big-worm-hatching",
-    energy_required = 100,
-  },
+	normal =
+		{
+			enabled = false,
+			energy_required = 100,
+			ingredients = 
+			{
+			  {"medium-worm-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=100},
+			},
+		  result = "big-worm-hatching",
+		  result_count = 1,
+		},
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"medium-worm-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=150},
+			},
+		  result = "big-worm-hatching",
+		  result_count = 1,
+		},
+  
+	},
+
 
   {
     type = "recipe",

@@ -6,9 +6,10 @@ NE_Enemies.Settings.Bio_Ammo_Damage = settings.startup["NE_Bio_Ammo_Damage"].val
 
 require ("util")
 
+
 data:extend({
 
-  
+
 	--- Biological Bullet
 	{
 		type = "ammo",
@@ -55,5 +56,18 @@ data:extend({
 		stack_size = 100
   },
   
-
+	---- Bio Land Mine
+    {
+    type = "item",
+    name = "bio_land_mine",
+    icon = "__Natural_Evolution_Enemies__/graphics/icons/bio_land_mine.png",
+    flags = {"goes-to-quickbar"},
+    damage_radius = 8,
+    subgroup = "gun",
+    order = "g[land-mine]",
+    place_result = "bio_land_mine",
+    stack_size = 100,
+    trigger_radius = 1.5
+  },
+  
 })
