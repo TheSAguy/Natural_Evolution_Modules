@@ -68,7 +68,7 @@ data:extend(
 		corpse = "small-remnants",
 		collision_box = {{-0.35, -0.35}, {0.35, 0.35}},
 		selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
-		collision_mask = {},
+		collision_mask = { "object-layer", "not-colliding-with-itself" },
 		order = "i[items]-i[Artifact-collector]",	
 		automated_ammo_count = 1,
 		resistances = {},	

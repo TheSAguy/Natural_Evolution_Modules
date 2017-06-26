@@ -13,6 +13,7 @@ data:extend({
 		stack_size = 10
 	},
 
+--[[
 	--- Alien Control Station
 	{
 		type = "item",
@@ -24,5 +25,5 @@ data:extend({
 		place_result = "AlienControlStation",
 		stack_size = 10
 	},
-
+]]
 })

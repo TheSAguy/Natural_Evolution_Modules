@@ -1,4 +1,4 @@
----BUILDINGS - v.7.1.0
+---BUILDINGS - v.7.1.2
 local QC_Mod = false
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
@@ -159,8 +159,7 @@ local entity = event.created_entity
 	local force = event.created_entity.force
 	
 	writeDebug("ACS has been built")		
-	writeDebug("The ACS search area is (Spawner): " .. settings.startup["NE_Spawner_Search_Distance"].value)  	
-	writeDebug("The ACS search area is (Unit): " .. settings.startup["NE_Unit_Search_Distance"].value)  	
+	writeDebug("The ACS search area is: " .. settings.startup["NE_Conversion_Search_Distance"].value)  	
 	writeDebug("The ACS Difficulty is: " .. settings.startup["NE_Conversion_Difficulty"].value)  	
 	writeDebug("The ACS Difficulty is: " .. global.minds.difficulty)  					
 			
@@ -305,11 +304,13 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 		
 			game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - reduction95
 			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction95
+			game.forces.player.evolution_factor = game.forces.enemy.evolution_factor	
 				
 		elseif game.forces.enemy.evolution_factor > reduction then
 		
 			game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor - reduction
 			global.Total_TerraformingStations_Evo_Deduction = global.Total_TerraformingStations_Evo_Deduction + reduction
+			game.forces.player.evolution_factor = game.forces.enemy.evolution_factor	
 			
 		end
 		
@@ -340,17 +341,28 @@ function Control_Enemies()
 	
       if beacon.energy > 0 then
         
-		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Spawner_Search_Distance"].value)} --search area of thirty around each ACS for spawners
-		
-        if #bases > 0 then
+		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Conversion_Search_Distance"].value), force = enemyForce} --search area of thirty around each ACS for spawners
+		local turret = surface.find_entities_filtered{type="turret", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Conversion_Search_Distance"].value), force = enemyForce} --search area of thirty around each ACS for spawners
+        
+		if #bases > 0 then
+		writeDebug("The number of Spawners in Range: " .. #bases)
           for i, base in ipairs(bases) do
             if base.force == (enemyForce) and math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%     
 			 Convert_Base(base, false, beacon.force)
             end
           end
+		 
+		elseif #turret > 0 then
+		writeDebug("The number of Worms/Turrets in Range: " .. #turret)	
+          for i, turret in ipairs(turret) do
+            if turret.force == (enemyForce) and math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%     
+			 Convert_Base(turret, false, beacon.force)
+            end
+          end	  
+		  
         else -- no bases in range 
        
-		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, settings.startup["NE_Unit_Search_Distance"].value)) do --search area of ten around each ACS
+		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, settings.startup["NE_Conversion_Search_Distance"].value)) do --search area of ten around each ACS
 		  
             if enemy.force == (enemyForce) then --do only if not already controlled
               if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
@@ -376,7 +388,7 @@ end
 function Remove_Mind_Control()
 
   local surface = game.surfaces['nauvis'] --- Old Code Need to Fix
-   --local surface = mind.surface -- Needs Testing
+
    local enemyForce = game.forces.enemy 
 	
   if global.beacons[1] then -- if there are valid beacons
@@ -385,7 +397,7 @@ function Remove_Mind_Control()
         table.remove(global.minds, k)
       else -- is valid
         local controlled = false --assume out of range
-        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Unit_Search_Distance"].value)}[1] then --a AlienControlStation is in range
+        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Conversion_Search_Distance"].value)}[1] then --a AlienControlStation is in range
 
 		controlled = true
           break
@@ -402,7 +414,7 @@ function Convert_Base(base, died, newforce)
   
   local surface = game.surfaces['nauvis'] -- Old Code, need to fix
   --local surface = base.surface
-  local enemies=Get_Bounding_Box(base.position, settings.startup["NE_Spawner_Search_Distance"].value)
+  local enemies=Get_Bounding_Box(base.position, settings.startup["NE_Conversion_Search_Distance"].value)
   local units={}
   local hives={}
   local worms={}
@@ -412,7 +424,7 @@ function Convert_Base(base, died, newforce)
   local count_units=0
   enemies = surface.find_entities(enemies)
   for i, enemy in ipairs(enemies) do
-    if enemy.type=="turret" and enemy.force == (enemyForce) then
+    if enemy.type=="turret" then 
       table.insert(worms, enemy)
     elseif enemy.type=="unit-spawner" then
       table.insert(hives, enemy)
@@ -427,8 +439,8 @@ function Convert_Base(base, died, newforce)
   count_units=#units
   
   if count~=0 then -- prevent empty random interval	
-	writeDebug("The number of Worms/Turrets in Range: " .. count_worms)	
-	writeDebug("The number of Spawners in Range: " .. count_spawners)	
+	--writeDebug("The number of Worms/Turrets in Range: " .. count_worms)	
+	--writeDebug("The number of Spawners in Range: " .. count_spawners)	
 	writeDebug("The number of Units in Range: " .. count_units)	
   end
   
@@ -436,7 +448,7 @@ function Convert_Base(base, died, newforce)
 
     if died then 
 	  table.insert(global.hiveminds, base.surface.create_entity{name=base.name, position=base.position, force=game.newforce}) 
-	  -- table.insert(global.hiveminds, game.create_entity{name=base.name, position=base.position, force=game.newforce}) --- Old Code --- game.create_entity issue
+
 	end
 	
 	for _, worm in pairs(worms) do 

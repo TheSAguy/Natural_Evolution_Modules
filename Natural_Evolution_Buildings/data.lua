@@ -72,6 +72,10 @@ require("prototypes.Other.entity")
 require("prototypes.Other.damage-type") 
 ---------------------------------------------------------------
 
+--- Decelerate_concrete
 
 
-
+require("prototypes.Decelerate_concrete.entity")
+require("prototypes.Decelerate_concrete.item")
+require("prototypes.Decelerate_concrete.recipe")
+---------------------------------------------------------------

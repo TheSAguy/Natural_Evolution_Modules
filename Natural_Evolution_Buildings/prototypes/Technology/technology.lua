@@ -12,7 +12,8 @@ data:extend({
 			{
 				type = 'unlock-recipe', 
 				recipe='Building_Materials'
-			}
+			},
+
 		},
 		prerequisites = {"advanced-electronics"},
 		unit =
@@ -39,7 +40,11 @@ data:extend({
 			{
 				type = 'unlock-recipe', 
 				recipe='Thumper'
-			}
+			},
+			{
+				type = 'unlock-recipe', 
+				recipe='decelerate_concrete'
+			},
 		},
 		prerequisites = {"AlienUnderstanding"},
 		unit =
