@@ -5,7 +5,7 @@ data:extend(
     type = "unit",
     name = "tame-small-biter",
     icon = "__base__/graphics/icons/creeper.png",
-    flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air"},
+    flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 15,
 	order = "001",
     subgroup="enemies",

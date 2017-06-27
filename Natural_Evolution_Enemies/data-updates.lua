@@ -278,7 +278,7 @@ if NE_Enemies_Config.mod.BobEnemies then
 	data.raw["turret"]["bob-big-piercing-worm-turret"].call_for_help_radius = 120
 	data.raw["turret"]["bob-big-electric-worm-turret"].call_for_help_radius = 120
 	data.raw["turret"]["bob-giant-worm-turret"].call_for_help_radius = 200
-		
+	data.raw["turret"]["bob-behemoth-worm-turret"].call_for_help_radius = 300	
 	
 end
 

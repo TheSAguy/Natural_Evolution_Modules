@@ -8,7 +8,6 @@ if not NE_Functions then NE_Functions = {} end
 
 
 require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
-require ("libs.legacy") -- From Bob's Libary 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
@@ -33,6 +32,11 @@ if NE_Buildings_Config.mod.BobEnemies then
 	data.raw["turret"]["bob-big-explosive-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-big-fire-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-big-poison-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	data.raw["turret"]["bob-big-piercing-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	data.raw["turret"]["bob-big-electric-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	data.raw["turret"]["bob-giant-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	data.raw["turret"]["bob-behemoth-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+	
 end
 
 
@@ -71,13 +75,16 @@ if NE_Buildings_Config.mod.NEEnemies then
 
 	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
-	thxbob.lib.add_technology_recipe ("AlienUnderstanding", "Artifact-collector")
-	thxbob.lib.add_technology_recipe ("AlienUnderstanding-2", "Biological-bullet-magazine")
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Artifact-collector")
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "Biological-bullet-magazine")
 
 end
 
 
-thxbob.lib.add_technology_recipe ("AlienUnderstanding", "ne-combat-inserter")
+
+thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "ne-combat-inserter")
+
+
 
 
 -- Adds a resitance of all damage types to an entity
