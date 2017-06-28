@@ -9,7 +9,7 @@ data:extend({
       type = "tile",
       name = "decelerate_concrete",
       needs_correction = false,
-      minable = {hardness = 0.2, mining_time = 0.5, result = "concrete"},
+      minable = {hardness = 0.2, mining_time = 0.5, result = "stone-brick"}, -- You only get brick back when you mine it...
       mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
       collision_mask = {"ground-tile"},
       walking_speed_modifier = 0.5,
