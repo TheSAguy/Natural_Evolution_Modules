@@ -1,4 +1,4 @@
----BUILDINGS - v.7.1.2
+--BUILDINGS - v.7.1.5
 local QC_Mod = false
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
@@ -8,7 +8,7 @@ if not NE_Buildings.Settings then NE_Buildings.Settings = {} end
 
 
 require ("util")
-require ("libs/event")
+require ("stdlib/event/event")
 
 if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
@@ -16,6 +16,7 @@ end
 
 --- Settup Settings
 NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
+NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 
 
 ---- Evolution_MOD
@@ -233,7 +234,7 @@ local function On_Death(event)
 	
 	
 	 	--------- Spawner killed
-	if (event.entity.type == "unit-spawner") and (event.entity.force == game.forces.enemy) then
+	if (event.entity.type == "unit-spawner") and (event.entity.force == game.forces.enemy) and NE_Buildings.Settings.Battle_Marker then
 
 			writeDebug("Enemy Spawner Killed")
 			local surface = event.entity.surface
@@ -332,7 +333,7 @@ end)
 --------------- Alien Control Station ---------------------------------
 function Control_Enemies()
 
- -- old code--  local surface = game.surfaces['nauvis']  
+
   local enemyForce = game.forces.enemy 
   
   for k,beacon in ipairs(global.beacons) do
@@ -348,7 +349,7 @@ function Control_Enemies()
 		writeDebug("The number of Spawners in Range: " .. #bases)
           for i, base in ipairs(bases) do
             if base.force == (enemyForce) and math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%     
-			 Convert_Base(base, false, beacon.force)
+			 Convert_Base(base, false, beacon.force, surface)
             end
           end
 		 
@@ -356,7 +357,7 @@ function Control_Enemies()
 		writeDebug("The number of Worms/Turrets in Range: " .. #turret)	
           for i, turret in ipairs(turret) do
             if turret.force == (enemyForce) and math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%     
-			 Convert_Base(turret, false, beacon.force)
+			 Convert_Base(turret, false, beacon.force, surface)
             end
           end	  
 		  
@@ -387,32 +388,33 @@ end
 --------------- Alien Control Station ---------------------------------
 function Remove_Mind_Control()
 
-  local surface = game.surfaces['nauvis'] --- Old Code Need to Fix
+	local surface = game.surfaces['nauvis'] --- Old Code Need to Fix
 
-   local enemyForce = game.forces.enemy 
+	local enemyForce = game.forces.enemy 
 	
-  if global.beacons[1] then -- if there are valid beacons
-    for k,mind in ipairs (global.minds) do --remove mind control from biters not in area of influence
-      if not mind.valid then --first make sure the enemy is still valid, if not remove them
-        table.remove(global.minds, k)
-      else -- is valid
-        local controlled = false --assume out of range
-        if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Conversion_Search_Distance"].value)}[1] then --a AlienControlStation is in range
+	if global.beacons[1] then -- if there are valid beacons
+		for k,mind in ipairs (global.minds) do --remove mind control from biters not in area of influence
+			
+				if not mind.valid then --first make sure the enemy is still valid, if not remove them
+					table.remove(global.minds, k)
+				else -- is valid
+					local controlled = false --assume out of range
+				if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Conversion_Search_Distance"].value)}[1] then --a AlienControlStation is in range
 
-		controlled = true
-          break
-        end
-        if not controlled then mind.force=enemyForce end
-      end
-    end
-  end
+					controlled = true
+					break
+				end
+			if not controlled then mind.force=enemyForce end
+			end
+		end
+	end
 end
 
 
 --------------- Alien Control Station ---------------------------------
-function Convert_Base(base, died, newforce)
+function Convert_Base(base, died, newforce, surface)
   
-  local surface = game.surfaces['nauvis'] -- Old Code, need to fix
+  --local surface = game.surfaces['nauvis'] -- Old Code, need to fix
   --local surface = base.surface
   local enemies=Get_Bounding_Box(base.position, settings.startup["NE_Conversion_Search_Distance"].value)
   local units={}
@@ -517,7 +519,7 @@ Event.register(defines.events.on_tick, function(event)
  -- check for biters within Alien Control Station's range
 	if (game.tick % (60 * 6) == 0) and global.beacons[1] then
 
-		Remove_Mind_Control() --free out of range biters
+		--Remove_Mind_Control() --free out of range biters
 		Control_Enemies() --control newly in range biters
 
 	end

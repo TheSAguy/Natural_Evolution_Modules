@@ -115,6 +115,7 @@ if NE_Enemies_Config.mod.NEBuildings then
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
 	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Building_Materials")
 	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "Thumper")
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "decelerate_concrete")
 
 	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "alien-artifact")
 	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "sulfuric-acid")

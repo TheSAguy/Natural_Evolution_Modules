@@ -16,7 +16,7 @@ data:extend({
 		  result = "Alien_Hatchery",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 20,
@@ -85,7 +85,7 @@ data:extend({
 		  result = "small-biter-hatching",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 80,
@@ -118,7 +118,7 @@ data:extend({
 		  result = "medium-biter-hatching",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 150,
@@ -153,7 +153,7 @@ data:extend({
 		  result = "big-biter-hatching",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 250,
@@ -185,7 +185,7 @@ data:extend({
 		  result = "behemoth-biter-hatching",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 250,
@@ -217,7 +217,7 @@ data:extend({
 		  result = "small-spitter-hatching",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 150,
@@ -249,7 +249,7 @@ data:extend({
 		  result = "medium-spitter-hatching",
 		  result_count = 1,
 		},
-		expensive =
+	expensive =
 		{
 			enabled = false,
 			energy_required = 125,
@@ -281,6 +281,7 @@ data:extend({
 		  result = "big-spitter-hatching",
 		  result_count = 1,
 		},
+	expensive =	
 		{
 			enabled = false,
 			energy_required = 180,
@@ -313,6 +314,7 @@ data:extend({
 		  result = "behemoth-spitter-hatching",
 		  result_count = 1,
 		},
+	expensive =	
 		{
 			enabled = false,
 			energy_required = 250,
@@ -346,6 +348,7 @@ data:extend({
 		  result = "small-worm-hatching",
 		  result_count = 1,
 		},
+	expensive =	
 		{
 			enabled = false,
 			energy_required = 75,
@@ -393,6 +396,7 @@ data:extend({
 		  result = "medium-worm-hatching",
 		  result_count = 1,
 		},
+	expensive =	
 		{
 			enabled = false,
 			energy_required = 80,
@@ -442,6 +446,7 @@ data:extend({
 		  result = "big-worm-hatching",
 		  result_count = 1,
 		},
+	expensive =	
 		{
 			enabled = false,
 			energy_required = 150,

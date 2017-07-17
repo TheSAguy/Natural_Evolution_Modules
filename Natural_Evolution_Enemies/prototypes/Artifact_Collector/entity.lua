@@ -28,6 +28,7 @@ data:extend(
 			icon = "__Natural_Evolution_Enemies__/graphics/icons/Artifact-chest-icon.png",
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
 			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
+			render_not_in_network_icon = false,
 			max_health = 150,
 			corpse = "small-remnants",
 			resistances = 

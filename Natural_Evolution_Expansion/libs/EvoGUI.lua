@@ -1,4 +1,4 @@
-require ("libs/event")
+require ("stdlib/event/event")
 
 EvoGUI = {}
 

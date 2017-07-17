@@ -1,4 +1,4 @@
---- EXPANSION v.7.0.0
+--- EXPANSION v.7.0.1
 local QC_Mod = false
 
 if not NE_Expansion_Config then NE_Expansion_Config = {} end
@@ -6,7 +6,7 @@ if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
 
 
 require ("util")
-require ("libs/event")
+require ("stdlib/event/event")
 
 if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")

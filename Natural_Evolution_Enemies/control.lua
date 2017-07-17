@@ -1,4 +1,4 @@
----ENEMIES v.7.1.1
+---ENEMIES v.7.1.5
 local QC_Mod = false
 
 
@@ -508,31 +508,6 @@ local function On_Death(event)
     end
 
 	
-	
-	--[[
-    -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
-    if (event.force == game.forces.enemy) and (autoRepairType[event.entity.type] or autoRepairName[event.entity.name]) then
-        local repairPosition = event.entity.position
-        local repairName = event.entity.name
-        local repairForce = event.entity.force
-		local surface = event.entity.surface
-        local repairDirection = event.entity.direction
-        event.entity.destroy()
-        local entityRepaired = game.surfaces[1].create_entity({position=repairPosition,
-                                                               name=repairName,
-                                                               direction=repairDirection,
-                                                               force=repairForce})
-        local enemies = game.surfaces[1].find_entities_filtered({area = {{x=repairPosition.x-20, y=repairPosition.y-20},
-                                                                         {x=repairPosition.x+20, y=repairPosition.y+20}},
-                                                                 type = "unit",
-                                                                 force = game.forces.enemy})
-        for i=1, #enemies do
-            local enemy = enemies[i]
-            enemy.set_command({type=defines.command.wander,
-                               distraction=defines.distraction.by_enemy})
-        end
-    end
-]]
 
 end
 

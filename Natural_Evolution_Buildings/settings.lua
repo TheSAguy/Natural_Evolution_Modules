@@ -1,6 +1,15 @@
 data:extend(
 {
 
+  {
+    type = "bool-setting",
+    name = "NE_Battle_Marker",
+    setting_type = "startup",
+    default_value = true,
+	order = "a[modifier]-a[Battle_Marker]",
+    per_user = false,
+  },
+
    {
     type = "int-setting",
     name = "NE_Conversion_Search_Distance",
@@ -8,6 +17,7 @@ data:extend(
     default_value = 35,
     maximum_value = 60,
     minimum_value = 20,
+	order = "b[modifier]-a[Conversion_Search_Distance]",
     per_user = false,
   },
   
@@ -19,10 +29,11 @@ data:extend(
     default_value = 3,
     maximum_value = 3,
     minimum_value = 1,
+	order = "c[modifier]-a[Conversion_Search_Distance]",
     per_user = false,
   },
   
-
+NE_Battle_Marker
 }
 )
 

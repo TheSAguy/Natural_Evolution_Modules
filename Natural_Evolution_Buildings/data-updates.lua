@@ -77,7 +77,8 @@ if NE_Buildings_Config.mod.NEEnemies then
 	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
 	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Artifact-collector")
 	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "Biological-bullet-magazine")
-
+	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "decelerate_concrete")
+	
 end
 
 
