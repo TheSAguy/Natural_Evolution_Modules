@@ -1,4 +1,4 @@
---BUILDINGS - v.7.1.5
+--BUILDINGS - v.7.1.7
 local QC_Mod = false
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
 if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
@@ -9,6 +9,7 @@ if not NE_Buildings.Settings then NE_Buildings.Settings = {} end
 
 require ("util")
 require ("stdlib/event/event")
+
 
 if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
@@ -87,17 +88,26 @@ local function On_Init()
           global.Living_Walls_Table = {}
 	end
 
+	
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
 		force.reset_technologies()
 		force.reset_recipes()
 	end
 	
+	if global.Terraforming_Station_Table == nil then
+			global.Terraforming_Station_Table = {}
+	end
+	
+	
+	
 end
 
----------------------------------------------
+--------------------------------------------------------------------			 
+
 
 local function On_Config_Change()
+
 
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
@@ -112,15 +122,35 @@ local function On_Config_Change()
 		end
 	end
 	
+	if global.Terraforming_Station_Table == nil then
+			global.Terraforming_Station_Table = {}
+	end
+	
+	
 end
 
+----------------------------------------------------------------
+local function T_Count()
+
+	writeDebug("Trying to deduct a station")
+	if global.numTerraformingStations > 0 then
+		global.numTerraformingStations = global.numTerraformingStations - 1
+	else
+		global.numTerraformingStations = 0
+	end
+	
+	global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
+	
+end	  
 
 ---------------------------------------------
 
 local function On_Built(event)
 
 local entity = event.created_entity
-
+local surface = entity.surface
+local position = entity.position	
+local force = entity.force
 	
 	--- Living Wall built
 	if entity and entity.name == "ne-living-wall" then
@@ -135,26 +165,10 @@ local entity = event.created_entity
 		
 	end
 
-   --- Terraforming Station has been built
-	if entity and entity.name == "TerraformingStation" then
-	
-	if global.numTerraformingStations < 0 then
-		global.numTerraformingStations = 0
-	end
-
-      global.numTerraformingStations = global.numTerraformingStations + 1
-      
-      global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
-	  writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
-	  
-	end   
-
-	
 	--- Alien Control Station has been built
-	--- MUST ALWAYS BE LAST
+
 	
-	
-	if entity and entity.name == "AlienControlStation_Area" then
+	if entity.valid and entity.name == "AlienControlStation_Area" then
 	local newAlienControlStation
 	local surface = event.created_entity.surface
 	local force = event.created_entity.force
@@ -172,74 +186,133 @@ local entity = event.created_entity
 
 
 	
+   --- Terraforming Station has been built
+	if entity.valid and entity.name == "TerraformingStation" then
+	
+		if global.numTerraformingStations < 0 then
+			global.numTerraformingStations = 0
+		end
+
+		global.numTerraformingStations = global.numTerraformingStations + 1
+      
+		global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
+		writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
+	  
+		T_Station_Inv = surface.create_entity({name = "TerraformingStation_i", position = position, direction = event.created_entity.direction, force = force})
+		T_Station_Radar = surface.create_entity({name = "TerraformingStation_r", position = position, direction = event.created_entity.direction, force = force})
+		
+		T_Station_Inv.health = event.created_entity.health
+		event.created_entity.destroy()
+		
+		T_Station_Inv.operable = true
+		T_Station_Inv.minable = true
+	
+		--T_Station_Radar.operable = false
+		T_Station_Radar.destructible = false
+		T_Station_Radar.minable = false
+			
+		global.Terraforming_Station_Table[T_Station_Inv.unit_number] = {inventory=T_Station_Inv, radar=T_Station_Radar}
+	  
+	end   
+
+	
+	
 end
 
 
 ---------------------------------------------
 local function On_Remove(event)
-	--- Terraforming Station has been removed
-	if event.entity.name == "TerraformingStation" then
-      
-		if global.numTerraformingStations > 0 then
-			global.numTerraformingStations = global.numTerraformingStations - 1
-		else
-			global.numTerraformingStations = 0
-		end
-	
-      global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
-	end
-    
-   --- Alien Control Station has been removed
-	if event.entity.name == "AlienControlStation" then
-		ACS_Remove()
-	end
 
+	local entity = event.entity	
+	
 	  --- fully heal the items that need a refresh in the alien hatchery anyway to avoid having multiple item stacks for damaged items.
 	if event.name ~= defines.events.on_entity_died then
 		if (
-				event.entity.name == "small-worm-turret-player" or
-				event.entity.name == "medium-worm-turret-player" or
-				event.entity.name == "big-worm-turret-player" or
-				event.entity.name == "Natural_Evolution_Biter-Spawner" or
-				event.entity.name == "Natural_Evolution_Spitter-Spawner" or
-				event.entity.name == "ne-living-wall" 
+				entity.name == "small-worm-turret-player" or
+				entity.name == "medium-worm-turret-player" or
+				entity.name == "big-worm-turret-player" or
+				entity.name == "Natural_Evolution_Biter-Spawner" or
+				entity.name == "Natural_Evolution_Spitter-Spawner" or
+				entity.name == "ne-living-wall" 
 			) then
-			event.entity.health = 100000 -- Note: Just needs to be higher or identical to maxhealth
+			entity.health = 100000 -- Note: Just needs to be higher or identical to maxhealth
 		end
-  end
+	end
 	
+	    
+   --- Alien Control Station has been removed
+	if entity.valid and entity.name == "AlienControlStation" then
+		ACS_Remove()
+	end
+
+		
+	--- Terraforming Station has been removed
+	if entity.valid and entity.name == "TerraformingStation" then
+		T_Count()
+	end
+		
+	if entity.valid and entity.name == "TerraformingStation_i" then
+
 	
+		if global.Terraforming_Station_Table ~= nil then
+	
+			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
+			global.Terraforming_Station_Table[entity.unit_number] = nil
+			T_Count()
+				
+
+		end
+
+	end
+
 end
 
 
 local function On_Death(event)
 
-	--- Terraforming Station has been removed
-	if event.entity.name == "TerraformingStation" then
-      
-		if global.numTerraformingStations > 0 then
-			global.numTerraformingStations = global.numTerraformingStations - 1
-		else
-			global.numTerraformingStations = 0
-		end
-	
-      global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
+	local entity = event.entity	
+
+
+	if entity.valid and entity.name == "TerraformingStation" then
+		T_Count()
 	end
-    
+		
+		
+	--- Terraforming Station has been removed
+	if entity.valid and ( entity.name == "TerraformingStation_i" or entity.name == "TerraformingStation")  then
+
+      
+		if global.Terraforming_Station_Table ~= nil then
+	
+			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
+			global.Terraforming_Station_Table[entity.unit_number] = nil
+			T_Count()
+				
+
+		end
+
+	end
+
+
    --- Alien Control Station has been removed
-	if event.entity.name == "AlienControlStation" then
+	if  entity.valid and entity.name == "AlienControlStation" then
 		ACS_Remove()
 	end
 	
 	
 	
 	 	--------- Spawner killed
-	if (event.entity.type == "unit-spawner") and (event.entity.force == game.forces.enemy) and NE_Buildings.Settings.Battle_Marker then
+
+		
+
+
+		 	--------- Spawner killed
+	if (entity.type == "unit-spawner") and (entity.force == game.forces.enemy) and NE_Buildings.Settings.Battle_Marker then
 
 			writeDebug("Enemy Spawner Killed")
-			local surface = event.entity.surface
+			local surface = entity.surface
 			local force = event.force
-			local pos = event.entity.position
+			local pos = entity.position
 
 			Battle_Marker = surface.create_entity({name = "battle_marker", position = pos, force = force})
 			Battle_Marker.destructible = false		
@@ -247,8 +320,9 @@ local function On_Death(event)
 	end
 
 	
+	
+	
 end
-
 
 
 
@@ -273,6 +347,10 @@ function ACS_Remove(index)
 end
 
 
+----- Terraforming Station Stuff
+
+
+
 --------------- Terraforming Station Calculations ------------------------------
 function GetFactorPerTerraformingStation(numTerraformingStations)
    local res = 1
@@ -292,8 +370,46 @@ end
 script.on_event(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
-	if event.radar.name == "TerraformingStation" then
+	if event.radar.name == "TerraformingStation_r" then
+
+	
+		local num = (event.radar.unit_number - 1)
+		Reduce_Evolution(global.Terraforming_Station_Table[num])
 		
+
+	end
+
+	
+	--- Each time a Thumper "Scans", it will attract biters in the area
+	if event.radar.name == "Thumper" then
+		event.radar.surface.set_multi_command{command = {type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},unit_count = 10, unit_search_distance = 200}
+		writeDebug("Thumper Scanned, units should attack")   
+    end   
+	
+end)
+
+
+
+function Reduce_Evolution(TS_table)
+		
+		local AmmoType
+		local ammo = 0
+		
+		if TS_table.inventory.get_inventory(1).get_contents() ~= nil then
+			for n,a in pairs(TS_table.inventory.get_inventory(1).get_contents()) do
+				AmmoType=n
+				ammo=a
+			end
+		end
+
+	--writeDebug("Ammo Type: "..AmmoType)
+	writeDebug("Ammo Count: "..ammo)
+
+	
+	if ammo > 0 then 
+	--if ammo > 0 and global.Terraforming_Station_Table[num].radar.energy > 0 then	
+	
+	
 		if global.deduction_constant == nil or global.deduction_constant == 0 then
 			global.deduction_constant = 0.0002 -------- DEDUCTION CONSTANT
 		end
@@ -317,17 +433,22 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 		
 		writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)  
 		writeDebug("The total Evolution Deduction due to Terraforming Stations is: " .. global.Total_TerraformingStations_Evo_Deduction)  
-	
-	end
 
+		--Reduce Ammo
+		ammo = ammo-1
+		TS_table.inventory.get_inventory(1).clear()
+		if ammo > 0 then
+			TS_table.inventory.get_inventory(1).insert({name = AmmoType, count = ammo})
+		end
+			
+		writeDebug("New Ammo Count: "..ammo)
+		
+	end	
 	
-	--- Each time a Thumper "Scans", it will attract biters in the area
-	if event.radar.name == "Thumper" then
-		event.radar.surface.set_multi_command{command = {type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},unit_count = 10, unit_search_distance = 200}
-		writeDebug("Thumper Scanned, units should attack")   
-    end   
-	
-end)
+end
+
+
+
 
 
 --------------- Alien Control Station ---------------------------------
@@ -414,8 +535,6 @@ end
 --------------- Alien Control Station ---------------------------------
 function Convert_Base(base, died, newforce, surface)
   
-  --local surface = game.surfaces['nauvis'] -- Old Code, need to fix
-  --local surface = base.surface
   local enemies=Get_Bounding_Box(base.position, settings.startup["NE_Conversion_Search_Distance"].value)
   local units={}
   local hives={}
@@ -480,16 +599,11 @@ function Convert_Base(base, died, newforce, surface)
   end
 end
 
----------------------------------------------
-function Get_Bounding_Box(position, radius)
-	return {{position.x-radius, position.y-radius}, {position.x+radius,position.y+radius}}
-end
-
 
 --------------------------------------------
 
 
----- Living Wall Stuff
+--- Living Wall Stuff
 Event.register(defines.events.on_tick, function(event)	
 
 	if game.tick % 60 == 0 and global.Living_Walls_Table ~= nil then
@@ -511,22 +625,22 @@ Event.register(defines.events.on_tick, function(event)
 
 end)
 
-
-
+--- ACS
 Event.register(defines.events.on_tick, function(event)	
 
 
  -- check for biters within Alien Control Station's range
 	if (game.tick % (60 * 6) == 0) and global.beacons[1] then
 
-		--Remove_Mind_Control() --free out of range biters
+		--Remove_Mind_Control() --free out of range biters - I DON'T THINK THIS IS NEEDED....
 		Control_Enemies() --control newly in range biters
 
 	end
 end)
-	
+
+---	Evolution_MOD	
 Event.register(defines.events.on_tick, function(event)	
-	--	Evolution_MOD
+
 
 	if event.tick % update_com_count == 0 then
 		for index, player in pairs(game.players) do
@@ -639,6 +753,11 @@ function GetDistance(pos1 , pos2)
 	return math.sqrt((pos1.x - pos2.x)^2 + (pos1.y - pos2.y)^2)
 end
 
+---------------------------------------------
+function Get_Bounding_Box(position, radius)
+	return {{position.x-radius, position.y-radius}, {position.x+radius,position.y+radius}}
+end
+
 
 ---------------------------------------------
 
@@ -668,7 +787,6 @@ end)
 
 script.on_configuration_changed(On_Config_Change)
 script.on_init(On_Init)
-
 
 
 local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}

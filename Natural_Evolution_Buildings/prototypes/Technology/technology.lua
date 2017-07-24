@@ -96,6 +96,10 @@ data:extend({
 		  {
 				type = "unlock-recipe",
 				recipe = "TerraformingStation"
+		  },
+		  {
+				type = "unlock-recipe",
+				recipe = "Alien-Stimulant"
 		  }
 		},
 		prerequisites = {"AlienUnderstanding"},
@@ -133,7 +137,7 @@ data:extend({
 		  {
 			{"science-pack-1", 3},
 			{"science-pack-2", 2},
-			{"production-science-pack", 100}
+			{"production-science-pack", 75}
 		  },
 		  time = 50
 		},
@@ -163,7 +167,7 @@ data:extend({
 			{"science-pack-1", 4},
 			{"science-pack-2", 3},
 			{"science-pack-3", 2},
-			{"high-tech-science-pack", 100}
+			{"high-tech-science-pack", 75}
 		  },
 		  time = 50
 		},
@@ -185,7 +189,6 @@ data:extend({
 			  recipe = "AlienControlStation"
 		  }
 		},
-		--prerequisites = {"alien-technology", "AlienUnderstanding-2", "effect-transmission"},
 		prerequisites = {"AlienUnderstanding-2", "effect-transmission"},
 		unit =
 		{

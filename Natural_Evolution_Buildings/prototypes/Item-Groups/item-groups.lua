@@ -66,4 +66,11 @@ data:extend(
     order = "h",
   },
   
+    {
+    type = "ammo-category",
+    name = "Terraforming_Station",
+    order = "1"
+  },
+  
+  
 })

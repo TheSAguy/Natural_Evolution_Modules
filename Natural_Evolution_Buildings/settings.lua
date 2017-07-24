@@ -33,7 +33,7 @@ data:extend(
     per_user = false,
   },
   
-NE_Battle_Marker
+
 }
 )
 

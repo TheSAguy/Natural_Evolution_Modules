@@ -41,12 +41,6 @@ require("prototypes.Alien_Control_Station.item")
 require("prototypes.Alien_Control_Station.recipe")
 ---------------------------------------------------------------
 
-    --- Terraforming Station
-	
-require("prototypes.Terraforming_Station.entity")
-require("prototypes.Terraforming_Station.item")
-require("prototypes.Terraforming_Station.recipe")
----------------------------------------------------------------
 
 	--- Thumper
 
@@ -70,6 +64,14 @@ require("prototypes.Other.recipe")
 require("prototypes.Other.entity") 
 require("prototypes.Other.damage-type") 
 ---------------------------------------------------------------
+
+    --- Terraforming Station
+	
+require("prototypes.Terraforming_Station.entity")
+require("prototypes.Terraforming_Station.item")
+require("prototypes.Terraforming_Station.recipe")
+---------------------------------------------------------------
+
 
 --- Decelerate_concrete
 

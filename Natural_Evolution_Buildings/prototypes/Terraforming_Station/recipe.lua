@@ -30,4 +30,33 @@ data:extend({
 
     },
 	
+	{
+		type = "recipe",
+		name = "Alien-Stimulant",	
+		normal =
+		{
+			enabled = false,
+			energy_required = 5,
+			ingredients = 
+			{
+				{"alien-artifact", 5},
+			},
+		  result = "Alien-Stimulant",
+		  result_count = 10,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 8,
+			ingredients = 
+			{
+				{"alien-artifact", 5},
+			},
+		  result = "Alien-Stimulant",
+		  result_count = 8,
+		},
+	}, 	
+	
+	
+	
 })
