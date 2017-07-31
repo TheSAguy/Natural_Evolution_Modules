@@ -12,7 +12,7 @@ data:extend({
 			energy_required = 5,
 			ingredients = 
 			{
-				{"piercing-rounds-magazine", 5},
+				{"piercing-rounds-magazine", 10},
 			},
 		  result = "Biological-bullet-magazine",
 		  result_count = 5,
@@ -23,7 +23,7 @@ data:extend({
 			energy_required = 8,
 			ingredients = 
 			{
-				{"piercing-rounds-magazine", 5},
+				{"piercing-rounds-magazine", 12},
 			},
 		  result = "Biological-bullet-magazine",
 		  result_count = 4,

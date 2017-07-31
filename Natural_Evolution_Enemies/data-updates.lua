@@ -44,8 +44,8 @@ if data.raw.item["alien-artifact"] or settings.startup["NE_Alien_Artifacts"].val
 	
 else
 
-	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="fluid", name="sulfuric-acid", amount=15})
-	thxbob.lib.recipe.add_new_ingredient("bio_land_mine", {type="fluid", name="sulfuric-acid", amount=25})
+	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="fluid", name="sulfuric-acid", amount=25})
+	thxbob.lib.recipe.add_new_ingredient("bio_land_mine", {type="fluid", name="sulfuric-acid", amount=35})
 	
 end	
 

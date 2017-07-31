@@ -1,4 +1,4 @@
----ENEMIES v.7.1.5
+---ENEMIES v.7.1.6
 local QC_Mod = false
 
 
@@ -39,15 +39,54 @@ local filters = {["small-alien-artifact"] = 1,
 --- Scorched Earth
 local replaceableTiles =
 {
-  ["grass"] = "grass-medium",
-  ["grass-medium"] = "grass-dry",
-  ["grass-dry"] = "sand",
-  ["sand"] = "sand-dark",
-  ["sand-dark"] = "dirt",
-  ["dirt"] = "dirt-dark",
-  ["dirt-dark"] = "red-desert",
-  ["red-desert"] = "red-desert-dark"
+  -- vanilla
+	["grass-medium"] = "grass",
+	["grass"] = "grass-dry",
+	["grass-dry"] = "sand",
+	["sand"] = "sand-dark",
+	["sand-dark"] = "dirt",
+	["dirt"] = "dirt-dark",
+	["dirt-dark"] = "red-desert",
+	["red-desert"] = "red-desert-dark",
+  
+
+  -- Alien biomes
+	["grass-yellow"] = "grass-yellow-fade",
+	["grass-orange"] = "sand-orange",
+	["grass-red"] = "dirt-red",
+	["grass-yellow-fade"] = "grass-dry",
+	["grass-blue"] = "grass-blue-fade",
+	["grass-purple"] = "grass-purple-fade",
+	["grass-blue-fade"] = "grass-dry",
+	["grass-purple-fade"] = "grass-dry",
+	["dirt-brown"] = "dirt-brown-dark",
+	["dirt-brown-dark"] = "dirt",
+	["dirt-tan"] = "dirt-tan-dark",
+	["dirt-tan-dark"] = "dirt",
+	["dirt-red"] = "dirt-red-dark",
+	["dirt-red-dark"] = "sand-red",
+	["dirt-grey"] = "dirt-grey-dark",
+	["dirt-grey-dark"] = "sand-grey",
+	["dirt-dull"] = "dirt-dull-dark",
+	["dirt-dull-dark"] = "sand-dull",
+	["sand-orange"] = "sand-orange-dark",
+	["sand-orange-dark"] = "sand",
+	["sand-gold"] = "sand-gold-dark",
+	["sand-gold-dark"] = "sand",
+	["sand-red"] = "sand-red-dark",
+	["sand-red-dark"] = "sand",
+	["sand-grey"] = "sand-grey-dark",
+	["sand-grey-dark"] = "sand",
+	["sand-dull"] = "sand-dull-dark",
+	["sand-dull-dark"] = "sand",
+	["volcanic-cool"] = "volcanic-medium",
+	["snow"] = "red-desert-dark",
+	["volcanic-medium"] = "volcanic-hot",
+	["volcanic-hot"] = "red-desert-dark"
+
+ 
 }
+
 local waterTiles =
 {
   ["deepwater"] = true,
