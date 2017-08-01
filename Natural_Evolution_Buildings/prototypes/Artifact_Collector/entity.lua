@@ -7,7 +7,7 @@ NE_Enemies.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Co
 
 inv_extension2 =
 {
-	filename = "__Natural_Evolution_Enemies__/graphics/entity/Artifact-chest.png",
+	filename = "__Natural_Evolution_Buildings__/graphics/entity/Artifact-chest.png",
 	priority = "extra-high",
 	scale = 1,
 	width = 60,
@@ -25,7 +25,7 @@ data:extend(
 		{
 			type = "logistic-container",
 			name = "Artifact-collector",
-			icon = "__Natural_Evolution_Enemies__/graphics/icons/Artifact-chest-icon.png",
+			icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
 			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
 			render_not_in_network_icon = false,
@@ -49,7 +49,7 @@ data:extend(
 			vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
 			picture =
 			{
-				filename = "__Natural_Evolution_Enemies__/graphics/entity/Artifact-chest.png",
+				filename = "__Natural_Evolution_Buildings__/graphics/entity/Artifact-chest.png",
 				priority = "extra-high",
 				width = 60,
 				height = 100,
@@ -61,7 +61,7 @@ data:extend(
 		{
 		type = "ammo-turret",
 		name = "Artifact-collector-area",
-		icon = "__Natural_Evolution_Enemies__/graphics/icons/Artifact-chest-icon.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
 		flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable"},
 		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },	

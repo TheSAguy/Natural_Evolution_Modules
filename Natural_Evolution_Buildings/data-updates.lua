@@ -17,6 +17,29 @@ require ("libs.technology-functions") -- From Bob's Libary
 ----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"
 
+----- Updates to Ammo
+--data.raw.ammo["firearm-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/firearm_magazine_iron.png"
+data.raw.ammo["piercing-rounds-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing_magazine_iron.png"
+
+if not NE_Buildings_Config.mod.BobWarfare then
+	if data.raw.ammo["piercing-rounds-magazine"].ammo_type and
+	  data.raw.ammo["piercing-rounds-magazine"].ammo_type.action and
+	  data.raw.ammo["piercing-rounds-magazine"].ammo_type.action.action_delivery and
+	  data.raw.ammo["piercing-rounds-magazine"].ammo_type.action.action_delivery.target_effects
+	then
+	  table.insert(data.raw.ammo["piercing-rounds-magazine"].ammo_type.action.action_delivery.target_effects, { type = "damage", damage = {amount = 2 , type = "bob-pierce"} } )
+	end
+
+	if data.raw.projectile["piercing-shotgun-pellet"].action and
+	  data.raw.projectile["piercing-shotgun-pellet"].action.action_delivery and
+	  data.raw.projectile["piercing-shotgun-pellet"].action.action_delivery.target_effects
+	then
+	  table.insert(data.raw.projectile["piercing-shotgun-pellet"].action.action_delivery.target_effects, { type = "damage",  damage = {amount = 2 , type = "bob-pierce"} } )
+	end
+end
+------
+
+
 
 -- Make it so that you can mine spawners & worms, since you are able to convert them, you can now remove them. 
 data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
@@ -68,23 +91,6 @@ if NE_Buildings_Config.mod.NEEnemies then
 
 
 end
- 
-   
-if NE_Buildings_Config.mod.NEEnemies then
-
-
-	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
-	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
-	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Artifact-collector")
-	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "Biological-bullet-magazine")
-	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "decelerate_concrete")
-	
-end
-
-
-
-thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "ne-combat-inserter")
-
 
 
 

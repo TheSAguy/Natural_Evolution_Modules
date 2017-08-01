@@ -34,6 +34,7 @@ data:extend({
 		stack_size = 1
 	},
 	
+	--- Battle Marker
 	{
 		type = "item",
 		name = "battle_marker",
@@ -45,4 +46,5 @@ data:extend({
 		stack_size = 50
   },
 	
+  
 })

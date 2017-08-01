@@ -1,4 +1,4 @@
----ENEMIES v.7.1.6
+---ENEMIES v.7.2.0
 local QC_Mod = false
 
 
@@ -14,28 +14,11 @@ NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 require ("util")
 require ("prototypes.Vanilla_Changes.Unit_Launcher_Cluster")
 
-	
---- Artifact Collector
-local interval = 300 -- this is an interval between the consecutive updates of a single collector
-local artifactCollectorRadius = settings.startup["NE_Artifact_Collector_Radius"].value
-local itemCount = settings.startup["NE_Artifact_Item_Count"].value
-local chestInventoryIndex = defines.inventory.chest
-local filters = {["small-alien-artifact"] = 1,
-                 ["alien-artifact"] = 1,
-				 ["alien-artifact-red"] = 1,
-				 ["alien-artifact-orange"] = 1,
-				 ["alien-artifact-yellow"] = 1,
-				 ["alien-artifact-green"] = 1,
-				 ["alien-artifact-blue"] = 1,
-				 ["alien-artifact-purple"] = 1,
-				 ["small-alien-artifact-red"] = 1,
-				 ["small-alien-artifact-orange"] = 1,
-				 ["small-alien-artifact-yellow"] = 1,
-				 ["small-alien-artifact-green"] = 1,
-				 ["small-alien-artifact-blue"] = 1,
-				 ["small-alien-artifact-purple"] = 1
-				 }
-
+if QC_Mod then
+	---**************
+	require ("prototypes.Vanilla_Changes.initialSpawn")
+	---*************
+end
 --- Scorched Earth
 local replaceableTiles =
 {
@@ -87,6 +70,7 @@ local replaceableTiles =
  
 }
 
+
 local waterTiles =
 {
   ["deepwater"] = true,
@@ -104,6 +88,8 @@ local autoRepairType =
     ["rail-signal"] = true,
     ["rail-chain-signal"] = true
 }
+
+
 local autoRepairName = 
 {
     ["bi-big-wooden-pole"] = true,
@@ -151,6 +137,7 @@ local catchFire =
     ["rail-signal"] = false,
     ["rail-chain-signal"] = false	
 }
+
 
 -- Corpse Size = Fire Size
 local corpseSize = 
@@ -218,10 +205,6 @@ local tree_names = {
 ---------------------------------------------				 
 local function On_Init()
 
-	
-	if global.ArtifactCollectors ~= nil then
-		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-	end	
 
 	--- Used for Unit Turrets
 	if not global.tick then
@@ -240,23 +223,12 @@ local function On_Init()
 	global.launch_units={}--this is used to define which equipment is put initially
 	global.launch_units["unit-cluster"] = "unit-cluster"
 	
-	if global.ArtifactCollectors ~= nil then
-		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-		global.update_check = true
-        global.next_collector = global.next_collector or 1
+	if QC_Mod then
+		---*************
+		local surface = game.surfaces['nauvis']
+		Initial_Spawn(surface)
+		---*************
 	end
-	
-
-	
-end
-
-
----------------------------------------------				 
-local function On_Load()
-
-	if global.ArtifactCollectors ~= nil then
-		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
-	end	
 	
 end
 
@@ -279,17 +251,6 @@ local function On_Config_Change()
 	
 end
 
----------------------------------------------
-function subscribe_ticker(tick)
-	--this function subscribes handler to on_tick event and also sets global values used by it
-	--it exists merely for a convenience grouping
-	script.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
-	global.ArtifactCollectors = {}
-	global.next_check = game.tick + interval
-	global.next_collector = 1
-end
-
-
 
 ---------------------------------------------
 script.on_event(defines.events.on_trigger_created_entity, function(event)
@@ -304,36 +265,17 @@ end)
 
 
 ---------------------------------------------
-local function On_Built(event)
-	--- Artifact Collector	
-	local newCollector
-	
-	if event.created_entity.name == "Artifact-collector-area" then
-		local surface = event.created_entity.surface
-		local force = event.created_entity.force
-		newCollector = surface.create_entity({name = "Artifact-collector", position = event.created_entity.position, force = force})
-		event.created_entity.destroy()
-		
-		if global.ArtifactCollectors == nil then
-			subscribe_ticker(event.tick)
-		end
-		table.insert(global.ArtifactCollectors, newCollector)
-	end
-		
-end
-
-
----------------------------------------------
 local function On_Remove(event)
 		
+	local entity = event.entity		
  	--------- Did you really just kill that tree...
-	if settings.startup["NE_Tree_Hugger"].value and (event.entity.type == "tree") and tree_names[event.entity.name] then
+	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") and tree_names[entity.name] then
 	
 		writeDebug("Tree Mined")
-		local surface = event.entity.surface
-		local force = event.entity.force
+		local surface = entity.surface
+		local force = entity.force
 		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
-		local pos = event.entity.position
+		local pos = entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
 		local players = surface.find_entities_filtered{area=area, type="player"}
@@ -350,39 +292,21 @@ local function On_Remove(event)
 
 	end
 
-    --Artifact collector
-    if event.entity.name == "Artifact-collector" then
-
-        local artifacts = global.ArtifactCollectors;
-        for i=1,#artifacts do
-            if artifacts[i] == event.entity then
-                table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
-                if global.next_collector > (#artifacts) then global.next_collector = (#artifacts) end 
-                break
-            end
-        end
-        if #artifacts == 0 then
-        --and here artifacts=nil would not cut it.
-            global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-            script.on_event(defines.events.on_tick, nil);
-            --but it's surely better done here than during on_tick
-        end
-    end
-
 	
 end
 
+
+---------------------------------------------
 local function On_Death(event)
 
 
-	
+	local entity = event.entity	
 	--- Buildings catch fire if destroyed.
-	--if (event.force == game.forces.enemy) and catchFire[event.entity.type] then	
-	if settings.startup["NE_Burning_Buildings"].value and catchFire[event.entity.type] then
-		local surface = event.entity.surface
-		local force = event.entity.force	
-		local pos = event.entity.position
-		local e_corpse = corpseSize[event.entity.type]
+	if entity.valid and settings.startup["NE_Burning_Buildings"].value and catchFire[entity.type] then
+		local surface = entity.surface
+		local force = entity.force	
+		local pos = entity.position
+		local e_corpse = corpseSize[entity.type]
 		
 		writeDebug("Corpse Size: "..e_corpse)
 		if (force == game.forces.enemy) then
@@ -398,13 +322,13 @@ local function On_Death(event)
 	end	
 
  	--------- If you kill a spawner, enemies will attach you.
-	if (event.entity.type == "unit-spawner") then
-		if event.entity.force == game.forces.enemy then
+	if entity.valid and (entity.type == "unit-spawner") then
+		if entity.force == game.forces.enemy then
 			writeDebug("Enemy Spawner Killed")
-			local surface = event.entity.surface
-			local force = event.entity.force
+			local surface = entity.surface
+			local force = entity.force
 			local radius = 60 * NE_Enemies.Settings.NE_Difficulty
-			local pos = event.entity.position
+			local pos = entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 				
 		-- find nearby players
@@ -427,9 +351,9 @@ local function On_Death(event)
 	end
 	
 	 	--------- An Enemy Unit Died
-	if event.entity.force == game.forces.enemy and (event.entity.type == "unit") then
-		local surface = event.entity.surface
-		local pos = event.entity.position	
+	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") then
+		local surface = entity.surface
+		local pos = entity.position	
 
 		if settings.startup["NE_Scorched_Earth"].value then
 			Scorched_Earth(surface, pos, 2)		
@@ -438,12 +362,12 @@ local function On_Death(event)
 
 	
  	--------- Did you really just kill that tree...
-	if settings.startup["NE_Tree_Hugger"].value and (event.entity.type == "tree") and tree_names[event.entity.name] then
+	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") and tree_names[entity.name] then
 		writeDebug("Tree Killed")
-		local surface = event.entity.surface
-		local force = event.entity.force
+		local surface = entity.surface
+		local force = entity.force
 		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
-		local pos = event.entity.position
+		local pos = entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby players
 		local players = surface.find_entities_filtered{area=area, type="player"}
@@ -469,34 +393,15 @@ local function On_Death(event)
 		global.tick = global.tick + 1800
 	end
 	
-	if (event.entity.name == "unit-cluster") then
-		SpawnLaunchedUnits(event.entity)
+	if (entity.name == "unit-cluster") then
+		SpawnLaunchedUnits(entity)
 	end
 
 
-	--Artifact collector
-    if event.entity.name == "Artifact-collector" then
-
-        local artifacts=global.ArtifactCollectors;
-        for i=1,#artifacts do
-            if artifacts[i] == event.entity then
-                table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
-                if global.next_collector > (#artifacts) then global.next_collector = (#artifacts) end 
-                break
-            end
-        end
-        if #artifacts == 0 then
-        --and here artifacts=nil would not cut it.
-            global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-            script.on_event(defines.events.on_tick, nil);
-            --but it's surely better done here than during on_tick
-        end
-    end
-	
 		
     -- auto repair things like rails, and signals. Also by destroying the entity the enemy retargets.
-    if (event.force == game.forces.enemy) and (autoRepairType[event.entity.type] or autoRepairName[event.entity.name]) then
-		local entity = event.entity
+    if entity.valid and (event.force == game.forces.enemy) and (autoRepairType[entity.type] or autoRepairName[entity.name]) then
+
         local repairPosition = entity.position
         local repairName = entity.name
         local repairForce = entity.force
@@ -551,7 +456,6 @@ local function On_Death(event)
 end
 
 
-
 ---------------------------------------------
 -- Spawn Launched Units
 function SpawnLaunchedUnits(enemy)
@@ -567,56 +471,6 @@ function SpawnLaunchedUnits(enemy)
 		local subEnemyPosition = enemy.surface.find_non_colliding_position(subEnemyName, enemy.position, 2, 0.5)
 		if subEnemyPosition then
 			enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
-		end
-	end
-end
-
-
----------------------------------------------
-function ticker(tick)
-	local player = game.players[1]
-	--this function provides the smooth handling of all collectors within certain span of time
-	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
-	if global.update_check then
-		global.update_check = false
-		if global.next_check < game.tick then
-			global.next_check = game.tick
-		end
-	end
-		
-	if game.tick == global.next_check then
-		local collectors=global.ArtifactCollectors
-         writeDebug(#collectors)
-		for i=global.next_collector,#collectors,interval do
-			ProcessCollector(collectors[i])
-		end
-		local time_interval = (collectors[global.next_collector + 1] and 1) or (interval- #collectors + 1)
-		global.next_collector = (global.next_collector) % (#collectors) + 1
-		global.next_check = game.tick + time_interval
-	end
-end
-
-
----------------------------------------------
-function ProcessCollector(collector)
-	--This makes collectors collect items.
-     writeDebug("mod looking for items")
-	local items
-	local inventory
-	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - artifactCollectorRadius, y = collector.position.y - artifactCollectorRadius}, {x = collector.position.x + artifactCollectorRadius, y = collector.position.y + artifactCollectorRadius}}, name = "item-on-ground"})
-	if #items > 0 then
-		inventory = collector.get_inventory(chestInventoryIndex)
-		local counter = 0
-		for i=1,#items do
-			local stack = items[i].stack
-			if filters[stack.name] == 1 and inventory.can_insert(stack) then
-				 inventory.insert(stack)
-				 items[i].destroy()
-				 counter = counter + 1
-				 if counter == itemCount then
-					 break
-				 end
-			end
 		end
 	end
 end
@@ -715,11 +569,8 @@ end
 
 
 script.on_configuration_changed(On_Config_Change)
-script.on_load(On_Load)
 script.on_init(On_Init)
 
-local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
-script.on_event(build_events, On_Built)
 
 local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
 script.on_event(pre_remove_events, On_Remove)

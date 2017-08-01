@@ -57,12 +57,32 @@ require("prototypes.Combat_Inserter.item")
 require("prototypes.Combat_Inserter.recipe")
 ---------------------------------------------------------------
 
-    --- Other - Building Materials, Attractors & Damage Type
+
+	--- Artifact Collector
+require("prototypes.Artifact_Collector.entity")
+require("prototypes.Artifact_Collector.item")
+require("prototypes.Artifact_Collector.recipe")
+---------------------------------------------------------------
+
+
+    --- Armory
+
+require("prototypes.Armory.item")
+require("prototypes.Armory.recipe")
+require("prototypes.Armory.entity") 
+require("prototypes.Armory.damage-type")
+thxbob.lib.tech.add_recipe_unlock ("military", "copper_bullets")
+thxbob.lib.tech.add_recipe_unlock ("military-2", "piercing_magazine_copper")
+ 
+---------------------------------------------------------------
+
+
+
+    --- Other - Building Materials, Attractors & Battle Marker
 
 require("prototypes.Other.item")
-require("prototypes.Other.recipe")
 require("prototypes.Other.entity") 
-require("prototypes.Other.damage-type") 
+require("prototypes.Other.recipe")
 ---------------------------------------------------------------
 
     --- Terraforming Station

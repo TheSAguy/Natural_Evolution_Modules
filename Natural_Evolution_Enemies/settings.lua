@@ -38,40 +38,6 @@ data:extend(
   },
  
 
-  
-  {
-    type = "int-setting",
-    name = "NE_Bio_Ammo_Damage",
-    setting_type = "startup",
-    default_value = 15,
-    maximum_value = 50,
-    minimum_value = 5,
-	order = "a[modifier]-e[Bio_Ammo_Damage]",
-    per_user = false,
-  },
-
-  {
-    type = "int-setting",
-    name = "NE_Artifact_Collector_Radius",
-    setting_type = "startup",
-    default_value = 40,
-    maximum_value = 100,
-    minimum_value = 15,
-	order = "a[modifier]-f[Artifact_Collector_Radius]",
-    per_user = false,
-  },
-  
-  {
-    type = "int-setting",
-    name = "NE_Artifact_Item_Count",
-    setting_type = "startup",
-    default_value = 8,
-    maximum_value = 100,
-    minimum_value = 1,
-	order = "a[modifier]-g[Artifact_Item_Count]",
-    per_user = false,
-  },
-  
   {
     type = "int-setting",
     name = "NE_Difficulty",
@@ -79,7 +45,7 @@ data:extend(
     default_value = 1,
     maximum_value = 5,
     minimum_value = 1,
-	order = "a[modifier]-h[Difficulty]",
+	order = "a[modifier]-e[Difficulty]",
     per_user = false,
   },
   --[[

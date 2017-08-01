@@ -551,7 +551,7 @@ data:extend({
   {
     type = "recipe",
     name = "NE_alien-revitalization",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/enhanced-alien-nutrientant_toxin.png",
+	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization_toxin.png",
     category = "chemistry",
     energy_required = 10,
     enabled = false,

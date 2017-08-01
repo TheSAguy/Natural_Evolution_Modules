@@ -2,32 +2,43 @@ require "prototypes.Vanilla_Changes.Settings"
 require "prototypes.Vanilla_Changes.Functions"
 require "prototypes.Vanilla_Changes.Projectiles"
 
+
+
+smallspitterMk2scale = 0.55
+smallspitterMk2tint =  {r=124, g=252, b=0, a=85}
+
+smallspitterMk3scale = 0.6
+smallspitterMk3tint = {r=255, g=255, b=0, a=85}
+
+
+
+mediumspitterMk2scale = 0.75
+mediumspitterMk2tint =  {r=124, g=252, b=0, a=170}
+
+mediumspitterMk3scale = 0.8
+mediumspitterMk3tint =  {r=255, g=255, b=0, a=170}
+
+
+bigspitterMk2scale = 1.05
+bigspitterMk2tint = {r=124, g=252, b=0, a=255}
+
+bigspitterMk3scale = 1.1
+bigspitterMk3tint = {r=255, g=255, b=0, a=255}
+
+
+
+---------------
+
 smallspitterscale = 0.5
 smallspittertint =  {r=0.68, g=0.4, b=0, a=1}
 
-smallspitterMk2scale = 0.55
-smallspitterMk2tint =  {r=0.68, g=0.4, b=0.5, a=1}
-
-smallspitterMk3scale = 0.6
-smallspitterMk3tint =  {r=0.68, g=0.4, b=1, a=1}
 
 mediumspitterscale = 0.7
 mediumspittertint =  {r=0.83, g=0.39, b=0.36, a=0.75}
 
-mediumspitterMk2scale = 0.75
-mediumspitterMk2tint =  {r=0.83, g=0.69, b=0.36, a=0.75}
-
-mediumspitterMk3scale = 0.8
-mediumspitterMk3tint =  {r=0.83, g=0.99, b=0.36, a=0.75}
-
 bigspitterscale = 1
 bigspittertint = {r=0.54, g=0.58, b=0.85, a=0.6}
 
-bigspitterMk2scale = 1.05
-bigspitterMk2tint = {r=0.74, g=0.58, b=0.85, a=0.6}
-
-bigspitterMk3scale = 1.1
-bigspitterMk3tint = {r=0.94, g=0.58, b=0.85, a=0.6}
 
 behemothspitterscale = 2
 behemothspittertint = {r=0.3, g=0.9, b=0.3, a=0.75}

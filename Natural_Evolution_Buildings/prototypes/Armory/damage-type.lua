@@ -5,5 +5,9 @@ data:extend({
     type = "damage-type",
     name = "Biological"
   },
+  {
+    type = "damage-type",
+    name = "bob-pierce"
+  },
   
 })

@@ -17,7 +17,7 @@ data:extend(
     default_value = 35,
     maximum_value = 60,
     minimum_value = 20,
-	order = "b[modifier]-a[Conversion_Search_Distance]",
+	order = "b[modifier]-b[Conversion_Search_Distance]",
     per_user = false,
   },
   
@@ -29,7 +29,42 @@ data:extend(
     default_value = 3,
     maximum_value = 3,
     minimum_value = 1,
-	order = "c[modifier]-a[Conversion_Search_Distance]",
+	order = "c[modifier]-c[Conversion_Search_Distance]",
+    per_user = false,
+  },
+  
+  
+  
+  {
+    type = "int-setting",
+    name = "NE_Bio_Ammo_Damage",
+    setting_type = "startup",
+    default_value = 15,
+    maximum_value = 50,
+    minimum_value = 5,
+	order = "d[modifier]-d[Bio_Ammo_Damage]",
+    per_user = false,
+  },
+
+  {
+    type = "int-setting",
+    name = "NE_Artifact_Collector_Radius",
+    setting_type = "startup",
+    default_value = 40,
+    maximum_value = 100,
+    minimum_value = 15,
+	order = "e[modifier]-e[Artifact_Collector_Radius]",
+    per_user = false,
+  },
+  
+  {
+    type = "int-setting",
+    name = "NE_Artifact_Item_Count",
+    setting_type = "startup",
+    default_value = 8,
+    maximum_value = 100,
+    minimum_value = 1,
+	order = "f[modifier]-f[Artifact_Item_Count]",
     per_user = false,
   },
   

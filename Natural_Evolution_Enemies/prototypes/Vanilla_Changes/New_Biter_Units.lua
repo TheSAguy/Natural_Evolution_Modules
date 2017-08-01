@@ -1,49 +1,54 @@
 require "prototypes.Vanilla_Changes.Settings"
 
 
-smallbiterscale = 0.5
-small_biter_tint1 = {r=0.56, g=0.46, b=0.42, a=0.65}
-small_biter_tint2 = {r=1, g=0.63, b=0, a=0.4}
+
 
 smallbiterMk2scale = 0.55
-small_biter_Mk2_tint1 = {r=0.56, g=0.66, b=0.42, a=0.65}
-small_biter_Mk2_tint2 = {r=1, g=0.63, b=0.5, a=0.4}
+small_biter_Mk2_tint1 = {r=124, g=252, b=0, a=85}
+small_biter_Mk2_tint2 = {r=255, g=0, b=0, a=255}
 
 smallbiterMk3scale = 0.6
-small_biter_Mk3_tint1 = {r=0.56, g=0.86, b=0.42, a=0.65}
-small_biter_Mk3_tint2 = {r=1, g=0.63, b=1, a=0.4}
+small_biter_Mk3_tint1 = {r=255, g=255, b=0, a=85}
+small_biter_Mk3_tint2 = {r=255, g=0, b=0, a=255}
 
+
+mediumbiterMk2scale = 0.75
+medium_biter_Mk2_tint1 = {r=124, g=252, b=0, a=170}
+medium_biter_Mk2_tint2 = {r=255, g=0, b=0, a=255}
+
+mediumbiterMk3scale = 0.8
+medium_biter_Mk3_tint1 = {r=255, g=255, b=0, a=170}
+medium_biter_Mk3_tint2 = {r=255, g=0, b=0, a=255}
+
+
+bigbiterMk2scale = 1.05
+big_biter_Mk2_tint1 = {r=124, g=252, b=0, a=255}
+big_biter_Mk2_tint2 = {r=255, g=0, b=0, a=255}
+
+bigbiterMk3scale = 1.1
+big_biter_Mk3_tint1 = {r=255, g=255, b=0, a=255}
+big_biter_Mk3_tint2 = {r=255, g=0, b=0, a=255}
+
+
+------------------------
+
+smallbiterscale = 0.5
+small_biter_tint1 = {r=0.56, g=0.46, b=0.42, a=0.65}
+small_biter_tint2 = {r=255, g=0, b=0, a=255}
 
 mediumbiterscale = 0.7
 medium_biter_tint1 = {r=0.78, g=0.15, b=0.15, a=0.6}
-medium_biter_tint2 = {r=0.9, g=0.3, b=0.3, a=0.75}
-
-mediumbiterMk2scale = 0.75
-medium_biter_Mk2_tint1 = {r=0.78, g=0.45, b=0.15, a=0.6}
-medium_biter_Mk2_tint2 = {r=0.9, g=0.6, b=0.3, a=0.75}
-
-mediumbiterMk3scale = 0.8
-medium_biter_Mk3_tint1 = {r=0.78, g=0.75, b=0.15, a=0.6}
-medium_biter_Mk3_tint2 = {r=0.9, g=0.9, b=0.3, a=0.75}
+medium_biter_tint2 = {r=255, g=0, b=0, a=255}
 
 
 bigbiterscale = 1.0
 big_biter_tint1 = {r=0.34, g=0.68, b=0.90, a=0.6}
-big_biter_tint2 = {r=0.31, g=0.61, b=0.95, a=0.85}
-
-bigbiterMk2scale = 1.05
-big_biter_Mk2_tint1 = {r=0.34, g=0.68, b=0.60, a=0.6}
-big_biter_Mk2_tint2 = {r=0.31, g=0.61, b=0.65, a=0.85}
-
-bigbiterMk3scale = 1.1
-big_biter_Mk3_tint1 = {r=0.34, g=0.68, b=0.30, a=0.6}
-big_biter_Mk3_tint2 = {r=0.31, g=0.61, b=0.35, a=0.85}
-
+big_biter_tint2 = {r=255, g=0, b=0, a=255}
 
 
 behemothbiterscale = 2
 behemoth_biter_tint1 = {r=0.3, g=0.9, b=0.3, a=0.75}
-behemoth_biter_tint2 = {r=0.88, g=0.24, b=0.24, a=0.9}
+behemoth_biter_tint2 = {r=255, g=0, b=0, a=255}
 
 
 unit_cluster_scale = 1.2
@@ -391,7 +396,7 @@ data:extend(
       ammo_category = "melee",
       ammo_type = Damage.Big_Biter_Mk2,
       sound =  make_biter_roars(0.6),
-      animation = biterattackanimation(bigbiterMk2scale, big_biter_Mk2_tint1, big_Mk2_biter_tint2)
+      animation = biterattackanimation(bigbiterMk2scale, big_biter_Mk2_tint1, big_biter_Mk2_tint2)
     },
     vision_distance = 30,
     movement_speed = 0.17,
@@ -402,7 +407,7 @@ data:extend(
     dying_explosion = "blood-explosion-big",
     working_sound = make_biter_calls(0.9),
     dying_sound = make_biter_dying_sounds(1.0),
-    run_animation = biterrunanimation(bigbiterMk2scale, big_biter_Mk2_tint1, big_Mk2_biter_tint2)
+    run_animation = biterrunanimation(bigbiterMk2scale, big_biter_Mk2_tint1, big_biter_Mk2_tint2)
   },
 
 ----- New Big Biter 2
@@ -430,7 +435,7 @@ data:extend(
       ammo_category = "melee",
       ammo_type = Damage.Big_Biter_Mk3,
       sound =  make_biter_roars(0.6),
-      animation = biterattackanimation(bigbiterMk3scale, big_biter_Mk3_tint1, big_Mk3_biter_tint2)
+      animation = biterattackanimation(bigbiterMk3scale, big_biter_Mk3_tint1, big_biter_Mk3_tint2)
     },
     vision_distance = 30,
     movement_speed = 0.17,
@@ -441,7 +446,7 @@ data:extend(
     dying_explosion = "blood-explosion-big",
     working_sound = make_biter_calls(0.9),
     dying_sound = make_biter_dying_sounds(1.0),
-    run_animation = biterrunanimation(bigbiterMk3scale, big_biter_Mk3_tint1, big_Mk3_biter_tint2)
+    run_animation = biterrunanimation(bigbiterMk3scale, big_biter_Mk3_tint1, big_biter_Mk3_tint2)
   },
 
   --- Vanilla Behemoth Biter

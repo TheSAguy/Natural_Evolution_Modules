@@ -3,7 +3,7 @@ data:extend(
     {
     type = "item",
     name = "alien-artifact",
-    icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png",
     flags = { "goes-to-main-inventory" },
 	subgroup = "raw-material",
 	order = "g[alien-artifact]-a[pink]-a[small]",

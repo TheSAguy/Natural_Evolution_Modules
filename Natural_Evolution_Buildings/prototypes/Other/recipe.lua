@@ -60,21 +60,5 @@ data:extend({
 		energy_required = 0.5,
 	},
 
---[[	
-	---- Battle Marker
-	{
-		type = "recipe",
-		name = "battle_marker",
-		enabled = false,
-		ingredients = 
-		{
-			
-			{"stone", 10},       
-			
-		},
-		result = "battle_marker",
-		energy_required= 0.5,
-	},
 	
-]]	
 })

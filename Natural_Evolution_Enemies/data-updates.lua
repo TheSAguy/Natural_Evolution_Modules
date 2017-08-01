@@ -36,20 +36,6 @@ if NE_Enemies_Config.mod.BobEnemies and settings.startup["NE_Alien_Artifacts"].v
 	
 end
 
---- if the Alien Artifact is in the game, use if for some recipes
-if data.raw.item["alien-artifact"] or settings.startup["NE_Alien_Artifacts"].value then
-
-	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="item", name="alien-artifact", amount=5})
-	thxbob.lib.recipe.add_new_ingredient("bio_land_mine", {type="item", name="alien-artifact", amount=5})
-	
-else
-
-	thxbob.lib.recipe.add_new_ingredient("Biological-bullet-magazine", {type="fluid", name="sulfuric-acid", amount=25})
-	thxbob.lib.recipe.add_new_ingredient("bio_land_mine", {type="fluid", name="sulfuric-acid", amount=35})
-	
-end	
-
-
 
 --Add resistances to entities.
 -- Poison
@@ -78,7 +64,7 @@ NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
 --- Add all resistances.
 if data.raw.inserter["combat-inserter"] then
 	for k, v in pairs(data.raw["damage-type"]) do
-	local Resist = {type = v.name, percent = 70} -- or you could use k, and not v.name		
+	local Resist = {type = v.name, percent = 80} -- or you could use k, and not v.name		
 	
 				if data.raw.inserter["combat-inserter"].resistances == nil then 
 					data.raw.inserter["combat-inserter"].resistances = {}
@@ -105,32 +91,6 @@ if data.raw.inserter["combat-inserter"] then
 	end
 end
 	
-
-
-
-
-
-if NE_Enemies_Config.mod.NEBuildings then
-	----- Adds in Building Materials and Thumper to Tech Tree, since Alien Understanding Tech is in both Buildings and Enemies.
-	---- Make sure that the Artifact-collector and Biological-bullet-magazine are present, since the tech is in NE Enemies and NE Buildings.
-	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding", "Building_Materials")
-	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "Thumper")
-	thxbob.lib.tech.add_recipe_unlock ("AlienUnderstanding-2", "decelerate_concrete")
-
-	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "alien-artifact")
-	thxbob.lib.recipe.remove_ingredient ("Biological-bullet-magazine", "sulfuric-acid")
-	thxbob.lib.recipe.add_new_ingredient ("Biological-bullet-magazine", {type="fluid", name="NE_alien_toxin", amount=10})
-	
-	
-	thxbob.lib.recipe.remove_ingredient ("bio_land_mine", "alien-artifact")
-	thxbob.lib.recipe.remove_ingredient ("bio_land_mine", "sulfuric-acid")
-	thxbob.lib.recipe.add_new_ingredient ("bio_land_mine", {type="fluid", name="NE_alien_toxin", amount=15})
-	
-		
-end
-
-
-
 
 
 ---- Spawner Modifications ----------------------------------------

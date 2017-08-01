@@ -30,6 +30,96 @@ inv_extension2 =
 
 data:extend({
 
+
+  --- Ammo Turret (Inv)
+	{
+		type = "ammo-turret",
+		name = "TerraformingStation",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
+		flags = {"placeable-neutral", "placeable-player", "player-creation"},
+		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
+		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
+		 minable = {hardness = 0.2, mining_time = 0.5, result = "TerraformingStation"},
+		max_health = 300,
+		corpse = "big-remnants",
+		dying_explosion = "medium-explosion",
+		automated_ammo_count = 10,
+		resistances = {},
+		collision_box = {{-1.3, -1.7}, {3.0, 1.5}},
+		selection_box = {{-1.3, -1.7}, {3.0, 1.5}},
+		order = "b[TerraformingStation]-a[TerraformingStation]",
+		inventory_size = 1,
+		attack_parameters =
+		{
+			type = "projectile",
+			ammo_category = "Terraforming_Station",
+			cooldown = 2,
+			range = 0,
+			projectile_creation_distance = 1.8,
+			action ={}
+		},
+		folding_speed = 0.08,
+		folded_animation = (function()
+                          local res = util.table.deepcopy(inv_extension)
+                          res.frame_count = 1
+                          res.line_length = 1
+                          return res
+                       end)(),
+		folding_animation = (function()
+                          local res = util.table.deepcopy(inv_extension)
+                          res.run_mode = "backward"
+                          return res
+                       end)(),
+		call_for_help_radius = 1			   
+   
+	},
+
+
+  --- Ammo Turret (Inv) -- OLD from v. 7.1.7 Replaced since 7.2.0
+	{
+		type = "ammo-turret",
+		name = "TerraformingStation_i",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
+		flags = {"placeable-neutral", "placeable-player", "player-creation"},
+		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
+		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
+		 minable = {hardness = 0.2, mining_time = 0.5, result = "TerraformingStation"},
+		max_health = 300,
+		corpse = "big-remnants",
+		dying_explosion = "medium-explosion",
+		automated_ammo_count = 10,
+		resistances = {},
+		collision_box = {{-1.3, -1.7}, {3.0, 1.5}},
+		selection_box = {{-1.3, -1.7}, {3.0, 1.5}},
+		order = "b[TerraformingStation]-a[TerraformingStation]",
+		inventory_size = 1,
+		attack_parameters =
+		{
+			type = "projectile",
+			ammo_category = "Terraforming_Station",
+			cooldown = 2,
+			range = 0,
+			projectile_creation_distance = 1.8,
+			action ={}
+		},
+		folding_speed = 0.08,
+		folded_animation = (function()
+                          local res = util.table.deepcopy(inv_extension)
+                          res.frame_count = 1
+                          res.line_length = 1
+                          return res
+                       end)(),
+		folding_animation = (function()
+                          local res = util.table.deepcopy(inv_extension)
+                          res.run_mode = "backward"
+                          return res
+                       end)(),
+		call_for_help_radius = 1			   
+   
+	},
+
+		
+--[[
 	---- Terraforming Station
   {
     type = "radar",
@@ -72,7 +162,8 @@ data:extend({
       shift = {0.875, -0.35}
     },
   },
-  
+ ]]
+ 
   --- Radar
   {
     type = "radar",
@@ -119,7 +210,10 @@ data:extend({
     },
   },
   
+
   
+	  
+  --[[
   -- Container
    {
 		type = "container",
@@ -151,47 +245,6 @@ data:extend({
 		  shift = {0.875, -0.35}
 		},
 	},
-  
-  --- Ammo Turret (Inv)
-	{
-		type = "ammo-turret",
-		name = "TerraformingStation_i",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
-		flags = {"placeable-neutral", "placeable-player", "player-creation"},
-		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
-		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
-		 minable = {hardness = 0.2, mining_time = 0.5, result = "TerraformingStation"},
-		max_health = 300,
-		corpse = "big-remnants",
-		dying_explosion = "medium-explosion",
-		automated_ammo_count = 10,
-		resistances = {},
-		collision_box = {{-1.3, -1.7}, {3.0, 1.5}},
-		selection_box = {{-1.3, -1.7}, {3.0, 1.5}},
-		order = "b[TerraformingStation]-a[TerraformingStation]",
-		inventory_size = 1,
-		attack_parameters =
-		{
-			type = "projectile",
-			ammo_category = "Terraforming_Station",
-			cooldown = 2,
-			range = 0,
-			projectile_creation_distance = 1.8,
-			action ={}
-		},
-		folding_speed = 0.08,
-		folded_animation = (function()
-                          local res = util.table.deepcopy(inv_extension)
-                          res.frame_count = 1
-                          res.line_length = 1
-                          return res
-                       end)(),
-		folding_animation = (function()
-                          local res = util.table.deepcopy(inv_extension)
-                          res.run_mode = "backward"
-                          return res
-                       end)(),
-		call_for_help_radius = 1			   
-   
-	},
-})
+  ]]
+	
+	})

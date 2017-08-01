@@ -13,6 +13,14 @@ data:extend({
 				type = 'unlock-recipe', 
 				recipe='Building_Materials'
 			},
+			{
+				type = 'unlock-recipe', 
+				recipe='Artifact-collector'
+			},
+			{
+				type = 'unlock-recipe', 
+				recipe='ne-combat-inserter'
+			},
 
 		},
 		prerequisites = {"advanced-electronics"},
@@ -45,6 +53,14 @@ data:extend({
 				type = 'unlock-recipe', 
 				recipe='decelerate_concrete'
 			},
+			{
+				type = 'unlock-recipe', 
+				recipe='Biological-bullet-magazine'
+			},
+			{
+				type = 'unlock-recipe', 
+				recipe='bio_land_mine'
+			}
 		},
 		prerequisites = {"AlienUnderstanding"},
 		unit =
