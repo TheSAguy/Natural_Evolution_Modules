@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '7.2.0'
+local BUILDINGS_ver = '7.2.1'
 local QC_Mod = false
 
 if not NE_Buildings_Config then NE_Buildings_Config = {} end
@@ -432,20 +432,43 @@ local function On_Remove(event)
 
 		
 		
-	--- Terraforming Station has been removed
-	if entity.valid and (entity.name == "TerraformingStation_i" or entity.name == "TerraformingStation")  then
-
+	--- Terraforming Station has been removed  (Legacy from 7.1.7) Should remove during next update.
+	if entity.valid and entity.name == "TerraformingStation_i"  then
 	
+
 		if global.Terraforming_Station_Table ~= nil then
 	
 			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
 			global.Terraforming_Station_Table[entity.unit_number] = nil
+			T_Count()				
+
+		end
+		
+	end
+
+		--- Terraforming Station has been removed
+	if entity.valid and entity.name == "TerraformingStation"   then
+
+	
+
+		
+		if #global.Terraforming_Station_Table == 0 then 
+		--Legacy from 7.1.5 Should remove during next update.
 			T_Count()
-				
+
+		elseif global.Terraforming_Station_Table ~= nil then 
+		
+			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
+			global.Terraforming_Station_Table[entity.unit_number] = nil
+			T_Count()	
 
 		end
 
+		
 	end
+	
+---
+---
 
 end
 
@@ -480,19 +503,39 @@ local function On_Death(event)
     end
 	
 		
-	--- Terraforming Station has been removed
-	if entity.valid and (entity.name == "TerraformingStation_i" or entity.name == "TerraformingStation")  then
+	--- Terraforming Station has been removed  (Legacy from 7.1.7) Should remove during next update.
+	if entity.valid and entity.name == "TerraformingStation_i"  then
+	
 
-      
 		if global.Terraforming_Station_Table ~= nil then
 	
 			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
 			global.Terraforming_Station_Table[entity.unit_number] = nil
+			T_Count()				
+
+		end
+		
+	end
+
+		--- Terraforming Station has been removed
+	if entity.valid and entity.name == "TerraformingStation"   then
+
+	
+
+		
+		if #global.Terraforming_Station_Table == 0 then 
+		--Legacy from 7.1.5 Should remove during next update.
 			T_Count()
-				
+
+		elseif global.Terraforming_Station_Table ~= nil then 
+		
+			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
+			global.Terraforming_Station_Table[entity.unit_number] = nil
+			T_Count()	
 
 		end
 
+		
 	end
 
 
