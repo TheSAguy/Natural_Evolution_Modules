@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '7.2.3'
+local BUILDINGS_ver = '7.2.5'
 local QC_Mod = false
 
 
@@ -110,7 +110,7 @@ local function On_Init()
  
  	--- Artifact Collector
  	if global.ArtifactCollectors ~= nil then
-		--script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		
 		Event.register(defines.events.on_tick, function(event)	
 			ticker(event.tick)
 		end)
@@ -194,7 +194,6 @@ end
 local function On_Load()
 
 	if global.ArtifactCollectors ~= nil then
-		--script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
 		
 		Event.register(defines.events.on_tick, function(event)	
 			ticker(event.tick)
@@ -234,13 +233,12 @@ end
 
 
 
-
 ---------------------------------------------
 --- Artifact collector
 local function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it
 	--it exists merely for a convenience grouping
-	--script.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
+	
 	Event.register(defines.events.on_tick, function(event)	
 			ticker(event.tick)
 	end)
@@ -370,20 +368,14 @@ local force = entity.force
 		global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
 		writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
 	  
-		--T_Station_Inv = surface.create_entity({name = "TerraformingStation_i", position = position, direction = event.created_entity.direction, force = force})
 		T_Station_Radar = surface.create_entity({name = "TerraformingStation_r", position = position, direction = event.created_entity.direction, force = force})
-		
-		--T_Station_Inv.health = event.created_entity.health
-		--event.created_entity.destroy()
-		
-		--T_Station_Inv.operable = true
-		--T_Station_Inv.minable = true
 	
-		--T_Station_Radar.operable = false
+		T_Station_Radar.operable = false
 		T_Station_Radar.destructible = false
 		T_Station_Radar.minable = false
 			
 		global.Terraforming_Station_Table[entity.unit_number] = {inventory=entity, radar=T_Station_Radar}
+	    writeDebug("The Unit # is: "..entity.unit_number)
 	  
 	end   
 
@@ -430,7 +422,7 @@ local function On_Remove(event)
 			if #artifacts == 0 then
 			--and here artifacts=nil would not cut it.
 				global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-				--script.on_event(defines.events.on_tick, nil);
+				
 				Event.register(defines.events.on_tick, nil)
 				--but it's surely better done here than during on_tick
 			end
@@ -461,22 +453,18 @@ local function On_Remove(event)
 
 		--- Terraforming Station has been removed
 	if entity.valid and entity.name == "TerraformingStation"   then
-
-	
-
 		
-		if #global.Terraforming_Station_Table == 0 then 
+		if global.Terraforming_Station_Table[entity.unit_number] == nil then 
 		--Legacy from 7.1.5 Should remove during next update.
 			T_Count()
 
-		elseif global.Terraforming_Station_Table ~= nil then 
+		else 
 		
 			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
 			global.Terraforming_Station_Table[entity.unit_number] = nil
 			T_Count()	
 
 		end
-
 		
 	end
 	
@@ -507,7 +495,7 @@ local function On_Death(event)
 			if #artifacts == 0 then
 			--and here artifacts=nil would not cut it.
 				global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-				--script.on_event(defines.events.on_tick, nil);
+				
 				Event.register(defines.events.on_tick, nil)
 				--but it's surely better done here than during on_tick
 			end
@@ -531,24 +519,21 @@ local function On_Death(event)
 
 		--- Terraforming Station has been removed
 	if entity.valid and entity.name == "TerraformingStation"   then
-
-	
-
 		
-		if #global.Terraforming_Station_Table == 0 then 
+		if global.Terraforming_Station_Table[entity.unit_number] == nil then 
 		--Legacy from 7.1.5 Should remove during next update.
 			T_Count()
 
-		elseif global.Terraforming_Station_Table ~= nil then 
+		else 
 		
 			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
 			global.Terraforming_Station_Table[entity.unit_number] = nil
 			T_Count()	
 
 		end
-
 		
 	end
+	
 
 
    --- Alien Control Station has been removed
@@ -590,14 +575,12 @@ local function Reduce_Evolution(TS_table)
 			end
 		end
 
-	--writeDebug("Ammo Type: "..AmmoType)
+
 	writeDebug("Ammo Count: "..ammo)
 
 	
 	if ammo > 0 then 
-	--if ammo > 0 and global.Terraforming_Station_Table[num].radar.energy > 0 then	
-	
-	
+		
 		if global.deduction_constant == nil or global.deduction_constant == 0 then
 			global.deduction_constant = 0.0002 -------- DEDUCTION CONSTANT
 		end
@@ -641,12 +624,10 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation_r" then
-
-	
+		writeDebug("The Unit # is: "..event.radar.unit_number)
 		local num = (event.radar.unit_number - 1)
 		Reduce_Evolution(global.Terraforming_Station_Table[num])
 		
-
 	end
 
 	
@@ -1004,8 +985,22 @@ script.on_event(death_events, On_Death)
 
 
 
----------------------------------------------
 
+
+-------------------- For Testing --------------
+if QC_Mod == true then  
+
+	script.on_event(defines.events.on_player_created, function(event)
+	local iteminsert = game.players[event.player_index].insert
+	iteminsert{name="TerraformingStation", count=5}
+	iteminsert{name="solar-panel", count=50}
+	iteminsert{name="medium-electric-pole", count=5}
+	iteminsert{name="Alien-Stimulant", count=200}
+	end)
+
+end
+
+---------------------------------------------
 --- DeBug Messages 
 function writeDebug(message)
 	if QC_Mod == true then  
