@@ -40,7 +40,7 @@ data:extend({
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/copper_magazine.png",
 		normal =
 		{
-			enabled = true,
+			enabled = false,
 			energy_required = 1,
 			ingredients = 
 			{
@@ -52,7 +52,7 @@ data:extend({
 		},
 		expensive =
 		{
-			enabled = true,
+			enabled = false,
 			energy_required = 2,
 			ingredients = 
 			{

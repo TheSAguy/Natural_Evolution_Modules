@@ -1,11 +1,6 @@
-local BUILDINGS_ver = '7.2.1'
+local BUILDINGS_ver = '7.2.3'
 local QC_Mod = false
 
-if not NE_Buildings_Config then NE_Buildings_Config = {} end
-if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
-
-if not NE_Buildings then NE_Buildings = {} end
-if not NE_Buildings.Settings then NE_Buildings.Settings = {} end
 
 
 require ("util")
@@ -16,15 +11,22 @@ if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
+if not global.NE_Buildings then global.NE_Buildings = {} end
+if not global.NE_Buildings.Settings then global.NE_Buildings.Settings = {} end
+
+
 --- Settup Settings
-NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
-NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
+global.NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
+global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
+global.NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
+global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
+global.NE_Buildings.Settings.Artifact_Item_Count = settings.startup["NE_Artifact_Item_Count"].value
 
 	
 --- Artifact Collector
 local interval = 300 -- this is an interval between the consecutive updates of a single collector
-local artifactCollectorRadius = settings.startup["NE_Artifact_Collector_Radius"].value
-local itemCount = settings.startup["NE_Artifact_Item_Count"].value
+local artifactCollectorRadius = global.NE_Buildings.Settings.Artifact_Collector_Radius
+local itemCount = global.NE_Buildings.Settings.Artifact_Item_Count
 local chestInventoryIndex = defines.inventory.chest
 local filters = {["small-alien-artifact"] = 1,
                  ["alien-artifact"] = 1,
@@ -50,6 +52,55 @@ local call_back_area_rad = agro_area_rad + 15
 local max_unit_count = 20
 local max_terra_count = 30
 
+---------------------------------------------
+--- Artifact Collector
+local function ProcessCollector(collector)
+	--This makes collectors collect items.
+     writeDebug("mod looking for items")
+	local items
+	local inventory
+	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - artifactCollectorRadius, y = collector.position.y - artifactCollectorRadius}, {x = collector.position.x + artifactCollectorRadius, y = collector.position.y + artifactCollectorRadius}}, name = "item-on-ground"})
+	if #items > 0 then
+		inventory = collector.get_inventory(chestInventoryIndex)
+		local counter = 0
+		for i=1,#items do
+			local stack = items[i].stack
+			if filters[stack.name] == 1 and inventory.can_insert(stack) then
+				 inventory.insert(stack)
+				 items[i].destroy()
+				 counter = counter + 1
+				 if counter == itemCount then
+					 break
+				 end
+			end
+		end
+	end
+end
+
+---------------------------------------------
+--- Artifact Collector
+local function ticker(tick)
+	local player = game.players[1]
+	--this function provides the smooth handling of all collectors within certain span of time
+	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
+	if global.update_check then
+		global.update_check = false
+		if global.next_check < game.tick then
+			global.next_check = game.tick
+		end
+	end
+		
+	if game.tick == global.next_check then
+		local collectors=global.ArtifactCollectors
+         writeDebug(#collectors)
+		for i=global.next_collector,#collectors,interval do
+			ProcessCollector(collectors[i])
+		end
+		local time_interval = (collectors[global.next_collector + 1] and 1) or (interval- #collectors + 1)
+		global.next_collector = (global.next_collector) % (#collectors) + 1
+		global.next_check = game.tick + time_interval
+	end
+end
 
 
 
@@ -59,7 +110,10 @@ local function On_Init()
  
  	--- Artifact Collector
  	if global.ArtifactCollectors ~= nil then
-		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		--script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		Event.register(defines.events.on_tick, function(event)	
+			ticker(event.tick)
+		end)
 		global.update_check = true
         global.next_collector = global.next_collector or 1
 	end
@@ -83,9 +137,9 @@ local function On_Init()
 	end
 
 	--- Alien_Control_Station Difficulty settings	
-	if NE_Buildings.Settings.Conversion_Difficulty == 1 then
+	if global.NE_Buildings.Settings.Conversion_Difficulty == 1 then
 		global.minds.difficulty = 3 -- Easy difficulty
-	elseif NE_Buildings.Settings.Conversion_Difficulty == 2 then
+	elseif global.NE_Buildings.Settings.Conversion_Difficulty == 2 then
 		global.minds.difficulty = 5 -- Normal 
 	else 
 		global.minds.difficulty = 10 -- Hard
@@ -140,7 +194,12 @@ end
 local function On_Load()
 
 	if global.ArtifactCollectors ~= nil then
-		script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		--script.on_event(defines.events.on_tick, function(event) ticker(event.tick) end)
+		
+		Event.register(defines.events.on_tick, function(event)	
+			ticker(event.tick)
+		end)
+		
 	end	
 	
 end
@@ -173,56 +232,7 @@ local function On_Config_Change()
 end
 
 
----------------------------------------------
---- Artifact Collector
-local function ProcessCollector(collector)
-	--This makes collectors collect items.
-     writeDebug("mod looking for items")
-	local items
-	local inventory
-	items = collector.surface.find_entities_filtered({area = {{x = collector.position.x - artifactCollectorRadius, y = collector.position.y - artifactCollectorRadius}, {x = collector.position.x + artifactCollectorRadius, y = collector.position.y + artifactCollectorRadius}}, name = "item-on-ground"})
-	if #items > 0 then
-		inventory = collector.get_inventory(chestInventoryIndex)
-		local counter = 0
-		for i=1,#items do
-			local stack = items[i].stack
-			if filters[stack.name] == 1 and inventory.can_insert(stack) then
-				 inventory.insert(stack)
-				 items[i].destroy()
-				 counter = counter + 1
-				 if counter == itemCount then
-					 break
-				 end
-			end
-		end
-	end
-end
 
-
----------------------------------------------
---- Artifact Collector
-local function ticker(tick)
-	local player = game.players[1]
-	--this function provides the smooth handling of all collectors within certain span of time
-	--it requires global.ArtifactCollectors, global.next_check, global.next_collector to do that
-	if global.update_check then
-		global.update_check = false
-		if global.next_check < game.tick then
-			global.next_check = game.tick
-		end
-	end
-		
-	if game.tick == global.next_check then
-		local collectors=global.ArtifactCollectors
-         writeDebug(#collectors)
-		for i=global.next_collector,#collectors,interval do
-			ProcessCollector(collectors[i])
-		end
-		local time_interval = (collectors[global.next_collector + 1] and 1) or (interval- #collectors + 1)
-		global.next_collector = (global.next_collector) % (#collectors) + 1
-		global.next_check = game.tick + time_interval
-	end
-end
 
 
 ---------------------------------------------
@@ -230,7 +240,11 @@ end
 local function subscribe_ticker(tick)
 	--this function subscribes handler to on_tick event and also sets global values used by it
 	--it exists merely for a convenience grouping
-	script.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
+	--script.on_event(defines.events.on_tick,function(event) ticker(event.tick) end)
+	Event.register(defines.events.on_tick, function(event)	
+			ticker(event.tick)
+	end)
+	
 	global.ArtifactCollectors = {}
 	global.next_check = game.tick + interval
 	global.next_collector = 1
@@ -333,9 +347,7 @@ local force = entity.force
 	local surface = event.created_entity.surface
 	local force = event.created_entity.force
 	
-	writeDebug("ACS has been built")		
-	writeDebug("The ACS search area is: " .. settings.startup["NE_Conversion_Search_Distance"].value)  	
-	writeDebug("The ACS Difficulty is: " .. settings.startup["NE_Conversion_Difficulty"].value)  	
+	writeDebug("ACS has been built")			
 	writeDebug("The ACS Difficulty is: " .. global.minds.difficulty)  					
 			
 		newAlienControlStation = surface.create_entity({name = "AlienControlStation", position = event.created_entity.position, force = force})
@@ -418,7 +430,8 @@ local function On_Remove(event)
 			if #artifacts == 0 then
 			--and here artifacts=nil would not cut it.
 				global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-				script.on_event(defines.events.on_tick, nil);
+				--script.on_event(defines.events.on_tick, nil);
+				Event.register(defines.events.on_tick, nil)
 				--but it's surely better done here than during on_tick
 			end
 		end 
@@ -467,8 +480,6 @@ local function On_Remove(event)
 		
 	end
 	
----
----
 
 end
 
@@ -496,7 +507,8 @@ local function On_Death(event)
 			if #artifacts == 0 then
 			--and here artifacts=nil would not cut it.
 				global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-				script.on_event(defines.events.on_tick, nil);
+				--script.on_event(defines.events.on_tick, nil);
+				Event.register(defines.events.on_tick, nil)
 				--but it's surely better done here than during on_tick
 			end
 		end
@@ -546,7 +558,7 @@ local function On_Death(event)
 	
 
  	--------- Spawner killed
-	if entity.valid and (entity.type == "unit-spawner") and (entity.force == game.forces.enemy) and NE_Buildings.Settings.Battle_Marker then
+	if entity.valid and (entity.type == "unit-spawner") and (entity.force == game.forces.enemy) and global.NE_Buildings.Settings.Battle_Marker then
 
 			writeDebug("Enemy Spawner Killed")
 			local surface = entity.surface
@@ -662,7 +674,7 @@ end
 --------------- Alien Control Station ---------------------------------
 local function Convert_Base(base, died, newforce, surface)
   
-  local enemies=Get_Bounding_Box(base.position, settings.startup["NE_Conversion_Search_Distance"].value)
+  local enemies=Get_Bounding_Box(base.position, global.NE_Buildings.Settings.Search_Distance)
   local units={}
   local hives={}
   local worms={}
@@ -739,8 +751,8 @@ local function Control_Enemies()
 	
       if beacon.energy > 0 then
         
-		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Conversion_Search_Distance"].value), force = enemyForce} --search area of thirty around each ACS for spawners
-		local turret = surface.find_entities_filtered{type="turret", area=Get_Bounding_Box(beacon.position, settings.startup["NE_Conversion_Search_Distance"].value), force = enemyForce} --search area of thirty around each ACS for spawners
+		local bases = surface.find_entities_filtered{type="unit-spawner", area=Get_Bounding_Box(beacon.position, global.NE_Buildings.Settings.Search_Distance), force = enemyForce} --search area of thirty around each ACS for spawners
+		local turret = surface.find_entities_filtered{type="turret", area=Get_Bounding_Box(beacon.position, global.NE_Buildings.Settings.Search_Distance), force = enemyForce} --search area of thirty around each ACS for spawners
         
 		if #bases > 0 then
 		writeDebug("The number of Spawners in Range: " .. #bases)
@@ -760,7 +772,7 @@ local function Control_Enemies()
 		  
         else -- no bases in range 
        
-		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, settings.startup["NE_Conversion_Search_Distance"].value)) do --search area of ten around each ACS
+		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, global.NE_Buildings.Settings.Search_Distance)) do --search area of ten around each ACS
 		  
             if enemy.force == (enemyForce) then --do only if not already controlled
               if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
@@ -796,7 +808,7 @@ local function Remove_Mind_Control()
 					table.remove(global.minds, k)
 				else -- is valid
 					local controlled = false --assume out of range
-				if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, settings.startup["NE_Conversion_Search_Distance"].value)}[1] then --a AlienControlStation is in range
+				if surface.find_entities_filtered{name="AlienControlStation", area=Get_Bounding_Box(mind.position, global.NE_Buildings.Settings.Search_Distance)}[1] then --a AlienControlStation is in range
 
 					controlled = true
 					break
