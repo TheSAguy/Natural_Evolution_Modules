@@ -1,8 +1,5 @@
---- EXPANSION v.7.0.1
+--- EXPANSION v.7.0.4
 local QC_Mod = false
-
-if not NE_Expansion_Config then NE_Expansion_Config = {} end
-if not NE_Expansion_Config.mod then NE_Expansion_Config.mod = {} end
 
 
 require ("util")
@@ -12,6 +9,13 @@ if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
 end
 
+
+if not global.NE_Expansion then global.NE_Expansion = {} end
+if not global.NE_Expansion.Settings then global.NE_Expansion.Settings = {} end
+
+--- Settup Settings
+global.NE_Expansion.Settings.Harder_Endgame = settings.startup["NE_Harder_Endgame"].value
+global.NE_Expansion.Settings.No_Expansion = settings.startup["NE_No_Expansion"].value
 
 ---------------------------------------------
 function On_Init()
@@ -50,12 +54,7 @@ function On_Init()
 	if not global.enemy_expansion_G then
 		global.enemy_expansion_G = false -- 
 	end
-	
-	--[[ -- No longer used in Base Game
-	if not global.min_base_spacing_G then
-		global.min_base_spacing_G = 3 -- Vanilla 3
-	end
-	]]
+
 	if not global.max_expansion_distance_G then
 		global.max_expansion_distance_G = 7 -- Vanilla 7
 	end
@@ -100,8 +99,15 @@ function On_Init()
 		global.min_group_radius_G = 5 -- Vanilla 5		
 	end	
 		
-	
-	
+		
+	if not global.NE_Expansion then global.NE_Expansion = {} end
+	if not global.NE_Expansion.Settings then global.NE_Expansion.Settings = {} end
+
+	--- Settup Settings
+	global.NE_Expansion.Settings.Harder_Endgame = settings.startup["NE_Harder_Endgame"].value
+	global.NE_Expansion.Settings.No_Expansion = settings.startup["NE_No_Expansion"].value
+
+		
 	Expansion_Initial_Setup() 
 	
 end
@@ -113,12 +119,19 @@ function On_Change()
 		global.Peace_Timer = 0
 	end	
 
+	if not global.NE_Expansion then global.NE_Expansion = {} end
+	if not global.NE_Expansion.Settings then global.NE_Expansion.Settings = {} end
+
+	--- Settup Settings
+	global.NE_Expansion.Settings.Harder_Endgame = settings.startup["NE_Harder_Endgame"].value
+	global.NE_Expansion.Settings.No_Expansion = settings.startup["NE_No_Expansion"].value
+
 end
 
 ---------------------------------------------
 
 
-if settings.startup["NE_Harder_Endgame"].value then
+if global.NE_Expansion.Settings.Harder_Endgame then
 
 ---------------------------------------------
 local function On_Built(event)
@@ -176,7 +189,6 @@ function Expansion_Initial_Setup()
 	local unit_group = game.map_settings.unit_group
 		
 	global.enemy_expansion_G = enemy_expansion.enabled
-	--global.min_base_spacing_G = enemy_expansion.min_base_spacing
 	global.max_expansion_distance_G = enemy_expansion.max_expansion_distance
 	global.settler_group_min_size_G = enemy_expansion.settler_group_min_size
 	global.settler_group_max_size_G = enemy_expansion.settler_group_max_size
@@ -193,13 +205,10 @@ function Expansion_Initial_Setup()
 		
 end
 
---game.map_settings.enemy_expansion.min_expansion_cooldown
---game.map_settings.enemy_expansion.max_expansion_cooldown
 
 	
 ---------------------------------------------	
 
---local evolution_Timer_Peace = (settings.startup["NE_Evolution_Timer"].value * 3600) * 2 -- Default is 10min. There will thus be a random 0-10min peace after each Phase.
 local evolution_Timer_Peace = (5 * 3600) * 2 -- Default is 10min. There will thus be a random 0-10min peace after each Phase.
 --- global.Peace_Timer is only used for EvoGui value
 global.Peace_Timer = evolution_Timer_Peace
@@ -321,7 +330,7 @@ global.Peace_Timer = evolution_Timer_Peace
 
 	----Harder Endgame Function - Will send waves of enemies to attack the player once the Rocket Silo is built. Will also increase the Evolutio factor slightly with each wave.
 	function Harder_Endgame(Evo_Increase,Enemy_Count)
-		if settings.startup["NE_Harder_Endgame"].value then	
+		if global.NE_Expansion.Settings.Harder_Endgame then	
 			if global.RocketSiloBuilt > 0 then
 			local E_Increase = 0
 				if ((1-game.forces.enemy.evolution_factor) / (10 * Evo_Increase)) > 0.05 then
@@ -351,7 +360,7 @@ global.Peace_Timer = evolution_Timer_Peace
 
 	
 	--------------------
-	function Natural_Evolution_Expansion_Settings(evolution_Timer, NE_Min_Base_Spacing, NE_Max_Expansion_Distance, NE_building_coefficient, NE_Settler_Group_Min_Size, NE_Settler_Group_Max_Size, NE_Max_Group_Radius, NE_Min_Group_Radius, NE_Speedup, NE_other_base_coefficient,NE_neighbouring_chunk_coefficient, NE_neighbouring_base_chunk_coefficient)
+	function Natural_Evolution_Expansion_Settings(evolution_Timer, NE_Max_Expansion_Distance, NE_building_coefficient, NE_Settler_Group_Min_Size, NE_Settler_Group_Max_Size, NE_Max_Group_Radius, NE_Min_Group_Radius, NE_Speedup, NE_other_base_coefficient,NE_neighbouring_chunk_coefficient, NE_neighbouring_base_chunk_coefficient)
 		
 		local enemy_expansion = game.map_settings.enemy_expansion
 		local unit_group = game.map_settings.unit_group
@@ -362,15 +371,17 @@ global.Peace_Timer = evolution_Timer_Peace
 		
 		
 		-- Below 5% evolution, no expansion
-		if game.forces.enemy.evolution_factor > 0.05 then
+		if game.forces.enemy.evolution_factor > 0.05 and global.NE_Expansion.Settings.No_Expansion then
 			enemy_expansion.enabled = true
+			writeDebug("Condition 1: Rarget than 5% and Exp allowed")
+			writeDebug(game.map_settings.enemy_expansion.enabled)
 		else
 			enemy_expansion.enabled = false
+			writeDebug("Condition 2")
+			writeDebug(game.map_settings.enemy_expansion.enabled)
 		end
 		
-		if NE_Min_Base_Spacing < 1 then NE_Min_Base_Spacing = 1 end
-		
-		--enemy_expansion.min_base_spacing = NE_Min_Base_Spacing
+
 		enemy_expansion.max_expansion_distance = NE_Max_Expansion_Distance
 		enemy_expansion.building_coefficient = NE_building_coefficient
 		enemy_expansion.other_base_coefficient = NE_other_base_coefficient
@@ -379,12 +390,7 @@ global.Peace_Timer = evolution_Timer_Peace
 		
 		enemy_expansion.settler_group_min_size = NE_Settler_Group_Min_Size
 		enemy_expansion.settler_group_max_size = NE_Settler_Group_Max_Size
-		
-		--enemy_expansion.min_Expansion_Cooldown = math.floor(global.Natural_Evolution_Timer / 4)
-		--enemy_expansion.max_Expansion_Cooldown = math.floor(global.Natural_Evolution_Timer / 2)
-		--unit_group.min_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 4)
-		--unit_group.max_group_gathering_time = math.floor(global.Natural_Evolution_Timer / 2)
-		--unit_group.max_wait_time_for_late_members = math.floor(global.Natural_Evolution_Timer / 8)
+
 		unit_group.max_group_radius = NE_Max_Group_Radius
 		unit_group.min_group_radius = NE_Min_Group_Radius
 		unit_group.max_member_speedup_when_behind = NE_Speedup		
@@ -412,12 +418,7 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 	end
 
 	-- DEFAULT expansion settings for the "Peace" & "Awakening" state. Awake state has Expansion Enabled though.
-	--local enemy_expansion = game.map_settings.enemy_expansion
-	--local unit_group = game.map_settings.unit_group
 
-	--local min_Base_Spacing = game.map_settings.enemy_expansion.min_base_spacing
-	--local min_Base_Spacing = global.min_base_spacing_G
-	local min_Base_Spacing = 3
 	local max_Base_Expansion_Distance = global.max_expansion_distance_G
 	local settler_Group_Min_Size = global.settler_group_min_size_G
 	local settler_Group_Max_Size = global.settler_group_max_size_G
@@ -466,7 +467,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1,500)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 0.75
 		settler_Group_Min_Size = settler_Group_Min_Size  * 0.75
 		settler_Group_Max_Size = settler_Group_Max_Size * 0.75 + global.Natural_Evolution_Counter
@@ -488,7 +488,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1,500)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 0.85
 		settler_Group_Min_Size = settler_Group_Min_Size  * 0.85
 		settler_Group_Max_Size = settler_Group_Max_Size * 0.85 + global.Natural_Evolution_Counter
@@ -508,7 +507,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1,500)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 0.95
 		settler_Group_Min_Size = settler_Group_Min_Size  * 0.95
 		settler_Group_Max_Size = settler_Group_Max_Size * 0.95 + global.Natural_Evolution_Counter
@@ -528,7 +526,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1,500)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.15
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.15
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.15 + global.Natural_Evolution_Counter
@@ -549,7 +546,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1,1000)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.25
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.25
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.25 + global.Natural_Evolution_Counter
@@ -569,7 +565,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1.5,1500)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.35
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.35
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.35 + global.Natural_Evolution_Counter
@@ -590,7 +585,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1.5,2000)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.45
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.45
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.45 + global.Natural_Evolution_Counter
@@ -611,7 +605,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(1.5,2500)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.55
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.55
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.55 + global.Natural_Evolution_Counter
@@ -632,7 +625,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(2,3000)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.65
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.65
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.65 + global.Natural_Evolution_Counter
@@ -654,7 +646,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(2,3000)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 1.75
 		settler_Group_Min_Size = settler_Group_Min_Size  * 1.75
 		settler_Group_Max_Size = settler_Group_Max_Size * 1.75 + global.Natural_Evolution_Counter
@@ -676,7 +667,6 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		Harder_Endgame(2.5,3000)
 		-----
 
-		min_Base_Spacing = min_Base_Spacing 
 		max_Base_Expansion_Distance = max_Base_Expansion_Distance * 2.00
 		settler_Group_Min_Size = settler_Group_Min_Size  * 2.00
 		settler_Group_Max_Size = settler_Group_Max_Size * 2.00 + global.Natural_Evolution_Counter
@@ -698,16 +688,13 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 		-- adjust the expansion settings based on any customizations from the config settings, making sure they stay above zero
 
 		evolution_Timer = (5 * 3600)
-		--evolution_Timer = (settings.startup["NE_Evolution_Timer"].value * 3600)
 		settler_Group_Min_Size = math.max(1, settler_Group_Min_Size)
 		settler_Group_Max_Size = math.max(1, settler_Group_Max_Size)
 		min_Group_Radius = math.max(1, min_Group_Radius)
 		max_Group_Radius = math.max(1, max_Group_Radius)
-		min_Base_Spacing = math.max(1, min_Base_Spacing)
-		max_Base_Expansion_Distance = math.max(min_Base_Spacing, max_Base_Expansion_Distance)
+		max_Base_Expansion_Distance = math.max(3, max_Base_Expansion_Distance)
 
 		-- display values
-		writeDebug("The min_Base_Spacing is: " ..min_Base_Spacing)	-- Not in base game anymore	
 		writeDebug("The max_Expansion_Distance is: " ..max_Base_Expansion_Distance..", Base: " ..global.max_expansion_distance_G)
 		writeDebug("The settler_Group_Min_Size is: " ..settler_Group_Min_Size..", Base: " ..global.settler_group_min_size_G)
 		writeDebug("The settler_Group_Max_Size is: " ..settler_Group_Max_Size..", Base: " ..global.settler_group_max_size_G)
@@ -721,7 +708,7 @@ function Natural_Evolution_SetExpansionLevel(Expansion_State)
 
 
 		-- apply the expansion settings			
-		Natural_Evolution_Expansion_Settings(evolution_Timer, min_Base_Spacing, max_Base_Expansion_Distance, building_coefficient, settler_Group_Min_Size, settler_Group_Max_Size, max_Group_Radius, min_Group_Radius, enemy_speedup, other_base_coefficient, neighbouring_chunk_coefficient, neighbouring_base_chunk_coefficient)
+		Natural_Evolution_Expansion_Settings(evolution_Timer, max_Base_Expansion_Distance, building_coefficient, settler_Group_Min_Size, settler_Group_Max_Size, max_Group_Radius, min_Group_Radius, enemy_speedup, other_base_coefficient, neighbouring_chunk_coefficient, neighbouring_base_chunk_coefficient)
 
 	end
 			
