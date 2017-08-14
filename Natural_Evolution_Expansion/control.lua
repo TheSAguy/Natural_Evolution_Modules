@@ -1,4 +1,4 @@
---- EXPANSION v.7.0.4
+--- EXPANSION v.7.0.5
 local QC_Mod = false
 
 
@@ -49,8 +49,6 @@ function On_Init()
 	end
 		
 	---  Initial Expansion Values	
-	
-
 	if not global.enemy_expansion_G then
 		global.enemy_expansion_G = false -- 
 	end
@@ -99,33 +97,56 @@ function On_Init()
 		global.min_group_radius_G = 5 -- Vanilla 5		
 	end	
 		
-		
+
+	--- Settup Settings		
 	if not global.NE_Expansion then global.NE_Expansion = {} end
 	if not global.NE_Expansion.Settings then global.NE_Expansion.Settings = {} end
 
-	--- Settup Settings
 	global.NE_Expansion.Settings.Harder_Endgame = settings.startup["NE_Harder_Endgame"].value
 	global.NE_Expansion.Settings.No_Expansion = settings.startup["NE_No_Expansion"].value
 
-		
-	Expansion_Initial_Setup() 
 	
 end
 
 
 function On_Change()
 	
+--- Expansion Initialization ----	
+	if not global.Natural_Evolution_state then
+		global.Natural_Evolution_state = "Peaceful"
+	end
+	if not global.Natural_Evolution_Timer then
+		global.Natural_Evolution_Timer = 0
+	end
 	if not global.Peace_Timer then
 		global.Peace_Timer = 0
-	end	
+	end
+	if not global.Natural_Evolution_Counter then
+		global.Natural_Evolution_Counter = 0
+	end
 
-	if not global.NE_Expansion then global.NE_Expansion = {} end
-	if not global.NE_Expansion.Settings then global.NE_Expansion.Settings = {} end
+
+	--- Harder End Game
+	---- Rocket Silo Initialization ----	
+	if not global.RocketSiloBuilt then
+	  global.RocketSiloBuilt = 0
+	end
+
+	
+	if not global.Total_Phase_Evo_Deduction then
+          global.Total_Phase_Evo_Deduction = 0
+        elseif global.Total_Phase_Evo_Deduction < 0 then
+          global.Total_Phase_Evo_Deduction = 0
+	end
 
 	--- Settup Settings
+	if not global.NE_Expansion then global.NE_Expansion = {} end
+	if not global.NE_Expansion.Settings then global.NE_Expansion.Settings = {} end
+	
 	global.NE_Expansion.Settings.Harder_Endgame = settings.startup["NE_Harder_Endgame"].value
 	global.NE_Expansion.Settings.No_Expansion = settings.startup["NE_No_Expansion"].value
 
+	On_Change_Setup()
 end
 
 ---------------------------------------------
@@ -133,75 +154,127 @@ end
 
 if global.NE_Expansion.Settings.Harder_Endgame then
 
----------------------------------------------
-local function On_Built(event)
-	  
-  --- Harder Ending Some action if you built the Rocket-silo!
-	if event.created_entity.name == "rocket-silo" then
-		
-		global.RocketSiloBuilt = global.RocketSiloBuilt + 1
-		writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
-			-- Increase Evolution factor by 10% of remaining evolution once a Rocket Silo is built	
-			if game.forces.enemy.evolution_factor < 0.89999 then
-				game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor + (1 - game.forces.enemy.evolution_factor)/10
-			else
-				game.forces.enemy.evolution_factor = 0.9999
-			end  
-				
-		-- Biters will attack the newly built Rocket Silo
-		event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.forces.enemy.evolution_factor), unit_search_distance = 2500}
-		
-		for i, player in pairs(game.players) do
-				player.print("WARNING!")
-				player.print("Building a Rocket Silo caused a lot of noise and biters will attack!!!")
+	---------------------------------------------
+	local function On_Built(event)
+		  
+	  --- Harder Ending Some action if you built the Rocket-silo!
+		if event.created_entity.name == "rocket-silo" then
+			
+			global.RocketSiloBuilt = global.RocketSiloBuilt + 1
+			writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
+				-- Increase Evolution factor by 10% of remaining evolution once a Rocket Silo is built	
+				if game.forces.enemy.evolution_factor < 0.89999 then
+					game.forces.enemy.evolution_factor = game.forces.enemy.evolution_factor + (1 - game.forces.enemy.evolution_factor)/10
+				else
+					game.forces.enemy.evolution_factor = 0.9999
+				end  
+					
+			-- Biters will attack the newly built Rocket Silo
+			event.created_entity.surface.set_multi_command{command = {type=defines.command.attack, target=event.created_entity, distraction=defines.distraction.by_enemy},unit_count = math.floor(4000 * game.forces.enemy.evolution_factor), unit_search_distance = 2500}
+			
+			for i, player in pairs(game.players) do
+					player.print("WARNING!")
+					player.print("Building a Rocket Silo caused a lot of noise and biters will attack!!!")
+			end
 		end
 	end
-end
 
 
---------------------------------------------
-local function On_Remove(event)
+	--------------------------------------------
+	local function On_Remove(event)
 
-   ---- Remove Rocket Silo count
-  if event.entity.name == "rocket-silo" then
-	 global.RocketSiloBuilt = global.RocketSiloBuilt - 1      
-	 writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
-   end
-end
+	   ---- Remove Rocket Silo count
+	  if event.entity.name == "rocket-silo" then
+		 global.RocketSiloBuilt = global.RocketSiloBuilt - 1      
+		 writeDebug("The number of Rocket Silos is: " .. global.RocketSiloBuilt)	
+	   end
+	end
+
+		
+	local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+	script.on_event(build_events, On_Built)
+
+	local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined, defines.events.on_entity_died}
+	script.on_event(pre_remove_events, On_Remove)
 
 	
-local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
-script.on_event(build_events, On_Built)
-
-local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined, defines.events.on_entity_died}
-script.on_event(pre_remove_events, On_Remove)
-
-	
 end
 
 
 
 
-	-------Not currently used-------------
-function Expansion_Initial_Setup() 
+function On_Change_Setup() 
 		
 	local enemy_expansion = game.map_settings.enemy_expansion
 	local unit_group = game.map_settings.unit_group
+	
+	-- Below 5% evolution, no expansion
+	if game.forces.enemy.evolution_factor > 0.05 and global.NE_Expansion.Settings.No_Expansion then
+		enemy_expansion.enabled = true
+	else
+		enemy_expansion.enabled = false
+	end
 		
-	global.enemy_expansion_G = enemy_expansion.enabled
-	global.max_expansion_distance_G = enemy_expansion.max_expansion_distance
-	global.settler_group_min_size_G = enemy_expansion.settler_group_min_size
-	global.settler_group_max_size_G = enemy_expansion.settler_group_max_size
-	global.min_expansion_cooldown_G = enemy_expansion.min_expansion_cooldown
-	global.max_expansion_cooldown_G = enemy_expansion.max_expansion_cooldown
+	
+	if not global.max_expansion_distance_G then
+		global.max_expansion_distance_G = 7 -- Vanilla 7
+	end
+		
+	if not global.settler_group_min_size_G then
+		global.settler_group_min_size_G = 5 -- Vanilla 5
+	end
+	
+	if not global.settler_group_max_size_G then
+		global.settler_group_max_size_G = 20 -- Vanilla 20
+	end
+	
+	if not global.min_expansion_cooldown_G then
+		global.min_expansion_cooldown_G = 4 -- 4 Min
+	end
+	
+	if not global.max_expansion_cooldown_G then
+		global.max_expansion_cooldown_G = 10 -- 10 Min
+	end
 	---
-	global.building_coefficient_G = enemy_expansion.building_coefficient
-	global.other_base_coefficient_G = enemy_expansion.other_base_coefficient
-	global.neighbouring_chunk_coefficient_G = enemy_expansion.neighbouring_chunk_coefficient
-	global.neighbouring_base_chunk_coefficient_G = enemy_expansion.neighbouring_base_chunk_coefficient
+	if not global.building_coefficient_G then
+		global.building_coefficient_G = 0.1 -- vanilla 0.1
+	end
+	
+	if not global.other_base_coefficient_G then
+		global.other_base_coefficient_G = 2.0 -- vanilla 2.0
+	end
+	
+	if not global.neighbouring_chunk_coefficient_G then
+		global.neighbouring_chunk_coefficient_G = 0.5 -- vanilla 0.5
+	end
+	
+	if not global.neighbouring_base_chunk_coefficient_G then
+		global.neighbouring_base_chunk_coefficient_G = 0.4 -- vanilla 0.4	
+	end
 	---
-	global.max_group_radius_G = unit_group.max_group_radius
-	global.min_group_radius_G = unit_group.min_group_radius
+	if not global.max_group_radius_G then
+		global.max_group_radius_G = 30 -- Vanilla 30
+	end
+	
+	if not global.min_group_radius_G then
+		global.min_group_radius_G = 5 -- Vanilla 5		
+	end	
+			
+		
+		
+	enemy_expansion.max_expansion_distance = global.max_expansion_distance_G	
+	enemy_expansion.settler_group_min_size = global.settler_group_min_size_G
+	enemy_expansion.settler_group_max_size = global.settler_group_max_size_G
+	enemy_expansion.min_expansion_cooldown = global.min_expansion_cooldown_G
+	enemy_expansion.max_expansion_cooldown = global.max_expansion_cooldown_G
+	---
+	enemy_expansion.building_coefficient = global.building_coefficient_G
+	enemy_expansion.other_base_coefficient = global.other_base_coefficient_G
+	enemy_expansion.neighbouring_chunk_coefficient = global.neighbouring_chunk_coefficient_G
+	enemy_expansion.neighbouring_base_chunk_coefficient = global.neighbouring_base_chunk_coefficient_G
+	---
+	unit_group.max_group_radius = global.max_group_radius_G
+	unit_group.min_group_radius = global.min_group_radius_G
 		
 end
 
@@ -373,11 +446,11 @@ global.Peace_Timer = evolution_Timer_Peace
 		-- Below 5% evolution, no expansion
 		if game.forces.enemy.evolution_factor > 0.05 and global.NE_Expansion.Settings.No_Expansion then
 			enemy_expansion.enabled = true
-			writeDebug("Condition 1: Rarget than 5% and Exp allowed")
+			writeDebug("Condition 1: Evo larger than 5% and Exp allowed")
 			writeDebug(game.map_settings.enemy_expansion.enabled)
 		else
 			enemy_expansion.enabled = false
-			writeDebug("Condition 2")
+			writeDebug("No Expansion")
 			writeDebug(game.map_settings.enemy_expansion.enabled)
 		end
 		
