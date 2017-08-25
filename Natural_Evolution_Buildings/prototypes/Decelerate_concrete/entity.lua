@@ -20,18 +20,18 @@ data:extend({
         main =
         {
           {
-            picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete1.png",
+            picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete1.png",
             count = 16,
             size = 1
           },
           {
-            picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete2.png",
+            picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete2.png",
             count = 4,
             size = 2,
             probability = 0.39,
           },
           {
-            picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete4.png",
+            picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete4.png",
             count = 4,
             size = 4,
             probability = 1,
@@ -39,27 +39,27 @@ data:extend({
         },
         inner_corner =
         {
-          picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete-inner-corner.png",
+          picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete-inner-corner.png",
           count = 32
         },
         outer_corner =
         {
-          picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete-outer-corner.png",
+          picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete-outer-corner.png",
           count = 16
         },
         side =
         {
-          picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete-side.png",
+          picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete-side.png",
           count = 16
         },
         u_transition =
         {
-          picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete-u.png",
+          picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete-u.png",
           count = 16
         },
         o_transition =
         {
-          picture = "__Natural_Evolution_Buildings__/graphics/entity/decelerate_concrete/concrete-o.png",
+          picture = "__Natural_Evolution_Buildings__/graphics/entities/decelerate_concrete/concrete-o.png",
           count = 1
         }
       },

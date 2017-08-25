@@ -7,7 +7,7 @@ NE_Enemies.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Co
 
 inv_extension2 =
 {
-	filename = "__Natural_Evolution_Buildings__/graphics/entity/Artifact-chest.png",
+	filename = "__Natural_Evolution_Buildings__/graphics/entities/Artifact-chest.png",
 	priority = "extra-high",
 	scale = 1,
 	width = 60,
@@ -49,7 +49,7 @@ data:extend(
 			vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
 			picture =
 			{
-				filename = "__Natural_Evolution_Buildings__/graphics/entity/Artifact-chest.png",
+				filename = "__Natural_Evolution_Buildings__/graphics/entities/Artifact-chest.png",
 				priority = "extra-high",
 				width = 60,
 				height = 100,

@@ -15,4 +15,29 @@ data:extend({
 		trigger_radius = 1.5
 	},
   
+  --- Long Range Turret
+    {
+		type = "item",
+		name = "NE-gun-turret",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
+		flags = {"goes-to-quickbar"},
+		subgroup = "defensive-structure",
+		order = "a[turret]-x[gun-turret]",
+		place_result = "NE-gun-turret",
+		stack_size = 50
+	},
+  
+    --- Dart Turret
+    {
+		type = "item",
+		name = "bio-turret",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
+		flags = {"goes-to-quickbar"},
+		subgroup = "defensive-structure",
+		order = "a[turret]-x[gun-turret]",
+		place_result = "bio-turret",
+		stack_size = 50
+  },
+  
+  
 })

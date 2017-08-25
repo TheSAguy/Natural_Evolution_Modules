@@ -69,7 +69,7 @@ data:extend({
     fast_replaceable_group = "assembling-machine",
 	animation =
 		{
-			filename = "__Natural_Evolution_Buildings__/graphics/entity/Alien_Hatchery.png",
+			filename = "__Natural_Evolution_Buildings__/graphics/entities/Alien_Hatchery/Alien_Hatchery.png",
 			priority = "high",
 			width = 128,
 			height = 128,

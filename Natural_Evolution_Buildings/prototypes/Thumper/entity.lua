@@ -35,7 +35,7 @@ data:extend({
     energy_usage = "50kW",
 	pictures =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/Thumper.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/Thumper.png",
 		priority = "high",
 		width = 60,
 		height = 60,

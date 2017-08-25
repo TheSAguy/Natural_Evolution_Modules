@@ -32,8 +32,16 @@ end
 
 
 --Detect N.E. Enemies
-if data.raw["unit"]["small-biter-Mk2"] ~= nil or data.raw["unit"]["small-spitter-Mk2"] ~= nil or data.raw["logistic-container"]["Artifact-collector-area"] ~= nil then
+if data.raw["unit"]["small-biter-Mk2"] ~= nil or data.raw["unit"]["small-spitter-Mk2"] ~= nil then
 	NE_Buildings_Config.mod.NEEnemies=true
 else 
 	NE_Buildings_Config.mod.NEEnemies=false
+end
+
+
+--Detect Endgame Combat
+if data.raw["recipe"]["concussion-turret"] ~= nil or data.raw["item"]["cannon-turret"] ~= nil then
+	NE_Buildings_Config.mod.EndgameCombat=true
+else 
+	NE_Buildings_Config.mod.EndgameCombat=false
 end

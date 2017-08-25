@@ -1,11 +1,11 @@
-local BUILDINGS_ver = '7.2.6'
+local BUILDINGS_ver = '7.3.0'
 local QC_Mod = false
 
 
 
 require ("util")
 require ("stdlib/event/event")
-
+require ("control_bio_cannon")
 
 if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
@@ -119,7 +119,6 @@ local function On_Init()
 	end
 	
 
- 
 ---- Evolution_MOD
 	if global.Evolution_MOD == nil then
       global.Evolution_MOD = {}
@@ -184,12 +183,12 @@ local function On_Init()
 	if global.Terraforming_Station_Table == nil then
 			global.Terraforming_Station_Table = {}
 	end
-	
+
+		
+	--- Settup Settings
 	if not global.NE_Buildings then global.NE_Buildings = {} end
 	if not global.NE_Buildings.Settings then global.NE_Buildings.Settings = {} end
 
-
-	--- Settup Settings
 	global.NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 	global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 	global.NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
@@ -210,7 +209,7 @@ local function On_Load()
 		end)
 		
 	end	
-	
+
 end
 
 
@@ -235,15 +234,19 @@ local function On_Config_Change()
 			global.Terraforming_Station_Table = {}
 	end
 	
-	if BUILDINGS_ver == '7.2.0' then 
-		game.surfaces[1].print("Please replace all your existing Artifact Collecors if you upgrading for 7.1.7 to 7.2.0 or higher")
+
+	if game.active_mods["EndgameCombat"] or game.active_mods['EndgameCombat'] or game.active_mods[EndgameCombat] then	
+		
+		for i, player in pairs(game.players) do
+			player.print(tostring("You have Endgame Combat Installed, not compatible with Natural Evolution Buildings"))
+		end
 	end
 	
+
+	--- Settup Settings	
 	if not global.NE_Buildings then global.NE_Buildings = {} end
 	if not global.NE_Buildings.Settings then global.NE_Buildings.Settings = {} end
 
-
-	--- Settup Settings
 	global.NE_Buildings.Settings.Conversion_Difficulty = settings.startup["NE_Conversion_Difficulty"].value
 	global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 	global.NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
@@ -403,6 +406,37 @@ local force = entity.force
 	end   
 
 	
+		
+	--- Bio Cannon (Hive Buster) has been built
+	if entity.valid and entity.name == "Bio_Cannon_Area" then
+	
+	local New_Bio_Cannon
+	local New_Bio_CannonR
+	
+	writeDebug("Bio Cannon has been built")				
+
+		New_Bio_Cannon  = surface.create_entity({name = "Bio_Cannon", position = position, direction = event.created_entity.direction, force = force})
+		New_Bio_CannonR = surface.create_entity({name = "Bio_Cannon_r", position = position, direction = event.created_entity.direction, force = force})
+
+		New_Bio_Cannon.health = event.created_entity.health
+		
+		event.created_entity.destroy()
+
+		
+		New_Bio_CannonR.operable = false
+		New_Bio_CannonR.destructible = false
+		New_Bio_CannonR.minable = false
+		
+		if global.Bio_Cannon_Table == nil then
+			global.Bio_Cannon_Table = {}
+			Event.register(defines.events.on_tick, function(event) end)
+		end
+
+		table.insert(global.Bio_Cannon_Table, {New_Bio_Cannon,New_Bio_CannonR,0})
+		
+	end
+
+
 	
 end
 
@@ -459,21 +493,6 @@ local function On_Remove(event)
 	end
 
 		
-		
-	--- Terraforming Station has been removed  (Legacy from 7.1.7) Should remove during next update.
-	if entity.valid and entity.name == "TerraformingStation_i"  then
-	
-
-		if global.Terraforming_Station_Table ~= nil then
-	
-			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
-			global.Terraforming_Station_Table[entity.unit_number] = nil
-			T_Count()				
-
-		end
-		
-	end
-
 		--- Terraforming Station has been removed
 	if entity.valid and entity.name == "TerraformingStation"   then
 		
@@ -499,8 +518,8 @@ end
 local function On_Death(event)
 
 	local entity = event.entity	
-
-	
+	local surface = entity.surface
+	local pos = entity.position	
 	
 	--Artifact collector
     if entity.valid and entity.name == "Artifact-collector" then
@@ -525,20 +544,6 @@ local function On_Death(event)
 		end
     end
 	
-		
-	--- Terraforming Station has been removed  (Legacy from 7.1.7) Should remove during next update.
-	if entity.valid and entity.name == "TerraformingStation_i"  then
-	
-
-		if global.Terraforming_Station_Table ~= nil then
-	
-			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
-			global.Terraforming_Station_Table[entity.unit_number] = nil
-			T_Count()				
-
-		end
-		
-	end
 
 		--- Terraforming Station has been removed
 	if entity.valid and entity.name == "TerraformingStation"   then
@@ -569,16 +574,45 @@ local function On_Death(event)
 	if entity.valid and (entity.type == "unit-spawner") and (entity.force == game.forces.enemy) and global.NE_Buildings.Settings.Battle_Marker then
 
 			writeDebug("Enemy Spawner Killed")
-			local surface = entity.surface
+
 			local force = event.force
-			local pos = entity.position
+
 
 			Battle_Marker = surface.create_entity({name = "battle_marker", position = pos, force = force})
 			Battle_Marker.destructible = false		
 
 	end
 
+	--- Conversion Turret
 	
+	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "ammo-turret" then 
+	
+		local name = entity.name
+
+			local inventory = event.cause.get_inventory(defines.inventory.turret_ammo)
+
+			if inventory then
+
+				local inventoryContent = inventory.get_contents()		
+				local AmmoType
+				local Ammo = 0
+				
+				if inventoryContent ~= nil then
+					for n,a in pairs(inventoryContent) do
+						AmmoType=n
+						Ammo=a
+					end
+				end
+				
+				writeDebug("Ammo Type: " .. AmmoType)
+				writeDebug("Ammo Count: " .. Ammo)
+				if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
+					Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
+					Convert.health = entity.prototype.max_health / 4
+				end
+			end	
+
+	end
 	
 	
 end
@@ -918,9 +952,15 @@ local function UpdateUnitsCommands(player_index)
 end
 
 
+  
+
+
+
+
 --------------------------------------------
 --- Living Wall Stuff
 Event.register(defines.events.on_tick, function(event)	
+
 
 	if game.tick % 60 == 0 and global.Living_Walls_Table ~= nil then
 

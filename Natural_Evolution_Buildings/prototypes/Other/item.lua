@@ -18,7 +18,7 @@ data:extend({
 	{
 		type = "item",
 		name = "attractor-on",
-		icon = "__Natural_Evolution_Buildings__/graphics/entity/attractor_on.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_on.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "Tools",
 		order = "a[attractor-on]",
@@ -27,7 +27,7 @@ data:extend({
   	{
 		type = "item",
 		name = "attractor-off",
-		icon = "__Natural_Evolution_Buildings__/graphics/entity/attractor_off.png",
+		icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_off.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "Tools",
 		order = "b[attractor-off]",

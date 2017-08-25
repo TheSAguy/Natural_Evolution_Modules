@@ -42,7 +42,7 @@ data:extend({
 				{"alien-artifact", 5},
 			},
 		  result = "Alien-Stimulant",
-		  result_count = 10,
+		  result_count = 15,
 		},
 		expensive =
 		{
@@ -53,7 +53,7 @@ data:extend({
 				{"alien-artifact", 5},
 			},
 		  result = "Alien-Stimulant",
-		  result_count = 8,
+		  result_count = 10,
 		},
 	}, 	
 	

@@ -6,7 +6,7 @@ return
         layers = 
         {
           {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-single.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-single.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -30,7 +30,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-variant-1.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -52,7 +52,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-variant-2.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -74,7 +74,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-variant-3.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -96,7 +96,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-variant-4.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -118,7 +118,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-variant-5.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -140,7 +140,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-variant-6.png",
             priority = "extra-high",
             width = 44,
             height = 84,
@@ -165,7 +165,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-1.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -187,7 +187,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-2.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -209,7 +209,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-3.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -231,7 +231,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-4.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -253,7 +253,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-5.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -275,7 +275,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-6.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -299,7 +299,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-1.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -321,7 +321,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-2.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -343,7 +343,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-3.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -365,7 +365,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-4.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -387,7 +387,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-5.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -409,7 +409,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-6.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -432,7 +432,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-1.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -454,7 +454,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-2.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -476,7 +476,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-3.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -498,7 +498,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-4.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -520,7 +520,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-5.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -542,7 +542,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-6.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -565,7 +565,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-1.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -587,7 +587,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-2.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -609,7 +609,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-3.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -631,7 +631,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-4.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -653,7 +653,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-5.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -675,7 +675,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-h-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-h-variant-6.png",
             priority = "extra-high",
             width = 64,
             height = 84,
@@ -698,7 +698,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-1.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -720,7 +720,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-2.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -742,7 +742,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-3.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -764,7 +764,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-4.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -786,7 +786,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-5.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -808,7 +808,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-6.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -831,7 +831,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-1.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-1.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -853,7 +853,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-2.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-2.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -875,7 +875,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-3.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-3.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -897,7 +897,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-4.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-4.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -919,7 +919,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-5.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-5.png",
             priority = "extra-high",
             width = 54,
             height = 84,
@@ -941,7 +941,7 @@ return
           layers =
           {
             {
-            filename = "__Natural_Evolution_Buildings__/graphics/entity/livingwall/biowall-cr-variant-6.png",
+            filename = "__Natural_Evolution_Buildings__/graphics/entities/livingwall/biowall-cr-variant-6.png",
             priority = "extra-high",
             width = 54,
             height = 84,

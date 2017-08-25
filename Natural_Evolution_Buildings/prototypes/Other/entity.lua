@@ -32,7 +32,7 @@
 		vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
 		pictures =
 		{
-		  filename = "__Natural_Evolution_Buildings__/graphics/entity/Battle_Marker.png",
+		  filename = "__Natural_Evolution_Buildings__/graphics/entities/Battle_Marker.png",
 		  line_length = 1,
 		  width = 160,
 		  height = 160,

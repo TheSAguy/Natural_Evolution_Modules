@@ -85,7 +85,7 @@ data:extend({
     },
     hand_base_picture =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-hand-base.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-inserter/inserter-hand-base.png",
       priority = "extra-high",
       width = 8,
       height = 34,
@@ -93,7 +93,7 @@ data:extend({
     },
     hand_closed_picture =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-hand-closed.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-inserter/inserter-hand-closed.png",
       priority = "extra-high",
       width = 18,
       height = 41,
@@ -101,7 +101,7 @@ data:extend({
     },
     hand_open_picture =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-hand-open.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-inserter/inserter-hand-open.png",
       priority = "extra-high",
       width = 18,
       height = 41,
@@ -132,7 +132,7 @@ data:extend({
     {
       sheet =
       {
-        filename = "__Natural_Evolution_Buildings__/graphics/entity/combat-inserter/inserter-platform.png",
+        filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-inserter/inserter-platform.png",
         priority = "extra-high",
         width = 46,
         height = 46,
