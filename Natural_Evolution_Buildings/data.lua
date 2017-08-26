@@ -72,27 +72,29 @@ require("prototypes.Armory.recipe")
 require("prototypes.Armory.entity") 
 require("prototypes.Armory.damage-type")
 require("prototypes.Armory.item-group")
+require("prototypes.Armory.technology-updates")
 
 thxbob.lib.tech.add_recipe_unlock ("military", "copper_bullets")
 thxbob.lib.tech.add_recipe_unlock ("military-2", "piercing_magazine_copper")
-thxbob.lib.tech.add_recipe_unlock ("military-3", "NE_gun_turret")
+
  
 ---------------------------------------------------------------
-    --- Bio Cannon - Hive Buster
-	-- Items Groups
-	require("prototypes.Bio_Cannon.item-group")
+ --- Bio Cannon - Hive Buster
+-- Items Groups
+require("prototypes.Bio_Cannon.item-group")
 
-	-- Cannon
-	require("prototypes.Bio_Cannon.item")
-	require("prototypes.Bio_Cannon.recipe")
-	require("prototypes.Bio_Cannon.entity")
-	require("prototypes.Bio_Cannon.technology")
+-- Cannon
+require("prototypes.Bio_Cannon.item")
+require("prototypes.Bio_Cannon.recipe")
+require("prototypes.Bio_Cannon.entity")
+require("prototypes.Bio_Cannon.technology")
 
-	-- Projectiles
-	require("prototypes.Bio_Cannon.projectiles-item")
-	require("prototypes.Bio_Cannon.projectiles-recipe")
-	require("prototypes.Bio_Cannon.projectiles-entity")
-
+-- Projectiles
+require("prototypes.Bio_Cannon.projectiles-item")
+require("prototypes.Bio_Cannon.projectiles-recipe")
+require("prototypes.Bio_Cannon.projectiles-entity")
+require("prototypes.Bio_Cannon.technology-updates")
+	
 ---------------------------------------------------------------
     --- Other - Building Materials, Attractors & Battle Marker
 
