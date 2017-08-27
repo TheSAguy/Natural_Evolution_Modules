@@ -11,6 +11,15 @@ end
 
 Bio_Ammo_Damage = settings.startup["NE_Bio_Ammo_Damage"].value
 
+table.insert(data.raw.technology["gun-turret-damage-1"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.1})
+table.insert(data.raw.technology["gun-turret-damage-2"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.1})
+table.insert(data.raw.technology["gun-turret-damage-3"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.2})
+table.insert(data.raw.technology["gun-turret-damage-4"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.2})
+table.insert(data.raw.technology["gun-turret-damage-5"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.2})
+table.insert(data.raw.technology["gun-turret-damage-6"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.4})
+table.insert(data.raw.technology["gun-turret-damage-7"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.7})
+
+
 
  --Ammo
 data:extend({
@@ -781,7 +790,7 @@ data:extend({
 	--selection_box = {{-1, -1 }, {1, 1}},
 	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
 	rotation_speed = 0.004,
-	prepare_range = 35,
+	prepare_range = 40,
 	preparing_speed = 0.012,
 	folding_speed = 0.012,
 	dying_explosion = "medium-explosion",

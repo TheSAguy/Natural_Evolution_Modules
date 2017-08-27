@@ -97,7 +97,7 @@ data:extend({
     selection_box = {{-1.3, -1.7}, {3.0, 1.5}},
 	collision_mask = {},
 	order = "b[TerraformingStation]-a[TerraformingStation]",
-    energy_per_sector = "14.67MJ",
+    energy_per_sector = "12.00MJ",
     max_distance_of_nearby_sector_revealed = 5,
     max_distance_of_sector_revealed = 12,
     energy_per_nearby_scan = "400kW",
