@@ -782,7 +782,7 @@ data:extend({
     name = "NE-gun-turret",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
    	flags = {"placeable-player", "player-creation"},
-	minable = {mining_time = 0.5, result = entity_name},
+	minable = {mining_time = 0.5, result = "NE-gun-turret"},
 	max_health = 400,
 	corpse = "medium-remnants",
 	--collision_box = {{-0.7, -0.7 }, {0.7, 0.7}},

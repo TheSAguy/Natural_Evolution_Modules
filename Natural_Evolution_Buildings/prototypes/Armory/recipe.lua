@@ -439,7 +439,7 @@ data:extend({
 			energy_required = 8,
 			ingredients = 
 			{
-			  {"iron-gear-wheel", 10},
+			  {"electronic-circuit", 10},
 			  {"gun-turret", 1},
 			  {"steel-plate", 10}
 			},
@@ -453,7 +453,7 @@ data:extend({
 			energy_required = 16,
 			ingredients = 
 			{
-			  {"iron-gear-wheel", 10},
+			  {"electronic-circuit", 10},
 			  {"gun-turret", 2},
 			  {"steel-plate", 10}
 			},
