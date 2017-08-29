@@ -428,6 +428,43 @@ data:extend({
 	}, 	
 	
 ----------------------------------------------------------------	
+
+  
+	--- Dart Turret
+  {
+    type = "recipe",
+    name = "bio_turret",
+    	
+	normal =
+		{
+			enabled = true,
+			energy_required = 8,
+			ingredients = 
+			{
+			  {"iron-gear-wheel", 5},
+			  {"raw-wood", 20},
+			},
+		  result = "bio-turret",
+		  result_count = 1,
+		},
+	
+		expensive =
+		{
+			enabled = true,
+			energy_required = 16,
+			ingredients = 
+			{
+			  {"iron-gear-wheel", 10},
+			  {"raw-wood", 25},
+			},
+		  result = "bio-turret",
+		  result_count = 1,
+		},
+	
+
+  },
+	
+	
 	--- Long Range Turret
   {
     type = "recipe",
@@ -464,42 +501,44 @@ data:extend({
 
   },
 
-	--- Dart Turret
+  
+  	--- Rocket Turret
   {
     type = "recipe",
-    name = "bio_turret",
+    name = "NE_rocket_turret",
     	
 	normal =
 		{
-			enabled = true,
+			enabled = false,
 			energy_required = 8,
 			ingredients = 
 			{
-			  {"iron-gear-wheel", 5},
-			  {"raw-wood", 20},
+			  {"electronic-circuit", 10},
+			  {"NE-gun-turret", 1},
+			  {"steel-plate", 10}
 			},
-		  result = "bio-turret",
+		  result = "NE-rocket-turret",
 		  result_count = 1,
 		},
 	
 		expensive =
 		{
-			enabled = true,
+			enabled = false,
 			energy_required = 16,
 			ingredients = 
 			{
-			  {"iron-gear-wheel", 10},
-			  {"raw-wood", 25},
+			  {"electronic-circuit", 10},
+			  {"NE-gun-turret", 2},
+			  {"steel-plate", 10}
 			},
-		  result = "bio-turret",
+		  result = "NE-rocket-turret",
 		  result_count = 1,
 		},
 	
 
   },
-	
-	
-	
+
+
 	
 	
 })

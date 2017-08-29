@@ -4,7 +4,7 @@ data:extend(
   {
     type = "unit",
     name = "tame-small-spitter",
-    icon = "__base__/graphics/icons/creeper.png",
+	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-spitter_32.png",
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 10,
 	order = "001",
@@ -40,7 +40,7 @@ data:extend(
   {
     type = "unit",
     name = "tame-medium-spitter",
-    icon = "__base__/graphics/icons/creeper.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-spitter_32.png",
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 50,
 	order = "002",
@@ -84,7 +84,7 @@ data:extend(
   {
     type = "unit",
     name = "tame-big-spitter",
-    icon = "__base__/graphics/icons/creeper.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/big-spitter_32.png",
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 200,
 	order = "003",
@@ -133,7 +133,7 @@ data:extend(
   {
     type = "unit",
     name = "tame-behemoth-spitter",
-    icon = "__base__/graphics/icons/creeper.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-spitter_32.png",
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 2000,
 	order = "204",

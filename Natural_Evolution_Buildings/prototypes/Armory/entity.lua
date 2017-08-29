@@ -20,6 +20,15 @@ table.insert(data.raw.technology["gun-turret-damage-6"].effects,{type = "turret-
 table.insert(data.raw.technology["gun-turret-damage-7"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.7})
 
 
+table.insert(data.raw.technology["gun-turret-damage-1"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.1})
+table.insert(data.raw.technology["gun-turret-damage-2"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.1})
+table.insert(data.raw.technology["gun-turret-damage-3"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.2})
+table.insert(data.raw.technology["gun-turret-damage-4"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.2})
+table.insert(data.raw.technology["gun-turret-damage-5"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.2})
+table.insert(data.raw.technology["gun-turret-damage-6"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.4})
+table.insert(data.raw.technology["gun-turret-damage-7"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.7})
+
+
 
  --Ammo
 data:extend({
@@ -658,7 +667,7 @@ data:extend({
 
 
 --- NE Turret Pictires
-function base_picture()
+function base_picture(tint)
 return
 {
 	layers =
@@ -671,13 +680,14 @@ return
 		 axially_symmetrical = false,
 		 direction_count = 1,
 		 frame_count = 1,
+		 tint = tint,
 	  }
 	}
  }
 end
 
 
-function preparing_animation()
+function preparing_animation(tint)
 	return {layers = {{
 		priority = "medium",
 		width = 256,
@@ -687,11 +697,12 @@ function preparing_animation()
 		line_length = 8, -- folding[3],
 		run_mode = "forward",
 		axially_symmetrical = false,
+		tint = tint,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 		}}}
 end
 
-function prepared_animation(frame_count)
+function prepared_animation(tint)
 	return {layers = {{
 		priority = "medium",
 		width = 256,
@@ -700,11 +711,12 @@ function prepared_animation(frame_count)
 		frame_count = 1, -- -- always 1
 		line_length = 8, -- main [3],
 		axially_symmetrical = false,
+		tint = tint,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
 		}}}
 end
 
-function attacking_animation()
+function attacking_animation(tint)
 	return {layers = {{
 		priority = "medium",
 		width = 256,
@@ -714,11 +726,12 @@ function attacking_animation()
 		line_length = 8, -- main [3],
 		run_mode = "forward",
 		axially_symmetrical = false,
+		tint = tint,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
 		}}}
 end
 
-function folding_animation()
+function folding_animation(tint)
 	return {layers = {{
 		priority = "medium",
 		width = 256,
@@ -728,11 +741,12 @@ function folding_animation()
 		line_length = 8, -- folding[3],
 		run_mode = "backward",
 		axially_symmetrical = false,
+		tint = tint,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 }}}
 end
 
-function folded_animation()
+function folded_animation(tint)
 	return {layers = {{
 		priority = "medium",
 		width = 256,
@@ -742,6 +756,7 @@ function folded_animation()
 		line_length = 1,
 		run_mode = "forward",
 		axially_symmetrical = false,
+		tint = tint,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 		}}}
 end
@@ -771,56 +786,10 @@ return
 }
 end
 
-
-
+NE_gun_turret_tint = {r=0, g=0, b=0, a=1}
+NE_rocket_turret_tint = {r=255, g=50, b=50, a=1}
 --- Turret
 data:extend({ 
-
- --- Long Range turret
-  {
-    type = "ammo-turret",
-    name = "NE-gun-turret",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
-   	flags = {"placeable-player", "player-creation"},
-	minable = {mining_time = 0.5, result = "NE-gun-turret"},
-	max_health = 400,
-	corpse = "medium-remnants",
-	--collision_box = {{-0.7, -0.7 }, {0.7, 0.7}},
-	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
-	--selection_box = {{-1, -1 }, {1, 1}},
-	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
-	rotation_speed = 0.004,
-	prepare_range = 40,
-	preparing_speed = 0.012,
-	folding_speed = 0.012,
-	dying_explosion = "medium-explosion",
-	inventory_size = 1,
-	automated_ammo_count = 10,
-	attacking_speed = 1/2/3.75, --0.02, -- just animation
-	base_picture = base_picture (),
-
-	preparing_animation = preparing_animation(),
-	prepared_animation = prepared_animation(),
-	attacking_animation = attacking_animation(),
-	folding_animation =folding_animation(),
-	folded_animation = folded_animation(),
-	
-	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
-    
-	attack_parameters =
-		{
-		type = "projectile",
-		ammo_category = "bullet",
-		cooldown = 30, -- in ticks; 60 is 1 shoot / sec
-		projectile_creation_distance = 3.4, 
-		projectile_center = {0,0},
-		range = 34,
-		sound = make_heavy_gunshot_sounds(),
-		damage_modifier = 3.1
-		},
-
-	call_for_help_radius = 40
-	},
  
  --- Dart Turret
   {
@@ -871,8 +840,99 @@ data:extend({
     call_for_help_radius = 40
   },
  
+  --- Long Range turret
+  {
+    type = "ammo-turret",
+    name = "NE-gun-turret",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
+   	flags = {"placeable-player", "player-creation"},
+	minable = {mining_time = 0.5, result = "NE-gun-turret"},
+	max_health = 400,
+	corpse = "medium-remnants",
+	--collision_box = {{-0.7, -0.7 }, {0.7, 0.7}},
+	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
+	--selection_box = {{-1, -1 }, {1, 1}},
+	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
+	rotation_speed = 0.004,
+	prepare_range = 50,
+	preparing_speed = 0.012,
+	folding_speed = 0.012,
+	dying_explosion = "medium-explosion",
+	inventory_size = 1,
+	automated_ammo_count = 10,
+	attacking_speed = 1/2/3.75, --0.02, -- just animation
+	base_picture = base_picture (NE_gun_turret_tint),
 
+	preparing_animation = preparing_animation(NE_gun_turret_tint),
+	prepared_animation = prepared_animation(NE_gun_turret_tint),
+	attacking_animation = attacking_animation(NE_gun_turret_tint),
+	folding_animation =folding_animation(NE_gun_turret_tint),
+	folded_animation = folded_animation(NE_gun_turret_tint),
+	
+	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
+    
+	attack_parameters =
+		{
+		type = "projectile",
+		ammo_category = "bullet",
+		cooldown = 30, -- in ticks; 60 is 1 shoot / sec
+		projectile_creation_distance = 3.4, 
+		projectile_center = {0,0},
+		range = 40,
+		sound = make_heavy_gunshot_sounds(),
+		damage_modifier = 3.1
+		},
+
+	call_for_help_radius = 40
+	},
  
+
+ --- Rocket turret
+  {
+    type = "ammo-turret",
+    name = "NE-rocket-turret",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_rocket_turret_icon.png",
+   	flags = {"placeable-player", "player-creation"},
+	minable = {mining_time = 0.5, result = "NE-rocket-turret"},
+	max_health = 500,
+	corpse = "medium-remnants",
+	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
+	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
+	rotation_speed = 0.004,
+	prepare_range = 50,
+	preparing_speed = 0.012,
+	folding_speed = 0.012,
+	dying_explosion = "medium-explosion",
+	inventory_size = 1,
+	automated_ammo_count = 10,
+	attacking_speed = 1/2/3.75, --0.02, -- just animation
+	base_picture = base_picture (NE_rocket_turret_tint),
+
+	preparing_animation = preparing_animation(NE_rocket_turret_tint),
+	prepared_animation = prepared_animation(NE_rocket_turret_tint),
+	attacking_animation = attacking_animation(NE_rocket_turret_tint),
+	folding_animation =folding_animation(NE_rocket_turret_tint),
+	folded_animation = folded_animation(NE_rocket_turret_tint),
+	
+	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
+    
+	attack_parameters =
+		{
+		type = "projectile",
+		ammo_category = "rocket",
+		cooldown = 40, -- in ticks; 60 is 1 shoot / sec
+		projectile_creation_distance = 3.4, 
+		projectile_center = {0,0},
+		range = 40,
+		min_range = 20,
+		sound = make_heavy_gunshot_sounds(),
+		damage_modifier = 2.5
+		},
+
+	call_for_help_radius = 40
+	},
+ 
+
  
  
 })

@@ -14,6 +14,18 @@ data:extend({
 		stack_size = 100,
 		trigger_radius = 1.5
 	},
+	
+      --- Dart Turret
+    {
+		type = "item",
+		name = "bio-turret",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
+		flags = {"goes-to-quickbar"},
+		subgroup = "defensive-structure",
+		order = "b[turret]-x[gun-turret]",
+		place_result = "bio-turret",
+		stack_size = 50
+  },
   
   --- Long Range Turret
     {
@@ -22,22 +34,24 @@ data:extend({
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "defensive-structure",
-		order = "a[turret]-x[gun-turret]",
+		order = "c[turret]-x[NE-gun-turret]",
 		place_result = "NE-gun-turret",
 		stack_size = 50
 	},
-  
-    --- Dart Turret
+
+  --- Rocket Turret
     {
 		type = "item",
-		name = "bio-turret",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
+		name = "NE-rocket-turret",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_rocket_turret_icon.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "defensive-structure",
-		order = "a[turret]-x[gun-turret]",
-		place_result = "bio-turret",
+		order = "d[turret]-x[NE-rocket-turret]",
+		place_result = "NE-rocket-turret",
 		stack_size = 50
-  },
+	},
   
+	
+
   
 })
