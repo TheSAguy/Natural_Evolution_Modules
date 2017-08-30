@@ -36,7 +36,24 @@ data:extend(
 				{
 					type = "fire",
 					percent = 70
-				}
+				},
+				{
+					type = "physical",
+					percent = 70
+				},
+				{
+					type = "acid",
+					percent = 70
+				},
+				{
+					type = "explosion",
+					percent = 70
+				},
+				{
+					type = "poison",
+					percent = 70
+				},
+				
 			},
 			collision_box = {{-0.35, -0.35}, {0.35, 0.35}},
 			selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
