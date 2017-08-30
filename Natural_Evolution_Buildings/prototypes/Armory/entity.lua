@@ -786,8 +786,8 @@ return
 }
 end
 
-NE_gun_turret_tint = {r=0, g=0, b=0, a=1}
-NE_rocket_turret_tint = {r=255, g=50, b=50, a=1}
+NE_gun_turret_tint = {r=1/255, g=255/255, b=1/255, a=255/255}
+NE_rocket_turret_tint = {r=255/255, g=1/255, b=1/255, a=255/255}
 --- Turret
 data:extend({ 
  
