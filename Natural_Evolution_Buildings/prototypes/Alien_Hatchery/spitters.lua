@@ -141,20 +141,8 @@ data:extend(
     resistances =
     {
       {
-        type = "physical",
-        percent = 50,
-      },
-      {
-        type = "laser",
-        percent = 50,
-      },
-      {
-        type = "acid",
-        percent = 50,
-      },
-	  {
         type = "explosion",
-        percent = 30
+        percent = 35
       }
     },
     spawning_time_modifier = 8,

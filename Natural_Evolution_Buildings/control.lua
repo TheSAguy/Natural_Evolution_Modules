@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '7.3.4'
+local BUILDINGS_ver = '7.3.5'
 local QC_Mod = false
 
 
@@ -453,8 +453,8 @@ local function On_Death(event)
 				end
 			end
 				
-			writeDebug("Ammo Type: " .. AmmoType)
-			writeDebug("Ammo Count: " .. Ammo)
+			--writeDebug("Ammo Type: " .. AmmoType)
+			--writeDebug("Ammo Count: " .. Ammo)
 			if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
 				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
 				Convert.health = entity.prototype.max_health / 4
@@ -484,8 +484,8 @@ local function On_Death(event)
 				end
 			end
 				
-			writeDebug("Ammo Type: " .. AmmoType)
-			writeDebug("Ammo Count: " .. Ammo)
+			--writeDebug("Ammo Type: " .. AmmoType)
+			--writeDebug("Ammo Count: " .. Ammo)
 			if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
 				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
 				Convert.health = entity.prototype.max_health / 4
