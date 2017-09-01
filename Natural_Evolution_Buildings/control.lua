@@ -1,5 +1,5 @@
-local BUILDINGS_ver = '7.3.5'
-local QC_Mod = false
+local BUILDINGS_ver = '7.3.6'
+local QC_Mod = true
 
 
 
@@ -413,7 +413,6 @@ local function On_Death(event)
 	end
 	
 
-
    --- Alien Control Station has been removed
 	if entity.valid and entity.name == "AlienControlStation" then
 		ACS_Remove()
@@ -433,8 +432,8 @@ local function On_Death(event)
 
 	end
 
-	--- Conversion Turret
 	
+	--- Conversion Turret	
 	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "ammo-turret" then 
 	
 		local name = entity.name
@@ -465,14 +464,26 @@ local function On_Death(event)
 
 
 	--- Conversion Player Ammo
+	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "player" and event.cause.character then 
 	
-	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "player" then 
 	
 		local name = entity.name
 		local inventory = event.cause.get_inventory(defines.inventory.player_ammo)
 
 		if inventory then
 
+		    local current_ammo = inventory[event.cause.character.selected_gun_index]
+			local current_gun = event.cause.get_inventory(defines.inventory.player_gun)[event.cause.character.selected_gun_index] 
+		
+		
+
+--         if current_ammo.valid_for_read   and current_gun.valid_for_read
+		 
+		 
+		
+			writeDebug("Ammo Type: " .. current_ammo)
+			writeDebug("Ammo Count: " .. current_gun)
+			--[[
 			local inventoryContent = inventory.get_contents()		
 			local AmmoType
 			local Ammo = 0
@@ -490,6 +501,7 @@ local function On_Death(event)
 				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
 				Convert.health = entity.prototype.max_health / 4
 			end
+			]]
 		end	
 
 	end
