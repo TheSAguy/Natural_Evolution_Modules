@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '7.3.6'
+local BUILDINGS_ver = '7.3.7'
 local QC_Mod = false
 
 
@@ -119,9 +119,7 @@ local function On_Init()
 	global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 	global.NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
 	global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
-	global.NE_Buildings.Settings.Artifact_Item_Count = settings.startup["NE_Artifact_Item_Count"].value
-
-	
+		
 end
 		 
 
@@ -178,9 +176,7 @@ local function On_Config_Change()
 	global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 	global.NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
 	global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
-	global.NE_Buildings.Settings.Artifact_Item_Count = settings.startup["NE_Artifact_Item_Count"].value
-
-	
+		
 end
 
 
@@ -585,7 +581,7 @@ end)
 
 ----------------------------------------
 script.on_configuration_changed(On_Config_Change)
-script.on_load(On_Load)
+--script.on_load(On_Load)
 script.on_init(On_Init)
 
 
