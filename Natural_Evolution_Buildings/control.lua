@@ -1,5 +1,5 @@
 local BUILDINGS_ver = '7.3.6'
-local QC_Mod = true
+local QC_Mod = false
 
 
 
@@ -22,6 +22,17 @@ if not global.NE_Buildings then global.NE_Buildings = {} end
 if not global.NE_Buildings.Settings then global.NE_Buildings.Settings = {} end
 global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 
+--- Conversion Ammo Types
+local AMMO_TYPES = {
+   ["basic-dart-magazine_c"] = true,
+   ["enhanced-dart-magazine_c"] = true,
+   ["firearm-magazine_c"] = true,
+   ["copper-bullet-magazine_c"] = true,
+   ["piercing-rounds-magazine_c"] = true,
+   ["uranium-rounds-magazine_c"] = true,
+   ["Biological-bullet-magazine_c"] = true,
+}
+
 
 
 ---------------------------------------------				 
@@ -29,14 +40,9 @@ local function On_Init()
  writeDebug("NE Buildings Initialize")
  
  	--- Artifact Collector
- 	if global.ArtifactCollectors ~= nil then
-		
-		Event.register(defines.events.on_tick, function(event)	
-			ticker(event.tick)
-		end)
-		global.update_check = true
-        global.next_collector = global.next_collector or 1
-	end
+	global.world = {}
+	global.world.itemCollectorLookup = {}
+	global.world.itemCollectorEvents = {}
 	
 
 ---- Evolution_MOD
@@ -122,13 +128,7 @@ end
 ---------------------------------------------				 
 local function On_Load()
 
-	if global.ArtifactCollectors ~= nil then
-		
-		Event.register(defines.events.on_tick, function(event)	
-			ticker(event.tick)
-		end)
-		
-	end	
+
 
 end
 
@@ -136,7 +136,14 @@ end
 ---------------------------------------------				 
 local function On_Config_Change()
 
-
+ 	--- Artifact Collector
+	if global.world == nil then
+		global.world = {}
+		global.world.itemCollectorLookup = {}
+		global.world.itemCollectorEvents = {}
+	end
+	
+	
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
 		for _, tech in pairs(force.technologies) do
@@ -187,19 +194,51 @@ local force = entity.force
 
 
 	
-	--- Artifact Collector	
-	local newCollector
-	if entity.valid and entity.name == "Artifact-collector-area" then
+	--- Artifact Collector	- Thanks to Veden for letting me use this code!
 	
-		newCollector = surface.create_entity({name = "Artifact-collector", position = position, force = force})
-		entity.destroy()
-		
-		if global.ArtifactCollectors == nil then
-			subscribe_ticker(event.tick)
+    if (entity.name == "Artifact-collector-area") then 
+
+	local x = entity.position.x
+	local y = entity.position.y
+	local chest
+
+	if (entity.name == "Artifact-collector-area") then
+	    entity.destroy()
+	    chest = surface.create_entity({name = "Artifact-collector",
+					   position = position,
+					   force = force})
+		position_r = {position.x + 1, position.y}
+	    entity = surface.create_entity({name="Artifact-collector_r",
+					    position = position_r,
+					    force = force})
+
+	else	    
+	    local ghosts = surface.find_entities_filtered({name="entity-ghost",
+							   area={{x=x-1,
+								  y=y-1},
+							       {x=x+1,
+								y=y+1}},
+							   limit=1})
+	    if (#ghosts > 0) then
+		local ghost = ghosts[1]
+		if (ghost.ghost_name == "Artifact-collector") then
+		    local conflicts
+		    conflicts, chest = ghost.revive()
 		end
-		table.insert(global.ArtifactCollectors, newCollector)
+	    else
+		chest = surface.create_entity({name = "Artifact-collector",
+					       position = position,
+					       force = force})
+	    end
 	end
-		
+	if chest and chest.valid then
+	    local pair = { chest, entity }
+	    global.world.itemCollectorLookup[chest.unit_number] = pair
+	    global.world.itemCollectorLookup[entity.unit_number] = pair
+	    entity.backer_name = ""
+	end
+    end	
+
 	
 	--- Living Wall built
 	if entity.valid and entity.name == "ne-living-wall" then
@@ -233,7 +272,7 @@ local force = entity.force
 
 	
    --- Terraforming Station has been built
-	if entity.valid and entity.name == "TerraformingStation" then
+	if entity.valid and entity.name == "TerraformingStation_New" then
 	
 		if global.numTerraformingStations < 0 then
 			global.numTerraformingStations = 0
@@ -244,14 +283,15 @@ local force = entity.force
 		global.factormultiplier = GetFactorPerTerraformingStation(global.numTerraformingStations)
 		writeDebug("The the number of Terraforming Stations: " .. global.numTerraformingStations)
 	  
-		T_Station_Radar = surface.create_entity({name = "TerraformingStation_r", position = position, direction = event.created_entity.direction, force = force})
+		position_c = {position.x - 1.7, position.y + 1.7}
+		T_Station_Container = surface.create_entity({name = "TerraformingStation_c", position = position_c, direction = event.created_entity.direction, force = force})
 	
-		T_Station_Radar.operable = false
-		T_Station_Radar.destructible = false
-		T_Station_Radar.minable = false
-			
-		global.Terraforming_Station_Table[entity.unit_number] = {inventory=entity, radar=T_Station_Radar}
-	    writeDebug("The Unit # is: "..entity.unit_number)
+		T_Station_Container.minable = false
+		T_Station_Container.set_request_slot({name = "Alien-Stimulant", count = "10"}, 1)		
+	
+		global.Terraforming_Station_Table[entity.unit_number] = {radar=entity, inventory=T_Station_Container}
+	    writeDebug("The Radar # is: "..entity.unit_number)
+		writeDebug("The Container # is: "..T_Station_Container.unit_number)
 	  
 	end   
 
@@ -311,32 +351,33 @@ local function On_Remove(event)
 		end
 	end
 	
-	  
-	  
-    --Artifact collector
-    if entity.valid and entity.name == "Artifact-collector" then
+	--- Artifact Collector	- Thanks to Veden for letting me use this code!
+    if (entity.name == "Artifact-collector") then 
+	local pair = global.world.itemCollectorLookup[entity.unit_number]
+	if pair then
+	    local chest = pair[1]
+	    local dish = pair[2]
 
-        local artifacts = global.ArtifactCollectors;
-		if artifacts then 
-			for i=1,#artifacts do
-				if artifacts[i] == entity then
-					table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
-					if global.next_collector > (#artifacts) then global.next_collector = (#artifacts) end 
-					break
-				end
-			end
-		
-			if #artifacts == 0 then
-			--and here artifacts=nil would not cut it.
-				global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-				
-				Event.register(defines.events.on_tick, nil)
-				--but it's surely better done here than during on_tick
-			end
-		end 
+	    if chest and chest.valid then
+		global.world.itemCollectorLookup[chest.unit_number] = nil
+		if destroyed and (entity == chest) then
+		    chest.die()
+		elseif (entity ~= chest) then
+		    chest.destroy()
+		end
+	    end
+	    if dish and dish.valid then
+		global.world.itemCollectorLookup[dish.unit_number] = nil
+		if destroyed and (entity ~= dish) then
+		    dish.die()
+		elseif (entity ~= dish) then
+		    dish.destroy()
+		end
+	    end
+	end
     end
 	
-  
+
    --- Alien Control Station has been removed
 	if entity.valid and entity.name == "AlienControlStation" then
 		ACS_Remove()
@@ -344,19 +385,11 @@ local function On_Remove(event)
 
 		
 		--- Terraforming Station has been removed
-	if entity.valid and entity.name == "TerraformingStation"   then
+	if entity.valid and entity.name == "TerraformingStation_New"   then
 		
-		if global.Terraforming_Station_Table[entity.unit_number] == nil then 
-		--Legacy from 7.1.5 Should remove during next update.
-			T_Count()
-
-		else 
-		
-			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
-			global.Terraforming_Station_Table[entity.unit_number] = nil
-			T_Count()	
-
-		end
+		global.Terraforming_Station_Table[entity.unit_number].inventory.destroy()
+		global.Terraforming_Station_Table[entity.unit_number] = nil
+		T_Count()	
 		
 	end
 	
@@ -370,45 +403,42 @@ local function On_Death(event)
 	local entity = event.entity	
 	local surface = entity.surface
 	local pos = entity.position	
-	
-	--Artifact collector
-    if entity.valid and entity.name == "Artifact-collector" then
 
-        local artifacts=global.ArtifactCollectors;
-		if artifacts then 
-			for i=1,#artifacts do
-				if artifacts[i] == entity then
-					table.remove(artifacts,i);--yep, that'll remove value from global.ArtifactCollectors
-					if global.next_collector > (#artifacts) then global.next_collector = (#artifacts) end 
-					break
-				end
+	
+
+
+  	--Artifact collector
+    if (entity.name == "Artifact-collector") then 
+		local pair = global.world.itemCollectorLookup[entity.unit_number]
+		if pair then
+			local chest = pair[1]
+			local dish = pair[2]
+
+			if chest and chest.valid then
+			global.world.itemCollectorLookup[chest.unit_number] = nil
+			if destroyed and (entity == chest) then
+				chest.die()
+			elseif (entity ~= chest) then
+				chest.destroy()
 			end
-		 
-			if #artifacts == 0 then
-			--and here artifacts=nil would not cut it.
-				global.ArtifactCollectors = nil--I'm not sure this wins much, on it's own
-				
-				Event.register(defines.events.on_tick, nil)
-				--but it's surely better done here than during on_tick
+			end
+			if dish and dish.valid then
+			global.world.itemCollectorLookup[dish.unit_number] = nil
+			if destroyed and (entity ~= dish) then
+				dish.die()
+			elseif (entity ~= dish) then
+				dish.destroy()
+			end
 			end
 		end
     end
 	
-
-		--- Terraforming Station has been removed
-	if entity.valid and entity.name == "TerraformingStation"   then
+	--- Terraforming Station has been removed
+	if entity.valid and entity.name == "TerraformingStation_New"   then
 		
-		if global.Terraforming_Station_Table[entity.unit_number] == nil then 
-		--Legacy from 7.1.5 Should remove during next update.
-			T_Count()
-
-		else 
-		
-			global.Terraforming_Station_Table[entity.unit_number].radar.destroy()
-			global.Terraforming_Station_Table[entity.unit_number] = nil
-			T_Count()	
-
-		end
+		global.Terraforming_Station_Table[entity.unit_number].inventory.destroy()
+		global.Terraforming_Station_Table[entity.unit_number] = nil
+		T_Count()	
 		
 	end
 	
@@ -422,90 +452,57 @@ local function On_Death(event)
  	--------- Spawner killed
 	if entity.valid and (entity.type == "unit-spawner") and (entity.force == game.forces.enemy) and global.NE_Buildings.Settings.Battle_Marker then
 
-			writeDebug("Enemy Spawner Killed")
+		writeDebug("Enemy Spawner Killed")
+		local force = event.force
 
-			local force = event.force
-
-
-			Battle_Marker = surface.create_entity({name = "battle_marker", position = pos, force = force})
-			Battle_Marker.destructible = false		
+		Battle_Marker = surface.create_entity({name = "battle_marker", position = pos, force = force})
+		Battle_Marker.destructible = false		
 
 	end
 
 	
-	--- Conversion Turret	
-	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "ammo-turret" then 
-	
-		local name = entity.name
-		local inventory = event.cause.get_inventory(defines.inventory.turret_ammo)
+	--- Conversion Ammo Stuff
+	local ammo
 
-		if inventory then
+	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause then 
 
-			local inventoryContent = inventory.get_contents()		
-			local AmmoType
-			local Ammo = 0
-				
-			if inventoryContent ~= nil then
-				for n,a in pairs(inventoryContent) do
-					AmmoType=n
-					Ammo=a
+		if event.cause.type == "ammo-turret" then
+		
+			local inventory = event.cause.get_inventory(defines.inventory.turret_ammo)
+			
+			if inventory then
+				local inventoryContent = inventory.get_contents()		
+				local AmmoType
+					
+				if inventoryContent ~= nil then
+					for n,a in pairs(inventoryContent) do
+						AmmoType=n
+					end
 				end
-			end
-				
-			--writeDebug("Ammo Type: " .. AmmoType)
-			--writeDebug("Ammo Count: " .. Ammo)
-			if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
-				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
-				Convert.health = entity.prototype.max_health / 4
-			end
-		end	
 
-	end
-
-
-	--- Conversion Player Ammo
-	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "player" and event.cause.character then 
-	
-	
-		local name = entity.name
-		local inventory = event.cause.get_inventory(defines.inventory.player_ammo)
-
-		if inventory then
-
-		    local current_ammo = inventory[event.cause.character.selected_gun_index]
-			local current_gun = event.cause.get_inventory(defines.inventory.player_gun)[event.cause.character.selected_gun_index] 
-		
-		
-
---         if current_ammo.valid_for_read   and current_gun.valid_for_read
-		 
-		 
-		
-			writeDebug("Ammo Type: " .. current_ammo)
-			writeDebug("Ammo Count: " .. current_gun)
-			--[[
-			local inventoryContent = inventory.get_contents()		
-			local AmmoType
-			local Ammo = 0
-				
-			if inventoryContent ~= nil then
-				for n,a in pairs(inventoryContent) do
-					AmmoType=n
-					Ammo=a
+				if AMMO_TYPES[AmmoType] then
+					
+					local Convert = surface.create_entity({name = entity.name, position = pos, force = event.cause.force.name})
+					Convert.health = entity.prototype.max_health / 4
 				end
+			  
 			end
-				
-			--writeDebug("Ammo Type: " .. AmmoType)
-			--writeDebug("Ammo Count: " .. Ammo)
-			if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
-				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
-				Convert.health = entity.prototype.max_health / 4
+			
+		elseif event.cause.type == "player" then
+
+			local character = event.cause
+			local index = character.selected_gun_index
+			ammo = character.get_inventory(defines.inventory.player_ammo)[index]
+		  
+			if ammo and ammo.valid_for_read and AMMO_TYPES[ammo.name] then
+
+			local Convert = surface.create_entity({name = entity.name, position = pos, force = event.cause.force.name})
+			Convert.health = entity.prototype.max_health / 4
 			end
-			]]
-		end	
+	   end
 
 	end
-		
+	
 	
 end
 
@@ -514,9 +511,9 @@ end
 script.on_event(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
-	if event.radar.name == "TerraformingStation_r" then
+	if event.radar.name == "TerraformingStation_New" then
 		writeDebug("The Unit # is: "..event.radar.unit_number)
-		local num = (event.radar.unit_number - 1)
+		local num = (event.radar.unit_number)
 		Reduce_Evolution(global.Terraforming_Station_Table[num])
 		
 	end
@@ -527,6 +524,14 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 		event.radar.surface.set_multi_command{command = {type=defines.command.attack, target=event.radar, distraction=defines.distraction.by_enemy},unit_count = 10, unit_search_distance = 500}
 		writeDebug("Thumper Scanned, units should attack")   
     end   
+	
+
+    if (event.radar.name == "Artifact-collector_r") then
+		local count = #global.world.itemCollectorEvents
+		if (count <= 20) then	    
+			global.world.itemCollectorEvents[count+1] = event.radar.unit_number
+		end
+    end
 	
 end)
 
@@ -602,7 +607,8 @@ if QC_Mod == true then
 
 	script.on_event(defines.events.on_player_created, function(event)
 	local iteminsert = game.players[event.player_index].insert
-	iteminsert{name="TerraformingStation", count=5}
+	iteminsert{name="TerraformingStation_New", count=5}
+	iteminsert{name="Artifact-collector-area", count=5}
 	iteminsert{name="solar-panel", count=50}
 	iteminsert{name="medium-electric-pole", count=5}
 	iteminsert{name="Alien-Stimulant", count=200}

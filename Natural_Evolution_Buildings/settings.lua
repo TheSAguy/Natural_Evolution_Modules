@@ -57,18 +57,6 @@ data:extend(
     per_user = false,
   },
   
-  {
-    type = "int-setting",
-    name = "NE_Artifact_Item_Count",
-    setting_type = "startup",
-    default_value = 8,
-    maximum_value = 100,
-    minimum_value = 1,
-	order = "f[modifier]-f[Artifact_Item_Count]",
-    per_user = false,
-  },
-  
-
 }
 )
 

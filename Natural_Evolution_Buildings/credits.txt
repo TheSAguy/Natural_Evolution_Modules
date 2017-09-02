@@ -9,7 +9,7 @@ FreeER - For his MOD Mind Control that I’ve used in my MOD.
 Darkshadow1809  - For his Evolution MOD .
 Rsending91, DOSorDIE and SpeedyBrain - Item/Corpse Collector Mod.
 Orzelek - RSO, Coding help and answering questions!
-Veden - He added some amazing code to my mod and has an amazing AI behavior mod: Rampant. Must have!
+Veden - He added some amazing code to my mod. Using his code for Artifact Collectors. Try his amazing AI behavior mod: Rampant. Must have!
 ThaPear, Semvoz,  Billw, Adil, Rseding91, Chlue - Coding help!
 Supercheese - Swarm Mod.
 Afforess - Misanthrope Mod.

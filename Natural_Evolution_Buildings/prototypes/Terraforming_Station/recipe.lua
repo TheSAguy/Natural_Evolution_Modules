@@ -12,7 +12,7 @@ data:extend({
 				{"Building_Materials", 15},
 				{"alien-artifact", 20},
 			},
-		  result = "TerraformingStation",
+		  result = "TerraformingStation_New",
 		  result_count = 1,
 		},
 		expensive =
@@ -24,7 +24,7 @@ data:extend({
 				{"Building_Materials", 20},
 				{"alien-artifact", 40},
 			},
-		  result = "TerraformingStation",
+		  result = "TerraformingStation_New",
 		  result_count = 1,
 		},
 

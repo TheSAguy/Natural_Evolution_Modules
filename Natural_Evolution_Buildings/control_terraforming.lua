@@ -39,6 +39,11 @@ function Reduce_Evolution(TS_table)
 		local AmmoType
 		local ammo = 0
 		
+		if TS_table == nil then
+		--if global.Terraforming_Station_Table == nil then
+			global.Terraforming_Station_Table = {}
+		else
+		
 		if TS_table.inventory.get_inventory(1).get_contents() ~= nil then
 			for n,a in pairs(TS_table.inventory.get_inventory(1).get_contents()) do
 				AmmoType=n
@@ -46,11 +51,12 @@ function Reduce_Evolution(TS_table)
 			end
 		end
 
+		end
 
 	writeDebug("Ammo Count: "..ammo)
 
 	
-	if ammo > 0 then 
+	if ammo > 0 and AmmoType == "Alien-Stimulant" then 
 		
 		if global.deduction_constant == nil or global.deduction_constant == 0 then
 			global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
@@ -83,7 +89,7 @@ function Reduce_Evolution(TS_table)
 			TS_table.inventory.get_inventory(1).insert({name = AmmoType, count = ammo})
 		end
 			
-		writeDebug("New Ammo Count: "..ammo)
+		--writeDebug("New Ammo Count: "..ammo)
 		
 	end	
 	

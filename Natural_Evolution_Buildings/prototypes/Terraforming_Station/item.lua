@@ -3,12 +3,12 @@ data:extend({
 	--- Terraforming Station
 	{
 	    type = "item",
-	    name = "TerraformingStation",
+	    name = "TerraformingStation_New",
 	    icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
 	    flags = {"goes-to-quickbar"},
 	    subgroup = "Natural-Evolution",
 	    order = "b[TerraformingStation]-a[TerraformingStation]",
-	    place_result = "TerraformingStation",
+	    place_result = "TerraformingStation_New",
 	    stack_size = 10 ,
 	},
 
