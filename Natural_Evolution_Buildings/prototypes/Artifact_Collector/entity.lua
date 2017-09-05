@@ -33,12 +33,8 @@ data:extend(
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },	
 		max_health = 150,
 		corpse = "small-remnants",
-		
-		--collision_box = {{-0.4, -0.4}, {0.8, 0.4}},
-		--selection_box = {{-0.5, -0.5}, {1, 0.5}},
 		collision_box = {{-0.9, -0.4}, {0.9, 0.4}},
 		selection_box = {{-0.9, -0.5}, {0.9, 0.5}},
-		--collision_mask = { "object-layer", "not-colliding-with-itself" },
 		order = "i[items]-i[Artifact-collector]",	
 		automated_ammo_count = 1,
 		resistances = {},	
@@ -79,20 +75,28 @@ data:extend(
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
 			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
 			render_not_in_network_icon = false,
-			max_health = 150,
+			max_health = 300,
 			corpse = "small-remnants",
-			resistances = 
+			resistances =
 			{
-				{
-					type = "fire",
-					percent = 70
-				}
+			  {
+				type = "fire",
+				percent = 90
+			  },
+			  {
+				type = "explosion",
+				percent = 30
+			  },
+			  {
+				type = "impact",
+				percent = 30
+			  }
 			},
 			collision_box = {{-0.5, -0.5}, {0.5, 0.5}},
 			selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 			order = "i[items]-i[Artifact-collector]",
 			subgroup = "storage",
-			inventory_size = 48,
+			inventory_size = 60,
 			logistic_mode = "passive-provider",
 			open_sound = { filename = "__base__/sound/metallic-chest-open.ogg", volume=0.65 },
 			close_sound = { filename = "__base__/sound/metallic-chest-close.ogg", volume = 0.7 },
@@ -118,12 +122,20 @@ data:extend(
     corpse = "big-remnants",
 	dying_explosion = "medium-explosion",
 	resistances =
-    {
-      {
-        type = "fire",
-        percent = 70
-      }
-    },
+	{
+	  {
+		type = "fire",
+		percent = 90
+	  },
+	  {
+		type = "explosion",
+		percent = 30
+	  },
+	  {
+		type = "impact",
+		percent = 30
+	  }
+	},
 	collision_box = {{-0.5, -0.5}, {0.5, 0.5}},
 	selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 	order = "b[TerraformingStation]-a[TerraformingStation]",

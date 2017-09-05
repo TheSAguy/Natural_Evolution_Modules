@@ -673,14 +673,14 @@ return
 	layers =
 	{
 	  {
-		 filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_base.png",
-		 priority = "high",
-		 width = 256,
-		 height = 256,
-		 axially_symmetrical = false,
-		 direction_count = 1,
-		 frame_count = 1,
-		 tint = tint,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_base.png",
+		priority = "high",
+		width = 256,
+		height = 256,
+		axially_symmetrical = false,
+		direction_count = 1,
+		frame_count = 1,
+		tint = tint,
 	  }
 	}
  }
@@ -688,7 +688,9 @@ end
 
 
 function preparing_animation(tint)
-	return {layers = {{
+	return {
+	layers = {
+		{
 		priority = "medium",
 		width = 256,
 		height = 256,
@@ -697,13 +699,32 @@ function preparing_animation(tint)
 		line_length = 8, -- folding[3],
 		run_mode = "forward",
 		axially_symmetrical = false,
-		tint = tint,
+		--tint = tint,
+		--scale = 2,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
-		}}}
+		},
+		{
+		priority = "medium",
+		flags = { "mask" },
+		width = 256,
+		height = 256,
+		direction_count = 4, -- folding[1],
+		frame_count = 16,  -- folding[2],
+		line_length = 8, -- folding[3],
+		run_mode = "forward",
+		axially_symmetrical = false,
+		tint = tint,
+		--scale = 2,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png"
+		},
+		}
+		}
 end
 
 function prepared_animation(tint)
-	return {layers = {{
+	return {layers = 
+	{
+		{
 		priority = "medium",
 		width = 256,
 		height = 256,
@@ -711,13 +732,31 @@ function prepared_animation(tint)
 		frame_count = 1, -- -- always 1
 		line_length = 8, -- main [3],
 		axially_symmetrical = false,
-		tint = tint,
+		--tint = tint,
+		--scale = 2,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
-		}}}
+		},
+		{
+		priority = "medium",
+		flags = { "mask" },
+		width = 256,
+		height = 256,
+		direction_count = 64, -- main [1],
+		frame_count = 1, -- -- always 1
+		line_length = 8, -- main [3],
+		axially_symmetrical = false,
+		tint = tint,
+		--scale = 2,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main_mask.png"
+		},
+		}
+		}
 end
 
 function attacking_animation(tint)
-	return {layers = {{
+	return {layers = 
+	{
+	{
 		priority = "medium",
 		width = 256,
 		height = 256,
@@ -727,12 +766,34 @@ function attacking_animation(tint)
 		run_mode = "forward",
 		axially_symmetrical = false,
 		tint = tint,
+		--scale = 2,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
-		}}}
+		},
+		{
+		priority = "medium",
+		flags = { "mask" },
+		width = 256,
+		height = 256,
+		direction_count = 64, -- main [1],
+		frame_count = 1, -- -- can be 2 or 3, when you have attacking animation; 1 for no animated
+		line_length = 8, -- main [3],
+		run_mode = "forward",
+		axially_symmetrical = false,
+		tint = tint,
+		--scale = 2,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main_mask.png"
+		},
+		
+		}
+		}
 end
 
 function folding_animation(tint)
-	return {layers = {{
+	return {
+	layers = 
+	{
+
+	{
 		priority = "medium",
 		width = 256,
 		height = 256,
@@ -741,13 +802,32 @@ function folding_animation(tint)
 		line_length = 8, -- folding[3],
 		run_mode = "backward",
 		axially_symmetrical = false,
-		tint = tint,
+		--tint = tint,
+		--scale = 2,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
-}}}
+	},
+	{
+		priority = "medium",
+		flags = { "mask" },
+		width = 256,
+		height = 256,
+		direction_count = 4, -- folding[1],
+		frame_count = 16, -- folding[2],
+		line_length = 8, -- folding[3],
+		run_mode = "backward",
+		axially_symmetrical = false,
+		tint = tint,
+		--scale = 2,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png"
+	},
+	}
+}
 end
 
 function folded_animation(tint)
-	return {layers = {{
+	return {layers = 
+	{
+	{
 		priority = "medium",
 		width = 256,
 		height = 256,
@@ -756,9 +836,26 @@ function folded_animation(tint)
 		line_length = 1,
 		run_mode = "forward",
 		axially_symmetrical = false,
-		tint = tint,
+		--tint = tint,
+		--scale = 2,
 		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
-		}}}
+		},
+		{
+		priority = "medium",
+		flags = { "mask" },
+		width = 256,
+		height = 256,
+		direction_count = 4, -- folding[1],
+		frame_count = 2, -- idk why, for skipping second sprite
+		line_length = 1,
+		run_mode = "forward",
+		axially_symmetrical = false,
+		tint = tint,
+		--scale = 2,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png"
+		},
+		}
+		}
 end
 
 
@@ -786,8 +883,8 @@ return
 }
 end
 
-NE_gun_turret_tint = {r=1/255, g=255/255, b=1/255, a=255/255}
-NE_rocket_turret_tint = {r=255/255, g=1/255, b=1/255, a=255/255}
+NE_gun_turret_tint = {r=85/255, g=107/255, b=47/255, a=255/255} -- Green
+NE_rocket_turret_tint = {r=139/255, g=1/255, b=1/255, a=255/255} -- red
 --- Turret
 data:extend({ 
  
@@ -906,8 +1003,8 @@ data:extend({
 	inventory_size = 1,
 	automated_ammo_count = 10,
 	attacking_speed = 1/2/3.75, --0.02, -- just animation
+	
 	base_picture = base_picture (NE_rocket_turret_tint),
-
 	preparing_animation = preparing_animation(NE_rocket_turret_tint),
 	prepared_animation = prepared_animation(NE_rocket_turret_tint),
 	attacking_animation = attacking_animation(NE_rocket_turret_tint),
@@ -920,7 +1017,7 @@ data:extend({
 		{
 		type = "projectile",
 		ammo_category = "rocket",
-		cooldown = 40, -- in ticks; 60 is 1 shoot / sec
+		cooldown = 90, -- in ticks; 60 is 1 shoot / sec
 		projectile_creation_distance = 3.4, 
 		projectile_center = {0,0},
 		range = 40,
