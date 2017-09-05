@@ -1,5 +1,8 @@
 
 
+data:extend(
+	{
+
   --- Radar
   {
     type = "radar",
