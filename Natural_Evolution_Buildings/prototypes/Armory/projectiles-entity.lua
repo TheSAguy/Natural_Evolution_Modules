@@ -17,67 +17,54 @@ data:extend({
     name = "NE-Napalm-Rocket",
     flags = {"not-on-map"},
     acceleration = 0.0005,
-	action =
-	{
-		{
-			type = "area",
-			perimeter = 8,
-			action_delivery =
+	    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          {
+            type = "create-entity",
+            entity_name = "big-explosion"
+          },
+          {
+            type = "damage",
+            damage = {amount = 50 * NE_Damage, type = "explosion"}
+          },
+          {
+            type = "create-entity",
+            entity_name = "small-scorchmark",
+            check_buildability = true
+          },
+          {
+            type = "nested-result",
+            action =
 			{
-				type = "instant",
-				target_effects =
+				type = "area",
+				target_entities = false,
+				repeat_count = 40,
+				perimeter = 10,
+				action_delivery =
 				{
-
-					{
+					type = "projectile",
+					projectile = "NE-Napalm-Large",
+					starting_speed = 0.5
+				},
+				{
 					type = "damage",
 					damage = {amount = 50 * NE_Damage, type = "explosion"}
-					},
-					
-				}
-			}
-		},
-		{
-			type = "direct",
-			action_delivery = 
-			{
-				type = "instant",
-				target_effects =
+				},
 				{
-					{
-					type = "nested-result",
-					action =
-						{
-							type = "area",
-							target_entities = false,
-							repeat_count = 40,
-							perimeter = 10,
-							action_delivery =
-							{
-								type = "projectile",
-								projectile = "NE-Napalm-Large",
-								starting_speed = 0.5
-							},
-							{
-								type = "damage",
-								damage = {amount = 5 * NE_Damage, type = "explosion"}
-							},
-						}
-					},
-					{
-					type = "create-entity",
-					entity_name = "small-scorchmark",
-					check_buildability = true
-					},	
-					{
-						type = "create-entity",
-						entity_name = "big-explosion"
-					},					
-				}
-				
-			}
-		},
-
-	},
+                    type = "create-entity",
+                    entity_name = "explosion"
+                },
+			},
+          }
+        }
+      }
+    },
 	light = {intensity = 0.7, size = 6},
        light = {intensity = 0.5, size = 4},
     animation =

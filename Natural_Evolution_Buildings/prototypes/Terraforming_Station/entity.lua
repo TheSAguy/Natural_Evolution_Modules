@@ -24,7 +24,7 @@ data:extend(
 	collision_box = {{-1.65, -1.65 }, {1.65, 1.65}},
 	selection_box = {{-2, -2 }, {2, 2}},
 
-    energy_per_sector = "12MJ",
+    energy_per_sector = "11MJ",
     max_distance_of_nearby_sector_revealed = 5,
     max_distance_of_sector_revealed = 12,
     energy_per_nearby_scan = "400kW",
@@ -33,7 +33,7 @@ data:extend(
       type = "electric",
       usage_priority = "secondary-input"
     },
-    energy_usage = "260kW",
+    energy_usage = "260.1kW",
     pictures =
     {
       filename = "__Natural_Evolution_Buildings__/graphics/entities/Terraforming_Station/TerraformingStation.png",
