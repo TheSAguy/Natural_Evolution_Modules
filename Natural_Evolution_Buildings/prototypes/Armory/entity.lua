@@ -3,14 +3,15 @@ require ("util")
 
 
 if settings.startup["NE_Difficulty"] and settings.startup["NE_Difficulty"].value then
-
 	NE_Difficulty = settings.startup["NE_Difficulty"].value
 else
 	NE_Difficulty = 1
 end
 
+--- Value of Bio Damage per startup settings
 Bio_Ammo_Damage = settings.startup["NE_Bio_Ammo_Damage"].value
 
+--- Turret Bonuses.
 table.insert(data.raw.technology["gun-turret-damage-1"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.1})
 table.insert(data.raw.technology["gun-turret-damage-2"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.1})
 table.insert(data.raw.technology["gun-turret-damage-3"].effects,{type = "turret-attack", turret_id = "NE-gun-turret", modifier = 0.2})
@@ -688,174 +689,161 @@ end
 
 
 function preparing_animation(tint)
-	return {
-	layers = {
-		{
+	return {layers = {
+	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
 		priority = "medium",
 		width = 256,
 		height = 256,
-		direction_count = 4, -- folding[1],
-		frame_count = 16,  -- folding[2],
-		line_length = 8, -- folding[3],
+		direction_count = 4, 
+		frame_count = 16,  
+		line_length = 8, 
 		run_mode = "forward",
 		axially_symmetrical = false,
-		--tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
-		},
-		{
+	},	
+	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png",
 		priority = "medium",
 		flags = { "mask" },
 		width = 256,
 		height = 256,
-		direction_count = 4, -- folding[1],
-		frame_count = 16,  -- folding[2],
-		line_length = 8, -- folding[3],
+		direction_count = 4, 
+		frame_count = 16,  
+		line_length = 8, 
 		run_mode = "forward",
 		axially_symmetrical = false,
 		tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png"
-		},
-		}
-		}
+		apply_runtime_tint = true,
+	},
+	}
+	}
 end
 
 function prepared_animation(tint)
 	return {layers = 
 	{
-		{
+	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
 		priority = "medium",
 		width = 256,
 		height = 256,
-		direction_count = 64, -- main [1],
-		frame_count = 1, -- -- always 1
-		line_length = 8, -- main [3],
-		axially_symmetrical = false,
-		--tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
-		},
-		{
+		direction_count = 64, 
+		frame_count = 1, 
+		line_length = 8, 
+		axially_symmetrical = false,	
+	},
+	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main_mask.png",
 		priority = "medium",
 		flags = { "mask" },
 		width = 256,
 		height = 256,
-		direction_count = 64, -- main [1],
-		frame_count = 1, -- -- always 1
-		line_length = 8, -- main [3],
+		direction_count = 64, -
+		frame_count = 1, 
+		line_length = 8, 
 		axially_symmetrical = false,
 		tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main_mask.png"
-		},
-		}
-		}
+		apply_runtime_tint = true,
+	},
+	}
+	}
 end
 
 function attacking_animation(tint)
 	return {layers = 
 	{
 	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
 		priority = "medium",
 		width = 256,
 		height = 256,
-		direction_count = 64, -- main [1],
-		frame_count = 1, -- -- can be 2 or 3, when you have attacking animation; 1 for no animated
-		line_length = 8, -- main [3],
+		direction_count = 64, 
+		frame_count = 1, 
+		line_length = 8, 
 		run_mode = "forward",
 		axially_symmetrical = false,
 		tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
-		},
-		{
+	},
+	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main_mask.png",
 		priority = "medium",
 		flags = { "mask" },
 		width = 256,
 		height = 256,
-		direction_count = 64, -- main [1],
-		frame_count = 1, -- -- can be 2 or 3, when you have attacking animation; 1 for no animated
-		line_length = 8, -- main [3],
+		direction_count = 64,
+		frame_count = 1, 
+		line_length = 8, 
 		run_mode = "forward",
 		axially_symmetrical = false,
 		tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main_mask.png"
-		},
-		
-		}
-		}
+		apply_runtime_tint = true,
+	},
+	}
+	}
 end
 
 function folding_animation(tint)
-	return {
-	layers = 
+	return {layers = 
 	{
-
 	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
 		priority = "medium",
 		width = 256,
 		height = 256,
-		direction_count = 4, -- folding[1],
-		frame_count = 16, -- folding[2],
-		line_length = 8, -- folding[3],
+		direction_count = 4, 
+		frame_count = 16, 
+		line_length = 8, 
 		run_mode = "backward",
 		axially_symmetrical = false,
-		--tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 	},
 	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png",
 		priority = "medium",
 		flags = { "mask" },
 		width = 256,
 		height = 256,
-		direction_count = 4, -- folding[1],
-		frame_count = 16, -- folding[2],
-		line_length = 8, -- folding[3],
+		direction_count = 4, 
+		frame_count = 16, 
+		line_length = 8, -
 		run_mode = "backward",
 		axially_symmetrical = false,
 		tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png"
+		apply_runtime_tint = true,
 	},
 	}
-}
+	}
 end
 
 function folded_animation(tint)
 	return {layers = 
 	{
 	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
 		priority = "medium",
 		width = 256,
 		height = 256,
-		direction_count = 4, -- folding[1],
-		frame_count = 2, -- idk why, for skipping second sprite
+		direction_count = 4, 
+		frame_count = 2,
 		line_length = 1,
 		run_mode = "forward",
 		axially_symmetrical = false,
-		--tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
-		},
-		{
+	},
+	{
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png",
 		priority = "medium",
 		flags = { "mask" },
 		width = 256,
 		height = 256,
-		direction_count = 4, -- folding[1],
-		frame_count = 2, -- idk why, for skipping second sprite
+		direction_count = 4,
+		frame_count = 2, 
 		line_length = 1,
 		run_mode = "forward",
 		axially_symmetrical = false,
 		tint = tint,
-		--scale = 2,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding_mask.png"
-		},
-		}
-		}
+		apply_runtime_tint = true,
+	},
+	}
+	}
 end
 
 
@@ -884,7 +872,7 @@ return
 end
 
 NE_gun_turret_tint = {r=85/255, g=107/255, b=47/255, a=255/255} -- Green
-NE_rocket_turret_tint = {r=139/255, g=1/255, b=1/255, a=255/255} -- red
+NE_rocket_turret_tint = {r=139/255, g=1/255, b=1/255, a=255/255} -- Red
 --- Turret
 data:extend({ 
  
@@ -946,9 +934,7 @@ data:extend({
 	minable = {mining_time = 0.5, result = "NE-gun-turret"},
 	max_health = 400,
 	corpse = "medium-remnants",
-	--collision_box = {{-0.7, -0.7 }, {0.7, 0.7}},
 	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
-	--selection_box = {{-1, -1 }, {1, 1}},
 	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
 	rotation_speed = 0.004,
 	prepare_range = 50,
@@ -959,16 +945,13 @@ data:extend({
 	automated_ammo_count = 10,
 	attacking_speed = 1/2/3.75, --0.02, -- just animation
 	base_picture = base_picture (NE_gun_turret_tint),
-
 	preparing_animation = preparing_animation(NE_gun_turret_tint),
 	prepared_animation = prepared_animation(NE_gun_turret_tint),
 	attacking_animation = attacking_animation(NE_gun_turret_tint),
 	folding_animation =folding_animation(NE_gun_turret_tint),
 	folded_animation = folded_animation(NE_gun_turret_tint),
-	
 	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
-    
-	attack_parameters =
+   	attack_parameters =
 		{
 		type = "projectile",
 		ammo_category = "bullet",
