@@ -1008,7 +1008,7 @@ data:extend({
 	preparing_animation = preparing_animation(NE_rocket_turret_tint),
 	prepared_animation = prepared_animation(NE_rocket_turret_tint),
 	attacking_animation = attacking_animation(NE_rocket_turret_tint),
-	folding_animation =folding_animation(NE_rocket_turret_tint),
+	folding_animation = folding_animation(NE_rocket_turret_tint),
 	folded_animation = folded_animation(NE_rocket_turret_tint),
 	
 	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
@@ -1017,16 +1017,16 @@ data:extend({
 		{
 		type = "projectile",
 		ammo_category = "rocket",
-		cooldown = 90, -- in ticks; 60 is 1 shoot / sec
+		cooldown = 120, -- in ticks; 60 is 1 shoot / sec
 		projectile_creation_distance = 3.4, 
 		projectile_center = {0,0},
-		range = 40,
-		min_range = 20,
+		range = 45,
+		min_range = 25,
 		sound = make_heavy_gunshot_sounds(),
 		damage_modifier = 2.5
 		},
 
-	call_for_help_radius = 40
+	call_for_help_radius = 45
 	},
  
 

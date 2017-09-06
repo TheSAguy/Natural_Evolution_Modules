@@ -1,9 +1,6 @@
 require "util"
---require ("libs.detectmod") --Detect supported Mods, currently DyTechWar and Bob's Enemies and others
 
-
-
-if NE_Buildings_Config.mod.NEEnemies or data.raw["logistic-container"]["Artifact-collector-area"] or data.raw["ammo"]["Biological-bullet-magazine"] then
+if mods["Natural_Evolution_Enemies"] then
 	NE_Damage = 2
 else
 	NE_Damage = 1
@@ -13,7 +10,7 @@ end
 data:extend({
 	--Projectile
 
- -- Have Buster Ammo
+ -- Bio Cannon Ammo
  -- Basic
    {
     type = "projectile",
@@ -49,40 +46,36 @@ data:extend({
 				type = "instant",
 				target_effects =
 				{
+					   {
+						type = "nested-result",
+						action =
+						{
+						  type = "area",
+						  target_entities = false,
+						  repeat_count = 10,
+						  perimeter = 2,
+						  action_delivery =
+						  {
+							type = "projectile",
+							projectile = "NE-Napalm-Small",
+							starting_speed = 0.5
+						  }
+						}
+					  },
+					{
+					type = "create-entity",
+					entity_name = "small-scorchmark",
+					check_buildability = true
+					},					
 					{
 					type = "create-entity",
 					entity_name = "bio-cannon-explosion",
-					check_buildability = true
-					},
-					{
-					type = "create-entity",
-					entity_name = "small-fire-cloud",
-					check_buildability = true
-					},
-					{
-					type = "create-entity",
-					entity_name = "fire-flame",
-					check_buildability = true
 					},
 				}
 				
 			}
 		},
-		{
-			type = "direct",
-			action_delivery = 
-			{
-				type = "instant",
-				target_effects =
-				{
-					{
-					type = "create-entity",
-					entity_name = "small-scorchmark",
-					check_buildability = true
-					},
-				}
-			}
-		}
+
 	},
 	light = {intensity = 0.7, size = 6},
     animation =
@@ -110,6 +103,20 @@ data:extend({
 		},
 	},
 	]]
+	smoke =
+		{
+		  {
+			name = "smoke-fast",
+			deviation = {0.15, 0.15},
+			frequency = 1,
+			position = {0, -1},
+			slow_down_factor = 1,
+			starting_frame = 3,
+			starting_frame_deviation = 5,
+			starting_frame_speed = 0,
+			starting_frame_speed_deviation = 5
+		  }
+		}
   },
 
   --- Poison
@@ -150,39 +157,35 @@ data:extend({
 				type = "instant",
 				target_effects =
 				{
-					{
-					type = "create-entity",
-					entity_name = "bio-cannon-explosion",
-					check_buildability = true
-					},
-					{
-					type = "create-entity",
-					entity_name = "medium-fire-cloud",
-					check_buildability = true
-					},
-					{
-					type = "create-entity",
-					entity_name = "fire-flame",
-					check_buildability = true
-					},
-				}
-			}
-		},
-		{
-			type = "direct",
-			action_delivery = 
-			{
-				type = "instant",
-				target_effects =
-				{
+					   {
+						type = "nested-result",
+						action =
+						{
+						  type = "area",
+						  target_entities = false,
+						  repeat_count = 20,
+						  perimeter = 3,
+						  action_delivery =
+						  {
+							type = "projectile",
+							projectile = "NE-Napalm-Small",
+							starting_speed = 0.5
+						  }
+						}
+					  },
 					{
 					type = "create-entity",
 					entity_name = "small-scorchmark",
 					check_buildability = true
+					},					
+					{
+					type = "create-entity",
+					entity_name = "bio-cannon-explosion",
 					},
 				}
+				
 			}
-		}
+		},
 	},
 	light = {intensity = 0.8, size = 7},
     animation =
@@ -210,6 +213,20 @@ data:extend({
 		},
 	},
 	]]
+	smoke =
+		{
+		  {
+			name = "smoke-fast",
+			deviation = {0.15, 0.15},
+			frequency = 1,
+			position = {0, -1},
+			slow_down_factor = 1,
+			starting_frame = 3,
+			starting_frame_deviation = 5,
+			starting_frame_speed = 0,
+			starting_frame_speed_deviation = 5
+		  }
+		}	
   },
 
   --- Bio
@@ -250,39 +267,36 @@ data:extend({
 				type = "instant",
 				target_effects =
 				{
-					{
-					type = "create-entity",
-					entity_name = "bio-cannon-explosion",
-					check_buildability = true
-					},
-					{
-					type = "create-entity",
-					entity_name = "big-fire-cloud",
-					check_buildability = true
-					},
-					{
-					type = "create-entity",
-					entity_name = "fire-flame",
-					check_buildability = true
-					},					
-				}
-			}
-		},
-		{
-			type = "direct",
-			action_delivery = 
-			{
-				type = "instant",
-				target_effects =
-				{
+					   {
+						type = "nested-result",
+						action =
+						{
+						  type = "area",
+						  target_entities = false,
+						  repeat_count = 30,
+						  perimeter = 5,
+						  action_delivery =
+						  {
+							type = "projectile",
+							projectile = "NE-Napalm-Small",
+							starting_speed = 0.5
+						  }
+						}
+					  },
 					{
 					type = "create-entity",
 					entity_name = "small-scorchmark",
 					check_buildability = true
+					},					
+					{
+					type = "create-entity",
+					entity_name = "bio-cannon-explosion",
 					},
 				}
+				
 			}
-		}
+		},
+
 	},
 	light = {intensity = 0.9, size = 8},
     animation =
@@ -310,6 +324,20 @@ data:extend({
 		},
 	},
 	]]
+	smoke =
+		{
+		  {
+			name = "smoke-fast",
+			deviation = {0.15, 0.15},
+			frequency = 1,
+			position = {0, -1},
+			slow_down_factor = 1,
+			starting_frame = 3,
+			starting_frame_deviation = 5,
+			starting_frame_speed = 0,
+			starting_frame_speed_deviation = 5
+		  }
+		}	
   },
 
 
@@ -501,6 +529,97 @@ data:extend({
 		spread_duration = 10,
 	},
 
+	--- Napalm Small
+    {
+    type = "projectile",
+    name = "NE-Napalm-Small",
+	flags = {"not-on-map"},
+    acceleration = 0,
+    action =
+    {
+      {
+        type = "direct",
+        action_delivery =
+        {
+          type = "instant",
+          target_effects =
+          {
+            {
+			  type = "create-entity",
+              entity_name = "fire-flame"
+            },
+
+          }
+        }
+      },
+
+    },
+    animation =
+    {
+      filename = "__core__/graphics/empty.png",
+      frame_count = 1,
+      width = 1,
+      height = 1,
+      priority = "high"
+    },
+    shadow =
+    {
+      filename = "__core__/graphics/empty.png",
+      frame_count = 1,
+      width = 1,
+      height = 1,
+      priority = "high"
+    }
+  },
+  
+ 
+  
+  --- Napalm Large
+    {
+    type = "projectile",
+    name = "NE-Napalm-Large",
+	flags = {"not-on-map"},
+    acceleration = 0,
+    action =
+    {
+      {
+        type = "direct",
+        action_delivery =
+        {
+          type = "instant",
+          target_effects =
+          {
+            {
+			  type = "create-entity",
+              entity_name = "fire-flame"
+            },
+			{
+			type = "create-entity",
+			entity_name = "small-fire-cloud",
+			},
+          }
+        }
+      },
+
+    },
+    animation =
+    {
+      filename = "__core__/graphics/empty.png",
+      frame_count = 1,
+      width = 1,
+      height = 1,
+      priority = "high"
+    },
+    shadow =
+    {
+      filename = "__core__/graphics/empty.png",
+      frame_count = 1,
+      width = 1,
+      height = 1,
+      priority = "high"
+    }
+  }
+  
   
 
 })

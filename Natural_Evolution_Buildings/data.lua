@@ -73,12 +73,19 @@ require("prototypes.Armory.entity")
 require("prototypes.Armory.damage-type")
 require("prototypes.Armory.item-group")
 require("prototypes.Armory.technology-updates")
+-- Projectiles
+require("prototypes.Armory.projectiles-item")
+require("prototypes.Armory.projectiles-entity")
+require("prototypes.Armory.projectiles-recipe")
+
+
 
 thxbob.lib.tech.add_recipe_unlock ("military", "copper_bullets")
 thxbob.lib.tech.add_recipe_unlock ("military-2", "piercing_magazine_copper")
-
+thxbob.lib.tech.add_recipe_unlock ("explosive-rocketry", "NE_Napalm_Rocket")
  
----------------------------------------------------------------
+
+ ---------------------------------------------------------------
  --- Bio Cannon - Hive Buster
 -- Items Groups
 require("prototypes.Bio_Cannon.item-group")
@@ -91,8 +98,8 @@ require("prototypes.Bio_Cannon.technology")
 
 -- Projectiles
 require("prototypes.Bio_Cannon.projectiles-item")
-require("prototypes.Bio_Cannon.projectiles-recipe")
 require("prototypes.Bio_Cannon.projectiles-entity")
+require("prototypes.Bio_Cannon.projectiles-recipe")
 require("prototypes.Bio_Cannon.technology-updates")
 	
 ---------------------------------------------------------------

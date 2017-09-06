@@ -46,7 +46,7 @@ data:extend({
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_rocket_turret_icon.png",
 		flags = {"goes-to-quickbar"},
 		subgroup = "defensive-structure",
-		order = "d[turret]-x[NE-rocket-turret]",
+		order = "c[turret]-x[NE-rocket-turret]",
 		place_result = "NE-rocket-turret",
 		stack_size = 50
 	},
