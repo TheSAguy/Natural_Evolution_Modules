@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '7.3.8'
+local BUILDINGS_ver = '7.3.9'
 local QC_Mod = false
 
 
