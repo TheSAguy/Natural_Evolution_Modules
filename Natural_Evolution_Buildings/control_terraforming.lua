@@ -53,7 +53,7 @@ function Reduce_Evolution(TS_table)
 
 		end
 
-	writeDebug("Ammo Count: "..ammo)
+	--writeDebug("Ammo Count: "..ammo)
 
 	
 	if ammo > 0 and AmmoType == "Alien-Stimulant" then 
