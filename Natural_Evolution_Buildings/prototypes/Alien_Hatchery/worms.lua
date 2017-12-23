@@ -27,7 +27,7 @@ local SpashDmg =
   action =
   {
     type = "area",
-    perimeter = 2.5,
+    radius = 2.5,
     force = "enemy",
     action_delivery =
     {
@@ -51,7 +51,7 @@ local SpashDmg =
 local AcidProjectileSmallSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
 AcidProjectileSmallSpash.name = "acid-projectile-purple-smallSplash"
 local SmallSplash = deepcopy(SpashDmg)
-SmallSplash.action.perimeter = 2
+SmallSplash.action.radius = 2
 table.insert(AcidProjectileSmallSpash.action.action_delivery.target_effects, SmallSplash)
 data:extend{AcidProjectileSmallSpash}
 --]]
@@ -59,14 +59,14 @@ data:extend{AcidProjectileSmallSpash}
 local AcidProjectileMediumSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
 AcidProjectileMediumSpash.name = "acid-projectile-purple-mediumSplash"
 local MediumSpash = deepcopy(SpashDmg)
-MediumSpash.action.perimeter = 3
+MediumSpash.action.radius = 3
 table.insert(AcidProjectileMediumSpash.action.action_delivery.target_effects, MediumSpash)
 data:extend{AcidProjectileMediumSpash}
 
 local AcidProjectileBigSpash = deepcopy(data.raw["projectile"]["acid-projectile-purple"])
 AcidProjectileBigSpash.name = "acid-projectile-purple-bigSplash"
 local BigSplash = deepcopy(SpashDmg)
-BigSplash.action.perimeter = 3.5
+BigSplash.action.radius = 3.5
 table.insert(AcidProjectileBigSpash.action.action_delivery.target_effects, BigSplash)
 data:extend{AcidProjectileBigSpash}
 
@@ -78,6 +78,7 @@ data:extend(
     type = "item",
     name = "small-worm-hatching-exhausted",
     icon = "__base__/graphics/icons/small-worm-corpse.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[small-worm]",
@@ -88,6 +89,7 @@ data:extend(
     type = "item",
     name = "small-worm-hatching",
     icon = "__base__/graphics/icons/small-worm.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[small-worm]",
@@ -99,6 +101,7 @@ data:extend(
     type = "item",
     name = "medium-worm-hatching-exhausted",
     icon = "__base__/graphics/icons/medium-worm-corpse.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[medium-worm]",
@@ -109,6 +112,7 @@ data:extend(
     type = "item",
     name = "medium-worm-hatching",
     icon = "__base__/graphics/icons/medium-worm.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "b[medium-worm]",
@@ -120,6 +124,7 @@ data:extend(
     type = "item",
     name = "big-worm-hatching-exhausted",
     icon = "__base__/graphics/icons/big-worm-corpse.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "a[big-worm]",
@@ -130,6 +135,7 @@ data:extend(
     type = "item",
     name = "big-worm-hatching",
     icon = "__base__/graphics/icons/big-worm.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "worms",
     order = "c[big-worm]",
@@ -146,6 +152,7 @@ data:extend(
     type = "turret",
     name = "small-worm-turret-player",
     icon = "__base__/graphics/icons/small-worm.png",
+	icon_size = 32,
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation", "breaths-air"},
     minable = {hardness = 1, mining_time = 1, result = "small-worm-hatching-exhausted"},
     order="b-b-d",
@@ -223,6 +230,7 @@ data:extend(
     type = "turret",
     name = "medium-worm-turret-player",
     icon = "__base__/graphics/icons/medium-worm.png",
+	icon_size = 32,
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation", "breaths-air"},
     minable = {hardness = 1, mining_time = 1, result = "medium-worm-hatching-exhausted"},
     order="b-b-e",
@@ -303,6 +311,7 @@ data:extend(
     type = "turret",
     name = "big-worm-turret-player",
     icon = "__base__/graphics/icons/big-worm.png",
+	icon_size = 32,
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation", "breaths-air"},
     minable = {hardness = 1, mining_time = 1, result = "big-worm-hatching-exhausted"},
     max_health = 1000,

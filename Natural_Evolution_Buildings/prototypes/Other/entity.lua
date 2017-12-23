@@ -7,6 +7,7 @@
 		type = "simple-entity",
 		name = "battle_marker",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/Battle_Marker_1_32.png",
+		icon_size = 32,
 		flags = {"placeable-neutral", "player-creation", "not-blueprintable", "not-repairable"},
 		minable = {hardness = 0.2, mining_time = 0.5, results = {{type="item", name="stone", amount=10},}},
 		max_health = 150,

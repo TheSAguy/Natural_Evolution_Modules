@@ -28,6 +28,7 @@ data:extend(
 		type = "ammo-turret",
 		name = "Artifact-collector-area",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
+		icon_size = 32,
 		flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable"},
 		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },	
@@ -72,6 +73,7 @@ data:extend(
 			type = "logistic-container",
 			name = "Artifact-collector",
 			icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
+			icon_size = 32,
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
 			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
 			render_not_in_network_icon = false,
@@ -116,6 +118,7 @@ data:extend(
     type = "radar",
     name = "Artifact-collector_r",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
+	icon_size = 32,
 	flags = {"placeable-player", "player-creation", "not-deconstructable"},
     minable = nil, 
 	max_health = 300,
@@ -150,18 +153,35 @@ data:extend(
     },
     energy_usage = "200kW",
 
-	 pictures =
+    pictures =
     {
-      filename = "__base__/graphics/entity/radar/radar.png",
-      priority = "low",
-      width = 153,
-      height = 131,
-      apply_projection = false,
-      direction_count = 64,
-      line_length = 8,
-	  scale = 1/3,
-	  shift = {0.125, -0.125},
-
+      layers =
+      {
+        {
+          filename = "__base__/graphics/entity/radar/radar.png",
+          priority = "low",
+          width = 98,
+          height = 128,
+          apply_projection = false,
+          direction_count = 64,
+          line_length = 8,
+          shift = util.by_pixel(1, -16),
+		  scale = 1/3,
+		--shift = {0.125, -0.125},
+          hr_version = {
+            filename = "__base__/graphics/entity/radar/hr-radar.png",
+            priority = "low",
+            width = 196,
+            height = 254,
+            apply_projection = false,
+            direction_count = 64,
+            line_length = 8,
+            shift = util.by_pixel(1, -16),
+            --scale = 0.5
+			scale = 1/6
+          }
+        },
+      }
     },
 	
 

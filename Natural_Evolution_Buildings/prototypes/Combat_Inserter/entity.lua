@@ -7,6 +7,7 @@ data:extend({
     type = "inserter",
     name = "combat-inserter",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/combat_inserter.png",
+	icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable =
     {

@@ -36,6 +36,7 @@ data:extend({
     type = "recipe",
     name = "ne-living-wall",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
+	icon_size = 32,
     enabled = false,
 	category = "Hatchery",
     ingredients = 
@@ -53,6 +54,7 @@ data:extend({
     type = "recipe",
     name = "ne-living-wall-refresh",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall-r.png",
+	icon_size = 32,
     enabled = false,
 	category = "Hatchery",
     ingredients = 
@@ -335,6 +337,7 @@ data:extend({
     type = "recipe",
     name = "small-worm-hatching",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-worm.png",
+	icon_size = 32,
     category = "Hatchery",
 	normal =
 		{
@@ -367,6 +370,7 @@ data:extend({
     type = "recipe",
     name = "small-worm-hatching-refresh",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-worm-r.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -383,6 +387,7 @@ data:extend({
     type = "recipe",
     name = "medium-worm-hatching",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-worm.png",
+	icon_size = 32,
     category = "Hatchery",
 	normal =
 		{
@@ -417,6 +422,7 @@ data:extend({
     type = "recipe",
     name = "medium-worm-hatching-refresh",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-worm-r.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -433,6 +439,7 @@ data:extend({
     type = "recipe",
     name = "big-worm-hatching",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/big-worm.png",
+	icon_size = 32,
     category = "Hatchery",
 	normal =
 		{
@@ -466,6 +473,7 @@ data:extend({
     type = "recipe",
     name = "big-worm-hatching-refresh",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/big-worm-r.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -482,6 +490,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Biter-Spawner",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -498,6 +507,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Biter-Spawner-refresh",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner-r.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -514,6 +524,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Spitter-Spawner",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -530,6 +541,7 @@ data:extend({
     type = "recipe",
     name = "Natural_Evolution_Spitter-Spawner-refresh",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner-r.png",
+	icon_size = 32,
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -552,6 +564,7 @@ data:extend({
     type = "recipe",
     name = "NE_alien-revitalization",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization_toxin.png",
+	icon_size = 32,
     category = "chemistry",
     energy_required = 10,
     enabled = false,

@@ -66,6 +66,7 @@ data:extend({
 		type = "recipe",
 		name = "copper_bullets",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/copper_magazine.png",
+		icon_size = 32,
 		normal =
 		{
 			enabled = false,
@@ -96,6 +97,7 @@ data:extend({
 		type = "recipe",
 		name = "piercing_magazine_copper",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing_magazine_copper.png",
+		icon_size = 32,
 		order = "a[basic-clips]-b1[piercing-rounds-magazine]",
 		normal =
 		{

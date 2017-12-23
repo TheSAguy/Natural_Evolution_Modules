@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '7.4.0'
+local BUILDINGS_ver = '8.0.1'
 local QC_Mod = false
 
 
@@ -198,41 +198,41 @@ local force = entity.force
 	local y = entity.position.y
 	local chest
 
-	if (entity.name == "Artifact-collector-area") then
-	    entity.destroy()
-	    chest = surface.create_entity({name = "Artifact-collector",
-					   position = position,
-					   force = force})
-		position_r = {position.x + 1, position.y}
-	    entity = surface.create_entity({name="Artifact-collector_r",
-					    position = position_r,
-					    force = force})
+		if (entity.name == "Artifact-collector-area") then
+			entity.destroy()
+			chest = surface.create_entity({name = "Artifact-collector",
+						   position = position,
+						   force = force})
+			position_r = {position.x + 1, position.y}
+			entity = surface.create_entity({name="Artifact-collector_r",
+							position = position_r,
+							force = force})
 
-	else	    
-	    local ghosts = surface.find_entities_filtered({name="entity-ghost",
-							   area={{x=x-1,
-								  y=y-1},
-							       {x=x+1,
-								y=y+1}},
-							   limit=1})
-	    if (#ghosts > 0) then
-		local ghost = ghosts[1]
-		if (ghost.ghost_name == "Artifact-collector") then
-		    local conflicts
-		    conflicts, chest = ghost.revive()
+		else	    
+			local ghosts = surface.find_entities_filtered({name="entity-ghost",
+								   area={{x=x-1,
+									  y=y-1},
+									   {x=x+1,
+									y=y+1}},
+								   limit=1})
+			if (#ghosts > 0) then
+			local ghost = ghosts[1]
+			if (ghost.ghost_name == "Artifact-collector") then
+				local conflicts
+				conflicts, chest = ghost.revive()
+			end
+			else
+			chest = surface.create_entity({name = "Artifact-collector",
+							   position = position,
+							   force = force})
+			end
 		end
-	    else
-		chest = surface.create_entity({name = "Artifact-collector",
-					       position = position,
-					       force = force})
-	    end
-	end
-	if chest and chest.valid then
-	    local pair = { chest, entity }
-	    global.world.itemCollectorLookup[chest.unit_number] = pair
-	    global.world.itemCollectorLookup[entity.unit_number] = pair
-	    entity.backer_name = ""
-	end
+		if chest and chest.valid then
+			local pair = { chest, entity }
+			global.world.itemCollectorLookup[chest.unit_number] = pair
+			global.world.itemCollectorLookup[entity.unit_number] = pair
+			entity.backer_name = ""
+		end
     end	
 
 	
@@ -572,7 +572,7 @@ script.on_init(On_Init)
 local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
 script.on_event(build_events, On_Built)
 
-local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
+local pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined}
 script.on_event(pre_remove_events, On_Remove)
 
 local death_events = {defines.events.on_entity_died}

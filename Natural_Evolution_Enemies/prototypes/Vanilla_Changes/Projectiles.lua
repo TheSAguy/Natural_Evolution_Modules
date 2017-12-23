@@ -207,7 +207,7 @@ data:extend(
             action =
             {
               type = "area",
-              perimeter = 2,
+              radius = 2,
               action_delivery =
               {
                 type = "instant",
@@ -392,7 +392,7 @@ data:extend(
             action =
             {
               type = "area",
-              perimeter = 2,
+              radius = 2,
               action_delivery =
               {
                 type = "instant",
@@ -438,7 +438,7 @@ data:extend(
   --------------------------
   --- Infected Poison Cloud
   {
-    type = "smoke",
+    type = "smoke-with-trigger",
     name = "Infected-Poison-Cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
@@ -472,7 +472,7 @@ data:extend(
           action =
           {
             type = "area",
-            perimeter = 3,
+            radius = 3,
             entity_flags = {"breaths-air", "player-creation", "placeable-neutral", "placeable-player", "placeable-enemy"},
             action_delivery =
             {
@@ -519,32 +519,32 @@ data:extend(
             {
 				{
 				type = "area",
-				perimeter = 1,
+				radius = 1,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 21, type = "acid" }}}},
 				{
 				type = "area",
-				perimeter = 2,
+				radius = 2,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
-				perimeter = 3,
+				radius = 3,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
-				perimeter = 4,
+				radius = 4,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
-				perimeter = 5,
+				radius = 5,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}},
 				{
 				type = "area",
-				perimeter = 6,
+				radius = 6,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}}
             },
@@ -600,7 +600,7 @@ data:extend(
           action =
           {
             type = "area",
-            perimeter = 3,
+            radius = 3,
             action_delivery =
             {
               type = "instant",
@@ -652,7 +652,7 @@ data:extend(
           action =
           {
             type = "area",
-            perimeter = 4,
+            radius = 4,
             action_delivery =
             {
               type = "instant",
@@ -704,7 +704,7 @@ data:extend(
           action =
           {
             type = "area",
-            perimeter = 5,
+            radius = 5,
             action_delivery =
             {
               type = "instant",

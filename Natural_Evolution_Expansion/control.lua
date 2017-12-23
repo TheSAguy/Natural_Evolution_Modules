@@ -199,7 +199,7 @@ if global.NE_Expansion.Settings.Harder_Endgame then
 	local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
 	script.on_event(build_events, On_Built)
 
-	local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined, defines.events.on_entity_died}
+	local pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined, defines.events.on_entity_died}
 	script.on_event(pre_remove_events, On_Remove)
 
 	

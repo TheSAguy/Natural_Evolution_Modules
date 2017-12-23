@@ -14,6 +14,7 @@ data:extend({
     type = "assembling-machine",
     name = "Alien_Hatchery",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/Alien_Hatchery_32.png",
+	icon_size = 32,
     flags = {"placeable-neutral","placeable-player", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Alien_Hatchery"},
     max_health = 300,
@@ -101,6 +102,7 @@ data:extend({
     type = "capsule",
     name = "small-biter-hatching",
     icon = "__base__/graphics/icons/small-biter.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -139,6 +141,7 @@ data:extend({
     type = "capsule",
     name = "small-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/small-spitter_32.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -177,6 +180,7 @@ data:extend({
     type = "capsule",
     name = "medium-biter-hatching",
     icon = "__base__/graphics/icons/medium-biter.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -215,6 +219,7 @@ data:extend({
     type = "capsule",
     name = "medium-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-spitter_32.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -253,6 +258,7 @@ data:extend({
     type = "capsule",
     name = "big-biter-hatching",
     icon = "__base__/graphics/icons/big-biter.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -291,6 +297,7 @@ data:extend({
     type = "capsule",
     name = "big-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/big-spitter_32.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -329,6 +336,7 @@ data:extend({
     type = "capsule",
     name = "behemoth-biter-hatching",
     icon = "__base__/graphics/icons/behemoth-biter.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -367,6 +375,7 @@ data:extend({
     type = "capsule",
     name = "behemoth-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-spitter_32.png",
+	icon_size = 32,
     flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -737,6 +746,7 @@ data:extend({
     type = "unit-spawner",
     name = "Natural_Evolution_Biter-Spawner",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner.png",
+	icon_size = 32,
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Biter-Spawner-exhausted"},
     max_health = 750,
@@ -841,6 +851,7 @@ data:extend({
     name = "Natural_Evolution_Biter-Spawner-corpse",
     flags = {"placeable-neutral", "placeable-off-grid", "not-on-map"},
     icon = "__base__/graphics/icons/biter-spawner-corpse.png",
+	icon_size = 32,
     collision_box = {{-2, -2}, {2, 2}},
     selection_box = {{-2, -2}, {2, 2}},
     selectable_in_game = false,
@@ -862,6 +873,7 @@ data:extend({
     type = "unit-spawner",
     name = "Natural_Evolution_Spitter-Spawner",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner.png",
+	icon_size = 32,
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Spitter-Spawner-exhausted"},
     max_health = 750,
@@ -962,6 +974,7 @@ data:extend({
     name = "Natural_Evolution_Spitter-Spawner-corpse",
     flags = {"placeable-neutral", "placeable-off-grid", "not-on-map"},
     icon = "__base__/graphics/icons/biter-spawner-corpse.png",
+	icon_size = 32,
     collision_box = {{-2, -2}, {2, 2}},
     selection_box = {{-2, -2}, {2, 2}},
     selectable_in_game = false,
@@ -983,6 +996,7 @@ data:extend({
     type = "wall",
     name = "ne-living-wall",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
+	icon_size = 32,
     flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable"},
     collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
     selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
@@ -1103,7 +1117,7 @@ data:extend({
       }
     },
     circuit_wire_max_distance = 7.5,
-    circuit_connector_sprites = get_circuit_connector_sprites({0, -0.59375}, nil, 6),
+    --circuit_connector_sprites = get_circuit_connector_sprites({0, -0.59375}, nil, 6),
     default_output_signal = {type = "virtual", name = "signal-green"} or {type = "virtual", name = "signal-G"}
 	
 	

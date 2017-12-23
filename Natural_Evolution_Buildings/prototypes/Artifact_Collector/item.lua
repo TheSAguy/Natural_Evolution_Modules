@@ -4,6 +4,7 @@ data:extend(
 			type = "item",
 			name = "Artifact-collector-area",
 			icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
+			icon_size = 32,
 			flags = {"goes-to-quickbar"},
 			--subgroup = "Natural-Evolution",
 			subgroup = "storage",

@@ -25,7 +25,7 @@ end
 -- @treturn number the size of the area
 -- @treturn number the width of the area
 -- @treturn number the height of the area
--- @treturn number the perimeter of the area
+-- @treturn number the radius of the area
 function Area.size(area)
     fail_if_missing(area, 'missing area value')
     area = Area.to_table(area)
@@ -35,8 +35,8 @@ function Area.size(area)
 
     local dx = math.abs(left_top.x - right_bottom.x)
     local dy = math.abs(left_top.y - right_bottom.y)
-    local perimeter = dx + dx + dy + dy
-    return dx * dy, dx, dy, perimeter
+    local radius = dx + dx + dy + dy
+    return dx * dy, dx, dy, radius
 end
 
 --- Tests if a position {x, y} is inside (inclusive) of area

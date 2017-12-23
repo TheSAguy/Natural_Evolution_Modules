@@ -22,7 +22,9 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics
 ----- Updates to Ammo
 
 data.raw.recipe["piercing-rounds-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing_magazine_iron.png"
+data.raw.recipe["piercing-rounds-magazine"].icon_size = 32
 data.raw.ammo["piercing-rounds-magazine"].icon = "__base__/graphics/icons/piercing-rounds-magazine.png"
+data.raw.ammo["piercing-rounds-magazine"].icon_size = 32
 
 
 if not NE_Buildings_Config.mod.BobWarfare then

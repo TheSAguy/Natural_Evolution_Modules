@@ -4,6 +4,7 @@ data:extend({
     type = "ammo",
     name = "NE-Napalm-Rocket",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/napalm_rocket.png",
+	icon_size = 32,
     flags = {"goes-to-main-inventory"},
     ammo_type =
     {

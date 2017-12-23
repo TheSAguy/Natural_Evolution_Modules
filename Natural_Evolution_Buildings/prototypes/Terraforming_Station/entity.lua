@@ -8,6 +8,7 @@ data:extend(
     type = "radar",
     name = "TerraformingStation_New",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
+	icon_size = 32,
 	flags = {"placeable-player", "placeable-neutral", "player-creation"},
 	order = "b[TerraformingStation]-a[TerraformingStation]",
     minable = {hardness = 0.2, mining_time = 0.5, result = "TerraformingStation_New"},
@@ -55,6 +56,7 @@ data:extend(
 	type = "logistic-container",
 	name = "TerraformingStation_c",
 	icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
+	icon_size = 32,
 	flags = {"placeable-neutral", "placeable-player", "player-creation", "placeable-off-grid"},
     minable = nil, 
 	order = "b[TerraformingStation]-a[TerraformingStation]",
@@ -67,6 +69,7 @@ data:extend(
 	fast_replaceable_group = "container",
 	inventory_size = 1,
 	logistic_mode = "requester",
+    logistic_slots_count = 1,
 	picture = {
 		filename = "__base__/graphics/entity/logistic-chest/logistic-chest-requester.png",
 		priority = "extra-high",
@@ -89,7 +92,7 @@ data:extend(
       }
     },
     circuit_wire_max_distance = 7.5,
-    circuit_connector_sprites = get_circuit_connector_sprites({0.1875, 0.15625}, nil, 18),
+    --circuit_connector_sprites = get_circuit_connector_sprites({0.1875, 0.15625}, nil, 18),
 },
 	
 	

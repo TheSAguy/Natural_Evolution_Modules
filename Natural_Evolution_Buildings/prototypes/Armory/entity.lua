@@ -39,6 +39,7 @@ data:extend({
 		type = "ammo",
 		name = "basic-dart-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -86,6 +87,7 @@ data:extend({
 		type = "ammo",
 		name = "enhanced-dart-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -133,6 +135,7 @@ data:extend({
 		type = "ammo",
 		name = "copper-bullet-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/copper_magazine.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -178,6 +181,7 @@ data:extend({
 		type = "ammo",
 		name = "Biological-bullet-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/Biological-bullet-magazine.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -227,6 +231,7 @@ data:extend({
 		type = "ammo",
 		name = "basic-dart-magazine_c",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon_conversion.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -279,6 +284,7 @@ data:extend({
 		type = "ammo",
 		name = "enhanced-dart-magazine_c",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon_conversion.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -329,6 +335,7 @@ data:extend({
     type = "ammo",
     name = "firearm-magazine_c",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/firearm-magazine_conversion.png",
+	icon_size = 32,
     flags = {"goes-to-main-inventory"},
     ammo_type =
     {
@@ -380,6 +387,7 @@ data:extend({
 		type = "ammo",
 		name = "copper-bullet-magazine_c",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/copper_magazine_conversion.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -429,6 +437,7 @@ data:extend({
     type = "ammo",
     name = "piercing-rounds-magazine_c",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing-rounds-magazine_conversion.png",
+	icon_size = 32,
     flags = {"goes-to-main-inventory"},
     ammo_type =
     {
@@ -478,6 +487,7 @@ data:extend({
     type = "ammo",
     name = "uranium-rounds-magazine_c",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/uranium-rounds-magazine_conversion.png",
+	icon_size = 32,
     flags = {"goes-to-main-inventory"},
     ammo_type =
     {
@@ -523,6 +533,7 @@ data:extend({
 		type = "ammo",
 		name = "Biological-bullet-magazine_c",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/Biological-bullet-magazine_conversion.png",
+		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -580,6 +591,7 @@ data:extend({
     type = "land-mine",
     name = "bio_land_mine",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_land_mine.png",
+	icon_size = 32,
     flags =
     {
       "placeable-player",
@@ -623,7 +635,7 @@ data:extend({
             action =
             {
               type = "area",
-              perimeter = 8,
+              radius = 8,
               collision_mask = { "player-layer" },
               action_delivery =
               {
@@ -939,6 +951,7 @@ data:extend({
     type = "ammo-turret",
     name = "bio-turret",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
+	icon_size = 32,
     flags = {"placeable-player", "player-creation"},
     minable = {mining_time = 0.25, result = "bio-turret"},
     max_health = 250,
@@ -988,6 +1001,7 @@ data:extend({
     type = "ammo-turret",
     name = "NE-gun-turret",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
+	icon_size = 32,
    	flags = {"placeable-player", "player-creation"},
 	minable = {mining_time = 0.5, result = "NE-gun-turret"},
 	max_health = 400,
@@ -1030,6 +1044,7 @@ data:extend({
     type = "ammo-turret",
     name = "NE-rocket-turret",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_rocket_turret_icon.png",
+	icon_size = 32,
    	flags = {"placeable-player", "player-creation"},
 	minable = {mining_time = 0.5, result = "NE-rocket-turret"},
 	max_health = 500,

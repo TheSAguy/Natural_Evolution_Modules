@@ -45,7 +45,7 @@ data:extend({
 				type = "area",
 				target_entities = false,
 				repeat_count = 40,
-				perimeter = 10,
+				radius = 10,
 				action_delivery =
 				{
 					type = "projectile",
@@ -142,7 +142,7 @@ data:extend({
           action =
           {
             type = "area",
-            perimeter = 10,
+            radius = 10,
             action_delivery =
             {
               type = "instant",

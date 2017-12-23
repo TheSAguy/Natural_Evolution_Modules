@@ -9,6 +9,7 @@ data:extend({
     type = "radar",
     name = "Thumper",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/Thumper.png",
+	icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},   
 	minable = {hardness = 0.8, mining_time = 1, result = "Thumper"},
     max_health = 50,
