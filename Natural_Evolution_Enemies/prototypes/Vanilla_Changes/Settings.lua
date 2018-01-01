@@ -156,7 +156,7 @@ Resistances = {
 	-- Healthy (Physical)	
 	Behemoth_Biter = {
 	  {type = "fire", decrease = 0, percent = -40},
-      {type = "physical", decrease = 20, percent = 20*NE_Enemies.Settings.NE_Difficulty},
+      {type = "physical", decrease = 20, percent = 18*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 16, percent = 0},
       {type = "explosion", decrease = 16, percent = 0},
       {type = "acid", decrease = 16, percent = 0},
@@ -256,7 +256,7 @@ Resistances = {
 	-- Healthy (Physical)
 	Behemoth_Spitter = {
 	  {type = "fire", decrease = 0, percent = -40},
-      {type = "physical", decrease = 14, percent = 20*NE_Enemies.Settings.NE_Difficulty},
+      {type = "physical", decrease = 14, percent = 18*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 10, percent = 0},
       {type = "explosion", decrease = 10, percent = 0},
       {type = "acid", decrease = 10, percent = 0},
@@ -298,10 +298,10 @@ Resistances = {
 	  {type = "fire", decrease = 0, percent = -75},
       {type = "physical", decrease = 5, percent = 10*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 15, percent = 15*NE_Enemies.Settings.NE_Difficulty},
-      {type = "explosion", decrease = 15, percent = 30*NE_Enemies.Settings.NE_Difficulty},
-      {type = "acid", decrease = 15, percent = 15*NE_Enemies.Settings.NE_Difficulty},
-      {type = "poison", decrease = 0, percent = 15*NE_Enemies.Settings.NE_Difficulty},
-      {type = "laser", decrease = 10, percent = 15*NE_Enemies.Settings.NE_Difficulty}},
+      {type = "explosion", decrease = 15, percent = 15*NE_Enemies.Settings.NE_Difficulty},
+      {type = "acid", decrease = 15, percent = 12*NE_Enemies.Settings.NE_Difficulty},
+      {type = "poison", decrease = 0, percent = 12*NE_Enemies.Settings.NE_Difficulty},
+      {type = "laser", decrease = 10, percent = 12*NE_Enemies.Settings.NE_Difficulty}},
 	Fire = {
       {type = "fire", decrease = 0, percent = 75}},
 }
