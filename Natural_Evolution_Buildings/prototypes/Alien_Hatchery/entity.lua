@@ -1063,7 +1063,7 @@ data:extend({
       },
       {
         type = "fire",
-        percent = 80
+        percent = 100
       },
       {
         type = "laser",

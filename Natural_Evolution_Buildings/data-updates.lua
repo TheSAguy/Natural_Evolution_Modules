@@ -16,6 +16,9 @@ require ("libs.technology-functions") -- From Bob's Libary
 thxbob.lib.tech.add_recipe_unlock("Bio_Cannon", "NE_gun_turret")
 thxbob.lib.tech.add_recipe_unlock("Bio_Cannon", "NE_rocket_turret")
 
+-- add Prototype Artillery as pre req for artillery
+thxbob.lib.tech.add_prerequisite("artillery", "Bio_Cannon")
+
 ----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"
 
