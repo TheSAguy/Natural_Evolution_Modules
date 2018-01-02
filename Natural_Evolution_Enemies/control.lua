@@ -1,4 +1,4 @@
----ENEMIES v.8.0.1
+---ENEMIES v.8.0.2
 local QC_Mod = false
 
 
@@ -23,17 +23,28 @@ end
 local replaceableTiles =
 {
   -- vanilla
-	["grass-medium"] = "grass",
-	["grass"] = "grass-dry",
-	["grass-dry"] = "sand",
-	["sand"] = "sand-dark",
-	["sand-dark"] = "dirt",
-	["dirt"] = "dirt-dark",
-	["dirt-dark"] = "red-desert",
-	["red-desert"] = "red-desert-dark",
-  
+	["grass-1"] = "grass-3",
+	["grass-3"] = "grass-2",
+	["grass-2"] = "grass-4",
+	["grass-4"] = "red-desert-0",
+	["red-desert-0"] = "dirt-3",
+	["dirt-3"] = "dirt-5",
+	["dirt-5"] = "dirt-6",
+	["dirt-6"] = "dirt-7",
+	["dirt-7"] = "dirt-4",
+	["dirt-4"] = "dry-dirt",
+	["dry-dirt"] = "dirt-2",
+	["dirt-2"] = "dirt-1",
+	["dirt-1"] = "red-desert-2",
+	["red-desert-2"] = "red-desert-3",
+	["red-desert-3"] = "sand-3",
+	["sand-3"] = "sand-2",
+	["sand-2"] = "sand-1",
+	["sand-1"] = "red-desert-1"
 
-  -- Alien biomes
+  
+    --[[
+  -- Alien biomes - 0.15
 	["grass-yellow"] = "grass-yellow-fade",
 	["grass-orange"] = "sand-orange",
 	["grass-red"] = "dirt-red",
@@ -66,7 +77,7 @@ local replaceableTiles =
 	["snow"] = "red-desert-dark",
 	["volcanic-medium"] = "volcanic-hot",
 	["volcanic-hot"] = "red-desert-dark"
-
+	]]
  
 }
 

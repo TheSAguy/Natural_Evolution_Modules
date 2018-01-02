@@ -50,6 +50,7 @@ function attacking_animation()
 		}}}
 end
 ]]
+
 function folding_animation()
 	return {layers = {{
 		priority = "medium",
@@ -167,7 +168,7 @@ data:extend({
 		attack_parameters =
 		{
 			type = "projectile",
-			ammo_category = "Bio_Cannon_Ammo",
+			ammo_category = "artillery-shell",
 			cooldown = 2,
 			range = 0,
 			projectile_creation_distance = 1.8,
