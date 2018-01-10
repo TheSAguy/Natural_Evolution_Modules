@@ -143,12 +143,12 @@ local function Control_Enemies()
 		  for i, enemy in ipairs(surface.find_enemy_units(beacon.position, global.NE_Buildings.Settings.Search_Distance)) do --search area of ten around each ACS
 		  
             if enemy.force == (enemyForce) then --do only if not already controlled
-              if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
-                enemy.force=beacon.force
-                enemy.set_command{type=defines.command.wander,distraction=defines.distraction.by_enemy}
-                table.insert(global.minds, enemy)
-                writeDebug("An Enemy has been Converted")
-              end
+                if math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%              
+					enemy.force=beacon.force
+					enemy.set_command{type=defines.command.wander,distraction=defines.distraction.by_enemy}
+					table.insert(global.minds, enemy)
+					writeDebug("An Enemy has been Converted")
+                end
             end
           end
         end

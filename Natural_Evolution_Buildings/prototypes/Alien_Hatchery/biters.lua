@@ -17,7 +17,9 @@ data:extend(
         percent = 10,
       },
     },
-    healing_per_tick = 0.0001,
+	alert_when_damaged = false,
+	alert_when_attacking = false,
+	healing_per_tick = 0.0001,
     collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
     selection_box = {{-0.4, -0.7}, {0.7, 0.4}},
     attack_parameters =
@@ -65,6 +67,8 @@ data:extend(
         percent = 10
       },
     },
+	alert_when_damaged = false,
+	alert_when_attacking = false,
     healing_per_tick = 0.0001,
     collision_box = {{-0.3, -0.3}, {0.3, 0.3}},
     selection_box = {{-0.7, -1.5}, {0.7, 0.3}},
@@ -119,6 +123,8 @@ data:extend(
         percent = 10
       }
     },
+	alert_when_damaged = false,
+	alert_when_attacking = false,	
 	spawning_time_modifier = 2,
     healing_per_tick = 0.0002,
     collision_box = {{-0.4, -0.4}, {0.4, 0.4}},
@@ -168,6 +174,8 @@ data:extend(
         percent = 20
       }
     },
+	alert_when_damaged = false,
+	alert_when_attacking = false,	
     spawning_time_modifier = 8,
     healing_per_tick = 0.0001,
     collision_box = {{-0.4, -0.4}, {0.4, 0.4}},

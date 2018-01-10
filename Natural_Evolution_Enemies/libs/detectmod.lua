@@ -1,6 +1,7 @@
 -----------------------
 --Cross Mod Detection--
 -----------------------
+
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
 if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
@@ -8,14 +9,14 @@ if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
 
 
 --Detect Bob's Enemies
-if data.raw["unit"]["bob-big-piercing-biter"] ~= nil and data.raw["unit"]["bob-big-electric-spitter"] ~= nil then
+if data.raw["unit"]["bob-big-piercing-biter"] ~= nil and data.raw["unit"]["bob-big-electric-spitter"] ~= nil  or mods["bobenemies"] then
 	NE_Enemies_Config.mod.BobEnemies=true
 else 
 	NE_Enemies_Config.mod.BobEnemies=false
 end
 
 --Detect Supreme Warfare
-if data.raw["technology"]["artillery"] ~= nil and data.raw["technology"]["advanced-artillery"] ~= nil then
+if data.raw["technology"]["artillery"] ~= nil and data.raw["technology"]["advanced-artillery"] ~= nil or mods["SupremeWarfare"] then
 	NE_Enemies_Config.mod.SupremeWarfare=true
 else 
 	NE_Enemies_Config.mod.SupremeWarfare=false
@@ -23,7 +24,7 @@ end
 
 
 --Detect N.E. Buildings
-if data.raw["radar"]["AlienControlStation"] ~= nil and data.raw["assembling-machine"]["Alien_Hatchery"] ~= nil then
+if data.raw["radar"]["AlienControlStation"] ~= nil and data.raw["assembling-machine"]["Alien_Hatchery"] ~= nil  or mods["Natural_Evolution_Buildings"] then
 	NE_Enemies_Config.mod.NEBuildings=true
 else 
 	NE_Enemies_Config.mod.NEBuildings=false

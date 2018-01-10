@@ -487,13 +487,10 @@ function SpawnLaunchedUnits(enemy)
 end
 
 
----------------------------------------------
+----------------------------------------------
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
 	local New_tiles = {}
-	local Water_Nearby_near = false
-	local Water_Nearby_far = false
-	local search_size = size + 1
    
 	for xxx = -size, size do
 		for yyy = -size, size do
@@ -502,78 +499,16 @@ function Scorched_Earth(surface, pos, size)
 			local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 			writeDebug("The current tile is: " .. currentTilename)
 
-			if waterTiles[currentTilename] then
-				Water_Nearby_near = true
-				--added break to stop this loop
-				break
-			--replaced if with elseif
-			elseif replaceableTiles[currentTilename] then
+			if replaceableTiles[currentTilename] then
 				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
 			end
 		end
-		--if water nearby then stop loop
-		if Water_Nearby_near then
-			break
-		end
-		
-		for xxx = -(search_size), (search_size) do
-			for yyy = -(search_size), (search_size) do
-				--no need to go through the tiles you already checked above
-				--so only check tiles that are outside the square that was checked in the above for loops
-				if xxx < -size or xxx > size or
-					yyy < -size or yyy > size then
-					--made local
-					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
-					local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 
-					if waterTiles[currentTilename] then
-						Water_Nearby_near = true
-						--added break to stop this loop
-						break
-					end
-				end
-			end
-			--if water nearby then stop loop
-			if Water_Nearby_near then
-				break
-			end
-		end
 		
 	end
 
-	if Water_Nearby_near then
-		-- Water found, so don't replace any tiles.	
+	surface.set_tiles(New_tiles)
 
-	else
-		for xxx = -(search_size+5), (search_size+5) do
-			for yyy = -(search_size+5), (search_size+5) do
-				--no need to go through the tiles you already checked above
-				--so only check tiles that are outside the square that was checked in the above for loops
-				if xxx < -search_size or xxx > search_size or
-					yyy < -search_size or yyy > search_size then
-					--made local
-					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
-					local currentTilename = surface.get_tile(new_position.x, new_position.y).name
-
-					if waterTiles[currentTilename] then
-						Water_Nearby_far = true
-						--added break to stop this loop
-						break
-					end
-				end
-			end
-			--if water nearby then stop loop
-			if Water_Nearby_far then
-				break
-			end
-		end
-
-		if Water_Nearby_far then 
-			surface.set_tiles(New_tiles, false)
-		else
-			surface.set_tiles(New_tiles)
-		end
-	end
 end
 
 ----------------------------------------

@@ -48,8 +48,27 @@ if not NE_Buildings_Config.mod.BobWarfare then
 end
 ------
 
+-- Remove Alerts from units.
+	
+data.raw["unit"]["small-biter"].alert_when_damaged = false
+data.raw["unit"]["small-biter"].alert_when_attacking = false
+data.raw["unit"]["medium-biter"].alert_when_damaged = false
+data.raw["unit"]["medium-biter"].alert_when_attacking = false
+data.raw["unit"]["big-biter"].alert_when_damaged = false
+data.raw["unit"]["big-biter"].alert_when_attacking = false	
+data.raw["unit"]["behemoth-biter"].alert_when_damaged = false
+data.raw["unit"]["behemoth-biter"].alert_when_attacking = false
+data.raw["unit"]["small-spitter"].alert_when_damaged = false
+data.raw["unit"]["small-spitter"].alert_when_attacking = false
+data.raw["unit"]["medium-spitter"].alert_when_damaged = false
+data.raw["unit"]["medium-spitter"].alert_when_attacking = false
+data.raw["unit"]["big-spitter"].alert_when_damaged = false
+data.raw["unit"]["big-spitter"].alert_when_attacking = false	
+data.raw["unit"]["behemoth-spitter"].alert_when_damaged = false
+data.raw["unit"]["behemoth-spitter"].alert_when_attacking = false	
 
-
+		
+		
 -- Make it so that you can mine spawners & worms, since you are able to convert them, you can now remove them. 
 data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
 data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
@@ -98,7 +117,7 @@ if NE_Buildings_Config.mod.NEEnemies then
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_proportional = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_absolute = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute
 
-
+	
 end
 
 
