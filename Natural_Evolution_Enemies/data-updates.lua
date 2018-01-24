@@ -3,7 +3,6 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
-require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
@@ -29,7 +28,7 @@ data.raw.player.player.healing_per_tick = 0.005   -- default 0.01
 
 
 --- Bob's Enemies - Update the Small Artifact Recipe.
-if NE_Enemies_Config.mod.BobEnemies and settings.startup["NE_Alien_Artifacts"].value and data.raw.item["alien-artifact-from-small"] then
+if mods["bobenemies"] and settings.startup["NE_Alien_Artifacts"].value and data.raw.item["alien-artifact-from-small"] then
 
 	thxbob.lib.recipe.remove_ingredient ("alien-artifact-from-small", "small-alien-artifact")
 	thxbob.lib.recipe.add_new_ingredient ("alien-artifact-from-small", {type="item", name="small-alien-artifact", amount=100})
@@ -184,7 +183,7 @@ data.raw["turret"]["big-worm-turret"].call_for_help_radius = 120
 
 	
 -- Bob's Enemies Modifications
-if NE_Enemies_Config.mod.BobEnemies then
+if mods["bobenemies"] then
 
 	require "prototypes.Vanilla_Changes.Bobs_Spawners"		
 
