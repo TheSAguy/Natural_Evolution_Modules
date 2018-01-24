@@ -2,12 +2,10 @@
 if not thxbob then thxbob = {} end
 if not thxbob.lib then thxbob.lib = {} end
 
-if not NE_Buildings_Config then NE_Buildings_Config = {} end
-if not NE_Buildings_Config.mod then NE_Buildings_Config.mod = {} end
+
 if not NE_Functions then NE_Functions = {} end
 
 
-require ("libs.detectmod") --Detect supported Mods, Bob's Enemies and others
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
 require ("libs.technology-functions") -- From Bob's Libary 
@@ -30,7 +28,7 @@ data.raw.ammo["piercing-rounds-magazine"].icon = "__base__/graphics/icons/pierci
 data.raw.ammo["piercing-rounds-magazine"].icon_size = 32
 
 
-if not NE_Buildings_Config.mod.BobWarfare then
+if not mods["bobwarfare"] then
 	if data.raw.ammo["piercing-rounds-magazine"].ammo_type and
 	  data.raw.ammo["piercing-rounds-magazine"].ammo_type.action and
 	  data.raw.ammo["piercing-rounds-magazine"].ammo_type.action.action_delivery and
@@ -48,7 +46,7 @@ if not NE_Buildings_Config.mod.BobWarfare then
 end
 ------
 
--- Remove Alerts from units.
+-- Remove Alerts from units. - Vinilla
 	
 data.raw["unit"]["small-biter"].alert_when_damaged = false
 data.raw["unit"]["small-biter"].alert_when_attacking = false
@@ -77,7 +75,7 @@ data.raw["turret"]["medium-worm-turret"].minable = {hardness = 1.0, mining_time 
 data.raw["turret"]["big-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 
 
-if NE_Buildings_Config.mod.BobEnemies then
+if mods["bobenemies"] then
 	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
 	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 	data.raw["turret"]["bob-big-explosive-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
@@ -87,12 +85,48 @@ if NE_Buildings_Config.mod.BobEnemies then
 	data.raw["turret"]["bob-big-electric-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-giant-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-behemoth-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+
+	-- Remove Alerts from units. - Bobs	
+	data.raw["unit"]["bob-big-piercing-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-huge-acid-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-huge-explosive-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-giant-poison-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-giant-fire-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-titan-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-behemoth-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-leviathan-biter"].alert_when_damaged = false
+	data.raw["unit"]["bob-big-electric-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-huge-explosive-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-huge-acid-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-giant-fire-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-giant-poison-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-titan-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-behemoth-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-leviathan-spitter"].alert_when_damaged = false
+	data.raw["unit"]["bob-big-piercing-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-huge-acid-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-huge-explosive-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-giant-poison-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-giant-fire-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-titan-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-behemoth-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-leviathan-biter"].alert_when_attacking = false
+	data.raw["unit"]["bob-big-electric-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-huge-explosive-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-huge-acid-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-giant-fire-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-giant-poison-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-titan-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-behemoth-spitter"].alert_when_attacking = false
+	data.raw["unit"]["bob-leviathan-spitter"].alert_when_attacking = false
+
+
 	
 end
 
 
 --- Adjust N.E. Building spawners to N.E. Enemy Settings
-if NE_Buildings_Config.mod.NEEnemies then
+if mods["Natural_Evolution_Enemies"] then
 
 	-- Natural Evolution Biter Spawner Adjustments 
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].max_count_of_owned_units = data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units
@@ -117,9 +151,35 @@ if NE_Buildings_Config.mod.NEEnemies then
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_proportional = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_absolute = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute
 
-	
+
 end
 
+if mods["5dim_battlefield"] then
+
+	-- Remove Alerts from units. - 5Dim
+	data.raw["unit"]["5d-medium-biter-laser"].alert_when_damaged = false
+	data.raw["unit"]["5d-medium-biter-physical"].alert_when_damaged = false
+	data.raw["unit"]["5d-medium-biter-explosive"].alert_when_damaged = false
+	data.raw["unit"]["5d-big-biter-laser"].alert_when_damaged = false
+	data.raw["unit"]["5d-big-biter-physical"].alert_when_damaged = false
+	data.raw["unit"]["5d-big-biter-explosive"].alert_when_damaged = false
+	data.raw["unit"]["5d-medium-spiter-rocket"].alert_when_damaged = false
+	data.raw["unit"]["5d-medium-spiter-fire"].alert_when_damaged = false
+	data.raw["unit"]["5d-big-spiter-rocket"].alert_when_damaged = false
+	data.raw["unit"]["5d-big-spiter-fire"].alert_when_damaged = false
+	data.raw["unit"]["5d-medium-biter-laser"].alert_when_attacking = false
+	data.raw["unit"]["5d-medium-biter-physical"].alert_when_attacking = false
+	data.raw["unit"]["5d-medium-biter-explosive"].alert_when_attacking = false
+	data.raw["unit"]["5d-big-biter-laser"].alert_when_attacking = false
+	data.raw["unit"]["5d-big-biter-physical"].alert_when_attacking = false
+	data.raw["unit"]["5d-big-biter-explosive"].alert_when_attacking = false
+	data.raw["unit"]["5d-medium-spiter-rocket"].alert_when_attacking = false
+	data.raw["unit"]["5d-medium-spiter-fire"].alert_when_attacking = false
+	data.raw["unit"]["5d-big-spiter-rocket"].alert_when_attacking = false
+	data.raw["unit"]["5d-big-spiter-fire"].alert_when_attacking = false
+
+
+end
 
 
 -- Adds a resitance of all damage types to an entity
@@ -148,7 +208,7 @@ end
 
 
 ---------- Adds Alient Artifacts back for recipies in NE Buildings
-if data.raw["unit-spawner"]["biter-spawner"]  and data.raw.item["alien-artifact"] then
+if data.raw["unit-spawner"]["biter-spawner"] and data.raw.item["alien-artifact"] then
 	if data.raw["unit-spawner"]["biter-spawner"].loot == nil then 
 		data.raw["unit-spawner"]["biter-spawner"].loot = {}
 		
@@ -169,8 +229,21 @@ end
 
 
 
+--[[
 
+-- Adds a resitance of all damage types to an entity
+for k, v in pairs(data.raw["unit"]) do
+	
 
+	if data.raw.v.name.alert_when_attacking == nil then 
+		data.raw.inserter["combat-inserter"].alert_when_attacking = {}
+		
+	end
+	table.insert(data.raw.v.name.alert_when_attacking, false)
+
+end
+
+]]
 
 
 

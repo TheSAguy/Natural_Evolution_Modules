@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '8.0.1'
+local BUILDINGS_ver = '8.0.6'
 local QC_Mod = false
 
 
@@ -159,14 +159,15 @@ local function On_Config_Change()
 			global.Terraforming_Station_Table = {}
 	end
 	
-
-	if game.active_mods["EndgameCombat"] or game.active_mods['EndgameCombat'] or game.active_mods[EndgameCombat] then	
+--[[ No longer needed
+	if game.active_mods["EndgameCombat"] then	
 		
 		for i, player in pairs(game.players) do
-			player.print(tostring("You have Endgame Combat Installed, not compatible with Natural Evolution Buildings"))
+			player.print(tostring("You have Endgame Combat Installed, MIGHT not compatible with Natural Evolution Buildings"))
 		end
 	end
-	
+]]
+
 
 	--- Settup Settings	
 	if not global.NE_Buildings then global.NE_Buildings = {} end
