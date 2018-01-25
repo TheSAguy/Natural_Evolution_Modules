@@ -1,4 +1,4 @@
----ENEMIES v.8.0.2
+---ENEMIES v.8.0.5
 local QC_Mod = false
 
 
@@ -40,45 +40,164 @@ local replaceableTiles =
 	["red-desert-3"] = "sand-3",
 	["sand-3"] = "sand-2",
 	["sand-2"] = "sand-1",
-	["sand-1"] = "red-desert-1"
+	["sand-1"] = "red-desert-1",
 
-  
-    --[[
-  -- Alien biomes - 0.15
-	["grass-yellow"] = "grass-yellow-fade",
-	["grass-orange"] = "sand-orange",
-	["grass-red"] = "dirt-red",
-	["grass-yellow-fade"] = "grass-dry",
-	["grass-blue"] = "grass-blue-fade",
-	["grass-purple"] = "grass-purple-fade",
-	["grass-blue-fade"] = "grass-dry",
-	["grass-purple-fade"] = "grass-dry",
-	["dirt-brown"] = "dirt-brown-dark",
-	["dirt-brown-dark"] = "dirt",
-	["dirt-tan"] = "dirt-tan-dark",
-	["dirt-tan-dark"] = "dirt",
-	["dirt-red"] = "dirt-red-dark",
-	["dirt-red-dark"] = "sand-red",
-	["dirt-grey"] = "dirt-grey-dark",
-	["dirt-grey-dark"] = "sand-grey",
-	["dirt-dull"] = "dirt-dull-dark",
-	["dirt-dull-dark"] = "sand-dull",
-	["sand-orange"] = "sand-orange-dark",
-	["sand-orange-dark"] = "sand",
-	["sand-gold"] = "sand-gold-dark",
-	["sand-gold-dark"] = "sand",
-	["sand-red"] = "sand-red-dark",
-	["sand-red-dark"] = "sand",
-	["sand-grey"] = "sand-grey-dark",
-	["sand-grey-dark"] = "sand",
-	["sand-dull"] = "sand-dull-dark",
-	["sand-dull-dark"] = "sand",
-	["volcanic-cool"] = "volcanic-medium",
-	["snow"] = "red-desert-dark",
-	["volcanic-medium"] = "volcanic-hot",
-	["volcanic-hot"] = "red-desert-dark"
-	]]
- 
+    -- Alien biomes - 0.16
+	["frozen-snow-0"] = "frozen-snow-1",
+	["frozen-snow-1"] = "frozen-snow-2",
+	["frozen-snow-2"] = "frozen-snow-3",
+	["frozen-snow-3"] = "frozen-snow-4",
+	["frozen-snow-4"] = "frozen-snow-5",
+	["frozen-snow-5"] = "frozen-snow-6",
+	["frozen-snow-6"] = "frozen-snow-7",
+	["frozen-snow-7"] = "frozen-snow-8",
+	["frozen-snow-8"] = "frozen-snow-9",
+	["mineral-aubergine-dirt-1"] = "mineral-aubergine-dirt-2",
+	["mineral-aubergine-dirt-2"] = "mineral-aubergine-dirt-3",
+	["mineral-aubergine-dirt-3"] = "mineral-aubergine-dirt-4",
+	["mineral-aubergine-dirt-4"] = "mineral-aubergine-dirt-5",
+	["mineral-aubergine-dirt-5"] = "mineral-aubergine-dirt-6",
+	["mineral-aubergine-dirt-6"] = "dirt-3",
+	["mineral-aubergine-sand-1"] = "mineral-aubergine-sand-2",
+	["mineral-aubergine-sand-2"] = "mineral-aubergine-sand-3",
+	["mineral-aubergine-sand-3"] = "sand-3",
+	["mineral-beige-dirt-1"] = "mineral-beige-dirt-2",
+	["mineral-beige-dirt-2"] = "mineral-beige-dirt-3",
+	["mineral-beige-dirt-3"] = "mineral-beige-dirt-4",
+	["mineral-beige-dirt-4"] = "mineral-beige-dirt-5",
+	["mineral-beige-dirt-5"] = "mineral-beige-dirt-6",
+	["mineral-beige-dirt-6"] = "dirt-3",
+	["mineral-beige-sand-1"] = "mineral-beige-sand-2",
+	["mineral-beige-sand-2"] = "mineral-beige-sand-3",
+	["mineral-beige-sand-3"] = "sand-3",
+	["mineral-black-dirt-1"] = "mineral-black-dirt-2",
+	["mineral-black-dirt-2"] = "mineral-black-dirt-3",
+	["mineral-black-dirt-3"] = "mineral-black-dirt-4",
+	["mineral-black-dirt-4"] = "mineral-black-dirt-5",
+	["mineral-black-dirt-5"] = "mineral-black-dirt-6",
+	["mineral-black-dirt-6"] = "dirt-3",
+	["mineral-black-sand-1"] = "mineral-black-sand-2",
+	["mineral-black-sand-2"] = "mineral-black-sand-3",
+	["mineral-black-sand-3"] = "sand-3",
+	["mineral-brown-dirt-1"] = "mineral-brown-dirt-2",
+	["mineral-brown-dirt-2"] = "mineral-brown-dirt-3",
+	["mineral-brown-dirt-3"] = "mineral-brown-dirt-4",
+	["mineral-brown-dirt-4"] = "mineral-brown-dirt-5",
+	["mineral-brown-dirt-5"] = "mineral-brown-dirt-6",
+	["mineral-brown-dirt-6"] = "dirt-3",
+	["mineral-brown-sand-1"] = "mineral-brown-sand-2",
+	["mineral-brown-sand-2"] = "mineral-brown-sand-3",
+	["mineral-brown-sand-3"] = "sand-3",
+	["mineral-cream-dirt-1"] = "mineral-cream-dirt-2",
+	["mineral-cream-dirt-2"] = "mineral-cream-dirt-3",
+	["mineral-cream-dirt-3"] = "mineral-cream-dirt-4",
+	["mineral-cream-dirt-4"] = "mineral-cream-dirt-5",
+	["mineral-cream-dirt-5"] = "mineral-cream-dirt-6",
+	["mineral-cream-dirt-6"] = "dirt-3",
+	["mineral-cream-sand-1"] = "mineral-cream-sand-2",
+	["mineral-cream-sand-2"] = "mineral-cream-sand-3",
+	["mineral-cream-sand-3"] = "sand-3",
+	["mineral-dustyrose-dirt-1"] = "mineral-dustyrose-dirt-2",
+	["mineral-dustyrose-dirt-2"] = "mineral-dustyrose-dirt-3",
+	["mineral-dustyrose-dirt-3"] = "mineral-dustyrose-dirt-4",
+	["mineral-dustyrose-dirt-4"] = "mineral-dustyrose-dirt-5",
+	["mineral-dustyrose-dirt-5"] = "mineral-dustyrose-dirt-6",
+	["mineral-dustyrose-dirt-6"] = "dirt-3",
+	["mineral-dustyrose-sand-1"] = "mineral-dustyrose-sand-2",
+	["mineral-dustyrose-sand-2"] = "mineral-dustyrose-sand-3",
+	["mineral-dustyrose-sand-3"] = "sand-3",
+	["mineral-grey-dirt-1"] = "mineral-grey-dirt-2",
+	["mineral-grey-dirt-2"] = "mineral-grey-dirt-3",
+	["mineral-grey-dirt-3"] = "mineral-grey-dirt-4",
+	["mineral-grey-dirt-4"] = "mineral-grey-dirt-5",
+	["mineral-grey-dirt-5"] = "mineral-grey-dirt-6",
+	["mineral-grey-dirt-6"] = "dirt-3",
+	["mineral-grey-sand-1"] = "mineral-grey-sand-2",
+	["mineral-grey-sand-2"] = "mineral-grey-sand-3",
+	["mineral-grey-sand-3"] = "sand-3",
+	["mineral-purple-dirt-1"] = "mineral-purple-dirt-2",
+	["mineral-purple-dirt-2"] = "mineral-purple-dirt-3",
+	["mineral-purple-dirt-3"] = "mineral-purple-dirt-4",
+	["mineral-purple-dirt-4"] = "mineral-purple-dirt-5",
+	["mineral-purple-dirt-5"] = "mineral-purple-dirt-6",
+	["mineral-purple-dirt-6"] = "dirt-3",
+	["mineral-purple-sand-1"] = "mineral-purple-sand-2",
+	["mineral-purple-sand-2"] = "mineral-purple-sand-3",
+	["mineral-purple-sand-3"] = "sand-3",
+	["mineral-red-dirt-1"] = "mineral-red-dirt-2",
+	["mineral-red-dirt-2"] = "mineral-red-dirt-3",
+	["mineral-red-dirt-3"] = "mineral-red-dirt-4",
+	["mineral-red-dirt-4"] = "mineral-red-dirt-5",
+	["mineral-red-dirt-5"] = "mineral-red-dirt-6",
+	["mineral-red-dirt-6"] = "dirt-3",
+	["mineral-red-sand-1"] = "mineral-red-sand-2",
+	["mineral-red-sand-2"] = "mineral-red-sand-3",
+	["mineral-red-sand-3"] = "sand-3",
+	["mineral-tan-dirt-1"] = "mineral-tan-dirt-2",
+	["mineral-tan-dirt-2"] = "mineral-tan-dirt-3",
+	["mineral-tan-dirt-3"] = "mineral-tan-dirt-4",
+	["mineral-tan-dirt-4"] = "mineral-tan-dirt-5",
+	["mineral-tan-dirt-5"] = "mineral-tan-dirt-6",
+	["mineral-tan-dirt-6"] = "dirt-3",
+	["mineral-tan-sand-1"] = "mineral-tan-sand-2",
+	["mineral-tan-sand-2"] = "mineral-tan-sand-3",
+	["mineral-tan-sand-3"] = "dirt-3",
+	["mineral-violet-dirt-1"] = "mineral-violet-dirt-2",
+	["mineral-violet-dirt-2"] = "mineral-violet-dirt-3",
+	["mineral-violet-dirt-3"] = "mineral-violet-dirt-4",
+	["mineral-violet-dirt-4"] = "mineral-violet-dirt-5",
+	["mineral-violet-dirt-5"] = "mineral-violet-dirt-6",
+	["mineral-violet-dirt-6"] = "dirt-3",
+	["mineral-violet-sand-1"] = "mineral-violet-sand-2",
+	["mineral-violet-sand-2"] = "mineral-violet-sand-3",
+	["mineral-violet-sand-3"] = "dirt-3",
+	["mineral-white-dirt-1"] = "mineral-white-dirt-2",
+	["mineral-white-dirt-2"] = "mineral-white-dirt-3",
+	["mineral-white-dirt-3"] = "mineral-white-dirt-4",
+	["mineral-white-dirt-4"] = "mineral-white-dirt-5",
+	["mineral-white-dirt-5"] = "mineral-white-dirt-6",
+	["mineral-white-dirt-6"] = "dirt-3",
+	["mineral-white-sand-1"] = "mineral-white-sand-2",
+	["mineral-white-sand-2"] = "mineral-white-sand-3",
+	["mineral-white-sand-3"] = "sand-3",
+	["vegetation-blue-grass-1"] = "vegetation-blue-grass-2",
+	["vegetation-blue-grass-2"] =     "grass-3" ,
+	["vegetation-green-grass-1"] = "vegetation-green-grass-2",
+	["vegetation-green-grass-2"] = "vegetation-green-grass-3",
+	["vegetation-green-grass-3"] = "vegetation-green-grass-4",
+	["vegetation-green-grass-4"] =     "grass-3" ,
+	["vegetation-mauve-grass-1"] = "vegetation-mauve-grass-2",
+	["vegetation-mauve-grass-2"] =     "grass-3" ,
+	["vegetation-olive-grass-1"] = "vegetation-olive-grass-2",
+	["vegetation-olive-grass-2"] =     "grass-3" ,
+	["vegetation-orange-grass-1"] = "vegetation-orange-grass-2",
+	["vegetation-orange-grass-2"] =     "grass-3" ,
+	["vegetation-purple-grass-1"] = "vegetation-purple-grass-2",
+	["vegetation-purple-grass-2"] =     "grass-3" ,
+	["vegetation-red-grass-1"] = "vegetation-red-grass-2",
+	["vegetation-red-grass-2"] =     "grass-3" ,
+	["vegetation-turquoise-grass-1"] = "vegetation-turquoise-grass-2",
+	["vegetation-turquoise-grass-2"] =     "grass-3" ,
+	["vegetation-violet-grass-1"] = "vegetation-violet-grass-2",
+	["vegetation-violet-grass-2"] =     "grass-3" ,
+	["vegetation-yellow-grass-1"] = "vegetation-yellow-grass-2",
+	["vegetation-yellow-grass-2"] =     "grass-3" ,
+	["volcanic-blue-heat-1"]  =  "volcanic-blue-heat-2",
+	["volcanic-blue-heat-2"]  =  "volcanic-blue-heat-3",
+	["volcanic-blue-heat-3"]  =  "volcanic-blue-heat-4",
+	["volcanic-blue-heat-4"]  =  "volcanic-orange-heat-1",
+	["volcanic-green-heat-1"]  =  "volcanic-green-heat-2",
+	["volcanic-green-heat-2"]  =  "volcanic-green-heat-3",
+	["volcanic-green-heat-3"]  =  "volcanic-green-heat-4",
+	["volcanic-green-heat-4"]  =  "volcanic-orange-heat-1",
+	["volcanic-orange-heat-1"]  =  "volcanic-orange-heat-2",
+	["volcanic-orange-heat-2"]  =  "volcanic-orange-heat-3",
+	["volcanic-orange-heat-3"]  =  "volcanic-orange-heat-4",
+	["volcanic-purple-heat-1"]  =  "volcanic-purple-heat-2",
+	["volcanic-purple-heat-2"]  =  "volcanic-purple-heat-3",
+	["volcanic-purple-heat-3"]  =  "volcanic-purple-heat-4",
+	["volcanic-purple-heat-4"]  =  "volcanic-orange-heat-1"
+
 }
 
 
@@ -487,13 +606,10 @@ function SpawnLaunchedUnits(enemy)
 end
 
 
----------------------------------------------
+----------------------------------------------
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
 	local New_tiles = {}
-	local Water_Nearby_near = false
-	local Water_Nearby_far = false
-	local search_size = size + 1
    
 	for xxx = -size, size do
 		for yyy = -size, size do
@@ -502,78 +618,16 @@ function Scorched_Earth(surface, pos, size)
 			local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 			writeDebug("The current tile is: " .. currentTilename)
 
-			if waterTiles[currentTilename] then
-				Water_Nearby_near = true
-				--added break to stop this loop
-				break
-			--replaced if with elseif
-			elseif replaceableTiles[currentTilename] then
+			if replaceableTiles[currentTilename] then
 				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
 			end
 		end
-		--if water nearby then stop loop
-		if Water_Nearby_near then
-			break
-		end
-		
-		for xxx = -(search_size), (search_size) do
-			for yyy = -(search_size), (search_size) do
-				--no need to go through the tiles you already checked above
-				--so only check tiles that are outside the square that was checked in the above for loops
-				if xxx < -size or xxx > size or
-					yyy < -size or yyy > size then
-					--made local
-					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
-					local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 
-					if waterTiles[currentTilename] then
-						Water_Nearby_near = true
-						--added break to stop this loop
-						break
-					end
-				end
-			end
-			--if water nearby then stop loop
-			if Water_Nearby_near then
-				break
-			end
-		end
 		
 	end
 
-	if Water_Nearby_near then
-		-- Water found, so don't replace any tiles.	
+	surface.set_tiles(New_tiles)
 
-	else
-		for xxx = -(search_size+5), (search_size+5) do
-			for yyy = -(search_size+5), (search_size+5) do
-				--no need to go through the tiles you already checked above
-				--so only check tiles that are outside the square that was checked in the above for loops
-				if xxx < -search_size or xxx > search_size or
-					yyy < -search_size or yyy > search_size then
-					--made local
-					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
-					local currentTilename = surface.get_tile(new_position.x, new_position.y).name
-
-					if waterTiles[currentTilename] then
-						Water_Nearby_far = true
-						--added break to stop this loop
-						break
-					end
-				end
-			end
-			--if water nearby then stop loop
-			if Water_Nearby_far then
-				break
-			end
-		end
-
-		if Water_Nearby_far then 
-			surface.set_tiles(New_tiles, false)
-		else
-			surface.set_tiles(New_tiles)
-		end
-	end
 end
 
 ----------------------------------------
