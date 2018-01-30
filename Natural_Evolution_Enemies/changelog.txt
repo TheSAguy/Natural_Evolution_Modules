@@ -1,0 +1,54 @@
+---------------------------------------------------------------------------------------------------
+Version: 8.0.9
+Date: 29. 1. 2018
+  Other:
+    - Removed Rampant Warning Rampant added compatibility
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.8
+Date: 28. 1. 2018
+  Other:
+    - Rampant Mod Warning 
+    - Better Alien Biomes compatibility (Scored Earth)
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.7
+Date: 1. 1. 2018
+  Tweaks:
+    - Better Alien Biomes compatibility (Scored Earth)
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.6
+Date: 1. 1. 2018
+  Tweaks:
+    - Removed Alerts from units
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.5
+Date: 1. 1. 2018
+  Feature:
+    - Alien Biomes compatible (Scored Earth)
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.3
+Date: 1. 1. 2018
+  Tweaks:
+    - Updated Scorched Earth Landfill no longer happens in 016
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.2
+Date: 1. 1. 2018
+  Tweaks:
+    - Updated Scorched Earth to 016
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.1
+Date: 1. 1. 2018
+  Tweaks:
+    - Small tweak to resistances so its not over 100% on difficulty 5 
+
+---------------------------------------------------------------------------------------------------
+Version: 8.0.0
+Date: 1. 1. 2018
+  Tweaks:
+    - Initial release for Factorio 016

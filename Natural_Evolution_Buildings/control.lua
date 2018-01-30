@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '8.0.6'
+local BUILDINGS_ver = '8.0.9'
 local QC_Mod = false
 
 
@@ -110,7 +110,18 @@ local function On_Init()
 			global.Terraforming_Station_Table = {}
 	end
 
+	-- Fixed in Rampant Version: 0.16.14
+	--[[
+	--- Rampant Warning
+	if game.active_mods["Rampant"] then	
 		
+		for i, player in pairs(game.players) do
+			player.print(tostring("NE BUILDINGS: Rampant MOD removes all NE Enemies & Bob's Enemies, So less Artifacts for you, unless you disable New Enemies in Rampant"))
+		end
+	end
+	]]
+	
+	
 	--- Settup Settings
 	if not global.NE_Buildings then global.NE_Buildings = {} end
 	if not global.NE_Buildings.Settings then global.NE_Buildings.Settings = {} end
@@ -140,7 +151,11 @@ local function On_Config_Change()
 		global.world.itemCollectorLookup = {}
 		global.world.itemCollectorEvents = {}
 	end
+
 	
+	if global.deduction_constant == nil or global.deduction_constant == 0 then
+		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
+	end	
 	
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
@@ -169,6 +184,17 @@ local function On_Config_Change()
 ]]
 
 
+	-- Fixed in Rampant Version: 0.16.14
+	--[[
+	--- Rampant Warning
+	if game.active_mods["Rampant"] then	
+		
+		for i, player in pairs(game.players) do
+			player.print(tostring("NE BUILDINGS: Rampant MOD removes all NE Enemies & Bob's Enemies, So less Artifacts for you, unless you disable New Enemies in Rampant"))
+		end
+	end
+	]]
+
 	--- Settup Settings	
 	if not global.NE_Buildings then global.NE_Buildings = {} end
 	if not global.NE_Buildings.Settings then global.NE_Buildings.Settings = {} end
@@ -179,6 +205,17 @@ local function On_Config_Change()
 	global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
 		
 end
+
+
+script.on_event(defines.events.on_player_joined_game, function(event)
+	
+	if global.deduction_constant == nil or global.deduction_constant == 0 then
+		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
+	end	
+   
+end)
+
+
 
 
 ---------------------------------------------

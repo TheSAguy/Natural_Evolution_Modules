@@ -210,7 +210,6 @@ end
 ---------- Adds Alient Artifacts back for recipies in NE Buildings
 if data.raw["unit-spawner"]["biter-spawner"] and data.raw.item["alien-artifact"] then
 	if data.raw["unit-spawner"]["biter-spawner"].loot == nil then 
-		data.raw["unit-spawner"]["biter-spawner"].loot = {}
 		
 		data.raw["unit-spawner"]["biter-spawner"].loot = {}
 		table.insert(data.raw["unit-spawner"]["biter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
@@ -229,6 +228,7 @@ end
 
 
 
+
 --[[
 
 -- Adds a resitance of all damage types to an entity
@@ -244,6 +244,58 @@ for k, v in pairs(data.raw["unit"]) do
 end
 
 ]]
+
+---- Adding Alien Artifacts to Spawners:
+for k, unitSpawner in pairs(data.raw["unit-spawner"]) do
+	
+	if unitSpawner.loot == nil then 
+
+		unitSpawner.loot = {}
+					
+	end
+	
+	if data.raw.item["alien-artifact"] then
+		if unitSpawner.loot.item == "alien-artifact" then
+			break
+		
+		else
+			table.insert(unitSpawner.loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
+		end
+	end
+	
+end
+
+
+---- Adding Small Alien Artifacts to Units:
+for k, units in pairs(data.raw["unit"]) do
+	
+	if units.loot == nil then 
+
+		units.loot = {}
+					
+	end
+	
+	if data.raw.item["small-alien-artifact"] then
+		if units.loot.item == "small-alien-artifact" then
+			break
+		
+		else
+			table.insert(units.loot, {  item = "small-alien-artifact",  count_min = 1,  count_max = 2,  probability = 1 } )
+		end
+	end
+	
+end
+
+
+
+
+
+
+
+
+
+
+
 
 
 

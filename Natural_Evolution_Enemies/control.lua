@@ -1,4 +1,4 @@
----ENEMIES v.8.0.5
+---ENEMIES v.8.0.9
 local QC_Mod = false
 
 
@@ -19,186 +19,216 @@ if QC_Mod then
 	require ("prototypes.Vanilla_Changes.initialSpawn")
 	---*************
 end
---- Scorched Earth
-local replaceableTiles =
-{
-  -- vanilla
-	["grass-1"] = "grass-3",
-	["grass-3"] = "grass-2",
-	["grass-2"] = "grass-4",
-	["grass-4"] = "red-desert-0",
-	["red-desert-0"] = "dirt-3",
-	["dirt-3"] = "dirt-5",
-	["dirt-5"] = "dirt-6",
-	["dirt-6"] = "dirt-7",
-	["dirt-7"] = "dirt-4",
-	["dirt-4"] = "dry-dirt",
-	["dry-dirt"] = "dirt-2",
-	["dirt-2"] = "dirt-1",
-	["dirt-1"] = "red-desert-2",
-	["red-desert-2"] = "red-desert-3",
-	["red-desert-3"] = "sand-3",
-	["sand-3"] = "sand-2",
-	["sand-2"] = "sand-1",
-	["sand-1"] = "red-desert-1",
 
-    -- Alien biomes - 0.16
-	["frozen-snow-0"] = "frozen-snow-1",
-	["frozen-snow-1"] = "frozen-snow-2",
-	["frozen-snow-2"] = "frozen-snow-3",
-	["frozen-snow-3"] = "frozen-snow-4",
-	["frozen-snow-4"] = "frozen-snow-5",
-	["frozen-snow-5"] = "frozen-snow-6",
-	["frozen-snow-6"] = "frozen-snow-7",
-	["frozen-snow-7"] = "frozen-snow-8",
-	["frozen-snow-8"] = "frozen-snow-9",
-	["mineral-aubergine-dirt-1"] = "mineral-aubergine-dirt-2",
-	["mineral-aubergine-dirt-2"] = "mineral-aubergine-dirt-3",
-	["mineral-aubergine-dirt-3"] = "mineral-aubergine-dirt-4",
-	["mineral-aubergine-dirt-4"] = "mineral-aubergine-dirt-5",
-	["mineral-aubergine-dirt-5"] = "mineral-aubergine-dirt-6",
-	["mineral-aubergine-dirt-6"] = "dirt-3",
-	["mineral-aubergine-sand-1"] = "mineral-aubergine-sand-2",
-	["mineral-aubergine-sand-2"] = "mineral-aubergine-sand-3",
-	["mineral-aubergine-sand-3"] = "sand-3",
-	["mineral-beige-dirt-1"] = "mineral-beige-dirt-2",
-	["mineral-beige-dirt-2"] = "mineral-beige-dirt-3",
-	["mineral-beige-dirt-3"] = "mineral-beige-dirt-4",
-	["mineral-beige-dirt-4"] = "mineral-beige-dirt-5",
-	["mineral-beige-dirt-5"] = "mineral-beige-dirt-6",
-	["mineral-beige-dirt-6"] = "dirt-3",
-	["mineral-beige-sand-1"] = "mineral-beige-sand-2",
-	["mineral-beige-sand-2"] = "mineral-beige-sand-3",
-	["mineral-beige-sand-3"] = "sand-3",
-	["mineral-black-dirt-1"] = "mineral-black-dirt-2",
-	["mineral-black-dirt-2"] = "mineral-black-dirt-3",
-	["mineral-black-dirt-3"] = "mineral-black-dirt-4",
-	["mineral-black-dirt-4"] = "mineral-black-dirt-5",
-	["mineral-black-dirt-5"] = "mineral-black-dirt-6",
-	["mineral-black-dirt-6"] = "dirt-3",
-	["mineral-black-sand-1"] = "mineral-black-sand-2",
-	["mineral-black-sand-2"] = "mineral-black-sand-3",
-	["mineral-black-sand-3"] = "sand-3",
-	["mineral-brown-dirt-1"] = "mineral-brown-dirt-2",
-	["mineral-brown-dirt-2"] = "mineral-brown-dirt-3",
-	["mineral-brown-dirt-3"] = "mineral-brown-dirt-4",
-	["mineral-brown-dirt-4"] = "mineral-brown-dirt-5",
-	["mineral-brown-dirt-5"] = "mineral-brown-dirt-6",
-	["mineral-brown-dirt-6"] = "dirt-3",
-	["mineral-brown-sand-1"] = "mineral-brown-sand-2",
-	["mineral-brown-sand-2"] = "mineral-brown-sand-3",
-	["mineral-brown-sand-3"] = "sand-3",
-	["mineral-cream-dirt-1"] = "mineral-cream-dirt-2",
-	["mineral-cream-dirt-2"] = "mineral-cream-dirt-3",
-	["mineral-cream-dirt-3"] = "mineral-cream-dirt-4",
-	["mineral-cream-dirt-4"] = "mineral-cream-dirt-5",
-	["mineral-cream-dirt-5"] = "mineral-cream-dirt-6",
-	["mineral-cream-dirt-6"] = "dirt-3",
-	["mineral-cream-sand-1"] = "mineral-cream-sand-2",
-	["mineral-cream-sand-2"] = "mineral-cream-sand-3",
-	["mineral-cream-sand-3"] = "sand-3",
-	["mineral-dustyrose-dirt-1"] = "mineral-dustyrose-dirt-2",
-	["mineral-dustyrose-dirt-2"] = "mineral-dustyrose-dirt-3",
-	["mineral-dustyrose-dirt-3"] = "mineral-dustyrose-dirt-4",
-	["mineral-dustyrose-dirt-4"] = "mineral-dustyrose-dirt-5",
-	["mineral-dustyrose-dirt-5"] = "mineral-dustyrose-dirt-6",
-	["mineral-dustyrose-dirt-6"] = "dirt-3",
-	["mineral-dustyrose-sand-1"] = "mineral-dustyrose-sand-2",
-	["mineral-dustyrose-sand-2"] = "mineral-dustyrose-sand-3",
-	["mineral-dustyrose-sand-3"] = "sand-3",
-	["mineral-grey-dirt-1"] = "mineral-grey-dirt-2",
-	["mineral-grey-dirt-2"] = "mineral-grey-dirt-3",
-	["mineral-grey-dirt-3"] = "mineral-grey-dirt-4",
-	["mineral-grey-dirt-4"] = "mineral-grey-dirt-5",
-	["mineral-grey-dirt-5"] = "mineral-grey-dirt-6",
-	["mineral-grey-dirt-6"] = "dirt-3",
-	["mineral-grey-sand-1"] = "mineral-grey-sand-2",
-	["mineral-grey-sand-2"] = "mineral-grey-sand-3",
-	["mineral-grey-sand-3"] = "sand-3",
-	["mineral-purple-dirt-1"] = "mineral-purple-dirt-2",
-	["mineral-purple-dirt-2"] = "mineral-purple-dirt-3",
-	["mineral-purple-dirt-3"] = "mineral-purple-dirt-4",
-	["mineral-purple-dirt-4"] = "mineral-purple-dirt-5",
-	["mineral-purple-dirt-5"] = "mineral-purple-dirt-6",
-	["mineral-purple-dirt-6"] = "dirt-3",
-	["mineral-purple-sand-1"] = "mineral-purple-sand-2",
-	["mineral-purple-sand-2"] = "mineral-purple-sand-3",
-	["mineral-purple-sand-3"] = "sand-3",
-	["mineral-red-dirt-1"] = "mineral-red-dirt-2",
-	["mineral-red-dirt-2"] = "mineral-red-dirt-3",
-	["mineral-red-dirt-3"] = "mineral-red-dirt-4",
-	["mineral-red-dirt-4"] = "mineral-red-dirt-5",
-	["mineral-red-dirt-5"] = "mineral-red-dirt-6",
-	["mineral-red-dirt-6"] = "dirt-3",
-	["mineral-red-sand-1"] = "mineral-red-sand-2",
-	["mineral-red-sand-2"] = "mineral-red-sand-3",
-	["mineral-red-sand-3"] = "sand-3",
-	["mineral-tan-dirt-1"] = "mineral-tan-dirt-2",
-	["mineral-tan-dirt-2"] = "mineral-tan-dirt-3",
-	["mineral-tan-dirt-3"] = "mineral-tan-dirt-4",
-	["mineral-tan-dirt-4"] = "mineral-tan-dirt-5",
-	["mineral-tan-dirt-5"] = "mineral-tan-dirt-6",
-	["mineral-tan-dirt-6"] = "dirt-3",
-	["mineral-tan-sand-1"] = "mineral-tan-sand-2",
-	["mineral-tan-sand-2"] = "mineral-tan-sand-3",
-	["mineral-tan-sand-3"] = "dirt-3",
-	["mineral-violet-dirt-1"] = "mineral-violet-dirt-2",
-	["mineral-violet-dirt-2"] = "mineral-violet-dirt-3",
-	["mineral-violet-dirt-3"] = "mineral-violet-dirt-4",
-	["mineral-violet-dirt-4"] = "mineral-violet-dirt-5",
-	["mineral-violet-dirt-5"] = "mineral-violet-dirt-6",
-	["mineral-violet-dirt-6"] = "dirt-3",
-	["mineral-violet-sand-1"] = "mineral-violet-sand-2",
-	["mineral-violet-sand-2"] = "mineral-violet-sand-3",
-	["mineral-violet-sand-3"] = "dirt-3",
-	["mineral-white-dirt-1"] = "mineral-white-dirt-2",
-	["mineral-white-dirt-2"] = "mineral-white-dirt-3",
-	["mineral-white-dirt-3"] = "mineral-white-dirt-4",
-	["mineral-white-dirt-4"] = "mineral-white-dirt-5",
-	["mineral-white-dirt-5"] = "mineral-white-dirt-6",
-	["mineral-white-dirt-6"] = "dirt-3",
-	["mineral-white-sand-1"] = "mineral-white-sand-2",
-	["mineral-white-sand-2"] = "mineral-white-sand-3",
-	["mineral-white-sand-3"] = "sand-3",
-	["vegetation-blue-grass-1"] = "vegetation-blue-grass-2",
-	["vegetation-blue-grass-2"] =     "grass-3" ,
-	["vegetation-green-grass-1"] = "vegetation-green-grass-2",
-	["vegetation-green-grass-2"] = "vegetation-green-grass-3",
-	["vegetation-green-grass-3"] = "vegetation-green-grass-4",
-	["vegetation-green-grass-4"] =     "grass-3" ,
-	["vegetation-mauve-grass-1"] = "vegetation-mauve-grass-2",
-	["vegetation-mauve-grass-2"] =     "grass-3" ,
-	["vegetation-olive-grass-1"] = "vegetation-olive-grass-2",
-	["vegetation-olive-grass-2"] =     "grass-3" ,
-	["vegetation-orange-grass-1"] = "vegetation-orange-grass-2",
-	["vegetation-orange-grass-2"] =     "grass-3" ,
-	["vegetation-purple-grass-1"] = "vegetation-purple-grass-2",
-	["vegetation-purple-grass-2"] =     "grass-3" ,
-	["vegetation-red-grass-1"] = "vegetation-red-grass-2",
-	["vegetation-red-grass-2"] =     "grass-3" ,
-	["vegetation-turquoise-grass-1"] = "vegetation-turquoise-grass-2",
-	["vegetation-turquoise-grass-2"] =     "grass-3" ,
-	["vegetation-violet-grass-1"] = "vegetation-violet-grass-2",
-	["vegetation-violet-grass-2"] =     "grass-3" ,
-	["vegetation-yellow-grass-1"] = "vegetation-yellow-grass-2",
-	["vegetation-yellow-grass-2"] =     "grass-3" ,
-	["volcanic-blue-heat-1"]  =  "volcanic-blue-heat-2",
-	["volcanic-blue-heat-2"]  =  "volcanic-blue-heat-3",
-	["volcanic-blue-heat-3"]  =  "volcanic-blue-heat-4",
-	["volcanic-blue-heat-4"]  =  "volcanic-orange-heat-1",
-	["volcanic-green-heat-1"]  =  "volcanic-green-heat-2",
-	["volcanic-green-heat-2"]  =  "volcanic-green-heat-3",
-	["volcanic-green-heat-3"]  =  "volcanic-green-heat-4",
-	["volcanic-green-heat-4"]  =  "volcanic-orange-heat-1",
-	["volcanic-orange-heat-1"]  =  "volcanic-orange-heat-2",
-	["volcanic-orange-heat-2"]  =  "volcanic-orange-heat-3",
-	["volcanic-orange-heat-3"]  =  "volcanic-orange-heat-4",
-	["volcanic-purple-heat-1"]  =  "volcanic-purple-heat-2",
-	["volcanic-purple-heat-2"]  =  "volcanic-purple-heat-3",
-	["volcanic-purple-heat-3"]  =  "volcanic-purple-heat-4",
-	["volcanic-purple-heat-4"]  =  "volcanic-orange-heat-1"
+
+--- Scorched Earth
+	local replaceableTiles_alien =
+{
+	  -- vanilla
+["grass-1"] = "vegetation-green-grass-3",
+["grass-3"] = "vegetation-green-grass-2",
+["grass-2"] = "vegetation-green-grass-4",
+["grass-4"] = "vegetation-green-grass-4",
+["dirt-1"] = "mineral-beige-dirt-1",
+["dirt-2"] = "mineral-beige-dirt-1",
+["dirt-3"] = "mineral-beige-dirt-1",
+["dirt-5"] = "mineral-beige-dirt-1",
+["dirt-6"] = "mineral-beige-dirt-1",
+["dirt-7"] = "mineral-beige-dirt-1",
+["dirt-4"] = "mineral-beige-dirt-1",
+["dry-dirt"] = "mineral-beige-dirt-1",
+["sand-3"] = "mineral-beige-dirt-1",
+["sand-2"] = "mineral-beige-dirt-1",
+["sand-1"] = "mineral-beige-dirt-1",
+["red-desert-0"] = "mineral-beige-dirt-1",
+["red-desert-1"] = "mineral-beige-dirt-1",
+["red-desert-2"] = "mineral-beige-dirt-1",
+["red-desert-3"] = "mineral-beige-dirt-1",
+
+	  -- alien biomes
+["frozen-snow-0"] = "frozen-snow-1",
+["frozen-snow-1"] = "frozen-snow-2",
+["frozen-snow-2"] = "frozen-snow-3",
+["frozen-snow-3"] = "frozen-snow-4",
+["frozen-snow-4"] = "frozen-snow-5",
+["frozen-snow-5"] = "frozen-snow-6",
+["frozen-snow-6"] = "frozen-snow-7",
+["frozen-snow-7"] = "frozen-snow-8",
+["frozen-snow-8"] = "frozen-snow-9",
+["frozen-snow-9"] = "volcanic-orange-heat-1",
+["mineral-aubergine-dirt-1"] = "mineral-aubergine-dirt-2",
+["mineral-aubergine-dirt-2"] = "mineral-aubergine-dirt-3",
+["mineral-aubergine-dirt-3"] = "mineral-aubergine-dirt-4",
+["mineral-aubergine-dirt-4"] = "mineral-aubergine-dirt-5",
+["mineral-aubergine-dirt-5"] = "mineral-aubergine-dirt-6",
+["mineral-aubergine-dirt-6"] = "mineral-aubergine-sand-1",
+["mineral-aubergine-sand-1"] = "mineral-aubergine-sand-2",
+["mineral-aubergine-sand-2"] = "mineral-aubergine-sand-3",
+["mineral-aubergine-sand-3"] = "volcanic-orange-heat-1",
+["mineral-beige-dirt-1"] = "mineral-beige-dirt-2",
+["mineral-beige-dirt-2"] = "mineral-beige-dirt-3",
+["mineral-beige-dirt-3"] = "mineral-beige-dirt-4",
+["mineral-beige-dirt-4"] = "mineral-beige-dirt-5",
+["mineral-beige-dirt-5"] = "mineral-beige-dirt-6",
+["mineral-beige-dirt-6"] = "mineral-beige-sand-1",
+["mineral-beige-sand-1"] = "mineral-beige-sand-2",
+["mineral-beige-sand-2"] = "mineral-beige-sand-3",
+["mineral-beige-sand-3"] = "volcanic-orange-heat-1",
+["mineral-black-dirt-1"] = "mineral-black-dirt-2",
+["mineral-black-dirt-2"] = "mineral-black-dirt-3",
+["mineral-black-dirt-3"] = "mineral-black-dirt-4",
+["mineral-black-dirt-4"] = "mineral-black-dirt-5",
+["mineral-black-dirt-5"] = "mineral-black-dirt-6",
+["mineral-black-dirt-6"] = "mineral-black-sand-1",
+["mineral-black-sand-1"] = "mineral-black-sand-2",
+["mineral-black-sand-2"] = "mineral-black-sand-3",
+["mineral-black-sand-3"] = "volcanic-orange-heat-1",
+["mineral-brown-dirt-1"] = "mineral-brown-dirt-2",
+["mineral-brown-dirt-2"] = "mineral-brown-dirt-3",
+["mineral-brown-dirt-3"] = "mineral-brown-dirt-4",
+["mineral-brown-dirt-4"] = "mineral-brown-dirt-5",
+["mineral-brown-dirt-5"] = "mineral-brown-dirt-6",
+["mineral-brown-dirt-6"] = "mineral-brown-sand-1",
+["mineral-brown-sand-1"] = "mineral-brown-sand-2",
+["mineral-brown-sand-2"] = "mineral-brown-sand-3",
+["mineral-brown-sand-3"] = "volcanic-orange-heat-1",
+["mineral-cream-dirt-1"] = "mineral-cream-dirt-2",
+["mineral-cream-dirt-2"] = "mineral-cream-dirt-3",
+["mineral-cream-dirt-3"] = "mineral-cream-dirt-4",
+["mineral-cream-dirt-4"] = "mineral-cream-dirt-5",
+["mineral-cream-dirt-5"] = "mineral-cream-dirt-6",
+["mineral-cream-dirt-6"] = "mineral-cream-sand-1",
+["mineral-cream-sand-1"] = "mineral-cream-sand-2",
+["mineral-cream-sand-2"] = "mineral-cream-sand-3",
+["mineral-cream-sand-3"] = "volcanic-orange-heat-1",
+["mineral-dustyrose-dirt-1"] = "mineral-dustyrose-dirt-2",
+["mineral-dustyrose-dirt-2"] = "mineral-dustyrose-dirt-3",
+["mineral-dustyrose-dirt-3"] = "mineral-dustyrose-dirt-4",
+["mineral-dustyrose-dirt-4"] = "mineral-dustyrose-dirt-5",
+["mineral-dustyrose-dirt-5"] = "mineral-dustyrose-dirt-6",
+["mineral-dustyrose-dirt-6"] = "mineral-dustyrose-sand-1",
+["mineral-dustyrose-sand-1"] = "mineral-dustyrose-sand-2",
+["mineral-dustyrose-sand-2"] = "mineral-dustyrose-sand-3",
+["mineral-dustyrose-sand-3"] = "volcanic-orange-heat-1",
+["mineral-grey-dirt-1"] = "mineral-grey-dirt-2",
+["mineral-grey-dirt-2"] = "mineral-grey-dirt-3",
+["mineral-grey-dirt-3"] = "mineral-grey-dirt-4",
+["mineral-grey-dirt-4"] = "mineral-grey-dirt-5",
+["mineral-grey-dirt-5"] = "mineral-grey-dirt-6",
+["mineral-grey-dirt-6"] = "mineral-grey-sand-1",
+["mineral-grey-sand-1"] = "mineral-grey-sand-2",
+["mineral-grey-sand-2"] = "mineral-grey-sand-3",
+["mineral-grey-sand-3"] = "volcanic-orange-heat-1",
+["mineral-purple-dirt-1"] = "mineral-purple-dirt-2",
+["mineral-purple-dirt-2"] = "mineral-purple-dirt-3",
+["mineral-purple-dirt-3"] = "mineral-purple-dirt-4",
+["mineral-purple-dirt-4"] = "mineral-purple-dirt-5",
+["mineral-purple-dirt-5"] = "mineral-purple-dirt-6",
+["mineral-purple-dirt-6"] = "mineral-purple-sand-1",
+["mineral-purple-sand-1"] = "mineral-purple-sand-2",
+["mineral-purple-sand-2"] = "mineral-purple-sand-3",
+["mineral-purple-sand-3"] = "volcanic-orange-heat-1",
+["mineral-red-dirt-1"] = "mineral-red-dirt-2",
+["mineral-red-dirt-2"] = "mineral-red-dirt-3",
+["mineral-red-dirt-3"] = "mineral-red-dirt-4",
+["mineral-red-dirt-4"] = "mineral-red-dirt-5",
+["mineral-red-dirt-5"] = "mineral-red-dirt-6",
+["mineral-red-dirt-6"] = "mineral-red-sand-1",
+["mineral-red-sand-1"] = "mineral-red-sand-2",
+["mineral-red-sand-2"] = "mineral-red-sand-3",
+["mineral-red-sand-3"] = "volcanic-orange-heat-1",
+["mineral-tan-dirt-1"] = "mineral-tan-dirt-2",
+["mineral-tan-dirt-2"] = "mineral-tan-dirt-3",
+["mineral-tan-dirt-3"] = "mineral-tan-dirt-4",
+["mineral-tan-dirt-4"] = "mineral-tan-dirt-5",
+["mineral-tan-dirt-5"] = "mineral-tan-dirt-6",
+["mineral-tan-dirt-6"] = "mineral-tan-sand-1",
+["mineral-tan-sand-1"] = "mineral-tan-sand-2",
+["mineral-tan-sand-2"] = "mineral-tan-sand-3",
+["mineral-tan-sand-3"] = "volcanic-orange-heat-1",
+["mineral-violet-dirt-1"] = "mineral-violet-dirt-2",
+["mineral-violet-dirt-2"] = "mineral-violet-dirt-3",
+["mineral-violet-dirt-3"] = "mineral-violet-dirt-4",
+["mineral-violet-dirt-4"] = "mineral-violet-dirt-5",
+["mineral-violet-dirt-5"] = "mineral-violet-dirt-6",
+["mineral-violet-dirt-6"] = "mineral-violet-sand-1",
+["mineral-violet-sand-1"] = "mineral-violet-sand-2",
+["mineral-violet-sand-2"] = "mineral-violet-sand-3",
+["mineral-violet-sand-3"] = "volcanic-orange-heat-1",
+["mineral-white-dirt-1"] = "mineral-white-dirt-2",
+["mineral-white-dirt-2"] = "mineral-white-dirt-3",
+["mineral-white-dirt-3"] = "mineral-white-dirt-4",
+["mineral-white-dirt-4"] = "mineral-white-dirt-5",
+["mineral-white-dirt-5"] = "mineral-white-dirt-6",
+["mineral-white-dirt-6"] = "mineral-white-sand-1",
+["mineral-white-sand-1"] = "mineral-white-sand-2",
+["mineral-white-sand-2"] = "mineral-white-sand-3",
+["mineral-white-sand-3"] = "volcanic-orange-heat-1",
+["vegetation-blue-grass-1"] = "vegetation-blue-grass-2",
+["vegetation-blue-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-green-grass-1"] = "vegetation-green-grass-2",
+["vegetation-green-grass-2"] = "vegetation-green-grass-3",
+["vegetation-green-grass-3"] = "vegetation-green-grass-4",
+["vegetation-green-grass-4"] = "mineral-beige-dirt-1",
+["vegetation-mauve-grass-1"] = "vegetation-mauve-grass-2",
+["vegetation-mauve-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-olive-grass-1"] = "vegetation-olive-grass-2",
+["vegetation-olive-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-orange-grass-1"] = "vegetation-orange-grass-2",
+["vegetation-orange-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-purple-grass-1"] = "vegetation-purple-grass-2",
+["vegetation-purple-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-red-grass-1"] = "vegetation-red-grass-2",
+["vegetation-red-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-turquoise-grass-1"] = "vegetation-turquoise-grass-2",
+["vegetation-turquoise-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-violet-grass-1"] = "vegetation-violet-grass-2",
+["vegetation-violet-grass-2"] = "mineral-beige-dirt-1",
+["vegetation-yellow-grass-1"] = "vegetation-yellow-grass-2",
+["vegetation-yellow-grass-2"] = "mineral-beige-dirt-1",
+["volcanic-blue-heat-1"] = "volcanic-blue-heat-2",
+["volcanic-blue-heat-2"] = "volcanic-blue-heat-3",
+["volcanic-blue-heat-3"] = "volcanic-blue-heat-4",
+["volcanic-blue-heat-4"] = "volcanic-orange-heat-1",
+["volcanic-green-heat-1"] = "volcanic-green-heat-2",
+["volcanic-green-heat-2"] = "volcanic-green-heat-3",
+["volcanic-green-heat-3"] = "volcanic-green-heat-4",
+["volcanic-green-heat-4"] = "volcanic-orange-heat-1",
+["volcanic-orange-heat-1"] = "volcanic-orange-heat-2",
+["volcanic-orange-heat-2"] = "volcanic-orange-heat-3",
+["volcanic-orange-heat-3"] = "volcanic-orange-heat-4",
+["volcanic-purple-heat-1"] = "volcanic-purple-heat-2",
+["volcanic-purple-heat-2"] = "volcanic-purple-heat-3",
+["volcanic-purple-heat-3"] = "volcanic-purple-heat-4",
+["volcanic-purple-heat-4"] = "volcanic-orange-heat-1"
 
 }
+
+
+	local replaceableTiles =
+	{
+	  -- vanilla
+		["grass-1"] = "grass-3",
+		["grass-3"] = "grass-2",
+		["grass-2"] = "grass-4",
+		["grass-4"] = "red-desert-0",
+		["red-desert-0"] = "dirt-3",
+		["dirt-3"] = "dirt-5",
+		["dirt-5"] = "dirt-6",
+		["dirt-6"] = "dirt-7",
+		["dirt-7"] = "dirt-4",
+		["dirt-4"] = "dry-dirt",
+		["dry-dirt"] = "dirt-2",
+		["dirt-2"] = "dirt-1",
+		["dirt-1"] = "red-desert-2",
+		["red-desert-2"] = "red-desert-3",
+		["red-desert-3"] = "sand-3",
+		["sand-3"] = "sand-2",
+		["sand-2"] = "sand-1",
+		["sand-1"] = "red-desert-1"
+
+	}
+
 
 
 local waterTiles =
@@ -249,6 +279,8 @@ local catchFire =
 	["solar-panel"] = true,
 	["locomotive"] = true,
 	["cargo-wagon"] = true,
+	["fluid-wagon"] = true,
+	["artillery-wagon"] = true,
 	["gate"] = false,
 	["lab"] = true,
 	["rocket-silo"] = true,
@@ -265,7 +297,8 @@ local catchFire =
 	["straight-rail"] = false,
     ["curved-rail"] = false,
     ["rail-signal"] = false,
-    ["rail-chain-signal"] = false	
+    ["rail-chain-signal"] = false,	
+	["reactor"] = true	
 }
 
 
@@ -292,6 +325,8 @@ local corpseSize =
 	["solar-panel"] = "big-remnants",
 	["locomotive"] = "big-remnants",
 	["cargo-wagon"] = "medium-remnants",
+	["fluid-wagon"] = "medium-remnants",
+	["artillery-wagon"] = "big-remnants",
 	["gate"] = "small-remnants",
 	["lab"] = "big-remnants",
 	["rocket-silo"] = "big-remnants",
@@ -308,11 +343,12 @@ local corpseSize =
 	["straight-rail"] = "small-remnants",
     ["curved-rail"] = "small-remnants",
     ["rail-signal"] = "small-remnants",
-    ["rail-chain-signal"] = "small-remnants"
+    ["rail-chain-signal"] = "small-remnants",
+	["reactor"] = "big-remnants"
 }
 
 
---- Killing Trees
+--- Killing Trees - NO LONGER USED, just Type = "tree"
 local tree_names = {
 	["tree-01"] = true,
 	["tree-02"] = true,
@@ -352,6 +388,18 @@ local function On_Init()
 	
 	global.launch_units={}--this is used to define which equipment is put initially
 	global.launch_units["unit-cluster"] = "unit-cluster"
+
+	-- Fixed in Rampant Version: 0.16.14
+	--[[	
+	--- Rampant Warning
+	if game.active_mods["Rampant"] then	
+		
+		for i, player in pairs(game.players) do
+			player.print(tostring("NE ENEMIES: Rampant MOD removes all NE Enemies & Bob's Enemies, unless you disable New Enemies in Rampant"))
+		end
+	end
+	]]
+	
 	
 	if QC_Mod then
 		---*************
@@ -365,6 +413,18 @@ end
 
 ---------------------------------------------				 
 local function On_Config_Change()
+
+	-- Fixed in Rampant Version: 0.16.14
+	--[[	
+	--- Rampant Warning
+	if game.active_mods["Rampant"] then	
+		
+		for i, player in pairs(game.players) do
+			player.print(tostring("NE ENEMIES: Rampant MOD removes all NE Enemies & Bob's Enemies, unless you disable New Enemies in Rampant"))
+		end
+	end
+	]]
+	
 
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
@@ -399,7 +459,7 @@ local function On_Remove(event)
 		
 	local entity = event.entity		
  	--------- Did you really just kill that tree...
-	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") and tree_names[entity.name] then
+	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") then -- and tree_names[entity.name] then
 	
 		writeDebug("Tree Mined")
 		local surface = entity.surface
@@ -618,9 +678,20 @@ function Scorched_Earth(surface, pos, size)
 			local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 			writeDebug("The current tile is: " .. currentTilename)
 
-			if replaceableTiles[currentTilename] then
-				table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
+			if game.active_mods["alien-biomes"] then
+			
+				if replaceableTiles_alien[currentTilename] then
+					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})   
+				end
+			
+			else
+				
+				if replaceableTiles[currentTilename] then
+					table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
+				end
+				
 			end
+			
 		end
 
 		

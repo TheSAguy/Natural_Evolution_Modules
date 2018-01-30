@@ -259,6 +259,28 @@ end
 		table.insert(data.raw["unit-spawner"]["spitter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
 	end
   
+---- Any other units:
+
+for k, units in pairs(data.raw["unit"]) do
 	
+	if units.loot == nil then 
+
+		units.loot = {}
+					
+	end
+	
+	if data.raw.item["small-alien-artifact"] then
+		if units.loot.item == "small-alien-artifact" then
+			break
+		
+		else
+			table.insert(units.loot, {  item = "small-alien-artifact",  count_min = 1,  count_max = 2,  probability = 1 } )
+		end
+	end
+	
+end
+
+
+
 
 ------------------
