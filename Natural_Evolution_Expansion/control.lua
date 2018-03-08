@@ -1,4 +1,4 @@
---- EXPANSION v.8.0.1
+--- EXPANSION v.8.0.2
 local QC_Mod = false
 
 
@@ -151,7 +151,10 @@ function On_Change()
 	global.NE_Expansion.Settings.Harder_Endgame = settings.startup["NE_Harder_Endgame"].value
 	global.NE_Expansion.Settings.No_Expansion = settings.startup["NE_No_Expansion"].value
 
-	On_Change_Setup()
+	if #game.players == 1 then
+		On_Change_Setup()
+	end
+	
 end
 
 ---------------------------------------------
