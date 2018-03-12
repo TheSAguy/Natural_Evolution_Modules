@@ -1,13 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 8.1.0
+Date: 3. 12. 2018
+  Feature:
+    - Added Russian locale, thx IgorLutiy
+
+---------------------------------------------------------------------------------------------------
 Version: 8.0.9
 Date: 29. 1. 2018
-  Other:
+  Feature:
     - Removed Rampant Warning Rampant added compatibility
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.8
 Date: 28. 1. 2018
-  Other:
+  Feature:
     - Rampant Mod Warning 
     - Better Alien Biomes compatibility (Scored Earth)
 

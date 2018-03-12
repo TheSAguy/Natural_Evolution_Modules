@@ -1,4 +1,4 @@
----ENEMIES v.8.0.9
+---ENEMIES v.8.1.0
 local QC_Mod = false
 
 
@@ -253,6 +253,7 @@ local autoRepairType =
 local autoRepairName = 
 {
     ["bi-big-wooden-pole"] = true,
+	["bi-huge-wooden-pole"] = true,
 }
 
 
