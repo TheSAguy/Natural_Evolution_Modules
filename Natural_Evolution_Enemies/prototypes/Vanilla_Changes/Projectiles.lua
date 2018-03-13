@@ -520,32 +520,32 @@ data:extend(
 				{
 				type = "area",
 				radius = 1,
-                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 21, type = "acid" }}}},
 				{
 				type = "area",
 				radius = 2,
-                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
 				radius = 3,
-                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
 				radius = 4,
-                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
 				radius = 5,
-                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}},
 				{
 				type = "area",
 				radius = 6,
-                entity_flags = {"player-creation", "placeable-player", "placeable-neutral", "pushable"},
+                entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}}
             },
           }
