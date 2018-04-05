@@ -1,14 +1,14 @@
 data:extend({
 	{
 		type = "technology",
-		name = "Bio_Cannon",
+		name = "bi_tech_bio_cannon",
 		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/Bio_Cannon.png",
 		effects = 
 		{
 			{
 				type = "unlock-recipe",
-				recipe = "Bio_Cannon"
+				recipe = "bi_recipe_bio_cannon"
 			},
 			{
 				type = "unlock-recipe",
@@ -16,15 +16,15 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "Bio_Cannon_Basic_Ammo"
+				recipe = "bi_recipe_bio_cannon_basic_ammo"
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "Bio_Cannon_Poison_Ammo"
+				recipe = "bi_recipe_bio_cannon_poison_ammo"
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "Bio_Cannon_Bio_Ammo"
+				recipe = "bi_recipe_bio_cannon_biological_ammo"
 			},
 		},
 		prerequisites = {"military-2"},

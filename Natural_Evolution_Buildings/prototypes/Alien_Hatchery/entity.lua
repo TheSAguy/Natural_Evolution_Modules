@@ -997,7 +997,7 @@ data:extend({
     name = "ne-living-wall",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
 	icon_size = 32,
-    flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable"},
+    flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable", "not-flammable"},
     collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
     selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
     minable = {mining_time = 0.5, result = "ne-living-wall-exhausted"},

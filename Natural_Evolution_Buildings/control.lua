@@ -1,4 +1,4 @@
-local BUILDINGS_ver = '8.0.9'
+-- NE BUILDINGS Ver = 8.1.1
 local QC_Mod = false
 
 

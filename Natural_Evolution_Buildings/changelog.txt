@@ -1,53 +1,65 @@
 ---------------------------------------------------------------------------------------------------
+Version: 8.1.1
+Date: 4. 5. 2018
+  Features:
+    - Changed names of somre Recipes
+
+---------------------------------------------------------------------------------------------------
+Version: 8.1.0
+Date: 1. 29. 2018
+  Features:
+    - Make living walls fire proof
+
+---------------------------------------------------------------------------------------------------
 Version: 8.0.9
-Date: 29. 1. 2018
-  Other:
+Date: 1. 29. 2018
+  Features:
     - Removed Rampant Warning - Rampant added compatibility
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.7
-Date: 28. 1. 2018
-  Other:
+Date: 1. 28. 2018
+  Features:
     - Added Rampant Compatibility Warning
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.6
 Date: ?. ?. 2018
-  Other:
+  Features:
     - Removed Endgame Combat incompatibility warning
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.5
 Date: ?. ?. 2018
-  Other:
+  Features:
     - Removed Alerts from Units
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.4
 Date: ?. ?. 2018
-  Other:
+  Features:
     - Internal
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.3
 Date: ?. ?. 2018
-  Other:
+  Features:
     - Removed warning signals for vanilla units
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.2
 Date: ?. ?. 2018
-  Other:
+  Features:
     - Renamed Bio Cannon and made the ammo usable in Artillery
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.1
 Date: ?. ?. 2018
-  Other:
+  Bugfixes:
     - Fixed mining items
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.0
 Date: ?. ?. 2018
-  Other:
+  Features:
     - Initial release for Factorio 016

@@ -36,7 +36,7 @@ for index, force in pairs(game.forces) do
 	
 	
 	
-	if technologies["Bio_Cannon"].researched then
+	if technologies["bi_tech_bio_cannon"].researched then
 		recipes["NE_gun_turret"].enabled = true
 		recipes["NE_gun_turret"].reload()
 	end

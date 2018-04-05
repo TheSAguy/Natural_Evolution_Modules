@@ -1,0 +1,18 @@
+{
+  "recipe":
+  [
+    ["bi_recipe_dart_turret", "bio_turret"],
+	["bi_recipe_basic_dart_magazine", "basic_dart_magazine"],
+	["bi_recipe_enhanced_dart_magazine", "enhanced_dart_magazine"],
+	["bi_recipe_bio_cannon", "Bio_Cannon"],
+	["bi_recipe_bio_cannon_basic_ammo", "Bio_Cannon_Basic_Ammo"],
+	["bi_recipe_bio_cannon_poison_ammo", "Bio_Cannon_Poison_Ammo"],
+	["bi_recipe_bio_cannon_biological_ammo", "Bio_Cannon_Bio_Ammo"]
+  ],
+  "technology":
+  [
+	[ "bi_tech_bio_cannon", "Bio_Cannon" ]
+  ]
+  
+}
+
