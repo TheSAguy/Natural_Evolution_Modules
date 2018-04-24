@@ -24,8 +24,8 @@ global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"
 
 --- Conversion Ammo Types
 local AMMO_TYPES = {
-   ["basic-dart-magazine_c"] = true,
-   ["enhanced-dart-magazine_c"] = true,
+   ["bi-basic-dart-magazine_c"] = true,
+   ["bi-enhanced-dart-magazine_c"] = true,
    ["firearm-magazine_c"] = true,
    ["copper-bullet-magazine_c"] = true,
    ["piercing-rounds-magazine_c"] = true,

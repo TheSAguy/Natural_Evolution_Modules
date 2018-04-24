@@ -104,7 +104,7 @@ data:extend({
   },
 
 
-  
+  --[[
   ----- Fire Clouds. 
  
   --- medium File Cloud
@@ -159,7 +159,7 @@ data:extend({
     action_frequency = 30
   },
  
-
+]]
   
   --- Napalm Large
     {

@@ -79,6 +79,9 @@ require("prototypes.Armory.projectiles-recipe")
 
 
 thxbob.lib.tech.add_recipe_unlock ("military", "copper_bullets")
+thxbob.lib.tech.add_recipe_unlock ("military", "bi_recipe_standard_dart_magazine")
+thxbob.lib.tech.add_recipe_unlock ("military-2", "bi_recipe_enhanced_dart_magazine")
+thxbob.lib.tech.add_recipe_unlock ("military-3", "bi_recipe_poison_dart_magazine")
 thxbob.lib.tech.add_recipe_unlock ("military-2", "piercing_magazine_copper")
 thxbob.lib.tech.add_recipe_unlock ("explosive-rocketry", "NE_Napalm_Rocket")
  

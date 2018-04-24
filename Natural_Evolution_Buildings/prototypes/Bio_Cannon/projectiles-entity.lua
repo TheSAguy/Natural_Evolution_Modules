@@ -7,6 +7,28 @@ else
 end
 
 
+
+function fire_pic(inputs)
+return
+
+	
+		
+    {
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/ne_fire.png",
+      priority = "low",
+      width = 128,
+      height = 128,
+      frame_count = 12,
+      line_length = 4,
+	  animation_speed = 1,    
+      scale = inputs.scale,
+    }
+	
+
+end
+
+
+
 data:extend({
 	--Projectile
 
@@ -349,9 +371,11 @@ data:extend({
     name = "small-fire-cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
-    animation =
+	animation = fire_pic{scale = 0.7},
+	
+	--[[
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/fire.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
       priority = "low",
       width = 30,
       height = 50,
@@ -360,6 +384,7 @@ data:extend({
       line_length = 30,
       scale = 3,
     },
+	]]
     slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
@@ -401,9 +426,11 @@ data:extend({
     name = "medium-fire-cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
-    animation =
+	animation = fire_pic{scale = 0.85},
+	
+	--[[
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/fire.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
       priority = "low",
       width = 30,
       height = 50,
@@ -412,6 +439,7 @@ data:extend({
       line_length = 30,
       scale = 3,
     },
+	]]
     slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
@@ -447,58 +475,7 @@ data:extend({
     action_frequency = 30
   },
   
-   --- big File Cloud
-    {
-    type = "smoke-with-trigger",
-    name = "big-fire-cloud",
-    flags = {"not-on-map"},
-    show_when_smoke_off = true,
-    animation =
-    {
-      filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/fire.png",
-      priority = "low",
-      width = 30,
-      height = 50,
-      frame_count = 30,
-      animation_speed = 1,
-      line_length = 30,
-      scale = 3,
-    },
-    slow_down_factor = 0,
-    affected_by_wind = false,
-    cyclic = true,
-    duration = 60 * 12,
-    fade_away_duration = 2 * 60,
-    spread_duration = 12,
-    action =
-    {
-      type = "direct",
-      action_delivery =
-      {
-        type = "instant",
-        target_effects =
-        {
-          type = "nested-result",
-          action =
-          {
-            type = "area",
-            radius = 12,
-            action_delivery =
-            {
-              type = "instant",
-              target_effects =
-              {
-                type = "damage",
-                damage = { amount = 10, type = "fire"}
-              }
-            }
-          }
-        }
-      }
-    },
-    action_frequency = 30
-  },
-  
+  --- Bio Cannon Explosion
   	{
 		type = "smoke-with-trigger",
 		name = "bio-cannon-explosion",

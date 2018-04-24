@@ -1,6 +1,7 @@
 data:extend({
 
-	--- Basic Dart
+
+	--- Basic Dart Ammo
 	{
 		type = "recipe",
 		name = "bi_recipe_basic_dart_magazine",
@@ -13,7 +14,7 @@ data:extend({
 			{
 				{"raw-wood", 5},
 			},
-		  result = "basic-dart-magazine",
+		  result = "bi-basic-dart-magazine",
 		  result_count = 10,
 		},
 		expensive =
@@ -24,42 +25,103 @@ data:extend({
 			{
 				{"raw-wood", 5},
 			},
-		  result = "basic-dart-magazine",
+		  result = "bi-basic-dart-magazine",
 		  result_count = 8,
 		},
 	}, 	
-	
-	--- Enhanced Dart
+
+	--- Standard Dart Ammo
 	{
 		type = "recipe",
-		name = "bi_recipe_enhanced_dart_magazine",
-		
+		name = "bi_recipe_standard_dart_magazine",
 		normal =
 		{
-			enabled = true,
+			enabled = false,
 			energy_required = 5,
 			ingredients = 
 			{
-				{"raw-wood", 5},
+				{"bi-basic-dart-magazine", 10},
 				{"copper-plate", 5},
 			},
-		  result = "enhanced-dart-magazine",
+		  result = "bi-standard-dart-magazine",
 		  result_count = 10,
 		},
 		expensive =
 		{
-			enabled = true,
+			enabled = false,
 			energy_required = 8,
 			ingredients = 
 			{
-				{"raw-wood", 5},
+				{"bi-basic-dart-magazine", 8},
 				{"copper-plate", 5},
 			},
-		  result = "enhanced-dart-magazine",
+		  result = "bi-standard-dart-magazine",
 		  result_count = 8,
 		},
 	}, 	
-  
+
+	
+	--- Enhanced Dart Ammo
+	{
+		type = "recipe",
+		name = "bi_recipe_enhanced_dart_magazine",
+		normal =
+		{
+			enabled = false,
+			energy_required = 5,
+			ingredients = 
+			{
+				{"bi-standard-dart-magazine", 10},
+				{"plastic-bar", 5},
+			},
+		  result = "bi-enhanced-dart-magazine",
+		  result_count = 10,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 8,
+			ingredients = 
+			{
+				{"bi-standard-dart-magazine", 8},
+				{"plastic-bar", 5},
+			},
+		  result = "bi-enhanced-dart-magazine",
+		  result_count = 8,
+		},
+	}, 	
+
+	--- Poison Dart Ammo
+	{
+		type = "recipe",
+		name = "bi_recipe_poison_dart_magazine",
+		normal =
+		{
+			enabled = false,
+			energy_required = 5,
+			ingredients = 
+			{
+				{"bi-enhanced-dart-magazine", 10},
+				{"poison-capsule", 5},
+			},
+		  result = "bi-poison-dart-magazine",
+		  result_count = 10,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 8,
+			ingredients = 
+			{
+				{"bi-enhanced-dart-magazine", 8},
+				{"poison-capsule", 5},
+			},
+		  result = "bi-poison-dart-magazine",
+		  result_count = 8,
+		},
+	}, 	
+
+
 
 	--- Copper Ammo
 	{
@@ -167,7 +229,7 @@ data:extend({
 	--- Conversion Basic Dart
 	{
 		type = "recipe",
-		name = "basic_dart_magazine_c",
+		name = "bi-basic_dart_magazine_c",
 		
 		normal =
 		{
@@ -176,11 +238,11 @@ data:extend({
 			ingredients = 
 			{
 				{"Alien-Stimulant", 1},
-				{"basic-dart-magazine", 1},
+				{"bi-basic-dart-magazine", 1},
 
 				
 			},
-		  result = "basic-dart-magazine_c",
+		  result = "bi-basic-dart-magazine_c",
 		  result_count = 1,
 		},
 		expensive =
@@ -190,17 +252,17 @@ data:extend({
 			ingredients = 
 			{
 				{"Alien-Stimulant", 2},
-				{"basic-dart-magazine", 1},
+				{"bi-basic-dart-magazine", 1},
 			},
-		  result = "basic-dart-magazine_c",
+		  result = "bi-basic-dart-magazine_c",
 		  result_count = 1,
 		},
 	}, 	
-	
-	--- Enhanced Dart
+
+	--- Standard Dart
 	{
 		type = "recipe",
-		name = "enhanced_dart_magazine_c",
+		name = "bi-standard_dart_magazine_c",
 		
 		normal =
 		{
@@ -209,9 +271,9 @@ data:extend({
 			ingredients = 
 			{
 				{"Alien-Stimulant", 1},
-				{"enhanced-dart-magazine", 1},
+				{"bi-standard-dart-magazine", 1},
 			},
-		  result = "enhanced-dart-magazine_c",
+		  result = "bi-standard-dart-magazine_c",
 		  result_count = 1,
 		},
 		expensive =
@@ -221,13 +283,76 @@ data:extend({
 			ingredients = 
 			{
 				{"Alien-Stimulant", 2},
-				{"enhanced-dart-magazine", 1},
+				{"bi-standard-dart-magazine", 1},
 			},
-		  result = "enhanced-dart-magazine_c",
+		  result = "bi-standard-dart-magazine_c",
 		  result_count = 1,
 		},
 	}, 	
-  		
+ 
+ 
+	--- Enhanced Dart
+	{
+		type = "recipe",
+		name = "bi-enhanced_dart_magazine_c",
+		
+		normal =
+		{
+			enabled = false,
+			energy_required = 2,
+			ingredients = 
+			{
+				{"Alien-Stimulant", 1},
+				{"bi-enhanced-dart-magazine", 1},
+			},
+		  result = "bi-enhanced-dart-magazine_c",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 4,
+			ingredients = 
+			{
+				{"Alien-Stimulant", 2},
+				{"bi-enhanced-dart-magazine", 1},
+			},
+		  result = "bi-enhanced-dart-magazine_c",
+		  result_count = 1,
+		},
+	}, 	
+ 
+  
+	--- Poison Dart
+	{
+		type = "recipe",
+		name = "bi-poison_dart_magazine_c",
+		
+		normal =
+		{
+			enabled = false,
+			energy_required = 2,
+			ingredients = 
+			{
+				{"Alien-Stimulant", 1},
+				{"bi-poison-dart-magazine", 1},
+			},
+		  result = "bi-poison-dart-magazine_c",
+		  result_count = 1,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 4,
+			ingredients = 
+			{
+				{"Alien-Stimulant", 2},
+				{"bi-poison-dart-magazine", 1},
+			},
+		  result = "bi-poison-dart-magazine_c",
+		  result_count = 1,
+		},
+	}, 	
 	 --- Conversion Ammo Copper
 	{
 		type = "recipe",

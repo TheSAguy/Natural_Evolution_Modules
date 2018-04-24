@@ -28,11 +28,11 @@ data:extend({
 			
 			{
 				type = "unlock-recipe",
-				recipe = "basic_dart_magazine_c"
+				recipe = "bi-basic_dart_magazine_c"
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "enhanced_dart_magazine_c"
+				recipe = "bi-standard_dart_magazine_c"
 			},
 			{
 				type = "unlock-recipe",
@@ -94,7 +94,11 @@ data:extend({
 			{
 				type = "unlock-recipe",
 				recipe = "Biological_bullet_magazine_c"
-			},	
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "bi-enhanced_dart_magazine_c"
+			},			
 		},
 		prerequisites = {"AlienUnderstanding"},
 		unit =
@@ -118,6 +122,13 @@ data:extend({
 		name = "AlienUnderstanding-3",
 		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/AlienUnderstanding.png",
+		effects =
+		{
+			{
+				type = "unlock-recipe",
+				recipe = "bi-poison_dart_magazine_c"
+			},			
+		},
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
 		{
