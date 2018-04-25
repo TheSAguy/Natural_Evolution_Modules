@@ -1,4 +1,4 @@
----ENEMIES v.8.1.1
+---ENEMIES v.8.1.2
 local QC_Mod = false
 
 
@@ -504,10 +504,13 @@ local function On_Death(event)
 		-- do nothing
 		elseif e_corpse == "medium-remnants" then
 			surface.create_entity({name="medium-fire-cloud", position=pos, force= "enemy"})
+			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		elseif e_corpse == "big-remnants" then
 			surface.create_entity({name="big-fire-cloud", position=pos, force= "enemy"})
+			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		else
 			surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		end	
 		
 	end	
@@ -684,13 +687,23 @@ function Scorched_Earth(surface, pos, size)
 				if replaceableTiles_alien[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})   
 				end
-			
+				--[[
+				if currentTilename == "volcanic-orange-heat-4" then 
+					surface.create_entity({name = "small-fire-cloud", position = pos, force = "enemy"})
+				end 
+				]]
 			else
 				
 				if replaceableTiles[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
 				end
-				
+				--[[
+				if currentTilename == "red-desert-1" then 
+					surface.create_entity({name = "small-fire-cloud", position = pos, force = "enemy"})
+					--surface.create_entity({name = "fire-flame", position = pos, force = "enemy"})		
+					surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
+				end 
+				]]
 			end
 			
 		end
@@ -699,8 +712,10 @@ function Scorched_Earth(surface, pos, size)
 	end
 
 	surface.set_tiles(New_tiles)
+	
 
 end
+
 
 ----------------------------------------
 

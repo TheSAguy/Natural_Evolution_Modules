@@ -11,6 +11,25 @@ require("prototypes.Vanilla_Changes.Explosions")
 
 
 
+function fire_pic(inputs)
+return
+
+		
+    {
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/ne_fire.png",
+      priority = "low",
+      width = 128,
+      height = 128,
+      frame_count = 12,
+      line_length = 4,
+	  animation_speed = 1,    
+      scale = inputs.scale,
+    }
+	
+end
+
+
+
 data:extend(
 {
 --[[ Vanilla Spitter Projectile 
@@ -571,7 +590,10 @@ data:extend(
     name = "small-fire-cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
-    animation =
+ 
+	animation = fire_pic{scale = 0.7},
+	
+	--[[
     {
       filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
       priority = "low",
@@ -582,6 +604,7 @@ data:extend(
       line_length = 30,
       scale = 3,
     },
+	]]
     slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
@@ -617,13 +640,15 @@ data:extend(
     action_frequency = 30
   },
   
-  --- medium File Cloud
+  --- Medium Fire Cloud
     {
     type = "smoke-with-trigger",
     name = "medium-fire-cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
-    animation =
+	animation = fire_pic{scale = 0.85},
+	
+	--[[
     {
       filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
       priority = "low",
@@ -634,6 +659,7 @@ data:extend(
       line_length = 30,
       scale = 3,
     },
+	]]
     slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
@@ -669,13 +695,15 @@ data:extend(
     action_frequency = 30
   },
   
-   --- big File Cloud
+   --- Big Fire Cloud
     {
     type = "smoke-with-trigger",
     name = "big-fire-cloud",
     flags = {"not-on-map"},
     show_when_smoke_off = true,
-    animation =
+	animation = fire_pic{scale = 1},
+	
+	--[[
     {
       filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
       priority = "low",
@@ -686,7 +714,8 @@ data:extend(
       line_length = 30,
       scale = 3,
     },
-    slow_down_factor = 0,
+	]]
+	slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
     duration = 60 * 12,
@@ -788,3 +817,20 @@ data:extend(
   
 }
 )
+
+
+
+local my_fire_flame = util.table.deepcopy(data.raw["fire"]["fire-flame"])
+my_fire_flame.name = "ne-fire-flame"
+my_fire_flame.damage_per_tick = {amount = 5 / 60, type = "fire"}
+my_fire_flame.initial_lifetime = 20
+my_fire_flame.maximum_lifetime = 300
+my_fire_flame.burnt_patch_lifetime = 200
+my_fire_flame.emissions_per_tick = 0
+my_fire_flame.lifetime_increase_by = 50
+my_fire_flame.smoke = {}
+
+
+data:extend({my_fire_flame})
+
+
