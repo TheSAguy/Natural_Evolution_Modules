@@ -332,14 +332,14 @@ local force = entity.force
 	
 		
 	--- Bio Cannon (Hive Buster) has been built
-	if entity.valid and entity.name == "Bio_Cannon_Area" then
+	if entity.valid and entity.name == "bi-bio-cannon-area" then
 	
 	local New_Bio_Cannon
 	local New_Bio_CannonR
 	
 	writeDebug("Bio Cannon has been built")				
 
-		New_Bio_Cannon  = surface.create_entity({name = "Bio_Cannon", position = position, direction = event.created_entity.direction, force = force})
+		New_Bio_Cannon  = surface.create_entity({name = "bi-bio-cannon", position = position, direction = event.created_entity.direction, force = force})
 		New_Bio_CannonR = surface.create_entity({name = "Bio_Cannon_r", position = position, direction = event.created_entity.direction, force = force})
 
 		New_Bio_Cannon.health = event.created_entity.health

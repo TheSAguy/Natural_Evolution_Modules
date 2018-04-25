@@ -19,13 +19,13 @@ data:extend({
       --- Dart Turret
     {
 		type = "item",
-		name = "bio-turret",
+		name = "bi-dart-turret",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
 		icon_size = 32,
 		flags = {"goes-to-quickbar"},
 		subgroup = "defensive-structure",
 		order = "b[turret]-x[gun-turret]",
-		place_result = "bio-turret",
+		place_result = "bi-dart-turret",
 		stack_size = 50
   },
   

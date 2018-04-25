@@ -18,14 +18,23 @@
     ["basic-dart-magazine", "bi-basic-dart-magazine"],
 	["enhanced-dart-magazine", "bi-enhanced-dart-magazine"],
     ["basic-dart-magazine_c", "bi-basic-dart-magazine_c"],
-	["enhanced-dart-magazine_c", "bi-enhanced-dart-magazine_c"]
+	["enhanced-dart-magazine_c", "bi-enhanced-dart-magazine_c"],
+	["bio-turret", "bi-dart-turret"],
+	["Bio_Cannon", "bi-bio-cannon"],
+	["Bio_Cannon_Area", "bi-bio-cannon-area"],
+	["Bio_Cannon_Basic_Ammo", "bi-bio-cannon-basic-ammo"],
+	["Bio_Cannon_Poison_Ammo", "bi-bio-cannon-poison-ammo"],
+	["Bio_Cannon_Bio_Ammo", "bi-bio-cannon-biological-ammo"]
   ],
    "entity":
   [
     ["basic-dart-magazine", "bi-basic-dart-magazine"],
 	["enhanced-dart-magazine", "bi-enhanced-dart-magazine"],
     ["basic-dart-magazine_c", "bi-basic-dart-magazine_c"],
-	["enhanced-dart-magazine_c", "bi-enhanced-dart-magazine_c"]
+	["enhanced-dart-magazine_c", "bi-enhanced-dart-magazine_c"],
+	["bio-turret", "bi-dart-turret"],
+	["Bio_Cannon", "bi-bio-cannon"],
+	["Bio_Cannon_Area", "bi-bio-cannon-area"]
   ]
 }
 

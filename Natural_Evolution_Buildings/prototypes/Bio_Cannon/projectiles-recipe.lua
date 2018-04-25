@@ -7,7 +7,7 @@ data:extend({
     enabled = false,
 	energy_required = 4,
 	ingredients = {{"iron-plate", 10}, {"rocket", 10}},
-    result = "Bio_Cannon_Basic_Ammo",
+    result = "bi-bio-cannon-basic-ammo",
 	result_count = 2,
  },
  
@@ -17,8 +17,8 @@ data:extend({
     name= "bi_recipe_bio_cannon_poison_ammo",
     enabled = false,
 	energy_required = 8,
-	ingredients = {{"Bio_Cannon_Basic_Ammo", 1},{"poison-capsule", 5}, {"explosive-rocket", 5}},
-    result = "Bio_Cannon_Poison_Ammo",
+	ingredients = {{"bi-bio-cannon-basic-ammo", 1},{"poison-capsule", 5}, {"explosive-rocket", 5}},
+    result = "bi-bio-cannon-poison-ammo",
 	result_count = 1,
  },
 
@@ -32,7 +32,7 @@ data:extend({
 
 	ingredients =
 		{
-			{type="item", name="Bio_Cannon_Basic_Ammo", amount=1},
+			{type="item", name="bi-bio-cannon-basic-ammo", amount=1},
 			{type="item", name="explosive-rocket", amount=10},
 			{type="fluid", name="NE_alien_toxin", amount=50},
   
@@ -40,7 +40,7 @@ data:extend({
 		},
 	
 	
-    result = "Bio_Cannon_Bio_Ammo",
+    result = "bi-bio-cannon-biological-ammo",
 	result_count = 1,
  },
  
