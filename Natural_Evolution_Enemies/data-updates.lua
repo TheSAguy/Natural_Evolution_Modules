@@ -2,6 +2,7 @@ if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+NE_Enemies.Settings.NE_Tree_Hugger = settings.startup["NE_Tree_Hugger"].value
 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
@@ -245,3 +246,46 @@ end
 
 ---- END Biter & Spitter Modifications --------------------------------		
 
+if NE_Enemies.Settings.NE_Tree_Hugger == true then
+--[[
+data.raw["projectile"]["cliff-explosives"].action =
+    {
+      {
+        type = "direct",
+        action_delivery =
+        {
+          type = "instant",
+          target_effects =
+          {
+            {
+              type = "create-entity",
+              entity_name = "ground-explosion",
+           trigger_created_entity = true,
+            },
+            {
+              type = "create-entity",
+              entity_name = "small-scorchmark",
+              check_buildability = true
+            },
+            {
+              type = "destroy-cliffs",
+              radius = 1.5,
+              explosion = "explosion"
+            }
+          }
+        }
+      }
+    }
+	]]
+	local proj = data.raw["projectile"]["cliff-explosives"]
+	if proj and proj.action then
+		local action = proj.action[1].action_delivery.target_effects
+		for _, eff in pairs(action) do
+			if eff.type == "create-entity" and eff.entity_name == "ground-explosion" then
+				eff.trigger_created_entity = true
+				break
+			end
+		end
+	end
+	
+end

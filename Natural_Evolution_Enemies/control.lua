@@ -1,5 +1,5 @@
----ENEMIES v.8.1.2
-local QC_Mod = false
+---ENEMIES v.8.1.4
+local QC_Mod = true
 
 
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
@@ -9,7 +9,7 @@ if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
-
+NE_Enemies.Settings.Tree_Hugger = settings.startup["NE_Tree_Hugger"].value
 
 require ("util")
 require ("prototypes.Vanilla_Changes.Unit_Launcher_Cluster")
@@ -22,7 +22,7 @@ end
 
 
 --- Scorched Earth
-	local replaceableTiles_alien =
+local replaceableTiles_alien =
 {
 	  -- vanilla
 ["grass-1"] = "vegetation-green-grass-3",
@@ -205,7 +205,7 @@ end
 }
 
 
-	local replaceableTiles =
+local replaceableTiles =
 	{
 	  -- vanilla
 		["grass-1"] = "grass-3",
@@ -228,7 +228,6 @@ end
 		["sand-1"] = "red-desert-1"
 
 	}
-
 
 
 local waterTiles =
@@ -349,25 +348,6 @@ local corpseSize =
 }
 
 
---- Killing Trees - NO LONGER USED, just Type = "tree"
-local tree_names = {
-	["tree-01"] = true,
-	["tree-02"] = true,
-	["tree-02-red"] = true,
-	["tree-03"] = true,
-	["tree-04"] = true,
-	["tree-05"] = true,
-	["tree-06"] = true,
-	["tree-06-brown"] = true,
-	["tree-07"] = true,
-	["tree-08"] = true,
-	["tree-08-brown"] = true,
-	["tree-08-red"] = true,
-	["tree-09"] = true,
-	["tree-09-brown"] = true,
-	["tree-09-red"] = true
-}
-
 
 ---------------------------------------------				 
 local function On_Init()
@@ -387,25 +367,16 @@ local function On_Init()
 		global.tick = global.tick + 1800
 	end
 	
-	global.launch_units={}--this is used to define which equipment is put initially
+	global.launch_units = {} --this is used to define which equipment is put initially
 	global.launch_units["unit-cluster"] = "unit-cluster"
 
-	-- Fixed in Rampant Version: 0.16.14
-	--[[	
-	--- Rampant Warning
-	if game.active_mods["Rampant"] then	
-		
-		for i, player in pairs(game.players) do
-			player.print(tostring("NE ENEMIES: Rampant MOD removes all NE Enemies & Bob's Enemies, unless you disable New Enemies in Rampant"))
-		end
-	end
-	]]
-	
+	global.cliff_explosive = {} 
+	global.cliff_explosive["ground-explosion"] = "ground-explosion"
 	
 	if QC_Mod then
 		---*************
 		local surface = game.surfaces['nauvis']
-		Initial_Spawn(surface)
+		--Initial_Spawn(surface)
 		---*************
 	end
 	
@@ -415,16 +386,26 @@ end
 ---------------------------------------------				 
 local function On_Config_Change()
 
-	-- Fixed in Rampant Version: 0.16.14
-	--[[	
-	--- Rampant Warning
-	if game.active_mods["Rampant"] then	
-		
-		for i, player in pairs(game.players) do
-			player.print(tostring("NE ENEMIES: Rampant MOD removes all NE Enemies & Bob's Enemies, unless you disable New Enemies in Rampant"))
-		end
+	
+	--- Used for Unit Turrets
+	if not global.tick then
+		global.tick = game.tick
 	end
-	]]
+	
+	if not global.evoFactorFloor then
+		if game.forces.enemy.evolution_factor > 0.995 then
+			global.evoFactorFloor = 10
+		else
+			global.evoFactorFloor = math.floor(game.forces.enemy.evolution_factor * 10)
+		end
+		global.tick = global.tick + 1800
+	end
+	
+	global.launch_units = {} --this is used to define which equipment is put initially
+	global.launch_units["unit-cluster"] = "unit-cluster"
+
+	global.cliff_explosive = {} 
+	global.cliff_explosive["ground-explosion"] = "ground-explosion"
 	
 
 	-- enable researched recipes
@@ -443,15 +424,52 @@ local function On_Config_Change()
 end
 
 
+---------------------------------------------				 
+local function Look_and_Attack(entity, factor)
+
+		local surface = entity.surface
+		local force = entity.force
+		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
+		local pos = entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		local attack_chance = math.random(100) + (6 - NE_Enemies.Settings.NE_Difficulty)
+	
+		--writeDebug("Attack Chance: "..attack_chance)
+		--writeDebug("Evo Factor: "..math.floor(game.forces.enemy.evolution_factor*100))
+		
+		if attack_chance < math.floor(game.forces.enemy.evolution_factor*100) then
+			-- find nearby players
+			local players = surface.find_entities_filtered{area=area, type="player"}
+			local s_radius = math.floor((100 * math.floor(game.forces.enemy.evolution_factor * 10) + 600 * NE_Enemies.Settings.NE_Difficulty) * factor)
+			local nr_counts = math.floor((2 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 30)) * factor)
+			writeDebug("Search Radius is: ".. s_radius)
+			writeDebug("Number of units is: ".. nr_counts)
+				-- send attacks to all nearby players
+				for i,player in pairs(players) do
+					player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = nr_counts, unit_search_distance = s_radius}
+				end
+		end
+		
+end
+
+
 ---------------------------------------------
 script.on_event(defines.events.on_trigger_created_entity, function(event)
-	--- Unit Cluster created by Worm Launcher Projectile 
-	local ent=event.entity;
-    if global.launch_units[ent.name] then
-		writeDebug("Cluster Unit Created")
-		ent.die()
-    end
 	
+	local entity = event.entity	
+	
+	--- Unit Cluster created by Worm Launcher Projectile 
+    if global.launch_units[entity.name] then
+		writeDebug("Cluster Unit Created")
+		entity.die()
+    end
+
+	--- A cliff got bombed 
+    if NE_Enemies.Settings.Tree_Hugger and global.cliff_explosive[entity.name] then
+		writeDebug("Cliff Bombed")
+		Look_and_Attack(entity, 2)
+    end	
+
 end)
 
 
@@ -459,31 +477,15 @@ end)
 local function On_Remove(event)
 		
 	local entity = event.entity		
- 	--------- Did you really just kill that tree...
-	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") then -- and tree_names[entity.name] then
-	
+ 	
+	--------- Did you really just kill that tree...
+	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") then 
+
 		writeDebug("Tree Mined")
-		local surface = entity.surface
-		local force = entity.force
-		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
-		local pos = entity.position
-		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
-		-- find nearby players
-		local players = surface.find_entities_filtered{area=area, type="player"}
-		local attack_chance = math.random(100)
-
-		writeDebug("Attack Chance: "..attack_chance)
-		writeDebug("Evo Factor: "..math.floor(game.forces.enemy.evolution_factor*100))
-		if attack_chance < math.floor(game.forces.enemy.evolution_factor*100) then
-			-- send attacks to all nearby players
-			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 30)), unit_search_distance = 600 * NE_Enemies.Settings.NE_Difficulty}
-			end
-		end
-
+		Look_and_Attack(entity, 1)
+		
 	end
 
-	
 end
 
 
@@ -492,24 +494,26 @@ local function On_Death(event)
 
 
 	local entity = event.entity	
+	local surface = entity.surface
+	local force = entity.force	
+	local pos = entity.position
+	
 	--- Buildings catch fire if destroyed.
 	if entity.valid and settings.startup["NE_Burning_Buildings"].value and catchFire[entity.type] then
-		local surface = entity.surface
-		local force = entity.force	
-		local pos = entity.position
+
 		local e_corpse = corpseSize[entity.type]
 		
 		writeDebug("Corpse Size: "..e_corpse)
 		if (force == game.forces.enemy) then
 		-- do nothing
 		elseif e_corpse == "medium-remnants" then
-			surface.create_entity({name="medium-fire-cloud", position=pos, force= "enemy"})
+			surface.create_entity({name="medium-fire-cloud", position = pos, force = "enemy"})
 			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		elseif e_corpse == "big-remnants" then
-			surface.create_entity({name="big-fire-cloud", position=pos, force= "enemy"})
+			surface.create_entity({name="big-fire-cloud", position = pos, force = "enemy"})
 			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		else
-			surface.create_entity({name="small-fire-cloud", position=pos, force= "enemy"})
+			surface.create_entity({name="small-fire-cloud", position = pos, force = "enemy"})
 			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		end	
 		
@@ -519,10 +523,7 @@ local function On_Death(event)
 	if entity.valid and (entity.type == "unit-spawner") then
 		if entity.force == game.forces.enemy then
 			writeDebug("Enemy Spawner Killed")
-			local surface = entity.surface
-			local force = entity.force
 			local radius = 60 * NE_Enemies.Settings.NE_Difficulty
-			local pos = entity.position
 			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
 				
 		-- find nearby players
@@ -546,8 +547,6 @@ local function On_Death(event)
 	
 	 	--------- An Enemy Unit Died
 	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") then
-		local surface = entity.surface
-		local pos = entity.position	
 
 		if settings.startup["NE_Scorched_Earth"].value then
 			Scorched_Earth(surface, pos, 2)		
@@ -556,25 +555,11 @@ local function On_Death(event)
 
 	
  	--------- Did you really just kill that tree...
-	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") and tree_names[entity.name] then
-		writeDebug("Tree Killed")
-		local surface = entity.surface
-		local force = entity.force
-		local radius = 15 * NE_Enemies.Settings.NE_Difficulty
-		local pos = entity.position
-		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
-		-- find nearby players
-		local players = surface.find_entities_filtered{area=area, type="player"}
-		local attack_chance = math.random(100)
-
-		writeDebug("Attack Chance: "..attack_chance)
-		writeDebug("Evo Factor: "..math.floor(game.forces.enemy.evolution_factor*100))
-		if attack_chance < math.floor(game.forces.enemy.evolution_factor*100) then
-			-- send attacks to all nearby players
-			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (2 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 30)), unit_search_distance = 600 * NE_Enemies.Settings.NE_Difficulty}
-			end
-		end
+	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") and event.force ~= nil and event.cause and event.cause.name == "player" then
+		
+		writeDebug("a Tree was Killed")
+		Look_and_Attack(entity, 0.5)
+		
 	end
 	
 	---- Unit Launcher
@@ -599,7 +584,6 @@ local function On_Death(event)
         local repairPosition = entity.position
         local repairName = entity.name
         local repairForce = entity.force
-		local surface = entity.surface
         local repairDirection = entity.direction
 		local wires
 		
@@ -724,7 +708,7 @@ script.on_configuration_changed(On_Config_Change)
 script.on_init(On_Init)
 
 
-local pre_remove_events = {defines.events.on_preplayer_mined_item, defines.events.on_robot_pre_mined}
+local pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined} 
 script.on_event(pre_remove_events, On_Remove)
 
 local death_events = {defines.events.on_entity_died}

@@ -1,13 +1,21 @@
 ---------------------------------------------------------------------------------------------------
+Version: 8.1.3
+Date: 5. 21. 2018
+  Bugfix:
+    - Chopping down trees will once again cause biters to attack if Tree Hugger is enabled
+  Feature:
+    - Removing Cliffs will also cause biters to attack if Tree Hugger is enabled
+
+---------------------------------------------------------------------------------------------------
 Version: 8.1.2
 Date: 4. 25. 2018
-  Tweaks:
+  Feature:
     - Updated "Fire" graphic
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.1.1
 Date: 3. 12. 2018
-  Tweaks:
+  Feature:
     - Removed "pushable" flag
 
 ---------------------------------------------------------------------------------------------------
@@ -32,13 +40,13 @@ Date: 28. 1. 2018
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.7
 Date: 1. 1. 2018
-  Tweaks:
+  Feature:
     - Better Alien Biomes compatibility (Scored Earth)
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.6
 Date: 1. 1. 2018
-  Tweaks:
+  Feature:
     - Removed Alerts from units
 
 ---------------------------------------------------------------------------------------------------
@@ -50,23 +58,23 @@ Date: 1. 1. 2018
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.3
 Date: 1. 1. 2018
-  Tweaks:
+  Feature:
     - Updated Scorched Earth Landfill no longer happens in 016
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.2
 Date: 1. 1. 2018
-  Tweaks:
+  Feature:
     - Updated Scorched Earth to 016
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.1
 Date: 1. 1. 2018
-  Tweaks:
+  Feature:
     - Small tweak to resistances so its not over 100% on difficulty 5 
 
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.0
 Date: 1. 1. 2018
-  Tweaks:
+  Feature:
     - Initial release for Factorio 016
