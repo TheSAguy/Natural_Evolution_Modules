@@ -247,36 +247,7 @@ end
 ---- END Biter & Spitter Modifications --------------------------------		
 
 if NE_Enemies.Settings.NE_Tree_Hugger == true then
---[[
-data.raw["projectile"]["cliff-explosives"].action =
-    {
-      {
-        type = "direct",
-        action_delivery =
-        {
-          type = "instant",
-          target_effects =
-          {
-            {
-              type = "create-entity",
-              entity_name = "ground-explosion",
-           trigger_created_entity = true,
-            },
-            {
-              type = "create-entity",
-              entity_name = "small-scorchmark",
-              check_buildability = true
-            },
-            {
-              type = "destroy-cliffs",
-              radius = 1.5,
-              explosion = "explosion"
-            }
-          }
-        }
-      }
-    }
-	]]
+
 	local proj = data.raw["projectile"]["cliff-explosives"]
 	if proj and proj.action then
 		local action = proj.action[1].action_delivery.target_effects

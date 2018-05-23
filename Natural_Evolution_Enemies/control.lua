@@ -1,5 +1,5 @@
 ---ENEMIES v.8.1.4
-local QC_Mod = true
+local QC_Mod = false
 
 
 if not NE_Enemies_Config then NE_Enemies_Config = {} end
@@ -376,7 +376,7 @@ local function On_Init()
 	if QC_Mod then
 		---*************
 		local surface = game.surfaces['nauvis']
-		--Initial_Spawn(surface)
+		Initial_Spawn(surface)
 		---*************
 	end
 	
@@ -458,18 +458,20 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 	
 	local entity = event.entity	
 	
-	--- Unit Cluster created by Worm Launcher Projectile 
-    if global.launch_units[entity.name] then
-		writeDebug("Cluster Unit Created")
-		entity.die()
-    end
+
 
 	--- A cliff got bombed 
-    if NE_Enemies.Settings.Tree_Hugger and global.cliff_explosive[entity.name] then
+    if entity.valid and NE_Enemies.Settings.Tree_Hugger and global.cliff_explosive[entity.name] then
 		writeDebug("Cliff Bombed")
 		Look_and_Attack(entity, 2)
     end	
 
+	--- Unit Cluster created by Worm Launcher Projectile 
+    if entity.valid and global.launch_units[entity.name] then
+		writeDebug("Cluster Unit Created")
+		entity.die()
+    end
+	
 end)
 
 
@@ -546,7 +548,7 @@ local function On_Death(event)
 	end
 	
 	 	--------- An Enemy Unit Died
-	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") then
+	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") and event.force ~= nil and event.cause and event.cause.name == "player" then
 
 		if settings.startup["NE_Scorched_Earth"].value then
 			Scorched_Earth(surface, pos, 2)		
@@ -572,7 +574,7 @@ local function On_Death(event)
 		global.tick = global.tick + 1800
 	end
 	
-	if (entity.name == "unit-cluster") then
+	if entity.valid and entity.name == "unit-cluster" then
 		SpawnLaunchedUnits(entity)
 	end
 
@@ -648,7 +650,11 @@ function SpawnLaunchedUnits(enemy)
 	for i = 1, number do
 		local subEnemyPosition = enemy.surface.find_non_colliding_position(subEnemyName, enemy.position, 2, 0.5)
 		if subEnemyPosition then
-			enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
+			local create_unit = enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
+				create_unit.health = 2000
+			--if create_unit.health and create_unit.health < entity.prototype.max_health then
+			--create_unit.health = max_health
+			--end
 		end
 	end
 end

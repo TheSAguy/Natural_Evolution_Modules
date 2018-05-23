@@ -326,11 +326,11 @@ data:extend(
 
 		  {
             type = "damage",
-            damage = {amount = 12*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
+            damage = {amount = 12*NE_Enemies.Settings.NE_Difficulty, type = "explosion", force = "enemy"}
           },
           {
             type = "damage",
-            damage = {amount = 24*NE_Enemies.Settings.NE_Difficulty, type = "poison"}
+            damage = {amount = 24*NE_Enemies.Settings.NE_Difficulty, type = "poison", force = "enemy"}
           }
         }
       }
@@ -419,11 +419,11 @@ data:extend(
                 {
                   {
 					type = "damage",
-					damage = {amount = 10*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
+					damage = {amount = 10*NE_Enemies.Settings.NE_Difficulty, type = "explosion", force = "enemy" }
 				  },
 				  {
                     type = "damage",
-                    damage = {amount = 20*NE_Enemies.Settings.NE_Difficulty, type = "acid"}
+                    damage = {amount = 20*NE_Enemies.Settings.NE_Difficulty, type = "acid", force = "enemy"}
                   },
                 }
               }

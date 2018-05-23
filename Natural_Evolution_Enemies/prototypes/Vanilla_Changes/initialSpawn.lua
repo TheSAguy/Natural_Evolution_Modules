@@ -2,7 +2,7 @@
 
 
 function Initial_Spawn(surface)
-
+--[[
 	surface.create_entity({name="small-spitter-Mk2", position={5, 15},force = game.forces.enemy})
 	surface.create_entity({name="small-spitter-Mk3", position={7, 15},force = game.forces.enemy})
 	surface.create_entity({name="medium-spitter-Mk2", position={9, 15},force = game.forces.enemy})
@@ -20,6 +20,9 @@ function Initial_Spawn(surface)
 	surface.create_entity({name="medium-biter-Mk3", position={15, 20},force = game.forces.enemy})
 	surface.create_entity({name="big-biter-Mk2", position={17, 20},force = game.forces.enemy})
 	surface.create_entity({name="big-biter-Mk3", position={19, 20},force = game.forces.enemy})
+	]]
+	surface.create_entity({name="big-worm-turret", position={50, 50},force = game.forces.enemy})
+	surface.create_entity({name="medium-worm-turret", position={45, 45},force = game.forces.enemy})
 	
 end
 
