@@ -1,9 +1,5 @@
----ENEMIES v.8.1.4
-local QC_Mod = false
-
-
-if not NE_Enemies_Config then NE_Enemies_Config = {} end
-if not NE_Enemies_Config.mod then NE_Enemies_Config.mod = {} end
+---ENEMIES v.8.1.7
+local QC_Mod = true
 
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
@@ -16,7 +12,8 @@ require ("prototypes.Vanilla_Changes.Unit_Launcher_Cluster")
 
 if QC_Mod then
 	---**************
-	require ("prototypes.Vanilla_Changes.initialSpawn")
+	--require ("prototypes.Vanilla_Changes.initialSpawn")
+	require ("prototypes.New_Units.initialSpawn")
 	---*************
 end
 
@@ -248,7 +245,6 @@ local autoRepairType =
     ["rail-chain-signal"] = true
 }
 
-
 local autoRepairName = 
 {
     ["bi-big-wooden-pole"] = true,
@@ -372,7 +368,16 @@ local function On_Init()
 
 	global.cliff_explosive = {} 
 	global.cliff_explosive["ground-explosion"] = "ground-explosion"
-	
+
+
+	---- Compatibility Warning
+	if game.active_mods["MoreBiters"] then	
+		
+		for i, player in pairs(game.players) do
+			player.print(tostring("NE Enemies and MoreBiters are not compatible, both modify the Vanilla Spawners"))
+		end
+	end
+
 	if QC_Mod then
 		---*************
 		local surface = game.surfaces['nauvis']
@@ -408,6 +413,14 @@ local function On_Config_Change()
 	global.cliff_explosive["ground-explosion"] = "ground-explosion"
 	
 
+	---- Compatibility Warning
+	if game.active_mods["MoreBiters"] then	
+		
+		for i, player in pairs(game.players) do
+			player.print(tostring("NE Enemies and MoreBiters are not compatible, both modify the Vanilla Spawners"))
+		end
+	end
+	
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
 		for _, tech in pairs(force.technologies) do
@@ -424,6 +437,7 @@ local function On_Config_Change()
 end
 
 
+
 ---------------------------------------------				 
 local function Look_and_Attack(entity, factor)
 
@@ -433,11 +447,11 @@ local function Look_and_Attack(entity, factor)
 		local pos = entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		local attack_chance = math.random(100) + (6 - NE_Enemies.Settings.NE_Difficulty)
-	
+
 		--writeDebug("Attack Chance: "..attack_chance)
 		--writeDebug("Evo Factor: "..math.floor(game.forces.enemy.evolution_factor*100))
 		
-		if attack_chance < math.floor(game.forces.enemy.evolution_factor*100) then
+		if attack_chance < math.floor(game.forces.enemy.evolution_factor * 100) then
 			-- find nearby players
 			local players = surface.find_entities_filtered{area=area, type="player"}
 			local s_radius = math.floor((100 * math.floor(game.forces.enemy.evolution_factor * 10) + 600 * NE_Enemies.Settings.NE_Difficulty) * factor)
@@ -488,6 +502,89 @@ local function On_Remove(event)
 		
 	end
 
+	
+end
+
+
+--- Check if the entity was a spawner
+function isSpawner(enemy)
+	if enemy.type == "unit-spawner" then
+		return 2
+	else
+		return 0
+	end
+end
+
+
+--- Check for Fire Biter
+function isFireBiter(entity)
+	return string.find(entity.name, "%-fire")
+end
+
+
+--- Check for Breeder Biter
+function isBreeder(entity)
+	return string.find(entity.name, "%-breeder")
+end
+
+
+--- Return Unit#
+function UnitNumber(entity)
+	_, _, mod, spiecies,  class, number = string.find(entity.name, "(%a+)-(%a+)-(%a+)-(%d+)")
+	return number
+end
+
+--- Return Class
+function UnitClass(entity)
+	_, _, mod, spiecies,  class, number = string.find(entity.name, "(%a+)-(%a+)-(%a+)-(%d+)")
+	return class
+end
+
+--- Return Spiecies
+function UnitSpiecies(entity)
+	_, _, mod, spiecies,  class, number = string.find(entity.name, "(%a+)-(%a+)-(%a+)-(%d+)")
+	return spiecies
+end
+
+
+---- Spawn Babies from Breeders Units
+function SpawnBreederBabies(entity)
+	
+	local NumberOfBabies = math.floor((math.floor(UnitNumber(entity)) - 10) + math.floor(math.sqrt(UnitNumber(entity)))) / 2  -- Number of Babies, 1 to 50 at level 100
+	local BabyNumber = math.floor(math.sqrt(UnitNumber(entity)) * 2) -- Number of Babies, 2 to 20 at level 100
+	
+	if BabyNumber <= 0 then BabyNumber = 1 end
+	local BabyName = "ne-"..UnitSpiecies(entity).."-breeder-"..BabyNumber
+
+	writeDebug(BabyName)
+	writeDebug(math.floor(UnitNumber(entity)))
+	if math.floor(UnitNumber(entity)) >= 10 then 
+		for i = 1, NumberOfBabies do
+			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 4 , 0.5)
+			if PositionValid then
+				entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+			end
+		end
+	end
+end
+
+---- Spawn Babies from Breeders Spawners
+function SpawnBreederBabies_Spawner(entity)
+	
+	local NumberOfBabies = math.floor(2 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 30))
+	local BabyNumber = math.floor(NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 10))
+	
+	if BabyNumber <= 0 then BabyNumber = 1 end
+	local BabyName = "ne-biter-breeder-"..BabyNumber
+	
+	if math.floor(game.forces.enemy.evolution_factor * 10) >= 5 then 
+		for i = 1, NumberOfBabies do
+			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 8 , 0.5)
+			if PositionValid then
+				entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+			end
+		end
+	end
 end
 
 
@@ -499,7 +596,26 @@ local function On_Death(event)
 	local surface = entity.surface
 	local force = entity.force	
 	local pos = entity.position
+
+
 	
+	if isBreeder(entity)  then
+		--writeDebug("Was a Breeder")
+		SpawnBreederBabies(entity)
+	end
+
+	if isFireBiter(entity)  then
+				
+		--writeDebug("Was a Breeder")
+		--surface.create_entity({name="small-fire-cloud", position = pos, force = "enemy"})
+		surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
+
+		--surface.create_entity({name="dummy-flame-thrower-explosion", position = pos, force = "enemy"})
+		
+		
+		
+	end
+
 	--- Buildings catch fire if destroyed.
 	if entity.valid and settings.startup["NE_Burning_Buildings"].value and catchFire[entity.type] then
 
@@ -525,16 +641,9 @@ local function On_Death(event)
 	if entity.valid and (entity.type == "unit-spawner") then
 		if entity.force == game.forces.enemy then
 			writeDebug("Enemy Spawner Killed")
-			local radius = 60 * NE_Enemies.Settings.NE_Difficulty
-			local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
-				
-		-- find nearby players
-			local players = surface.find_entities_filtered{area=area, type="player"}
+			
+			Look_and_Attack(entity, 1.5)
 
-	           -- send attacks to all nearby players
-			for i,player in pairs(players) do
-				player.surface.set_multi_command{command = {type=defines.command.attack, target=player, distraction=defines.distraction.by_enemy},unit_count = (20 * NE_Enemies.Settings.NE_Difficulty + math.floor(game.forces.enemy.evolution_factor * 100)), unit_search_distance = 600 * NE_Enemies.Settings.NE_Difficulty}
-			end
 			
 			if settings.startup["NE_Scorched_Earth"].value then
 				Scorched_Earth(surface, pos, 6)		
@@ -548,13 +657,13 @@ local function On_Death(event)
 	end
 	
 	 	--------- An Enemy Unit Died
-	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") and event.force ~= nil and event.cause and event.cause.name == "player" then
-
+	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") and event.force ~= nil and event.cause then--and event.cause.name == "player" then
+	
 		if settings.startup["NE_Scorched_Earth"].value then
 			Scorched_Earth(surface, pos, 2)		
 		end
+		
 	end
-
 	
  	--------- Did you really just kill that tree...
 	if entity.valid and settings.startup["NE_Tree_Hugger"].value and (entity.type == "tree") and event.force ~= nil and event.cause and event.cause.name == "player" then
@@ -651,10 +760,6 @@ function SpawnLaunchedUnits(enemy)
 		local subEnemyPosition = enemy.surface.find_non_colliding_position(subEnemyName, enemy.position, 2, 0.5)
 		if subEnemyPosition then
 			local create_unit = enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
-				create_unit.health = 2000
-			--if create_unit.health and create_unit.health < entity.prototype.max_health then
-			--create_unit.health = max_health
-			--end
 		end
 	end
 end

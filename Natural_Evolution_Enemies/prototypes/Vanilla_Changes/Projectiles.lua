@@ -108,12 +108,15 @@ data:extend(
     name = "Infected-Projectile",
     flags = {"not-on-map"},
     acceleration = 0.005,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
+		force = "enemy",
         target_effects =
         {
           {
@@ -150,6 +153,7 @@ data:extend(
           },
           {
             type = "damage",
+			force = "enemy",
             damage = {amount = 14*NE_Enemies.Settings.NE_Difficulty, type = "poison"}
           }
         }
@@ -183,12 +187,15 @@ data:extend(
     name = "Mutated-Projectile",
     flags = {"not-on-map"},
     acceleration = 0.005,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
+		force = "enemy",
         target_effects =
         {
           {
@@ -223,21 +230,26 @@ data:extend(
           },		  		  
           {
             type = "nested-result",
+			force = "enemy",
             action =
             {
               type = "area",
+			  force = "enemy",
               radius = 2,
               action_delivery =
               {
                 type = "instant",
+				force = "enemy",
                 target_effects =
                 {
                   {
 					type = "damage",
+					force = "enemy",
 					damage = {amount = 7*NE_Enemies.Settings.NE_Difficulty, type = "explosion"}
 				  },
 				  {
                     type = "damage",
+					force = "enemy",
                     damage = {amount = 14*NE_Enemies.Settings.NE_Difficulty, type = "acid"}
                   },
                 }
@@ -279,12 +291,15 @@ data:extend(
     name = "Infected-Projectile-Worm",
     flags = {"not-on-map"},
     acceleration = 0.05,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
+		force = "enemy",
         target_effects =
         {
           {
@@ -321,15 +336,18 @@ data:extend(
 
           {
             type = "create-entity",
+			force = "enemy",
             entity_name = "Infected-Poison-Cloud"
           },
 
 		  {
             type = "damage",
+			force = "enemy",
             damage = {amount = 12*NE_Enemies.Settings.NE_Difficulty, type = "explosion", force = "enemy"}
           },
           {
             type = "damage",
+			force = "enemy",
             damage = {amount = 24*NE_Enemies.Settings.NE_Difficulty, type = "poison", force = "enemy"}
           }
         }
@@ -363,12 +381,15 @@ data:extend(
     name = "Mutated-Projectile-Worm",
     flags = {"not-on-map"},
     acceleration = 0.005,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
+		force = "enemy",
         target_effects =
         {
           {
@@ -404,25 +425,31 @@ data:extend(
           },
           {
             type = "create-entity",
+			force = "enemy",
             entity_name = "acid-splash-purple"
           },
           {
             type = "nested-result",
+			force = "enemy",
             action =
             {
               type = "area",
+			  force = "enemy",
               radius = 2,
               action_delivery =
               {
                 type = "instant",
+				force = "enemy",
                 target_effects =
                 {
                   {
 					type = "damage",
+					force = "enemy",
 					damage = {amount = 10*NE_Enemies.Settings.NE_Difficulty, type = "explosion", force = "enemy" }
 				  },
 				  {
                     type = "damage",
+					force = "enemy",
                     damage = {amount = 20*NE_Enemies.Settings.NE_Difficulty, type = "acid", force = "enemy"}
                   },
                 }
@@ -479,15 +506,19 @@ data:extend(
     fade_away_duration = 2 * 60,
     spread_duration = 10,
     color = { r = 0.2, g = 0.9, b = 0.2 },
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
+		force = "enemy",
         target_effects =
         {
           type = "nested-result",
+		  force = "enemy",
           action =
           {
             type = "area",
@@ -516,12 +547,15 @@ data:extend(
     name = "NE-Acid-explosion",
     flags = {"not-on-map"},
     acceleration = 0.005,
+	force = "enemy",
     created_effect =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
+		force = "enemy",
         target_effects =
         {
           {
@@ -534,35 +568,42 @@ data:extend(
           },
           {
             type = "nested-result",
+			force = "enemy",
             action =
             {
 				{
 				type = "area",
+				force = "enemy",
 				radius = 1,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 21, type = "acid" }}}},
 				{
 				type = "area",
+				force = "enemy",
 				radius = 2,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
+				force = "enemy",
 				radius = 3,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
+				force = "enemy",
 				radius = 4,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 11, type = "acid" }}}},
 				{
 				type = "area",
+				force = "enemy",
 				radius = 5,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}},
 				{
 				type = "area",
+				force = "enemy",
 				radius = 6,
                 entity_flags = {"player-creation", "placeable-player", "placeable-neutral"},
 				action_delivery = { type = "instant", target_effects = { type = "damage", damage = { amount = 5.4, type = "acid" }}}}
@@ -592,28 +633,18 @@ data:extend(
     show_when_smoke_off = true,
  
 	animation = fire_pic{scale = 0.7},
-	
-	--[[
-    {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
-      priority = "low",
-      width = 30,
-      height = 50,
-      frame_count = 30,
-      animation_speed = 1,
-      line_length = 30,
-      scale = 3,
-    },
-	]]
+
     slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
     duration = 60 * 8,
     fade_away_duration = 2 * 60,
     spread_duration = 8,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
@@ -647,28 +678,18 @@ data:extend(
     flags = {"not-on-map"},
     show_when_smoke_off = true,
 	animation = fire_pic{scale = 0.85},
-	
-	--[[
-    {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
-      priority = "low",
-      width = 30,
-      height = 50,
-      frame_count = 30,
-      animation_speed = 1,
-      line_length = 30,
-      scale = 3,
-    },
-	]]
+
     slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
     duration = 60 * 10,
     fade_away_duration = 2 * 60,
     spread_duration = 10,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
@@ -702,28 +723,18 @@ data:extend(
     flags = {"not-on-map"},
     show_when_smoke_off = true,
 	animation = fire_pic{scale = 1},
-	
-	--[[
-    {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/fire.png",
-      priority = "low",
-      width = 30,
-      height = 50,
-      frame_count = 30,
-      animation_speed = 1,
-      line_length = 30,
-      scale = 3,
-    },
-	]]
+
 	slow_down_factor = 0,
     affected_by_wind = false,
     cyclic = true,
     duration = 60 * 12,
     fade_away_duration = 2 * 60,
     spread_duration = 12,
+	force = "enemy",
     action =
     {
       type = "direct",
+	  force = "enemy",
       action_delivery =
       {
         type = "instant",
@@ -814,6 +825,8 @@ data:extend(
       },
     },
   },
+
+  
   
 }
 )

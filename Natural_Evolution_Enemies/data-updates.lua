@@ -3,6 +3,9 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 NE_Enemies.Settings.NE_Tree_Hugger = settings.startup["NE_Tree_Hugger"].value
+NE_Enemies.Settings.NE_Remove_Blood_Spatter = settings.startup["NE_Remove_Blood_Spatter"].value
+NE_Enemies.Settings.NE_Remove_Vanilla_Spawners = settings.startup["NE_Remove_Vanilla_Spawners"].value
+
 
 require ("libs.item-functions") -- From Bob's Libary 
 require ("libs.recipe-functions") -- From Bob's Libary 
@@ -26,6 +29,25 @@ end
 
 data.raw.player.player.healing_per_tick = 0.005   -- default 0.01
 
+
+
+--- Remove Blood Spatter
+if NE_Enemies.Settings.NE_Remove_Blood_Spatter then
+
+	data.raw["explosion"]["blood-explosion-small"].created_effect = nil
+	data.raw["explosion"]["blood-explosion-big"].created_effect = nil
+	data.raw["explosion"]["blood-explosion-huge"].created_effect = nil
+	
+end
+
+
+--- Remove Vanilla Spawners
+if NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
+
+	data.raw["unit-spawner"]["biter-spawner"].autoplace = nil
+	data.raw["unit-spawner"]["spitter-spawner"].autoplace = nil
+	
+end
 
 
 --- Bob's Enemies - Update the Small Artifact Recipe.
@@ -59,38 +81,9 @@ NE_Functions.Add_Damage_Resists("acid",data.raw["electric-turret"],(25/NE_Enemie
 NE_Functions.Add_Damage_Resists("acid",data.raw["transport-belt"],(25/NE_Enemies.Settings.NE_Difficulty))	
 NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Enemies.Settings.NE_Difficulty))
 	
-NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
+--NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
 
---- Add all resistances.
-if data.raw.inserter["combat-inserter"] then
-	for k, v in pairs(data.raw["damage-type"]) do
-	local Resist = {type = v.name, percent = 80} -- or you could use k, and not v.name		
-	
-				if data.raw.inserter["combat-inserter"].resistances == nil then 
-					data.raw.inserter["combat-inserter"].resistances = {}
-					table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
-				else
-					local found = false
-					for _, resistance in pairs(data.raw.inserter["combat-inserter"].resistances) do
-						if resistance.type == Resist.type and resistance.percent > Resist.percent then
-								found = true
-							break
-						elseif resistance.type == Resist.type and resistance.percent < Resist.percent then
-							found = true
-							table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
-							break
-						end
-					end
-				
-					if not found then
-					table.insert(data.raw.inserter["combat-inserter"].resistances, Resist)
-					end
-				
-				end
-	
-	end
-end
-	
+
 
 
 ---- Spawner Modifications ----------------------------------------

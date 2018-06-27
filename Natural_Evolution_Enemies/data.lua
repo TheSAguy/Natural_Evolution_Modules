@@ -29,3 +29,7 @@ if settings.startup["NE_Alien_Artifacts"].value == true then
 end
 ---------------------------------------------------------------
 
+require("prototypes.New_Units.New_Biter_Units")
+require("prototypes.New_Units.New_Spitter_Units")
+require("prototypes.New_Units.damage-types")
+require("prototypes.New_Units.Fire_Stuff")
