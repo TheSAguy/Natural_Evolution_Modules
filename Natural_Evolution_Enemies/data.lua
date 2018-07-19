@@ -25,3 +25,12 @@ require ("prototypes.NE_Units.New_Units.New_Biter_Units")
 require ("prototypes.NE_Units.New_Units.New_Spitter_Units")
 require ("prototypes.NE_Units.New_Units.Megladon_Biter_Unit")
 require ("prototypes.NE_Units.New_Units.New_Spawners")
+
+--- Combatibility quick fix ---
+
+if mods["Rampant"] then
+
+	require ("prototypes.Other_Mods.Old_Unit_Cluster_for_Rampant")		
+
+end
+		

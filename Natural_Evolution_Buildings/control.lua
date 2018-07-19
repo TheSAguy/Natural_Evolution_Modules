@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 8.1.1
+-- NE BUILDINGS Ver = 8.1.2
 local QC_Mod = false
 
 

@@ -1,5 +1,5 @@
 --ENEMIES v.9.0.1
-local QC_Mod = true
+local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
