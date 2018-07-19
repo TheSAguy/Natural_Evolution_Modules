@@ -8,7 +8,7 @@ data:extend({
 	subgroup = "raw-material",
 	order = "g[alien-artifact]-a[pink]-a[small]",
     stack_size = 500,
-    default_request_amount = 100
+    default_request_amount = 200
   },
 
 })

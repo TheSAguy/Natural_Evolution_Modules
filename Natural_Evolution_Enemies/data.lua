@@ -9,27 +9,19 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 require ("libs.NE_Functions")
 
-
-require ("libs.item-functions") -- From Bob's Libary 
-require ("libs.recipe-functions") -- From Bob's Libary 
-require ("libs.technology-functions") -- From Bob's Libary 
-require ("libs.functions") -- From Bob's Libary 
-
 ---------------------------------------------------------------
 
+-------- Old Units
+require ("prototypes.NE_Units.Old_Units.Settings")
+require ("prototypes.NE_Units.Old_Units.Old_Biter_Units")
+require ("prototypes.NE_Units.Old_Units.Old_Spitter_Units")
+	
 
---- Extra Loot - Small Alient Atrifacts
-
-if settings.startup["NE_Alien_Artifacts"].value == true then
-	require("prototypes.Extra_Loot.alien-artifact")
-	require("prototypes.Extra_Loot.item")
-	require("prototypes.Extra_Loot.recipe")
-	require("prototypes.Extra_Loot.extra_loot")
-
-end
----------------------------------------------------------------
-
-require("prototypes.New_Units.New_Biter_Units")
-require("prototypes.New_Units.New_Spitter_Units")
-require("prototypes.New_Units.damage-types")
-require("prototypes.New_Units.Fire_Stuff")
+-------- New Units
+require ("prototypes.NE_Units.New_Units.damage-types")
+require ("prototypes.NE_Units.New_Units.Functions")
+require ("prototypes.NE_Units.New_Units.Fire_Stuff")
+require ("prototypes.NE_Units.New_Units.New_Biter_Units")
+require ("prototypes.NE_Units.New_Units.New_Spitter_Units")
+require ("prototypes.NE_Units.New_Units.Megladon_Biter_Unit")
+require ("prototypes.NE_Units.New_Units.New_Spawners")

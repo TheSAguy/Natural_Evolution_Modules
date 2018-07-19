@@ -1,4 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 9.0.1
+Date: 18. 07. 2018
+  Bugfix:
+    - Typo in Settings, Blue to Red
+  Feature:
+    - Added 5 new Spawners with 10 new types of Enemies
+    - New Setup Setting Options added
+    - Added "Challenge" Mode. This should make the game much harder especially towards the end
+    - Cleaned up the folders and removed old code not being used
+---------------------------------------------------------------------------------------------------
+Version: 9.0.0
+Date: 18. 07. 2018
+  Feature:
+    - Added 5 new Spawners with 10 new types of Enemies
+    - New Setup Setting Options added
+    - Added "Challenge" Mode. This should make the game much harder especially towards the end
+    - Cleaned up the folders and removed old code not being used
+---------------------------------------------------------------------------------------------------
 Version: 8.1.7
 Date: 13. 06. 2018
   Feature:

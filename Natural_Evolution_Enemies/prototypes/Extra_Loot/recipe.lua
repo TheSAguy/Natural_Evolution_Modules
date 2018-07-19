@@ -8,11 +8,11 @@ data:extend({
 {
     type = "recipe",
     name = "alien-artifact-from-small",
-	category= "crafting",
+	--category= "crafting",
 	normal =
 		{
 		enabled = true,
-		energy_required = 2.5,
+		energy_required = 2,
 		ingredients= { {"small-alien-artifact", 50 * NE_Enemies.Settings.NE_Difficulty} },
 		result = "alien-artifact",
 		result_count = 1,
@@ -20,7 +20,7 @@ data:extend({
 	expensive =
 		{
 		enabled = true,
-		energy_required = 4,
+		energy_required = 3,
 		ingredients= { {"small-alien-artifact", 75 * NE_Enemies.Settings.NE_Difficulty} },
 		result = "alien-artifact",
 		result_count = 1,
