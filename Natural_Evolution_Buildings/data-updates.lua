@@ -46,36 +46,37 @@ if not mods["bobwarfare"] then
 end
 ------
 
--- Remove Alerts from units. - Vinilla
+-- Remove Alerts from units. 
+local units = data.raw["unit"]
+
+for k, v in pairs(units) do
+	if v.alert_when_damaged == 'false' then
+		break		
+	else
+		v.alert_when_damaged = 'false'
+	end
 	
-data.raw["unit"]["small-biter"].alert_when_damaged = false
-data.raw["unit"]["small-biter"].alert_when_attacking = false
-data.raw["unit"]["medium-biter"].alert_when_damaged = false
-data.raw["unit"]["medium-biter"].alert_when_attacking = false
-data.raw["unit"]["big-biter"].alert_when_damaged = false
-data.raw["unit"]["big-biter"].alert_when_attacking = false	
-data.raw["unit"]["behemoth-biter"].alert_when_damaged = false
-data.raw["unit"]["behemoth-biter"].alert_when_attacking = false
-data.raw["unit"]["small-spitter"].alert_when_damaged = false
-data.raw["unit"]["small-spitter"].alert_when_attacking = false
-data.raw["unit"]["medium-spitter"].alert_when_damaged = false
-data.raw["unit"]["medium-spitter"].alert_when_attacking = false
-data.raw["unit"]["big-spitter"].alert_when_damaged = false
-data.raw["unit"]["big-spitter"].alert_when_attacking = false	
-data.raw["unit"]["behemoth-spitter"].alert_when_damaged = false
-data.raw["unit"]["behemoth-spitter"].alert_when_attacking = false	
+	if v.alert_when_attacking == 'false' then
+		break	
+	else
+		v.alert_when_attacking = 'false'
+	end
+	
+end
+
+
 
 		
-		
 -- Make it so that you can mine spawners & worms, since you are able to convert them, you can now remove them. 
+
 data.raw["unit-spawner"]["biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
 data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 data.raw["turret"]["small-worm-turret"].minable = {hardness = 0.5, mining_time = 1.6, results = {{type="item", name="small-worm-hatching-exhausted", amount=1},}}
 data.raw["turret"]["medium-worm-turret"].minable = {hardness = 1.0, mining_time = 1.6, results = {{type="item", name="medium-worm-hatching-exhausted", amount=1},}}
 data.raw["turret"]["big-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 
-
 if mods["bobenemies"] then
+
 	data.raw["unit-spawner"]["bob-biter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
 	data.raw["unit-spawner"]["bob-spitter-spawner"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Spitter-Spawner-exhausted", amount=1},}}
 	data.raw["turret"]["bob-big-explosive-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
@@ -86,42 +87,32 @@ if mods["bobenemies"] then
 	data.raw["turret"]["bob-giant-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-behemoth-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 
-	-- Remove Alerts from units. - Bobs	
-	data.raw["unit"]["bob-big-piercing-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-huge-acid-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-huge-explosive-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-giant-poison-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-giant-fire-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-titan-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-behemoth-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-leviathan-biter"].alert_when_damaged = false
-	data.raw["unit"]["bob-big-electric-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-huge-explosive-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-huge-acid-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-giant-fire-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-giant-poison-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-titan-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-behemoth-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-leviathan-spitter"].alert_when_damaged = false
-	data.raw["unit"]["bob-big-piercing-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-huge-acid-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-huge-explosive-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-giant-poison-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-giant-fire-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-titan-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-behemoth-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-leviathan-biter"].alert_when_attacking = false
-	data.raw["unit"]["bob-big-electric-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-huge-explosive-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-huge-acid-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-giant-fire-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-giant-poison-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-titan-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-behemoth-spitter"].alert_when_attacking = false
-	data.raw["unit"]["bob-leviathan-spitter"].alert_when_attacking = false
+end
 
+--- All other Spawners
+local spawners = data.raw["unit-spawner"]
+for k, v in pairs(spawners) do
 
-	
+	if v.minable then
+		break		
+	else
+		local minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
+		table.insert(v.minable, minable)
+	end
+
+end
+
+--- All other turrets?
+local worms = data.raw["turret"]
+for k, v in pairs(worms) do
+
+	if v.minable then
+		break		
+	else
+		local minable = {hardness = 0.5, mining_time = 1.6, results = {{type="item", name="small-worm-hatching-exhausted", amount=1},}}
+		table.insert(v.minable, minable)
+	end
+
 end
 
 
@@ -154,33 +145,6 @@ if mods["Natural_Evolution_Enemies"] then
 
 end
 
-if mods["5dim_battlefield"] then
-
-	-- Remove Alerts from units. - 5Dim
-	data.raw["unit"]["5d-medium-biter-laser"].alert_when_damaged = false
-	data.raw["unit"]["5d-medium-biter-physical"].alert_when_damaged = false
-	data.raw["unit"]["5d-medium-biter-explosive"].alert_when_damaged = false
-	data.raw["unit"]["5d-big-biter-laser"].alert_when_damaged = false
-	data.raw["unit"]["5d-big-biter-physical"].alert_when_damaged = false
-	data.raw["unit"]["5d-big-biter-explosive"].alert_when_damaged = false
-	data.raw["unit"]["5d-medium-spiter-rocket"].alert_when_damaged = false
-	data.raw["unit"]["5d-medium-spiter-fire"].alert_when_damaged = false
-	data.raw["unit"]["5d-big-spiter-rocket"].alert_when_damaged = false
-	data.raw["unit"]["5d-big-spiter-fire"].alert_when_damaged = false
-	data.raw["unit"]["5d-medium-biter-laser"].alert_when_attacking = false
-	data.raw["unit"]["5d-medium-biter-physical"].alert_when_attacking = false
-	data.raw["unit"]["5d-medium-biter-explosive"].alert_when_attacking = false
-	data.raw["unit"]["5d-big-biter-laser"].alert_when_attacking = false
-	data.raw["unit"]["5d-big-biter-physical"].alert_when_attacking = false
-	data.raw["unit"]["5d-big-biter-explosive"].alert_when_attacking = false
-	data.raw["unit"]["5d-medium-spiter-rocket"].alert_when_attacking = false
-	data.raw["unit"]["5d-medium-spiter-fire"].alert_when_attacking = false
-	data.raw["unit"]["5d-big-spiter-rocket"].alert_when_attacking = false
-	data.raw["unit"]["5d-big-spiter-fire"].alert_when_attacking = false
-
-
-end
-
 
 -- Adds a resitance of all damage types to an entity
 for k, v in pairs(data.raw["damage-type"]) do
@@ -208,82 +172,48 @@ end
 
 
 ---------- Adds Alient Artifacts back for recipies in NE Buildings
-if data.raw["unit-spawner"]["biter-spawner"] and data.raw.item["alien-artifact"] then
-	if data.raw["unit-spawner"]["biter-spawner"].loot == nil then 
-		
-		data.raw["unit-spawner"]["biter-spawner"].loot = {}
-		table.insert(data.raw["unit-spawner"]["biter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
-		
-	end
+if settings.startup["NE_Difficulty"] and settings.startup["NE_Difficulty"].value then
+	NE_Difficulty = settings.startup["NE_Difficulty"].value
+else
+	NE_Difficulty = 1
 end
 
-if data.raw["unit-spawner"]["spitter-spawner"] and data.raw.item["alien-artifact"] then
-	if data.raw["unit-spawner"]["spitter-spawner"].loot == nil then 
-		
-		data.raw["unit-spawner"]["spitter-spawner"].loot = {}
-		table.insert(data.raw["unit-spawner"]["spitter-spawner"].loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
-		
-	end
-end
-
-
-
-
---[[
-
--- Adds a resitance of all damage types to an entity
-for k, v in pairs(data.raw["unit"]) do
-	
-
-	if data.raw.v.name.alert_when_attacking == nil then 
-		data.raw.inserter["combat-inserter"].alert_when_attacking = {}
-		
-	end
-	table.insert(data.raw.v.name.alert_when_attacking, false)
-
-end
-
-]]
-
----- Adding Alien Artifacts to Spawners:
-for k, unitSpawner in pairs(data.raw["unit-spawner"]) do
-	
-	if unitSpawner.loot == nil then 
-
-		unitSpawner.loot = {}
-					
-	end
-	
-	if data.raw.item["alien-artifact"] then
-		if unitSpawner.loot.item == "alien-artifact" then
-			break
-		
-		else
-			table.insert(unitSpawner.loot, {  item = "alien-artifact",  count_min = 5,  count_max = 10,  probability = 1 } )
+local function add_loot(spawner,item)
+	  if not spawner.loot then spawner.loot = {} end
+	  local has = false
+	  for _,v in pairs(spawner.loot) do
+		if v.item == item.item then has = true break end
 		end
-	end
-	
+	  if not has then
+		table.insert(spawner.loot,item)
+		end
 end
 
 
----- Adding Small Alien Artifacts to Units:
-for k, units in pairs(data.raw["unit"]) do
-	
-	if units.loot == nil then 
+if data.raw.item["alien-artifact"] then
 
-		units.loot = {}
-					
-	end
-	
-	if data.raw.item["small-alien-artifact"] then
-		if units.loot.item == "small-alien-artifact" then
-			break
-		
-		else
-			table.insert(units.loot, {  item = "small-alien-artifact",  count_min = 1,  count_max = 2,  probability = 1 } )
-		end
-	end
-	
+	 for k, spawners in pairs(data.raw["unit-spawner"]) do
+	 
+		add_loot(
+		  spawners,
+		  {item = "alien-artifact",count_min = 5,count_max = 10,probability = 1/NE_Difficulty}
+		  ) 
+	 
+	 end
+
+end
+
+if data.raw.item["small-alien-artifact"] then
+
+	 for k, units in pairs(data.raw["unit"]) do
+	 
+		 add_loot(
+		  units,
+		  {item = "small-alien-artifact",count_min = 1,count_max = 3,probability = 1/NE_Difficulty}
+		  )
+	  
+	 end
+ 
 end
 
 

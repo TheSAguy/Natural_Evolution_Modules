@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 8.1.2
+-- NE BUILDINGS Ver = 8.1.3
 local QC_Mod = false
 
 
@@ -14,6 +14,12 @@ require ("control_evolution")
 
 if remote.interfaces.EvoGUI then
 	require ("libs/EvoGUI")
+end
+
+if QC_Mod then
+	---************** Used for Testing -----
+	require ("Test_Spawn")
+	---*************
 end
 
 
@@ -110,17 +116,6 @@ local function On_Init()
 			global.Terraforming_Station_Table = {}
 	end
 
-	-- Fixed in Rampant Version: 0.16.14
-	--[[
-	--- Rampant Warning
-	if game.active_mods["Rampant"] then	
-		
-		for i, player in pairs(game.players) do
-			player.print(tostring("NE BUILDINGS: Rampant MOD removes all NE Enemies & Bob's Enemies, So less Artifacts for you, unless you disable New Enemies in Rampant"))
-		end
-	end
-	]]
-	
 	
 	--- Settup Settings
 	if not global.NE_Buildings then global.NE_Buildings = {} end
@@ -130,17 +125,18 @@ local function On_Init()
 	global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"].value
 	global.NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
 	global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
-		
+
+	
+	
+	if QC_Mod then
+		---*************
+		local surface = game.surfaces['nauvis']
+		Test_Spawn(surface)
+		---*************
+	end
+	
 end
 		 
-
----------------------------------------------				 
-local function On_Load()
-
-
-
-end
-
 
 ---------------------------------------------				 
 local function On_Config_Change()
@@ -174,26 +170,7 @@ local function On_Config_Change()
 			global.Terraforming_Station_Table = {}
 	end
 	
---[[ No longer needed
-	if game.active_mods["EndgameCombat"] then	
-		
-		for i, player in pairs(game.players) do
-			player.print(tostring("You have Endgame Combat Installed, MIGHT not compatible with Natural Evolution Buildings"))
-		end
-	end
-]]
 
-
-	-- Fixed in Rampant Version: 0.16.14
-	--[[
-	--- Rampant Warning
-	if game.active_mods["Rampant"] then	
-		
-		for i, player in pairs(game.players) do
-			player.print(tostring("NE BUILDINGS: Rampant MOD removes all NE Enemies & Bob's Enemies, So less Artifacts for you, unless you disable New Enemies in Rampant"))
-		end
-	end
-	]]
 
 	--- Settup Settings	
 	if not global.NE_Buildings then global.NE_Buildings = {} end
@@ -265,6 +242,7 @@ local force = entity.force
 							   force = force})
 			end
 		end
+		
 		if chest and chest.valid then
 			local pair = { chest, entity }
 			global.world.itemCollectorLookup[chest.unit_number] = pair
@@ -372,7 +350,7 @@ local function On_Remove(event)
 
 	
 	  --- fully heal the items that need a refresh in the alien hatchery anyway to avoid having multiple item stacks for damaged items.
-	if event.name ~= defines.events.on_entity_died then
+	if entity.valid and event.name ~= defines.events.on_entity_died then
 		if (
 				entity.name == "small-worm-turret-player" or
 				entity.name == "medium-worm-turret-player" or
@@ -386,29 +364,31 @@ local function On_Remove(event)
 	end
 	
 	--- Artifact Collector	- Thanks to Veden for letting me use this code!
-    if (entity.name == "Artifact-collector") then 
-	local pair = global.world.itemCollectorLookup[entity.unit_number]
-	if pair then
-	    local chest = pair[1]
-	    local dish = pair[2]
+    if entity.valid and (entity.name == "Artifact-collector" or entity.name == "Artifact-collector_r") then 
+		local pair = global.world.itemCollectorLookup[entity.unit_number]
+		if pair then
+			local chest = pair[1]
+			local dish = pair[2]
 
-	    if chest and chest.valid then
-		global.world.itemCollectorLookup[chest.unit_number] = nil
-		if destroyed and (entity == chest) then
-		    chest.die()
-		elseif (entity ~= chest) then
-		    chest.destroy()
+			if chest and chest.valid then
+				global.world.itemCollectorLookup[chest.unit_number] = nil
+				if destroyed and (entity == chest) then
+					chest.die()
+				elseif (entity ~= chest) then
+					chest.destroy()
+				end
+			end
+			
+			if dish and dish.valid then
+				global.world.itemCollectorLookup[dish.unit_number] = nil
+				if destroyed and (entity ~= dish) then
+					dish.die()
+				elseif (entity ~= dish) then
+					dish.destroy()
+				end
+			end
+			
 		end
-	    end
-	    if dish and dish.valid then
-		global.world.itemCollectorLookup[dish.unit_number] = nil
-		if destroyed and (entity ~= dish) then
-		    dish.die()
-		elseif (entity ~= dish) then
-		    dish.destroy()
-		end
-	    end
-	end
     end
 	
 
@@ -442,27 +422,29 @@ local function On_Death(event)
 
 
   	--Artifact collector
-    if (entity.name == "Artifact-collector") then 
+    --if entity.valid and entity.name == "Artifact-collector" then 
+	if entity.valid and (entity.name == "Artifact-collector" or entity.name == "Artifact-collector_r") then 
 		local pair = global.world.itemCollectorLookup[entity.unit_number]
 		if pair then
 			local chest = pair[1]
 			local dish = pair[2]
 
 			if chest and chest.valid then
-			global.world.itemCollectorLookup[chest.unit_number] = nil
-			if destroyed and (entity == chest) then
-				chest.die()
-			elseif (entity ~= chest) then
-				chest.destroy()
+				global.world.itemCollectorLookup[chest.unit_number] = nil
+				if destroyed and (entity == chest) then
+					chest.die()
+				elseif (entity ~= chest) then
+					chest.destroy()
+				end
 			end
-			end
+			
 			if dish and dish.valid then
-			global.world.itemCollectorLookup[dish.unit_number] = nil
-			if destroyed and (entity ~= dish) then
-				dish.die()
-			elseif (entity ~= dish) then
-				dish.destroy()
-			end
+				global.world.itemCollectorLookup[dish.unit_number] = nil
+				if destroyed and (entity ~= dish) then
+					dish.die()
+				elseif (entity ~= dish) then
+					dish.destroy()
+				end
 			end
 		end
     end
@@ -590,11 +572,11 @@ script.on_event(defines.events.on_research_finished, function(event)
 	end
   
     if research == "TerraformingStation-2" then
-        global.deduction_constant = global.deduction_constant + (global.deduction_constant / 4)
+        global.deduction_constant = global.deduction_constant * 1.25
     end      
 
     if research == "TerraformingStation-3" then
-        global.deduction_constant = global.deduction_constant + (global.deduction_constant / 4)
+       global.deduction_constant = global.deduction_constant * 1.05
     end    	
   
 end)
@@ -603,7 +585,6 @@ end)
 
 ----------------------------------------
 script.on_configuration_changed(On_Config_Change)
---script.on_load(On_Load)
 script.on_init(On_Init)
 
 

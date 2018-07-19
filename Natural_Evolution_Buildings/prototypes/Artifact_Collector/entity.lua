@@ -34,7 +34,7 @@ data:extend(
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },	
 		max_health = 150,
 		corpse = "small-remnants",
-		collision_box = {{-0.9, -0.4}, {0.9, 0.4}},
+		collision_box = {{-1, -0.5}, {1, 0.5}},
 		selection_box = {{-0.9, -0.5}, {0.9, 0.5}},
 		order = "i[items]-i[Artifact-collector]",	
 		automated_ammo_count = 1,
@@ -79,6 +79,7 @@ data:extend(
 			render_not_in_network_icon = false,
 			max_health = 300,
 			corpse = "small-remnants",
+			dying_explosion = "medium-explosion",
 			resistances =
 			{
 			  {
@@ -122,7 +123,7 @@ data:extend(
 	flags = {"placeable-player", "player-creation", "not-deconstructable"},
     minable = nil, 
 	max_health = 300,
-    corpse = "big-remnants",
+    corpse = "small-remnants",
 	dying_explosion = "medium-explosion",
 	resistances =
 	{

@@ -180,26 +180,22 @@ data:extend({
 		name = "TerraformingStation-2",
 		icon_size = 128,
 		icon = "__Natural_Evolution_Buildings__/graphics/technology/TerraformingStation.png",
-		effects =
-		{
-		  {
-				type = "unlock-recipe",
-				recipe = "TerraformingStation"
-		  }
-		},
+		effects = {},
 		prerequisites = {"AlienUnderstanding-2","TerraformingStation"},
 		unit =
 		{
-		  count = 4000,
+		  count = 1000,
 		  ingredients =
 		  {
 			{"science-pack-1", 1},
 			{"science-pack-2", 1},
-			{"production-science-pack", 1}
+			{"science-pack-3", 1},
+			{"military-science-pack", 1},
 		  },
 		  time = 50
 		},
 		upgrade = true,
+		localised_description = {"technology-description.TerraformingStation-2"},
 		order = "a-i-b",
 	},
 	
@@ -208,28 +204,25 @@ data:extend({
 		type = "technology",
 		name = "TerraformingStation-3",
 		icon_size = 128,
-		icon = "__Natural_Evolution_Buildings__/graphics/technology/TerraformingStation.png",
-		effects =
-		{
-		  {
-				type = "unlock-recipe",
-				recipe = "TerraformingStation"
-		  }
-		},
+		icon = "__Natural_Evolution_Buildings__/graphics/technology/TerraformingStation_inf.png",
+		effects = {},
 		prerequisites = {"AlienUnderstanding-3","TerraformingStation-2"},
 		unit =
 		{
-		  count = 5000,
+		  count_formula = "1000+(2^(L-6)*1000)",
 		  ingredients =
 		  {
 			{"science-pack-1", 1},
 			{"science-pack-2", 1},
 			{"science-pack-3", 1},
+			{"military-science-pack", 1},
 			{"high-tech-science-pack", 1}
 		  },
 		  time = 50
 		},
 		upgrade = true,
+		max_level = "infinite",
+		localised_description = {"technology-description.TerraformingStation-3"},
 		order = "a-i-c",
 	},
 	
