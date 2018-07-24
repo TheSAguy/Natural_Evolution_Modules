@@ -71,13 +71,7 @@ for i = 1, ent_count do
 			NE_Functions.add_immunity(ent_type, "ne_fire", 100) -- Units have a 100% Immunity to "ne_fire", this way they don't get damaged by own or other unit attack.
 			
 		elseif ent_type.resistances then
-			--[[
-			for _, r_type in pairs(ent_type.resistances) do	
-				if r_type.type == "fire" and r_type.percent then
-					table.insert(ent_type.resistances, {type = "ne_fire", percent = r_type.percent})
-				end
-			end
-			]]
+
 			local fire, nefire --store resistance subtables
 			for _,res in pairs(ent_type.resistances) do
 				  if res.type == 'fire' then

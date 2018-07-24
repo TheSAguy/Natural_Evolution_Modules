@@ -10,13 +10,31 @@ end
 
 
 function NE_Functions.add_immunity_only_to_entities_with_res(ent_type, immunity, amount)
+	 --- Only add to entities the already has resistances.
 	 if ent_type.resistances then 
-		table.insert(ent_type.resistances, {type = immunity, percent = amount})
-	 end
+		local Resist_being_Added = {type = immunity, percent = amount}
+		
+				local found = false
+				for _, resistance in pairs(ent_type.resistances) do
+					if resistance.type == Resist_being_Added.type and resistance.percent then
+						if resistance.percent < Resist_being_Added.percent then
+							resistance.percent = Resist_being_Added.percent
+						end
+						found = true
+					end            
+				end
+				
+				if not found then
+					table.insert(ent_type.resistances, Resist_being_Added)
+				end
+				
+	end
+
 end
 
 
-function NE_Functions.remove_immunity(ent_type, immunity)
+
+function NE_Functions.remove_immunity(ent_type, immunity, amount)
 	if not ent_type.resistances then ent_type.resistances = {} end
 	table.insert(ent_type.resistances, {type = immunity, percent = amount})
 end

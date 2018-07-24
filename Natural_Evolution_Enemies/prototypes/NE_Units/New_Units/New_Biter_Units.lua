@@ -118,7 +118,7 @@ for i = 1, 20 do
 							sound = i/25
 						})
 	NE_Biter_Breeder_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_blue_tint2, ne_orange_tint)
-	NE_Biter_Breeder_Unit.localised_name = {"entity-name.ne-biter-breeder"}
+	--NE_Biter_Breeder_Unit.localised_name = {"entity-name.ne-biter-breeder"}
 	NE_Biter_Breeder_Unit.localised_description = {"entity-description.ne-biter-breeder"}
     
 	data:extend{NE_Biter_Breeder_Unit}
@@ -149,7 +149,7 @@ for i = 1, 20 do
 							sound = i/25
 						})	
 	NE_Biter_Fire_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_fire_tint2, ne_fire_tint)
-    NE_Biter_Fire_Unit.localised_name = {"entity-name.ne-biter-fire"}
+    --NE_Biter_Fire_Unit.localised_name = {"entity-name.ne-biter-fire"}
 	NE_Biter_Fire_Unit.localised_description = {"entity-description.ne-biter-fire"}
 	
 	data:extend{NE_Biter_Fire_Unit}
@@ -186,7 +186,7 @@ for i = 1, 20 do
 							sound = i/25
 						})	
 	NE_Biter_Fast_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_green_tint, ne_fire_tint)
-    NE_Biter_Fast_Unit.localised_name = {"entity-name.ne-biter-fast"}
+    --NE_Biter_Fast_Unit.localised_name = {"entity-name.ne-biter-fast"}
 	NE_Biter_Fast_Unit.localised_description = {"entity-description.ne-biter-fast"}   
 	data:extend{NE_Biter_Fast_Unit}
 	
@@ -216,7 +216,7 @@ for i = 1, 20 do
 							sound = i/25
 						})
 	NE_Biter_WallBreaker_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_yellow_tint2, ne_purple_tint)
-    NE_Biter_WallBreaker_Unit.localised_name = {"entity-name.ne-biter-wallbreaker"}
+    --NE_Biter_WallBreaker_Unit.localised_name = {"entity-name.ne-biter-wallbreaker"}
 	NE_Biter_WallBreaker_Unit.localised_description = {"entity-description.ne-biter-wallbreaker"} 
     
 	data:extend{NE_Biter_WallBreaker_Unit}
@@ -248,7 +248,7 @@ for i = 1, 20 do
 							sound = i/25
 						})
 	NE_Biter_Tank_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_pink_tint, ne_green_tint)
-    NE_Biter_Tank_Unit.localised_name = {"entity-name.ne-biter-tank"}
+   -- NE_Biter_Tank_Unit.localised_name = {"entity-name.ne-biter-tank"}
 	NE_Biter_Tank_Unit.localised_description = {"entity-description.ne-biter-tank"} 
     
 	data:extend{NE_Biter_Tank_Unit}

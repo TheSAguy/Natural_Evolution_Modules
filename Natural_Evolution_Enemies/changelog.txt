@@ -1,3 +1,18 @@
+Version: 9.0.4
+Date: 24. 07. 2018
+  Feature:
+    - Nerfed the number of new units (babies) from Breeder dying
+    - Changed unit naming, now Lvl 1-20
+---------------------------------------------------------------------------------------------------
+Version: 9.0.3
+Date: 20. 07. 2018
+  Feature:
+    - Compatibility with MoreBiters
+---------------------------------------------------------------------------------------------------
+Version: 9.0.2
+Date: 19. 07. 2018
+  Bugfix:
+    - Possible crash fix on Unit#
 ---------------------------------------------------------------------------------------------------
 Version: 9.0.1
 Date: 19. 07. 2018

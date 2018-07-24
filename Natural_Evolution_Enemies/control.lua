@@ -1,4 +1,4 @@
---ENEMIES v.9.0.1
+--ENEMIES v.9.0.4
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -12,7 +12,7 @@ require ("prototypes.NE_Units.New_Units.Unit_Launcher")
 
 if QC_Mod then
 	---************** Used for Testing -----
-	require ("prototypes.initialSpawn")
+	require ("Test_Spawn")
 	---*************
 end
 
@@ -401,7 +401,7 @@ local function On_Init()
 	if QC_Mod then
 		---*************
 		local surface = game.surfaces['nauvis']
-		Initial_Spawn(surface)
+		Test_Spawn(surface)
 		---*************
 	end
 	
@@ -652,15 +652,24 @@ function isSpawner(enemy)
 end
 
 
+
+--[[
+--- Return Class
+function UnitClass(entity)
+	_, _, mod, spiecies,  class, number = string.find(entity.name, "(%a+)-(%a+)-(%a+)-(%d+)")
+	return class
+end
+]]
+
 --- Check for Fire Biter
 function isFireBiter(entity)
-	return string.find(entity.name, "%-fire")
+	return (string.find(entity.name, "ne%-biter%-fire%-") or string.find(entity.name, "ne%-spitter%-fire%-"))
 end
 
 
 --- Check for Breeder Biter
 function isBreeder(entity)
-	return string.find(entity.name, "%-breeder")
+	return (string.find(entity.name, "ne%-biter%-breeder%-") or string.find(entity.name, "ne%-spitter%-breeder%-"))
 end
 
 
@@ -669,14 +678,6 @@ function UnitNumber(entity)
 	_, _, mod, spiecies,  class, number = string.find(entity.name, "(%a+)-(%a+)-(%a+)-(%d+)")
 	return number
 end
-
-
---- Return Class
-function UnitClass(entity)
-	_, _, mod, spiecies,  class, number = string.find(entity.name, "(%a+)-(%a+)-(%a+)-(%d+)")
-	return class
-end
-
 
 --- Return Spiecies
 function UnitSpiecies(entity)
@@ -698,14 +699,20 @@ end
 ---- Spawn Babies from Breeders Units
 function SpawnBreederBabies(entity)
 	
-	local NumberOfBabies = math.floor((math.floor(UnitNumber(entity)) - 5) + math.floor(math.sqrt(UnitNumber(entity))))  -- Number of Babies, 1 to 19 at level 20
-	local BabyLvl = math.floor(math.sqrt(UnitNumber(entity)) * 2) -- Baby Level, 2 to 9 at level 20
+	local NumberOfBabies = math.floor(math.floor(UnitNumber(entity)) + math.floor(math.sqrt(UnitNumber(entity))) + math.floor(NE_Enemies.Settings.NE_Difficulty * 2)) / 3  -- Number of Babies, 3 to 8 at level 20 on Diff 1 and 5 to 11 at level 20 on Diff 5
+	local BabyLvl = math.floor(math.sqrt((UnitNumber(entity)) * 2) + (NE_Enemies.Settings.NE_Difficulty / 3)) -- Baby Level, 4 to 9 at level 20 on Diff 1 and 6 to 10 at level 20 on Diff 5
+	local BabyName
 	
 	if BabyLvl <= 0 then BabyLvl = 1 end
-	local BabyName = "ne-"..UnitSpiecies(entity).."-breeder-"..BabyLvl
-
+	if UnitSpiecies(entity) then
+		BabyName = "ne-"..UnitSpiecies(entity).."-breeder-"..BabyLvl
+	else
+		BabyName = "ne-biter-breeder-"..BabyLvl
+	end
+	
 	--writeDebug(BabyName)
-	--writeDebug(math.floor(UnitNumber(entity)))
+	--writeDebug(BabyLvl)
+	--- Only start breeding at Lvl 5
 	if math.floor(UnitNumber(entity)) >= 5 then 
 		for i = 1, NumberOfBabies do
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 4 , 0.5)
@@ -772,12 +779,12 @@ local function On_Death(event)
     end
 	
 	--- Spawn Breeder Units
-	if isBreeder(entity) and entity.type == "unit" then
+	if isBreeder(entity) and entity.type == "unit" and UnitNumber(entity) ~= nil then
 		--writeDebug("Was a Breeder")
 		SpawnBreederBabies(entity)
 	end
 
-	if isFireBiter(entity) and entity.type == "unit" then
+	if isFireBiter(entity) and entity.type == "unit" and UnitNumber(entity) ~= nil then
 		
 		if math.floor(UnitNumber(entity)) < 5 then
 			surface.create_entity({name="ne-small-fire-explosion", position = pos, force = "enemy"})
@@ -821,7 +828,7 @@ local function On_Death(event)
 
 			
 			--- First 20 nests are free of danger
-			if settings.startup["NE_Challenge_Mode"].value and Total_Number_of_Spawners_Killed > (21 - NE_Enemies.Settings.NE_Difficulty) then 
+			if settings.startup["NE_Challenge_Mode"].value and global.Total_Number_of_Spawners_Killed > (21 - NE_Enemies.Settings.NE_Difficulty) then 
 				Spawn_Megladon(event, entity)
 			end
 			

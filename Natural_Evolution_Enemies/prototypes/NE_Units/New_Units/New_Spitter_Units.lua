@@ -118,7 +118,7 @@ for i = 1, 20 do
 							projectile = "Electric-Projectile" 
 						})
 	NE_Spitter_Breeder_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_blue_tint2)
-    NE_Spitter_Breeder_Unit.localised_name = {"entity-name.ne-spitter-breeder"}
+    --NE_Spitter_Breeder_Unit.localised_name = {"entity-name.ne-spitter-breeder"}
 	NE_Spitter_Breeder_Unit.localised_description = {"entity-description.ne-spitter-breeder"} 
     
 	data:extend{NE_Spitter_Breeder_Unit}
@@ -144,7 +144,7 @@ for i = 1, 20 do
                             roarvolume = i/25,
 						})
 	NE_Spitter_Fire_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_fire_tint)
-    NE_Spitter_Fire_Unit.localised_name = {"entity-name.ne-spitter-fire"}
+    --NE_Spitter_Fire_Unit.localised_name = {"entity-name.ne-spitter-fire"}
 	NE_Spitter_Fire_Unit.localised_description = {"entity-description.ne-spitter-fire"} 
     
 	data:extend{NE_Spitter_Fire_Unit}
@@ -172,7 +172,7 @@ for i = 1, 20 do
 							projectile = "Unit-Projectile"
 						})
 	NE_Spitter_ULaunch_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_green_tint)
-    NE_Spitter_ULaunch_Unit.localised_name = {"entity-name.ne-spitter-ulaunch"}
+    --NE_Spitter_ULaunch_Unit.localised_name = {"entity-name.ne-spitter-ulaunch"}
 	NE_Spitter_ULaunch_Unit.localised_description = {"entity-description.ne-spitter-ulaunch"} 
     
 	data:extend{NE_Spitter_ULaunch_Unit}
@@ -199,7 +199,7 @@ for i = 1, 20 do
 							projectile = "Web-Projectile"
 						})
 	NE_Spitter_Webshooter.run_animation = ne_spitter_run_animation(ne_scale[i], ne_yellow_tint)
-    NE_Spitter_Webshooter.localised_name = {"entity-name.ne-spitter-webshooter"}
+    --NE_Spitter_Webshooter.localised_name = {"entity-name.ne-spitter-webshooter"}
 	NE_Spitter_Webshooter.localised_description = {"entity-description.ne-spitter-webshooter"}     
 	
 	data:extend{NE_Spitter_Webshooter}
@@ -226,7 +226,7 @@ for i = 1, 20 do
 							projectile = "Mine-Projectile-"..i
 						})
 	NE_Spitter_Mine_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_pink_tint)
-    NE_Spitter_Mine_Unit.localised_name = {"entity-name.ne-spitter-mine"}
+    --NE_Spitter_Mine_Unit.localised_name = {"entity-name.ne-spitter-mine"}
 	NE_Spitter_Mine_Unit.localised_description = {"entity-description.ne-spitter-mine"}     
 	
 	data:extend{NE_Spitter_Mine_Unit}
