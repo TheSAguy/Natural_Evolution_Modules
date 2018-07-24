@@ -5,9 +5,9 @@ function Test_Spawn(surface)
 
 
 
-	surface.create_entity({name="medium-worm-turret-player", position={-5, -5}, force = game.forces.enemy})	
-	surface.create_entity({name="big-worm-turret-player", position={-30, -30}, force = game.forces.enemy})	
-	surface.create_entity({name="big-worm-turret", position={-15, -15}, force = game.forces.player})	
+	surface.create_entity({name="bob-big-explosive-worm-turret", position={-5, -5}, force = game.forces.player})	
+	surface.create_entity({name="bob-biter-spawner", position={-30, -30}, force = game.forces.player})	
+	surface.create_entity({name="ne-spawner-blue", position={-15, -15}, force = game.forces.player})	
 	
 	
 	--surface.create_entity({name="ne-biter-fire-10", position={-50, 15}, force = game.forces.enemy})

@@ -46,25 +46,6 @@ if not mods["bobwarfare"] then
 end
 ------
 
--- Remove Alerts from units. 
-local units = data.raw["unit"]
-
-for k, v in pairs(units) do
-	if v.alert_when_damaged == 'false' then
-		break		
-	else
-		v.alert_when_damaged = 'false'
-	end
-	
-	if v.alert_when_attacking == 'false' then
-		break	
-	else
-		v.alert_when_attacking = 'false'
-	end
-	
-end
-
-
 
 		
 -- Make it so that you can mine spawners & worms, since you are able to convert them, you can now remove them. 
@@ -74,6 +55,7 @@ data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 1.5, mining_ti
 data.raw["turret"]["small-worm-turret"].minable = {hardness = 0.5, mining_time = 1.6, results = {{type="item", name="small-worm-hatching-exhausted", amount=1},}}
 data.raw["turret"]["medium-worm-turret"].minable = {hardness = 1.0, mining_time = 1.6, results = {{type="item", name="medium-worm-hatching-exhausted", amount=1},}}
 data.raw["turret"]["big-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+
 
 if mods["bobenemies"] then
 
@@ -86,32 +68,6 @@ if mods["bobenemies"] then
 	data.raw["turret"]["bob-big-electric-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-giant-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-behemoth-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
-
-end
-
---- All other Spawners
-local spawners = data.raw["unit-spawner"]
-for k, v in pairs(spawners) do
-
-	if v.minable then
-		break		
-	else
-		local minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="Natural_Evolution_Biter-Spawner-exhausted", amount=1},}}
-		table.insert(v.minable, minable)
-	end
-
-end
-
---- All other turrets?
-local worms = data.raw["turret"]
-for k, v in pairs(worms) do
-
-	if v.minable then
-		break		
-	else
-		local minable = {hardness = 0.5, mining_time = 1.6, results = {{type="item", name="small-worm-hatching-exhausted", amount=1},}}
-		table.insert(v.minable, minable)
-	end
 
 end
 
@@ -215,17 +171,4 @@ if data.raw.item["small-alien-artifact"] then
 	 end
  
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
