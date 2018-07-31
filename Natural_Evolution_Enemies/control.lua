@@ -1,4 +1,4 @@
---ENEMIES v.9.0.4
+--ENEMIES v.9.0.5
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -695,6 +695,26 @@ function NELandmine(entity)
 	end
 end
 
+--- Remove Trees
+function Remove_Trees(entity)
+		local surface = entity.surface
+		local radius = 1
+		local pos = entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		-- find nearby trees
+		local trees = {}
+		local trees = surface.find_entities_filtered{area=area, type="tree"}
+		-- Remove Trees
+		if #trees > 0 then
+		writeDebug("Tree Found")
+			for i,tree in pairs(trees) do
+				if tree and tree.valid then
+					tree.die()
+				end
+			end
+		end
+end
+
 
 ---- Spawn Babies from Breeders Units
 function SpawnBreederBabies(entity)
@@ -717,7 +737,8 @@ function SpawnBreederBabies(entity)
 		for i = 1, NumberOfBabies do
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 4 , 0.5)
 			if PositionValid then
-				entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+				spawn_unit = entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+				Remove_Trees(spawn_unit)
 			end
 		end
 	end
@@ -737,7 +758,8 @@ function SpawnBreederBabies_Spawner(entity)
 		for i = 1, NumberOfBabies do
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 8 , 0.5)
 			if PositionValid then
-				entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+				spawn_unit = entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+				Remove_Trees(spawn_unit)
 			end
 		end
 	end
@@ -1066,7 +1088,8 @@ function SpawnLaunchedUnits(enemy)
 	for i = 1, number do
 		local subEnemyPosition = enemy.surface.find_non_colliding_position(subEnemyName, enemy.position, 2, 0.5)
 		if subEnemyPosition then
-			local create_unit = enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
+			create_unit = enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
+			Remove_Trees(create_unit)
 		end
 	end
 end

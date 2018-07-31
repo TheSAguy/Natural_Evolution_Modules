@@ -66,7 +66,7 @@ for i = 1, ent_count do
 	--- Add the same amount of "ne_fire" Resistances as the current "fire" Resistances
 	for _, ent_type in pairs(data.raw[entity_types_list[i]]) do
 			
-		if ent_type.type == "unit" then
+		if ent_type.type == "unit" then --or ent_type.type == "unit-spawner" then
 			
 			NE_Functions.add_immunity(ent_type, "ne_fire", 100) -- Units have a 100% Immunity to "ne_fire", this way they don't get damaged by own or other unit attack.
 			
@@ -77,7 +77,6 @@ for i = 1, ent_count do
 				  if res.type == 'fire' then
 					if res.percent then
 					  fire = res --has fire and percent, store subtable for later use
-					  --NEWVALUE = res.percent
 					  end
 				  elseif res.type == 'ne_fire' then
 					nefire = res --has nefire, store for later use
@@ -86,10 +85,20 @@ for i = 1, ent_count do
 			if fire then
 			  if nefire then 
 				if nefire.percent < fire.percent then
-				  nefire.percent = fire.percent --update old nefire
+					if ent_type.type == "unit-spawner" then
+						nefire.percent = 100 --update old nefire
+					else
+						nefire.percent = fire.percent --update old nefire
+					end
+					
 				  end
 			  else
-				table.insert(ent_type.resistances,{type='ne_fire',percent=fire.percent}) --add new nefire
+					if ent_type.type == "unit-spawner" then
+						table.insert(ent_type.resistances,{type='ne_fire',percent=100}) --add new nefire
+					else
+						table.insert(ent_type.resistances,{type='ne_fire',percent=fire.percent}) --add new nefire
+					end
+				
 				end
 			  end
 			
@@ -116,7 +125,7 @@ end
 
 
 ---- Electric poles ges 15% immunitiy to everything.	
-NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
+--NE_Functions.Add_ALL_Damage_Resists(data.raw["electric-pole"],15)
 
 --- Give new units immunity to damage. Ranges from 1% to 20%.
 for i = 1, 20 do

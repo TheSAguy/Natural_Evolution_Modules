@@ -4,18 +4,18 @@
 function Test_Spawn(surface)
 
 
-	for i = 20, 20 do
+	for i = 7, 7 do
 	
 
-	surface.create_entity({name="ne-biter-breeder-" .. i, position={-5 - i, 10}, force = game.forces.player})
+	--surface.create_entity({name="ne-biter-breeder-" .. i, position={-5 - i, 10}, force = game.forces.enemy})
 	--surface.create_entity({name="ne-biter-fire-" .. i, position={-5 - i, 5}, force = game.forces.player})
    -- surface.create_entity({name="ne-biter-fast-" .. i, position={-5 - i, 0}, force = game.forces.player})
 	--surface.create_entity({name="ne-biter-wallbreaker-" .. i, position={-5 - i, -5}, force = game.forces.player})
 	--surface.create_entity({name="ne-biter-tank-" .. i, position={-5 - i, -10}, force = game.forces.player})
 
-    surface.create_entity({name="ne-spitter-breeder-" .. i, position={5 + i, 10}, force = game.forces.player})	
+    --surface.create_entity({name="ne-spitter-breeder-" .. i, position={5 + i, 10}, force = game.forces.enemy})	
    -- surface.create_entity({name="ne-spitter-fire-" .. i, position={5 + i, 5}, force = game.forces.player})
-	--surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 0}, force = game.forces.player})
+	surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 0}, force = game.forces.enemy})
 --	surface.create_entity({name="ne-spitter-webshooter-" .. i, position={5 + i, -5}, force = game.forces.player})
 	--surface.create_entity({name="ne-spitter-mine-" .. i, position={5 + i, -10}, force = game.forces.player})	
 

@@ -1,4 +1,18 @@
 
+local function call_radius(w_name,radius)
+	if data.raw.turret[w_name] then
+		data.raw.turret[w_name].call_for_help_radius = radius
+	end
+end
+
+
+
+local function pollution_attack(u_name,amount)
+	if data.raw.unit[u_name] then
+		data.raw.unit[u_name].pollution_to_join_attack = amount
+	end
+end
+
 	   
 
 if data.raw["unit-spawner"]["bob-biter-spawner"] then
@@ -23,15 +37,15 @@ if data.raw["unit-spawner"]["bob-biter-spawner"] then
 	data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_proportional = 0.005
 
 
-	--- Bob's Units
-	data.raw["unit"]["bob-big-piercing-biter"].pollution_to_join_attack = 1000
-	data.raw["unit"]["bob-huge-acid-biter"].pollution_to_join_attack = 2000
-	data.raw["unit"]["bob-huge-explosive-biter"].pollution_to_join_attack = 3000
-	data.raw["unit"]["bob-giant-poison-biter"].pollution_to_join_attack = 4000
-	data.raw["unit"]["bob-giant-fire-biter"].pollution_to_join_attack = 5000
-	data.raw["unit"]["bob-titan-biter"].pollution_to_join_attack = 6000
-	data.raw["unit"]["bob-behemoth-biter"].pollution_to_join_attack = 7000
-	data.raw["unit"]["bob-leviathan-biter"].pollution_to_join_attack = 8000	
+	--- Bob's Biter Units
+	pollution_attack("bob-big-piercing-biter", 1000)
+	pollution_attack("bob-huge-acid-biter", 2000)
+	pollution_attack("bob-huge-explosive-biter", 3000)
+	pollution_attack("bob-giant-poison-biter", 4000)
+	pollution_attack("bob-giant-fire-biter", 5000)
+	pollution_attack("bob-titan-biter", 6000)
+	pollution_attack("bob-behemoth-biter", 7000)
+	pollution_attack("bob-leviathan-biter", 8000)
 	
 end	  
 
@@ -57,28 +71,31 @@ if data.raw["unit-spawner"]["bob-spitter-spawner"] then
 	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_absolute = 15
 	data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_proportional = 0.005
 
-		
-	data.raw["unit"]["bob-big-electric-spitter"].pollution_to_join_attack = 1500
-	data.raw["unit"]["bob-huge-explosive-spitter"].pollution_to_join_attack = 2500
-	data.raw["unit"]["bob-huge-acid-spitter"].pollution_to_join_attack = 3500
-	data.raw["unit"]["bob-giant-fire-spitter"].pollution_to_join_attack = 4500
-	data.raw["unit"]["bob-giant-poison-spitter"].pollution_to_join_attack = 5500
-	data.raw["unit"]["bob-titan-spitter"].pollution_to_join_attack = 6500
-	data.raw["unit"]["bob-behemoth-spitter"].pollution_to_join_attack = 7500
-	data.raw["unit"]["bob-leviathan-spitter"].pollution_to_join_attack = 8500	
+	--- Bob's Spitter Units
+	pollution_attack("bob-big-electric-spitter", 1500)
+	pollution_attack("bob-huge-explosive-spitter", 2500)
+	pollution_attack("bob-huge-acid-spitter", 2300)
+	pollution_attack("bob-giant-fire-spitter", 4500)
+	pollution_attack("bob-giant-poison-spitter", 5500)
+	pollution_attack("bob-titan-spitter", 6500)
+	pollution_attack("bob-behemoth-spitter", 7500)
+	pollution_attack("bob-leviathan-spitter", 8500)
 	
 end	
 
 
-if data.raw["turret"]["bob-big-explosive-worm-turret"] then
 		
-	--- Bob's Worms
-	data.raw["turret"]["bob-big-explosive-worm-turret"].call_for_help_radius = 120
-	data.raw["turret"]["bob-big-fire-worm-turret"].call_for_help_radius = 120
-	data.raw["turret"]["bob-big-poison-worm-turret"].call_for_help_radius = 120
-	data.raw["turret"]["bob-big-piercing-worm-turret"].call_for_help_radius = 120
-	data.raw["turret"]["bob-big-electric-worm-turret"].call_for_help_radius = 120
-	data.raw["turret"]["bob-giant-worm-turret"].call_for_help_radius = 200
-	data.raw["turret"]["bob-behemoth-worm-turret"].call_for_help_radius = 300	
+--- Bob's Worms
+ call_radius("bob-big-explosive-worm-turret", 120)
+ call_radius("bob-big-fire-worm-turret", 120)
+ call_radius("bob-big-poison-worm-turret", 120)
+ call_radius("bob-big-piercing-worm-turret", 120)
+ call_radius("bob-big-electric-worm-turret", 120)
+ call_radius("bob-giant-worm-turret", 200)
+ call_radius("bob-behemoth-worm-turret", 300)
 
-end
+
+
+
+
+

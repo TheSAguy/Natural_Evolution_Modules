@@ -1,3 +1,9 @@
+Version: 9.0.5
+Date: 31. 07. 2018
+  Feature:
+    - Updated some Resistances
+    - Remove Trees in area of Spawneds from Unit Launchers
+---------------------------------------------------------------------------------------------------
 Version: 9.0.4
 Date: 24. 07. 2018
   Feature:

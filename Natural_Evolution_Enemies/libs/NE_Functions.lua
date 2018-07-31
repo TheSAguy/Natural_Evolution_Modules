@@ -4,10 +4,42 @@
 
 
 function NE_Functions.add_immunity(ent_type, immunity, amount)
+
 	 if not ent_type.resistances then ent_type.resistances = {} end
 	 table.insert(ent_type.resistances, {type = immunity, percent = amount})
+
 end
 
+
+--[[	 
+function NE_Functions.add_immunity(Raw, immunity, amount)
+
+		local Resist_being_Added = {type = immunity, percent = amount}
+		if Raw.resistances == nil then 
+			Raw.resistances = {}
+			table.insert(Raw.resistances, Resist_being_Added)
+		else
+			local found = false
+			for _, resistance in pairs(Raw.resistances) do
+				if resistance.type == Resist_being_Added.type and resistance.percent > Resist_being_Added.percent then
+					found = true
+					break
+				elseif resistance.type == Resist_being_Added.type and resistance.percent < Resist_being_Added.percent then
+					found = true
+					table.insert(Raw.resistances, Resist_being_Added)
+					break
+				end
+			end
+				
+			if not found then
+				table.insert(Raw.resistances, Resist_being_Added)
+			end
+				
+		end
+
+	 
+end
+]]
 
 function NE_Functions.add_immunity_only_to_entities_with_res(ent_type, immunity, amount)
 	 --- Only add to entities the already has resistances.
@@ -120,7 +152,11 @@ end
 function NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(Raw, Percent)
 	if Raw ~= nil then	
 		for k, v in pairs(data.raw["damage-type"]) do
-			Add_Damage_Resists_to_Units(v.name, Raw, Percent)
+			if v.name == "NE_Conversion" then -- NE Buildings Damage Type
+				Add_Damage_Resists_to_Units(v.name, Raw, -5)
+			else
+				Add_Damage_Resists_to_Units(v.name, Raw, Percent)
+			end
 		end
 	end
 end

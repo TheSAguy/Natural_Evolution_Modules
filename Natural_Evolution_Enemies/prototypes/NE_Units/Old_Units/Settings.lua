@@ -65,7 +65,7 @@ Health = {
 Resistances = {
 	-- Healthy (Physical)
 	Small_Biter = {
-	  {type = "fire", decrease = 0, percent = -90},
+	  {type = "fire", decrease = 0, percent = -80},
       {type = "physical", decrease = 1, percent = 5*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 0, percent = 0},
@@ -75,7 +75,7 @@ Resistances = {
 	
 	-- Infected (Poison / Explosion)
 	Small_Biter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -85},
+	  {type = "fire", decrease = 0, percent = -75},
       {type = "physical", decrease = 1, percent = 0},
       {type = "impact", decrease = 1, percent = 0},
       {type = "explosion", decrease = 2, percent = 5*NE_Enemies.Settings.NE_Difficulty},
@@ -85,7 +85,7 @@ Resistances = {
 	  
 	-- Mutated (Acid / Laser)  
 	Small_Biter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -80},
+	  {type = "fire", decrease = 0, percent = -70},
       {type = "physical", decrease = 4, percent = 5*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 2, percent = 0},
       {type = "explosion", decrease = 2, percent = 0},
@@ -95,7 +95,7 @@ Resistances = {
 	
 	-- Healthy (Physical)
 	Medium_Biter = {
-	  {type = "fire", decrease = 0, percent = -75},
+	  {type = "fire", decrease = 0, percent = -70},
       {type = "physical", decrease = 6, percent = 10*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 4, percent = 0},
       {type = "explosion", decrease = 4, percent = 0},
@@ -105,7 +105,7 @@ Resistances = {
 	
 	-- Infected (Poison / Explosion)
 	Medium_Biter_Mk2 = {
-	  {type = "fire", decrease = 0, percent = -70},
+	  {type = "fire", decrease = 0, percent = -65},
       {type = "physical", decrease = 6, percent = 0},
       {type = "impact", decrease = 6, percent = 0},
       {type = "explosion", decrease = 8, percent = 10*NE_Enemies.Settings.NE_Difficulty},
@@ -115,7 +115,7 @@ Resistances = {
 	
 	-- Mutated (Acid / Laser)  
 	Medium_Biter_Mk3 = {
-	  {type = "fire", decrease = 0, percent = -65},
+	  {type = "fire", decrease = 0, percent = -60},
       {type = "physical", decrease = 8, percent = 0},
       {type = "impact", decrease = 8, percent = 0},
       {type = "explosion", decrease = 8, percent = 0},
@@ -165,7 +165,7 @@ Resistances = {
 	
 	-- Healthy (Physical)
 	Small_Spitter = {
-	  {type = "fire", decrease = 0, percent = -90},
+	  {type = "fire", decrease = 0, percent = -85},
       {type = "physical", decrease = 1, percent = 5*NE_Enemies.Settings.NE_Difficulty},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 0, percent = 0},
@@ -175,7 +175,7 @@ Resistances = {
 	
 	-- Infected (Poison / Explosion) 
 	Small_Spitter_Mk2 = {
-	  {type = "fire", decrease = 1, percent = -85},
+	  {type = "fire", decrease = 1, percent = -80},
       {type = "physical", decrease = 1, percent = 0},
       {type = "impact", decrease = 1, percent = 0},
       {type = "explosion", decrease = 2, percent = 5*NE_Enemies.Settings.NE_Difficulty},
@@ -185,7 +185,7 @@ Resistances = {
 	
 	-- Mutated (Acid / Laser)  
 	Small_Spitter_Mk3 = {
-	  {type = "fire", decrease = 2, percent = -80},
+	  {type = "fire", decrease = 2, percent = -75},
       {type = "physical", decrease = 2, percent = 0},
       {type = "impact", decrease = 2, percent = 0},
       {type = "explosion", decrease = 2, percent = 0},
