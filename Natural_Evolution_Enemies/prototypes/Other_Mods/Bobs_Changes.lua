@@ -38,14 +38,14 @@ if data.raw["unit-spawner"]["bob-biter-spawner"] then
 
 
 	--- Bob's Biter Units
-	pollution_attack("bob-big-piercing-biter", 1000)
-	pollution_attack("bob-huge-acid-biter", 2000)
-	pollution_attack("bob-huge-explosive-biter", 3000)
-	pollution_attack("bob-giant-poison-biter", 4000)
-	pollution_attack("bob-giant-fire-biter", 5000)
-	pollution_attack("bob-titan-biter", 6000)
-	pollution_attack("bob-behemoth-biter", 7000)
-	pollution_attack("bob-leviathan-biter", 8000)
+	pollution_attack("bob-big-piercing-biter", 2000)
+	pollution_attack("bob-huge-acid-biter", 4000)
+	pollution_attack("bob-huge-explosive-biter", 4000)
+	pollution_attack("bob-giant-poison-biter", 6000)
+	pollution_attack("bob-giant-fire-biter", 6000)
+	pollution_attack("bob-titan-biter", 8000)
+	pollution_attack("bob-behemoth-biter", 10000)
+	pollution_attack("bob-leviathan-biter", 15000)
 	
 end	  
 

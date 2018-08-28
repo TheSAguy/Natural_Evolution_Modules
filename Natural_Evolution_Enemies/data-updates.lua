@@ -129,12 +129,12 @@ if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 	data.raw["unit"]["big-biter"].resistances = Resistances.Big_Biter
 	data.raw["unit"]["big-biter"].max_health = Health.Big_Biter
 	data.raw["unit"]["big-biter"].ammo_type = Damage.Big_Biter
-	data.raw["unit"]["big-biter"].pollution_to_join_attack = 1000
+	data.raw["unit"]["big-biter"].pollution_to_join_attack = 2000
 
 	data.raw["unit"]["behemoth-biter"].resistances = Resistances.Behemoth_Biter
 	data.raw["unit"]["behemoth-biter"].max_health = Health.Behemoth_Biter
 	data.raw["unit"]["behemoth-biter"].ammo_type = Damage.Behemoth_Biter
-	data.raw["unit"]["behemoth-biter"].pollution_to_join_attack = 2500
+	data.raw["unit"]["behemoth-biter"].pollution_to_join_attack = 10000
 
 			
 	--- Vanilla Spitter Units Adjustments
@@ -151,7 +151,7 @@ if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 
 	data.raw["unit"]["behemoth-spitter"].resistances = Resistances.Behemoth_Spitter
 	data.raw["unit"]["behemoth-spitter"].max_health = Health.Behemoth_Spitter
-	data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 5000
+	data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 8000
 
 end
 	

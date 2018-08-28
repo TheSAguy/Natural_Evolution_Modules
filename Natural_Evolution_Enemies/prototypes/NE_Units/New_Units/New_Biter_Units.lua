@@ -22,6 +22,8 @@ local health_scale = 105 - (NE_Enemies.Settings.NE_Difficulty * 5)
 local attack_range = 0.4375  -- 0.5 to 1.75
 local damage_modifier = 0.8 + (NE_Enemies.Settings.NE_Difficulty / 5)
 
+local pollution_attack_increment = 1
+
 
 --- BASE Biter Unit
 	NE_Base_Biter_Unit = table.deepcopy(data.raw.unit["small-biter"])
@@ -93,6 +95,9 @@ for i = 1, 20 do
 	
 	attack_range = attack_range + 0.0625  -- 0.5 to 1.75
 	
+	pollution_attack_increment = ((100 - i) / 100)*(1.640785 ^ i) + ((i/100)*(1000 * i)) -- 20K Max 
+	if pollution_attack_increment + i <= 150 then pollution_attack_increment = 149 + i end
+	
 ------------------------- Units --------------------
 
 	--- Breeder Biter (Spwans Units on Death)
@@ -118,7 +123,7 @@ for i = 1, 20 do
 							sound = i/25
 						})
 	NE_Biter_Breeder_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_blue_tint2, ne_orange_tint)
-	--NE_Biter_Breeder_Unit.localised_name = {"entity-name.ne-biter-breeder"}
+	NE_Biter_Breeder_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_Breeder_Unit.localised_description = {"entity-description.ne-biter-breeder"}
     
 	data:extend{NE_Biter_Breeder_Unit}
@@ -149,7 +154,7 @@ for i = 1, 20 do
 							sound = i/25
 						})	
 	NE_Biter_Fire_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_fire_tint2, ne_fire_tint)
-    --NE_Biter_Fire_Unit.localised_name = {"entity-name.ne-biter-fire"}
+    NE_Biter_Fire_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_Fire_Unit.localised_description = {"entity-description.ne-biter-fire"}
 	
 	data:extend{NE_Biter_Fire_Unit}
@@ -186,7 +191,7 @@ for i = 1, 20 do
 							sound = i/25
 						})	
 	NE_Biter_Fast_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_green_tint, ne_fire_tint)
-    --NE_Biter_Fast_Unit.localised_name = {"entity-name.ne-biter-fast"}
+    NE_Biter_Fast_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_Fast_Unit.localised_description = {"entity-description.ne-biter-fast"}   
 	data:extend{NE_Biter_Fast_Unit}
 	
@@ -216,7 +221,7 @@ for i = 1, 20 do
 							sound = i/25
 						})
 	NE_Biter_WallBreaker_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_yellow_tint2, ne_purple_tint)
-    --NE_Biter_WallBreaker_Unit.localised_name = {"entity-name.ne-biter-wallbreaker"}
+    NE_Biter_WallBreaker_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_WallBreaker_Unit.localised_description = {"entity-description.ne-biter-wallbreaker"} 
     
 	data:extend{NE_Biter_WallBreaker_Unit}
@@ -248,7 +253,7 @@ for i = 1, 20 do
 							sound = i/25
 						})
 	NE_Biter_Tank_Unit.run_animation = ne_biter_run_animation(ne_scale[i], ne_pink_tint, ne_green_tint)
-   -- NE_Biter_Tank_Unit.localised_name = {"entity-name.ne-biter-tank"}
+    NE_Biter_Tank_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_Tank_Unit.localised_description = {"entity-description.ne-biter-tank"} 
     
 	data:extend{NE_Biter_Tank_Unit}

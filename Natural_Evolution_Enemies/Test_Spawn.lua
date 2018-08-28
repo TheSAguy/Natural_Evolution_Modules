@@ -16,7 +16,7 @@ function Test_Spawn(surface)
     --surface.create_entity({name="ne-spitter-breeder-" .. i, position={5 + i, 10}, force = game.forces.enemy})	
    -- surface.create_entity({name="ne-spitter-fire-" .. i, position={5 + i, 5}, force = game.forces.player})
 	surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 0}, force = game.forces.enemy})
---	surface.create_entity({name="ne-spitter-webshooter-" .. i, position={5 + i, -5}, force = game.forces.player})
+--	--surface.create_entity({name="ne-spitter-webshooter-" .. i, position={5 + i, -5}, force = game.forces.player})
 	--surface.create_entity({name="ne-spitter-mine-" .. i, position={5 + i, -10}, force = game.forces.player})	
 
 	--[[
@@ -48,9 +48,10 @@ function Test_Spawn(surface)
 
 	--local megladon = surface.create_entity({name="ne-biter-megladon", position={-15, -15}, force = game.forces.enemy})	
 	--megladon.health = 1
-	--[[
+	
 	
 	surface.create_entity({name="ne-spawner-blue", position={15, 15}, force = game.forces.enemy})	
+	--[[
 	surface.create_entity({name="ne-spawner-red", position={15, 25}, force = game.forces.player})	
 	surface.create_entity({name="ne-spawner-green", position={15, 35}, force = game.forces.player})	
 	surface.create_entity({name="ne-spawner-yellow", position={15, 45}, force = game.forces.player})	
@@ -60,7 +61,7 @@ function Test_Spawn(surface)
 	--surface.create_entity({name="ne-spitter-mine-10", position={-20, -20}, force = game.forces.enemy})	
 --	surface.create_entity({name="medium-spitter-Mk2", position={-50, -20}, force = game.forces.enemy})
 	--surface.create_entity({name="medium-worm-turret", position={-30, -30}, force = game.forces.enemy})	
-	--surface.create_entity({name="big-worm-turret", position={-15, -15}, force = game.forces.enemy})	
+	surface.create_entity({name="big-worm-turret", position={-15, -15}, force = game.forces.enemy})	
 	--surface.create_entity({name="ne-biter-fire-10", position={-50, 15}, force = game.forces.enemy})
 	--surface.create_entity({name="ne-biter-fire-40", position={-40, 15}, force = game.forces.enemy})
 	--surface.create_entity({name="ne-biter-fire-60", position={-30, 15}, force = game.forces.enemy})

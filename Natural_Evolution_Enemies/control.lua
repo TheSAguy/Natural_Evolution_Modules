@@ -1,4 +1,4 @@
---ENEMIES v.9.0.5
+--ENEMIES v.9.0.7
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -405,6 +405,7 @@ local function On_Init()
 		---*************
 	end
 	
+	
 end
 
 
@@ -479,7 +480,6 @@ local function On_Config_Change()
 end
 
 
-
 ---------------------------------------------				 
 local function Look_and_Attack(entity, factor)
 
@@ -537,8 +537,8 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 		SpawnLaunchedUnits(entity)
 		
     end
-		
-	--- Unit Launcher Projectile Trigger
+	
+	--- WORM Launcher Projectile Trigger
 	if entity.valid and entity.name == "ne_green_splash_2" then
 
 	if global.tick < event.tick then
@@ -550,7 +550,36 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 		global.tick = global.tick + 1800
 	end
 	
-		SpawnLaunchedUnits(entity)
+	--Randomly choose a unit to shoot - weighted
+		function get_unit_to_spawn()
+				local spawn_options = 
+					{
+					  {spawn="ne-biter-breeder-" , weight=20},
+					  {spawn="ne-biter-fire-" , weight=30},
+					  {spawn="ne-biter-fast-" , weight=60},
+					  {spawn="ne-biter-wallbreaker-" , weight=50},
+					  {spawn="ne-biter-tank-" , weight=20},	  
+					  {spawn="ne-spitter-breeder-" , weight=8},
+					  {spawn="ne-spitter-fire-" , weight=3},
+					  {spawn="ne-spitter-ulaunch-" , weight=2},
+					  {spawn="ne-spitter-webshooter-" , weight=10},
+					  {spawn="ne-spitter-mine-" , weight=10}
+					}
+								  
+				local calculate_odds = {}
+				for k,spawn in ipairs(spawn_options) do
+					for i=1, spawn.weight do
+						calculate_odds[#calculate_odds+1] = k
+					end
+				end
+
+				local random_num = #calculate_odds
+				return spawn_options[calculate_odds[math.random(random_num)]]
+
+		end
+		
+		local unit_to_spawn =  get_unit_to_spawn()
+		SpawnLaunchedUnits(entity, unit_to_spawn)
 		
     end
 		
@@ -698,7 +727,7 @@ end
 --- Remove Trees
 function Remove_Trees(entity)
 		local surface = entity.surface
-		local radius = 1
+		local radius = 1.5
 		local pos = entity.position
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
 		-- find nearby trees
@@ -754,6 +783,7 @@ function SpawnBreederBabies_Spawner(entity)
 	if BabyNumber <= 0 then BabyNumber = 1 end
 	local BabyName = "ne-biter-breeder-"..BabyNumber
 	
+	-- No spawn for first 5% of Evo
 	if math.floor(game.forces.enemy.evolution_factor * 10) >= 5 then 
 		for i = 1, NumberOfBabies do
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 8 , 0.5)
@@ -763,6 +793,7 @@ function SpawnBreederBabies_Spawner(entity)
 			end
 		end
 	end
+	
 end
 
 
@@ -1076,14 +1107,21 @@ end
 
 ---------------------------------------------
 -- Spawn Launched Units 
-function SpawnLaunchedUnits(enemy)
+function SpawnLaunchedUnits(enemy, unit_to_spawn)
 	local subEnemyName = subEnemyNameTable[enemy.name]
+	
 	if not subEnemyName then
 		return
 	end
+	
 	if subEnemyNameTable[enemy.name][global.evoFactorFloor] then
-		subEnemyName = subEnemyNameTable[enemy.name][global.evoFactorFloor]
+		if enemy.name == "ne_green_splash_1" then
+			subEnemyName = subEnemyNameTable[enemy.name][global.evoFactorFloor]
+		else
+			subEnemyName = unit_to_spawn.spawn..subEnemyNameTable[enemy.name][global.evoFactorFloor]
+		end
 	end
+	
 	local number = subEnemyNumberTable[enemy.name][global.evoFactorFloor]
 	for i = 1, number do
 		local subEnemyPosition = enemy.surface.find_non_colliding_position(subEnemyName, enemy.position, 2, 0.5)

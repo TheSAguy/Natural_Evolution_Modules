@@ -24,6 +24,8 @@ local health_scale = 105 - (NE_Enemies.Settings.NE_Difficulty * 5)
 local attack_range = 8  -- 8.5 to 18
 local damage_modifier = 0.175 -- 0.5 to 6.675
 
+local pollution_attack_increment = 1
+
 --- BASE Spitter Unit
 	NE_Base_Spitter_Unit = table.deepcopy(data.raw.unit["small-spitter"])
     NE_Base_Spitter_Unit.name = "ne-spitter-base-unit"
@@ -93,6 +95,8 @@ for i = 1, 20 do
 	attack_range = attack_range + 0.4 + (NE_Enemies.Settings.NE_Difficulty / 10) -- 8.5 to 18
 	damage_modifier = damage_modifier + 0.125 + (NE_Enemies.Settings.NE_Difficulty / 5) -- 0.5 to 6.675
 	
+	pollution_attack_increment = ((100 - i) / 100)*(1.61735 ^ i) + ((i/100)*(750 * i)) -- 15K Max 
+	if pollution_attack_increment + i <= 100 then pollution_attack_increment = 99 + i end
 	
 ------------------------- Units --------------------
 	
@@ -118,7 +122,7 @@ for i = 1, 20 do
 							projectile = "Electric-Projectile" 
 						})
 	NE_Spitter_Breeder_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_blue_tint2)
-    --NE_Spitter_Breeder_Unit.localised_name = {"entity-name.ne-spitter-breeder"}
+    NE_Spitter_Breeder_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Breeder_Unit.localised_description = {"entity-description.ne-spitter-breeder"} 
     
 	data:extend{NE_Spitter_Breeder_Unit}
@@ -144,7 +148,7 @@ for i = 1, 20 do
                             roarvolume = i/25,
 						})
 	NE_Spitter_Fire_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_fire_tint)
-    --NE_Spitter_Fire_Unit.localised_name = {"entity-name.ne-spitter-fire"}
+    NE_Spitter_Fire_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Fire_Unit.localised_description = {"entity-description.ne-spitter-fire"} 
     
 	data:extend{NE_Spitter_Fire_Unit}
@@ -172,7 +176,7 @@ for i = 1, 20 do
 							projectile = "Unit-Projectile"
 						})
 	NE_Spitter_ULaunch_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_green_tint)
-    --NE_Spitter_ULaunch_Unit.localised_name = {"entity-name.ne-spitter-ulaunch"}
+    NE_Spitter_ULaunch_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_ULaunch_Unit.localised_description = {"entity-description.ne-spitter-ulaunch"} 
     
 	data:extend{NE_Spitter_ULaunch_Unit}
@@ -199,7 +203,7 @@ for i = 1, 20 do
 							projectile = "Web-Projectile"
 						})
 	NE_Spitter_Webshooter.run_animation = ne_spitter_run_animation(ne_scale[i], ne_yellow_tint)
-    --NE_Spitter_Webshooter.localised_name = {"entity-name.ne-spitter-webshooter"}
+    NE_Spitter_Webshooter.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Webshooter.localised_description = {"entity-description.ne-spitter-webshooter"}     
 	
 	data:extend{NE_Spitter_Webshooter}
@@ -226,7 +230,7 @@ for i = 1, 20 do
 							projectile = "Mine-Projectile-"..i
 						})
 	NE_Spitter_Mine_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_pink_tint)
-    --NE_Spitter_Mine_Unit.localised_name = {"entity-name.ne-spitter-mine"}
+    NE_Spitter_Mine_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Mine_Unit.localised_description = {"entity-description.ne-spitter-mine"}     
 	
 	data:extend{NE_Spitter_Mine_Unit}

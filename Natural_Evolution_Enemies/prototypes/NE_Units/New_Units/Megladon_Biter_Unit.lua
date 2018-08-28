@@ -40,6 +40,7 @@ end
 	NE_Megladon_Unit.vision_distance = 100 -- v 30
     NE_Megladon_Unit.movement_speed = 0.3 -- v 0.17,
     NE_Megladon_Unit.distance_per_frame = 0.5 -- v0.2,
+	NE_Megladon_Unit.pollution_to_join_attack = 10000
 	NE_Megladon_Unit.corpse = "ne-megladon-corpse"
 	NE_Megladon_Unit.attack_parameters = NE_Biter_Melee_Single_Attack(
 						{

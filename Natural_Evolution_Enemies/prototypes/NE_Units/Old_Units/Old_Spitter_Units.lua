@@ -76,7 +76,7 @@ data:extend(
     movement_speed = 0.185,
     distance_per_frame = 0.05,
     -- in pu
-    pollution_to_join_attack = 200,
+    pollution_to_join_attack = 240,
     corpse = "small-spitter-corpse",
     dying_explosion = "blood-explosion-small",
     working_sound = make_biter_calls(0.65),
@@ -112,7 +112,7 @@ data:extend(
     movement_speed = 0.185,
     distance_per_frame = 0.05,
     -- in pu
-    pollution_to_join_attack = 200,
+    pollution_to_join_attack = 280,
     corpse = "small-spitter-corpse",
     dying_explosion = "blood-explosion-small",
     working_sound = make_biter_calls(0.65),
@@ -149,7 +149,7 @@ data:extend(
     movement_speed = 0.165,
     distance_per_frame = 0.05,
     -- in pu
-    pollution_to_join_attack = 600,
+    pollution_to_join_attack = 650,
     corpse = "medium-spitter-corpse",
     dying_explosion = "blood-explosion-small",
     working_sound = make_biter_calls(0.75),
@@ -185,7 +185,7 @@ data:extend(
     movement_speed = 0.165,
     distance_per_frame = 0.05,
     -- in pu
-    pollution_to_join_attack = 600,
+    pollution_to_join_attack = 700,
     corpse = "medium-spitter-corpse",
     dying_explosion = "blood-explosion-small",
     working_sound = make_biter_calls(0.75),
@@ -223,7 +223,7 @@ data:extend(
     movement_speed = 0.15,
     distance_per_frame = 0.05,
     -- in pu
-    pollution_to_join_attack = 1200,
+    pollution_to_join_attack = 1300,
     corpse = "big-spitter-corpse",
     dying_explosion = "blood-explosion-big",
     working_sound = make_biter_calls(0.9),
@@ -260,7 +260,7 @@ data:extend(
     movement_speed = 0.15,
     distance_per_frame = 0.05,
     -- in pu
-    pollution_to_join_attack = 1200,
+    pollution_to_join_attack = 1400,
     corpse = "big-spitter-corpse",
     dying_explosion = "blood-explosion-big",
     working_sound = make_biter_calls(0.9),

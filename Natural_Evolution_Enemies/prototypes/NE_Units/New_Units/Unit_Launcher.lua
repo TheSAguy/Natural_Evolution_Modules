@@ -5,6 +5,8 @@ NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 
 
+
+
 --------- Used for Unit Launcher - Thanks Supercheese for this code :)
 -- The result in the right column is the enemy that appears when the enemy in the left column dies. So if a behemoth spitter dies, medium spitters will appear.
 -- For spawners, the current evolution factor rounded down to the nearest 10% (though 99% is rounded up to 100%) is used to look up which enemy appears.
@@ -13,46 +15,47 @@ if not subEnemyNameTable then subEnemyNameTable = {} end
 
 --- Unit Unit-Launcher
 subEnemyNameTable["ne_green_splash_1"] = {}
-subEnemyNameTable["ne_green_splash_1"][0] = 			"ne-biter-breeder-1"
-subEnemyNameTable["ne_green_splash_1"][1] = 			"ne-biter-breeder-2"
-subEnemyNameTable["ne_green_splash_1"][2] = 			"ne-biter-breeder-2"
-subEnemyNameTable["ne_green_splash_1"][3] = 			"ne-biter-breeder-3"
-subEnemyNameTable["ne_green_splash_1"][4] = 			"ne-biter-breeder-3"
-subEnemyNameTable["ne_green_splash_1"][5] = 			"ne-biter-breeder-4"
-subEnemyNameTable["ne_green_splash_1"][6] = 			"ne-biter-breeder-4"
-subEnemyNameTable["ne_green_splash_1"][7] = 			"ne-biter-breeder-5"
-subEnemyNameTable["ne_green_splash_1"][8] = 			"ne-biter-breeder-5"
-subEnemyNameTable["ne_green_splash_1"][9] = 			"ne-biter-breeder-6"
-subEnemyNameTable["ne_green_splash_1"][10] =			"ne-biter-breeder-6"
+subEnemyNameTable["ne_green_splash_1"][0] = 			"ne-biter-fast-1"
+subEnemyNameTable["ne_green_splash_1"][1] = 			"ne-biter-fast-2"
+subEnemyNameTable["ne_green_splash_1"][2] = 			"ne-biter-fast-2"
+subEnemyNameTable["ne_green_splash_1"][3] = 			"ne-biter-fast-"..math.floor( 3 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][4] = 			"ne-biter-fast-"..math.floor( 3 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][5] = 			"ne-biter-fast-"..math.floor( 4 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][6] = 			"ne-biter-fast-"..math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][7] = 			"ne-biter-fast-"..math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][8] = 			"ne-biter-fast-"..math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][9] = 			"ne-biter-fast-"..math.floor( 6 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_1"][10] =			"ne-biter-fast-"..math.floor( 6 + (NE_Enemies.Settings.NE_Difficulty / 2))
+
 
 --- Worm Unit-Launcher
 subEnemyNameTable["ne_green_splash_2"] = {}
-subEnemyNameTable["ne_green_splash_2"][0] = 			"ne-biter-breeder-1"
-subEnemyNameTable["ne_green_splash_2"][1] = 			"ne-biter-breeder-2"
-subEnemyNameTable["ne_green_splash_2"][2] = 			"ne-biter-breeder-2"
-subEnemyNameTable["ne_green_splash_2"][3] = 			"ne-biter-breeder-3"
-subEnemyNameTable["ne_green_splash_2"][4] = 			"ne-biter-breeder-3"
-subEnemyNameTable["ne_green_splash_2"][5] = 			"ne-biter-breeder-4"
-subEnemyNameTable["ne_green_splash_2"][6] = 			"ne-biter-breeder-4"
-subEnemyNameTable["ne_green_splash_2"][7] = 			"ne-biter-breeder-5"
-subEnemyNameTable["ne_green_splash_2"][8] = 			"ne-biter-breeder-5"
-subEnemyNameTable["ne_green_splash_2"][9] = 			"ne-biter-breeder-6"
-subEnemyNameTable["ne_green_splash_2"][10] =			"ne-biter-breeder-6"
+subEnemyNameTable["ne_green_splash_2"][0] = 			math.floor( 1 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][1] = 			math.floor( 2 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][2] = 			math.floor( 2 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][3] = 			math.floor( 3 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][4] = 			math.floor( 3 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][5] = 			math.floor( 4 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][6] = 			math.floor( 4 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][7] = 			math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][8] = 			math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][9] = 			math.floor( 6 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["ne_green_splash_2"][10] =			math.floor( 6 + (NE_Enemies.Settings.NE_Difficulty / 2))
 
 
 --- Unit Spawner
 subEnemyNameTable["Spawner-Breeder"] = {}
-subEnemyNameTable["Spawner-Breeder"][0] = 			"ne-biter-breeder-2"
-subEnemyNameTable["Spawner-Breeder"][1] = 			"ne-biter-breeder-3"
-subEnemyNameTable["Spawner-Breeder"][2] = 			"ne-biter-breeder-3"
-subEnemyNameTable["Spawner-Breeder"][3] = 			"ne-biter-breeder-4"
-subEnemyNameTable["Spawner-Breeder"][4] = 			"ne-biter-breeder-4"
-subEnemyNameTable["Spawner-Breeder"][5] = 			"ne-biter-breeder-5"
-subEnemyNameTable["Spawner-Breeder"][6] = 			"ne-biter-breeder-5"
-subEnemyNameTable["Spawner-Breeder"][7] = 			"ne-biter-breeder-6"
-subEnemyNameTable["Spawner-Breeder"][8] = 			"ne-biter-breeder-6"
-subEnemyNameTable["Spawner-Breeder"][9] = 			"ne-biter-breeder-7"
-subEnemyNameTable["Spawner-Breeder"][10] =			"ne-biter-breeder-7"
+subEnemyNameTable["Spawner-Breeder"][0] = 			"ne-biter-breeder-"..math.floor( 2 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][1] = 			"ne-biter-breeder-"..math.floor( 3 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][2] = 			"ne-biter-breeder-"..math.floor( 3 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][3] = 			"ne-biter-breeder-"..math.floor( 4 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][4] = 			"ne-biter-breeder-"..math.floor( 4 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][5] = 			"ne-biter-breeder-"..math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][6] = 			"ne-biter-breeder-"..math.floor( 5 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][7] = 			"ne-biter-breeder-"..math.floor( 6 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][8] = 			"ne-biter-breeder-"..math.floor( 6 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][9] = 			"ne-biter-breeder-"..math.floor( 7 + (NE_Enemies.Settings.NE_Difficulty / 2))
+subEnemyNameTable["Spawner-Breeder"][10] =			"ne-biter-breeder-"..math.floor( 7 + (NE_Enemies.Settings.NE_Difficulty / 2))
 
 
 
