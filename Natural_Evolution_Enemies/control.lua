@@ -1,4 +1,4 @@
---ENEMIES v.9.0.7
+--ENEMIES v.9.0.9
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end

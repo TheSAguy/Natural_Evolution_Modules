@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 8.1.4
+Date: 11. 06. 2018
+  Features:
+    - English local tweaks by Plague006
+---------------------------------------------------------------------------------------------------
 Version: 8.1.3
 Date: 19. 7. 2018
   Bugfixes:
@@ -6,13 +11,11 @@ Date: 19. 7. 2018
   Features:
     - Updated code. Made it a little more clean!
     - Updated Terraforming Station Tech 3 to be infanate
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.1.2
 Date: 4. x. 2018
   Bugfixes:
     - Removed duplicate recipe key
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.1.1
 Date: 4. x. 2018
@@ -21,61 +24,51 @@ Date: 4. x. 2018
     - Changed names of some Recipes, Technologies, Entities and Items
     - Added more Darts and tweaked recipes
     - Added Russian locale thanks to IgorLutiy
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.1.0
 Date: 1. 29. 2018
   Features:
     - Make living walls fire proof
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.9
 Date: 1. 29. 2018
   Features:
     - Removed Rampant Warning - Rampant added compatibility
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.7
 Date: 1. 28. 2018
   Features:
     - Added Rampant Compatibility Warning
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.6
 Date: ?. ?. 2018
   Features:
     - Removed Endgame Combat incompatibility warning
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.5
 Date: ?. ?. 2018
   Features:
     - Removed Alerts from Units
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.4
 Date: ?. ?. 2018
   Features:
     - Internal
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.3
 Date: ?. ?. 2018
   Features:
     - Removed warning signals for vanilla units
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.2
 Date: ?. ?. 2018
   Features:
     - Renamed Bio Cannon and made the ammo usable in Artillery
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.1
 Date: ?. ?. 2018
   Bugfixes:
     - Fixed mining items
-
 ---------------------------------------------------------------------------------------------------
 Version: 8.0.0
 Date: ?. ?. 2018
