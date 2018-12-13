@@ -1137,6 +1137,7 @@ end
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
 	local New_tiles = {}
+	local Scorch_test = false
    
 	for xxx = -size, size do
 		for yyy = -size, size do
@@ -1148,13 +1149,15 @@ function Scorched_Earth(surface, pos, size)
 			if game.active_mods["alien-biomes"] then
 			
 				if replaceableTiles_alien[currentTilename] then
-					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})   
+					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})  
+					Scorch_test	= true
 				end
 
 			else
 				
 				if replaceableTiles[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
+					Scorch_test	= true
 				end
 
 			end
@@ -1164,8 +1167,9 @@ function Scorched_Earth(surface, pos, size)
 		
 	end
 
-	surface.set_tiles(New_tiles)
-	
+	if Scorch_test then
+		surface.set_tiles(New_tiles)
+	end
 
 end
 
