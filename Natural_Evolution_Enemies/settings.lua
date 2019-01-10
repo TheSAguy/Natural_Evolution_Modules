@@ -120,7 +120,16 @@ data:extend(
     per_user = false,
   },
   
+  {
+	name = "NE_Expansion_Management",
+	type = "bool-setting",
+    setting_type = "startup",
+    default_value = true,
+	order = "a[modifier]-o[NE_Expansion_Management]",
+    per_user = false,
+  },
   
+   
   
   {
     name = "NE_Difficulty",
@@ -129,7 +138,7 @@ data:extend(
     default_value = 1,
     maximum_value = 5,
     minimum_value = 1,
-	order = "a[modifier]-o[Difficulty]",
+	order = "a[modifier]-p[Difficulty]",
     per_user = false,
   },
 

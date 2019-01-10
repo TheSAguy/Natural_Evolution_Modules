@@ -1,4 +1,4 @@
---ENEMIES v.9.0.9
+--ENEMIES v.9.1.0
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -10,11 +10,11 @@ require ("util")
 require ("stdlib/event/event")
 require ("prototypes.NE_Units.New_Units.Unit_Launcher")
 
-if QC_Mod then
-	---************** Used for Testing -----
-	require ("Test_Spawn")
-	---*************
-end
+
+---************** Used for Testing -----
+require ("Test_Spawn")
+---*************
+
 
 
 --- Scorched Earth
@@ -244,6 +244,7 @@ local autoRepairType =
     ["rail-chain-signal"] = true
 }
 
+
 ---- List of entities that will auto repair
 local autoRepairName = 
 {
@@ -344,6 +345,140 @@ local corpseSize =
 }
 
 
+--------- Achievements 
+function Achievements_Init()
+ 
+	-- Enemy Counts
+	--- Biters
+	if not global.Breeder_Biter_Count then
+		global.Breeder_Biter_Count = 0
+	end
+
+	if not global.Fire_Biter_Count then
+		global.Fire_Biter_Count = 0
+	end
+
+	if not global.Fast_Biter_Count then
+		global.Fast_Biter_Count = 0
+	end	
+
+	if not global.Wallbreaker_Biter_Count then
+		global.Wallbreaker_Biter_Count = 0
+	end		
+
+	if not global.Tank_Biter_Count then
+		global.Tank_Biter_Count = 0
+	end	
+
+	--- Spitters
+	if not global.Breeder_Spitter_Count then
+		global.Breeder_Spitter_Count = 0
+	end	
+	
+	if not global.Fire_Spitter_Count then
+		global.Fire_Spitter_Count = 0
+	end	
+	
+	if not global.Ulaunch_Spitter_Count then
+		global.Ulaunch_Spitter_Count = 0
+	end	
+	
+	if not global.Webshooter_Spitter_Count then
+		global.Webshooter_Spitter_Count = 0
+	end	
+	
+	if not global.Mine_Spitter_Count then
+		global.Mine_Spitter_Count = 0
+	end	
+	
+	
+	--- Spawners
+	if not global.Blue_Spawner_Count then
+		global.Blue_Spawner_Count = 0
+	end	
+	
+	if not global.Red_Spawner_Count then
+		global.Blue_Spawner_Count = 0
+	end		
+	
+	if not global.Green_Spawner_Count then
+		global.Blue_Spawner_Count = 0
+	end		
+		
+	if not global.Yellow_Spawner_Count then
+		global.Blue_Spawner_Count = 0
+	end		
+		
+	if not global.Pink_Spawner_Count then
+		global.Blue_Spawner_Count = 0
+	end		
+	
+
+
+end
+
+
+---- Expansion Initialization ----
+function Expansion_Initialization()
+	
+	local enemy_expansion = game.map_settings.enemy_expansion		
+	
+	if not global.max_expansion_distance_NE then
+		global.max_expansion_distance_NE = enemy_expansion.max_expansion_distance -- Vanilla 7
+	end
+
+	if not global.friendly_base_influence_radius_NE then
+		global.friendly_base_influence_radius_NE = enemy_expansion.friendly_base_influence_radius -- Vanilla 2
+	end
+	
+	if not global.enemy_building_influence_radius_NE then
+		global.enemy_building_influence_radius_NE = enemy_expansion.enemy_building_influence_radius -- Vanilla 2
+	end
+	
+	if not global.settler_Group_min_size_NE then
+		global.settler_Group_min_size_NE = enemy_expansion.settler_group_min_size -- Vanilla 5
+	end
+	
+	if not global.settler_Group_max_size_NE then
+		global.settler_Group_max_size_NE = enemy_expansion.settler_group_max_size -- Vanilla 20
+	end
+
+	if not global.building_coefficient_NE then
+		global.building_coefficient_NE = enemy_expansion.building_coefficient -- vanilla 0.1
+	end
+	
+	if not global.other_base_coefficient_NE then
+		global.other_base_coefficient_NE = enemy_expansion.other_base_coefficient -- vanilla 2.0
+	end
+	
+	if not global.neighbouring_chunk_coefficient_NE then
+		global.neighbouring_chunk_coefficient_NE = enemy_expansion.neighbouring_chunk_coefficient -- vanilla 0.5
+	end
+	
+	if not global.neighbouring_base_chunk_coefficient_NE then
+		global.neighbouring_base_chunk_coefficient_NE = enemy_expansion.neighbouring_base_chunk_coefficient -- vanilla 0.4	
+	end
+	
+	local unit_group = game.map_settings.unit_group	
+	if not global.min_Group_radius_NE then
+		global.min_Group_radius_NE = unit_group.min_group_radius -- Vanilla 5		
+	end	
+	
+	if not global.max_Group_radius_NE then
+		global.max_Group_radius_NE = unit_group.max_group_radius -- Vanilla 30
+	end
+
+	if not global.max_Speed_up_NE then
+		global.max_Speed_up_NE = unit_group.max_member_speedup_when_behind -- Vanilla 1.4
+	end
+	
+	local path_finder = game.map_settings.path_finder	
+	if not global.max_Steps_NE then
+		global.max_Steps_NE = path_finder.max_steps_worked_per_tick -- Vanilla 100
+	end
+
+end	
+
 
 ---------------------------------------------				 
 local function On_Init()
@@ -398,6 +533,19 @@ local function On_Init()
 	end
 	
 	
+		
+
+	--- Expansion Initialization ----
+	Expansion_Initialization()
+	
+	--------- Achievements -- 
+	Achievements_Init()
+
+  
+	
+
+	
+	--------
 	if QC_Mod then
 		---*************
 		local surface = game.surfaces['nauvis']
@@ -462,6 +610,14 @@ local function On_Config_Change()
 	if global.rocketsilos == nil then
 		global.rocketsilos = {}
 	end
+
+		
+	--- Expansion Initialization ----
+	Expansion_Initialization()
+	
+	--------- Achievements -- 
+	Achievements_Init()
+	
 
 	
 	-- enable researched recipes
@@ -598,6 +754,7 @@ end)
 
 --------------------------------------------------------------------
 local function On_Built(event)
+
     local entity = event.created_entity
    	local surface = entity.surface
 	local force = entity.force
@@ -621,7 +778,6 @@ local function On_Built(event)
 		end
 		
     end 
-	
 	
 end
 
@@ -681,7 +837,6 @@ function isSpawner(enemy)
 end
 
 
-
 --[[
 --- Return Class
 function UnitClass(entity)
@@ -689,6 +844,37 @@ function UnitClass(entity)
 	return class
 end
 ]]
+
+--- Count Killed NE Unit
+function NE_Unit_Count(entity)
+	
+	--- Biters
+	if string.find(entity.name, "ne%-biter%-breeder%-") then
+		global.Breeder_Biter_Count = global.Breeder_Biter_Count + 1
+	elseif string.find(entity.name, "ne%-biter%-fire%-") then
+		global.Fire_Biter_Count = global.Fire_Biter_Count + 1
+	elseif string.find(entity.name, "ne%-biter%-fast%-") then	
+		global.Fast_Biter_Count = global.Fast_Biter_Count + 1
+	elseif string.find(entity.name, "ne%-biter%-wallbreaker%-") then	
+		global.Wallbreaker_Biter_Count = global.Wallbreaker_Biter_Count + 1
+	elseif string.find(entity.name, "ne%-biter%-tank%-") then	
+		global.Tank_Biter_Count = global.Tank_Biter_Count + 1
+	-- Spitters
+	elseif string.find(entity.name, "ne%-spitter%-breeder%-") then	
+		global.Breeder_Spitter_Count = global.Breeder_Spitter_Count + 1
+	elseif string.find(entity.name, "ne%-spitter%-fire%-") then		
+		global.Fire_Spitter_Count = global.Fire_Spitter_Count + 1
+	elseif string.find(entity.name, "ne%-spitter%-ulaunch%-") then		
+		global.Ulaunch_Spitter_Count = global.Ulaunch_Spitter_Count + 1
+	elseif string.find(entity.name, "ne%-spitter%-webshooter%-") then		
+		global.Webshooter_Spitter_Count = global.Webshooter_Spitter_Count + 1
+	elseif string.find(entity.name, "ne%-spitter%-mine%-") then		
+		global.Mine_Spitter_Count = global.Mine_Spitter_Count + 1
+	end
+	
+end
+
+
 
 --- Check for Fire Biter
 function isFireBiter(entity)
@@ -724,8 +910,10 @@ function NELandmine(entity)
 	end
 end
 
+
 --- Remove Trees
 function Remove_Trees(entity)
+
 		local surface = entity.surface
 		local radius = 1.5
 		local pos = entity.position
@@ -771,6 +959,7 @@ function SpawnBreederBabies(entity)
 			end
 		end
 	end
+	
 end
 
 
@@ -797,6 +986,134 @@ function SpawnBreederBabies_Spawner(entity)
 end
 
 
+-----------------------
+
+function Achievement_Check()
+
+	writeDebug("Achievement Check Pont")
+	---- Unit Kill Check
+	if (global.Breeder_Biter_Count >=100 and
+		global.Fire_Biter_Count  >=100 and
+		global.Fast_Biter_Count  >=100 and
+		global.Wallbreaker_Biter_Count  >=100 and
+		global.Tank_Biter_Count  >=100 and
+		global.Breeder_Spitter_Count  >=100 and
+		global.Fire_Spitter_Count  >=100 and
+		global.Ulaunch_Spitter_Count  >=100 and
+		global.Webshooter_Spitter_Count  >=100 and
+		global.Mine_Spitter_Count  >=100) then
+		writeDebug("Achievement #1 PASSED")
+		for index, player in pairs(game.players) do --give the achievement to every player
+			player.unlock_achievement("killed-all-NE-1")
+		end
+	elseif (global.Breeder_Biter_Count >=10000 and
+		global.Fire_Biter_Count  >=10000 and
+		global.Fast_Biter_Count  >=10000 and
+		global.Wallbreaker_Biter_Count  >=10000 and
+		global.Tank_Biter_Count  >=10000 and
+		global.Breeder_Spitter_Count  >=10000 and
+		global.Fire_Spitter_Count  >=10000 and
+		global.Ulaunch_Spitter_Count  >=10000 and
+		global.Webshooter_Spitter_Count  >=10000 and
+		global.Mine_Spitter_Count  >=10000) then
+		writeDebug("Achievement #2 PASSED")
+		for index, player in pairs(game.players) do --give the achievement to every player
+			player.unlock_achievement("killed-all-NE-2")
+		end
+	elseif (global.Breeder_Biter_Count >=100000 and
+		global.Fire_Biter_Count  >=100000 and
+		global.Fast_Biter_Count  >=100000 and
+		global.Wallbreaker_Biter_Count  >=100000 and
+		global.Tank_Biter_Count  >=100000 and
+		global.Breeder_Spitter_Count  >=100000 and
+		global.Fire_Spitter_Count  >=100000 and
+		global.Ulaunch_Spitter_Count  >=100000 and
+		global.Webshooter_Spitter_Count  >=100000 and
+		global.Mine_Spitter_Count  >=100000) then
+		writeDebug("Achievement #3 PASSED")
+		for index, player in pairs(game.players) do --give the achievement to every player
+			player.unlock_achievement("killed-all-NE-3")
+		end
+	else
+		writeDebug("Achievement-Unique FAIL")
+	end
+
+	---- Total Count Achievement
+	if (global.Breeder_Biter_Count +
+		global.Fire_Biter_Count +
+		global.Fast_Biter_Count +
+		global.Wallbreaker_Biter_Count +
+		global.Tank_Biter_Count +
+		global.Breeder_Spitter_Count +
+		global.Fire_Spitter_Count +
+		global.Ulaunch_Spitter_Count +
+		global.Webshooter_Spitter_Count +
+		global.Mine_Spitter_Count) >= 10000 then
+		writeDebug("Achievement #4 PASSED")
+		for index, player in pairs(game.players) do --give the achievement to every player
+			player.unlock_achievement("killed-total-NE-1")
+		end
+	elseif (global.Breeder_Biter_Count +
+		global.Fire_Biter_Count +
+		global.Fast_Biter_Count +
+		global.Wallbreaker_Biter_Count +
+		global.Tank_Biter_Count +
+		global.Breeder_Spitter_Count +
+		global.Fire_Spitter_Count +
+		global.Ulaunch_Spitter_Count +
+		global.Webshooter_Spitter_Count +
+		global.Mine_Spitter_Count) >= 100000 then
+		writeDebug("Achievement #5 PASSED")
+		for index, player in pairs(game.players) do --give the achievement to every player
+			player.unlock_achievement("killed-total-NE-2")
+		end
+	elseif (global.Breeder_Biter_Count +
+		global.Fire_Biter_Count +
+		global.Fast_Biter_Count +
+		global.Wallbreaker_Biter_Count +
+		global.Tank_Biter_Count +
+		global.Breeder_Spitter_Count +
+		global.Fire_Spitter_Count +
+		global.Ulaunch_Spitter_Count +
+		global.Webshooter_Spitter_Count +
+		global.Mine_Spitter_Count) >= 1000000 then
+		writeDebug("Achievement #6 PASSED")
+		for index, player in pairs(game.players) do --give the achievement to every player
+			player.unlock_achievement("killed-total-NE-3")
+		end
+	else
+		writeDebug("Achievement-Total FAIL")
+	end	
+	
+end
+
+--[[
+function check_kill_count()
+
+  
+	function isBiter_Breeder(entity)
+		return string.find(entity, "ne%-biter%-breeder%-")
+	end
+
+		
+		for entity_name, kill_count in pairs(game.forces.player.kill_count_statistics.input_counts) do
+	  
+			writeDebug("Entity Name: "..entity_name)
+			writeDebug("Kill Count: "..kill_count)	
+			--for 1 to kill_count do
+			for i = 1, kill_count do
+				if isBiter_Breeder(entity_name) then
+					global.Breeder_Biter_Count = global.Breeder_Biter_Count + 1
+					writeDebug("The Number of Breeders Killed is: "..global.Breeder_Biter_Count)	
+				end
+			end
+			
+			
+		end 
+
+end
+]]
+
 ---------------------------------------------
 local function On_Death(event)
 
@@ -805,6 +1122,7 @@ local function On_Death(event)
 	local surface = entity.surface
 	local force = entity.force	
 	local pos = entity.position
+
 
    --writeDebug("Tech Level: "..global.tech_level)
    --- If you remove a rocket silo, the tech levle lowers again.
@@ -914,9 +1232,13 @@ local function On_Death(event)
 		end
 	
 	end
+
 	
 	--------- An Enemy Unit Died
 	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") and event.force ~= nil and event.cause then--and event.cause.name == "player" then
+	
+	--- add to the NE unit counter
+	NE_Unit_Count(entity)
 	
 		if settings.startup["NE_Scorched_Earth"].value then
 			Scorched_Earth(surface, pos, 2)		
@@ -997,15 +1319,65 @@ end
 
 
 --------------------------------------------
+function Natural_Evolution_Expansion_Settings()
+
+		---- Expansion Initialization ----	
+		
+	local enemy_expansion = game.map_settings.enemy_expansion
+	local unit_group = game.map_settings.unit_group
+	local path_finder = game.map_settings.path_finder
+	
+	local NE_multiplier_plus = (game.forces.enemy.evolution_factor * (2 + NE_Enemies.Settings.NE_Difficulty/5))
+	local NE_multiplier_minus = ((1 - game.forces.enemy.evolution_factor) * (2 + NE_Enemies.Settings.NE_Difficulty/5)) 
+	
+	
+	-----
+
+	enemy_expansion.max_expansion_distance = global.max_expansion_distance_NE * NE_multiplier_plus + (global.max_expansion_distance_NE * 2 / 5)
+	enemy_expansion.friendly_base_influence_radius = (global.friendly_base_influence_radius_NE * NE_multiplier_minus + (global.friendly_base_influence_radius_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.friendly_base_influence_radius_NE
+	enemy_expansion.enemy_building_influence_radius = (global.enemy_building_influence_radius_NE * NE_multiplier_minus + (global.enemy_building_influence_radius_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.enemy_building_influence_radius_NE
+	enemy_expansion.building_coefficient = (global.building_coefficient_NE * NE_multiplier_minus + (global.building_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.building_coefficient_NE
+	enemy_expansion.other_base_coefficient = (global.other_base_coefficient_NE * NE_multiplier_minus + (global.other_base_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.other_base_coefficient_NE
+	enemy_expansion.neighbouring_chunk_coefficient = (global.neighbouring_chunk_coefficient_NE * NE_multiplier_minus + (global.neighbouring_chunk_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.neighbouring_chunk_coefficient_NE
+	enemy_expansion.neighbouring_base_chunk_coefficient = (global.neighbouring_base_chunk_coefficient_NE * NE_multiplier_minus + (global.neighbouring_base_chunk_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.neighbouring_base_chunk_coefficient_NE		
+	enemy_expansion.settler_group_min_size = global.settler_Group_min_size_NE * NE_multiplier_plus + (global.settler_Group_min_size_NE * 2 / 5)
+	enemy_expansion.settler_group_max_size = global.settler_Group_max_size_NE * NE_multiplier_plus + (global.settler_Group_max_size_NE * 2 / 5)
+
+	unit_group.max_group_radius = global.max_Group_radius_NE * NE_multiplier_plus + (global.max_Group_radius_NE * 2 / 5)
+	unit_group.min_group_radius = global.min_Group_radius_NE * NE_multiplier_plus + (global.min_Group_radius_NE * 2 / 5)
+	unit_group.max_member_speedup_when_behind = global.max_Speed_up_NE * NE_multiplier_plus + (global.max_Speed_up_NE * 2 / 5)	
+		
+	path_finder.max_steps_worked_per_tick = 20 + (global.max_Steps_NE * NE_multiplier_plus) + (global.max_Steps_NE * 2 / 5)
+
+	
+	--writeDebug("The PLUS multiplier is: " .. NE_multiplier_plus)		
+	--writeDebug("The MINUS multiplier is: " .. NE_multiplier_minus)
+	
+	--writeDebug("The max Expansion distance is (Vanilla): " .. global.max_expansion_distance_NE)
+	--writeDebug("Changed to due to Evo Factor : " .. enemy_expansion.max_expansion_distance)
+
+	--writeDebug("The max other_base_coefficient factore is (Vanilla): " .. global.other_base_oefficient_NE)
+	--writeDebug("Changed to due to Evo Factor : " .. enemy_expansion.other_base_coefficient)
+
+	
+		
+end
+	
+
 
 Event.register(defines.events.on_tick, function(event)	
+
+
+	if game.tick % (60 * 60 * 5) == 0 then 
+		Achievement_Check()
+	end
 
 
 	if game.tick % (60 * 60 * 10) == 0 then -- Check every 10 min for old mines
 		--writeDebug("Game Tick: "..game.tick)
 		--writeDebug("Time!")
 		--writeDebug(global.number_or_rocketsilos)
-		
+
 		--- Check for Old Mines
 		if global.deployed_mine ~= nil then
 		
@@ -1057,6 +1429,14 @@ Event.register(defines.events.on_tick, function(event)
 			end
 			
 		end
+		
+		if game.active_mods["Natural_Evolution_Expansion"] then
+			writeDebug("NE Expansion Installled - Do Nothing")
+		elseif settings.startup["NE_Expansion_Management"].value then
+			writeDebug("Pass - Will execute Expansion settings")
+			Natural_Evolution_Expansion_Settings()	
+		end
+	
 	end
 	
 

@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 9.1.0
+Date: 1. 7. 2019
+  Features:
+    - Achievements added (6)
+    - Corpse Fade time reduced. Helps FPS
+    - Integrated NE Expansion, Enemy Expansion groups get bigger as Evolution increases
+  Bugfix:
+    - Made "require" not conditional
+---------------------------------------------------------------------------------------------------
 Version: 9.0.10
 Date: 12. 13. 2018
   Features:

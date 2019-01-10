@@ -11,6 +11,10 @@ require ("libs.NE_Functions")
 
 ---------------------------------------------------------------
 
+----- Achievements
+
+require ("prototypes.Achievements.Achievements")
+
 -------- Old Units
 require ("prototypes.NE_Units.Old_Units.Settings")
 require ("prototypes.NE_Units.Old_Units.Old_Biter_Units")
@@ -26,11 +30,8 @@ require ("prototypes.NE_Units.New_Units.New_Spitter_Units")
 require ("prototypes.NE_Units.New_Units.Megladon_Biter_Unit")
 require ("prototypes.NE_Units.New_Units.New_Spawners")
 
---- Combatibility quick fix ---
 
-if mods["Rampant"] then
+--- Combatibility quick fix for Rampant---
+require ("prototypes.Other_Mods.Old_Unit_Cluster_for_Rampant")		
 
-	require ("prototypes.Other_Mods.Old_Unit_Cluster_for_Rampant")		
-
-end
 		

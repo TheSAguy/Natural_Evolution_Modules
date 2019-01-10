@@ -240,6 +240,7 @@ for i = 1, 20 do
 	---- Breeder Spitter
 	NE_Spitter_Breeder_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
     NE_Spitter_Breeder_Unit_Corpse.name = "ne-spitter-breeder-corpse" .. i
+	NE_Spitter_Breeder_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
 	NE_Spitter_Breeder_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
 	NE_Spitter_Breeder_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_blue_tint2)
     NE_Spitter_Breeder_Unit_Corpse.localised_name = {"entity-name.ne-spitter-breeder-corpse"}
@@ -250,6 +251,7 @@ for i = 1, 20 do
 	---- Fire Spitter
 	NE_Spitter_Fire_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
     NE_Spitter_Fire_Unit_Corpse.name = "ne-spitter-fire-corpse" .. i
+	NE_Spitter_Fire_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
 	NE_Spitter_Fire_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
 	NE_Spitter_Fire_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_fire_tint)
     NE_Spitter_Fire_Unit_Corpse.localised_name = {"entity-name.ne-spitter-fire-corpse"}   
@@ -260,6 +262,7 @@ for i = 1, 20 do
 	---- Unit Launcher Spitter
 	NE_Spitter_ULaunch_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
     NE_Spitter_ULaunch_Unit_Corpse.name = "ne-spitter-ulaunch-corpse" .. i
+	NE_Spitter_ULaunch_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
 	NE_Spitter_ULaunch_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
 	NE_Spitter_ULaunch_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_green_tint)
     NE_Spitter_ULaunch_Unit_Corpse.localised_name = {"entity-name.ne-spitter-ulaunch-corpse"}  
@@ -270,6 +273,7 @@ for i = 1, 20 do
 	---- Unit Launcher Spitter
 	NE_Spitter_Webshooter_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
     NE_Spitter_Webshooter_Corpse.name = "ne-spitter-webshooter-corpse" .. i
+	NE_Spitter_Webshooter_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
 	NE_Spitter_Webshooter_Corpse.selection_box = ne_spitter_selection_box[i]
 	NE_Spitter_Webshooter_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_yellow_tint)
     NE_Spitter_Webshooter_Corpse.localised_name = {"entity-name.ne-spitter-webshooter-corpse"}  
@@ -280,6 +284,7 @@ for i = 1, 20 do
 	---- Mine Spitter
 	NE_Spitter_Mine_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
     NE_Spitter_Mine_Unit_Corpse.name = "ne-spitter-mine-corpse" .. i
+	NE_Spitter_Mine_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
 	NE_Spitter_Mine_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
 	NE_Spitter_Mine_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_pink_tint)
     NE_Spitter_Mine_Unit_Corpse.localised_name = {"entity-name.ne-spitter-mine-corpse"}  

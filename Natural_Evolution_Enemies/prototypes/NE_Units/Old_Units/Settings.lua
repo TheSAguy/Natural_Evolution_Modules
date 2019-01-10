@@ -1,5 +1,6 @@
 
 require "prototypes.NE_Units.Old_Units.Functions"
+
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 

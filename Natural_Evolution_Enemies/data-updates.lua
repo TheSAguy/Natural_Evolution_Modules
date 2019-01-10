@@ -45,15 +45,6 @@ if NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 	
 end
 
---[[
---- Update Vanilla Worm Stuff -- Medium worm will become fire worm and big worm will be come unit launcher worm
-if NE_Enemies.Settings.NE_Adjust_Vanilla_Worms then
-
-	require ("prototypes.NE_Units.New_Units.Worm_Changes")
-
-end
-
-]]
 
 --- Bob's Enemies - Remove Bob's recipe for artifacts.
 if mods["bobenemies"] and settings.startup["NE_Alien_Artifacts"].value and data.raw.item["alien-artifact-from-small"] and data.raw.recipe["alien-artifact-from-small"] then
@@ -156,11 +147,7 @@ if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 end
 	
 -- Bob's Enemies Modifications
-if mods["bobenemies"] then
-
-	require ("prototypes.Other_Mods.Bobs_Changes")		
-
-end
+require("prototypes.Other_Mods.Bobs_Changes")		
 
 
 ---------------- END Biter & Spitter Modifications --------------------		
@@ -186,12 +173,7 @@ end
 
 
 --- Extra Loot - Small Alient Atrifacts
-
-if settings.startup["NE_Alien_Artifacts"].value == true then
-
-	require("prototypes.Extra_Loot.alien-artifact")
-	require("prototypes.Extra_Loot.item")
-	require("prototypes.Extra_Loot.recipe")
-	require("prototypes.Extra_Loot.extra_loot")
-
-end
+require("prototypes.Extra_Loot.alien-artifact")
+require("prototypes.Extra_Loot.item")
+require("prototypes.Extra_Loot.recipe")
+require("prototypes.Extra_Loot.extra_loot")

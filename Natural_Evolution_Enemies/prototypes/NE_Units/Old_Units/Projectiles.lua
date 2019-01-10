@@ -5,12 +5,6 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 
-
-
---require("prototypes.Vanilla_Changes.Explosions")
-
-
-
 function fire_pic(inputs)
 return
 

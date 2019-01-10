@@ -4,13 +4,7 @@ NE_Enemies.Settings.NE_Adjust_Vanilla_Worms = settings.startup["NE_Adjust_Vanill
 
 
 --- Update Vanilla Worm Stuff -- Medium worm will become fire worm and big worm will be come unit launcher worm
-if NE_Enemies.Settings.NE_Adjust_Vanilla_Worms then
-
-	require ("prototypes.NE_Units.New_Units.Worm_Changes")
-
-end
-
-
+require ("prototypes.NE_Units.New_Units.Worm_Changes")
 
 --[[
 local RAW = data.raw["unit-spawner"]
