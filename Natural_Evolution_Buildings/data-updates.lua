@@ -1,8 +1,6 @@
 
 if not thxbob then thxbob = {} end
 if not thxbob.lib then thxbob.lib = {} end
-
-
 if not NE_Functions then NE_Functions = {} end
 
 

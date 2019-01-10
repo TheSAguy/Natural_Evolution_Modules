@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 8.1.5
+-- NE BUILDINGS Ver = 8.1.6
 local QC_Mod = false
 
 
@@ -10,17 +10,11 @@ require ("control_artifact_collector")
 require ("control_acs")
 require ("control_terraforming")
 require ("control_evolution")
+require ("libs/EvoGUI")
 
+--- Used for Testing -----
+require ("Test_Spawn")
 
-if remote.interfaces.EvoGUI then
-	require ("libs/EvoGUI")
-end
-
-if QC_Mod then
-	---************** Used for Testing -----
-	require ("Test_Spawn")
-	---*************
-end
 
 
 --- Settup Settings
