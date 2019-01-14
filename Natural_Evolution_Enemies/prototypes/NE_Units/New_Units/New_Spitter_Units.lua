@@ -217,7 +217,7 @@ for i = 1, 20 do
 	NE_Spitter_Mine_Unit.drawing_box = ne_spitter_drawing_box[i]
     NE_Spitter_Mine_Unit.max_health = ne_spitter_health[i]
     NE_Spitter_Mine_Unit.loot = ne_loot
-	NE_Spitter_Mine_Unit.resistances = {{type = "explosion", percent = 100}} --- Immune to Explosion damage 
+	NE_Spitter_Mine_Unit.resistances = {{type = "explosion", percent = 100}, {type = "laser", percent = i * 2}} --- Immune to Explosion damage, higher Laser
 	NE_Spitter_Mine_Unit.corpse = "ne-spitter-mine-corpse" .. i
 	NE_Spitter_Mine_Unit.attack_parameters = Spitter_Attack_Projectile(
 						{

@@ -134,7 +134,7 @@ for i = 1, 20 do
 	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-biter-fire-" .. i], i) -- 1% to 20% resistance
 	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-biter-fast-" .. i], i) -- 1% to 20% resistance
 	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-biter-wallbreaker-" .. i], i) -- 1% to 20% resistance
-	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-biter-tank-" .. i], i * 4) -- 4% to 80% resistance
+	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-biter-tank-" .. i], i * 4) -- 4% to 80% resistance, Laser will be 5% to 100%
 
 	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-spitter-breeder-" .. i], i) -- 1% to 20% resistance
 	NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw.unit["ne-spitter-fire-" .. i], i) -- 1% to 20% resistance

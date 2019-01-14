@@ -160,7 +160,7 @@ for i = 1, 20 do
 	data:extend{NE_Biter_Fire_Unit}
 
 		
-	--- Fast Biter (Green)
+	--- Fast Biter (Green) -- Fast, Immune to Acid Damage
 	NE_Biter_Fast_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
     NE_Biter_Fast_Unit.name = "ne-biter-fast-" .. i
 	NE_Biter_Fast_Unit.collision_box = ne_collision_box[i]
@@ -196,7 +196,7 @@ for i = 1, 20 do
 	data:extend{NE_Biter_Fast_Unit}
 	
 
-	--- Wall Breaker Biter (Yellow)
+	--- Wall Breaker Biter (Yellow) -- Damages Walls easily, Immune to Poison Damage
 	NE_Biter_WallBreaker_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
     NE_Biter_WallBreaker_Unit.name = "ne-biter-wallbreaker-" .. i
 	NE_Biter_WallBreaker_Unit.collision_box = ne_collision_box[i]
@@ -227,7 +227,7 @@ for i = 1, 20 do
 	data:extend{NE_Biter_WallBreaker_Unit}
 
 	
-	--- TANK Biter
+	--- TANK Biter, Extra Health.
 	NE_Biter_Tank_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
     NE_Biter_Tank_Unit.name = "ne-biter-tank-" .. i
 	NE_Biter_Tank_Unit.collision_box = ne_collision_box[i]
@@ -236,6 +236,7 @@ for i = 1, 20 do
     -- Extra Health 
 	NE_Biter_Tank_Unit.max_health = ne_tank_health[i]
 	NE_Biter_Tank_Unit.loot = ne_loot
+	NE_Biter_Tank_Unit.resistances = {{type = "laser", percent = i * 5}} -- More Immune to Laser
 	NE_Biter_Tank_Unit.healing_per_tick = 0.2 -- Vanilla 0.1
 	NE_Biter_Tank_Unit.corpse = "ne-biter-tank-corpse-" .. i
 	NE_Biter_Tank_Unit.attack_parameters = NE_Biter_Melee_Double_Attack(

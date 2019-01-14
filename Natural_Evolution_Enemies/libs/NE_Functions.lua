@@ -126,10 +126,15 @@ local function Add_Damage_Resists_to_Units(D_Type, Raw, percent)
 			table.insert(Raw.resistances, Resist_being_Added)
 		else
 			local found = false
+			
 			for _, resistance in pairs(Raw.resistances) do
-				if resistance.type == Resist_being_Added.type and resistance.percent > Resist_being_Added.percent then
+				if resistance.type == Resist_being_Added.type and resistance.percent then
+					if resistance.percent < Resist_being_Added.percent then
+						resistance.percent = Resist_being_Added.percent
+					end
 					found = true
 					break
+			
 				elseif resistance.type == Resist_being_Added.type and resistance.percent < Resist_being_Added.percent then
 					found = true
 					table.insert(Raw.resistances, Resist_being_Added)
