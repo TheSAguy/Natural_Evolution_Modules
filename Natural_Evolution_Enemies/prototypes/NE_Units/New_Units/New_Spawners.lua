@@ -157,7 +157,7 @@ if settings.startup["NE_Blue_Spawners"].value then
 							res[39] = {"ne-biter-breeder-20", {{0.95,0}, {1,0.2}}}
 							res[40] = {"ne-spitter-breeder-20", {{0.975,0}, {1,0.25}}}
 							if settings.startup["NE_Challenge_Mode"].value == true then
-							res[41] = {"ne-biter-megladon", {{0.98,0.1}, {1,0.5}}}
+							res[41] = {"ne-biter-megalodon", {{0.98,0.1}, {1,0.5}}}
 							end
 						 return res
 					   end)()   
@@ -259,7 +259,7 @@ if settings.startup["NE_Red_Spawners"].value then
 							res[39] = {"ne-biter-fire-20", {{0.95,0}, {1,0.2}}}
 							res[40] = {"ne-spitter-fire-20", {{0.975,0}, {1,0.25}}}
 							if settings.startup["NE_Challenge_Mode"].value == true then
-							res[41] = {"ne-biter-megladon", {{0.98,0.1}, {1,0.5}}}
+							res[41] = {"ne-biter-megalodon", {{0.98,0.1}, {1,0.5}}}
 							end
 						 return res
 					   end)()   
@@ -365,7 +365,7 @@ if settings.startup["NE_Green_Spawners"].value then
 							res[39] = {"ne-biter-fast-20", {{0.95,0}, {1,0.2}}}
 							res[40] = {"ne-spitter-ulaunch-20", {{0.975,0}, {1,0.25}}}
 							if settings.startup["NE_Challenge_Mode"].value == true then
-							res[41] = {"ne-biter-megladon", {{0.98,0.1}, {1,0.5}}}
+							res[41] = {"ne-biter-megalodon", {{0.98,0.1}, {1,0.5}}}
 							end
 						 return res
 					   end)()
@@ -471,7 +471,7 @@ if settings.startup["NE_Yellow_Spawners"].value then
 							res[39] = {"ne-biter-wallbreaker-20", {{0.95,0}, {1,0.2}}}
 							res[40] = {"ne-spitter-webshooter-20", {{0.975,0}, {1,0.25}}}
 							if settings.startup["NE_Challenge_Mode"].value == true then
-							res[41] = {"ne-biter-megladon", {{0.98,0.1}, {1,0.5}}}
+							res[41] = {"ne-biter-megalodon", {{0.98,0.1}, {1,0.5}}}
 							end
 						 return res
 					   end)()
@@ -574,7 +574,7 @@ if settings.startup["NE_Pink_Spawners"].value then
 							res[39] = {"ne-biter-tank-20", {{0.95,0}, {1,0.2}}}
 							res[40] = {"ne-spitter-mine-20", {{0.975,0}, {1,0.25}}}
 							if settings.startup["NE_Challenge_Mode"].value == true then
-							res[41] = {"ne-biter-megladon", {{0.98,0.1}, {1,0.5}}}
+							res[41] = {"ne-biter-megalodon", {{0.98,0.1}, {1,0.5}}}
 							end
 						 return res
 					   end)()

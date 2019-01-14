@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 9.1.1
+Date: 1. 14. 2019
+  Features:
+    - Simplified Expansion Calculations
+    - Remove trees around mines layed by Spitters
+  Bugfix:
+    - Limit Max_expansion_distance distance to always we 18 or less.
+    - Typo's/Spelling Fix
+---------------------------------------------------------------------------------------------------
 Version: 9.1.0
 Date: 1. 7. 2019
   Features:

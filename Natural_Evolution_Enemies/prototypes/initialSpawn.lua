@@ -31,8 +31,8 @@ function Initial_Spawn(surface)
 	
 	
 --[[	
-	--local megladon = surface.create_entity({name="ne-biter-megladon", position={-15, -15}, force = game.forces.enemy})	
-	--megladon.health = 1
+	--local megalodon = surface.create_entity({name="ne-biter-megalodon", position={-15, -15}, force = game.forces.enemy})	
+	--megalodon.health = 1
 	
 	
 	surface.create_entity({name="ne-spawner-blue", position={15, 15}, force = game.forces.enemy})	

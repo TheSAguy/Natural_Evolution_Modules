@@ -1,4 +1,4 @@
---ENEMIES v.9.1.0
+--ENEMIES v.9.1.1
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -533,23 +533,18 @@ local function On_Init()
 	end
 	
 	
-		
-
 	--- Expansion Initialization ----
 	Expansion_Initialization()
 	
 	--------- Achievements -- 
 	Achievements_Init()
 
-  
-	
-
 	
 	--------
 	if QC_Mod then
 		---*************
-		local surface = game.surfaces['nauvis']
-		Test_Spawn(surface)
+		--local surface = game.surfaces['nauvis']
+		Test_Spawn()
 		---*************
 	end
 	
@@ -665,6 +660,27 @@ local function Look_and_Attack(entity, factor)
 end
 
 
+--- Remove Trees
+function Remove_Trees(entity)
+
+		local surface = entity.surface
+		local radius = 1.5
+		local pos = entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		-- find nearby trees
+		local trees = {}
+		local trees = surface.find_entities_filtered{area=area, type="tree"}
+		-- Remove Trees
+		if #trees > 0 then
+		writeDebug("Tree Found")
+			for i,tree in pairs(trees) do
+				if tree and tree.valid then
+					tree.die()
+				end
+			end
+		end
+end
+
 --------------------- TRIGGERS  ---------------------------------
 script.on_event(defines.events.on_trigger_created_entity, function(event)
 	
@@ -673,6 +689,8 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
     if entity.valid and NELandmine(entity)  == "landmine" then
 
 		global.deployed_mine[entity.unit_number] = {mine=entity, time=event.tick}
+		--- Remove trees around mines, to prevent units from getting stuck
+		Remove_Trees(entity)
 		--writeDebug(table_size(global.deployed_mine) )
 		
     end
@@ -911,28 +929,6 @@ function NELandmine(entity)
 end
 
 
---- Remove Trees
-function Remove_Trees(entity)
-
-		local surface = entity.surface
-		local radius = 1.5
-		local pos = entity.position
-		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
-		-- find nearby trees
-		local trees = {}
-		local trees = surface.find_entities_filtered{area=area, type="tree"}
-		-- Remove Trees
-		if #trees > 0 then
-		writeDebug("Tree Found")
-			for i,tree in pairs(trees) do
-				if tree and tree.valid then
-					tree.die()
-				end
-			end
-		end
-end
-
-
 ---- Spawn Babies from Breeders Units
 function SpawnBreederBabies(entity)
 	
@@ -955,6 +951,7 @@ function SpawnBreederBabies(entity)
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 4 , 0.5)
 			if PositionValid then
 				spawn_unit = entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
+				--- Remove trees around mines, to prevent units from getting stuck
 				Remove_Trees(spawn_unit)
 			end
 		end
@@ -1200,7 +1197,7 @@ local function On_Death(event)
 			
 			--- First 20 nests are free of danger
 			if settings.startup["NE_Challenge_Mode"].value and global.Total_Number_of_Spawners_Killed > (21 - NE_Enemies.Settings.NE_Difficulty) then 
-				Spawn_Megladon(event, entity)
+				Spawn_Megalodon(event, entity)
 			end
 			
 			Look_and_Attack(entity, 1.5)
@@ -1327,34 +1324,50 @@ function Natural_Evolution_Expansion_Settings()
 	local unit_group = game.map_settings.unit_group
 	local path_finder = game.map_settings.path_finder
 	
-	local NE_multiplier_plus = (game.forces.enemy.evolution_factor * (2 + NE_Enemies.Settings.NE_Difficulty/5))
-	local NE_multiplier_minus = ((1 - game.forces.enemy.evolution_factor) * (2 + NE_Enemies.Settings.NE_Difficulty/5)) 
-	
+	local NE_multiplier_plus = ((game.forces.enemy.evolution_factor * 100) + 50) / (77 - NE_Enemies.Settings.NE_Difficulty * 2)	
+	local NE_multiplier_minus = (((1 - game.forces.enemy.evolution_factor) * 100 ) + 50) / (73 + NE_Enemies.Settings.NE_Difficulty * 2)
+
 	
 	-----
 
-	enemy_expansion.max_expansion_distance = global.max_expansion_distance_NE * NE_multiplier_plus + (global.max_expansion_distance_NE * 2 / 5)
-	enemy_expansion.friendly_base_influence_radius = (global.friendly_base_influence_radius_NE * NE_multiplier_minus + (global.friendly_base_influence_radius_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.friendly_base_influence_radius_NE
-	enemy_expansion.enemy_building_influence_radius = (global.enemy_building_influence_radius_NE * NE_multiplier_minus + (global.enemy_building_influence_radius_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.enemy_building_influence_radius_NE
-	enemy_expansion.building_coefficient = (global.building_coefficient_NE * NE_multiplier_minus + (global.building_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.building_coefficient_NE
-	enemy_expansion.other_base_coefficient = (global.other_base_coefficient_NE * NE_multiplier_minus + (global.other_base_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.other_base_coefficient_NE
-	enemy_expansion.neighbouring_chunk_coefficient = (global.neighbouring_chunk_coefficient_NE * NE_multiplier_minus + (global.neighbouring_chunk_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.neighbouring_chunk_coefficient_NE
-	enemy_expansion.neighbouring_base_chunk_coefficient = (global.neighbouring_base_chunk_coefficient_NE * NE_multiplier_minus + (global.neighbouring_base_chunk_coefficient_NE * 2 / 5)) - (1 - game.forces.enemy.evolution_factor) * global.neighbouring_base_chunk_coefficient_NE		
-	enemy_expansion.settler_group_min_size = global.settler_Group_min_size_NE * NE_multiplier_plus + (global.settler_Group_min_size_NE * 2 / 5)
-	enemy_expansion.settler_group_max_size = global.settler_Group_max_size_NE * NE_multiplier_plus + (global.settler_Group_max_size_NE * 2 / 5)
+	enemy_expansion.max_expansion_distance = global.max_expansion_distance_NE * NE_multiplier_plus
+	-- limit Expansion distance to always we 20 or less. https://forums.factorio.com/viewtopic.php?f=23&t=64381
+	if enemy_expansion.max_expansion_distance > 20 then
+		enemy_expansion.max_expansion_distance = 20
+	end
+	
+	
+	enemy_expansion.friendly_base_influence_radius = global.friendly_base_influence_radius_NE * NE_multiplier_minus 
+	enemy_expansion.enemy_building_influence_radius = global.enemy_building_influence_radius_NE * NE_multiplier_minus
+	enemy_expansion.building_coefficient = global.building_coefficient_NE * NE_multiplier_minus
+	enemy_expansion.other_base_coefficient = global.other_base_coefficient_NE * NE_multiplier_minus
+	enemy_expansion.neighbouring_chunk_coefficient = global.neighbouring_chunk_coefficient_NE * NE_multiplier_minus
+	enemy_expansion.neighbouring_base_chunk_coefficient = global.neighbouring_base_chunk_coefficient_NE * NE_multiplier_minus
+	
+	
+	enemy_expansion.settler_group_min_size = global.settler_Group_min_size_NE * NE_multiplier_plus
+	if enemy_expansion.settler_group_min_size < 1 then
+		enemy_expansion.settler_group_min_size = 1
+	end
+	
+	enemy_expansion.settler_group_max_size = global.settler_Group_max_size_NE * NE_multiplier_plus
+	if enemy_expansion.settler_group_max_size > 50 then
+		enemy_expansion.settler_group_max_size = 50
+	end
+	
 
-	unit_group.max_group_radius = global.max_Group_radius_NE * NE_multiplier_plus + (global.max_Group_radius_NE * 2 / 5)
-	unit_group.min_group_radius = global.min_Group_radius_NE * NE_multiplier_plus + (global.min_Group_radius_NE * 2 / 5)
-	unit_group.max_member_speedup_when_behind = global.max_Speed_up_NE * NE_multiplier_plus + (global.max_Speed_up_NE * 2 / 5)	
+	unit_group.max_group_radius = global.max_Group_radius_NE * NE_multiplier_plus
+	unit_group.min_group_radius = global.min_Group_radius_NE * NE_multiplier_plus
+	unit_group.max_member_speedup_when_behind = global.max_Speed_up_NE * NE_multiplier_plus
 		
-	path_finder.max_steps_worked_per_tick = 20 + (global.max_Steps_NE * NE_multiplier_plus) + (global.max_Steps_NE * 2 / 5)
+	path_finder.max_steps_worked_per_tick = 20 + (global.max_Steps_NE * NE_multiplier_plus)
 
 	
-	--writeDebug("The PLUS multiplier is: " .. NE_multiplier_plus)		
-	--writeDebug("The MINUS multiplier is: " .. NE_multiplier_minus)
+	writeDebug("The PLUS multiplier is: " .. NE_multiplier_plus)		
+	writeDebug("The MINUS multiplier is: " .. NE_multiplier_minus)
 	
-	--writeDebug("The max Expansion distance is (Vanilla): " .. global.max_expansion_distance_NE)
-	--writeDebug("Changed to due to Evo Factor : " .. enemy_expansion.max_expansion_distance)
+	writeDebug("The max Expansion distance is (Vanilla): " .. global.max_expansion_distance_NE)
+	writeDebug("Changed to due to Evo Factor : " .. enemy_expansion.max_expansion_distance)
 
 	--writeDebug("The max other_base_coefficient factore is (Vanilla): " .. global.other_base_oefficient_NE)
 	--writeDebug("Changed to due to Evo Factor : " .. enemy_expansion.other_base_coefficient)
@@ -1368,15 +1381,12 @@ end
 Event.register(defines.events.on_tick, function(event)	
 
 
-	if game.tick % (60 * 60 * 5) == 0 then 
+	if game.tick % (60 * 60 * 5) == 0 then -- Check every 5 min for Achievements
 		Achievement_Check()
 	end
 
 
-	if game.tick % (60 * 60 * 10) == 0 then -- Check every 10 min for old mines
-		--writeDebug("Game Tick: "..game.tick)
-		--writeDebug("Time!")
-		--writeDebug(global.number_or_rocketsilos)
+	if game.tick % (60 * 60 * 10) == 0 then -- Check every 10 min for old mines, Expansion settings
 
 		--- Check for Old Mines
 		if global.deployed_mine ~= nil then
@@ -1443,7 +1453,7 @@ Event.register(defines.events.on_tick, function(event)
 end)
 
 ------------------------
-function Spawn_Megladon(event, entity)
+function Spawn_Megalodon(event, entity)
 
 												      --- 100 to 500                                 0 to 2,000                                               0 to 4,410                 0 to 1,000
 	local spawn_chance = math.random(math.max(20, 6500 - ((100 * NE_Enemies.Settings.NE_Difficulty) + math.floor(game.forces.enemy.evolution_factor * 2000) + (global.tech_level * 2) + (global.Recent_Number_of_Spawners_Killed * 50))))
@@ -1455,16 +1465,16 @@ function Spawn_Megladon(event, entity)
 	--writeDebug("Health: "..health)
 	
 	if spawn_chance < (math.floor(game.forces.enemy.evolution_factor * 100) + NE_Enemies.Settings.NE_Difficulty) then
-		local megladon = surface.create_entity({name="ne-biter-megladon", position=pos, force = game.forces.enemy})	
-		megladon.health = health
+		local megalodon = surface.create_entity({name="ne-biter-megalodon", position=pos, force = game.forces.enemy})	
+		megalodon.health = health
 		global.Recent_Number_of_Spawners_Killed = 0
 	end
 
 			if event.force ~= nil and event.cause then
 				if event.cause.type == "artillery-turret" or  event.cause.type == "artillery-wagon" then
-					local megladon = surface.create_entity({name="ne-biter-megladon", position=pos, force = game.forces.enemy})	
-					megladon.health = health * 2
-					--writeDebug("megladon spawned")
+					local megalodon = surface.create_entity({name="ne-biter-megalodon", position=pos, force = game.forces.enemy})	
+					megalodon.health = health * 2
+					--writeDebug("megalodon spawned")
 					local enemies = surface.find_enemy_units(pos, 50)
 					local attack_group = surface.create_unit_group({position = pos, force = "enemy"})
 					writeDebug("Number of Enemies: "..#enemies)

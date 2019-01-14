@@ -1,11 +1,10 @@
 ----- Just used for Testing
 
-if QC_Mod then
 
-	function Test_Spawn(surface)
+	function Test_Spawn()
 
-
-		for i = 1, 2 do
+		local surface = game.surfaces['nauvis']
+		for i = 1, 6 do
 		
 
 		--surface.create_entity({name="ne-biter-breeder-" .. i, position={-5 - i, 10}, force = game.forces.enemy})
@@ -25,17 +24,17 @@ if QC_Mod then
 		--surface.create_entity({name="ne-spitter-mine-" .. i, position={5 + i, -10}, force = game.forces.player})	
 
 
-		surface.create_entity({name="ne-biter-breeder-" .. i, position={-15 - i, 10}, force = game.forces.enemy})
-		surface.create_entity({name="ne-biter-fire-" .. i, position={-15 - i, 5}, force = game.forces.enemy})
-		surface.create_entity({name="ne-biter-fast-" .. i, position={-15 - i, 0}, force = game.forces.enemy})
-		surface.create_entity({name="ne-biter-wallbreaker-" .. i, position={-15 - i, -5}, force = game.forces.enemy})
-		surface.create_entity({name="ne-biter-tank-" .. i, position={-15 - i, -10}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-biter-breeder-" .. i, position={-15 - i, 10}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-biter-fire-" .. i, position={-15 - i, 5}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-biter-fast-" .. i, position={-15 - i, 0}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-biter-wallbreaker-" .. i, position={-15 - i, -5}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-biter-tank-" .. i, position={-15 - i, -10}, force = game.forces.enemy})
 
-		surface.create_entity({name="ne-spitter-breeder-" .. i, position={15 + i, 10}, force = game.forces.enemy})	
-		surface.create_entity({name="ne-spitter-fire-" .. i, position={15 + i, 5}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-spitter-breeder-" .. i, position={15 + i, 10}, force = game.forces.enemy})	
+		--surface.create_entity({name="ne-spitter-fire-" .. i, position={15 + i, 5}, force = game.forces.enemy})
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={15 + i, 0}, force = game.forces.enemy})
-		surface.create_entity({name="ne-spitter-webshooter-" .. i, position={15 + i, -5}, force = game.forces.enemy})
-		surface.create_entity({name="ne-spitter-mine-" .. i, position={15 + i, -10}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-spitter-webshooter-" .. i, position={15 + i, -5}, force = game.forces.enemy})
+		--surface.create_entity({name="ne-spitter-mine-" .. i, position={15 + i, -10}, force = game.forces.enemy})
 		--[[
 		--surface.create_entity({name="ne-spitter-mine-" .. i, position={-5 + i, -5}, force = game.forces.enemy})	
 		--	surface.create_entity({name="medium-spitter-Mk2", position={50 + i, -25}, force = game.forces.enemy})	
@@ -51,8 +50,8 @@ if QC_Mod then
 		
 		
 
-		--local megladon = surface.create_entity({name="ne-biter-megladon", position={-15, -15}, force = game.forces.enemy})	
-		--megladon.health = 1
+		--local megalodon = surface.create_entity({name="ne-biter-megalodon", position={-15, -15}, force = game.forces.enemy})	
+		--megalodon.health = 1
 		
 		
 		--surface.create_entity({name="ne-spawner-blue", position={15, 15}, force = game.forces.enemy})	
@@ -87,4 +86,3 @@ if QC_Mod then
 		
 	end
 
-end

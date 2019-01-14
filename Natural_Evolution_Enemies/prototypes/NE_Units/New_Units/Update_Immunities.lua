@@ -151,12 +151,12 @@ NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw["unit-spawner"]["ne-sp
 	
 	
 --- Update Megladon Attack and Resistances
-NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw["unit"]["ne-biter-megladon"], 24 + NE_Enemies.Settings.NE_Difficulty) -- 25% resistance to everything
+NE_Functions.Add_ALL_Damage_Resists_to_Unit_type(data.raw["unit"]["ne-biter-megalodon"], 24 + NE_Enemies.Settings.NE_Difficulty) -- 25% resistance to everything
 	
-data.raw.unit["ne-biter-megladon"].attack_parameters.ammo_type.action.action_delivery.target_effects = {}
+data.raw.unit["ne-biter-megalodon"].attack_parameters.ammo_type.action.action_delivery.target_effects = {}
 for k, v in pairs(data.raw["damage-type"]) do
 	local Damage_type = {type = "damage", damage = { amount = (20 + (NE_Enemies.Settings.NE_Difficulty * 5)), type = k}}
-	table.insert(data.raw.unit["ne-biter-megladon"].attack_parameters.ammo_type.action.action_delivery.target_effects, Damage_type)
+	table.insert(data.raw.unit["ne-biter-megalodon"].attack_parameters.ammo_type.action.action_delivery.target_effects, Damage_type)
 end
 
 

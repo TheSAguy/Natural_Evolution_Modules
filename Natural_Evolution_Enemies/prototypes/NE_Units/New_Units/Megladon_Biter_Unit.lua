@@ -28,7 +28,7 @@ end
 
 	--- Megladon Biter
 	NE_Megladon_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
-    NE_Megladon_Unit.name = "ne-biter-megladon"
+    NE_Megladon_Unit.name = "ne-biter-megalodon"
 	NE_Megladon_Unit.collision_box = {{-0.8, -0.8}, {0.8, 0.8}}
 	NE_Megladon_Unit.selection_box = {{-2.4, -2.7}, {2.75, 0.5}}
 	NE_Megladon_Unit.drawing_box = {{-5.0, -5.5}, {5.0, 2.5}}
@@ -41,7 +41,7 @@ end
     NE_Megladon_Unit.movement_speed = 0.3 -- v 0.17,
     NE_Megladon_Unit.distance_per_frame = 0.5 -- v0.2,
 	NE_Megladon_Unit.pollution_to_join_attack = 10000
-	NE_Megladon_Unit.corpse = "ne-megladon-corpse"
+	NE_Megladon_Unit.corpse = "ne-megalodon-corpse"
 	NE_Megladon_Unit.attack_parameters = NE_Biter_Melee_Single_Attack(
 						{
 							range = 2,
@@ -55,8 +55,8 @@ end
 							sound = 1.5
 						})
 	NE_Megladon_Unit.run_animation = ne_biter_run_animation(ne_scale, ne_mega_tint_1, ne_mega_tint_2)
-	NE_Megladon_Unit.localised_name = {"entity-name.ne-biter-megladon"}
-	NE_Megladon_Unit.localised_description = {"entity-description.ne-biter-megladon"}
+	NE_Megladon_Unit.localised_name = {"entity-name.ne-biter-megalodon"}
+	NE_Megladon_Unit.localised_description = {"entity-description.ne-biter-megalodon"}
     
 	data:extend{NE_Megladon_Unit}
 
@@ -64,7 +64,7 @@ end
 	---- Corpses
 
 	NE_Biter_Megladon_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
-    NE_Biter_Megladon_Unit_Corpse.name = "ne-megladon-corpse"
+    NE_Biter_Megladon_Unit_Corpse.name = "ne-megalodon-corpse"
 	NE_Biter_Megladon_Unit_Corpse.selection_box = {{-2.4, -2.7}, {2.75, 0.5}}
 	NE_Biter_Megladon_Unit_Corpse.animation = ne_biter_die_animation(ne_scale, ne_mega_tint_1, ne_mega_tint_2)
     
