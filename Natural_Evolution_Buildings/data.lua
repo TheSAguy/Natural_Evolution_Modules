@@ -1,14 +1,10 @@
 
-if not thxbob then thxbob = {} end
-if not thxbob.lib then thxbob.lib = {} end
+if not bobmods then bobmods = {} end
+if not bobmods.lib then bobmods.lib = {} end
 
 if not NE_Functions then NE_Functions = {} end
 
 require ("libs.NE_Functions")
-require ("libs.item-functions") -- From Bob's Libary 
-require ("libs.recipe-functions") -- From Bob's Libary 
-require ("libs.technology-functions") -- From Bob's Libary 
-require ("libs.functions") -- From Bob's Libary 
 
 require("prototypes.Technology.technology")
 require("prototypes.Item-Groups.item-groups")
@@ -78,12 +74,12 @@ require("prototypes.Armory.projectiles-recipe")
 
 
 
-thxbob.lib.tech.add_recipe_unlock ("military", "copper_bullets")
-thxbob.lib.tech.add_recipe_unlock ("military", "bi_recipe_standard_dart_magazine")
-thxbob.lib.tech.add_recipe_unlock ("military-2", "bi_recipe_enhanced_dart_magazine")
-thxbob.lib.tech.add_recipe_unlock ("military-3", "bi_recipe_poison_dart_magazine")
-thxbob.lib.tech.add_recipe_unlock ("military-2", "piercing_magazine_copper")
-thxbob.lib.tech.add_recipe_unlock ("explosive-rocketry", "NE_Napalm_Rocket")
+bobmods.lib.tech.add_recipe_unlock ("military", "copper_bullets")
+bobmods.lib.tech.add_recipe_unlock ("military", "bi_recipe_standard_dart_magazine")
+bobmods.lib.tech.add_recipe_unlock ("military-2", "bi_recipe_enhanced_dart_magazine")
+bobmods.lib.tech.add_recipe_unlock ("military-3", "bi_recipe_poison_dart_magazine")
+bobmods.lib.tech.add_recipe_unlock ("military-2", "piercing_magazine_copper")
+bobmods.lib.tech.add_recipe_unlock ("explosive-rocketry", "NE_Napalm_Rocket")
  
 
  ---------------------------------------------------------------

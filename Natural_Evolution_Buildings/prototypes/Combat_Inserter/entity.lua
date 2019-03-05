@@ -45,8 +45,8 @@ data:extend({
     selection_box = {{-0.4, -0.35}, {0.4, 0.45}},
     pickup_position = {0, -1},
     insert_position = {0, 1.2},
-    energy_per_movement = 7000,
-    energy_per_rotation = 7000,
+	energy_per_movement = "7kJ",
+    energy_per_rotation = "7kJ",
     energy_source =
     {
       type = "electric",
@@ -89,7 +89,7 @@ data:extend({
       filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-inserter/inserter-hand-base.png",
       priority = "extra-high",
       width = 8,
-      height = 34,
+      height = 33,
 	  --tint = Combat_Inserter_tint
     },
     hand_closed_picture =
@@ -113,7 +113,7 @@ data:extend({
       filename = "__base__/graphics/entity/burner-inserter/burner-inserter-hand-base-shadow.png",
       priority = "extra-high",
       width = 8,
-      height = 34
+      height = 33
     },
     hand_closed_shadow =
     {

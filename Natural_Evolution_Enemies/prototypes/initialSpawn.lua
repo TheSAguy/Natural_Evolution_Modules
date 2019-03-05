@@ -20,7 +20,7 @@ function Initial_Spawn(surface)
 	surface.create_entity({name="ne-spitter-mine-" .. i, position={5 + i, -10}, force = game.forces.player})	
 
 	--surface.create_entity({name="ne-spitter-mine-" .. i, position={-5 + i, -5}, force = game.forces.enemy})	
-	--	surface.create_entity({name="medium-spitter-Mk2", position={50 + i, -25}, force = game.forces.enemy})	
+
 	end
 	]]
 	--surface.create_entity({name="ne-spawner-yellow", position={-15, 0}, force = game.forces.enemy})	

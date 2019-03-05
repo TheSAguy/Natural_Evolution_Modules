@@ -128,7 +128,7 @@ data:extend(
 	order = "a[modifier]-o[NE_Expansion_Management]",
     per_user = false,
   },
-  
+    
    
   
   {
@@ -138,7 +138,7 @@ data:extend(
     default_value = 1,
     maximum_value = 5,
     minimum_value = 1,
-	order = "a[modifier]-p[Difficulty]",
+	order = "a[modifier]-q[Difficulty]",
     per_user = false,
   },
 

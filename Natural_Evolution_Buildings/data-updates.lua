@@ -1,19 +1,16 @@
 
-if not thxbob then thxbob = {} end
-if not thxbob.lib then thxbob.lib = {} end
+if not bobmods then bobmods = {} end
+if not bobmods.lib then bobmods.lib = {} end
 if not NE_Functions then NE_Functions = {} end
 
 
-require ("libs.item-functions") -- From Bob's Libary 
-require ("libs.recipe-functions") -- From Bob's Libary 
-require ("libs.technology-functions") -- From Bob's Libary 
 
 ---- Add Long Range  & Rocket Turret to tech tree
-thxbob.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_gun_turret")
-thxbob.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_rocket_turret")
+bobmods.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_gun_turret")
+bobmods.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_rocket_turret")
 
 -- add Prototype Artillery as pre req for artillery
-thxbob.lib.tech.add_prerequisite("artillery", "bi_tech_bio_cannon")
+bobmods.lib.tech.add_prerequisite("artillery", "bi_tech_bio_cannon")
 
 ----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"
@@ -83,7 +80,6 @@ if mods["bobenemies"] then
 	data.raw["turret"]["bob-big-piercing-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-big-electric-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 	data.raw["turret"]["bob-giant-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
-	data.raw["turret"]["bob-behemoth-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
 
 end
 

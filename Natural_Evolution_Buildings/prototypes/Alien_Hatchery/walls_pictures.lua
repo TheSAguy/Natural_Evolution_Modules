@@ -15,7 +15,7 @@ return
 			scale = 0.5,
           },
           {
-            filename = "__base__/graphics/entity/stone-wall/wall-single-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-single-shadow.png",
             priority = "extra-high",
             width = 47,
             height = 32,
@@ -39,10 +39,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -61,10 +61,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -83,10 +83,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -105,10 +105,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -127,10 +127,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -149,10 +149,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -174,10 +174,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-horizontal-shadow.png",
+			  filename = "__base__/graphics/entity/wall/wall-horizontal-shadow.png",
               priority = "extra-high",
-              width = 59,
-              height = 32,
+              width = 62,
+              height = 36,
               shift = {0.421875, 0.5},
               draw_as_shadow = true
             }
@@ -196,10 +196,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-horizontal-shadow.png",
-              priority = "extra-high",
-              width = 59,
-              height = 32,
+				filename = "__base__/graphics/entity/wall/wall-horizontal-shadow.png",
+				priority = "extra-high",
+				width = 62,
+				height = 36,
               shift = {0.421875, 0.5},
               draw_as_shadow = true
             }
@@ -218,10 +218,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-horizontal-shadow.png",
-              priority = "extra-high",
-              width = 59,
-              height = 32,
+            filename = "__base__/graphics/entity/wall/wall-horizontal-shadow.png",
+            priority = "extra-high",
+            width = 62,
+            height = 36,
               shift = {0.421875, 0.5},
               draw_as_shadow = true
             }
@@ -240,10 +240,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-horizontal-shadow.png",
-              priority = "extra-high",
-              width = 59,
-              height = 32,
+            filename = "__base__/graphics/entity/wall/wall-horizontal-shadow.png",
+            priority = "extra-high",
+            width = 62,
+            height = 36,
               shift = {0.421875, 0.5},
               draw_as_shadow = true
             }
@@ -262,10 +262,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-horizontal-shadow.png",
-              priority = "extra-high",
-              width = 59,
-              height = 32,
+            filename = "__base__/graphics/entity/wall/wall-horizontal-shadow.png",
+            priority = "extra-high",
+            width = 62,
+            height = 36,
               shift = {0.421875, 0.5},
               draw_as_shadow = true
             }
@@ -284,10 +284,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-horizontal-shadow.png",
-              priority = "extra-high",
-              width = 59,
-              height = 32,
+            filename = "__base__/graphics/entity/wall/wall-horizontal-shadow.png",
+            priority = "extra-high",
+            width = 62,
+            height = 36,
               shift = {0.421875, 0.5},
               draw_as_shadow = true
             }
@@ -308,10 +308,10 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-right-down-shadow.png",
+			filename = "__base__/graphics/entity/wall/wall-corner-right-shadow.png",
             priority = "extra-high",
-            width = 53,
-            height = 61,
+            width = 62,
+            height = 60,
             shift = {0.484375, 0.640625},
             draw_as_shadow = true
 			}
@@ -330,7 +330,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-right-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-right-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 61,
@@ -352,7 +352,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-right-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-right-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 61,
@@ -374,7 +374,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-right-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-right-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 61,
@@ -396,7 +396,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-right-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-right-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 61,
@@ -418,7 +418,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-right-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-right-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 61,
@@ -441,9 +441,9 @@ return
 			scale = 0.5,
             },
           {
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-left-down-shadow.png",
+			filename = "__base__/graphics/entity/wall/wall-corner-left-shadow.png",
             priority = "extra-high",
-            width = 53,
+            width = 54,
             height = 60,
             shift = {0.328125, 0.640625},
             draw_as_shadow = true
@@ -463,7 +463,7 @@ return
 			scale = 0.5,
             },
           {
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-left-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-left-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 60,
@@ -485,7 +485,7 @@ return
 			scale = 0.5,
             },
           {
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-left-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-left-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 60,
@@ -507,7 +507,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-left-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-left-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 60,
@@ -529,7 +529,7 @@ return
 			scale = 0.5,
             },
           {
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-left-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-left-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 60,
@@ -551,7 +551,7 @@ return
 			scale = 0.5,
             },
           {
-            filename = "__base__/graphics/entity/stone-wall/wall-corner-left-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-corner-left-down-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 60,
@@ -574,10 +574,10 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-t-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-t-shadow.png",
             priority = "extra-high",
-            width = 71,
-            height = 61,
+            width = 62,
+            height = 60,
             shift = {0.546875, 0.640625},
             draw_as_shadow = true
 			}
@@ -596,10 +596,10 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-t-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-t-shadow.png",
             priority = "extra-high",
-            width = 71,
-            height = 61,
+            width = 62,
+            height = 60,
             shift = {0.546875, 0.640625},
             draw_as_shadow = true
 			}
@@ -618,10 +618,10 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-t-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-t-shadow.png",
             priority = "extra-high",
-            width = 71,
-            height = 61,
+            width = 62,
+            height = 60,
             shift = {0.546875, 0.640625},
             draw_as_shadow = true
 			}
@@ -640,10 +640,10 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-t-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-t-shadow.png",
             priority = "extra-high",
-            width = 71,
-            height = 61,
+            width = 62,
+            height = 60,
             shift = {0.546875, 0.640625},
             draw_as_shadow = true
 			}
@@ -662,10 +662,10 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-t-down-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-t-shadow.png",
             priority = "extra-high",
-            width = 71,
-            height = 61,
+            width = 62,
+            height = 60,
             shift = {0.546875, 0.640625},
             draw_as_shadow = true
 			}
@@ -684,10 +684,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -707,7 +707,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-right-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-right-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -729,7 +729,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-right-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-right-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -751,7 +751,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-right-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-right-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -773,7 +773,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-right-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-right-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -795,7 +795,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-right-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-right-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -817,10 +817,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }
@@ -840,7 +840,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-left-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-left-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -862,7 +862,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-left-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-left-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -884,7 +884,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-left-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-left-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -906,7 +906,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-left-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-left-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -928,7 +928,7 @@ return
 			scale = 0.5,
             },
 			{
-            filename = "__base__/graphics/entity/stone-wall/wall-ending-left-shadow.png",
+            filename = "__base__/graphics/entity/wall/wall-ending-left-shadow.png",
             priority = "extra-high",
             width = 53,
             height = 32,
@@ -950,10 +950,10 @@ return
 			scale = 0.5,
             },
             {
-              filename = "__base__/graphics/entity/stone-wall/wall-straight-vertical-shadow.png",
-              priority = "extra-high",
-              width = 47,
-              height = 60,
+            filename = "__base__/graphics/entity/wall/wall-vertical-shadow.png",
+            priority = "extra-high",
+            width = 50,
+            height = 58,
               shift = {0.390625, 0.625},
               draw_as_shadow = true
             }

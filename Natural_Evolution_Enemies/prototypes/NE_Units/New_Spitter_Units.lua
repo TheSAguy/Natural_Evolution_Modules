@@ -1,5 +1,5 @@
 
-require ("prototypes.NE_Units.New_Units.Projectiles")
+require ("prototypes.NE_Units.Projectiles")
 
 local ne_collision_box = {}
 local c1 = 0.15
@@ -39,7 +39,8 @@ local pollution_attack_increment = 1
 
 		
 ------------------------------------------------------------------------------------------
-		
+
+	
 
 for i = 1, 20 do
 
@@ -110,18 +111,19 @@ for i = 1, 20 do
     NE_Spitter_Breeder_Unit.max_health = ne_spitter_health[i]
     NE_Spitter_Breeder_Unit.loot = ne_loot
 	NE_Spitter_Breeder_Unit.resistances = {{type = "electric", percent = 100}} -- Immune to Electric Damage
-	NE_Spitter_Breeder_Unit.corpse = "ne-spitter-breeder-corpse" .. i
+	NE_Spitter_Breeder_Unit.corpse = "ne-spitter-breeder-corpse-" .. i
 	NE_Spitter_Breeder_Unit.attack_parameters = Spitter_Attack_Projectile_NH(
 						{
 							range = attack_range - 0.5, -- slightly less of an attack range
                             cooldown = 80,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint = ne_blue_tint2,
+                            tint1 = ne_blue_tint2,
+							tint2 = ne_blue_tint1,
                             roarvolume = i/25,
 							projectile = "Electric-Projectile" 
 						})
-	NE_Spitter_Breeder_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_blue_tint2)
+	NE_Spitter_Breeder_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_blue_tint2, ne_blue_tint1)
     NE_Spitter_Breeder_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Breeder_Unit.localised_description = {"entity-description.ne-spitter-breeder"} 
     
@@ -137,17 +139,18 @@ for i = 1, 20 do
     NE_Spitter_Fire_Unit.max_health = ne_spitter_health[i]
     NE_Spitter_Fire_Unit.loot = ne_loot
 	NE_Spitter_Fire_Unit.resistances = {{type = "fire", percent = 100}} --- Immune to Fire Damage
-	NE_Spitter_Fire_Unit.corpse = "ne-spitter-fire-corpse" .. i
+	NE_Spitter_Fire_Unit.corpse = "ne-spitter-fire-corpse-" .. i
 	NE_Spitter_Fire_Unit.attack_parameters = Spitter_Attack_Stream(
 						{
 							range = attack_range - 1, -- slightly less of an attack range,
                             cooldown = 110,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint = ne_fire_tint,
+                            tint1 = ne_fire_tint,
+							tint2 = ne_fire_tint2,
                             roarvolume = i/25,
 						})
-	NE_Spitter_Fire_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_fire_tint)
+	NE_Spitter_Fire_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_fire_tint, ne_fire_tint2)
     NE_Spitter_Fire_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Fire_Unit.localised_description = {"entity-description.ne-spitter-fire"} 
     
@@ -164,18 +167,19 @@ for i = 1, 20 do
     NE_Spitter_ULaunch_Unit.max_health = ne_spitter_health[i]
     NE_Spitter_ULaunch_Unit.loot = ne_loot
 	NE_Spitter_ULaunch_Unit.resistances = {{type = "acid", percent = 100}} -- Immune to Acid Damage
-	NE_Spitter_ULaunch_Unit.corpse = "ne-spitter-ulaunch-corpse" .. i
+	NE_Spitter_ULaunch_Unit.corpse = "ne-spitter-ulaunch-corpse-" .. i
 	NE_Spitter_ULaunch_Unit.attack_parameters = Spitter_Attack_Projectile(
 						{
 							range = attack_range + 0.5, -- slightly higher of an attack range,
                             cooldown = 120,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint = ne_green_tint,
+                            tint1 = ne_green_tint,
+							tint2 = ne_green_tint2,
                             roarvolume = i/25,
 							projectile = "Unit-Projectile"
 						})
-	NE_Spitter_ULaunch_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_green_tint)
+	NE_Spitter_ULaunch_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_green_tint, ne_green_tint2)
     NE_Spitter_ULaunch_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_ULaunch_Unit.localised_description = {"entity-description.ne-spitter-ulaunch"} 
     
@@ -191,18 +195,19 @@ for i = 1, 20 do
     NE_Spitter_Webshooter.max_health = ne_spitter_health[i]
     NE_Spitter_Webshooter.loot = ne_loot
 	NE_Spitter_Webshooter.resistances = {{type = "poison", percent = 100}} --- Immune to Posion Damage
-	NE_Spitter_Webshooter.corpse = "ne-spitter-webshooter-corpse" .. i
+	NE_Spitter_Webshooter.corpse = "ne-spitter-webshooter-corpse-" .. i
 	NE_Spitter_Webshooter.attack_parameters = Spitter_Attack_Projectile_NH(
 						{
 							range = attack_range,
                             cooldown = 100,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint = ne_yellow_tint,
+                            tint1 = ne_yellow_tint,
+							tint2 = ne_yellow_tint2,
                             roarvolume = i/25,
 							projectile = "Web-Projectile"
 						})
-	NE_Spitter_Webshooter.run_animation = ne_spitter_run_animation(ne_scale[i], ne_yellow_tint)
+	NE_Spitter_Webshooter.run_animation = spitterrunanimation(ne_scale[i], ne_yellow_tint, ne_yellow_tint2)
     NE_Spitter_Webshooter.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Webshooter.localised_description = {"entity-description.ne-spitter-webshooter"}     
 	
@@ -218,31 +223,37 @@ for i = 1, 20 do
     NE_Spitter_Mine_Unit.max_health = ne_spitter_health[i]
     NE_Spitter_Mine_Unit.loot = ne_loot
 	NE_Spitter_Mine_Unit.resistances = {{type = "explosion", percent = 100}, {type = "laser", percent = i * 2}} --- Immune to Explosion damage, higher Laser
-	NE_Spitter_Mine_Unit.corpse = "ne-spitter-mine-corpse" .. i
+	NE_Spitter_Mine_Unit.corpse = "ne-spitter-mine-corpse-" .. i
 	NE_Spitter_Mine_Unit.attack_parameters = Spitter_Attack_Projectile(
 						{
 							range = attack_range - 1, -- slightly less of an attack range
                             cooldown = 100,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint = ne_pink_tint,
+                            tint1 = ne_pink_tint,
+							tint2 = ne_black_tint,
                             roarvolume = i/25,
 							projectile = "Mine-Projectile-"..i
 						})
-	NE_Spitter_Mine_Unit.run_animation = ne_spitter_run_animation(ne_scale[i], ne_pink_tint)
+	NE_Spitter_Mine_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_pink_tint, ne_black_tint)
     NE_Spitter_Mine_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Mine_Unit.localised_description = {"entity-description.ne-spitter-mine"}     
 	
 	data:extend{NE_Spitter_Mine_Unit}
 
-
+	
+	--------------------------------------
+	
+	
 	--- Spitters Corpses
 	---- Breeder Spitter
+
+
 	NE_Spitter_Breeder_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
-    NE_Spitter_Breeder_Unit_Corpse.name = "ne-spitter-breeder-corpse" .. i
-	NE_Spitter_Breeder_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
+    NE_Spitter_Breeder_Unit_Corpse.name = "ne-spitter-breeder-corpse-" .. i
+	NE_Spitter_Breeder_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Spitter_Breeder_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
-	NE_Spitter_Breeder_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_blue_tint2)
+	NE_Spitter_Breeder_Unit_Corpse.animation = spitterdyinganimation(ne_scale[i], ne_blue_tint2)
     NE_Spitter_Breeder_Unit_Corpse.localised_name = {"entity-name.ne-spitter-breeder-corpse"}
     
 	data:extend{NE_Spitter_Breeder_Unit_Corpse}
@@ -250,10 +261,10 @@ for i = 1, 20 do
 	
 	---- Fire Spitter
 	NE_Spitter_Fire_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
-    NE_Spitter_Fire_Unit_Corpse.name = "ne-spitter-fire-corpse" .. i
-	NE_Spitter_Fire_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
+    NE_Spitter_Fire_Unit_Corpse.name = "ne-spitter-fire-corpse-" .. i
+	NE_Spitter_Fire_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Spitter_Fire_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
-	NE_Spitter_Fire_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_fire_tint)
+	NE_Spitter_Fire_Unit_Corpse.animation = spitterdyinganimation(ne_scale[i], ne_fire_tint)
     NE_Spitter_Fire_Unit_Corpse.localised_name = {"entity-name.ne-spitter-fire-corpse"}   
 	
 	data:extend{NE_Spitter_Fire_Unit_Corpse}
@@ -261,10 +272,10 @@ for i = 1, 20 do
 	
 	---- Unit Launcher Spitter
 	NE_Spitter_ULaunch_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
-    NE_Spitter_ULaunch_Unit_Corpse.name = "ne-spitter-ulaunch-corpse" .. i
-	NE_Spitter_ULaunch_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
+    NE_Spitter_ULaunch_Unit_Corpse.name = "ne-spitter-ulaunch-corpse-" .. i
+	NE_Spitter_ULaunch_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Spitter_ULaunch_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
-	NE_Spitter_ULaunch_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_green_tint)
+	NE_Spitter_ULaunch_Unit_Corpse.animation = spitterdyinganimation(ne_scale[i], ne_green_tint)
     NE_Spitter_ULaunch_Unit_Corpse.localised_name = {"entity-name.ne-spitter-ulaunch-corpse"}  
 	
 	data:extend{NE_Spitter_ULaunch_Unit_Corpse}
@@ -272,10 +283,10 @@ for i = 1, 20 do
 	
 	---- Unit Launcher Spitter
 	NE_Spitter_Webshooter_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
-    NE_Spitter_Webshooter_Corpse.name = "ne-spitter-webshooter-corpse" .. i
-	NE_Spitter_Webshooter_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
+    NE_Spitter_Webshooter_Corpse.name = "ne-spitter-webshooter-corpse-" .. i
+	NE_Spitter_Webshooter_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Spitter_Webshooter_Corpse.selection_box = ne_spitter_selection_box[i]
-	NE_Spitter_Webshooter_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_yellow_tint)
+	NE_Spitter_Webshooter_Corpse.animation = spitterdyinganimation(ne_scale[i], ne_yellow_tint)
     NE_Spitter_Webshooter_Corpse.localised_name = {"entity-name.ne-spitter-webshooter-corpse"}  
     
 	data:extend{NE_Spitter_Webshooter_Corpse}
@@ -283,14 +294,14 @@ for i = 1, 20 do
 	
 	---- Mine Spitter
 	NE_Spitter_Mine_Unit_Corpse = table.deepcopy(data.raw.corpse["small-spitter-corpse"])
-    NE_Spitter_Mine_Unit_Corpse.name = "ne-spitter-mine-corpse" .. i
-	NE_Spitter_Mine_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 60
+    NE_Spitter_Mine_Unit_Corpse.name = "ne-spitter-mine-corpse-" .. i
+	NE_Spitter_Mine_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Spitter_Mine_Unit_Corpse.selection_box = ne_spitter_selection_box[i]
-	NE_Spitter_Mine_Unit_Corpse.animation = ne_spitter_dying_animation(ne_scale[i], ne_pink_tint)
+	NE_Spitter_Mine_Unit_Corpse.animation = spitterdyinganimation(ne_scale[i], ne_pink_tint)
     NE_Spitter_Mine_Unit_Corpse.localised_name = {"entity-name.ne-spitter-mine-corpse"}  
     
 	data:extend{NE_Spitter_Mine_Unit_Corpse}
-	
+
 
 
 end

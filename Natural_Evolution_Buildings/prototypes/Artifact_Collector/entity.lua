@@ -10,12 +10,13 @@ inv_extension2 =
 	filename = "__Natural_Evolution_Buildings__/graphics/entities/Artifact-chest.png",
 	priority = "extra-high",
 	scale = 1,
-	width = 60,
-	height = 100,
+	width = 64,
+	height = 64,
 	direction_count = 1,
 	frame_count = 1,
 	axially_symmetrical = false,
 	shift = {0, -0}
+	--shift = {0.25, 0},
 	
 }
 
@@ -108,9 +109,9 @@ data:extend(
 			{
 				filename = "__Natural_Evolution_Buildings__/graphics/entities/Artifact-chest_x.png",
 				priority = "extra-high",
-				width = 60,
-				height = 100,
-				shift = {0.25, 0},
+				width = 64,
+				height = 64,
+				--shift = {0.25, 0},
 			}
 		},
 

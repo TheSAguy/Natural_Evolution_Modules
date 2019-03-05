@@ -5,9 +5,7 @@ NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 NE_Enemies.Settings.NE_Challenge_Mode = settings.startup["NE_Challenge_Mode"].value
 NE_Enemies.Settings.NE_Remove_Blood_Spatter = settings.startup["NE_Remove_Blood_Spatter"].value
 NE_Enemies.Settings.NE_Remove_Vanilla_Spawners = settings.startup["NE_Remove_Vanilla_Spawners"].value
-NE_Enemies.Settings.NE_Adjust_Vanilla_Worms = settings.startup["NE_Adjust_Vanilla_Worms"].value
-
-		
+NE_Enemies.Settings.NE_Adjust_Vanilla_Worms = settings.startup["NE_Adjust_Vanilla_Worms"].value	
 
 ---- Tweak Player Stats
 if NE_Enemies.Settings.NE_Challenge_Mode then

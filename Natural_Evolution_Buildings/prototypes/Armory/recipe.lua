@@ -12,7 +12,7 @@ data:extend({
 			energy_required = 4,
 			ingredients = 
 			{
-				{"raw-wood", 10},
+				{"wood", 10},
 			},
 		  result = "bi-basic-dart-magazine",
 		  result_count = 10,
@@ -23,7 +23,7 @@ data:extend({
 			energy_required = 6,
 			ingredients = 
 			{
-				{"raw-wood", 10},
+				{"wood", 10},
 			},
 		  result = "bi-basic-dart-magazine",
 		  result_count = 8,
@@ -569,7 +569,7 @@ data:extend({
 			ingredients = 
 			{
 			  {"iron-gear-wheel", 5},
-			  {"raw-wood", 20},
+			  {"wood", 20},
 			},
 		  result = "bi-dart-turret",
 		  result_count = 1,
@@ -582,7 +582,7 @@ data:extend({
 			ingredients = 
 			{
 			  {"iron-gear-wheel", 10},
-			  {"raw-wood", 25},
+			  {"wood", 25},
 			},
 		  result = "bi-dart-turret",
 		  result_count = 1,

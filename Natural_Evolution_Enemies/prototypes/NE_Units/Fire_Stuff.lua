@@ -271,20 +271,22 @@ data:extend{NE_Tree_Fire}
 
 	
 
+	
+
 data:extend({
 
-	--- Fire Flame
+	--- Fire Flame 1
 	{
 	  type = "fire",
-	  name = "ne-fire-flame-3",
+	  name = "ne-fire-flame-1",
 	  flags = {"placeable-off-grid", "not-on-map"},
 	  force = "enemy",
 	  damage_per_tick = {amount = 3 / 60, type = "ne_fire", force = "enemy"}, -- v 13
-	  maximum_damage_multiplier = 6,
+	  maximum_damage_multiplier = 3,
 	  damage_multiplier_increase_per_added_fuel = 1,
 	  damage_multiplier_decrease_per_tick = 0.005,
 
-	  spawn_entity = "ne-fire-flame-on-tree",
+	  --spawn_entity = "ne-fire-flame-on-tree",
 
 	  spread_delay = 300,
 	  spread_delay_deviation = 180,
@@ -357,6 +359,176 @@ data:extend({
 
 	},
 
+	--- Fire Flame 2
+	{
+	  type = "fire",
+	  name = "ne-fire-flame-2",
+	  flags = {"placeable-off-grid", "not-on-map"},
+	  force = "enemy",
+	  damage_per_tick = {amount = 15 / 60, type = "ne_fire", force = "enemy"}, -- v 13
+	  maximum_damage_multiplier = 6,
+	  damage_multiplier_increase_per_added_fuel = 1,
+	  damage_multiplier_decrease_per_tick = 0.005,
+
+	  --spawn_entity = "ne-fire-flame-on-tree",
+
+	  spread_delay = 300,
+	  spread_delay_deviation = 180,
+	  maximum_spread_count = 100,
+
+	  flame_alpha = 0.35,
+	  flame_alpha_deviation = 0.05,
+
+	  --emissions_per_tick = 0.005,
+
+	  add_fuel_cooldown = 10,
+	  fade_in_duration = 30,
+	  fade_out_duration = 30,
+
+	  initial_lifetime = 120,
+	  lifetime_increase_by = 150,
+	  lifetime_increase_cooldown = 4,
+	  maximum_lifetime = 1800,
+	  delay_between_initial_flames = 10,
+	  burnt_patch_lifetime = 1800,
+
+	  on_fuel_added_action = nil,
+
+	  pictures = ne_fireutil.create_fire_pictures({ blend_mode = "normal", animation_speed = 1, scale = 0.5}),
+
+	  smoke_source_pictures =
+	  {
+		{
+		  filename = "__base__/graphics/entity/fire-flame/fire-smoke-source-1.png",
+		  line_length = 8,
+		  width = 101,
+		  height = 138,
+		  frame_count = 31,
+		  axially_symmetrical = false,
+		  direction_count = 1,
+		  shift = {-0.109375, -1.1875},
+		  animation_speed = 0.5
+		},
+		{
+		  filename = "__base__/graphics/entity/fire-flame/fire-smoke-source-2.png",
+		  line_length = 8,
+		  width = 99,
+		  height = 138,
+		  frame_count = 31,
+		  axially_symmetrical = false,
+		  direction_count = 1,
+		  shift = {-0.203125, -1.21875},
+		  animation_speed = 0.5
+		}
+	  },
+
+	  burnt_patch_pictures = ne_fireutil.create_burnt_patch_pictures(),
+	  burnt_patch_alpha_default = 0.4,
+	  burnt_patch_alpha_variations =
+	  {
+		{ tile = "stone-path", alpha = 0.26 },
+		{ tile = "concrete", alpha = 0.24 }
+	  },
+
+	  smoke = nil,
+
+	  light = {intensity = 0.8, size = 10},
+
+	  working_sound = nil
+	  --[[
+	  {
+		sound = { filename = "__base__/sound/furnace.ogg" },
+		max_sounds_per_type = 3
+	  },]]
+
+	},
+
+	--- Fire Flame 3
+	{
+	  type = "fire",
+	  name = "ne-fire-flame-3",
+	  flags = {"placeable-off-grid", "not-on-map"},
+	  force = "enemy",
+	  damage_per_tick = {amount = 40 / 60, type = "ne_fire", force = "enemy"}, -- v 13
+	  maximum_damage_multiplier = 9,
+	  damage_multiplier_increase_per_added_fuel = 1,
+	  damage_multiplier_decrease_per_tick = 0.005,
+
+	  --spawn_entity = "ne-fire-flame-on-tree",
+
+	  spread_delay = 300,
+	  spread_delay_deviation = 180,
+	  maximum_spread_count = 100,
+
+	  flame_alpha = 0.35,
+	  flame_alpha_deviation = 0.05,
+
+	  --emissions_per_tick = 0.005,
+
+	  add_fuel_cooldown = 10,
+	  fade_in_duration = 30,
+	  fade_out_duration = 30,
+
+	  initial_lifetime = 120,
+	  lifetime_increase_by = 150,
+	  lifetime_increase_cooldown = 4,
+	  maximum_lifetime = 1800,
+	  delay_between_initial_flames = 10,
+	  burnt_patch_lifetime = 1800,
+
+	  on_fuel_added_action = nil,
+
+	  pictures = ne_fireutil.create_fire_pictures({ blend_mode = "normal", animation_speed = 1, scale = 0.5}),
+
+	  smoke_source_pictures =
+	  {
+		{
+		  filename = "__base__/graphics/entity/fire-flame/fire-smoke-source-1.png",
+		  line_length = 8,
+		  width = 101,
+		  height = 138,
+		  frame_count = 31,
+		  axially_symmetrical = false,
+		  direction_count = 1,
+		  shift = {-0.109375, -1.1875},
+		  animation_speed = 0.5
+		},
+		{
+		  filename = "__base__/graphics/entity/fire-flame/fire-smoke-source-2.png",
+		  line_length = 8,
+		  width = 99,
+		  height = 138,
+		  frame_count = 31,
+		  axially_symmetrical = false,
+		  direction_count = 1,
+		  shift = {-0.203125, -1.21875},
+		  animation_speed = 0.5
+		}
+	  },
+
+	  burnt_patch_pictures = ne_fireutil.create_burnt_patch_pictures(),
+	  burnt_patch_alpha_default = 0.4,
+	  burnt_patch_alpha_variations =
+	  {
+		{ tile = "stone-path", alpha = 0.26 },
+		{ tile = "concrete", alpha = 0.24 }
+	  },
+
+	  smoke = nil,
+
+	  light = {intensity = 0.8, size = 10},
+
+	  working_sound = nil
+	  --[[
+	  {
+		sound = { filename = "__base__/sound/furnace.ogg" },
+		max_sounds_per_type = 3
+	  },]]
+
+	},
+	
+
+	
   --- Small Fire Projectile
     {
     type = "projectile",
@@ -379,11 +551,13 @@ data:extend({
 			  type = "damage",
               damage = {amount = 3 + NE_Enemies.Settings.NE_Difficulty, type = "ne_fire",  force = "enemy"}
             },
+			
 			{
 			  type = "create-entity",
 			  force = "enemy",
               entity_name = "ne-fire-flame-3"
             },
+			
           }
         }
       },
@@ -430,6 +604,7 @@ data:extend({
 			  type = "damage",
               damage = {amount = 12 + NE_Enemies.Settings.NE_Difficulty, type = "ne_fire",  force = "enemy"}
             },
+			
 			{
 			  type = "create-entity",
 			  force = "enemy",
@@ -480,6 +655,7 @@ data:extend({
 			  type = "damage",
               damage = {amount = 24 + NE_Enemies.Settings.NE_Difficulty, type = "ne_fire",  force = "enemy"}
             },
+			
 			{
 			  type = "create-entity",
 			  force = "enemy",
@@ -509,8 +685,8 @@ data:extend({
   },
   
     
-     
-   
+   --[[  
+  
  --- Small Fire Explosion
    {
     type = "explosion",
@@ -533,12 +709,13 @@ data:extend({
             entity_name = "small-scorchmark",
             check_buildability = true
           },
+		 
           {
             type = "damage",
 			force = "enemy",
             damage = {amount = 40, type = "ne_fire", force = "enemy",}
           },
-       
+    
 		  {
             type = "nested-result",
 			force = "enemy",
@@ -558,6 +735,7 @@ data:extend({
               }
             }
           } 
+		
         }
       }
     },
@@ -695,8 +873,8 @@ data:extend({
       priority = "high"
     }}
   },
-  
- 
+
+ ]]
 }
 )
 

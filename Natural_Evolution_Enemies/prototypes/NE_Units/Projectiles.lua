@@ -32,7 +32,7 @@ function Spitter_Attack_Projectile(data)
       }
     },
     sound = make_spitter_roars(0.75),
-    animation = ne_spitter_attack_animation(data.scale, data.tint),
+    animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
 
@@ -63,7 +63,7 @@ function Spitter_Attack_Projectile_NH(data)
         }
       }
     },
-    animation = ne_spitter_attack_animation(data.scale, data.tint),
+    animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
 
@@ -161,7 +161,7 @@ function Spitter_Attack_Stream(data)
           }
         }
       },
-    animation = ne_spitter_attack_animation(data.scale, data.tint),
+    animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
 
@@ -324,7 +324,7 @@ data:extend({
 
     shadow =
     {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -433,7 +433,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -485,7 +485,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -543,7 +543,7 @@ data:extend({
               target_effects =
 			  {
 				type = "create-entity",
-				entity_name = "acid-splash-purple"
+				entity_name = "ne-acid-splash-purple"
 			  },
             },
       },
@@ -560,7 +560,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -628,7 +628,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -665,7 +665,7 @@ spitter_land_mine.picture_set_enemy.filename = "__Natural_Evolution_Enemies__/gr
 spitter_land_mine.order = "ne-land-mine-"..i
 spitter_land_mine.localised_name = {"entity-name.ne-spitter-land-mine"}
 spitter_land_mine.localised_description = {"entity-description.ne-spitter-land-mine"}
-spitter_land_mine.corpse = "acid-splash-purple"
+spitter_land_mine.corpse = "ne-acid-splash-purple"
 spitter_land_mine.trigger_radius = trigger_radius
 spitter_land_mine.action =
     {
@@ -842,7 +842,7 @@ Launcher_Web_Entity.duration = 60 * 15
 Launcher_Web_Entity.fade_away_duration = 0
 Launcher_Web_Entity.spread_duration = 0
 Launcher_Web_Entity.force = "enemy"
-Launcher_Web_Entity.render_layer = "lower-radius-visualization"
+Launcher_Web_Entity.render_layer = "remnants"
 Launcher_Web_Entity.collision_mask = {"not-colliding-with-itself"}
 Launcher_Web_Entity.selectable_in_game = false
 Launcher_Web_Entity.action = 
@@ -883,35 +883,83 @@ Launcher_Web_Entity.action =
 }
 Launcher_Web_Entity.slow_down_factor = 4
 Launcher_Web_Entity.cyclic = true
-Launcher_Web_Entity.color = { r = 255/255, g = 255/255, b = 0/255 }
+Launcher_Web_Entity.color = nil;
 Launcher_Web_Entity.animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/Web_64.png",
-      flags = { "compressed" },
-	 -- render_layer = "object",
-	  render_layer = "lower-radius-visualization",
-      priority = "very-low",
-      width = 64,
-      height = 64,
+      filename = "__Natural_Evolution_Enemies__/graphics/entity/web_visible.png",
+      flags = {},
+	  render_layer = "remnants",
+      priority = "medium",
+      width = 128,
+      height = 128,
       frame_count = 1,
       animation_speed = 1,
       line_length = 1,
-      scale = 2
+      scale = 1.5
     }
     
 data:extend{Launcher_Web_Entity}
 
 
+
+data:extend(
+{
+ {
+    type = "corpse",
+    name = "ne-acid-splash-purple",
+    flags = {"not-on-map"},
+    time_before_removed = 60 * 30,
+    final_render_layer = "corpse",
+    splash =
+    {
+      {
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-1.png",
+        line_length = 5,
+        width = 199,
+        height = 159,
+        frame_count = 20,
+        shift = {0.484375, -0.171875}
+      },
+      {
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-2.png",
+        line_length = 5,
+        width = 238,
+        height = 157,
+        frame_count = 20,
+        shift = {0.8125, -0.15625}
+      },
+      {
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-3.png",
+        line_length = 5,
+        width = 240,
+        height = 162,
+        frame_count = 20,
+        shift = {0.71875, -0.09375}
+      },
+      {
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-4.png",
+        line_length = 5,
+        width = 241,
+        height = 146,
+        frame_count = 20,
+        shift = {0.703125, -0.375}
+      }
+    },
+    splash_speed = 0.03
+  },
+}
+)
+
 --- Splash Animations, used for triggers
 
 --- Green Splash 1 - Units
-Green_Splash = table.deepcopy(data.raw["corpse"]["acid-splash-purple"])
+Green_Splash = table.deepcopy(data.raw["corpse"]["ne-acid-splash-purple"])
 Green_Splash.name = "ne_green_splash_1"
 Green_Splash.time_before_removed = 60 * 15
 Green_Splash.splash =
     {
       {
-        filename = "__base__/graphics/entity/acid-splash-purple/splash-1.png",
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-1.png",
         line_length = 5,
         width = 199,
         height = 159,
@@ -920,7 +968,7 @@ Green_Splash.splash =
         shift = {0.484375, -0.171875}
       },
       {
-        filename = "__base__/graphics/entity/acid-splash-purple/splash-2.png",
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-2.png",
         line_length = 5,
         width = 238,
         height = 157,
@@ -929,7 +977,7 @@ Green_Splash.splash =
         shift = {0.8125, -0.15625}
       },
       {
-        filename = "__base__/graphics/entity/acid-splash-purple/splash-3.png",
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-3.png",
         line_length = 5,
         width = 240,
         height = 162,
@@ -938,7 +986,7 @@ Green_Splash.splash =
         shift = {0.71875, -0.09375}
       },
       {
-        filename = "__base__/graphics/entity/acid-splash-purple/splash-4.png",
+        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-4.png",
         line_length = 5,
         width = 241,
         height = 146,
@@ -962,7 +1010,7 @@ data:extend{Green_Splash_2}
 
 --- Spark
 
-Spark_Splash = table.deepcopy(data.raw["corpse"]["acid-splash-purple"])
+Spark_Splash = table.deepcopy(data.raw["corpse"]["ne-acid-splash-purple"])
 Spark_Splash.name = "ne_spark"
 Spark_Splash.time_before_removed = 60 * 0.5
 Spark_Splash.splash =

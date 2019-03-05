@@ -103,7 +103,7 @@ data:extend({
     name = "small-biter-hatching",
     icon = "__base__/graphics/icons/small-biter.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -142,7 +142,7 @@ data:extend({
     name = "small-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/small-spitter_32.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -181,7 +181,7 @@ data:extend({
     name = "medium-biter-hatching",
     icon = "__base__/graphics/icons/medium-biter.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -220,7 +220,7 @@ data:extend({
     name = "medium-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-spitter_32.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -259,7 +259,7 @@ data:extend({
     name = "big-biter-hatching",
     icon = "__base__/graphics/icons/big-biter.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -298,7 +298,7 @@ data:extend({
     name = "big-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/big-spitter_32.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -337,7 +337,7 @@ data:extend({
     name = "behemoth-biter-hatching",
     icon = "__base__/graphics/icons/behemoth-biter.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -376,7 +376,7 @@ data:extend({
     name = "behemoth-spitter-hatching",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-spitter_32.png",
 	icon_size = 32,
-    flags = {"goes-to-quickbar"},
+    ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
       type = "throw",
@@ -436,8 +436,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -477,8 +477,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -518,8 +518,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -559,8 +559,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -600,8 +600,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -641,8 +641,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -682,8 +682,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -723,8 +723,8 @@ data:extend({
     {
       filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
-      width = 32,
-      height = 32,
+      width = 28,
+      height = 20,
       priority = "high"
     },
     shadow =
@@ -1072,6 +1072,7 @@ data:extend({
     },
     pictures = WallSetup(Living_Wall),
 
+	--[[
     wall_diode_green =
     {
       filename = "__base__/graphics/entity/gate/wall-diode-green.png",
@@ -1102,6 +1103,122 @@ data:extend({
       size = 1,
       intensity = 0.3
     },
+
+--]]
+
+
+    wall_diode_green = util.conditional_return(not data.is_demo,
+    {
+      sheet =
+      {
+        filename = "__base__/graphics/entity/wall/wall-diode-green.png",
+        priority = "extra-high",
+        width = 38,
+        height = 24,
+        --frames = 4, -- this is optional, it will default to 4 for Sprite4Way
+        shift = util.by_pixel(-2, -24),
+        hr_version =
+        {
+          filename = "__base__/graphics/entity/wall/hr-wall-diode-green.png",
+          priority = "extra-high",
+          width = 72,
+          height = 44,
+          --frames = 4,
+          shift = util.by_pixel(-1, -23),
+          scale = 0.5
+        }
+      }
+    }),
+    wall_diode_green_light_top = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {g=1},
+      shift = util.by_pixel(0, -30),
+      size = 1,
+      intensity = 0.3
+    }),
+    wall_diode_green_light_right = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {g=1},
+      shift = util.by_pixel(12, -23),
+      size = 1,
+      intensity = 0.3
+    }),
+    wall_diode_green_light_bottom = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {g=1},
+      shift = util.by_pixel(0, -17),
+      size = 1,
+      intensity = 0.3
+    }),
+    wall_diode_green_light_left = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {g=1},
+      shift = util.by_pixel(-12, -23),
+      size = 1,
+      intensity = 0.3
+    }),
+
+    wall_diode_red = util.conditional_return(not data.is_demo,
+    {
+      sheet =
+      {
+        filename = "__base__/graphics/entity/wall/wall-diode-red.png",
+        priority = "extra-high",
+        width = 38,
+        height = 24,
+        --frames = 4, -- this is optional, it will default to 4 for Sprite4Way
+        shift = util.by_pixel(-2, -24),
+        hr_version =
+        {
+          filename = "__base__/graphics/entity/wall/hr-wall-diode-red.png",
+          priority = "extra-high",
+          width = 72,
+          height = 44,
+          --frames = 4,
+          shift = util.by_pixel(-1, -23),
+          scale = 0.5
+        }
+      }
+    }),
+    wall_diode_red_light_top = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {r=1},
+      shift = util.by_pixel(0, -30),
+      size = 1,
+      intensity = 0.3
+    }),
+    wall_diode_red_light_right = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {r=1},
+      shift = util.by_pixel(12, -23),
+      size = 1,
+      intensity = 0.3
+    }),
+    wall_diode_red_light_bottom = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {r=1},
+      shift = util.by_pixel(0, -17),
+      size = 1,
+      intensity = 0.3
+    }),
+    wall_diode_red_light_left = util.conditional_return(not data.is_demo,
+    {
+      minimum_darkness = 0.3,
+      color = {r=1},
+      shift = util.by_pixel(-12, -23),
+      size = 1,
+      intensity = 0.3
+    }),
+
+  
+
 
     circuit_wire_connection_point =
     {

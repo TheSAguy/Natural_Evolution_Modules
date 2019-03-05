@@ -80,7 +80,7 @@ if settings.startup["NE_Blue_Spawners"].value then
 	NE_Unit_Spawner_Blue = table.deepcopy(data.raw["unit-spawner"]["ne-spawner-base"])
 	NE_Unit_Spawner_Blue.name = "ne-spawner-blue"
 	NE_Unit_Spawner_Blue.corpse = "ne-spawner-blue-corpse"
-	NE_Unit_Spawner_Blue.autoplace = enemy_spawner_autoplace(0)
+	NE_Unit_Spawner_Blue.autoplace = enemy_autoplace.enemy_spawner_autoplace(0)
 	NE_Unit_Spawner_Blue.resistances =
 		{
 		  {
@@ -187,7 +187,7 @@ if settings.startup["NE_Red_Spawners"].value then
 	NE_Unit_Spawner_Red = table.deepcopy(data.raw["unit-spawner"]["ne-spawner-base"])
 	NE_Unit_Spawner_Red.name = "ne-spawner-red"
 	NE_Unit_Spawner_Red.corpse = "ne-spawner-red-corpse"
-	NE_Unit_Spawner_Red.autoplace = enemy_spawner_autoplace(0)
+	NE_Unit_Spawner_Red.autoplace = enemy_autoplace.enemy_spawner_autoplace(0)
 	NE_Unit_Spawner_Red.resistances =
 		{
 		  {
@@ -288,7 +288,7 @@ if settings.startup["NE_Green_Spawners"].value then
 	NE_Unit_Spawner_Green = table.deepcopy(data.raw["unit-spawner"]["ne-spawner-base"])
 	NE_Unit_Spawner_Green.name = "ne-spawner-green"
 	NE_Unit_Spawner_Green.corpse = "ne-spawner-green-corpse"
-	NE_Unit_Spawner_Green.autoplace = enemy_spawner_autoplace(0)
+	NE_Unit_Spawner_Green.autoplace = enemy_autoplace.enemy_spawner_autoplace(0)
 	NE_Unit_Spawner_Green.resistances =
 		{
 		  {
@@ -394,7 +394,7 @@ if settings.startup["NE_Yellow_Spawners"].value then
 	NE_Unit_Spawner_Yellow = table.deepcopy(data.raw["unit-spawner"]["ne-spawner-base"])
 	NE_Unit_Spawner_Yellow.name = "ne-spawner-yellow"
 	NE_Unit_Spawner_Yellow.corpse = "ne-spawner-yellow-corpse"
-	NE_Unit_Spawner_Yellow.autoplace = enemy_spawner_autoplace(0)
+	NE_Unit_Spawner_Yellow.autoplace = enemy_autoplace.enemy_spawner_autoplace(0)
 	NE_Unit_Spawner_Yellow.resistances =
 		{
 		  {
@@ -501,7 +501,7 @@ if settings.startup["NE_Pink_Spawners"].value then
 	NE_Unit_Spawner_Pink.name = "ne-spawner-pink"
 	NE_Unit_Spawner_Pink.corpse = "ne-spawner-pink-corpse"
 	NE_Unit_Spawner_Pink.max_health = 1500 + (500 * NE_Enemies.Settings.NE_Difficulty) -- v 350,
-	NE_Unit_Spawner_Pink.autoplace = enemy_spawner_autoplace(0)
+	NE_Unit_Spawner_Pink.autoplace = enemy_autoplace.enemy_spawner_autoplace(0)
 	NE_Unit_Spawner_Pink.resistances =
 		{
 		  {

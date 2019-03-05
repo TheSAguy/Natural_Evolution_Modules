@@ -4,6 +4,6 @@ NE_Enemies.Settings.NE_Adjust_Vanilla_Worms = settings.startup["NE_Adjust_Vanill
 
 
 --- Update Vanilla Worm Stuff -- Medium worm will become fire worm and big worm will be come unit launcher worm
-require ("prototypes.NE_Units.New_Units.Worm_Changes")
-require("prototypes.NE_Units.New_Units.Update_Immunities")
+require ("prototypes.NE_Units.Worm_Changes")
+require("prototypes.NE_Units.Update_Immunities")
 

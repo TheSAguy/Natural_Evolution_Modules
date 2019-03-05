@@ -6,7 +6,7 @@ data:extend({
 		name = "bi-bio-cannon-basic-ammo",
 		icon = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/Bio_Cannon_Basic_Ammo_Icon.png",
 		icon_size = 32,
-		flags = { "goes-to-main-inventory" },
+		--flags = { "goes-to-main-inventory" },
 		ammo_type =
 		{
 			category = "artillery-shell",
@@ -38,7 +38,7 @@ data:extend({
 		name = "bi-bio-cannon-poison-ammo",
 		icon = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/Bio_Cannon_Poison_Ammo_Icon.png",
 		icon_size = 32,
-		flags = { "goes-to-main-inventory" },
+		--flags = { "goes-to-main-inventory" },
 		ammo_type =
 		{
 			category = "artillery-shell",
@@ -71,7 +71,7 @@ data:extend({
 		name = "bi-bio-cannon-biological-ammo",
 		icon = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/Bio_Cannon_Bio_Ammo_Icon.png",
 		icon_size = 32,
-		flags = { "goes-to-main-inventory" },
+		--flags = { "goes-to-main-inventory" },
 		ammo_type =
 		{
 			category = "artillery-shell",

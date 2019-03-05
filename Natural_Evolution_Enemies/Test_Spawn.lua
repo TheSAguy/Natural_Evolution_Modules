@@ -4,27 +4,34 @@
 	function Test_Spawn()
 
 		local surface = game.surfaces['nauvis']
-		for i = 1, 6 do
+		
+		for i = 1, 1 do
+		
+		surface.create_entity({name="ne-spawner-red", position={-15, 0}, force = game.forces.player})	
+		--surface.create_entity({name="ne-biter-breeder-" .. i, position={-5 - i, 10}, force = game.forces.player})
+		--surface.create_entity({name="ne-biter-fire-" .. i, position={-5 - i, 5}, force = game.forces.player})
+	  --  surface.create_entity({name="ne-biter-fast-" .. i, position={-5 - i, 0}, force = game.forces.player})
+		--surface.create_entity({name="ne-biter-wallbreaker-" .. i, position={-5 - i, -5}, force = game.forces.player})
+	--	surface.create_entity({name="ne-biter-tank-" .. i, position={-5 - i, -10}, force = game.forces.player})
+
+	--	surface.create_entity({name="ne-spitter-breeder-" .. i, position={5 + i, 10}, force = game.forces.player})	
+		--surface.create_entity({name="ne-spitter-fire-" .. i, position={5 + i, 5}, force = game.forces.player})
+	--	surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 0}, force = game.forces.player})
+	--	surface.create_entity({name="ne-spitter-webshooter-" .. i, position={5 + i, -5}, force = game.forces.player})
+	--	surface.create_entity({name="ne-spitter-mine-" .. i, position={5 + i, -10}, force = game.forces.player})	
 		
 
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={-5 - i, 10}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-biter-fire-" .. i, position={-5 - i, 5}, force = game.forces.player})
-	   -- surface.create_entity({name="ne-biter-fast-" .. i, position={-5 - i, 0}, force = game.forces.player})
-		--surface.create_entity({name="ne-biter-wallbreaker-" .. i, position={-5 - i, -5}, force = game.forces.player})
-		--surface.create_entity({name="ne-biter-tank-" .. i, position={-5 - i, -10}, force = game.forces.player})
+		
+		--surface.create_entity({name="medium-worm-turret", position={-30, -30}, force = game.forces.enemy})	
+		--surface.create_entity({name="big-worm-turret", position={-15, -15}, force = game.forces.enemy})	
+		
+end
+		local megalodon = surface.create_entity({name="ne-biter-megalodon", position={-15, -15}, force = game.forces.enemy})	
+		megalodon.health = 1000
+		--megalodon.resistances = {{type = "physical", percent = 2}}
 
-		--surface.create_entity({name="ne-spitter-breeder-" .. i, position={5 + i, 10}, force = game.forces.enemy})	
-		--surface.create_entity({name="ne-spitter-fire-" .. i, position={5 + i, 5}, force = game.forces.player})
-		--surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 0}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={5 + i, -5}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={6 + i, -5}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={7 + i, -5}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={8 + i, -5}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={9 + i, -5}, force = game.forces.enemy})
-		--surface.create_entity({name="ne-spitter-mine-" .. i, position={5 + i, -10}, force = game.forces.player})	
-
-
-		--surface.create_entity({name="ne-biter-breeder-" .. i, position={-15 - i, 10}, force = game.forces.enemy})
+	--[[
+	--surface.create_entity({name="ne-biter-breeder-" .. i, position={-15 - i, 10}, force = game.forces.enemy})
 		--surface.create_entity({name="ne-biter-fire-" .. i, position={-15 - i, 5}, force = game.forces.enemy})
 		--surface.create_entity({name="ne-biter-fast-" .. i, position={-15 - i, 0}, force = game.forces.enemy})
 		--surface.create_entity({name="ne-biter-wallbreaker-" .. i, position={-15 - i, -5}, force = game.forces.enemy})
@@ -35,11 +42,11 @@
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={15 + i, 0}, force = game.forces.enemy})
 		--surface.create_entity({name="ne-spitter-webshooter-" .. i, position={15 + i, -5}, force = game.forces.enemy})
 		--surface.create_entity({name="ne-spitter-mine-" .. i, position={15 + i, -10}, force = game.forces.enemy})
-		--[[
+	
 		--surface.create_entity({name="ne-spitter-mine-" .. i, position={-5 + i, -5}, force = game.forces.enemy})	
 		--	surface.create_entity({name="medium-spitter-Mk2", position={50 + i, -25}, force = game.forces.enemy})	
 		]]
-		end
+		
 		
 		--surface.create_entity({name="ne-spawner-red", position={-15, 0}, force = game.forces.enemy})	
 		--surface.create_entity({name="ne-spawner-red", position={-5, 5}, force = game.forces.enemy})	
@@ -75,7 +82,7 @@
 			local iteminsert = game.players[event.player_index].insert
 
 			iteminsert{name="submachine-gun", count=1}	
-			iteminsert{name="steel-axe", count=1}	
+			--iteminsert{name="steel-axe", count=1}	
 			iteminsert{name="uranium-rounds-magazine", count=200}		
 			iteminsert{name="power-armor-mk2", count=1}		
 			iteminsert{name="rocket-silo", count=4}		

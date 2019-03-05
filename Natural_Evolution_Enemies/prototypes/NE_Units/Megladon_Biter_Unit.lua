@@ -33,7 +33,7 @@ end
 	NE_Megladon_Unit.selection_box = {{-2.4, -2.7}, {2.75, 0.5}}
 	NE_Megladon_Unit.drawing_box = {{-5.0, -5.5}, {5.0, 2.5}}
     NE_Megladon_Unit.max_health = 15000 + (5000 * NE_Enemies.Settings.NE_Difficulty)
-	NE_Megladon_Unit.healing_per_tick = 0 -- Does not heal (negative currently does not work)
+	NE_Megladon_Unit.healing_per_tick = -0.25 -- Will slowly die over time
 	NE_Megladon_Unit.loot = mega_loot	
 	NE_Megladon_Unit.min_pursue_time = 50 * 60  -- v 10 * 60
     NE_Megladon_Unit.max_pursue_distance = 200  -- v 50
@@ -50,11 +50,11 @@ end
                             damage_amount_1 = 1, -- Will update to all attacks later in code
 							damage_type_1 = "physical",
                             scale = ne_scale,
-                            tint1 = ne_mega_tint_1,
-							tint2 = ne_mega_tint_2,
+                            tint1 = ne_mega_tint_2,
+							tint2 = ne_mega_tint_1,
 							sound = 1.5
 						})
-	NE_Megladon_Unit.run_animation = ne_biter_run_animation(ne_scale, ne_mega_tint_1, ne_mega_tint_2)
+	NE_Megladon_Unit.run_animation = biterattackanimation(ne_scale, ne_mega_tint_2, ne_mega_tint_1)
 	NE_Megladon_Unit.localised_name = {"entity-name.ne-biter-megalodon"}
 	NE_Megladon_Unit.localised_description = {"entity-description.ne-biter-megalodon"}
     
@@ -65,9 +65,11 @@ end
 
 	NE_Biter_Megladon_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
     NE_Biter_Megladon_Unit_Corpse.name = "ne-megalodon-corpse"
+	NE_Biter_Megladon_Unit_Corpse.time_before_removed = 3 * 60 * 10
 	NE_Biter_Megladon_Unit_Corpse.selection_box = {{-2.4, -2.7}, {2.75, 0.5}}
-	NE_Biter_Megladon_Unit_Corpse.animation = ne_biter_die_animation(ne_scale, ne_mega_tint_1, ne_mega_tint_2)
-    
+	NE_Biter_Megladon_Unit_Corpse.animation = biterdieanimation(ne_scale, ne_mega_tint_2, ne_mega_tint_1)
+	NE_Biter_Megladon_Unit_Corpse.localised_name = {"entity-name.ne-megalodon-corpse"} 
+	
 	data:extend{NE_Biter_Megladon_Unit_Corpse}
 
 

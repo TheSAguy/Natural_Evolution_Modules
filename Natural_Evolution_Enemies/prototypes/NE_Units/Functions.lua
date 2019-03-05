@@ -7,15 +7,23 @@ NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 --- Tint
 --- Transparency
 trans = 0.7
-ne_blue_tint = {r=0, g=0, b=1, a=trans}	
+
+ne_blue_tint1 = {r=0, g=0, b=1, a=trans}	
 ne_blue_tint2 = {r=0, g=200/255, b=1, a=trans}	
+
 ne_fire_tint = {r=1, g=0, b=0, a=trans} -- Red
 ne_fire_tint2 = {r=1, g=0, b=50/255, a=0.8} 
+
 ne_green_tint = {r=0, g=1, b=0, a=trans}
+ne_green_tint2 = {r=100/255, g=1, b=100/255, a=trans}
+
 ne_pink_tint = {r=1, g=0, b=200/255, a=trans}
+
 ne_yellow_tint = {r=1, g=1, b=50/255, a=trans}
 ne_yellow_tint2 = {r=1, g=1, b=100/255, a=0.2}
+
 ne_orange_tint = {r=1, g=150/255, b=0, a=trans}
+
 ne_purple_tint = {r=150/255, g=50/255, b=1, a=trans}
 ne_black_tint = {r=0, g=0, b=0, a=trans}
 ne_brown_tint = {r=150/255, g=100/255, b=50/255, a=trans}
@@ -77,6 +85,7 @@ function ne_biter_run_animation(scale, tint1, tint2)
   }
 end
 
+--[[
 function ne_biter_attack_animation(scale, tint1, tint2)
   return
   {
@@ -423,7 +432,7 @@ function ne_spitter_dying_animation(scale, tint)
 end
 
 
-
+]]
 
 
 
@@ -453,7 +462,7 @@ function NE_Biter_Melee_Single_Attack(data)
 			}
 		  },
       sound =  make_biter_roars(sound),
-      animation = ne_biter_attack_animation(data.scale, data.tint1, data.tint2)
+      animation = biterattackanimation(data.scale, data.tint1, data.tint2)
     }
 	
 end
@@ -491,7 +500,7 @@ function NE_Biter_Melee_Double_Attack(data)
 			}
 		  },
       sound =  make_biter_roars(sound),
-      animation = ne_biter_attack_animation(data.scale, data.tint1, data.tint2)
+      animation = biterattackanimation(data.scale, data.tint1, data.tint2)
     }
 	
 end

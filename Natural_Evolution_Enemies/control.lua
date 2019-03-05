@@ -1,4 +1,4 @@
---ENEMIES v.9.1.2
+--ENEMIES v.0.17.2
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -8,7 +8,7 @@ NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 require ("util")
 require ("stdlib/event/event")
-require ("prototypes.NE_Units.New_Units.Unit_Launcher")
+require ("prototypes.NE_Units.Unit_Launcher")
 
 
 ---************** Used for Testing -----
@@ -231,7 +231,10 @@ local waterTiles =
   ["deepwater"] = true,
   ["deepwater-green"] = true,
   ["water"] = true,
-  ["water-green"] = true
+  ["water-green"] = true,
+  ["water-shallow"] = true,
+  ["water-mud"] = true
+  
 }
 
 
@@ -1152,17 +1155,31 @@ local function On_Death(event)
 		SpawnBreederBabies(entity)
 	end
 
+	
 	if isFireBiter(entity) and entity.type == "unit" and UnitNumber(entity) ~= nil then
-		
+	
+	
+	--writeDebug("Fire Unit killed")
 		if math.floor(UnitNumber(entity)) < 5 then
-			surface.create_entity({name="ne-small-fire-explosion", position = pos, force = "enemy"})
+		writeDebug("Smaller than 5")
+		
+			surface.create_entity({name="ne-fire-flame-1", position = pos, force = "enemy"})		
+			--surface.create_entity({name="ne-small-fire-explosion", position = pos, force = "enemy"})
+			
+				
 		elseif math.floor(UnitNumber(entity)) < 15 then
-			surface.create_entity({name="ne-medium-fire-explosion", position = pos, force = "enemy"})
+			--surface.create_entity({name="ne-medium-fire-explosion", position = pos, force = "enemy"})
+			surface.create_entity({name="ne-fire-flame-2", position = pos, force = "enemy"})
+			writeDebug("Smaller than 15")
 		else
-			surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
+		--	surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
+		surface.create_entity({name="ne-fire-flame-3", position = pos, force = "enemy"})
+			writeDebug("Bigger than 15")
 		end
+		
 	end
 
+	
 	--- Buildings catch fire if destroyed.
 	if entity.valid and settings.startup["NE_Burning_Buildings"].value and catchFire[entity.type] then
 
@@ -1172,14 +1189,14 @@ local function On_Death(event)
 		if (force == game.forces.enemy) then
 		-- do nothing
 		elseif e_corpse == "medium-remnants" then
-			surface.create_entity({name="medium-fire-cloud", position = pos, force = "enemy"})
-			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
+			surface.create_entity({name="ne-fire-flame-2", position = pos, force = "enemy"})
+			--surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		elseif e_corpse == "big-remnants" then
-			surface.create_entity({name="big-fire-cloud", position = pos, force = "enemy"})
-			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
+			surface.create_entity({name="ne-fire-flame-3", position = pos, force = "enemy"})
+			--surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		else
-			surface.create_entity({name="small-fire-cloud", position = pos, force = "enemy"})
-			surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
+			surface.create_entity({name="ne-fire-flame-1", position = pos, force = "enemy"})
+			--surface.create_entity({name = "ne-fire-flame", position = pos, force = "enemy"})	
 		end	
 		
 	end	
@@ -1211,9 +1228,9 @@ local function On_Death(event)
 			--- Cause Fire		
 			if entity.name == "ne-spawner-red" then		
 				writeDebug("Was a Fire Spawner")
-				surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
-				surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
-				surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
+				surface.create_entity({name="ne-fire-flame-3", position = pos, force = "enemy"})
+				--surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
+				--surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
 
 			end
 			
@@ -1625,33 +1642,143 @@ script.on_event(defines.events.on_research_finished, function(event)
         global.tech_level = global.tech_level + 500
     end  	
 
-    if research == "grenade-damage-5" then
-        global.tech_level = global.tech_level + 15
+    if research == "physical-projectile-damage-1" then
+        global.tech_level = global.tech_level + 5
+    end
+
+    if research == "physical-projectile-damage-2" then
+        global.tech_level = global.tech_level + 5
+    end
+
+    if research == "physical-projectile-damage-3" then
+        global.tech_level = global.tech_level + 5
+    end
+
+    if research == "physical-projectile-damage-4" then
+        global.tech_level = global.tech_level + 5
+    end
+
+    if research == "physical-projectile-damage-5" then
+        global.tech_level = global.tech_level + 5
+    end
+
+    if research == "physical-projectile-damage-6" then
+        global.tech_level = global.tech_level + 5
+    end
+
+    if research == "physical-projectile-damage-7" then
+        global.tech_level = global.tech_level + 5
     end
 	
-    if research == "shotgun-shell-damage-5" then
-        global.tech_level = global.tech_level + 15
+    if research == "stronger-explosives-1" then
+        global.tech_level = global.tech_level + 5
     end  
-
-    if research == "laser-turret-damage-5" then
-        global.tech_level = global.tech_level + 15
+	
+    if research == "stronger-explosives-2" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+    if research == "stronger-explosives-3" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+    if research == "stronger-explosives-4" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+    if research == "stronger-explosives-5" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+    if research == "stronger-explosives-6" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+    if research == "stronger-explosives-7" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+    if research == "refined-flammables-1" then
+        global.tech_level = global.tech_level + 10
     end  
-
-    if research == "gun-turret-damage-5" then
-        global.tech_level = global.tech_level + 15
+		
+    if research == "refined-flammables-2" then
+        global.tech_level = global.tech_level + 10
+    end 
+		
+    if research == "refined-flammables-3" then
+        global.tech_level = global.tech_level + 10
+    end 
+		
+    if research == "refined-flammables-4" then
+        global.tech_level = global.tech_level + 10
+    end 
+		
+    if research == "refined-flammables-5" then
+        global.tech_level = global.tech_level + 100
+    end 
+		
+    if research == "refined-flammables-6" then
+        global.tech_level = global.tech_level + 200
+    end 
+		
+    if research == "refined-flammables-7" then
+        global.tech_level = global.tech_level + 300
+    end 
+		 
+	
+    if research == "energy-weapons-damage-1" then
+        global.tech_level = global.tech_level + 50
     end  
-
-    if research == "flamethrower-damage-5" then
+	
+    if research == "energy-weapons-damage-2" then
+        global.tech_level = global.tech_level + 50
+    end 
+		
+    if research == "energy-weapons-damage-3" then
+        global.tech_level = global.tech_level + 50
+    end 
+		
+    if research == "energy-weapons-damage-4" then
+        global.tech_level = global.tech_level + 50
+    end 
+		
+    if research == "energy-weapons-damage-5" then
+        global.tech_level = global.tech_level + 100
+    end 
+		
+    if research == "energy-weapons-damage-6" then
+        global.tech_level = global.tech_level + 200
+    end 
+		
+    if research == "energy-weapons-damage-7" then
         global.tech_level = global.tech_level + 500
-    end  
-
-    if research == "bullet-damage-5" then
-        global.tech_level = global.tech_level + 15
-    end  
-
-    if research == "combat-robot-damage-5" then
+    end 
+		
+    if research == "weapon-shooting-speed-1" then
+        global.tech_level = global.tech_level + 5
+    end 
+    if research == "weapon-shooting-speed-2" then
         global.tech_level = global.tech_level + 15
     end 
+    if research == "weapon-shooting-speed-3" then
+        global.tech_level = global.tech_level + 25
+    end 
+    if research == "weapon-shooting-speed-4" then
+        global.tech_level = global.tech_level + 50
+    end 
+    if research == "weapon-shooting-speed-5" then
+        global.tech_level = global.tech_level + 100
+    end 	
+    if research == "weapon-shooting-speed-6" then
+        global.tech_level = global.tech_level + 150
+    end 
+	
+    if research == "physical-projectile-damage-5" then
+        global.tech_level = global.tech_level + 15
+    end  
+
+
 
     if research == "rocket-damage-5" then
         global.tech_level = global.tech_level + 15

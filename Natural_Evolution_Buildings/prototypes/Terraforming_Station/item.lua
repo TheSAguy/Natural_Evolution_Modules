@@ -6,7 +6,7 @@ data:extend({
 	    name = "TerraformingStation_New",
 	    icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
 		icon_size = 32,
-	    flags = {"goes-to-quickbar"},
+	    ----flags = {"goes-to-quickbar"},
 	    subgroup = "Natural-Evolution",
 	    order = "b[TerraformingStation]-a[TerraformingStation]",
 	    place_result = "TerraformingStation_New",
@@ -23,7 +23,7 @@ data:extend(
     name = "Alien-Stimulant",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/alien_stimulant.png",
 	icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+    --flags = {"goes-to-main-inventory"},
     ammo_type =
     {
       category = "Terraforming_Station",
