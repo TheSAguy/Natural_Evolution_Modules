@@ -111,7 +111,7 @@ data:extend(
 				priority = "extra-high",
 				width = 64,
 				height = 64,
-				--shift = {0.25, 0},
+				shift = {0.5, -0.5},
 			}
 		},
 
@@ -167,9 +167,8 @@ data:extend(
           apply_projection = false,
           direction_count = 64,
           line_length = 8,
-          shift = util.by_pixel(1, -16),
+          shift = util.by_pixel(1, -8),
 		  scale = 1/3,
-		--shift = {0.125, -0.125},
           hr_version = {
             filename = "__base__/graphics/entity/radar/hr-radar.png",
             priority = "low",
@@ -178,8 +177,7 @@ data:extend(
             apply_projection = false,
             direction_count = 64,
             line_length = 8,
-            shift = util.by_pixel(1, -16),
-            --scale = 0.5
+            shift = util.by_pixel(1, -8),
 			scale = 1/6
           }
         },
