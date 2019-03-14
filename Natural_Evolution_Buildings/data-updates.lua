@@ -1,16 +1,16 @@
 
-if not bobmods then bobmods = {} end
-if not bobmods.lib then bobmods.lib = {} end
+if not thxbob then thxbob = {} end
+if not thxbob.lib then thxbob.lib = {} end
 if not NE_Functions then NE_Functions = {} end
 
 
 
 ---- Add Long Range  & Rocket Turret to tech tree
-bobmods.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_gun_turret")
-bobmods.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_rocket_turret")
+thxbob.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_gun_turret")
+thxbob.lib.tech.add_recipe_unlock("bi_tech_bio_cannon", "NE_rocket_turret")
 
 -- add Prototype Artillery as pre req for artillery
-bobmods.lib.tech.add_prerequisite("artillery", "bi_tech_bio_cannon")
+thxbob.lib.tech.add_prerequisite("artillery", "bi_tech_bio_cannon")
 
 ----- Update the Alien Atrifact Graphic
 data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png"

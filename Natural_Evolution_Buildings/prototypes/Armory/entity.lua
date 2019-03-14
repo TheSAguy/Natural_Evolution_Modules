@@ -29,8 +29,6 @@ table.insert(data.raw.technology["physical-projectile-damage-5"].effects,{type =
 table.insert(data.raw.technology["physical-projectile-damage-6"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.4})
 table.insert(data.raw.technology["physical-projectile-damage-7"].effects,{type = "turret-attack", turret_id = "NE-rocket-turret", modifier = 0.7})
 
-
-
  --Ammo
 data:extend({
 
@@ -832,6 +830,7 @@ data:extend({
       height = 32
     },
     trigger_radius = 3.5,
+	ammo_category = "landmine",
     action =
     {
       type = "direct",
