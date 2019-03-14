@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.4
+Date: 3. 14. 2019
+  Features:
+    - Tweak to Prototype Artillery damage upgrades 
+---------------------------------------------------------------------------------------------------
+Version: 0.17.3
+Date: 3. 11. 2019
+  Bugfix:
+    - Removed Ammo Descriptions, now it shows damage values
+    - Decelerate Concrete changed to Super Concrete, since it can't slow enemy units.	
+---------------------------------------------------------------------------------------------------
 Version: 0.17.2
 Date: 3. 5. 2019
   Features:
@@ -9,4 +20,3 @@ Version: 0.17.0
 Date: 2. 27. 2019
   Features:
     - Initial Release of 0.17
----------------------------------------------------------------------------------------------------
