@@ -12,7 +12,9 @@ data:extend({
       minable = {hardness = 0.2, mining_time = 0.5, result = "stone-brick"}, -- You only get brick back when you mine it...
       mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
       collision_mask = {"ground-tile"},
-      walking_speed_modifier = 0.5,
+      --walking_speed_modifier = 0.5, -- Currently does not affect Enemy Units.
+	  walking_speed_modifier = 2.0,
+	  vehicle_friction_modifier = 0.8,
       layer = 61,
       decorative_removal_probability = 1,
       variants =
@@ -84,7 +86,7 @@ data:extend({
       },
       map_color={r=100, g=100, b=100},
       ageing=0,
-      vehicle_friction_modifier = 1,
+      
     },
 
 })

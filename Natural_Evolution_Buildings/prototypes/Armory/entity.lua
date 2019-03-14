@@ -40,39 +40,44 @@ data:extend({
 		name = "bi-basic-dart-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon.png",
 		icon_size = 32,
-		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
 		  action =
 		  {
-			type = "direct",
-			action_delivery =
-			{
-			  type = "instant",
-			  source_effects =
 			  {
-				  type = "create-explosion",
-				  entity_name = "explosion-gunshot",
-			  },
-			  target_effects =
-			  {
+				type = "direct",
+				action_delivery =
 				{
-				  type = "create-entity",
-				  entity_name = "explosion-hit"
-				},
-				{
-				  type = "damage",
-				  
-				  damage = { amount = 1 , type = "poison"}
-				 
-				},
-				{
-				  type = "damage",
-				  damage = { amount = 2 , type = "physical"}
+					{
+					  type = "instant",
+					  source_effects =
+					  {
+						  {
+							  type = "create-explosion",
+							  entity_name = "explosion-gunshot",
+						  }
+					  },
+					  target_effects =
+					  {
+						{
+						  type = "create-entity",
+						  entity_name = "explosion-hit"
+						},
+						{
+						  type = "damage",
+						  
+						  damage = { amount = 1 , type = "poison"}
+						 
+						},
+						{
+						  type = "damage",
+						  damage = { amount = 2 , type = "physical"}
+						}
+					  }
+					}
 				}
 			  }
-			}
 		  }
 		},
 		magazine_size = 10,
@@ -89,7 +94,6 @@ data:extend({
 		name = "bi-standard-dart-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/standard_dart_icon.png",
 		icon_size = 32,
-		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",

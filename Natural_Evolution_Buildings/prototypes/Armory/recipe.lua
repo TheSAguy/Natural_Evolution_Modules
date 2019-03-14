@@ -4,8 +4,7 @@ data:extend({
 	--- Basic Dart Ammo
 	{
 		type = "recipe",
-		name = "bi_recipe_basic_dart_magazine",
-		
+		name = "bi_recipe_basic_dart_magazine",		
 		normal =
 		{
 			enabled = true,
@@ -30,6 +29,7 @@ data:extend({
 		},
 	}, 	
 
+	
 	--- Standard Dart Ammo
 	{
 		type = "recipe",
@@ -353,6 +353,7 @@ data:extend({
 		  result_count = 1,
 		},
 	}, 	
+	
 	 --- Conversion Ammo Copper
 	{
 		type = "recipe",
