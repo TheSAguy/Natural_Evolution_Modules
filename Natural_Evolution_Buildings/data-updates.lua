@@ -121,8 +121,8 @@ if mods["Natural_Evolution_Enemies"] then
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].spawning_radius = data.raw["unit-spawner"]["biter-spawner"].spawning_radius
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].spawning_spacing = data.raw["unit-spawner"]["biter-spawner"].spawning_spacing
 	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].max_spawn_shift = data.raw["unit-spawner"]["biter-spawner"].max_spawn_shift
-	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].pollution_absorbtion_proportional = data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_proportional
-	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].pollution_absorbtion_absolute = data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_absolute
+	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].pollution_absorption_proportional = data.raw["unit-spawner"]["biter-spawner"].pollution_absorption_proportional
+	data.raw["unit-spawner"]["Natural_Evolution_Biter-Spawner"].pollution_absorption_absolute = data.raw["unit-spawner"]["biter-spawner"].pollution_absorption_absolute
 
 
 	-- Natural Evolution Spitter Spawner Adjustments 
@@ -133,8 +133,8 @@ if mods["Natural_Evolution_Enemies"] then
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].spawning_radius = data.raw["unit-spawner"]["spitter-spawner"].spawning_radius
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].spawning_spacing = data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing
 	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].max_spawn_shift = data.raw["unit-spawner"]["spitter-spawner"].max_spawn_shift
-	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_proportional = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional
-	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorbtion_absolute = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute
+	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorption_proportional = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorption_proportional
+	data.raw["unit-spawner"]["Natural_Evolution_Spitter-Spawner"].pollution_absorption_absolute = data.raw["unit-spawner"]["spitter-spawner"].pollution_absorption_absolute
 
 
 end

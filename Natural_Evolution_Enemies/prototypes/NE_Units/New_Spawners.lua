@@ -41,9 +41,10 @@ data:extend(
     healing_per_tick = 0.01 + (0.01 * NE_Enemies.Settings.NE_Difficulty), -- 0.02
     collision_box = {{-3.2, -2.2}, {2.2, 2.2}},
     selection_box = {{-3.5, -2.5}, {2.5, 2.5}},
+	map_generator_bounding_box = {{-4.2, -3.2}, {3.2, 3.2}},
     -- in ticks per 1 pu
-    pollution_absorbtion_absolute = 15, -- v20,
-    pollution_absorbtion_proportional = 0.005, -- v0.01,
+    pollution_absorption_absolute = 15, -- v20,
+    pollution_absorption_proportional = 0.005, -- v0.01,
     corpse = "biter-spawner-corpse",
     dying_explosion = "blood-explosion-huge",
     max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty,  --v 7
@@ -67,7 +68,8 @@ data:extend(
     max_spawn_shift = 0,
     max_richness_for_spawn_shift = 100,
     autoplace = nil,
-    call_for_help_radius = 35 + (10 * NE_Enemies.Settings.NE_Difficulty),-- v50
+    call_for_help_radius = 45 + (10 * NE_Enemies.Settings.NE_Difficulty),-- v50	
+	
   },
 
 })

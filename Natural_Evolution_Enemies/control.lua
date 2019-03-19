@@ -1,4 +1,4 @@
---ENEMIES v.0.17.2
+--ENEMIES v.0.17.4
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -534,6 +534,7 @@ local function On_Init()
 	if global.rocketsilos == nil then
 		global.rocketsilos = {}
 	end
+	
 	
 	
 	--- Expansion Initialization ----
@@ -1114,6 +1115,7 @@ function check_kill_count()
 end
 ]]
 
+
 ---------------------------------------------
 local function On_Death(event)
 
@@ -1330,6 +1332,8 @@ local function On_Death(event)
 	
 
 end
+
+
 
 
 --------------------------------------------
@@ -1586,10 +1590,14 @@ script.on_event(defines.events.on_research_finished, function(event)
 
 	local research = event.research.name
   
-    if research == "military" then
-        global.tech_level = global.tech_level + 5
+    if research == "military-science-pack" then
+        global.tech_level = global.tech_level + 10
     end      
 
+    if research == "military" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
     if research == "military-2" then
         global.tech_level = global.tech_level + 5
     end    	
@@ -1610,6 +1618,14 @@ script.on_event(defines.events.on_research_finished, function(event)
         global.tech_level = global.tech_level + 500
     end  
   
+     if research == "explosives" then
+        global.tech_level = global.tech_level + 50
+    end 
+
+     if research == "flammables" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
     if research == "land-mine" then
         global.tech_level = global.tech_level + 5
     end  
@@ -1618,10 +1634,41 @@ script.on_event(defines.events.on_research_finished, function(event)
         global.tech_level = global.tech_level + 10
     end  
   
-    if research == "tanks" then
-        global.tech_level = global.tech_level + 5
+    if research == "laser" then
+        global.tech_level = global.tech_level + 15
     end  
-  
+
+    if research == "tanks" then
+        global.tech_level = global.tech_level + 15
+    end 
+
+    if research == "rocketry" then
+        global.tech_level = global.tech_level + 5
+    end 
+
+    if research == "explosive-rocketry" then
+        global.tech_level = global.tech_level + 50
+    end 
+		
+    if research == "heavy-armor" then
+        global.tech_level = global.tech_level + 10
+    end 
+
+		
+    if research == "modular-armor" then
+        global.tech_level = global.tech_level + 20
+    end 
+		
+		
+    if research == "power-armor" then
+        global.tech_level = global.tech_level + 25
+    end 
+	
+		
+    if research == "power-armor-2" then
+        global.tech_level = global.tech_level + 25
+    end 
+	
     if research == "turrets" then
         global.tech_level = global.tech_level + 5
     end  
@@ -1630,6 +1677,12 @@ script.on_event(defines.events.on_research_finished, function(event)
         global.tech_level = global.tech_level + 15
     end  
 
+			
+    if research == "stone-walls" then
+        global.tech_level = global.tech_level + 5
+    end 
+	
+	
     if research == "rocket-silo" then
         global.tech_level = global.tech_level + 500
     end  
@@ -1638,64 +1691,93 @@ script.on_event(defines.events.on_research_finished, function(event)
         global.tech_level = global.tech_level + 15
     end  
 
+	
+    if research == "combat-robotics-2" then
+        global.tech_level = global.tech_level + 15
+    end  
+
+    if research == "combat-robotics-3" then
+        global.tech_level = global.tech_level + 15
+    end  
+	
     if research == "artillery" then
         global.tech_level = global.tech_level + 500
-    end  	
+    end  
 
+
+    if research == "energy-shield-equipment" then
+        global.tech_level = global.tech_level + 50
+    end  
+
+    if research == "energy-shield-mk2-equipment" then
+        global.tech_level = global.tech_level + 50
+    end 	
+
+
+    if research == "personal-laser-defense-equipment" then
+        global.tech_level = global.tech_level + 10
+    end 
+
+
+    if research == "discharge-defense-equipment" then
+        global.tech_level = global.tech_level + 10
+    end 
+	
+	---- Military Tech Upgrades
     if research == "physical-projectile-damage-1" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 10
     end
 
     if research == "physical-projectile-damage-2" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 20
     end
 
     if research == "physical-projectile-damage-3" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 30
     end
 
     if research == "physical-projectile-damage-4" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 40
     end
 
     if research == "physical-projectile-damage-5" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 50
     end
 
     if research == "physical-projectile-damage-6" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 100
     end
 
     if research == "physical-projectile-damage-7" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 150
     end
 	
     if research == "stronger-explosives-1" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 10
     end  
 	
     if research == "stronger-explosives-2" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 20
     end 
 	
     if research == "stronger-explosives-3" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 30
     end 
 	
     if research == "stronger-explosives-4" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 40
     end 
 	
     if research == "stronger-explosives-5" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 50
     end 
 	
     if research == "stronger-explosives-6" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 100
     end 
 	
     if research == "stronger-explosives-7" then
-        global.tech_level = global.tech_level + 5
+        global.tech_level = global.tech_level + 150
     end 
 	
     if research == "refined-flammables-1" then
@@ -1703,27 +1785,27 @@ script.on_event(defines.events.on_research_finished, function(event)
     end  
 		
     if research == "refined-flammables-2" then
-        global.tech_level = global.tech_level + 10
+        global.tech_level = global.tech_level + 20
     end 
 		
     if research == "refined-flammables-3" then
-        global.tech_level = global.tech_level + 10
+        global.tech_level = global.tech_level + 30
     end 
 		
     if research == "refined-flammables-4" then
-        global.tech_level = global.tech_level + 10
+        global.tech_level = global.tech_level + 40
     end 
 		
     if research == "refined-flammables-5" then
-        global.tech_level = global.tech_level + 100
+        global.tech_level = global.tech_level + 50
     end 
 		
     if research == "refined-flammables-6" then
-        global.tech_level = global.tech_level + 200
+        global.tech_level = global.tech_level + 100
     end 
 		
     if research == "refined-flammables-7" then
-        global.tech_level = global.tech_level + 300
+        global.tech_level = global.tech_level + 150
     end 
 		 
 	
@@ -1757,36 +1839,96 @@ script.on_event(defines.events.on_research_finished, function(event)
 		
     if research == "weapon-shooting-speed-1" then
         global.tech_level = global.tech_level + 5
-    end 
+    end
+	
     if research == "weapon-shooting-speed-2" then
         global.tech_level = global.tech_level + 15
-    end 
+    end
+	
     if research == "weapon-shooting-speed-3" then
         global.tech_level = global.tech_level + 25
     end 
+	
     if research == "weapon-shooting-speed-4" then
         global.tech_level = global.tech_level + 50
     end 
+	
     if research == "weapon-shooting-speed-5" then
         global.tech_level = global.tech_level + 100
-    end 	
+    end 
+	
     if research == "weapon-shooting-speed-6" then
         global.tech_level = global.tech_level + 150
     end 
+
+    if research == "laser-turret-speed-1" then
+        global.tech_level = global.tech_level + 50
+    end	
+
+    if research == "laser-turret-speed-2" then
+        global.tech_level = global.tech_level + 60
+    end	
+
+    if research == "laser-turret-speed-3" then
+        global.tech_level = global.tech_level + 80
+    end	
 	
-    if research == "physical-projectile-damage-5" then
-        global.tech_level = global.tech_level + 15
-    end  
-
-
-
-    if research == "rocket-damage-5" then
-        global.tech_level = global.tech_level + 15
-    end 
+    if research == "laser-turret-speed-4" then
+        global.tech_level = global.tech_level + 90
+    end		
+    
+	if research == "laser-turret-speed-5" then
+        global.tech_level = global.tech_level + 100
+    end	
 	
-    if research == "cannon-shell-damage-5" then
-        global.tech_level = global.tech_level + 15
-    end 	
+	if research == "laser-turret-speed-6" then
+        global.tech_level = global.tech_level + 150
+    end	
+	
+	if research == "laser-turret-speed-7" then
+        global.tech_level = global.tech_level + 200
+    end	
+	
+	--
+	if research == "artillery-shell-range-1" then
+        global.tech_level = global.tech_level + 300
+    end	
+
+	--
+	if research == "artillery-shell-speed-1" then
+        global.tech_level = global.tech_level + 300
+    end		
+
+	--
+	if research == "follower-robot-count-1" then
+        global.tech_level = global.tech_level + 100
+    end		
+		
+	if research == "follower-robot-count-2" then
+        global.tech_level = global.tech_level + 100
+    end		
+		
+	if research == "follower-robot-count-3" then
+        global.tech_level = global.tech_level + 100
+    end		
+		
+	if research == "follower-robot-count-4" then
+        global.tech_level = global.tech_level + 100
+    end		
+		
+	if research == "follower-robot-count-5" then
+        global.tech_level = global.tech_level + 100
+    end		
+		
+	if research == "follower-robot-count-6" then
+        global.tech_level = global.tech_level + 100
+    end		
+		
+	if research == "follower-robot-count-7" then
+        global.tech_level = global.tech_level + 100
+    end						
+	
+	
 end)
 
 ---------------------------------------------
@@ -1803,8 +1945,6 @@ script.on_event(pre_remove_events, On_Remove)
 
 local death_events = {defines.events.on_entity_died}
 script.on_event(death_events, On_Death)
-
-
 
 
 ---------------------------------------------

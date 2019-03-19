@@ -27,8 +27,8 @@ if mods["bobenemies"] then
 		data.raw["unit-spawner"]["bob-biter-spawner"].spawning_radius = 25
 		data.raw["unit-spawner"]["bob-biter-spawner"].spawning_spacing = 2
 		data.raw["unit-spawner"]["bob-biter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
-		data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_absolute = 15
-		data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorbtion_proportional = 0.005
+		data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorption_absolute = 15
+		data.raw["unit-spawner"]["bob-biter-spawner"].pollution_absorption_proportional = 0.005
 
 
 		--- Bob's Biter Units
@@ -56,8 +56,8 @@ if mods["bobenemies"] then
 		data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_radius = 20
 		data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_spacing = 2
 		data.raw["unit-spawner"]["bob-spitter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
-		data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_absolute = 15
-		data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorbtion_proportional = 0.005
+		data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorption_absolute = 15
+		data.raw["unit-spawner"]["bob-spitter-spawner"].pollution_absorption_proportional = 0.005
 
 		--- Bob's Spitter Units
 		pollution_attack("bob-big-electric-spitter", 1500)
@@ -80,8 +80,6 @@ if mods["bobenemies"] then
 	 call_radius("bob-big-piercing-worm-turret", 120)
 	 call_radius("bob-big-electric-worm-turret", 120)
 	 call_radius("bob-giant-worm-turret", 200)
-	 call_radius("bob-behemoth-worm-turret", 300)
-
 
 
 end

@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 0.17.4
+-- NE BUILDINGS Ver = 0.17.6
 local QC_Mod = false
 
 

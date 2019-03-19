@@ -85,7 +85,8 @@ data:extend({
     {
       type = "electric",
       usage_priority = "secondary-input",
-      emissions = 0.03 / 3.5
+      --emissions = 0.03 / 3.5
+	  emissions_per_second_per_watt = 1 / 210000
     },
     energy_usage = "210kW",
     ingredient_count = 6,
@@ -800,8 +801,8 @@ data:extend({
     collision_box = {{-3.2, -2.2}, {2.2, 2.2}},
     selection_box = {{-3.5, -2.5}, {2.5, 2.5}},
 	
-    pollution_absorbtion_absolute = 20,
-    pollution_absorbtion_proportional = 0.01,
+    pollution_absorption_absolute = 20,
+    pollution_absorption_proportional = 0.01,
     pollution_to_enhance_spawning = 30000,
     corpse = "Natural_Evolution_Biter-Spawner-corpse",
     dying_explosion = "blood-explosion-huge",
@@ -923,8 +924,8 @@ data:extend({
     healing_per_tick = 0.02,
     collision_box = {{-3.2, -2.2}, {2.2, 2.2}},
     selection_box = {{-3.5, -2.5}, {2.5, 2.5}},
-    pollution_absorbtion_absolute = 20,
-    pollution_absorbtion_proportional = 0.01,
+    pollution_absorption_absolute = 20,
+    pollution_absorption_proportional = 0.01,
     pollution_to_enhance_spawning = 30000,
     corpse = "Natural_Evolution_Spitter-Spawner-corpse",
     dying_explosion = "blood-explosion-huge",

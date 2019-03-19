@@ -2,7 +2,7 @@
 require ("prototypes.NE_Units.Projectiles")
 
 local ne_collision_box = {}
-local c1 = 0.15
+local c1 = 0.05
 
 local ne_spitter_selection_box = {}
 local ss1 = 0.4
@@ -47,7 +47,7 @@ for i = 1, 20 do
 	
 	-- Collision Box
 	table.insert(ne_collision_box, {{-(c1), -(c1)}, {(c1), (c1)}})	
-	c1 = c1 + 0.0325 --- from 0.15 to 0.8
+	c1 = c1 + 0.0325 --- from 0.05 to 0.65
 	
 	-- Selection Box
 	table.insert(ne_spitter_selection_box, {{-(ss1), -(ss2)}, {(ss3), (ss4)}})	
@@ -96,9 +96,10 @@ for i = 1, 20 do
 	attack_range = attack_range + 0.4 + (NE_Enemies.Settings.NE_Difficulty / 10) -- 8.5 to 18
 	damage_modifier = damage_modifier + 0.125 + (NE_Enemies.Settings.NE_Difficulty / 5) -- 0.5 to 6.675
 	
-	pollution_attack_increment = ((100 - i) / 100)*(1.61735 ^ i) + ((i/100)*(750 * i)) -- 15K Max 
-	if pollution_attack_increment + i <= 100 then pollution_attack_increment = 99 + i end
 	
+	
+	pollution_attack_increment = math.floor((((100 - i) / 100)*(1.3645 ^ i) + ((i/100)*(50 * i)) * 2) / 3)  
+	if pollution_attack_increment <= 2 then pollution_attack_increment = 2 end	
 ------------------------- Units --------------------
 	
 	------ SPITTERS
@@ -120,11 +121,13 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_blue_tint2,
 							tint2 = ne_blue_tint1,
-                            roarvolume = i/25,
+                            roarvolume = i/25 + 0.2,
 							projectile = "Electric-Projectile" 
 						})
 	NE_Spitter_Breeder_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_blue_tint2, ne_blue_tint1)
     NE_Spitter_Breeder_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Spitter_Breeder_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
+    NE_Spitter_Breeder_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
 	NE_Spitter_Breeder_Unit.localised_description = {"entity-description.ne-spitter-breeder"} 
     
 	data:extend{NE_Spitter_Breeder_Unit}
@@ -148,10 +151,12 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_fire_tint,
 							tint2 = ne_fire_tint2,
-                            roarvolume = i/25,
+                            roarvolume = i/25 + 0.2,
 						})
 	NE_Spitter_Fire_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_fire_tint, ne_fire_tint2)
     NE_Spitter_Fire_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Spitter_Fire_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
+    NE_Spitter_Fire_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
 	NE_Spitter_Fire_Unit.localised_description = {"entity-description.ne-spitter-fire"} 
     
 	data:extend{NE_Spitter_Fire_Unit}
@@ -176,11 +181,13 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_green_tint,
 							tint2 = ne_green_tint2,
-                            roarvolume = i/25,
+                            roarvolume = i/25 + 0.2,
 							projectile = "Unit-Projectile"
 						})
 	NE_Spitter_ULaunch_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_green_tint, ne_green_tint2)
     NE_Spitter_ULaunch_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Spitter_ULaunch_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
+    NE_Spitter_ULaunch_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
 	NE_Spitter_ULaunch_Unit.localised_description = {"entity-description.ne-spitter-ulaunch"} 
     
 	data:extend{NE_Spitter_ULaunch_Unit}
@@ -204,11 +211,13 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_yellow_tint,
 							tint2 = ne_yellow_tint2,
-                            roarvolume = i/25,
+                            roarvolume = i/25 + 0.2,
 							projectile = "Web-Projectile"
 						})
 	NE_Spitter_Webshooter.run_animation = spitterrunanimation(ne_scale[i], ne_yellow_tint, ne_yellow_tint2)
     NE_Spitter_Webshooter.pollution_to_join_attack = pollution_attack_increment
+	NE_Spitter_Webshooter.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
+    NE_Spitter_Webshooter.working_sound =  make_biter_calls(i/25 + 0.08)
 	NE_Spitter_Webshooter.localised_description = {"entity-description.ne-spitter-webshooter"}     
 	
 	data:extend{NE_Spitter_Webshooter}
@@ -232,11 +241,13 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_pink_tint,
 							tint2 = ne_black_tint,
-                            roarvolume = i/25,
+                            roarvolume = i/25 + 0.2,
 							projectile = "Mine-Projectile-"..i
 						})
 	NE_Spitter_Mine_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_pink_tint, ne_black_tint)
     NE_Spitter_Mine_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Spitter_Mine_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
+    NE_Spitter_Mine_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
 	NE_Spitter_Mine_Unit.localised_description = {"entity-description.ne-spitter-mine"}     
 	
 	data:extend{NE_Spitter_Mine_Unit}

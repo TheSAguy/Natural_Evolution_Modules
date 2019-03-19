@@ -29,7 +29,7 @@ end
 	--- Megladon Biter
 	NE_Megladon_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
     NE_Megladon_Unit.name = "ne-biter-megalodon"
-	NE_Megladon_Unit.collision_box = {{-0.8, -0.8}, {0.8, 0.8}}
+	NE_Megladon_Unit.collision_box = {{-0.6, -0.6}, {0.6, 0.6}}
 	NE_Megladon_Unit.selection_box = {{-2.4, -2.7}, {2.75, 0.5}}
 	NE_Megladon_Unit.drawing_box = {{-5.0, -5.5}, {5.0, 2.5}}
     NE_Megladon_Unit.max_health = 15000 + (5000 * NE_Enemies.Settings.NE_Difficulty)
@@ -40,7 +40,7 @@ end
 	NE_Megladon_Unit.vision_distance = 100 -- v 30
     NE_Megladon_Unit.movement_speed = 0.3 -- v 0.17,
     NE_Megladon_Unit.distance_per_frame = 0.5 -- v0.2,
-	NE_Megladon_Unit.pollution_to_join_attack = 10000
+	NE_Megladon_Unit.pollution_to_join_attack = 1000
 	NE_Megladon_Unit.corpse = "ne-megalodon-corpse"
 	NE_Megladon_Unit.attack_parameters = NE_Biter_Melee_Single_Attack(
 						{
@@ -55,6 +55,8 @@ end
 							sound = 1.5
 						})
 	NE_Megladon_Unit.run_animation = biterattackanimation(ne_scale, ne_mega_tint_2, ne_mega_tint_1)
+	NE_Megladon_Unit.dying_sound =  make_biter_dying_sounds(1.5)
+    NE_Megladon_Unit.working_sound =  make_biter_calls(1.25)
 	NE_Megladon_Unit.localised_name = {"entity-name.ne-biter-megalodon"}
 	NE_Megladon_Unit.localised_description = {"entity-description.ne-biter-megalodon"}
     

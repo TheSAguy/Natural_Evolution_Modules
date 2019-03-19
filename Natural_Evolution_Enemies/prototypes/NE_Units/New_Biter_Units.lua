@@ -1,7 +1,7 @@
 
 
 local ne_collision_box = {}
-local c1 = 0.15
+local c1 = 0.05
 
 local ne_biter_selection_box = {}
 local bs1 = 0.225
@@ -42,7 +42,7 @@ for i = 1, 20 do
 
 	-- Collision Box
 	table.insert(ne_collision_box, {{-(c1), -(c1)}, {(c1), (c1)}})	
-	c1 = c1 + 0.0325 -- from 0.15 to 0.8
+	c1 = c1 + 0.0325 -- from 0.05 to 0.65
 	
 	
 	-- Selection Box
@@ -95,8 +95,8 @@ for i = 1, 20 do
 	
 	attack_range = attack_range + 0.0625  -- 0.5 to 1.75
 	
-	pollution_attack_increment = ((100 - i) / 100)*(1.640785 ^ i) + ((i/100)*(1000 * i)) -- 20K Max 
-	if pollution_attack_increment + i <= 150 then pollution_attack_increment = 149 + i end
+	pollution_attack_increment = math.floor((((100 - i) / 100)*(1.3645 ^ i) + ((i/100)*(100 * i)) * 2) / 3)  
+	if pollution_attack_increment <= 2 then pollution_attack_increment = 2 end
 	
 ------------------------- Units --------------------
 
@@ -120,10 +120,12 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_blue_tint2,
 							tint2 = ne_blue_tint1,
-							sound = i/25
+							sound = i/25 + 0.1
 						})
 	NE_Biter_Breeder_Unit.run_animation = biterrunanimation(ne_scale[i], ne_blue_tint2, ne_blue_tint1)
 	NE_Biter_Breeder_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Biter_Breeder_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
+    NE_Biter_Breeder_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
 	NE_Biter_Breeder_Unit.localised_description = {"entity-description.ne-biter-breeder"}
     
 	data:extend{NE_Biter_Breeder_Unit}
@@ -151,10 +153,12 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_fire_tint2,
 							tint2 = ne_fire_tint,
-							sound = i/25
+							sound = i/25 + 0.1
 						})	
 	NE_Biter_Fire_Unit.run_animation = biterrunanimation(ne_scale[i], ne_fire_tint2, ne_fire_tint)
     NE_Biter_Fire_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Biter_Fire_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
+    NE_Biter_Fire_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
 	NE_Biter_Fire_Unit.localised_description = {"entity-description.ne-biter-fire"}
 	
 	data:extend{NE_Biter_Fire_Unit}
@@ -188,10 +192,12 @@ for i = 1, 20 do
                             scale = ne_scale[i],
 							tint1 = ne_fire_tint,
                             tint2 = ne_green_tint,
-							sound = i/25
+							sound = i/25 + 0.1
 						})	
 	NE_Biter_Fast_Unit.run_animation = biterrunanimation(ne_scale[i], ne_fire_tint, ne_green_tint)
     NE_Biter_Fast_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Biter_Fast_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
+    NE_Biter_Fast_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
 	NE_Biter_Fast_Unit.localised_description = {"entity-description.ne-biter-fast"}   
 	data:extend{NE_Biter_Fast_Unit}
 	
@@ -218,10 +224,12 @@ for i = 1, 20 do
                             scale = ne_scale[i],
 							tint1 = ne_orange_tint,
                             tint2 = ne_yellow_tint,
-							sound = i/25
+							sound = i/25 + 0.1
 						})
 	NE_Biter_WallBreaker_Unit.run_animation = biterrunanimation(ne_scale[i], ne_orange_tint, ne_yellow_tint)
     NE_Biter_WallBreaker_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Biter_WallBreaker_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
+    NE_Biter_WallBreaker_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
 	NE_Biter_WallBreaker_Unit.localised_description = {"entity-description.ne-biter-wallbreaker"} 
     
 	data:extend{NE_Biter_WallBreaker_Unit}
@@ -237,7 +245,7 @@ for i = 1, 20 do
 	NE_Biter_Tank_Unit.max_health = ne_tank_health[i]
 	NE_Biter_Tank_Unit.loot = ne_loot
 	NE_Biter_Tank_Unit.resistances = {{type = "laser", percent = i * 5}} -- More Immune to Laser
-	NE_Biter_Tank_Unit.healing_per_tick = 0.2 -- Vanilla 0.1
+	NE_Biter_Tank_Unit.healing_per_tick = 0.1 -- Vanilla 0.01
 	NE_Biter_Tank_Unit.corpse = "ne-biter-tank-corpse-" .. i
 	NE_Biter_Tank_Unit.attack_parameters = NE_Biter_Melee_Double_Attack(
 						{
@@ -251,10 +259,12 @@ for i = 1, 20 do
                             scale = ne_scale[i],
                             tint1 = ne_green_tint,
 							tint2 = ne_pink_tint,
-							sound = i/25
+							sound = i/25 + 0.1
 						})
 	NE_Biter_Tank_Unit.run_animation = biterrunanimation(ne_scale[i], ne_green_tint, ne_pink_tint)
     NE_Biter_Tank_Unit.pollution_to_join_attack = pollution_attack_increment
+	NE_Biter_Tank_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
+    NE_Biter_Tank_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
 	NE_Biter_Tank_Unit.localised_description = {"entity-description.ne-biter-tank"} 
     
 	data:extend{NE_Biter_Tank_Unit}

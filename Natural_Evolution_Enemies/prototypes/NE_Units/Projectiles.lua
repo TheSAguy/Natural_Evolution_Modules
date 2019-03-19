@@ -31,7 +31,7 @@ function Spitter_Attack_Projectile(data)
         }
       }
     },
-    sound = make_spitter_roars(0.75),
+    sound = make_spitter_roars(data.roarvolume),
     animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
@@ -63,6 +63,7 @@ function Spitter_Attack_Projectile_NH(data)
         }
       }
     },
+	sound = make_spitter_roars(data.roarvolume),
     animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
@@ -161,6 +162,7 @@ function Spitter_Attack_Stream(data)
           }
         }
       },
+	sound = make_spitter_roars(data.roarvolume),  
     animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
@@ -749,7 +751,7 @@ my_new_fire_flame.damage_per_tick = {amount = 5 / 60, type = "ne_fire", force = 
 my_new_fire_flame.initial_lifetime = 20
 my_new_fire_flame.maximum_lifetime = 300
 my_new_fire_flame.burnt_patch_lifetime = 200
-my_new_fire_flame.emissions_per_tick = 0
+my_new_fire_flame.emissions_per_second = 0
 my_new_fire_flame.lifetime_increase_by = 50
 my_new_fire_flame.smoke = {}
 

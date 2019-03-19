@@ -87,8 +87,8 @@ if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 	data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 25
 	data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2
 	data.raw["unit-spawner"]["biter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
-	data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_absolute = 15
-	data.raw["unit-spawner"]["biter-spawner"].pollution_absorbtion_proportional = 0.005
+	data.raw["unit-spawner"]["biter-spawner"].pollution_absorption_absolute = 15
+	data.raw["unit-spawner"]["biter-spawner"].pollution_absorption_proportional = 0.005
 
 	-- Spitter Spawner Adjustments
 	data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Enemies.Settings.NE_Difficulty
@@ -99,8 +99,8 @@ if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 	data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20
 	data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2
 	data.raw["unit-spawner"]["spitter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
-	data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_absolute = 15
-	data.raw["unit-spawner"]["spitter-spawner"].pollution_absorbtion_proportional = 0.005
+	data.raw["unit-spawner"]["spitter-spawner"].pollution_absorption_absolute = 15
+	data.raw["unit-spawner"]["spitter-spawner"].pollution_absorption_proportional = 0.005
 
 
 
