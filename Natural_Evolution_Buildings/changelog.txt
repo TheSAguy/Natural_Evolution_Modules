@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.8
+Date: 3. 20. 2019
+  Bugfix:
+    - Fixed Standard Dart and Poison Dart Conversion Ammo
+---------------------------------------------------------------------------------------------------
+Version: 0.17.7
+Date: 3. 20. 2019
+  Features:
+    - New Gun Dart Rifle - Thx thereaverofdarkness
+    - Moved Alien Understanding Tech up in Tech tree - Now requires military-science to unlock
+    - Rebalanced Tech Cost of some Techs
+---------------------------------------------------------------------------------------------------
 Version: 0.17.6
 Date: 3. 18. 2019
   Features:

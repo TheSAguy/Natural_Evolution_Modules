@@ -32,31 +32,25 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "bi-standard_dart_magazine_c"
-			},
-			{
-				type = "unlock-recipe",
 				recipe = "copper_bullets_c"
 			},
 			{
 				type = "unlock-recipe",
 				recipe = "firearm_magazine_c"
 			},
-			{
-				type = "unlock-recipe",
-				recipe = "piercing_rounds_magazine_c"
-			},
+
 
 			
 		},
-		prerequisites = {"advanced-electronics"},
+		prerequisites = {"military-science-pack"},
 		unit =
 		{
 		  count = 75,
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
-			{"logistic-science-pack", 1}
+			{"logistic-science-pack", 1},
+			{"military-science-pack", 1}		
 		  },
 		  time = 50
 		},
@@ -79,36 +73,38 @@ data:extend({
 				type = 'unlock-recipe', 
 				recipe='decelerate_concrete'
 			},
-			{
-				type = 'unlock-recipe', 
-				recipe='Biological-bullet-magazine'
-			},
+
 			{
 				type = 'unlock-recipe', 
 				recipe='bio_land_mine'
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "uranium_rounds_magazine_c"
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "Biological_bullet_magazine_c"
-			},
+				recipe = "bi-standard_dart_magazine_c"
+			},	
 			{
 				type = "unlock-recipe",
 				recipe = "bi-enhanced_dart_magazine_c"
-			},			
+			},	
+			{
+				type = "unlock-recipe",
+				recipe = "piercing_rounds_magazine_c"
+			},	
+			{
+				type = 'unlock-recipe', 
+				recipe='Biological-bullet-magazine'
+			},
+		
 		},
 		prerequisites = {"AlienUnderstanding"},
 		unit =
 		{
-		  count = 150,
+		  count = 250,
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
-			{"chemical-science-pack", 1}
+			{"military-science-pack", 1},
 		  },
 		  time = 50
 		},
@@ -127,18 +123,26 @@ data:extend({
 			{
 				type = "unlock-recipe",
 				recipe = "bi-poison_dart_magazine_c"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "uranium_rounds_magazine_c"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "Biological_bullet_magazine_c"
 			},			
 		},
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
 		{
-		  count = 250,
+		  count = 350,
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 			{"chemical-science-pack", 1},
-			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -167,14 +171,15 @@ data:extend({
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
-			{"logistic-science-pack", 1}
+			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 		  },
 		  time = 50
 		},
 		order = "a-i-a",
 	},
 
-	
+	--- Terraforming Station Upgrade
 	{
 		type = "technology",
 		name = "TerraformingStation-2",
@@ -199,7 +204,7 @@ data:extend({
 		order = "a-i-b",
 	},
 	
-	
+	--- Terraforming Station Infinite
 	{
 		type = "technology",
 		name = "TerraformingStation-3",
@@ -248,7 +253,8 @@ data:extend({
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
-			{"chemical-science-pack", 1}
+			{"military-science-pack", 1},
+			{"chemical-science-pack", 1},
 		  },
 		  time = 50
 		},
@@ -281,14 +287,15 @@ data:extend({
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
-			{"logistic-science-pack", 1}
+			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 		  },
 		  time = 50
 		},
 		order = "a-h-c",
 	},
 	
-		--- Spawners
+		--- Spawners - Biter
 	{
 		type = "technology",
 		name = "Biter_Spawners",
@@ -313,15 +320,15 @@ data:extend({
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 			{"chemical-science-pack", 1},
-			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
 		order = "a-h-c",
 	},
 	
-	
+	--- Spawners - Spitter
 	{
 		type = "technology",
 		name = "Spitter_Spawners",
@@ -346,8 +353,8 @@ data:extend({
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 			{"chemical-science-pack", 1},
-			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -388,6 +395,7 @@ data:extend({
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 			{"chemical-science-pack", 1}
 		  },
 		  time = 50
@@ -395,6 +403,7 @@ data:extend({
 		upgrade = true,
 		order = "a-h-a",
 	},
+	
 	{
 		type = "technology",
 		name = "Breeding-2",
@@ -427,6 +436,7 @@ data:extend({
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 			{"chemical-science-pack", 1}
 		  },
 		  time = 50
@@ -434,6 +444,7 @@ data:extend({
 		upgrade = true,
 		order = "a-h-b",
 	},
+	
 	{
 		type = "technology",
 		name = "Breeding-3",
@@ -461,19 +472,20 @@ data:extend({
 		prerequisites = {"Breeding-2"},
 		unit =
 		{
-		  count = 300,
+		  count = 500,
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
-			{"chemical-science-pack", 1},
-			{"production-science-pack", 1}
+			{"military-science-pack", 1},
+			{"chemical-science-pack", 1}
 		  },
 		  time = 50
 		},
 		upgrade = true,
 		order = "a-h-c",
 	},
+	
 	{
 		type = "technology",
 		name = "Breeding-4",
@@ -494,13 +506,13 @@ data:extend({
 		prerequisites = {"Breeding-3"},
 		unit =
 		{
-		  count = 400,
+		  count = 800,
 		  ingredients =
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
-			{"chemical-science-pack", 1},
-			{"production-science-pack", 1}
+			{"military-science-pack", 1},
+			{"chemical-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -550,6 +562,7 @@ data:extend({
 		  {
 			{"automation-science-pack", 1},
 			{"logistic-science-pack", 1},
+			{"military-science-pack", 1},
 			{"chemical-science-pack", 1}
 		  },
 		  time = 50

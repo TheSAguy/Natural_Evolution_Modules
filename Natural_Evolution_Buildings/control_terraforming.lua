@@ -79,8 +79,8 @@ function Reduce_Evolution(TS_table)
 			
 		end
 		
-		writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)  
-		writeDebug("The total Evolution Deduction due to Terraforming Stations is: " .. global.Total_TerraformingStations_Evo_Deduction)  
+		--writeDebug("The current Factor Multiplier is: " .. global.factormultiplier)  
+		--writeDebug("The total Evolution Deduction due to Terraforming Stations is: " .. global.Total_TerraformingStations_Evo_Deduction)  
 
 		--Reduce Ammo
 		ammo = ammo-1

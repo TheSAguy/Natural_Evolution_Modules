@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 0.17.6
+-- NE BUILDINGS Ver = 0.17.8
 local QC_Mod = false
 
 
@@ -25,14 +25,15 @@ global.NE_Buildings.Settings.Battle_Marker = settings.startup["NE_Battle_Marker"
 --- Conversion Ammo Types
 local AMMO_TYPES = {
    ["bi-basic-dart-magazine_c"] = true,
+   ["bi-standard-dart-magazine_c"] = true,
    ["bi-enhanced-dart-magazine_c"] = true,
+   ["bi-poison-dart-magazine_c"] = true,
    ["firearm-magazine_c"] = true,
    ["copper-bullet-magazine_c"] = true,
    ["piercing-rounds-magazine_c"] = true,
    ["uranium-rounds-magazine_c"] = true,
-   ["Biological-bullet-magazine_c"] = true,
+   ["Biological-bullet-magazine_c"] = true
 }
-
 
 
 ---------------------------------------------				 
@@ -472,26 +473,34 @@ local function On_Death(event)
 
 	
 	--- Conversion Ammo Stuff
-	-- Nexela Code!
+	-- Nexela Code! Thanks for your help!
 	local ammo
 	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause then 
-	writeDebug("Step 1")
+	writeDebug("Step 1 of Conversion Check")
+		
 		if event.cause.type == "ammo-turret" then
+		writeDebug("Step 2a of Conversion Check: Turret Killed Unit")
 			local turret = event.cause
 			local inventory = turret.get_inventory(defines.inventory.turret_ammo)
+			--writeDebug("Inventory Name: "..inventory)
 			for k in pairs(inventory.get_contents()) do
 				if AMMO_TYPES[k] then
 					ammo = inventory.find_item_stack(k)
 					break
 				end
 			end
+			
 		elseif event.cause.type == "player" then
+		writeDebug("Step 2b of Conversion Check: Player Killed Unit")
 			local character = event.cause
 			local index = character.selected_gun_index
 			ammo = character.get_inventory(defines.inventory.player_ammo)[index]
+			writeDebug("Inventory Name: "..ammo.name)
+		else
+			writeDebug("Step 2c of Conversion Check: SOMETHING else Killed Unit")
 		end
 
-		if ammo and ammo.valid_for_read and AMMO_TYPES[ammo.name]then
+		if ammo and ammo.valid_for_read and AMMO_TYPES[ammo.name] then
 			local Convert = surface.create_entity({name = entity.name, position = pos, force = event.cause.force.name})
 			Convert.health = entity.prototype.max_health / 4
 		end
