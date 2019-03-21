@@ -1,10 +1,11 @@
---ENEMIES v.0.17.4
+--ENEMIES v.0.17.6
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
+NE_Enemies.Settings.NE_Starting_Evolution = settings.startup["NE_Starting_Evolution"].value
 
 require ("util")
 require ("stdlib/event/event")
@@ -486,6 +487,15 @@ end
 ---------------------------------------------				 
 local function On_Init()
 
+	--- Set Initial Evolution Factor
+	if NE_Enemies.Settings.NE_Starting_Evolution then
+		
+		game.forces.enemy.evolution_factor = (NE_Enemies.Settings.NE_Starting_Evolution / 100)
+		if game.forces.enemy.evolution_factor > 1 then
+			game.forces.enemy.evolution_factor = 1
+		end
+		
+	end
 
 	--- Used for Unit Turrets
 	if not global.tick then
@@ -685,6 +695,7 @@ function Remove_Trees(entity)
 		end
 end
 
+
 --------------------- TRIGGERS  ---------------------------------
 script.on_event(defines.events.on_trigger_created_entity, function(event)
 	
@@ -802,6 +813,7 @@ local function On_Built(event)
     end 
 	
 end
+
 
 ---------------------------------------------
 local function On_Remove(event)
@@ -1230,9 +1242,16 @@ local function On_Death(event)
 			--- Cause Fire		
 			if entity.name == "ne-spawner-red" then		
 				writeDebug("Was a Fire Spawner")
-				surface.create_entity({name="ne-fire-flame-3", position = pos, force = "enemy"})
-				--surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
-				--surface.create_entity({name="ne-big-fire-explosion", position = pos, force = "enemy"})
+					local size = 3
+					for xxx = -size, size do
+					for yyy = -size, size do
+
+					local new_position = {x = pos.x + xxx,y = pos.y + yyy}
+				
+				
+						surface.create_entity({name="ne-fire-flame-3", position = new_position, force = "enemy"})
+					end
+					end
 
 			end
 			
@@ -1562,6 +1581,9 @@ function Scorched_Earth(surface, pos, size)
 				if replaceableTiles_alien[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})  
 					Scorch_test	= true
+					
+				elseif currentTilename == "volcanic-orange-heat-4" then
+					local spawn_fire = surface.create_entity({name="ne-fire-flame-1", position = pos, force = "enemy"})
 				end
 
 			else
@@ -1569,6 +1591,9 @@ function Scorched_Earth(surface, pos, size)
 				if replaceableTiles[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   
 					Scorch_test	= true
+					
+				elseif currentTilename == "red-desert-1" then
+					local spawn_fire = surface.create_entity({name="ne-fire-flame-1", position = pos, force = "enemy"})
 				end
 
 			end

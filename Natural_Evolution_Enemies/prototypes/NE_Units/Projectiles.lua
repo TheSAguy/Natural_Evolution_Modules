@@ -863,7 +863,7 @@ Launcher_Web_Entity.action =
           {
             type = "area",
 			force = "enemy",
-            radius = 6,
+            radius = 5,
             entity_flags = {"breaths-air"},
             action_delivery =
             {

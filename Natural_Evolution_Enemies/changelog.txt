@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.6
+Date: 3. 22. 2019
+  Features:
+    - Added Setting for Starting Evolution
+    - Updated Worm Stats
+    - Scorched Earth now causes fire on last level
+---------------------------------------------------------------------------------------------------
 Version: 0.17.5
 Date: 3. 18. 2019
   Features:

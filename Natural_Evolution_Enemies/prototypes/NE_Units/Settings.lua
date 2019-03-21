@@ -138,6 +138,7 @@ Resistances = {
 	---- Worms
 	Small_Worm = {
 	  {type = "fire", decrease = 0, percent = -90},
+	  {type = "ne_fire", decrease = 0, percent = 100},
       {type = "physical", decrease = 0, percent = 5},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 5, percent = 0},
@@ -147,6 +148,7 @@ Resistances = {
 	
 	Medium_Worm = {
 	  {type = "fire", decrease = 0, percent = -80},
+	  {type = "ne_fire", decrease = 0, percent = 100},
       {type = "physical", decrease = 10, percent = 10},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 10, percent = 10},
@@ -157,13 +159,25 @@ Resistances = {
 	
 	Big_Worm = {
 	  {type = "fire", decrease = 0, percent = -70},
+	  {type = "ne_fire", decrease = 0, percent = 100},
       {type = "physical", decrease = 15, percent = 15},
       {type = "impact", decrease = 0, percent = 0},
       {type = "explosion", decrease = 15, percent = 15},
       {type = "acid", decrease = 10, percent = 0},
       {type = "poison", decrease = 0, percent = 0},
       {type = "laser", decrease = 15, percent = 15}},
-	  	  
+
+	Behemoth_Worm = {
+	  {type = "fire", decrease = 0, percent = -60},
+	  {type = "ne_fire", decrease = 0, percent = 100},
+      {type = "physical", decrease = 15, percent = 30},
+      {type = "impact", decrease = 0, percent = 0},
+      {type = "explosion", decrease = 15, percent = 30},
+      {type = "acid", decrease = 0, percent = 100},
+      {type = "poison", decrease = 5, percent = 25},
+      {type = "laser", decrease = 15, percent = 15}},	  
+	  
+	  
 	  --- Spawner
 	
 	Spawner = {

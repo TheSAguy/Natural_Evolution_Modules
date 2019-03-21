@@ -8,9 +8,9 @@ NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 local ne_mega_tint_1 = {r=0, g=0, b=0, a=0.85}	-- Black
 local ne_mega_tint_2 = {r=1, g=0, b=0, a=0.5} -- Red
-local ne_scale = 3
+local ne_scale = 2.5
 
--- Loot - Only apply is Leet is enabled.	
+-- Loot - Only apply if Alien Artiacts is enabled.	
 if settings.startup["NE_Alien_Artifacts"].value == true then
 	mega_loot = 
 		{
@@ -29,7 +29,7 @@ end
 	--- Megladon Biter
 	NE_Megladon_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
     NE_Megladon_Unit.name = "ne-biter-megalodon"
-	NE_Megladon_Unit.collision_box = {{-0.6, -0.6}, {0.6, 0.6}}
+	NE_Megladon_Unit.collision_box = {{-0.4, -0.4}, {0.4, 0.4}}
 	NE_Megladon_Unit.selection_box = {{-2.4, -2.7}, {2.75, 0.5}}
 	NE_Megladon_Unit.drawing_box = {{-5.0, -5.5}, {5.0, 2.5}}
     NE_Megladon_Unit.max_health = 15000 + (5000 * NE_Enemies.Settings.NE_Difficulty)

@@ -142,6 +142,17 @@ data:extend(
     per_user = false,
   },
 
+    {
+    name = "NE_Starting_Evolution",
+	type = "int-setting",
+    setting_type = "startup",
+    default_value = 0,
+    maximum_value = 100,
+    minimum_value = 0,
+	order = "a[modifier]-r[NE_Starting_Evolution]",
+    per_user = false,
+  },
+  
 }
 )
 
