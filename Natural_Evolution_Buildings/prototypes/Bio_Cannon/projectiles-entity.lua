@@ -33,6 +33,76 @@ data:extend({
 	--Projectile
 
  -- Bio Cannon Ammo
+ 
+ 	 -- Prototype
+	   {
+		type = "projectile",
+		name = "bi-bio-cannon-proto-ammo",
+		flags = {"not-on-map"},
+		acceleration = 0.0004,
+		action =
+		{
+			{
+				type = "area",
+				radius = 2,
+				action_delivery =
+				{
+					type = "instant",
+					target_effects =
+					{
+						{
+						type = "damage",
+						damage = {amount = 80 * NE_Damage, type = "physical"}
+						},
+						{
+						type = "create-entity",
+						entity_name = "small-scorchmark",
+						check_buildability = true
+						},
+					
+					}
+				}
+			},
+
+
+		},
+		light = {intensity = 0.7, size = 3},
+		animation =
+		{
+			filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/Bio_Cannon_Basic_Ammo.png",
+			priority = "extra-high",
+			width = 18,
+			height = 47,
+			scale = 0.85,
+			frame_count = 1
+		},
+		shadow =
+		{
+			filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_cannon/projectiles/Bio_Cannon_Ammo-shadow.png",
+			priority = "extra-high",
+			width = 18,
+			height = 47,
+			scale = 0.85,
+			frame_count = 1
+		},
+
+		smoke =
+			{
+			  {
+				name = "smoke-fast",
+				deviation = {0.15, 0.15},
+				frequency = 1,
+				position = {0, 1},
+				slow_down_factor = 1,
+				starting_frame = 3,
+				starting_frame_deviation = 5,
+				starting_frame_speed = 0,
+				starting_frame_speed_deviation = 5
+			  }
+			}
+	  },
+
+ 
  -- Basic
    {
     type = "projectile",
@@ -131,7 +201,7 @@ data:extend({
 			name = "smoke-fast",
 			deviation = {0.15, 0.15},
 			frequency = 1,
-			position = {0, -1},
+			position = {0, 1},
 			slow_down_factor = 1,
 			starting_frame = 3,
 			starting_frame_deviation = 5,
@@ -241,7 +311,7 @@ data:extend({
 			name = "smoke-fast",
 			deviation = {0.15, 0.15},
 			frequency = 1,
-			position = {0, -1},
+			position = {0, 1},
 			slow_down_factor = 1,
 			starting_frame = 3,
 			starting_frame_deviation = 5,
@@ -352,7 +422,7 @@ data:extend({
 			name = "smoke-fast",
 			deviation = {0.15, 0.15},
 			frequency = 1,
-			position = {0, -1},
+			position = {0, 1},
 			slow_down_factor = 1,
 			starting_frame = 3,
 			starting_frame_deviation = 5,

@@ -501,6 +501,14 @@ data:extend({
 			{
 				type = 'unlock-recipe',
 				recipe='behemoth-spitter-hatching'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='behemoth-worm-hatching'
+			},
+			{
+				type = 'unlock-recipe',
+				recipe='behemoth-worm-hatching-refresh'
 			}
 		},
 		prerequisites = {"Breeding-3"},

@@ -101,8 +101,6 @@ data:extend({
 		},
 	}, 	 
 
-
-
   --- Medium Biter Hatching
 	{
     type = "recipe",
@@ -133,10 +131,6 @@ data:extend({
 		  result_count = 1,
 		},
 	}, 	 
-
- 
-	
-
 
   --- Big Biter Hatching
 	{
@@ -485,6 +479,61 @@ data:extend({
     energy_required = 50,
   },
 
+
+  --- Behemoth Worm Hatching
+  {
+    type = "recipe",
+    name = "behemoth-worm-hatching",
+	icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-worm.png",
+	icon_size = 32,
+    category = "Hatchery",
+	normal =
+		{
+			enabled = false,
+			energy_required = 100,
+			ingredients = 
+			{
+			  {"big-worm-hatching", 1},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=200},
+			},
+		  result = "behemoth-worm-hatching",
+		  result_count = 1,
+		},
+	expensive =	
+		{
+			enabled = false,
+			energy_required = 150,
+			ingredients = 
+			{
+			  {"big-worm-hatching", 2},
+			  {type="fluid", name="NE_enhanced-nutrient-solution", amount=300},
+			},
+		  result = "behemoth-worm-hatching",
+		  result_count = 1,
+		},
+  
+	},
+
+
+  {
+    type = "recipe",
+    name = "behemoth-worm-hatching-refresh",
+	icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-worm-r.png",
+	icon_size = 32,
+    category = "Hatchery",
+    enabled = false,
+    ingredients =
+    {
+      {"behemoth-worm-hatching-exhausted", 1},
+      {type="fluid", name="NE_revitalization-solution", amount=80},
+    },
+    result = "behemoth-worm-hatching",
+    energy_required = 50,
+  },
+
+    
+ 
+  
   --- Spawner Biter
   {
     type = "recipe",

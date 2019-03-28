@@ -69,6 +69,7 @@ data.raw["unit-spawner"]["spitter-spawner"].minable = {hardness = 1.5, mining_ti
 data.raw["turret"]["small-worm-turret"].minable = {hardness = 0.5, mining_time = 1.6, results = {{type="item", name="small-worm-hatching-exhausted", amount=1},}}
 data.raw["turret"]["medium-worm-turret"].minable = {hardness = 1.0, mining_time = 1.6, results = {{type="item", name="medium-worm-hatching-exhausted", amount=1},}}
 data.raw["turret"]["big-worm-turret"].minable = {hardness = 1.5, mining_time = 1.6, results = {{type="item", name="big-worm-hatching-exhausted", amount=1},}}
+data.raw["turret"]["behemoth-worm-turret"].minable = {hardness = 2, mining_time = 1.6, results = {{type="item", name="behemoth-worm-hatching-exhausted", amount=1},}}
 
 if mods["bobenemies"] then
 
@@ -83,7 +84,7 @@ if mods["bobenemies"] then
 
 end
 
---- All other Spawners
+--- All other Spawners?
 local spawners = data.raw["unit-spawner"]
 for k, v in pairs(spawners) do
 
@@ -142,7 +143,7 @@ end
 
 -- Adds a resitance of all damage types to an entity
 for k, v in pairs(data.raw["damage-type"]) do
-	local Resist = {type = v.name, percent = 80} -- or you could use k, and not v.name		
+	local Resist = {type = v.name, percent = 90} -- or you could use k, and not v.name		
 
 	if data.raw.inserter["combat-inserter"].resistances == nil then 
 		data.raw.inserter["combat-inserter"].resistances = {}
@@ -190,7 +191,7 @@ if data.raw.item["alien-artifact"] then
 	 
 		add_loot(
 		  spawners,
-		  {item = "alien-artifact",count_min = 5,count_max = 10,probability = 1/NE_Difficulty}
+		  {item = "alien-artifact",count_min = 4,count_max = 8,probability = 1/NE_Difficulty}
 		  ) 
 	 
 	 end
@@ -203,7 +204,7 @@ if data.raw.item["small-alien-artifact"] then
 	 
 		 add_loot(
 		  units,
-		  {item = "small-alien-artifact",count_min = 1,count_max = 3,probability = 1/NE_Difficulty}
+		  {item = "small-alien-artifact",count_min = 1,count_max = 2,probability = 1/NE_Difficulty}
 		  )
 	  
 	 end
@@ -212,7 +213,17 @@ end
 
 
 
-
+	
+--- If Bob Logistics, Update Combat Inserter Recipe.
+if mods["boblogistics"] and data.raw.item["red-inserter"] then
+	
+	thxbob.lib.recipe.remove_ingredient ("ne-combat-inserter", "fast-inserter")
+	thxbob.lib.recipe.add_new_ingredient ("ne-combat-inserter", {type = "item", name = "inserter", amount = 4})
+	thxbob.lib.recipe.add_new_ingredient ("ne-combat-inserter", {type = "item", name = "electronic-circuit", amount = 4})		
+	data.raw.item["combat-inserter"].subgroup = "bob-logistic-tier-2"
+	
+end
+	
 
 
 

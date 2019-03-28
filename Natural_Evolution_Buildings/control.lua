@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 0.17.8
+-- NE BUILDINGS Ver = 0.17.11
 local QC_Mod = false
 
 
@@ -350,6 +350,7 @@ local function On_Remove(event)
 				entity.name == "small-worm-turret-player" or
 				entity.name == "medium-worm-turret-player" or
 				entity.name == "big-worm-turret-player" or
+				entity.name == "behemoth-worm-turret-player" or
 				entity.name == "Natural_Evolution_Biter-Spawner" or
 				entity.name == "Natural_Evolution_Spitter-Spawner" or
 				entity.name == "ne-living-wall" 
@@ -495,7 +496,7 @@ local function On_Death(event)
 			local character = event.cause
 			local index = character.selected_gun_index
 			ammo = character.get_inventory(defines.inventory.player_ammo)[index]
-			writeDebug("Inventory Name: "..ammo.name)
+			--writeDebug("Inventory Name: "..ammo.name)
 		else
 			writeDebug("Step 2c of Conversion Check: SOMETHING else Killed Unit")
 		end
