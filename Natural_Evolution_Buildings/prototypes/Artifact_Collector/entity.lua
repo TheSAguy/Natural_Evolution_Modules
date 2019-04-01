@@ -150,8 +150,8 @@ data:extend(
     energy_per_nearby_scan = "400kW",
     energy_source =
     {
-      type = "electric",
-      usage_priority = "secondary-input"
+      type = "void",
+      --usage_priority = "secondary-input"
     },
     energy_usage = "200kW",
 
