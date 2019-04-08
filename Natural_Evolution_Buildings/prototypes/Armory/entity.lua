@@ -953,6 +953,7 @@ function preparing_animation(tint)
 	}
 end
 
+
 function prepared_animation(tint)
 	return {layers = 
 	{
@@ -993,6 +994,7 @@ function prepared_animation(tint)
 	}
 	}
 end
+
 
 function attacking_animation(tint)
 	return {layers = 
@@ -1038,6 +1040,7 @@ function attacking_animation(tint)
 	}
 end
 
+
 function folding_animation(tint)
 	return {layers = 
 	{
@@ -1081,6 +1084,7 @@ function folding_animation(tint)
 	}
 	}
 end
+
 
 function folded_animation(tint)
 	return {layers = 
@@ -1168,8 +1172,8 @@ data:extend({
     corpse = "medium-remnants",
 	 
 	 -- darkfrei: just another size of boxes, that's all
-    collision_box = {{-0.4, -0.4 }, {0.4, 0.4}},
-    selection_box = {{-.4, -.4 }, {.4, .4}},
+    collision_box = {{-0.2, -0.2 }, {0.2, 0.2}},
+    selection_box = {{-0.4, -0.4 }, {0.4, 0.4}},
     rotation_speed = 0.05,
     preparing_speed = 0.08,
     folding_speed = 0.08,

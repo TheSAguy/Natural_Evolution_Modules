@@ -22,6 +22,7 @@ data:extend(
     healing_per_tick = 0.01,
     collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
     selection_box = {{-0.4, -0.7}, {0.7, 0.4}},
+	--collision_mask = {"player-layer"},
     attack_parameters =
     {
       type = "projectile",

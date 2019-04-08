@@ -59,7 +59,14 @@ for k, v in pairs(units) do
 	
 end
 
+-- Add Collision layer to units. 
 
+for k, v in pairs(units) do
+
+	v.collision_mask = v.collision_mask or {"player-layer", "train-layer"} -- if no collision mask then the hardcoded one
+	table.insert (v.collision_mask, "layer-12")
+
+end
 
 		
 -- Make it so that you can mine spawners & worms, since you are able to convert them, you can now remove them. 

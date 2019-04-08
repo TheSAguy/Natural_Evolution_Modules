@@ -9,11 +9,10 @@ data:extend({
       type = "tile",
       name = "decelerate_concrete",
       needs_correction = false,
-      minable = {hardness = 0.2, mining_time = 0.5, result = "stone-brick"}, -- You only get brick back when you mine it...
+      minable = {mining_time = 0.5, result = "stone-brick"}, -- You only get brick back when you mine it...
       mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
-      collision_mask = {"ground-tile"},
-      --walking_speed_modifier = 0.5, -- Currently does not affect Enemy Units.
-	  walking_speed_modifier = 2.0,
+      collision_mask = {"ground-tile", "layer-12"},
+	  walking_speed_modifier = 1.5,
 	  vehicle_friction_modifier = 0.8,
       layer = 61,
       decorative_removal_probability = 1,

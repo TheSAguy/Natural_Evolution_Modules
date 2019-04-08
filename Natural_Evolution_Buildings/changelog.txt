@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.14
+Date: 4. 8. 2019
+  Features:
+    - Tweaked Dart Turret collision mask
+    - Decelerate Concrete changed to Pheromone Concrete. Enemy units can't cross. Idea from Darkfrei
+  Bugfix:
+    - Spelling in local
+---------------------------------------------------------------------------------------------------
 Version: 0.17.12
 Date: 4. 1. 2019
   Features:
