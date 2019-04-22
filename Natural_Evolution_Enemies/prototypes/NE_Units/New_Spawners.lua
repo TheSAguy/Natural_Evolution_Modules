@@ -47,8 +47,8 @@ data:extend(
     pollution_absorption_proportional = 0.005, -- v0.01,
     corpse = "biter-spawner-corpse",
     dying_explosion = "blood-explosion-huge",
-    max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty,  --v 7
-    max_friends_around_to_spawn = 25 + 15 * NE_Enemies.Settings.NE_Difficulty, --v 5,
+    max_count_of_owned_units = 13 + (2 * NE_Enemies.Settings.NE_Difficulty),  --v 7
+    max_friends_around_to_spawn = 20 + (2 * NE_Enemies.Settings.NE_Difficulty), --v 5,
     animations =
     {
       spawner_idle_animation(0, biter_spawner_tint),
@@ -63,7 +63,7 @@ data:extend(
                    end)(),
     -- With zero evolution the spawn rate is 6 seconds, with max evolution it is 2.5 seconds
     spawning_cooldown = {(200+(100/NE_Enemies.Settings.NE_Difficulty)), (100+(50/NE_Enemies.Settings.NE_Difficulty))}, -- v {360, 150},
-    spawning_radius = 5 + (5 * NE_Enemies.Settings.NE_Difficulty), -- v10,
+    spawning_radius = 8 + (2 * NE_Enemies.Settings.NE_Difficulty), -- v10,
     spawning_spacing = 2, -- v3,
     max_spawn_shift = 0,
     max_richness_for_spawn_shift = 100,

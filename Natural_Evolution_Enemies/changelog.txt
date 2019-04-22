@@ -1,4 +1,41 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.12
+Date: 4. 22. 2019
+  Features:
+    - More Tweaked "Fire" that is used by Fire attack or ground catching fire. Help with CPU/FPS
+---------------------------------------------------------------------------------------------------
+Version: 0.17.11
+Date: 4. 18. 2019
+  Features:
+    - Tweaked "Fire" that is used by Fire attack or ground catching fire. Reduced duration help with CPU/FPS
+---------------------------------------------------------------------------------------------------
+Version: 0.17.10
+Date: 4. 17. 2019
+  Features:
+    - Lowered number of units per Spawner
+    - Lowered unit scale from max 2.0 --> 1.6
+    - Lowered unit collision boxes
+    - Scorched Earth: Reduced life time of ground fire
+---------------------------------------------------------------------------------------------------
+Version: 0.17.9
+Date: 4. 15. 2019
+  Features:
+    - Unit Launcher Spitter now launces units that die after some time
+    - Unit Launcher Spitter won't create new units if there are already 20+ in the area
+---------------------------------------------------------------------------------------------------
+Version: 0.17.8
+Date: 4. 2. 2019
+  Features:
+    - Tweaked Unit and Worm Launcher values a bit
+    - Increased Fire Spitter Attack Range
+    - Decreased Unit Launcher Spitter Attack Range
+---------------------------------------------------------------------------------------------------
+Version: 0.17.7
+Date: 3. 25. 2019
+  Features:
+    - Possible solution to attack stalemates
+    - Reduced Alien Artifact drop rates
+---------------------------------------------------------------------------------------------------
 Version: 0.17.6
 Date: 3. 22. 2019
   Features:

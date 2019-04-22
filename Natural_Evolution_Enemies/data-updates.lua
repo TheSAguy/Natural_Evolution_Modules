@@ -35,7 +35,7 @@ if NE_Enemies.Settings.NE_Remove_Blood_Spatter then
 end
 
 
---- Remove Vanilla Spawners (This will also remove the old Units NE added ("Infected and Mutated Units"
+--- Remove Vanilla Spawners 
 if NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 
 	data.raw["unit-spawner"]["biter-spawner"].autoplace = nil
@@ -79,25 +79,25 @@ NE_Functions.Add_Damage_Resists("acid",data.raw["inserter"],(25/NE_Enemies.Setti
 -- Biter Spawner Adjustments
 if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 
-	data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
-	data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Enemies.Settings.NE_Difficulty
+	data.raw["unit-spawner"]["biter-spawner"].max_count_of_owned_units = 13 + (2 * NE_Enemies.Settings.NE_Difficulty) -- v 7
+	data.raw["unit-spawner"]["biter-spawner"].max_friends_around_to_spawn = 20 + (2 * NE_Enemies.Settings.NE_Difficulty)  -- v 5
 	data.raw["unit-spawner"]["biter-spawner"].spawning_cooldown = {(200+100/NE_Enemies.Settings.NE_Difficulty), (100+50/NE_Enemies.Settings.NE_Difficulty)}
 	data.raw["unit-spawner"]["biter-spawner"].max_health = 500 + (500 * NE_Enemies.Settings.NE_Difficulty)
 	data.raw["unit-spawner"]["biter-spawner"].resistances = Resistances.Spawner
-	data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 25
-	data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2
+	data.raw["unit-spawner"]["biter-spawner"].spawning_radius = 20 -- v10
+	data.raw["unit-spawner"]["biter-spawner"].spawning_spacing = 2  -- v3
 	data.raw["unit-spawner"]["biter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
 	data.raw["unit-spawner"]["biter-spawner"].pollution_absorption_absolute = 15
 	data.raw["unit-spawner"]["biter-spawner"].pollution_absorption_proportional = 0.005
 
 	-- Spitter Spawner Adjustments
-	data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Enemies.Settings.NE_Difficulty
-	data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
+	data.raw["unit-spawner"]["spitter-spawner"].max_count_of_owned_units = 8 + (2 * NE_Enemies.Settings.NE_Difficulty)
+	data.raw["unit-spawner"]["spitter-spawner"].max_friends_around_to_spawn = 13 + (2 * NE_Enemies.Settings.NE_Difficulty)
 	data.raw["unit-spawner"]["spitter-spawner"].spawning_cooldown = {(300+100/NE_Enemies.Settings.NE_Difficulty), (100+80/NE_Enemies.Settings.NE_Difficulty)}
 	data.raw["unit-spawner"]["spitter-spawner"].max_health = 1000 + (500 * NE_Enemies.Settings.NE_Difficulty)
 	data.raw["unit-spawner"]["spitter-spawner"].resistances = Resistances.Spawner
-	data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20
-	data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2
+	data.raw["unit-spawner"]["spitter-spawner"].spawning_radius = 20 -- v10
+	data.raw["unit-spawner"]["spitter-spawner"].spawning_spacing = 2 -- v3
 	data.raw["unit-spawner"]["spitter-spawner"].healing_per_tick = 0.01 + (0.002 * NE_Enemies.Settings.NE_Difficulty) -- 0.02
 	data.raw["unit-spawner"]["spitter-spawner"].pollution_absorption_absolute = 15
 	data.raw["unit-spawner"]["spitter-spawner"].pollution_absorption_proportional = 0.005
@@ -143,6 +143,10 @@ if not NE_Enemies.Settings.NE_Remove_Vanilla_Spawners then
 	data.raw["unit"]["behemoth-spitter"].pollution_to_join_attack = 8000
 
 end
+	
+
+
+	
 	
 -- Bob's Enemies Modifications
 require("prototypes.Other_Mods.Bobs_Changes")		

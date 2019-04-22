@@ -14,8 +14,8 @@ ne_blue_tint2 = {r=0, g=200/255, b=1, a=trans}
 ne_fire_tint = {r=1, g=0, b=0, a=trans} -- Red
 ne_fire_tint2 = {r=1, g=0, b=50/255, a=0.8} 
 
-ne_green_tint = {r=0, g=1, b=0, a=trans}
-ne_green_tint2 = {r=100/255, g=1, b=100/255, a=trans}
+ne_green_tint = {r=0, g=204/255, b=0, a=trans}
+ne_green_tint2 = {r=204/255, g=1, b=153/255, a=trans}
 
 ne_pink_tint = {r=1, g=0, b=200/255, a=trans}
 
@@ -28,6 +28,7 @@ ne_purple_tint = {r=150/255, g=50/255, b=1, a=trans}
 ne_black_tint = {r=0, g=0, b=0, a=trans}
 ne_brown_tint = {r=150/255, g=100/255, b=50/255, a=trans}
 
+ne_grey_tint = {r=192/255, g=192/255, b=192/255, a=trans}
 
 --- Biters
 function ne_biter_run_animation(scale, tint1, tint2)
@@ -494,6 +495,48 @@ function NE_Biter_Melee_Double_Attack(data)
 					{
 					  type = "damage",
 					  damage = { amount = data.damage_amount_2 + NE_Enemies.Settings.NE_Difficulty, type = data.damage_type_2}
+					},
+				}
+			  }
+			}
+		  },
+      sound =  make_biter_roars(sound),
+      animation = biterattackanimation(data.scale, data.tint1, data.tint2)
+    }
+	
+end
+
+
+function NE_Biter_Melee_Tripple_Attack(data)
+  return
+    {
+      type = "projectile",
+      range = data.range,
+      cooldown = data.cooldown,
+	  damage_modifier = data.damage_modifier or 1,
+      ammo_category = "melee",
+      ammo_type =   {
+			category = "melee",
+			target_type = "entity",
+			action =
+			{
+			  type = "direct",
+			  action_delivery =
+			  {
+				type = "instant",
+				target_effects =
+				{
+					{
+					  type = "damage",
+					  damage = { amount = data.damage_amount_1 + NE_Enemies.Settings.NE_Difficulty, type = data.damage_type_1}
+					},
+					{
+					  type = "damage",
+					  damage = { amount = data.damage_amount_2 + NE_Enemies.Settings.NE_Difficulty, type = data.damage_type_2}
+					},
+					{
+					  type = "damage",
+					  damage = { amount = data.damage_amount_3 + NE_Enemies.Settings.NE_Difficulty, type = data.damage_type_3}
 					},
 				}
 			  }

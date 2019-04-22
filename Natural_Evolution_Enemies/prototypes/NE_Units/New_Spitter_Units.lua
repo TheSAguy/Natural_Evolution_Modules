@@ -2,7 +2,7 @@
 require ("prototypes.NE_Units.Projectiles")
 
 local ne_collision_box = {}
-local c1 = 0.05
+local c1 = 0.0375
 
 local ne_spitter_selection_box = {}
 local ss1 = 0.4
@@ -13,7 +13,7 @@ local ss4 = 1.0
 local ne_spitter_drawing_box = {}
 
 local ne_scale = {}
-local scale = 0.25
+local scale = 0.1825
 
 ---- Health
 local ne_spitter_health = {}
@@ -47,7 +47,7 @@ for i = 1, 20 do
 	
 	-- Collision Box
 	table.insert(ne_collision_box, {{-(c1), -(c1)}, {(c1), (c1)}})	
-	c1 = c1 + 0.0325 --- from 0.05 to 0.65
+	c1 = c1 + 0.0125 --- from 0.05 to 0.3
 	
 	-- Selection Box
 	table.insert(ne_spitter_selection_box, {{-(ss1), -(ss2)}, {(ss3), (ss4)}})	
@@ -61,7 +61,7 @@ for i = 1, 20 do
 	
 	-- Scale
 	table.insert(ne_scale, scale)
-	scale = scale + 0.0875 -- from 0.25 to 2
+	scale = scale + 0.0675 -- from 0.25 to 1.6
 	
 	-- Spitter Health
 	health_2000_max = ((health_scale - i) / health_scale)*(1.462355 ^ i) + ((i/health_scale)*(100 * i)) -- 2,000 health
@@ -85,7 +85,7 @@ for i = 1, 20 do
 				  item = "small-alien-artifact",
 				  probability = 1/NE_Enemies.Settings.NE_Difficulty,
 				  count_min = math.floor(math.max(1,i/4)),
-				  count_max = math.floor(math.max(2,i/2))
+				  count_max = math.floor(math.max(2,i/3))
 				}
 			}
 	else
@@ -145,7 +145,7 @@ for i = 1, 20 do
 	NE_Spitter_Fire_Unit.corpse = "ne-spitter-fire-corpse-" .. i
 	NE_Spitter_Fire_Unit.attack_parameters = Spitter_Attack_Stream(
 						{
-							range = attack_range - 1, -- slightly less of an attack range,
+							range = attack_range + 1, -- slightly higher of an attack range,
                             cooldown = 110,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
@@ -175,16 +175,16 @@ for i = 1, 20 do
 	NE_Spitter_ULaunch_Unit.corpse = "ne-spitter-ulaunch-corpse-" .. i
 	NE_Spitter_ULaunch_Unit.attack_parameters = Spitter_Attack_Projectile(
 						{
-							range = attack_range + 0.5, -- slightly higher of an attack range,
+							range = attack_range - 1, -- slightly less of an attack range,,
                             cooldown = 120,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint1 = ne_green_tint,
-							tint2 = ne_green_tint2,
+                            tint1 = ne_green_tint2,
+							tint2 = ne_green_tint,
                             roarvolume = i/25 + 0.2,
 							projectile = "Unit-Projectile"
 						})
-	NE_Spitter_ULaunch_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_green_tint, ne_green_tint2)
+	NE_Spitter_ULaunch_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_green_tint2, ne_green_tint)
     NE_Spitter_ULaunch_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_ULaunch_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
     NE_Spitter_ULaunch_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
@@ -209,12 +209,12 @@ for i = 1, 20 do
                             cooldown = 100,
                             damage_modifier = damage_modifier,
                             scale = ne_scale[i],
-                            tint1 = ne_yellow_tint,
+                            tint1 = ne_orange_tint,
 							tint2 = ne_yellow_tint2,
                             roarvolume = i/25 + 0.2,
 							projectile = "Web-Projectile"
 						})
-	NE_Spitter_Webshooter.run_animation = spitterrunanimation(ne_scale[i], ne_yellow_tint, ne_yellow_tint2)
+	NE_Spitter_Webshooter.run_animation = spitterrunanimation(ne_scale[i], ne_orange_tint, ne_yellow_tint2)
     NE_Spitter_Webshooter.pollution_to_join_attack = pollution_attack_increment
 	NE_Spitter_Webshooter.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
     NE_Spitter_Webshooter.working_sound =  make_biter_calls(i/25 + 0.08)

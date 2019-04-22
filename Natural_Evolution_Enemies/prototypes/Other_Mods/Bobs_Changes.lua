@@ -19,8 +19,8 @@ if mods["bobenemies"] then
 	if data.raw["unit-spawner"]["bob-biter-spawner"] then
 
 		-- Bob's Biter Spawner Adjustments
-		data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
-		data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 25 + 15 * NE_Enemies.Settings.NE_Difficulty
+		data.raw["unit-spawner"]["bob-biter-spawner"].max_count_of_owned_units = 13 + (2 * NE_Enemies.Settings.NE_Difficulty)
+		data.raw["unit-spawner"]["bob-biter-spawner"].max_friends_around_to_spawn = 20 + (2 * NE_Enemies.Settings.NE_Difficulty)
 		data.raw["unit-spawner"]["bob-biter-spawner"].spawning_cooldown = {(200+100/NE_Enemies.Settings.NE_Difficulty), (100+50/NE_Enemies.Settings.NE_Difficulty)}
 		data.raw["unit-spawner"]["bob-biter-spawner"].max_health = 500 + (500 * NE_Enemies.Settings.NE_Difficulty)
 		data.raw["unit-spawner"]["bob-biter-spawner"].resistances = Resistances.Spawner
@@ -48,8 +48,8 @@ if mods["bobenemies"] then
 
 
 			-- Bob's Spitter Spawner Adjustments
-		data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 10 + 10 * NE_Enemies.Settings.NE_Difficulty
-		data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 15 + 15 * NE_Enemies.Settings.NE_Difficulty
+		data.raw["unit-spawner"]["bob-spitter-spawner"].max_count_of_owned_units = 8 + (2 * NE_Enemies.Settings.NE_Difficulty)
+		data.raw["unit-spawner"]["bob-spitter-spawner"].max_friends_around_to_spawn = 13 + (2 * NE_Enemies.Settings.NE_Difficulty)
 		data.raw["unit-spawner"]["bob-spitter-spawner"].spawning_cooldown = {(300+100/NE_Enemies.Settings.NE_Difficulty), (100+80/NE_Enemies.Settings.NE_Difficulty)}
 		data.raw["unit-spawner"]["bob-spitter-spawner"].max_health = 1000 + (500 * NE_Enemies.Settings.NE_Difficulty)
 		data.raw["unit-spawner"]["bob-spitter-spawner"].resistances = Resistances.Spawner

@@ -69,7 +69,6 @@ function Spitter_Attack_Projectile_NH(data)
 end
 
 
-
 -- Worm Unit Launching Projectile - Non-Honing
 function Worm_Attack_Projectile_NH(data)
   return
@@ -111,16 +110,17 @@ function Spitter_Attack_Stream(data)
     range = data.range,
     projectile_creation_distance = 1.9,
     damage_modifier = data.damage_modifier or 1.0,
-    warmup = 15,
+    warmup = data.range * 1.5, --15,
 	min_range = 6,
-    turn_range = 1.0 / 3.0,
-	fire_penalty = 15,	
-	gun_barrel_length = 2 * data.scale,
+    turn_range = 1.0,
+	fire_penalty = 30,	
+	gun_barrel_length = 1 * data.scale,
 	gun_center_shift = {
 	    north = {0, -0.65 * data.scale},
-	    east = {0, 0},
-	    south = {0, 0},
-	    west = {0, 0}
+	    east = {0, 4 * data.scale},
+	    south = {0, 1 * data.scale},
+	    west = {0.65 * data.scale, 4 * data.scale}
+	
 	},
     ammo_type =
 	    {
@@ -134,6 +134,8 @@ function Spitter_Attack_Stream(data)
 				type = "stream",
 				force = "enemy",
 				stream = "ne-fire-stream",
+				source_offset = {0.15, -0.5},
+				max_length = data.range,
 				duration = 160,
 			    }
 		    }
@@ -183,7 +185,7 @@ function Worm_Attack_Stream(data)
 	min_range = 2,
     turn_range = 1.0,
 	fire_penalty = 15,	
-	gun_barrel_length = 0,
+	gun_barrel_length = 0.5,
 	gun_center_shift = {
 	    north = {0, -1.2},
 	    east = {1.2, 0},
@@ -202,7 +204,9 @@ function Worm_Attack_Stream(data)
 				type = "stream",
 				force = "enemy",
 				stream = "ne-fire-stream",
-				duration = 60,
+				source_offset = {0.15, -0.5},
+				max_length = data.range,
+				duration = 200,
 			    }
 		    }
 	    },
@@ -269,29 +273,24 @@ data:extend({
     {
       {
         type = "direct",
-		force = "enemy",
         action_delivery =
         {
           type = "instant",
-		  force = "enemy",
           target_effects =
           {
             {
               type = "create-fire",
-			  force = "enemy",
               entity_name = "ne-fire-flame-2"
-            }
+            },
           }
         }
       },
       {
         type = "area",
-		force = "enemy",
-        radius = 2.5,
+        radius = 1.5,
         action_delivery =
         {
           type = "instant",
-		  force = "enemy",
           target_effects =
           {
             {
@@ -301,9 +300,13 @@ data:extend({
             },
             {
               type = "damage",
-			  force = "enemy",
               damage = { amount = 3, type = "ne_fire", force = "enemy" },
               apply_damage_to_trees = true
+            },
+            {
+              type = "damage",
+              damage = { amount = 0.5, type = "physical", force = "enemy"  },
+              apply_damage_to_trees = false
             }
           }
         }
@@ -401,22 +404,22 @@ data:extend({
     name = "Unit-Projectile",
     flags = {"not-on-map"},
     acceleration = 0.005,
-	force = "enemy",
     action =
     {
       type = "direct",
-	  force = "enemy",
       action_delivery =
       {
         type = "instant",
-		force = "enemy",
         target_effects =
         {		  
           {
             type = "create-entity",
-			force = "enemy",
 			entity_name = "ne_unit_launcher_trigger_1",			
           },
+		  {
+			type = "damage",
+			damage = { amount = 2 , type = "physical"}
+		  },
 		  {
 			type = "create-sticker",
 			sticker = "slowdown-sticker"
@@ -453,22 +456,26 @@ data:extend({
     name = "Worm-Unit-Projectile",
     flags = {"not-on-map"},
     acceleration = 0.005,
-	force = "enemy",
+	--force = "enemy",
     action =
     {
       type = "direct",
-	  force = "enemy",
+	  --force = "enemy",
       action_delivery =
       {
         type = "instant",
-		force = "enemy",
+		--force = "enemy",
         target_effects =
         {		  
           {
             type = "create-entity",
-			force = "enemy",
+			--force = "enemy",
 			entity_name = "ne_worm_launcher_trigger_1",			
           },
+		  {
+			type = "damage",
+			damage = { amount = 3 , type = "physical"}
+		  },
 		  {
 			type = "create-sticker",
 			sticker = "slowdown-sticker"
@@ -511,44 +518,47 @@ data:extend({
 	force = "enemy",
 	action =
     {
-	{
-		type = "area",
-		radius = 1.5,
-		force = "enemy",
-		action_delivery =
 		{
-        type = "instant",
-		force = "enemy",
-        target_effects =
-        {
-       
-          {
-            type = "create-entity",
+			type = "area",
+			radius = 1.5,
 			force = "enemy",
-			entity_name = "ne_web",         
-          }, 
-       {
-         type = "create-sticker",
-         sticker = "slowdown-sticker"
-          },
-        }
-      },
-	  },
-      {
-	  type = "direct",
-	  force = "enemy",
-      action_delivery =
-      {
-        type = "instant",
-		force = "enemy",
+			action_delivery =
+			{
+			type = "instant",
+			force = "enemy",
+			target_effects =
+			{   
+				{
+					type = "create-entity",
+					force = "enemy",
+					entity_name = "ne_web",         
+				}, 
+				{
+					type = "damage",
+					damage = { amount = 1 , type = "physical"}
+				},
+				{
+					type = "create-sticker",
+					sticker = "slowdown-sticker"
+				},
+			}
+		  },
+		  },
+		  {
+		  type = "direct",
+		  force = "enemy",
+		  action_delivery =
+		  {
+			type = "instant",
+			force = "enemy",
 
-              target_effects =
-			  {
-				type = "create-entity",
-				entity_name = "ne-acid-splash-purple"
-			  },
-            },
-      },
+				  target_effects =
+				  {
+					type = "create-entity",
+					entity_name = "ne-acid-splash-purple"
+				  },
+				},
+		  },
       
     },
 	animation =
@@ -694,6 +704,10 @@ spitter_land_mine.action =
                     type = "damage",
                     damage = { amount = damage_amount, type = "explosion", force = "enemy"}
                   },
+				  {
+					type = "damage",
+					damage = { amount = math.floor(math.max(1,damage_amount/4)) , type = "physical"}
+				  },
                 }
               }
             }
@@ -712,7 +726,7 @@ spitter_land_mine.action =
 
 trigger_radius = trigger_radius + 0.25 --- 1 to 5.75
 damage_radius = damage_radius + 0.3 -- 2 to 7.7
-damage_amount = damage_amount + 5 + NE_Enemies.Settings.NE_Difficulty -- 5 to 62 "Explosion"
+damage_amount = damage_amount + 8 + NE_Enemies.Settings.NE_Difficulty -- 5 to 176 "Explosion" and 1 - 44 Physical
 
 data:extend({spitter_land_mine})
 
@@ -762,7 +776,7 @@ data:extend({my_new_fire_flame})
 local my_new_fire_sticker = util.table.deepcopy(data.raw["sticker"]["fire-sticker"])
 my_new_fire_sticker.name = "ne-fire-sticker-2"
 my_new_fire_sticker.force = "enemy"
-my_new_fire_sticker.duration_in_ticks = 15 * 60
+my_new_fire_sticker.duration_in_ticks = 10 * 60
 my_new_fire_sticker.target_movement_modifier = 0.8
 my_new_fire_sticker.damage_per_tick = { amount = 80 / 60, type = "ne_fire",force = "enemy" }
 my_new_fire_sticker.spread_fire_entity = "fire-flame-on-tree"
@@ -779,18 +793,14 @@ Unit_Launcher_Trigger_1.name = "ne_unit_launcher_trigger_1"
 Unit_Launcher_Trigger_1.duration = 60 * 1
 Unit_Launcher_Trigger_1.fade_away_duration = 0
 Unit_Launcher_Trigger_1.spread_duration = 0
-Unit_Launcher_Trigger_1.force = "enemy"
 Unit_Launcher_Trigger_1.action = {
 	type = "direct",
-	force = "enemy",
     action_delivery =
     {
        type = "instant",
-		force = "enemy",
         target_effects =
         {
             type = "create-entity",
-			force = "enemy",
 			entity_name = "ne_green_splash_1",
 			trigger_created_entity = true,
         },
@@ -800,6 +810,7 @@ Unit_Launcher_Trigger_1.slow_down_factor = 1
 Unit_Launcher_Trigger_1.cyclic = true
 Unit_Launcher_Trigger_1.color = { r = 0/255, g = 0/255, b = 0/255, a = 0}
 Unit_Launcher_Trigger_1.animation =
+
     { -- No Animations
       filename = "__Natural_Evolution_Enemies__/graphics/entity/empty.png",
       flags = { "compressed" },
@@ -811,7 +822,7 @@ Unit_Launcher_Trigger_1.animation =
       line_length = 1,
       scale = 1
     }
-	
+
 data:extend{Unit_Launcher_Trigger_1}
 
 --- WORM Unit Launcher Smoke that will cause the Trigger
@@ -874,6 +885,7 @@ Launcher_Web_Entity.action =
                 type = "damage",
                 damage = { amount = 4, type = "poison", force = "enemy"}
               },
+
 			  {
 				type = "create-sticker",
 				sticker = "slowdown-sticker"

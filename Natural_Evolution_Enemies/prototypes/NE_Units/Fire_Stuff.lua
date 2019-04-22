@@ -5,10 +5,6 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 
-local function make_color(r_,g_,b_,a_)
-  return { r = r_ * a_, g = g_ * a_, b = b_ * a_, a = a_ }
-end
-
 local ne_fireutil = {}
 
 function ne_fireutil.foreach(table_, fun_)
@@ -227,52 +223,6 @@ function ne_fireutil.create_fire_pictures(opts)
 end
 
 
-function ne_fireutil.create_burnt_patch_pictures()
-  local base =
-  {
-    filename = "__base__/graphics/entity/fire-flame/burnt-patch.png",
-    line_length = 3,
-    width = 115,
-    height = 56,
-    frame_count = 9,
-    axially_symmetrical = false,
-    direction_count = 1,
-    shift = {-0.09375, 0.125}
-  }
-
-  local variations = {}
-
-  for y=1,(base.frame_count / base.line_length) do
-    for x=1,base.line_length do
-      table.insert(variations,
-      {
-        filename = base.filename,
-        width = base.width,
-        height = base.height,
-        tint = base.tint,
-        shift = base.shift,
-        x = (x-1) * base.width,
-        y = (y-1) * base.height
-      })
-    end
-  end
-
-  return variations
-end
-
-
-	--- Breeder
-NE_Tree_Fire = table.deepcopy(data.raw.fire["fire-flame-on-tree"])
-NE_Tree_Fire.name = "ne-fire-flame-on-tree"
-NE_Tree_Fire.damage_per_tick = {amount = 35 / 60, type = "ne_fire",  force = "enemy"}
-NE_Tree_Fire.spawn_entity = "ne-fire-flame-on-tree"
-
-data:extend{NE_Tree_Fire}
-
-	
-
-	
-
 data:extend({
 
 	--- Fire Flame 1
@@ -280,33 +230,28 @@ data:extend({
 	  type = "fire",
 	  name = "ne-fire-flame-1",
 	  flags = {"placeable-off-grid", "not-on-map"},
-	  force = "enemy",
 	  damage_per_tick = {amount = 3 / 60, type = "ne_fire", force = "enemy"}, -- v 13
 	  maximum_damage_multiplier = 3,
 	  damage_multiplier_increase_per_added_fuel = 1,
 	  damage_multiplier_decrease_per_tick = 0.005,
 
-	  --spawn_entity = "ne-fire-flame-on-tree",
-
 	  spread_delay = 300,
 	  spread_delay_deviation = 180,
-	  maximum_spread_count = 100,
+	  maximum_spread_count = 25,
 
 	  flame_alpha = 0.35,
 	  flame_alpha_deviation = 0.05,
-
-	  --emissions_per_tick = 0.005,
 
 	  add_fuel_cooldown = 10,
 	  fade_in_duration = 30,
 	  fade_out_duration = 30,
 
-	  initial_lifetime = 120,
-	  lifetime_increase_by = 150,
+	  initial_lifetime = 60,
+	  lifetime_increase_by = 100,
 	  lifetime_increase_cooldown = 4,
-	  maximum_lifetime = 1800,
+	  maximum_lifetime = 600,
 	  delay_between_initial_flames = 10,
-	  burnt_patch_lifetime = 1800,
+	  burnt_patch_lifetime = 600,
 
 	  on_fuel_added_action = nil,
 
@@ -338,13 +283,9 @@ data:extend({
 		}
 	  },
 
-	  burnt_patch_pictures = ne_fireutil.create_burnt_patch_pictures(),
+	  burnt_patch_pictures = nil,
 	  burnt_patch_alpha_default = 0.4,
-	  burnt_patch_alpha_variations =
-	  {
-		{ tile = "stone-path", alpha = 0.26 },
-		{ tile = "concrete", alpha = 0.24 }
-	  },
+	  burnt_patch_alpha_variations = nil,
 
 	  smoke = nil,
 
@@ -364,33 +305,30 @@ data:extend({
 	  type = "fire",
 	  name = "ne-fire-flame-2",
 	  flags = {"placeable-off-grid", "not-on-map"},
-	  force = "enemy",
 	  damage_per_tick = {amount = 15 / 60, type = "ne_fire", force = "enemy"}, -- v 13
 	  maximum_damage_multiplier = 6,
 	  damage_multiplier_increase_per_added_fuel = 1,
 	  damage_multiplier_decrease_per_tick = 0.005,
 
-	  --spawn_entity = "ne-fire-flame-on-tree",
 
 	  spread_delay = 300,
 	  spread_delay_deviation = 180,
-	  maximum_spread_count = 100,
+	  maximum_spread_count = 50,
 
 	  flame_alpha = 0.35,
 	  flame_alpha_deviation = 0.05,
 
-	  --emissions_per_tick = 0.005,
 
 	  add_fuel_cooldown = 10,
 	  fade_in_duration = 30,
 	  fade_out_duration = 30,
 
-	  initial_lifetime = 120,
-	  lifetime_increase_by = 150,
+	  initial_lifetime = 70,
+	  lifetime_increase_by = 125,
 	  lifetime_increase_cooldown = 4,
-	  maximum_lifetime = 1800,
+	  maximum_lifetime = 700,
 	  delay_between_initial_flames = 10,
-	  burnt_patch_lifetime = 1800,
+	  burnt_patch_lifetime = 600,
 
 	  on_fuel_added_action = nil,
 
@@ -422,13 +360,9 @@ data:extend({
 		}
 	  },
 
-	  burnt_patch_pictures = ne_fireutil.create_burnt_patch_pictures(),
+	  burnt_patch_pictures = nil,
 	  burnt_patch_alpha_default = 0.4,
-	  burnt_patch_alpha_variations =
-	  {
-		{ tile = "stone-path", alpha = 0.26 },
-		{ tile = "concrete", alpha = 0.24 }
-	  },
+	  burnt_patch_alpha_variations = nil,
 
 	  smoke = nil,
 
@@ -448,13 +382,10 @@ data:extend({
 	  type = "fire",
 	  name = "ne-fire-flame-3",
 	  flags = {"placeable-off-grid", "not-on-map"},
-	  force = "enemy",
 	  damage_per_tick = {amount = 40 / 60, type = "ne_fire", force = "enemy"}, -- v 13
 	  maximum_damage_multiplier = 9,
 	  damage_multiplier_increase_per_added_fuel = 1,
 	  damage_multiplier_decrease_per_tick = 0.005,
-
-	  --spawn_entity = "ne-fire-flame-on-tree",
 
 	  spread_delay = 300,
 	  spread_delay_deviation = 180,
@@ -463,18 +394,17 @@ data:extend({
 	  flame_alpha = 0.35,
 	  flame_alpha_deviation = 0.05,
 
-	  --emissions_per_tick = 0.005,
 
 	  add_fuel_cooldown = 10,
 	  fade_in_duration = 30,
 	  fade_out_duration = 30,
 
-	  initial_lifetime = 120,
+	  initial_lifetime = 80,
 	  lifetime_increase_by = 150,
 	  lifetime_increase_cooldown = 4,
-	  maximum_lifetime = 1800,
+	  maximum_lifetime = 800,
 	  delay_between_initial_flames = 10,
-	  burnt_patch_lifetime = 1800,
+	  burnt_patch_lifetime = 600,
 
 	  on_fuel_added_action = nil,
 
@@ -506,13 +436,9 @@ data:extend({
 		}
 	  },
 
-	  burnt_patch_pictures = ne_fireutil.create_burnt_patch_pictures(),
+	  burnt_patch_pictures = nil,
 	  burnt_patch_alpha_default = 0.4,
-	  burnt_patch_alpha_variations =
-	  {
-		{ tile = "stone-path", alpha = 0.26 },
-		{ tile = "concrete", alpha = 0.24 }
-	  },
+	  burnt_patch_alpha_variations = nil,
 
 	  smoke = nil,
 
@@ -527,8 +453,7 @@ data:extend({
 
 	},
 	
-
-	
+--[[
   --- Small Fire Projectile
     {
     type = "projectile",
@@ -555,7 +480,7 @@ data:extend({
 			{
 			  type = "create-entity",
 			  force = "enemy",
-              entity_name = "ne-fire-flame-3"
+              entity_name = "ne-fire-flame-1"
             },
 			
           }
@@ -608,7 +533,7 @@ data:extend({
 			{
 			  type = "create-entity",
 			  force = "enemy",
-              entity_name = "ne-fire-flame-3"
+              entity_name = "ne-fire-flame-2"
             },
           }
         }
@@ -632,7 +557,8 @@ data:extend({
       priority = "high"
     }
   },
-  
+ 
+ 
   --- Big Fire Projectile
     {
     type = "projectile",
@@ -684,201 +610,22 @@ data:extend({
     }
   },
   
-    
-   --[[  
-  
- --- Small Fire Explosion
-   {
-    type = "explosion",
-    name = "ne-small-fire-explosion",
-    flags = {"not-on-map"},
-    acceleration = 0.005,
-	force = "enemy",
-    created_effect =
-    {
-      type = "direct",
-	  force = "enemy",
-      action_delivery =
-      {
-        type = "instant",
-		force = "enemy",
-        target_effects =
-        {
-          {
-            type = "create-entity",
-            entity_name = "small-scorchmark",
-            check_buildability = true
-          },
-		 
-          {
-            type = "damage",
-			force = "enemy",
-            damage = {amount = 40, type = "ne_fire", force = "enemy",}
-          },
-    
-		  {
-            type = "nested-result",
-			force = "enemy",
-            action =
-            {
-              type = "area",
-			  force = "enemy",
-              target_entities = false,
-              repeat_count = 2,
-              radius = 2,
-              action_delivery =
-              {
-                type = "projectile",
-				force = "enemy",
-                projectile = "ne-small-fire-projectile",
-                starting_speed = 0.5
-              }
-            }
-          } 
-		
-        }
-      }
-    },
-    light = {intensity = 0.5, size = 4},
-    animations =
-    {{
-      filename = "__base__/graphics/entity/grenade/grenade-shadow.png",
-      frame_count = 1,
-      width = 1,
-      height = 1,
-      priority = "high"
-    }}
-  },
-  
- --- Medium Fire Explosion
-   {
-    type = "explosion",
-    name = "ne-medium-fire-explosion",
-    flags = {"not-on-map"},
-    acceleration = 0.005,
-	force = "enemy",
-    created_effect =
-    {
-      type = "direct",
-	  force = "enemy",
-      action_delivery =
-      {
-        type = "instant",
-		force = "enemy",
-        target_effects =
-        {
-          {
-            type = "create-entity",
-            entity_name = "small-scorchmark",
-            check_buildability = true
-          },
-
-          {
-            type = "damage",
-			force = "enemy",
-            damage = {amount = 80, type = "ne_fire", force = "enemy",}
-          },
-       
-		  {
-            type = "nested-result",
-			force = "enemy",
-            action =
-            {
-              type = "area",
-			  force = "enemy",
-              target_entities = false,
-              repeat_count = 5,
-              radius = 4,
-              action_delivery =
-              {
-                type = "projectile",
-				force = "enemy",
-                projectile = "ne-medium-fire-projectile",
-                starting_speed = 0.5
-              }
-            }
-          } 
-        }
-      }
-    },
-    light = {intensity = 0.6, size = 6},
-    animations =
-    {{
-      filename = "__base__/graphics/entity/grenade/grenade-shadow.png",
-      frame_count = 1,
-      width = 1,
-      height = 1,
-      priority = "high"
-    }}
-  },
- 
- --- Big Fire Explosion
-   {
-    type = "explosion",
-    name = "ne-big-fire-explosion",
-    flags = {"not-on-map"},
-    acceleration = 0.005,
-	force = "enemy",
-    created_effect =
-    {
-      type = "direct",
-	  force = "enemy",
-      action_delivery =
-      {
-        type = "instant",
-		force = "enemy",
-        target_effects =
-        {
-          {
-            type = "create-entity",
-            entity_name = "small-scorchmark",
-            check_buildability = true
-          },
-
-          {
-            type = "damage",
-			force = "enemy",
-            damage = {amount = 500, type = "ne_fire", force = "enemy",}
-          },
-       
-		  {
-            type = "nested-result",
-			force = "enemy",
-            action =
-            {
-              type = "area",
-			  force = "enemy",
-              target_entities = false,
-              repeat_count = 12,
-              radius = 6,
-              action_delivery =
-              {
-                type = "projectile",
-				force = "enemy",
-                projectile = "ne-big-fire-projectile",
-                starting_speed = 0.5
-              }
-            }
-          } 
-        }
-      }
-    },
-    light = {intensity = 0.8, size = 8},
-    animations =
-    {{
-      filename = "__base__/graphics/entity/grenade/grenade-shadow.png",
-      frame_count = 1,
-      width = 1,
-      height = 1,
-      priority = "high"
-    }}
-  },
-
- ]]
+]]
 }
 )
 
 
 
+Small_Fire_Flame = table.deepcopy(data.raw.fire["ne-fire-flame-1"])
+Small_Fire_Flame.name = "ne-fire-flame-0"
+Small_Fire_Flame.initial_lifetime = 50
+Small_Fire_Flame.lifetime_increase_by = 20
+Small_Fire_Flame.maximum_spread_count = 5
+Small_Fire_Flame.lifetime_increase_cooldown = 4
+Small_Fire_Flame.maximum_lifetime = 180
+Small_Fire_Flame.delay_between_initial_flames = 10
+Small_Fire_Flame.burnt_patch_lifetime = 180
+
+data:extend{Small_Fire_Flame}
 
 

@@ -1,7 +1,7 @@
 
 
 local ne_collision_box = {}
-local c1 = 0.05
+local c1 = 0.0325
 
 local ne_biter_selection_box = {}
 local bs1 = 0.225
@@ -11,7 +11,7 @@ local bs3 = 0.675
 local ne_biter_drawing_box = {}
 
 local ne_scale = {}
-local scale = 0.25
+local scale = 0.1825
 
 ---- Health
 local ne_tank_health = {}
@@ -42,7 +42,7 @@ for i = 1, 20 do
 
 	-- Collision Box
 	table.insert(ne_collision_box, {{-(c1), -(c1)}, {(c1), (c1)}})	
-	c1 = c1 + 0.0325 -- from 0.05 to 0.65
+	c1 = c1 + 0.0175 -- from 0.05 to 0.4
 	
 	
 	-- Selection Box
@@ -56,7 +56,7 @@ for i = 1, 20 do
 	
 	-- Scale
 	table.insert(ne_scale, scale)
-	scale = scale + 0.0875 -- from 0.25 to 2
+	scale = scale + 0.0675 -- from 0.25 to 1.6
 		
 	-- Health
 	
@@ -86,7 +86,7 @@ for i = 1, 20 do
 				  item = "small-alien-artifact",
 				  probability = 1/NE_Enemies.Settings.NE_Difficulty,
 				  count_min = math.floor(math.max(1,i/4)),
-				  count_max = math.floor(math.max(2,i/2))
+				  count_max = math.floor(math.max(2,i/3))
 				}
 			}
 	else
@@ -141,7 +141,7 @@ for i = 1, 20 do
 	NE_Biter_Fire_Unit.loot = ne_loot
 	NE_Biter_Fire_Unit.resistances = {{type = "fire", percent = 100}} -- Immune to Fire Damage
 	NE_Biter_Fire_Unit.corpse = "ne-biter-fire-corpse-" .. i
-	NE_Biter_Fire_Unit.attack_parameters = NE_Biter_Melee_Double_Attack(
+	NE_Biter_Fire_Unit.attack_parameters = NE_Biter_Melee_Tripple_Attack(
 						{
 							range = attack_range,
                             cooldown = 34 + i,
@@ -150,6 +150,8 @@ for i = 1, 20 do
 							damage_type_1 = "fire",
                             damage_amount_2 = i,
 							damage_type_2 = "ne_fire",
+							damage_amount_3 = i/4, -- to prevent stailmate
+							damage_type_3 = "physical",
                             scale = ne_scale[i],
                             tint1 = ne_fire_tint2,
 							tint2 = ne_fire_tint,
@@ -190,17 +192,55 @@ for i = 1, 20 do
                             damage_amount_2 = i,
 							damage_type_2 = "physical",
                             scale = ne_scale[i],
-							tint1 = ne_fire_tint,
+							tint1 = ne_green_tint2,
                             tint2 = ne_green_tint,
 							sound = i/25 + 0.1
 						})	
-	NE_Biter_Fast_Unit.run_animation = biterrunanimation(ne_scale[i], ne_fire_tint, ne_green_tint)
+	NE_Biter_Fast_Unit.run_animation = biterrunanimation(ne_scale[i], ne_green_tint2, ne_green_tint)
     NE_Biter_Fast_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_Fast_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
     NE_Biter_Fast_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
 	NE_Biter_Fast_Unit.localised_description = {"entity-description.ne-biter-fast"}   
 	data:extend{NE_Biter_Fast_Unit}
-	
+
+		
+	--- Fast Biter (Green) -- Fast, Immune to Acid Damage - CREATED BY SPITTER LAUNCHER unit. Will DIE after some time
+	NE_Biter_Fast_Unit_L = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
+    NE_Biter_Fast_Unit_L.name = "ne-biter-fastL-" .. i
+	NE_Biter_Fast_Unit_L.collision_box = ne_collision_box[i]
+	NE_Biter_Fast_Unit_L.selection_box = ne_biter_selection_box[i]
+	NE_Biter_Fast_Unit_L.drawing_box = ne_biter_drawing_box[i]
+    NE_Biter_Fast_Unit_L.max_health = ne_biter_health[i]
+	NE_Biter_Fast_Unit_L.healing_per_tick = -(0.25 * i/20)-- Will slowly die over time
+	NE_Biter_Fast_Unit_L.loot = ne_loot
+	NE_Biter_Fast_Unit_L.resistances = {{type = "acid", percent = 100}} -- Immune to Acid Damage
+	--- Fast
+	NE_Biter_Fast_Unit_L.min_pursue_time = 20 * 60  -- v 10 * 60
+    NE_Biter_Fast_Unit_L.max_pursue_distance = 100  -- v 50
+	NE_Biter_Fast_Unit_L.vision_distance = 45 -- v 30
+    NE_Biter_Fast_Unit_L.movement_speed = 0.25 -- v 0.17,
+    NE_Biter_Fast_Unit_L.distance_per_frame = 0.4-- v0.2,
+	NE_Biter_Fast_Unit_L.corpse = "ne-biter-fast-corpse-" .. i
+	NE_Biter_Fast_Unit_L.attack_parameters = NE_Biter_Melee_Double_Attack(
+						{
+							range = attack_range,
+                            cooldown = 34 + i,
+							damage_modifier = damage_modifier,
+                            damage_amount_1 = i * 4,
+							damage_type_1 = "acid",
+                            damage_amount_2 = i,
+							damage_type_2 = "physical",
+                            scale = ne_scale[i],
+							tint1 = ne_green_tint2,
+                            tint2 = ne_green_tint,
+							sound = i/25 + 0.1
+						})	
+	NE_Biter_Fast_Unit_L.run_animation = biterrunanimation(ne_scale[i], ne_green_tint2, ne_green_tint)
+    NE_Biter_Fast_Unit_L.pollution_to_join_attack = pollution_attack_increment
+	NE_Biter_Fast_Unit_L.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
+    NE_Biter_Fast_Unit_L.working_sound =  make_biter_calls(i/25 + 0.05)
+	NE_Biter_Fast_Unit_L.localised_description = {"entity-description.ne-biter-fast"}   
+	data:extend{NE_Biter_Fast_Unit_L}	
 
 	--- Wall Breaker Biter (Yellow) -- Damages Walls easily, Immune to Poison Damage
 	NE_Biter_WallBreaker_Unit = table.deepcopy(data.raw.unit["ne-biter-base-unit"])
@@ -212,7 +252,7 @@ for i = 1, 20 do
 	NE_Biter_WallBreaker_Unit.loot = ne_loot
 	NE_Biter_WallBreaker_Unit.resistances = {{type = "poison", percent = 100}} -- Immune to Poison Damage
 	NE_Biter_WallBreaker_Unit.corpse = "ne-biter-wallbreaker-corpse-" .. i
-	NE_Biter_WallBreaker_Unit.attack_parameters = NE_Biter_Melee_Double_Attack(
+	NE_Biter_WallBreaker_Unit.attack_parameters = NE_Biter_Melee_Tripple_Attack(
 						{
 							range = attack_range,
                             cooldown = 34 + i,
@@ -221,6 +261,8 @@ for i = 1, 20 do
 							damage_type_1 = "ne_wallbreaker",
                             damage_amount_2 = i,
 							damage_type_2 = "poison",
+							damage_amount_3 = i/4, -- to prevent stailmate
+							damage_type_3 = "physical",
                             scale = ne_scale[i],
 							tint1 = ne_orange_tint,
                             tint2 = ne_yellow_tint,
@@ -257,11 +299,11 @@ for i = 1, 20 do
                             damage_amount_2 = i,
 							damage_type_2 = "laser",
                             scale = ne_scale[i],
-                            tint1 = ne_green_tint,
+                            tint1 = ne_grey_tint,
 							tint2 = ne_pink_tint,
 							sound = i/25 + 0.1
 						})
-	NE_Biter_Tank_Unit.run_animation = biterrunanimation(ne_scale[i], ne_green_tint, ne_pink_tint)
+	NE_Biter_Tank_Unit.run_animation = biterrunanimation(ne_scale[i], ne_grey_tint, ne_pink_tint)
     NE_Biter_Tank_Unit.pollution_to_join_attack = pollution_attack_increment
 	NE_Biter_Tank_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.1)
     NE_Biter_Tank_Unit.working_sound =  make_biter_calls(i/25 + 0.05)
@@ -297,7 +339,7 @@ for i = 1, 20 do
     NE_Biter_Fast_Unit_Corpse.name = "ne-biter-fast-corpse-" .. i
 	NE_Biter_Fast_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Biter_Fast_Unit_Corpse.selection_box = ne_biter_selection_box[i]
-	NE_Biter_Fast_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_fire_tint, ne_green_tint)
+	NE_Biter_Fast_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_green_tint2, ne_green_tint)
     NE_Biter_Fast_Unit_Corpse.localised_name = {"entity-name.ne-biter-fast-corpse"}
 	
 	data:extend{NE_Biter_Fast_Unit_Corpse}	
@@ -318,7 +360,7 @@ for i = 1, 20 do
     NE_Biter_Tank_Unit_Corpse.name = "ne-biter-tank-corpse-" .. i
 	NE_Biter_Tank_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
 	NE_Biter_Tank_Unit_Corpse.selection_box = ne_biter_selection_box[i]
-	NE_Biter_Tank_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_green_tint, ne_pink_tint)
+	NE_Biter_Tank_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_grey_tint, ne_pink_tint)
     NE_Biter_Tank_Unit_Corpse.localised_name = {"entity-name.ne-biter-tank-corpse"}     
 	
 	data:extend{NE_Biter_Tank_Unit_Corpse}
