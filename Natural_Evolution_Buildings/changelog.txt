@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.16
+Date: 4. 22. 2019
+  Features:
+    - Pheromone Concret now only lasts roughly 1 hour 
+    - Added Rejuvenate Pheromone Concret recipe
+---------------------------------------------------------------------------------------------------
+Version: 0.17.15
+Date: 4. 17. 2019
+  Features:
+    - Removed Battle Marker Collision Mask
+    - Tweaked Long Range Turret & Rocket Turret collision Mask
+---------------------------------------------------------------------------------------------------
 Version: 0.17.14
 Date: 4. 8. 2019
   Features:

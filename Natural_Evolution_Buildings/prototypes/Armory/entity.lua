@@ -890,6 +890,7 @@ data:extend({
 
 
 --- NE Turret Pictires
+--- NE Turret Pictires
 function base_picture(tint)
 return
 {
@@ -1157,6 +1158,7 @@ end
 
 NE_gun_turret_tint = {r=85/255, g=107/255, b=47/255, a=255/255} -- Green
 NE_rocket_turret_tint = {r=139/255, g=1/255, b=1/255, a=255/255} -- Red
+
 --- Turret
 data:extend({ 
  
@@ -1179,7 +1181,7 @@ data:extend({
     folding_speed = 0.08,
     dying_explosion = "medium-explosion",
     inventory_size = 1,
-    automated_ammo_count = 10,
+    automated_ammo_count = 14,
     attacking_speed = 1, -- makes nothing, it's animation's parameter
    
 	folded_animation = bio_turret_pic{direction_count = 8, line_length = 1},
@@ -1220,22 +1222,24 @@ data:extend({
 	minable = {mining_time = 0.5, result = "NE-gun-turret"},
 	max_health = 400,
 	corpse = "medium-remnants",
-	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
-	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
-	rotation_speed = 0.004,
-	prepare_range = 50,
-	preparing_speed = 0.012,
-	folding_speed = 0.012,
+	collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
+    selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
+	rotation_speed = 0.002,
+	prepare_range = 42,
+	preparing_speed = 0.006,
+	folding_speed = 0.006,
 	dying_explosion = "medium-explosion",
 	inventory_size = 1,
-	automated_ammo_count = 10,
+	automated_ammo_count = 12,
 	attacking_speed = 1/2/3.75, --0.02, -- just animation
+
 	base_picture = base_picture (NE_gun_turret_tint),
 	preparing_animation = preparing_animation(NE_gun_turret_tint),
 	prepared_animation = prepared_animation(NE_gun_turret_tint),
 	attacking_animation = attacking_animation(NE_gun_turret_tint),
 	folding_animation =folding_animation(NE_gun_turret_tint),
 	folded_animation = folded_animation(NE_gun_turret_tint),
+	
 	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
    	attack_parameters =
 		{
@@ -1260,25 +1264,26 @@ data:extend({
     icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_rocket_turret_icon.png",
 	icon_size = 32,
    	flags = {"placeable-player", "player-creation"},
-	minable = {mining_time = 0.5, result = "NE-rocket-turret"},
+	minable = {mining_time = 0.75, result = "NE-rocket-turret"},
 	max_health = 500,
 	corpse = "medium-remnants",
-	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
+    collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
 	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
-	rotation_speed = 0.004,
-	prepare_range = 50,
-	preparing_speed = 0.012,
-	folding_speed = 0.012,
+	rotation_speed = 0.002,
+	prepare_range = 47,
+	preparing_speed = 0.006,
+	folding_speed = 0.006,
 	dying_explosion = "medium-explosion",
-	inventory_size = 1,
+	inventory_size = 2,
 	automated_ammo_count = 10,
 	attacking_speed = 1/2/3.75, --0.02, -- just animation
 	
+
 	base_picture = base_picture (NE_rocket_turret_tint),
 	preparing_animation = preparing_animation(NE_rocket_turret_tint),
 	prepared_animation = prepared_animation(NE_rocket_turret_tint),
 	attacking_animation = attacking_animation(NE_rocket_turret_tint),
-	folding_animation = folding_animation(NE_rocket_turret_tint),
+	folding_animation =folding_animation(NE_rocket_turret_tint),
 	folded_animation = folded_animation(NE_rocket_turret_tint),
 	
 	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},

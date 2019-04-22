@@ -71,9 +71,12 @@ data:extend({
 			},
 			{
 				type = 'unlock-recipe', 
-				recipe='decelerate_concrete'
+				recipe='pheromone_concrete'
 			},
-
+			{
+				type = 'unlock-recipe', 
+				recipe='rejuvenate_pheromone_concrete'
+			},
 			{
 				type = 'unlock-recipe', 
 				recipe='bio_land_mine'

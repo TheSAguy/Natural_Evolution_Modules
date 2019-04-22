@@ -120,10 +120,10 @@ require("prototypes.Terraforming_Station.recipe")
 ---------------------------------------------------------------
 
 
---- Decelerate_concrete
+--- pheromone_concrete
 
 
-require("prototypes.Decelerate_concrete.entity")
-require("prototypes.Decelerate_concrete.item")
-require("prototypes.Decelerate_concrete.recipe")
+require("prototypes.pheromone_concrete.entity")
+require("prototypes.pheromone_concrete.item")
+require("prototypes.pheromone_concrete.recipe")
 ---------------------------------------------------------------

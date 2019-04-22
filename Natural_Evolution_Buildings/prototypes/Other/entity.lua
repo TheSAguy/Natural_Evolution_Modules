@@ -27,7 +27,7 @@
 			percent = 80
 		  },
 		},
-		collision_box = {{-0.65, -0.65}, {0.65, 0.65}},
+		collision_box = nil,
 		selection_box = {{-1, -1}, {1, 1}},
 		drawing_box = {{-1, -3}, {1, 0.5}},
 		vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },

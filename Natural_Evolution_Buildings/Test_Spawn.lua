@@ -28,7 +28,13 @@
 			iteminsert{name="uranium-rounds-magazine", count=200}		
 			iteminsert{name="power-armor-mk2", count=1}		
 			iteminsert{name="rocket-silo", count=4}		
-		
+			iteminsert{name="pheromone_concrete", count=200}
+			iteminsert{name="concrete", count=200}
+			iteminsert{name="TerraformingStation_New", count=5}
+			iteminsert{name="Artifact-collector-area", count=5}
+			iteminsert{name="solar-panel", count=50}
+			iteminsert{name="medium-electric-pole", count=5}
+			iteminsert{name="Alien-Stimulant", count=200}
 		end)
 		
 		surface.always_day = true
@@ -36,3 +42,4 @@
 	end
 
 --end
+
