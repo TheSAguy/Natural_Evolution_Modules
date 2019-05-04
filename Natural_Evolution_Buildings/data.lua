@@ -123,7 +123,7 @@ require("prototypes.Terraforming_Station.recipe")
 --- pheromone_concrete
 
 
-require("prototypes.pheromone_concrete.entity")
-require("prototypes.pheromone_concrete.item")
-require("prototypes.pheromone_concrete.recipe")
+require("prototypes.Pheromone_Concrete.entity")
+require("prototypes.Pheromone_Concrete.item")
+require("prototypes.Pheromone_Concrete.recipe")
 ---------------------------------------------------------------

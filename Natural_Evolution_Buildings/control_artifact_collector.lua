@@ -11,25 +11,8 @@ global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Ar
 
 	
 --- Artifact Collector
-
 local artifactCollectorRadius = global.NE_Buildings.Settings.Artifact_Collector_Radius
-local chestInventoryIndex = defines.inventory.chest
-local filters = {["small-alien-artifact"] = 1,
-                 ["alien-artifact"] = 1,
-				 ["alien-artifact-red"] = 1,
-				 ["alien-artifact-orange"] = 1,
-				 ["alien-artifact-yellow"] = 1,
-				 ["alien-artifact-green"] = 1,
-				 ["alien-artifact-blue"] = 1,
-				 ["alien-artifact-purple"] = 1,
-				 ["small-alien-artifact-red"] = 1,
-				 ["small-alien-artifact-orange"] = 1,
-				 ["small-alien-artifact-yellow"] = 1,
-				 ["small-alien-artifact-green"] = 1,
-				 ["small-alien-artifact-blue"] = 1,
-				 ["small-alien-artifact-purple"] = 1
-				 }
-				 
+
 
 
 function processWorld(surface, tick)

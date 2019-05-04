@@ -1,5 +1,5 @@
--- NE BUILDINGS Ver = 0.17.16
-local QC_Mod = true
+-- NE BUILDINGS Ver = 0.17.18
+local QC_Mod = false
 
 
 
@@ -508,7 +508,7 @@ local function On_Death(event)
 				end
 			end
 			
-		elseif event.cause.type == "player" then
+		elseif event.cause.type == "character" then
 		--writeDebug("Step 2b of Conversion Check: Player Killed Unit")
 			local character = event.cause
 			local index = character.selected_gun_index

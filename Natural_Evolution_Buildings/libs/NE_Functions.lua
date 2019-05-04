@@ -70,3 +70,17 @@ function NE_Functions.Biters_Dont_Attack(Raw)
 	end
 end
 
+
+
+--- Add Fuel Values
+function NE_Functions.Add_Fuel_Values(Item, Value)	
+
+	if data.raw.item[Item] ~= nil then
+		data.raw.item[Item].fuel_category = "chemical"
+		data.raw.item[Item].fuel_value = fuel_value or Value
+		data.raw.item[Item].fuel_emissions_multiplier = fuel_emissions_multiplier or -0
+	end
+	
+	
+end	
+	

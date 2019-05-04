@@ -5,7 +5,6 @@ data:extend(
     name = "alien-artifact",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png",
 	icon_size = 32,
-    ----flags = { "goes-to-main-inventory" },
 	subgroup = "raw-material",
 	order = "g[alien-artifact]-a[pink]-a[small]",
     stack_size = 500,
