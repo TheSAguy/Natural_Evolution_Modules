@@ -10,16 +10,18 @@ NE_Enemies.Settings.NE_Adjust_Vanilla_Worms = settings.startup["NE_Adjust_Vanill
 ---- Tweak Player Stats
 if NE_Enemies.Settings.NE_Challenge_Mode then
 
-	if data.raw.player.player.loot_pickup_distance < 5 then
-		data.raw.player.player.loot_pickup_distance = 5 -- default 2
+	local chr = data.raw.character.character
+	
+	if chr.loot_pickup_distance < 5 then
+		chr.loot_pickup_distance = 5 -- default 2
 	end	
 
-	if data.raw.player.player.running_speed < 0.15 then
-		data.raw.player.player.running_speed = 0.25 -- default 0.15
+	if chr.running_speed < 0.15 then
+		chr.running_speed = 0.25 -- default 0.15
 	end	
 
-	if data.raw.player.player.healing_per_tick > 0.005 then
-		data.raw.player.player.healing_per_tick = 0.005 -- default 0.01
+	if chr.healing_per_tick > 0.005 then
+		chr.healing_per_tick = 0.005 -- default 0.01
 	end	
 
 end

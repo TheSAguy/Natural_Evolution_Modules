@@ -4,7 +4,7 @@
 	function Test_Spawn()
 
 		local surface = game.surfaces['nauvis']
-
+	--[[
 		for i = 1, 20 do
 		
 		--surface.create_entity({name="ne-spawner-red", position={-15, 0}, force = game.forces.player})	
@@ -34,7 +34,7 @@
 		
 
 		--surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, -5}, force = game.forces.enemy})
-		--[[
+	
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, -4}, force = game.forces.enemy})
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, -3}, force = game.forces.enemy})
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, -2}, force = game.forces.enemy})
@@ -45,8 +45,9 @@
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 3}, force = game.forces.enemy})
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 4}, force = game.forces.enemy})
 		surface.create_entity({name="ne-spitter-ulaunch-" .. i, position={5 + i, 5}, force = game.forces.enemy})
-		]]
+		
 end
+]]
 		--local megalodon = surface.create_entity({name="ne-biter-megalodon", position={-15, -15}, force = game.forces.enemy})	
 		--megalodon.health = 1000
 		--megalodon.resistances = {{type = "physical", percent = 2}}
@@ -105,8 +106,13 @@ end
 			iteminsert{name="submachine-gun", count=1}	
 			--iteminsert{name="steel-axe", count=1}	
 			iteminsert{name="uranium-rounds-magazine", count=200}		
+			iteminsert{name="small-alien-artifact", count=500}		
+			iteminsert{name="alien-artifact", count=500}		
+			iteminsert{name="coal", count=500}		
+			iteminsert{name="iron-ore", count=500}	
+			iteminsert{name="stone-furnace", count=20}		
 			iteminsert{name="power-armor-mk2", count=1}		
-			iteminsert{name="rocket-silo", count=4}		
+			--iteminsert{name="rocket-silo", count=4}		
 		
 		end)
 		

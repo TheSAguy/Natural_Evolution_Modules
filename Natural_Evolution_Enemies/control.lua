@@ -1,4 +1,4 @@
---ENEMIES v.0.17.11
+--ENEMIES v.0.17.13
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -1282,7 +1282,7 @@ local function On_Death(event)
 
 	
 	--------- An Enemy Unit Died
-	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") and event.force ~= nil and event.cause then--and event.cause.name == "player" then
+	if entity.valid and entity.force == game.forces.enemy and (entity.type == "unit") and event.force ~= nil and event.cause then--and event.cause.name == "character" then
 	
 	--- add to the NE unit counter
 	NE_Unit_Count(entity)
@@ -1294,7 +1294,7 @@ local function On_Death(event)
 	end
 	
  	--------- Did you really just kill that tree...
-	if entity.valid and settings.startup["NE_Challenge_Mode"].value and (entity.type == "tree") and event.force ~= nil and event.cause and event.cause.name == "player" then
+	if entity.valid and settings.startup["NE_Challenge_Mode"].value and (entity.type == "tree") and event.force ~= nil and event.cause and event.cause.name == "character" then
 		
 		----writeDebug("a Tree was Killed")
 		Look_and_Attack(entity, 0.5)
