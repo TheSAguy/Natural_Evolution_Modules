@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 0.17.18
+-- NE BUILDINGS Ver = 0.17.21
 local QC_Mod = false
 
 
@@ -493,7 +493,7 @@ local function On_Death(event)
 	--- Conversion Ammo Stuff
 	-- Nexela Code! Thanks for your help!
 	local ammo
-	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause then 
+	if event.force ~= nil and entity.force.name == "enemy" and entity.type == "unit" and event.cause then 
 	--writeDebug("Step 1 of Conversion Check")
 		
 		if event.cause.type == "ammo-turret" then
@@ -512,15 +512,15 @@ local function On_Death(event)
 		--writeDebug("Step 2b of Conversion Check: Player Killed Unit")
 			local character = event.cause
 			local index = character.selected_gun_index
-			ammo = character.get_inventory(defines.inventory.player_ammo)[index]
+			ammo = character.get_inventory(defines.inventory.character_ammo)[index]
 			--writeDebug("Inventory Name: "..ammo.name)
-		else
+		--else
 			--writeDebug("Step 2c of Conversion Check: SOMETHING else Killed Unit")
 		end
 
 		if ammo and ammo.valid_for_read and AMMO_TYPES[ammo.name] then
 			local Convert = surface.create_entity({name = entity.name, position = pos, force = event.cause.force.name})
-			Convert.health = entity.prototype.max_health / 4
+			Convert.health = entity.prototype.max_health / 4 -- converted unit will be at 25% health
 		end
 	end
 	

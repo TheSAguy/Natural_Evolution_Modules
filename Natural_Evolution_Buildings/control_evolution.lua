@@ -26,10 +26,10 @@ local function UpdateUnitsCommands(player_index)
 	local min_dist = agro_area_rad + 10;
 	local closest_index = -1
 	local surface = player.surface
-	
 	local attOn = player.get_item_count("attractor-on")
-	local attOff = player.get_item_count("attractor-off")
+	local attOff = player.get_item_count("attractor-off")	
 	local lastState = nil
+	
 	if global.Evolution_MOD[player.name] and global.Evolution_MOD[player.name].lastState then
 		lastState = global.Evolution_MOD[player.name].lastState
 	else
@@ -110,16 +110,21 @@ local function UpdateUnitsCommands(player_index)
 end
 
 ---	Evolution_MOD	
-Event.register(defines.events.on_tick, function(event)	
 
+
+
+Event.register(defines.events.on_tick, function(event)	
 
 	if event.tick % update_com_count == 0 then
 		for index, player in pairs(game.players) do
-			if player.connected and player.character then
-				UpdateUnitsCommands(index)		
+			if player.connected and player.character and not game.active_mods["Unit_Control"] then			
+				--writeDebug("Unit Control Mod NOT ACTIVE")			
+			--else
+				--writeDebug("Unit Control Mod ACTIVE")			
 			end
 		end
 	end
 
 end)
+
 

@@ -1,6 +1,6 @@
+
 data:extend({
 
-  
   	---- Building Materials
 	{
 		type = "item",
@@ -12,28 +12,7 @@ data:extend({
 		stack_size = 10
 	},
 	
-		
-	--- Attractor
-	{
-		type = "item",
-		name = "attractor-on",
-		icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_on.png",
-		icon_size = 32,
-		subgroup = "Tools",
-		order = "a[attractor-on]",
-		stack_size = 1
-	},
-	
-  	{
-		type = "item",
-		name = "attractor-off",
-		icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_off.png",
-		icon_size = 32,
-		subgroup = "Tools",
-		order = "b[attractor-off]",
-		stack_size = 1
-	},
-	
+
 	--- Battle Marker
 	{
 		type = "item",
@@ -45,6 +24,38 @@ data:extend({
 		place_result = "battle_marker",
 		stack_size = 50
   },
-	
-  
+
+		
 })
+
+if not mods["Unit_Control"] then
+
+	data:extend({
+
+
+	 
+			--- Attractor
+			{
+				type = "item",
+				name = "attractor-on",
+				icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_on.png",
+				icon_size = 32,
+				subgroup = "Tools",
+				order = "a[attractor-on]",
+				stack_size = 1
+			},
+			
+			{
+				type = "item",
+				name = "attractor-off",
+				icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_off.png",
+				icon_size = 32,
+				subgroup = "Tools",
+				order = "b[attractor-off]",
+				stack_size = 1
+			},
+
+			
+	})
+
+end

@@ -12,6 +12,7 @@ require ("libs.functions") -- From Bob's Libary
 require ("libs.category-functions") -- From Bob's Libary
 
 require("prototypes.Technology.technology")
+require("prototypes.Technology.technology_alien_training")
 require("prototypes.Item-Groups.item-groups")
 require("prototypes.Categories.recipe-category")
 ---------------------------------------------------------------

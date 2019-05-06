@@ -26,7 +26,7 @@ function ACS_Remove(index)
   for k,beacon in ipairs(global.beacons) do
     if not beacon.valid then
       table.remove(global.beacons,k)
-      writeDebug("Alien Control Station Removed")
+      --writeDebug("Alien Control Station Removed")
     end
   end
   
@@ -69,7 +69,7 @@ local function Convert_Base(base, died, newforce, surface)
   if count~=0 then -- prevent empty random interval	
 	--writeDebug("The number of Worms/Turrets in Range: " .. count_worms)	
 	--writeDebug("The number of Spawners in Range: " .. count_spawners)	
-	writeDebug("The number of Units in Range: " .. count_units)	
+	--writeDebug("The number of Units in Range: " .. count_units)	
   end
   
   if count~=0 and math.random(1+math.sqrt(count))==1 then
@@ -81,13 +81,13 @@ local function Convert_Base(base, died, newforce, surface)
 	
 	for _, worm in pairs(worms) do 
 	  worm.force=newforce 
-	  writeDebug("Turret/Worm Converted") 
+	  --writeDebug("Turret/Worm Converted") 
 	end
     
 	for _, hive in pairs(hives) do 
 	  hive.force=newforce  
 	  table.insert(global.hiveminds, hive) 
-	  writeDebug("Spawner Converted") 
+	  --writeDebug("Spawner Converted") 
 	end
 	
     for _, unit in pairs(units) do
@@ -123,7 +123,7 @@ local function Control_Enemies()
 		local turret = surface.find_entities_filtered{type="turret", area=Get_Bounding_Box(beacon.position, global.NE_Buildings.Settings.Search_Distance), force = enemyForce} --search area of thirty around each ACS for spawners
         
 		if #bases > 0 then
-		writeDebug("The number of Spawners in Range: " .. #bases)
+		--writeDebug("The number of Spawners in Range: " .. #bases)
           for i, base in ipairs(bases) do
             if base.force == (enemyForce) and math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%     
 			 Convert_Base(base, false, beacon.force, surface)
@@ -131,7 +131,7 @@ local function Control_Enemies()
           end
 		 
 		elseif #turret > 0 then
-		writeDebug("The number of Worms/Turrets in Range: " .. #turret)	
+		--writeDebug("The number of Worms/Turrets in Range: " .. #turret)	
           for i, turret in ipairs(turret) do
             if turret.force == (enemyForce) and math.random(global.minds.difficulty*2)==1 then --easy = 16.5% chance, normal = 10%, hard = 5%     
 			 Convert_Base(turret, false, beacon.force, surface)
@@ -147,13 +147,13 @@ local function Control_Enemies()
 					enemy.force=beacon.force
 					enemy.set_command{type=defines.command.wander,distraction=defines.distraction.by_enemy}
 					table.insert(global.minds, enemy)
-					writeDebug("An Enemy has been Converted")
+					--writeDebug("An Enemy has been Converted")
                 end
             end
           end
         end
       else
-        writeDebug("A Alien Control Station has no Power")
+        --writeDebug("A Alien Control Station has no Power")
       end
     else
       ACS_Remove()

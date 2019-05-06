@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.21
+Date: 5. 6. 2019
+  Features:
+    - Update to new "emissions_per_minute"
+    - Remove the remote and tech that controls friendly units if you have Unit Control mod installed
+---------------------------------------------------------------------------------------------------
+Version: 0.17.20
+Date: 5. 4. 2019
+  Features:
+    - One more player -> character fix
+---------------------------------------------------------------------------------------------------
 Version: 0.17.19
 Date: 5. 3. 2019
   Features:

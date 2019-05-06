@@ -22,7 +22,6 @@ data:extend(
     healing_per_tick = 0.01,
     collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
     selection_box = {{-0.4, -0.7}, {0.7, 0.4}},
-	--collision_mask = {"player-layer"},
     attack_parameters =
     {
       type = "projectile",
@@ -44,7 +43,6 @@ data:extend(
     dying_sound =  make_biter_dying_sounds(0.4),
     working_sound =  make_biter_calls(0.3),
     run_animation = biterrunanimation(small_biter_scale, small_biter_tint1, small_biter_tint2),
-    --idle_animation = biteridleanimation(small_biter_scale, small_biter_tint1, small_biter_tint2),
     ai_settings = biter_ai_settings
   },
   {
@@ -100,7 +98,6 @@ data:extend(
     working_sound = make_biter_calls(0.4),
     dying_sound = make_biter_dying_sounds(0.5),
     run_animation = biterrunanimation(medium_biter_scale, medium_biter_tint1, medium_biter_tint2),
-    --idle_animation = biteridleanimation(medium_biter_scale, small_biter_tint1, small_biter_tint2),
     ai_settings = biter_ai_settings
   },
   {
@@ -157,7 +154,6 @@ data:extend(
     working_sound = make_biter_calls(0.5),
     dying_sound = make_biter_dying_sounds(0.6),
     run_animation = biterrunanimation(big_biter_scale, big_biter_tint1, big_biter_tint2),
-    --idle_animation = biteridleanimation(big_biter_scale, small_biter_tint1, small_biter_tint2),
     ai_settings = biter_ai_settings
   },
   {
@@ -211,7 +207,6 @@ data:extend(
     working_sound = make_biter_calls(0.7),
     dying_sound = make_biter_dying_sounds(0.8),
     run_animation = biterrunanimation(behemoth_biter_scale, behemoth_biter_tint1, behemoth_biter_tint2),
-    --idle_animation = biteridleanimation(behemoth_biter_scale, small_biter_tint1, small_biter_tint2),
     ai_settings = biter_ai_settings
   },
 
