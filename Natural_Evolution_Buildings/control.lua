@@ -1,4 +1,4 @@
--- NE BUILDINGS Ver = 0.17.21
+-- NE BUILDINGS Ver = 0.17.22
 local QC_Mod = false
 
 
@@ -311,6 +311,7 @@ local force = entity.force
 		T_Station_Container = surface.create_entity({name = "TerraformingStation_c", position = position_c, direction = event.created_entity.direction, force = force})
 	
 		T_Station_Container.minable = false
+		T_Station_Container.destructible = false
 		T_Station_Container.set_request_slot({name = "Alien-Stimulant", count = "10"}, 1)		
 	
 		global.Terraforming_Station_Table[entity.unit_number] = {radar=entity, inventory=T_Station_Container}
@@ -334,9 +335,7 @@ local force = entity.force
 
 		New_Bio_Cannon.health = event.created_entity.health
 		
-
-
-		
+	
 		New_Bio_CannonR.operable = false
 		New_Bio_CannonR.destructible = false
 		New_Bio_CannonR.minable = false
