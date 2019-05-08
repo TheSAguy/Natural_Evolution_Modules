@@ -1,4 +1,4 @@
---ENEMIES v.0.17.13
+--ENEMIES v.0.17.15
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -674,6 +674,33 @@ local function Look_and_Attack(entity, factor)
 end
 
 
+---------------------------------------------				 
+local function Look_and_Burn(entity, radius)
+
+
+		local surface = entity.surface
+		local force = entity.force
+		local radius = radius
+		local pos = entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		
+		local items = surface.find_entities_filtered({area = area, name = "item-on-ground"})
+		
+		writeDebug("# of Items found: ".. #items)
+		if (#items > 0) and settings.startup["NE_Challenge_Mode"].value then
+				
+			for x=1,#items do
+				local item = items[x]
+				item.destroy()
+			end
+			
+		end
+		
+			
+end
+
+
+
 --- Remove Trees
 local function Remove_Trees(entity)
 
@@ -790,6 +817,21 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 		----writeDebug("Cliff Bombed")
 		Look_and_Attack(entity, 2)
     end	
+
+	
+	--- If Fire then destroy stuff on ground
+    if entity.valid and entity.name == "ne-fire-flame-2" then
+		writeDebug("Fire Trigger")
+		Look_and_Burn(entity, 0.25)
+    end	
+
+
+	--- If Fire then destroy stuff on ground
+    if entity.valid and entity.name == "fire-flame" then
+		writeDebug("Fire Trigger: fire-flame")
+		Look_and_Burn(entity, 0.5)
+    end	
+
 
 
 
@@ -1190,20 +1232,24 @@ local function On_Death(event)
 	------writeDebug("Fire Unit killed")
 		if math.floor(UnitNumber(entity)) < 5 then
 		
-			surface.create_entity({name="ne-fire-flame-0", position = pos, force = "enemy"})		
+			local spawn_fire = surface.create_entity({name="ne-fire-flame-0", position = pos, force = "enemy"})		
 			--writeDebug("Smaller than 5")
+			Look_and_Burn(spawn_fire, 0.25)
 			
 		elseif math.floor(UnitNumber(entity)) < 10 then
-			surface.create_entity({name="ne-fire-flame-1", position = pos, force = "enemy"})
+			local spawn_fire = surface.create_entity({name="ne-fire-flame-1", position = pos, force = "enemy"})
 			--writeDebug("Smaller than 10")			
-				
+			Look_and_Burn(spawn_fire, 0.25)
+			
 		elseif math.floor(UnitNumber(entity)) < 15 then
-			surface.create_entity({name="ne-fire-flame-2", position = pos, force = "enemy"})
+			local spawn_fire = surface.create_entity({name="ne-fire-flame-2", position = pos, force = "enemy"})
 			--writeDebug("Smaller than 15")
+			Look_and_Burn(spawn_fire, 0.375)
 			
 		else
-			surface.create_entity({name="ne-fire-flame-3", position = pos, force = "enemy"})
+			local spawn_fire = surface.create_entity({name="ne-fire-flame-3", position = pos, force = "enemy"})
 			--writeDebug("Bigger than 15")
+			Look_and_Burn(spawn_fire, 0.5)
 		end
 		
 	end
@@ -1631,16 +1677,19 @@ function Scorched_Earth(surface, pos, size)
 			
 				if currentTilename == "volcanic-orange-heat-4" then
 					local spawn_fire = surface.create_entity({name="ne-fire-flame-0", position = pos, force = "enemy"})
+					Look_and_Burn(spawn_fire, 0.25)
 					
 				elseif replaceableTiles_alien[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})  
 					Scorch_test	= true
+					
 				end
 				
 			else				
 
 				if currentTilename == "red-desert-1" then
 					local spawn_fire = surface.create_entity({name="ne-fire-flame-0", position = pos, force = "enemy"})
+					Look_and_Burn(spawn_fire, 0.25)
 					
 				elseif replaceableTiles[currentTilename] then
 					table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position})   

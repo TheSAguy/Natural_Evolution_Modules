@@ -280,17 +280,17 @@ local force = entity.force
 	
 	--- Alien Control Station has been built	
 	if entity.valid and entity.name == "AlienControlStation_Area" then
-	local newAlienControlStation
-	local surface = event.created_entity.surface
-	local force = event.created_entity.force
-	
-	--writeDebug("ACS has been built")			
-	--writeDebug("The ACS Difficulty is: " .. global.minds.difficulty)  					
+		local newAlienControlStation
+		local surface = event.created_entity.surface
+		local force = event.created_entity.force	
+		--writeDebug("ACS has been built")			
+		--writeDebug("The ACS Difficulty is: " .. global.minds.difficulty)  					
 			
 		newAlienControlStation = surface.create_entity({name = "AlienControlStation", position = event.created_entity.position, force = force})
-		event.created_entity.destroy()
 
 		table.insert(global.beacons, newAlienControlStation)
+		event.created_entity.destroy()
+		
 	end	
 
 
@@ -334,7 +334,7 @@ local force = entity.force
 
 		New_Bio_Cannon.health = event.created_entity.health
 		
-		event.created_entity.destroy()
+
 
 		
 		New_Bio_CannonR.operable = false
@@ -347,6 +347,7 @@ local force = entity.force
 		end
 
 		table.insert(global.Bio_Cannon_Table, {New_Bio_Cannon,New_Bio_CannonR,0})
+		event.created_entity.destroy()
 		
 	end
 

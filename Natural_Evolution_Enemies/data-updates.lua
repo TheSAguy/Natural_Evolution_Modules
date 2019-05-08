@@ -170,8 +170,31 @@ if NE_Enemies.Settings.NE_Challenge_Mode == true then
 		end
 	end
 	
-end
 
+
+	local stream = data.raw["stream"]["flamethrower-fire-stream"]
+	if stream and stream.action then
+		local action = stream.action[1].action_delivery.target_effects
+		for _, eff in pairs(action) do
+			if eff.type == "create-fire" and eff.entity_name == "fire-flame" then
+				eff.trigger_created_entity = true
+				break
+			end
+		end
+	end
+
+	local stream2 = data.raw["stream"]["handheld-flamethrower-fire-stream"]
+	if stream2 and stream2.action then
+		local action = stream2.action[1].action_delivery.target_effects
+		for _, eff in pairs(action) do
+			if eff.type == "create-fire" and eff.entity_name == "fire-flame" then
+				eff.trigger_created_entity = true
+				break
+			end
+		end
+	end
+	
+end
 
 ---------------------------------------------------------------
 

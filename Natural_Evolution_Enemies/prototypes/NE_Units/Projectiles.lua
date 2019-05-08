@@ -280,7 +280,9 @@ data:extend({
           {
             {
               type = "create-fire",
-              entity_name = "ne-fire-flame-2"
+              entity_name = "ne-fire-flame-2",
+			  trigger_created_entity = true,
+			  
             },
           }
         }
