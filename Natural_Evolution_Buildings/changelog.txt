@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.23
+Date: 5. 29. 2019
+  Features:
+    - Rebalanced Dard Ammo damage values
+    - Increased damage bonus of Long range and rocket turrets
+---------------------------------------------------------------------------------------------------
 Version: 0.17.22
 Date: 5. 8. 2019
   Features:

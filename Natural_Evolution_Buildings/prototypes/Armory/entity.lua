@@ -64,14 +64,8 @@ data:extend({
 						},
 						{
 						  type = "damage",
-						  
-						  damage = { amount = 1 , type = "poison"}
-						 
+						  damage = { amount = 3 , type = "physical"}
 						},
-						{
-						  type = "damage",
-						  damage = { amount = 2 , type = "physical"}
-						}
 					  }
 					}
 				}
@@ -113,13 +107,13 @@ data:extend({
 				  entity_name = "explosion-hit"
 				},
 				{
-				  type = "damage",				  
-				  damage = { amount = 1 , type = "poison"}				 
-				},
+				  type = "damage",
+				  damage = { amount = 3 , type = "physical"}
+	     		},
 				{
 				  type = "damage",
-				  damage = { amount = 2.5 , type = "bob-pierce"}
-				}
+				  damage = { amount = 2 , type = "bob-pierce"}
+				},
 			  }
 			}
 		  }
@@ -137,7 +131,6 @@ data:extend({
 		name = "bi-enhanced-dart-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon.png",
 		icon_size = 32,
-		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -159,17 +152,17 @@ data:extend({
 				  entity_name = "explosion-hit"
 				},
 				{
-				  type = "damage",				  
-				  damage = { amount = 1 , type = "poison"}			 
+				  type = "damage",
+				  damage = { amount = 3 , type = "physical"}
+	     		},
+				{
+				  type = "damage",
+				  damage = { amount = 2 , type = "bob-pierce"}
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 2 , type = "physical"}
+				  damage = { amount = 2 , type = "acid"}
 				},
-				{
-				  type = "damage",
-				  damage = { amount = 2.5 , type = "bob-pierce"}
-				}
 			  }
 			}
 		  }
@@ -187,7 +180,6 @@ data:extend({
 		name = "bi-poison-dart-magazine",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/poison_dart_icon.png",
 		icon_size = 32,
-		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -209,17 +201,21 @@ data:extend({
 				  entity_name = "explosion-hit"
 				},
 				{
+				  type = "damage",
+				  damage = { amount = 3 , type = "physical"}
+	     		},
+				{
+				  type = "damage",
+				  damage = { amount = 2 , type = "bob-pierce"}
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 2 , type = "acid"}
+				},
+				{
 				  type = "damage",				  
-				  damage = { amount = 4 , type = "poison"}			 
+				  damage = { amount = 2 , type = "poison"}			 
 				},
-				{
-				  type = "damage",
-				  damage = { amount = 2 , type = "physical"}
-				},
-				{
-				  type = "damage",
-				  damage = { amount = 2.5 , type = "bob-pierce"}
-				}
 			  }
 			}
 		  }
@@ -332,7 +328,6 @@ data:extend({
 		name = "bi-basic-dart-magazine_c",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon_conversion.png",
 		icon_size = 32,
-		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -355,13 +350,7 @@ data:extend({
 				},
 				{
 				  type = "damage",
-				  
-				  damage = { amount = 1/2 , type = "poison"}
-				 
-				},
-				{
-				  type = "damage",
-				  damage = { amount = 2/2 , type = "physical"}
+				  damage = { amount = 3/2 , type = "physical"}
 				},
 				{
 				  type = "damage",
@@ -407,12 +396,12 @@ data:extend({
 				  entity_name = "explosion-hit"
 				},
 				{
-				  type = "damage",			  
-				  damage = { amount = 1/2 , type = "poison"}			 
-				},
+				  type = "damage",
+				  damage = { amount = 3/2 , type = "physical"}
+	     		},
 				{
 				  type = "damage",
-				  damage = { amount = 2.5/2 , type = "bob-pierce"}
+				  damage = { amount = 2/2 , type = "bob-pierce"}
 				},
 				{
 				  type = "damage",
@@ -457,17 +446,15 @@ data:extend({
 				},
 				{
 				  type = "damage",
-				  
-				  damage = { amount = 1/2 , type = "poison"}
-				 
+				  damage = { amount = 3/2 , type = "physical"}
+	     		},
+				{
+				  type = "damage",
+				  damage = { amount = 2/2 , type = "bob-pierce"}
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 2/2 , type = "physical"}
-				},
-				{
-				  type = "damage",
-				  damage = { amount = 2.5/2 , type = "bob-pierce"}
+				  damage = { amount = 2/2 , type = "acid"}
 				},
 				{
 				  type = "damage",
@@ -489,7 +476,6 @@ data:extend({
 		name = "bi-poison-dart-magazine_c",
 		icon = "__Natural_Evolution_Buildings__/graphics/icons/poison_dart_icon_conversion.png",
 		icon_size = 32,
-		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -512,17 +498,19 @@ data:extend({
 				},
 				{
 				  type = "damage",
-				  
-				  damage = { amount = 4/2 , type = "poison"}
-				 
+				  damage = { amount = 3/2 , type = "physical"}
+	     		},
+				{
+				  type = "damage",
+				  damage = { amount = 2/2 , type = "bob-pierce"}
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 2/2 , type = "physical"}
+				  damage = { amount = 2/2 , type = "acid"}
 				},
 				{
-				  type = "damage",
-				  damage = { amount = 2.5/2 , type = "bob-pierce"}
+				  type = "damage",				  
+				  damage = { amount = 2/2 , type = "poison"}			 
 				},
 				{
 				  type = "damage",
@@ -1170,7 +1158,7 @@ data:extend({
 	icon_size = 32,
     flags = {"placeable-player", "player-creation"},
     minable = {mining_time = 0.25, result = "bi-dart-turret"},
-    max_health = 250,
+    max_health = 300,
     corpse = "medium-remnants",
 	 
 	 -- darkfrei: just another size of boxes, that's all
@@ -1250,7 +1238,7 @@ data:extend({
 		projectile_center = {0,0},
 		range = 40,
 		sound = make_heavy_gunshot_sounds(),
-		damage_modifier = 3.1
+		damage_modifier = 12
 		},
 
 	call_for_help_radius = 40
@@ -1298,7 +1286,7 @@ data:extend({
 		range = 45,
 		min_range = 25,
 		sound = make_heavy_gunshot_sounds(),
-		damage_modifier = 2.5
+		damage_modifier = 8
 		},
 
 	call_for_help_radius = 45
