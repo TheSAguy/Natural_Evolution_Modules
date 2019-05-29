@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.16
+Date: 5. 29. 2019
+  Features:
+    - "Breeder" units won't create new units if there are already 10+ in the area
+    - "Tree Monkeys" (When you chop down trees) now level up.
+---------------------------------------------------------------------------------------------------
 Version: 0.17.15
 Date: 5. 8. 2019
   Features:

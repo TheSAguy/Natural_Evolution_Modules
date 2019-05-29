@@ -1,4 +1,4 @@
---ENEMIES v.0.17.15
+--ENEMIES v.0.17.16
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -686,7 +686,7 @@ local function Look_and_Burn(entity, radius)
 		
 		local items = surface.find_entities_filtered({area = area, name = "item-on-ground"})
 		
-		writeDebug("# of Items found: ".. #items)
+		--writeDebug("# of Items on ground found: ".. #items)
 		if (#items > 0) and settings.startup["NE_Challenge_Mode"].value then
 				
 			for x=1,#items do
@@ -754,10 +754,10 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 		local radius = 10
 		local pos = entity.position	
 		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
-		local unit_names = {"ne-biter-fast-1", "ne-biter-fast-2", "ne-biter-fast-3", "ne-biter-fast-4", "ne-biter-fast-5", "ne-biter-fast-6", "ne-biter-fast-8", "ne-biter-fast-9", "ne-biter-fast-10", "ne-biter-fast-11", "ne-biter-fast-12", "ne-biter-fast-13", "ne-biter-fast-14", "ne-biter-fast-15", "ne-biter-fast-16", "ne-biter-fast-17", "ne-biter-fast-18", "ne-biter-fast-19", "ne-biter-fast-20", "ne-biter-fastL-1", "ne-biter-fastL-2", "ne-biter-fastL-3", "ne-biter-fastL-4", "ne-biter-fastL-5", "ne-biter-fastL-6", "ne-biter-fastL-8", "ne-biter-fastL-9", "ne-biter-fastL-10", "ne-biter-fastL-11", "ne-biter-fastL-12", "ne-biter-fastL-13", "ne-biter-fastL-14", "ne-biter-fastL-15", "ne-biter-fastL-16", "ne-biter-fastL-17", "ne-biter-fastL-18", "ne-biter-fastL-19", "ne-biter-fastL-20"} 
+		local unit_names = {"ne-biter-fast-1", "ne-biter-fast-2", "ne-biter-fast-3", "ne-biter-fast-4", "ne-biter-fast-5", "ne-biter-fast-6", "ne-biter-fast-7", "ne-biter-fast-8", "ne-biter-fast-9", "ne-biter-fast-10", "ne-biter-fast-11", "ne-biter-fast-12", "ne-biter-fast-13", "ne-biter-fast-14", "ne-biter-fast-15", "ne-biter-fast-16", "ne-biter-fast-17", "ne-biter-fast-18", "ne-biter-fast-19", "ne-biter-fast-20", "ne-biter-fastL-1", "ne-biter-fastL-2", "ne-biter-fastL-3", "ne-biter-fastL-4", "ne-biter-fastL-5", "ne-biter-fastL-6", "ne-biter-fastL-7", "ne-biter-fastL-8", "ne-biter-fastL-9", "ne-biter-fastL-10", "ne-biter-fastL-11", "ne-biter-fastL-12", "ne-biter-fastL-13", "ne-biter-fastL-14", "ne-biter-fastL-15", "ne-biter-fastL-16", "ne-biter-fastL-17", "ne-biter-fastL-18", "ne-biter-fastL-19", "ne-biter-fastL-20"} 
 		local green_units = entity.surface.count_entities_filtered{area=area, name=unit_names}
 		
-		writeDebug("Count is: "..green_units)
+		--writeDebug("Count is: "..green_units)
 		
 		-- Only spawn new units if there are 20 or less units in the area. - Prevents over-crowding...
 		if green_units <= (19 + NE_Enemies.Settings.NE_Difficulty) then
@@ -821,14 +821,14 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 	
 	--- If Fire then destroy stuff on ground
     if entity.valid and entity.name == "ne-fire-flame-2" then
-		writeDebug("Fire Trigger")
+		--writeDebug("Fire Trigger")
 		Look_and_Burn(entity, 0.25)
     end	
 
 
 	--- If Fire then destroy stuff on ground
     if entity.valid and entity.name == "fire-flame" then
-		writeDebug("Fire Trigger: fire-flame")
+		--writeDebug("Fire Trigger: fire-flame")
 		Look_and_Burn(entity, 0.5)
     end	
 
@@ -907,7 +907,13 @@ local function On_Remove(event)
 		local spawn_chance = math.random(420 - (20 * NE_Enemies.Settings.NE_Difficulty))
 		
 		if spawn_chance < math.floor(game.forces.enemy.evolution_factor * 100) then
-			local tree_monkey = surface.create_entity({name="ne-biter-breeder-1", position=entity.position, force = game.forces.enemy})	
+			local monkey_lvl = math.floor(game.forces.enemy.evolution_factor * 10)
+			--writeDebug("Evo Factor Lvl: "..monkey_lvl)
+			if monkey_lvl <= 1 then monkey_lvl = 1 end
+			local tree_monkey_name = "ne-biter-breeder-"..monkey_lvl
+			--writeDebug("Tree Monkey Name: "..tree_monkey_name)
+		    --- Spawn Monkey
+			local tree_monkey = surface.create_entity({name=tree_monkey_name, position=entity.position, force = game.forces.enemy})	
 		end
 	end
 
@@ -1017,8 +1023,18 @@ function SpawnBreederBabies(entity)
 	
 	------writeDebug(BabyName)
 	------writeDebug(BabyLvl)
-	--- Only start breeding at Lvl 5
-	if math.floor(UnitNumber(entity)) >= 5 then 
+	
+	--- Only start breeding at Lvl 5 & if there are 10 or less units in the area. - Prevents over-crowding...
+	local radius = 12
+	local pos = entity.position	
+	local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
+	local unit_names = {"ne-biter-breeder-1", "ne-biter-breeder-2", "ne-biter-breeder-3", "ne-biter-breeder-4", "ne-biter-breeder-5", "ne-biter-breeder-6", "ne-biter-breeder-7", "ne-biter-breeder-8", "ne-biter-breeder-9", "ne-biter-breeder-10", "ne-biter-breeder-11", "ne-biter-breeder-12", "ne-biter-breeder-13", "ne-biter-breeder-14", "ne-biter-breeder-15", "ne-biter-breeder-16", "ne-biter-breeder-17", "ne-biter-breeder-18", "ne-biter-breeder-19", "ne-biter-breeder-20", "ne-spitter-breeder-1", "ne-spitter-breeder-2", "ne-spitter-breeder-3", "ne-spitter-breeder-4", "ne-spitter-breeder-5", "ne-spitter-breeder-6", "ne-spitter-breeder-7", "ne-spitter-breeder-8", "ne-spitter-breeder-9", "ne-spitter-breeder-10", "ne-spitter-breeder-11", "ne-spitter-breeder-12", "ne-spitter-breeder-13", "ne-spitter-breeder-14", "ne-spitter-breeder-15", "ne-spitter-breeder-16", "ne-spitter-breeder-17", "ne-spitter-breeder-18", "ne-spitter-breeder-19", "ne-spitter-breeder-20"} 
+	local blue_units = entity.surface.count_entities_filtered{area=area, name=unit_names}
+		
+	--writeDebug("Blue Unit count is: "..blue_units)
+
+	
+	if math.floor(UnitNumber(entity)) >= 5 and blue_units <= (9 + NE_Enemies.Settings.NE_Difficulty) then 
 		for i = 1, NumberOfBabies do
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 4 , 0.5)
 			if PositionValid then
@@ -1041,8 +1057,16 @@ function SpawnBreederBabies_Spawner(entity)
 	if BabyNumber <= 0 then BabyNumber = 1 end
 	local BabyName = "ne-biter-breeder-"..BabyNumber
 	
-	-- No spawn for first 5% of Evo
-	if math.floor(game.forces.enemy.evolution_factor * 10) >= 5 then 
+	-- No spawn for first 5% of Evo & if there are 15 or less units in the area. - Prevents over-crowding...
+	local radius = 8
+	local pos = entity.position	
+	local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}
+	local unit_names = {"ne-biter-breeder-1", "ne-biter-breeder-2", "ne-biter-breeder-3", "ne-biter-breeder-4", "ne-biter-breeder-5", "ne-biter-breeder-6", "ne-biter-breeder-7", "ne-biter-breeder-8", "ne-biter-breeder-9", "ne-biter-breeder-10", "ne-biter-breeder-11", "ne-biter-breeder-12", "ne-biter-breeder-13", "ne-biter-breeder-14", "ne-biter-breeder-15", "ne-biter-breeder-16", "ne-biter-breeder-17", "ne-biter-breeder-18", "ne-biter-breeder-19", "ne-biter-breeder-20", "ne-spitter-breeder-1", "ne-spitter-breeder-2", "ne-spitter-breeder-3", "ne-spitter-breeder-4", "ne-spitter-breeder-5", "ne-spitter-breeder-6", "ne-spitter-breeder-7", "ne-spitter-breeder-8", "ne-spitter-breeder-9", "ne-spitter-breeder-10", "ne-spitter-breeder-11", "ne-spitter-breeder-12", "ne-spitter-breeder-13", "ne-spitter-breeder-14", "ne-spitter-breeder-15", "ne-spitter-breeder-16", "ne-spitter-breeder-17", "ne-spitter-breeder-18", "ne-spitter-breeder-19", "ne-spitter-breeder-20"} 
+	local blue_units = entity.surface.count_entities_filtered{area=area, name=unit_names}
+		
+	--writeDebug("Blue Unit count is: "..blue_units)
+	
+	if math.floor(game.forces.enemy.evolution_factor * 10) >= 5 and blue_units <= (14 + NE_Enemies.Settings.NE_Difficulty) then 
 		for i = 1, NumberOfBabies do
 			local PositionValid = entity.surface.find_non_colliding_position(BabyName, entity.position, 8 , 0.5)
 			if PositionValid then
