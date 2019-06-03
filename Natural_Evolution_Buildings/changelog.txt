@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.24
+Date: 6. 3. 2019
+  Features:
+    - Converted fully to "Factorio Standard Library" https://mods.factorio.com/mod/stdlib Now also a dependancy
+    - Display Evolution due to Time, Destruction and Pollution if you're using EvoGUI: https://mods.factorio.com/mod/EvoGUI
+    - Tweaked Artifact collector speed.
+---------------------------------------------------------------------------------------------------
 Version: 0.17.23
 Date: 5. 29. 2019
   Features:

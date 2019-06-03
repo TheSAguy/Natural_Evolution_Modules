@@ -4,7 +4,7 @@ local QC_Mod = false
 
 
 require ("util")
-require ("stdlib/event/event")
+local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
 require ("control_bio_cannon")
 require ("control_artifact_collector")
 require ("control_acs")
@@ -140,6 +140,13 @@ end
 ---------------------------------------------				 
 local function On_Config_Change()
 
+	--- EvoGUI
+	
+	if game.active_mods["EvoGUI"] then 
+		EvoGUI.setup()
+	end
+	
+	
  	--- Artifact Collector
 	if global.world == nil then
 		global.world = {}
@@ -186,8 +193,7 @@ local function On_Config_Change()
 		
 end
 
-
-script.on_event(defines.events.on_player_joined_game, function(event)
+Event.register(defines.events.on_player_joined_game, function(event)
 	
 	if global.deduction_constant == nil or global.deduction_constant == 0 then
 		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
@@ -195,7 +201,7 @@ script.on_event(defines.events.on_player_joined_game, function(event)
    
 end)
 
-
+--[[
 script.on_event(defines.events.on_player_joined_game, function(event)
 	
 	if global.deduction_constant == nil or global.deduction_constant == 0 then
@@ -203,9 +209,7 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 	end	
    
 end)
-
-
-
+]]
 
 ---------------------------------------------
 local function On_Built(event)
@@ -529,7 +533,7 @@ end
 
 
 ----------------Radars Scanning Function, used by Terraforming Sataion and Thumper -----------------------------
-script.on_event(defines.events.on_sector_scanned, function(event)
+Event.register(defines.events.on_sector_scanned, function(event)
 	
 	---- Each time a Terraforming Station scans a sector, reduce the evolution factor ----	
 	if event.radar.name == "TerraformingStation_New" then
@@ -556,6 +560,7 @@ script.on_event(defines.events.on_sector_scanned, function(event)
 	
 end)
 
+
 --------------------------------------------
 --- Living Wall & Pheromone Concrete Stuff
 Event.register(defines.events.on_tick, function(event)	
@@ -564,8 +569,7 @@ Event.register(defines.events.on_tick, function(event)
 	if game.tick % (60 * 60 * 10) == 0 then -- 3600 one min
 
 	
-	--writeDebug("Number of Tiles in Table: "..#global.laid_pheromone_concrete)
-	
+		--Pheromone Concrete Stuff
 		if #global.laid_pheromone_concrete > 0 then
 	
 		
@@ -621,18 +625,18 @@ Event.register(defines.events.on_tick, function(event)
 				
 		end
 		
-			--- Place the new "exhausted_pheromone_concrete" tiles
-			if Tile_test then
-				--WriteDebug("Test Passed, placing new concrete")
-				surface.set_tiles(New_tiles)
-			end	
+		--- Place the new "exhausted_pheromone_concrete" tiles
+		if Tile_test then
+			--WriteDebug("Test Passed, placing new concrete")
+			surface.set_tiles(New_tiles)
+		end	
 	
 
 	end
 
 	
-	-----------------------------
-	
+
+	---- Regenerate some health on living walls
 	if game.tick % 60 == 0 and global.Living_Walls_Table ~= nil then
 
 		for k,Living_Wall in pairs(global.Living_Walls_Table) do
@@ -655,7 +659,7 @@ end)
 
 
 ---------------------------------------------
-script.on_event(defines.events.on_research_finished, function(event)
+Event.register(defines.events.on_research_finished, function(event)
 
 	local research = event.research.name
 	if research == "Alien_Training" then
@@ -675,6 +679,27 @@ script.on_event(defines.events.on_research_finished, function(event)
 end)
 
 
+--[[
+script.on_event(defines.events.on_research_finished, function(event)
+
+	local research = event.research.name
+	if research == "Alien_Training" then
+		for _, player in pairs(event.research.force.players) do
+			player.insert{name="attractor-off",count=1}
+		end
+	end
+  
+    if research == "TerraformingStation-2" then
+        global.deduction_constant = global.deduction_constant * 1.25
+    end      
+
+    if research == "TerraformingStation-3" then
+       global.deduction_constant = global.deduction_constant * 1.05
+    end    	
+  
+end)
+]]
+
 ----- Pheromone Concrete stuff
 --------------------------------------------------------------------
 local function pheromone_concrete_laid (event, surface)
@@ -686,7 +711,7 @@ local function pheromone_concrete_laid (event, surface)
 		if currentTilename == "pheromone_concrete" then
 						
 			if not global.laid_pheromone_concrete then global.laid_pheromone_concrete = {} end
-			local pheromone_time = math.random(36000) + 198000 -- 216,000 One Hour
+			local pheromone_time = math.random(36000) + 198000 -- 216,000 is one Hour
 			table.insert(global.laid_pheromone_concrete, {position = vv.position, time = event.tick + pheromone_time, surface = surface})
 			table.sort(global.laid_pheromone_concrete, function(a, b) return a.time < b.time end)			
 				
@@ -727,24 +752,38 @@ end
 
 
 ----------------------------------------
-script.on_configuration_changed(On_Config_Change)
-script.on_init(On_Init)
+--script.on_configuration_changed(On_Config_Change)
+--script.on_init(On_Init)
+Event.register(Event.core_events.configuration_changed, On_Config_Change)
+Event.register(Event.core_events.init, On_Init)
+
+Event.build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+Event.pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined}
+Event.death_events = {defines.events.on_entity_died}
+Event.player_build_event = {defines.events.on_player_built_tile}
+Event.robot_build_event = {defines.events.on_robot_built_tile}
+
+Event.register(Event.build_events, On_Built)
+Event.register(Event.pre_remove_events, On_Remove)
+Event.register(Event.death_events, On_Death)
+Event.register(Event.player_build_event, Player_Tile_Built)
+Event.register(Event.robot_build_event, Robot_Tile_Built)
 
 
-local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
-script.on_event(build_events, On_Built)
+--local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+--script.on_event(build_events, On_Built)
 
-local pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined}
-script.on_event(pre_remove_events, On_Remove)
+--local pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined}
+--script.on_event(pre_remove_events, On_Remove)
 
-local death_events = {defines.events.on_entity_died}
-script.on_event(death_events, On_Death)
+--local death_events = {defines.events.on_entity_died}
+--script.on_event(death_events, On_Death)
 
-local player_build_event = {defines.events.on_player_built_tile}
-script.on_event(player_build_event, Player_Tile_Built)
+--local player_build_event = {defines.events.on_player_built_tile}
+--script.on_event(player_build_event, Player_Tile_Built)
 
-local robot_build_event = {defines.events.on_robot_built_tile}
-script.on_event(robot_build_event, Robot_Tile_Built)
+--local robot_build_event = {defines.events.on_robot_built_tile}
+--script.on_event(robot_build_event, Robot_Tile_Built)
 
 
 

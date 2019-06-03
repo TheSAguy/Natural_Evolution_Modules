@@ -78,14 +78,14 @@ data:extend(
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
 			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
 			render_not_in_network_icon = false,
-			max_health = 300,
+			max_health = 450,
 			corpse = "small-remnants",
 			dying_explosion = "medium-explosion",
 			resistances =
 			{
 			  {
 				type = "fire",
-				percent = 90
+				percent = 100
 			  },
 			  {
 				type = "explosion",
@@ -100,7 +100,7 @@ data:extend(
 			selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 			order = "i[items]-i[Artifact-collector]",
 			subgroup = "storage",
-			inventory_size = 60,
+			inventory_size = 30,
 			logistic_mode = "passive-provider",
 			open_sound = { filename = "__base__/sound/metallic-chest-open.ogg", volume=0.65 },
 			close_sound = { filename = "__base__/sound/metallic-chest-close.ogg", volume = 0.7 },
@@ -123,14 +123,14 @@ data:extend(
 	icon_size = 32,
 	flags = {"placeable-player", "player-creation", "not-deconstructable"},
     minable = nil, 
-	max_health = 300,
+	max_health = 450,
     corpse = "small-remnants",
 	dying_explosion = "medium-explosion",
 	resistances =
 	{
 	  {
 		type = "fire",
-		percent = 90
+		percent = 100
 	  },
 	  {
 		type = "explosion",
@@ -144,17 +144,15 @@ data:extend(
 	collision_box = {{-0.5, -0.5}, {0.5, 0.5}},
 	selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
 	order = "b[TerraformingStation]-a[TerraformingStation]",
-    energy_per_sector = "10.00MJ",
-	max_distance_of_sector_revealed = 14,
-    max_distance_of_nearby_sector_revealed = 3,
-    energy_per_nearby_scan = "400kW",
+    energy_per_sector = "8.00MJ",
+	energy_per_nearby_scan = "250kJ",
+	max_distance_of_sector_revealed = 4,
+    max_distance_of_nearby_sector_revealed = 1.5,   
     energy_source =
     {
       type = "void",
-      --usage_priority = "secondary-input"
     },
     energy_usage = "200kW",
-
     pictures =
     {
       layers =

@@ -1,7 +1,7 @@
 ---Bio Cannn (Hive Buster) Stuff
 
-require ("stdlib/event/event")
-
+--require ("stdlib/event/event")
+local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
 
 ----- Bio Cannon Stuff
 local function Bio_Cannon_Check(Bio_Cannon_List)

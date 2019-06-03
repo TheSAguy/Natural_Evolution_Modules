@@ -1,7 +1,7 @@
 ---- Terraforming Station Stuff ----------
 
-require ("stdlib/event/event")
-
+--require ("stdlib/event/event")
+local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
 
 --------------- Terraforming Station Calculations ------------------------------
 function GetFactorPerTerraformingStation(numTerraformingStations)
