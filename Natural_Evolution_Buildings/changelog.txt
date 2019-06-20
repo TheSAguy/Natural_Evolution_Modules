@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.17.25
+Date: 6. 20. 2019
+  Features:
+    - Decreased Terraforming Station Evolution deduction by 20%
+  Bugfix:
+    - EvoGUI compatibility fix
+---------------------------------------------------------------------------------------------------
 Version: 0.17.24
 Date: 6. 3. 2019
   Features:

@@ -1,6 +1,6 @@
 if remote.interfaces.EvoGUI then
 
-	--require ("stdlib/event/event")
+
 	local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
 	
 	EvoGUI = {}
@@ -63,6 +63,7 @@ if remote.interfaces.EvoGUI then
 		
 		function EvoGUI.setup()
 			if remote.interfaces.EvoGUI and remote.interfaces.EvoGUI.create_remote_sensor then
+				if not global.evo_gui then global.evo_gui = {} end
 				global.evo_gui.detected = true
 
 				remote.call("EvoGUI", "create_remote_sensor", {
@@ -94,6 +95,7 @@ if remote.interfaces.EvoGUI then
 			end
 		end
 
+		--[[
 	Event.register(defines.events.on_tick, function(event)	
 
 		if not global.evo_gui then global.evo_gui = {} end
@@ -109,7 +111,7 @@ if remote.interfaces.EvoGUI then
 			end
 
 	end)	
-
+]]
 		function EvoGUI.update_gui()
 			-- figure out what color to make the text here (if any)
 			local color = { r = 255, g = 255, b = 255 }

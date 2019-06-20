@@ -92,7 +92,7 @@ local function On_Init()
 
 	
 	if global.deduction_constant == nil or global.deduction_constant == 0 then
-		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
+		global.deduction_constant = 0.00020 -------- DEDUCTION CONSTANT
 	end
 	
 	---- Living Wall Init
@@ -140,12 +140,11 @@ end
 ---------------------------------------------				 
 local function On_Config_Change()
 
-	--- EvoGUI
-	
-	if game.active_mods["EvoGUI"] then 
-		EvoGUI.setup()
+	--- EvoGUI Stuff
+	if game.active_mods["EvoGUI"] then 	
+		if not global.evo_gui then global.evo_gui = {} end
+		EvoGUI.setup()		
 	end
-	
 	
  	--- Artifact Collector
 	if global.world == nil then
@@ -156,7 +155,7 @@ local function On_Config_Change()
 
 	
 	if global.deduction_constant == nil or global.deduction_constant == 0 then
-		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
+		global.deduction_constant = 0.00020 -------- DEDUCTION CONSTANT
 	end	
 	
 	-- enable researched recipes
@@ -196,20 +195,11 @@ end
 Event.register(defines.events.on_player_joined_game, function(event)
 	
 	if global.deduction_constant == nil or global.deduction_constant == 0 then
-		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
+		global.deduction_constant = 0.00020 -------- DEDUCTION CONSTANT
 	end	
    
 end)
 
---[[
-script.on_event(defines.events.on_player_joined_game, function(event)
-	
-	if global.deduction_constant == nil or global.deduction_constant == 0 then
-		global.deduction_constant = 0.00025 -------- DEDUCTION CONSTANT
-	end	
-   
-end)
-]]
 
 ---------------------------------------------
 local function On_Built(event)
@@ -566,6 +556,22 @@ end)
 Event.register(defines.events.on_tick, function(event)	
 
 
+
+	--- EvoGUI Stuff
+		if not global.evo_gui then global.evo_gui = {} end
+
+			if not global.evo_gui.detected then
+				EvoGUI.setup()
+			end
+			
+			if global.evo_gui.detected and game.tick % 10 == 0 then
+				if remote.interfaces.EvoGUI then
+					EvoGUI.update_gui()
+				end
+			end
+
+
+
 	if game.tick % (60 * 60 * 10) == 0 then -- 3600 one min
 
 	
@@ -679,27 +685,6 @@ Event.register(defines.events.on_research_finished, function(event)
 end)
 
 
---[[
-script.on_event(defines.events.on_research_finished, function(event)
-
-	local research = event.research.name
-	if research == "Alien_Training" then
-		for _, player in pairs(event.research.force.players) do
-			player.insert{name="attractor-off",count=1}
-		end
-	end
-  
-    if research == "TerraformingStation-2" then
-        global.deduction_constant = global.deduction_constant * 1.25
-    end      
-
-    if research == "TerraformingStation-3" then
-       global.deduction_constant = global.deduction_constant * 1.05
-    end    	
-  
-end)
-]]
-
 ----- Pheromone Concrete stuff
 --------------------------------------------------------------------
 local function pheromone_concrete_laid (event, surface)
@@ -752,8 +737,7 @@ end
 
 
 ----------------------------------------
---script.on_configuration_changed(On_Config_Change)
---script.on_init(On_Init)
+
 Event.register(Event.core_events.configuration_changed, On_Config_Change)
 Event.register(Event.core_events.init, On_Init)
 
@@ -768,23 +752,6 @@ Event.register(Event.pre_remove_events, On_Remove)
 Event.register(Event.death_events, On_Death)
 Event.register(Event.player_build_event, Player_Tile_Built)
 Event.register(Event.robot_build_event, Robot_Tile_Built)
-
-
---local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
---script.on_event(build_events, On_Built)
-
---local pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined}
---script.on_event(pre_remove_events, On_Remove)
-
---local death_events = {defines.events.on_entity_died}
---script.on_event(death_events, On_Death)
-
---local player_build_event = {defines.events.on_player_built_tile}
---script.on_event(player_build_event, Player_Tile_Built)
-
---local robot_build_event = {defines.events.on_robot_built_tile}
---script.on_event(robot_build_event, Robot_Tile_Built)
-
 
 
 
