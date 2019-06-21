@@ -1,10 +1,11 @@
--- NE BUILDINGS Ver = 0.17.22
+-- NE BUILDINGS Ver = 0.17.26
 local QC_Mod = false
 
 
 
 require ("util")
-local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
+--local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
+local Event = require('__stdlib__/stdlib/event/event')
 require ("control_bio_cannon")
 require ("control_artifact_collector")
 require ("control_acs")
@@ -558,6 +559,9 @@ Event.register(defines.events.on_tick, function(event)
 
 
 	--- EvoGUI Stuff
+		--- EvoGUI Stuff
+	if game.active_mods["EvoGUI"] then 		
+	
 		if not global.evo_gui then global.evo_gui = {} end
 
 			if not global.evo_gui.detected then
@@ -569,7 +573,7 @@ Event.register(defines.events.on_tick, function(event)
 					EvoGUI.update_gui()
 				end
 			end
-
+	end
 
 
 	if game.tick % (60 * 60 * 10) == 0 then -- 3600 one min
