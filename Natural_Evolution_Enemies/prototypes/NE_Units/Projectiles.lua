@@ -669,6 +669,7 @@ for i = 1, 20 do
 local spitter_land_mine = util.table.deepcopy(data.raw["land-mine"]["land-mine"])
 spitter_land_mine.name = "ne-spitter-land-mine-"..i
 spitter_land_mine.icon = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine.png"
+spitter_land_mine.icon_size = 32
 spitter_land_mine.collision_box = {{-0,-0}, {0, 0}}
 spitter_land_mine.collision_mask = {"not-colliding-with-itself"}
 spitter_land_mine.minable = nil

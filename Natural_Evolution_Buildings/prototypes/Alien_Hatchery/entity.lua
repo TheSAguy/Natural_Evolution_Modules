@@ -434,7 +434,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -442,7 +442,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -475,7 +475,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -483,7 +483,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -516,7 +516,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -524,7 +524,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -557,7 +557,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -565,7 +565,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -598,7 +598,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -606,7 +606,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -639,7 +639,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -647,7 +647,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -680,7 +680,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -688,7 +688,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,
@@ -721,7 +721,7 @@ data:extend({
     light = {intensity = 0.5, size = 4},
     animation =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/defender-capsule.png",
       frame_count = 1,
       width = 28,
       height = 20,
@@ -729,7 +729,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__base__/graphics/entity/combat-robot-capsule/combat-robot-capsule-shadow.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/combat-robot-capsule/combat-robot-capsule-shadow.png",
       frame_count = 1,
       width = 32,
       height = 32,

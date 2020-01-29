@@ -1487,6 +1487,18 @@ function SpawnLaunchedUnits(enemy, unit_to_spawn)
 end
 
 
+function does_tile_exists(tile_name)
+	local found = false
+	
+	for _, tile_prototype in pairs(game.tile_prototypes) do
+		if (tile_prototype.name == tile_name) then
+			found = true
+		end
+	end
+	--game.print("FOUND")  -- it does not get here now!
+	return found
+end
+
 ----------------------------------------------
 function Scorched_Earth(surface, pos, size)
 	--- Turn the terrain into desert
@@ -1499,7 +1511,8 @@ function Scorched_Earth(surface, pos, size)
 			local new_position = {x = pos.x + xxx,y = pos.y + yyy}
 			local currentTilename = surface.get_tile(new_position.x, new_position.y).name
 			------writeDebug("The current tile is: " .. currentTilename)
-
+			
+			
 			if game.active_mods["alien-biomes"] then
 			
 				if currentTilename == "volcanic-orange-heat-4" then
@@ -1508,9 +1521,11 @@ function Scorched_Earth(surface, pos, size)
 					Remove_Decal(surface, new_position, 1.5, 5)
 					
 				elseif replaceableTiles_alien[currentTilename] then
-					table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})  
+					if does_tile_exists(replaceableTiles_alien[currentTilename]) then
+						table.insert(New_tiles, {name=replaceableTiles_alien[currentTilename], position=new_position})  
+						Scorch_test	= true
+					end
 					Remove_Decal(surface, new_position, 0.5, 1)
-					Scorch_test	= true
 					
 				end
 				
@@ -1522,9 +1537,12 @@ function Scorched_Earth(surface, pos, size)
 					Remove_Decal(surface, new_position, 1.5, 5)
 					
 				elseif replaceableTiles[currentTilename] then
-					table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position}) 
+					if does_tile_exists(replaceableTiles[currentTilename]) then
+						table.insert(New_tiles, {name=replaceableTiles[currentTilename], position=new_position}) 
+						Scorch_test	= true
+					end
 					Remove_Decal(surface, new_position, 0.5, 1)					
-					Scorch_test	= true
+					
 				end
 				
 			end
