@@ -1,3 +1,4 @@
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
@@ -462,7 +463,7 @@ function NE_Biter_Melee_Single_Attack(data)
 			  }
 			}
 		  },
-      sound =  make_biter_roars(sound),
+      sound =  sounds.biter_roars(sound),
       animation = biterattackanimation(data.scale, data.tint1, data.tint2)
     }
 	
@@ -500,7 +501,7 @@ function NE_Biter_Melee_Double_Attack(data)
 			  }
 			}
 		  },
-      sound =  make_biter_roars(sound),
+      sound =  sounds.biter_roars(sound),
       animation = biterattackanimation(data.scale, data.tint1, data.tint2)
     }
 	
@@ -542,7 +543,7 @@ function NE_Biter_Melee_Tripple_Attack(data)
 			  }
 			}
 		  },
-      sound =  make_biter_roars(sound),
+      sound =  sounds.biter_roars(sound),
       animation = biterattackanimation(data.scale, data.tint1, data.tint2)
     }
 	

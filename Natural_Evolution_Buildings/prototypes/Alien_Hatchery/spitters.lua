@@ -1,3 +1,4 @@
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 data:extend(
 {
 
@@ -48,8 +49,8 @@ data:extend(
     pollution_to_join_attack = 20,
     corpse = "small-spitter-corpse",
     dying_explosion = "blood-explosion-small",
-    working_sound = make_biter_calls(0.3),
-    dying_sound = make_spitter_dying_sounds(0.4),
+    working_sound = sounds.biter_calls(0.3),
+    dying_sound = sounds.spitter_dying(0.4),
     run_animation = spitterrunanimation(scale_spitter_small, tint_1_spitter_small, tint_2_spitter_small),
     ai_settings = biter_ai_settings
   },
@@ -102,8 +103,8 @@ data:extend(
     pollution_to_join_attack = 60,
     corpse = "medium-spitter-corpse",
     dying_explosion = "blood-explosion-small",
-    working_sound = make_biter_calls(0.4),
-    dying_sound = make_spitter_dying_sounds(0.5),
+    working_sound = sounds.biter_calls(0.4),
+    dying_sound = sounds.spitter_dying(0.5),
     run_animation = spitterrunanimation(scale_spitter_medium, tint_1_spitter_medium, tint_2_spitter_medium),
     ai_settings = biter_ai_settings
   },
@@ -157,8 +158,8 @@ data:extend(
     pollution_to_join_attack = 150,
     corpse = "big-spitter-corpse",
     dying_explosion = "blood-explosion-big",
-    working_sound = make_biter_calls(0.5),
-    dying_sound = make_spitter_dying_sounds(0.6),
+    working_sound = sounds.biter_calls(0.5),
+    dying_sound = sounds.spitter_dying(0.6),
     run_animation = spitterrunanimation(scale_spitter_big, tint_1_spitter_big, tint_2_spitter_big),
     ai_settings = biter_ai_settings
   }, 
@@ -212,8 +213,8 @@ data:extend(
     pollution_to_join_attack = 1000,
     corpse = "behemoth-spitter-corpse",
     dying_explosion = "blood-explosion-big",
-    working_sound = make_biter_calls(0.7),
-    dying_sound = make_spitter_dying_sounds(0.8),
+    working_sound = sounds.biter_calls(0.7),
+    dying_sound = sounds.spitter_dying(0.8),
     run_animation = spitterrunanimation(scale_spitter_behemoth, tint_1_spitter_behemoth, tint_2_spitter_behemoth),
     ai_settings = biter_ai_settings
   },

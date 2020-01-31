@@ -1,3 +1,4 @@
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 data:extend(
 {
 
@@ -28,7 +29,7 @@ data:extend(
       range = 0.5,
       cooldown = 35,
       ammo_type = make_unit_melee_ammo_type(7),
-      sound = make_biter_roars(0.4),
+      sound = sounds.biter_roars(0.4),
       animation = biterattackanimation(small_biter_scale, small_biter_tint1, small_biter_tint2)
     },
     vision_distance = 30,
@@ -40,8 +41,8 @@ data:extend(
     max_pursue_distance = 50,
     corpse = "small-biter-corpse",
     dying_explosion = "blood-explosion-small",
-    dying_sound =  make_biter_dying_sounds(0.4),
-    working_sound =  make_biter_calls(0.3),
+    dying_sound =  sounds.biter_dying(0.4),
+    working_sound =  sounds.biter_calls(0.3),
     run_animation = biterrunanimation(small_biter_scale, small_biter_tint1, small_biter_tint2),
     ai_settings = biter_ai_settings
   },
@@ -85,7 +86,7 @@ data:extend(
       ammo_type = make_unit_melee_ammo_type(15),
       range = 1,
       cooldown = 35,
-      sound = make_biter_roars(0.5),
+      sound = sounds.biter_roars(0.5),
       animation = biterattackanimation(medium_biter_scale, medium_biter_tint1, medium_biter_tint2)
     },
     vision_distance = 30,
@@ -95,8 +96,8 @@ data:extend(
     pollution_to_join_attack = 100,
     corpse = "medium-biter-corpse",
     dying_explosion = "blood-explosion-small",
-    working_sound = make_biter_calls(0.4),
-    dying_sound = make_biter_dying_sounds(0.5),
+    working_sound = sounds.biter_calls(0.4),
+    dying_sound = sounds.biter_dying(0.5),
     run_animation = biterrunanimation(medium_biter_scale, medium_biter_tint1, medium_biter_tint2),
     ai_settings = biter_ai_settings
   },
@@ -141,7 +142,7 @@ data:extend(
       range = 1.5,
       cooldown = 35,
       ammo_type = make_unit_melee_ammo_type(30),
-      sound =  make_biter_roars(0.6),
+      sound =  sounds.biter_roars(0.6),
       animation = biterattackanimation(big_biter_scale, big_biter_tint1, big_biter_tint2)
     },
     vision_distance = 30,
@@ -151,8 +152,8 @@ data:extend(
     pollution_to_join_attack = 400,
     corpse = "big-biter-corpse",
     dying_explosion = "blood-explosion-big",
-    working_sound = make_biter_calls(0.5),
-    dying_sound = make_biter_dying_sounds(0.6),
+    working_sound = sounds.biter_calls(0.5),
+    dying_sound = sounds.biter_dying(0.6),
     run_animation = biterrunanimation(big_biter_scale, big_biter_tint1, big_biter_tint2),
     ai_settings = biter_ai_settings
   },
@@ -194,7 +195,7 @@ data:extend(
       range = 1.5,
       cooldown = 50,
       ammo_type = make_unit_melee_ammo_type(90),
-      sound =  make_biter_roars(0.8),
+      sound =  sounds.biter_roars(0.8),
       animation = biterattackanimation(behemoth_biter_scale, behemoth_biter_tint1, behemoth_biter_tint2)
     },
     vision_distance = 30,
@@ -204,8 +205,8 @@ data:extend(
     pollution_to_join_attack = 2000,
     corpse = "behemoth-biter-corpse",
     dying_explosion = "blood-explosion-big",
-    working_sound = make_biter_calls(0.7),
-    dying_sound = make_biter_dying_sounds(0.8),
+    working_sound = sounds.biter_calls(0.7),
+    dying_sound = sounds.biter_dying(0.8),
     run_animation = biterrunanimation(behemoth_biter_scale, behemoth_biter_tint1, behemoth_biter_tint2),
     ai_settings = biter_ai_settings
   },

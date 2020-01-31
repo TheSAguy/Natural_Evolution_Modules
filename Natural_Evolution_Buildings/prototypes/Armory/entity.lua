@@ -1,4 +1,4 @@
-
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 require ("util")
 
 
@@ -1237,7 +1237,7 @@ data:extend({
 		projectile_creation_distance = 3.4, 
 		projectile_center = {0,0},
 		range = 40,
-		sound = make_heavy_gunshot_sounds(),
+		sound = sounds.heavy_gunshot,
 		damage_modifier = 12
 		},
 
@@ -1285,7 +1285,7 @@ data:extend({
 		projectile_center = {0,0},
 		range = 45,
 		min_range = 25,
-		sound = make_heavy_gunshot_sounds(),
+		sound = sounds.heavy_gunshot,
 		damage_modifier = 8
 		},
 

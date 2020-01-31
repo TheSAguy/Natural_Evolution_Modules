@@ -1,6 +1,6 @@
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
-
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 
@@ -31,7 +31,7 @@ function Spitter_Attack_Projectile(data)
         }
       }
     },
-    sound = make_spitter_roars(data.roarvolume),
+    sound = sounds.spitter_roars(data.roarvolume),
     animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
@@ -63,7 +63,7 @@ function Spitter_Attack_Projectile_NH(data)
         }
       }
     },
-	sound = make_spitter_roars(data.roarvolume),
+	sound = sounds.spitter_roars(data.roarvolume),
     animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end
@@ -164,7 +164,7 @@ function Spitter_Attack_Stream(data)
           }
         }
       },
-	sound = make_spitter_roars(data.roarvolume),  
+	sound = sounds.spitter_roars(data.roarvolume),  
     animation = spitterattackanimation(data.scale, data.tint1, data.tint2),
   }
 end

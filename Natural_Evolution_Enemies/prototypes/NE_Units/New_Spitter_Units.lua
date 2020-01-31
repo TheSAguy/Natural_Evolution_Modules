@@ -1,5 +1,7 @@
 
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 require ("prototypes.NE_Units.Projectiles")
+
 
 local ne_collision_box = {}
 local c1 = 0.0375
@@ -126,8 +128,8 @@ for i = 1, 20 do
 						})
 	NE_Spitter_Breeder_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_blue_tint2, ne_blue_tint1)
     NE_Spitter_Breeder_Unit.pollution_to_join_attack = pollution_attack_increment
-	NE_Spitter_Breeder_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
-    NE_Spitter_Breeder_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
+	NE_Spitter_Breeder_Unit.dying_sound =  sounds.biter_dying(i/25 + 0.18)
+    NE_Spitter_Breeder_Unit.working_sound =  sounds.biter_calls(i/25 + 0.08)
 	NE_Spitter_Breeder_Unit.localised_description = {"entity-description.ne-spitter-breeder"} 
     
 	data:extend{NE_Spitter_Breeder_Unit}
@@ -155,8 +157,8 @@ for i = 1, 20 do
 						})
 	NE_Spitter_Fire_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_fire_tint, ne_fire_tint2)
     NE_Spitter_Fire_Unit.pollution_to_join_attack = pollution_attack_increment
-	NE_Spitter_Fire_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
-    NE_Spitter_Fire_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
+	NE_Spitter_Fire_Unit.dying_sound =  sounds.biter_dying(i/25 + 0.18)
+    NE_Spitter_Fire_Unit.working_sound =  sounds.biter_calls(i/25 + 0.08)
 	NE_Spitter_Fire_Unit.localised_description = {"entity-description.ne-spitter-fire"} 
     
 	data:extend{NE_Spitter_Fire_Unit}
@@ -186,8 +188,8 @@ for i = 1, 20 do
 						})
 	NE_Spitter_ULaunch_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_green_tint2, ne_green_tint)
     NE_Spitter_ULaunch_Unit.pollution_to_join_attack = pollution_attack_increment
-	NE_Spitter_ULaunch_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
-    NE_Spitter_ULaunch_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
+	NE_Spitter_ULaunch_Unit.dying_sound =  sounds.biter_dying(i/25 + 0.18)
+    NE_Spitter_ULaunch_Unit.working_sound =  sounds.biter_calls(i/25 + 0.08)
 	NE_Spitter_ULaunch_Unit.localised_description = {"entity-description.ne-spitter-ulaunch"} 
     
 	data:extend{NE_Spitter_ULaunch_Unit}
@@ -216,8 +218,8 @@ for i = 1, 20 do
 						})
 	NE_Spitter_Webshooter.run_animation = spitterrunanimation(ne_scale[i], ne_orange_tint, ne_yellow_tint2)
     NE_Spitter_Webshooter.pollution_to_join_attack = pollution_attack_increment
-	NE_Spitter_Webshooter.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
-    NE_Spitter_Webshooter.working_sound =  make_biter_calls(i/25 + 0.08)
+	NE_Spitter_Webshooter.dying_sound =  sounds.biter_dying(i/25 + 0.18)
+    NE_Spitter_Webshooter.working_sound =  sounds.biter_calls(i/25 + 0.08)
 	NE_Spitter_Webshooter.localised_description = {"entity-description.ne-spitter-webshooter"}     
 	
 	data:extend{NE_Spitter_Webshooter}
@@ -246,8 +248,8 @@ for i = 1, 20 do
 						})
 	NE_Spitter_Mine_Unit.run_animation = spitterrunanimation(ne_scale[i], ne_pink_tint, ne_black_tint)
     NE_Spitter_Mine_Unit.pollution_to_join_attack = pollution_attack_increment
-	NE_Spitter_Mine_Unit.dying_sound =  make_biter_dying_sounds(i/25 + 0.18)
-    NE_Spitter_Mine_Unit.working_sound =  make_biter_calls(i/25 + 0.08)
+	NE_Spitter_Mine_Unit.dying_sound =  sounds.biter_dying(i/25 + 0.18)
+    NE_Spitter_Mine_Unit.working_sound =  sounds.biter_calls(i/25 + 0.08)
 	NE_Spitter_Mine_Unit.localised_description = {"entity-description.ne-spitter-mine"}     
 	
 	data:extend{NE_Spitter_Mine_Unit}

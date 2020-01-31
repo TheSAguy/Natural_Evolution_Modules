@@ -1,3 +1,4 @@
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
@@ -55,8 +56,8 @@ end
 							sound = 1.5
 						})
 	NE_Megladon_Unit.run_animation = biterattackanimation(ne_scale, ne_mega_tint_2, ne_mega_tint_1)
-	NE_Megladon_Unit.dying_sound =  make_biter_dying_sounds(1.5)
-    NE_Megladon_Unit.working_sound =  make_biter_calls(1.25)
+	NE_Megladon_Unit.dying_sound =  sounds.biter_dying(1.5)
+    NE_Megladon_Unit.working_sound =  sounds.biter_calls(1.25)
 	NE_Megladon_Unit.localised_name = {"entity-name.ne-biter-megalodon"}
 	NE_Megladon_Unit.localised_description = {"entity-description.ne-biter-megalodon"}
     
