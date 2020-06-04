@@ -1,6 +1,7 @@
 local sounds = require("__base__.prototypes.entity.demo-sounds")
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 require ("util")
-
 
 if settings.startup["NE_Difficulty"] and settings.startup["NE_Difficulty"].value then
 	NE_Difficulty = settings.startup["NE_Difficulty"].value
@@ -36,8 +37,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-basic-dart-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "basic_dart_icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "basic_dart_icon.png",
+				icon_size = 64,
+			}
+		}, 
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -84,8 +91,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-standard-dart-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/standard_dart_icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "standard_dart_icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "standard_dart_icon.png",
+				icon_size = 64,
+			}
+		},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -129,8 +142,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-enhanced-dart-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "enhanced_dart_icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "enhanced_dart_icon.png",
+				icon_size = 64,
+			}
+		},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -178,8 +197,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-poison-dart-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/poison_dart_icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "poison_dart_icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "poison_dart_icon.png",
+				icon_size = 64,
+			}
+		},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -230,8 +255,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "copper-bullet-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/copper_magazine.png",
-		icon_size = 32,
+		icon = ICONPATH .. "copper_magazine.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "copper_magazine.png",
+				icon_size = 64,
+			}
+		},
 		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -276,8 +307,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "Biological-bullet-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Biological-bullet-magazine.png",
-		icon_size = 32,
+		icon = ICONPATH .. "Biological-bullet-magazine.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "Biological-bullet-magazine.png",
+				icon_size = 64,
+			}
+		},
 		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -326,8 +363,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-basic-dart-magazine_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon_conversion.png",
-		icon_size = 32,
+		icon = ICONPATH .. "basic_dart_icon_conversion.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "basic_dart_icon_conversion.png",
+				icon_size = 64,
+			}
+		},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -372,8 +415,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-standard-dart-magazine_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/standard_dart_icon_conversion.png",
-		icon_size = 32,
+		icon = ICONPATH .. "standard_dart_icon_conversion.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "standard_dart_icon_conversion.png",
+				icon_size = 64,
+			}
+		},
 		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -421,8 +470,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-enhanced-dart-magazine_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon_conversion.png",
-		icon_size = 32,
+		icon = ICONPATH .. "enhanced_dart_icon_conversion.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "enhanced_dart_icon_conversion.png",
+				icon_size = 64,
+			}
+		},
 		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -474,8 +529,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "bi-poison-dart-magazine_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/poison_dart_icon_conversion.png",
-		icon_size = 32,
+		icon = ICONPATH .. "poison_dart_icon_conversion.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "poison_dart_icon_conversion.png",
+				icon_size = 64,
+			}
+		},
 		ammo_type =
 		{
 		  category = "Bio_Turret_Ammo",
@@ -531,8 +592,14 @@ data:extend({
 {
     type = "ammo",
     name = "firearm-magazine_c",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/firearm-magazine_conversion.png",
-	icon_size = 32,
+	icon = ICONPATH .. "firearm-magazine_conversion.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "firearm-magazine_conversion.png",
+			icon_size = 64,
+		}
+	},
     --flags = {"goes-to-main-inventory"},
     ammo_type =
     {
@@ -583,8 +650,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "copper-bullet-magazine_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/copper_magazine_conversion.png",
-		icon_size = 32,
+		icon = ICONPATH .. "copper_magazine_conversion.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "copper_magazine_conversion.png",
+				icon_size = 64,
+			}
+		},
 		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -633,8 +706,14 @@ data:extend({
 	 {
     type = "ammo",
     name = "piercing-rounds-magazine_c",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing-rounds-magazine_conversion.png",
-	icon_size = 32,
+	icon = ICONPATH .. "piercing-rounds-magazine_conversion.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "piercing-rounds-magazine_conversion.png",
+			icon_size = 64,
+		}
+	},
     --flags = {"goes-to-main-inventory"},
     ammo_type =
     {
@@ -683,8 +762,14 @@ data:extend({
   {
     type = "ammo",
     name = "uranium-rounds-magazine_c",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/uranium-rounds-magazine_conversion.png",
-	icon_size = 32,
+	icon = ICONPATH .. "uranium-rounds-magazine_conversion.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "uranium-rounds-magazine_conversion.png",
+			icon_size = 64,
+		}
+	},
     --flags = {"goes-to-main-inventory"},
     ammo_type =
     {
@@ -729,8 +814,14 @@ data:extend({
 	{
 		type = "ammo",
 		name = "Biological-bullet-magazine_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Biological-bullet-magazine_conversion.png",
-		icon_size = 32,
+		icon = ICONPATH .. "Biological-bullet-magazine_conversion.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "Biological-bullet-magazine_conversion.png",
+				icon_size = 64,
+			}
+		},
 		--flags = {"goes-to-main-inventory"},
 		ammo_type =
 		{
@@ -787,8 +878,14 @@ data:extend({
  {
     type = "land-mine",
     name = "bio_land_mine",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_land_mine.png",
-	icon_size = 32,
+	icon = ICONPATH .. "bio_land_mine.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "bio_land_mine.png",
+			icon_size = 64,
+		}
+	},
     flags =
     {
       "placeable-player",
@@ -807,15 +904,17 @@ data:extend({
     {
       filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_land_mine.png",
       priority = "medium",
-      width = 32,
-      height = 32
+      width = 64,
+      height = 64,
+	  scale = 0.5,
     },
     picture_set =
     {
       filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_land_mine_set.png",
       priority = "medium",
-      width = 32,
-      height = 32
+      width = 64,
+      height = 64,
+	  scale = 0.5,
     },
     trigger_radius = 3.5,
 	ammo_category = "landmine",
@@ -1154,8 +1253,14 @@ data:extend({
   {
     type = "ammo-turret",
     name = "bi-dart-turret",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
-	icon_size = 32,
+	icon = ICONPATH .. "bio_turret_icon.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "bio_turret_icon.png",
+			icon_size = 64,
+		}
+	},
     flags = {"placeable-player", "player-creation"},
     minable = {mining_time = 0.25, result = "bi-dart-turret"},
     max_health = 300,
@@ -1204,8 +1309,14 @@ data:extend({
   {
     type = "ammo-turret",
     name = "NE-gun-turret",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
-	icon_size = 32,
+	icon = ICONPATH .. "ne_turret_icon.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "ne_turret_icon.png",
+			icon_size = 64,
+		}
+	},
    	flags = {"placeable-player", "player-creation"},
 	minable = {mining_time = 0.5, result = "NE-gun-turret"},
 	max_health = 400,
@@ -1249,8 +1360,14 @@ data:extend({
   {
     type = "ammo-turret",
     name = "NE-rocket-turret",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_rocket_turret_icon.png",
-	icon_size = 32,
+	icon = ICONPATH .. "ne_rocket_turret_icon.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "ne_rocket_turret_icon.png",
+			icon_size = 64,
+		}
+	},
    	flags = {"placeable-player", "player-creation"},
 	minable = {mining_time = 0.75, result = "NE-rocket-turret"},
 	max_health = 500,
@@ -1305,7 +1422,14 @@ data:extend(
     type = "gun",
     name = "bi-dart-rifle",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/bi_dart_rifle_icon.png",
-    icon_size = 32,
+	icon = ICONPATH .. "bi_dart_rifle_icon.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "bi_dart_rifle_icon.png",
+			icon_size = 64,
+		}
+	},
     subgroup = "gun",
     order = "a[basic-clips]-ab[submachine-gun]",
     attack_parameters =

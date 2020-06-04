@@ -1,4 +1,5 @@
-
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 local EPC_Tint = {r = 128/255, g = 128/255, b = 128/255, a = 0}
 
 data:extend({

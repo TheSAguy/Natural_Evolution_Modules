@@ -2,6 +2,7 @@
 ------------------------------------- Credits ---------------------------------
 -------------------------------------------------------------------------------
 
+Pi-C - Better coding :)
 L0771 - For his help given to me to start this MOD.
 AlyxDeLunar - For his MOD Dynamic Expansion that I’ve used in my MOD.
 Albatrosv13 - For his MOD Alien Temple that I’ve used in my MOD.

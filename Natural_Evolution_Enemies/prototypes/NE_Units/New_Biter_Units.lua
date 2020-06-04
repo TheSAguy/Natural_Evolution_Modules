@@ -316,7 +316,7 @@ for i = 1, 20 do
 	--- Breeder
 	NE_Biter_Breeder_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
     NE_Biter_Breeder_Unit_Corpse.name = "ne-biter-breeder-corpse-" .. i
-	NE_Biter_Breeder_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
+	NE_Biter_Breeder_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 5
 	NE_Biter_Breeder_Unit_Corpse.selection_box = ne_biter_selection_box[i]
 	NE_Biter_Breeder_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_blue_tint2, ne_blue_tint1)
     NE_Biter_Breeder_Unit_Corpse.localised_name = {"entity-name.ne-biter-breeder-corpse"}
@@ -327,7 +327,7 @@ for i = 1, 20 do
 	--- Fire Biter
 	NE_Biter_Fire_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
     NE_Biter_Fire_Unit_Corpse.name = "ne-biter-fire-corpse-" .. i
-	NE_Biter_Fire_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
+	NE_Biter_Fire_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 5
 	NE_Biter_Fire_Unit_Corpse.selection_box = ne_biter_selection_box[i]
 	NE_Biter_Fire_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_fire_tint, ne_black_tint)
     NE_Biter_Fire_Unit_Corpse.localised_name = {"entity-name.ne-biter-fire-corpse"}
@@ -337,7 +337,7 @@ for i = 1, 20 do
 	--- Fast Biter
 	NE_Biter_Fast_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
     NE_Biter_Fast_Unit_Corpse.name = "ne-biter-fast-corpse-" .. i
-	NE_Biter_Fast_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
+	NE_Biter_Fast_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 5
 	NE_Biter_Fast_Unit_Corpse.selection_box = ne_biter_selection_box[i]
 	NE_Biter_Fast_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_green_tint2, ne_green_tint)
     NE_Biter_Fast_Unit_Corpse.localised_name = {"entity-name.ne-biter-fast-corpse"}
@@ -347,7 +347,7 @@ for i = 1, 20 do
 	--- Wall Breaker Biter
 	NE_Biter_Wallbreaker_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
     NE_Biter_Wallbreaker_Unit_Corpse.name = "ne-biter-wallbreaker-corpse-" .. i
-	NE_Biter_Wallbreaker_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
+	NE_Biter_Wallbreaker_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 5
 	NE_Biter_Wallbreaker_Unit_Corpse.selection_box = ne_biter_selection_box[i]
 	NE_Biter_Wallbreaker_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_orange_tint, ne_yellow_tint)
     NE_Biter_Wallbreaker_Unit_Corpse.localised_name = {"entity-name.ne-biter-wallbreaker-corpse"} 
@@ -358,7 +358,7 @@ for i = 1, 20 do
 	-- TANKS
 	NE_Biter_Tank_Unit_Corpse = table.deepcopy(data.raw.corpse["small-biter-corpse"])
     NE_Biter_Tank_Unit_Corpse.name = "ne-biter-tank-corpse-" .. i
-	NE_Biter_Tank_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 10
+	NE_Biter_Tank_Unit_Corpse.time_before_removed = (i/20 + 2) * 60 * 5
 	NE_Biter_Tank_Unit_Corpse.selection_box = ne_biter_selection_box[i]
 	NE_Biter_Tank_Unit_Corpse.animation = biterdieanimation(ne_scale[i], ne_grey_tint, ne_pink_tint)
     NE_Biter_Tank_Unit_Corpse.localised_name = {"entity-name.ne-biter-tank-corpse"}     

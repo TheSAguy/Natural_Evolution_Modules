@@ -1,3 +1,5 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 
 data:extend({
 
@@ -5,8 +7,14 @@ data:extend({
 	{
 		type = "item",
 		name = "Building_Materials",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Building_Materials.png",
-		icon_size = 32,
+		icon = ICONPATH .. "Building_Materials.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "Building_Materials.png",
+				icon_size = 64,
+			}
+		}, 
 		subgroup = "intermediate-product",
 		order = "a[iron-stick]-b[Building_Materials]",
 		stack_size = 10
@@ -17,8 +25,14 @@ data:extend({
 	{
 		type = "item",
 		name = "battle_marker",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Battle_Marker_1_32.png",
-		icon_size = 32,
+		icon = ICONPATH .. "Battle_Marker.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "Battle_Marker.png",
+				icon_size = 64,
+			}
+		}, 
 		subgroup = "defensive-structure",
 		order = "x[battle_marker]",
 		place_result = "battle_marker",
@@ -38,8 +52,14 @@ if not mods["Unit_Control"] then
 			{
 				type = "item",
 				name = "attractor-on",
-				icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_on.png",
-				icon_size = 32,
+				icon = ICONPATH .. "attractor_on.png",
+				icon_size = 64,
+				icons = {
+					{
+						icon = ICONPATH .. "attractor_on.png",
+						icon_size = 64,
+					}
+				}, 
 				subgroup = "Tools",
 				order = "a[attractor-on]",
 				stack_size = 1
@@ -48,8 +68,14 @@ if not mods["Unit_Control"] then
 			{
 				type = "item",
 				name = "attractor-off",
-				icon = "__Natural_Evolution_Buildings__/graphics/entities/attractor_off.png",
-				icon_size = 32,
+				icon = ICONPATH .. "attractor_off.png",
+				icon_size = 64,
+				icons = {
+					{
+						icon = ICONPATH .. "attractor_off.png",
+						icon_size = 64,
+					}
+				}, 
 				subgroup = "Tools",
 				order = "b[attractor-off]",
 				stack_size = 1

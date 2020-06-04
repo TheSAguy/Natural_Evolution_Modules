@@ -1,4 +1,6 @@
 require ("prototypes.Alien_Hatchery.walls_pictures")
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 
 Natural_Evolution_Biter_Spawner_tint = {r=0.92, g=0.54, b=0, a=0.5}
 Natural_Evolution_Spitter_Spawner_tint = {r=0.54, g=0.92, b=0.3, a=1.0}
@@ -13,8 +15,14 @@ data:extend({
   {
     type = "assembling-machine",
     name = "Alien_Hatchery",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/Alien_Hatchery_32.png",
-	icon_size = 32,
+	icon = ICONPATH .. "Alien_Hatchery.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "Alien_Hatchery.png",
+			icon_size = 64,
+		}
+	}, 
     flags = {"placeable-neutral","placeable-player", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Alien_Hatchery"},
     max_health = 300,
@@ -101,8 +109,14 @@ data:extend({
   {
     type = "capsule",
     name = "small-biter-hatching",
-    icon = "__base__/graphics/icons/small-biter.png",
-	icon_size = 32,
+	icon = ICONPATH .. "small-biter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "small-biter.png",
+			icon_size = 64,
+		}
+	}, 
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -140,8 +154,14 @@ data:extend({
   {
     type = "capsule",
     name = "small-spitter-hatching",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/small-spitter_32.png",
-	icon_size = 32,
+	icon = ICONPATH .. "small-spitter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "small-spitter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -179,8 +199,14 @@ data:extend({
   {
     type = "capsule",
     name = "medium-biter-hatching",
-    icon = "__base__/graphics/icons/medium-biter.png",
-	icon_size = 32,
+	icon = ICONPATH .. "medium-biter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "medium-biter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -218,8 +244,14 @@ data:extend({
   {
     type = "capsule",
     name = "medium-spitter-hatching",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-spitter_32.png",
-	icon_size = 32,
+	icon = ICONPATH .. "medium-spitter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "medium-spitter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -257,8 +289,14 @@ data:extend({
   {
     type = "capsule",
     name = "big-biter-hatching",
-    icon = "__base__/graphics/icons/big-biter.png",
-	icon_size = 32,
+	icon = ICONPATH .. "big-biter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "big-biter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -296,8 +334,14 @@ data:extend({
   {
     type = "capsule",
     name = "big-spitter-hatching",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/big-spitter_32.png",
-	icon_size = 32,
+	icon = ICONPATH .. "big-spitter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "big-spitter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -335,8 +379,14 @@ data:extend({
   {
     type = "capsule",
     name = "behemoth-biter-hatching",
-    icon = "__base__/graphics/icons/behemoth-biter.png",
-	icon_size = 32,
+	icon = ICONPATH .. "behemoth-biter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "behemoth-biter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -374,8 +424,14 @@ data:extend({
   {
     type = "capsule",
     name = "behemoth-spitter-hatching",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-spitter_32.png",
-	icon_size = 32,
+	icon = ICONPATH .. "behemoth-spitter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "behemoth-spitter.png",
+			icon_size = 64,
+		}
+	},
     ----flags = {"goes-to-quickbar"},
     capsule_action =
     {
@@ -745,8 +801,14 @@ data:extend({
   {
     type = "unit-spawner",
     name = "Natural_Evolution_Biter-Spawner",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner.png",
-	icon_size = 32,
+	icon = ICONPATH .. "biter-spawner.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "biter-spawner.png",
+			icon_size = 64,
+		}
+	},
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Biter-Spawner-exhausted"},
     max_health = 750,
@@ -850,8 +912,14 @@ data:extend({
     type = "corpse",
     name = "Natural_Evolution_Biter-Spawner-corpse",
     flags = {"placeable-neutral", "placeable-off-grid", "not-on-map"},
-    icon = "__base__/graphics/icons/biter-spawner-corpse.png",
-	icon_size = 32,
+	icon = ICONPATH .. "biter-spawner-corpse.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "biter-spawner-corpse.png",
+			icon_size = 64,
+		}
+	},
     collision_box = {{-2, -2}, {2, 2}},
     selection_box = {{-2, -2}, {2, 2}},
     selectable_in_game = false,
@@ -872,8 +940,14 @@ data:extend({
   {
     type = "unit-spawner",
     name = "Natural_Evolution_Spitter-Spawner",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner.png",
-	icon_size = 32,
+	icon = ICONPATH .. "spitter-spawner.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "spitter-spawner.png",
+			icon_size = 64,
+		}
+	},
     flags = {"placeable-neutral","placeable-player", "not-repairable", "player-creation"},
     minable = {hardness = 0.2, mining_time = 0.5, result = "Natural_Evolution_Spitter-Spawner-exhausted"},
     max_health = 750,
@@ -973,8 +1047,14 @@ data:extend({
     type = "corpse",
     name = "Natural_Evolution_Spitter-Spawner-corpse",
     flags = {"placeable-neutral", "placeable-off-grid", "not-on-map"},
-    icon = "__base__/graphics/icons/biter-spawner-corpse.png",
-	icon_size = 32,
+	icon = ICONPATH .. "spitter-spawner-corpse.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "spitter-spawner-corpse.png",
+			icon_size = 64,
+		}
+	},
     collision_box = {{-2, -2}, {2, 2}},
     selection_box = {{-2, -2}, {2, 2}},
     selectable_in_game = false,
@@ -995,8 +1075,14 @@ data:extend({
   {
     type = "wall",
     name = "ne-living-wall",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
-	icon_size = 32,
+	icon = ICONPATH .. "living_wall.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "living_wall.png",
+			icon_size = 64,
+		}
+	},
     flags = {"placeable-neutral", "player-creation", "breaths-air", "not-repairable", "not-flammable"},
     collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
     selection_box = {{-0.5, -0.5}, {0.5, 0.5}},

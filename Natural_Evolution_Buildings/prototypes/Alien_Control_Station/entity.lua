@@ -1,6 +1,9 @@
 if not NE_Buildings then NE_Buildings = {} end
 if not NE_Buildings.Settings then NE_Buildings.Settings = {} end
 
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 NE_Buildings.Settings.Search_Distance = settings.startup["NE_Conversion_Search_Distance"].value
 
 inv_extension2 =
@@ -29,8 +32,14 @@ data:extend({
 	{
 		type = "ammo-turret",
 		name = "AlienControlStation_Area",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/AlienControlStation.png",
-		icon_size = 32,
+		icon = ICONPATH .. "AlienControlStation.png",
+		icon_size = 64,
+		icons = {
+		  {
+			icon = ICONPATH .. "AlienControlStation.png",
+			icon_size = 64,
+		  }
+		}, 
 		flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable"},
 		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },	
@@ -73,8 +82,14 @@ data:extend({
 	{
     type = "radar",
     name = "AlienControlStation",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/AlienControlStation.png",
-	icon_size = 32,
+		icon = ICONPATH .. "AlienControlStation.png",
+		icon_size = 64,
+		icons = {
+		  {
+			icon = ICONPATH .. "AlienControlStation.png",
+			icon_size = 64,
+		  }
+		}, 
     flags = {"placeable-player", "player-creation", "not-blueprintable"},   
 	minable = {hardness = 0.8, mining_time = 1.5, results = {{type="item", name="Building_Materials", amount=5},}},
 	--- NOTE, when mined, you will lose the Alien artifacts! ----

@@ -1,3 +1,7 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+local ICONPATH_L = NEBuildings.modRoot .. "/graphics/icons/fluid/"
+
 
 data:extend({
 
@@ -35,8 +39,14 @@ data:extend({
     {
     type = "recipe",
     name = "ne-living-wall",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall.png",
-	icon_size = 32,
+	icon = ICONPATH .. "living_wall.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "living_wall.png",
+			icon_size = 64,
+		}
+	}, 
     enabled = false,
 	category = "Hatchery",
     ingredients = 
@@ -53,8 +63,14 @@ data:extend({
     {
     type = "recipe",
     name = "ne-living-wall-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/living_wall-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "living_wall-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "living_wall-r.png",
+			icon_size = 64,
+		}
+	}, 
     enabled = false,
 	category = "Hatchery",
     ingredients = 
@@ -330,8 +346,14 @@ data:extend({
   {
     type = "recipe",
     name = "small-worm-hatching",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-worm.png",
-	icon_size = 32,
+	icon = ICONPATH .. "small-worm.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "small-worm.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
 	normal =
 		{
@@ -363,8 +385,14 @@ data:extend({
   {
     type = "recipe",
     name = "small-worm-hatching-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-worm-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "small-worm-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "small-worm-r.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -380,8 +408,14 @@ data:extend({
   {
     type = "recipe",
     name = "medium-worm-hatching",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-worm.png",
-	icon_size = 32,
+	icon = ICONPATH .. "medium-worm.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "medium-worm.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
 	normal =
 		{
@@ -415,8 +449,14 @@ data:extend({
   {
     type = "recipe",
     name = "medium-worm-hatching-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-worm-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "medium-worm-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "medium-worm-r.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -432,8 +472,14 @@ data:extend({
   {
     type = "recipe",
     name = "big-worm-hatching",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/big-worm.png",
-	icon_size = 32,
+	icon = ICONPATH .. "big-worm.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "big-worm.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
 	normal =
 		{
@@ -466,8 +512,14 @@ data:extend({
   {
     type = "recipe",
     name = "big-worm-hatching-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/big-worm-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "big-worm-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "big-worm-r.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -484,8 +536,14 @@ data:extend({
   {
     type = "recipe",
     name = "behemoth-worm-hatching",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-worm.png",
-	icon_size = 32,
+	icon = ICONPATH .. "behemoth-worm.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "behemoth-worm.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
 	normal =
 		{
@@ -518,8 +576,14 @@ data:extend({
   {
     type = "recipe",
     name = "behemoth-worm-hatching-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-worm-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "behemoth-worm-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "behemoth-worm-r.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -538,8 +602,14 @@ data:extend({
   {
     type = "recipe",
     name = "Natural_Evolution_Biter-Spawner",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner.png",
-	icon_size = 32,
+	icon = ICONPATH .. "biter-spawner.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "biter-spawner.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -555,8 +625,14 @@ data:extend({
   {
     type = "recipe",
     name = "Natural_Evolution_Biter-Spawner-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/biter-spawner-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "biter-spawner-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "biter-spawner-r.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -572,8 +648,14 @@ data:extend({
   {
     type = "recipe",
     name = "Natural_Evolution_Spitter-Spawner",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner.png",
-	icon_size = 32,
+	icon = ICONPATH .. "spitter-spawner.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "spitter-spawner.png",
+			icon_size = 64,
+		}
+	}, 
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -589,8 +671,14 @@ data:extend({
   {
     type = "recipe",
     name = "Natural_Evolution_Spitter-Spawner-refresh",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/spitter-spawner-r.png",
-	icon_size = 32,
+	icon = ICONPATH .. "spitter-spawner-r.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "spitter-spawner-r.png",
+			icon_size = 64,
+		}
+	},
     category = "Hatchery",
     enabled = false,
     ingredients =
@@ -612,8 +700,14 @@ data:extend({
   {
     type = "recipe",
     name = "NE_alien-revitalization",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/fluid/alien-revitalization_toxin.png",
-	icon_size = 32,
+	icon = ICONPATH_L .. "alien-revitalization_toxin.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH_L .. "alien-revitalization_toxin.png",
+			icon_size = 64,
+		}
+	},
     category = "chemistry",
     energy_required = 10,
     enabled = false,

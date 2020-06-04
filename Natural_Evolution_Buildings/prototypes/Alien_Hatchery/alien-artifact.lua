@@ -1,10 +1,19 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend(
 {
     {
     type = "item",
     name = "alien-artifact",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/alien-artifact.png",
-	icon_size = 32,
+	icon = ICONPATH .. "alien-artifact.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "alien-artifact.png",
+			icon_size = 64,
+		}
+	}, 
 	subgroup = "raw-material",
 	order = "g[alien-artifact]-a[pink]-a[small]",
     stack_size = 500,

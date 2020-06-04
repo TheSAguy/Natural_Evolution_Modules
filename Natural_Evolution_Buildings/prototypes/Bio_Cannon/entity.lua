@@ -1,4 +1,6 @@
 require "util"
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 
 
 function preparing_animation()
@@ -93,8 +95,14 @@ data:extend({
 	{
 		type = "ammo-turret",
 		name = "bi-bio-cannon-area",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/biocannon_icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "biocannon_icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "biocannon_icon.png",
+				icon_size = 64,
+			}
+		}, 
 		flags = {"placeable-neutral", "placeable-player", "player-creation"},
 		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -134,8 +142,14 @@ data:extend({
 	{
 		type = "ammo-turret",
 		name = "bi-bio-cannon",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/biocannon_icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "biocannon_icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "biocannon_icon.png",
+				icon_size = 64,
+			}
+		}, 
 		flags = {"placeable-neutral", "placeable-player", "player-creation"},
 		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -189,8 +203,14 @@ data:extend({
   {
     type = "radar",
     name = "Bio_Cannon_r",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/biocannon_icon.png",
-	icon_size = 32,
+	icon = ICONPATH .. "biocannon_icon.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "biocannon_icon.png",
+			icon_size = 64,
+		}
+	}, 
 	flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable", "not-blueprintable"},
 	selectable_in_game = false,
 	max_health = 600,

@@ -1,12 +1,20 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend({
 	
 	--- Terraforming Station
 	{
 	    type = "item",
 	    name = "TerraformingStation_New",
-	    icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
-		icon_size = 32,
-	    ----flags = {"goes-to-quickbar"},
+		icon = ICONPATH .. "TerraformingStation.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "TerraformingStation.png",
+				icon_size = 64,
+			}
+		},
 	    subgroup = "Natural-Evolution",
 	    order = "b[TerraformingStation]-a[TerraformingStation]",
 	    place_result = "TerraformingStation_New",
@@ -21,9 +29,14 @@ data:extend(
   {
     type = "ammo",
     name = "Alien-Stimulant",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/alien_stimulant.png",
-	icon_size = 32,
-    --flags = {"goes-to-main-inventory"},
+	icon = ICONPATH .. "alien_stimulant.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "alien_stimulant.png",
+			icon_size = 64,
+		}
+	},
     ammo_type =
     {
       category = "Terraforming_Station",

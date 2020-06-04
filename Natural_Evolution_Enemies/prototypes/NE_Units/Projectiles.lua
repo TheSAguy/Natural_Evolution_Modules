@@ -546,6 +546,7 @@ data:extend({
 			}
 		  },
 		  },
+
 		  {
 		  type = "direct",
 		  force = "enemy",
@@ -669,14 +670,23 @@ for i = 1, 20 do
 local spitter_land_mine = util.table.deepcopy(data.raw["land-mine"]["land-mine"])
 spitter_land_mine.name = "ne-spitter-land-mine-"..i
 spitter_land_mine.icon = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine.png"
-spitter_land_mine.icon_size = 32
+spitter_land_mine.icon_size = 64
 spitter_land_mine.collision_box = {{-0,-0}, {0, 0}}
 spitter_land_mine.collision_mask = {"not-colliding-with-itself"}
 spitter_land_mine.minable = nil
 spitter_land_mine.alert_when_damaged = false
 spitter_land_mine.picture_safe.filename = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine.png"
+spitter_land_mine.picture_safe.width = 64
+spitter_land_mine.picture_safe.height = 64
+spitter_land_mine.picture_safe.scale = 0.5
 spitter_land_mine.picture_set.filename = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine-set.png"
+spitter_land_mine.picture_set.width = 64
+spitter_land_mine.picture_set.height = 64
+spitter_land_mine.picture_set.scale = 0.5
 spitter_land_mine.picture_set_enemy.filename = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine-set.png"
+spitter_land_mine.picture_set_enemy.width = 64
+spitter_land_mine.picture_set_enemy.height = 64
+spitter_land_mine.picture_set_enemy.scale = 0.5
 spitter_land_mine.order = "ne-land-mine-"..i
 spitter_land_mine.localised_name = {"entity-name.ne-spitter-land-mine"}
 spitter_land_mine.localised_description = {"entity-description.ne-spitter-land-mine"}
@@ -796,6 +806,8 @@ Unit_Launcher_Trigger_1.name = "ne_unit_launcher_trigger_1"
 Unit_Launcher_Trigger_1.duration = 60 * 1
 Unit_Launcher_Trigger_1.fade_away_duration = 0
 Unit_Launcher_Trigger_1.spread_duration = 0
+Unit_Launcher_Trigger_1.created_effect = nil
+Unit_Launcher_Trigger_1.working_sound = nil
 Unit_Launcher_Trigger_1.action = {
 	type = "direct",
     action_delivery =
@@ -818,8 +830,8 @@ Unit_Launcher_Trigger_1.animation =
       filename = "__Natural_Evolution_Enemies__/graphics/entity/empty.png",
       flags = { "compressed" },
       priority = "low",
-      width = 32,
-      height = 32,
+      width = 64,
+      height = 64,
       frame_count = 1,
       animation_speed = 1,
       line_length = 1,
@@ -854,10 +866,12 @@ data:extend{Worm_Launcher_Trigger_1}
 --- Unit Launcher Smoke that will cause the Trigger
 Launcher_Web_Entity = table.deepcopy(data.raw["smoke-with-trigger"]["poison-cloud"])
 Launcher_Web_Entity.name = "ne_web"
-Launcher_Web_Entity.duration = 60 * 15
+Launcher_Web_Entity.duration = 60 * 2
 Launcher_Web_Entity.fade_away_duration = 0
 Launcher_Web_Entity.spread_duration = 0
-Launcher_Web_Entity.force = "enemy"
+--Launcher_Web_Entity.force = "enemy"
+Launcher_Web_Entity.created_effect = nil
+Launcher_Web_Entity.working_sound = nil
 Launcher_Web_Entity.render_layer = "remnants"
 Launcher_Web_Entity.collision_mask = {"not-colliding-with-itself"}
 Launcher_Web_Entity.selectable_in_game = false
@@ -877,7 +891,7 @@ Launcher_Web_Entity.action =
           {
             type = "area",
 			force = "enemy",
-            radius = 5,
+            radius = 4,
             entity_flags = {"breaths-air"},
             action_delivery =
             {
@@ -886,7 +900,7 @@ Launcher_Web_Entity.action =
               target_effects =
               {
                 type = "damage",
-                damage = { amount = 4, type = "poison", force = "enemy"}
+                damage = { amount = 8, type = "poison", force = "enemy"}
               },
 
 			  {
@@ -972,7 +986,7 @@ data:extend(
 --- Green Splash 1 - Units
 Green_Splash = table.deepcopy(data.raw["corpse"]["ne-acid-splash-purple"])
 Green_Splash.name = "ne_green_splash_1"
-Green_Splash.time_before_removed = 60 * 15
+Green_Splash.time_before_removed = 60 * 4
 Green_Splash.splash =
     {
       {

@@ -1,12 +1,21 @@
 local sounds = require("__base__.prototypes.entity.demo-sounds")
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend(
 {
 
   {
     type = "unit",
     name = "tame-small-spitter",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-spitter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "small-spitter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "small-spitter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 10,
     order="b-b-d",
@@ -57,8 +66,14 @@ data:extend(
   {
     type = "unit",
     name = "tame-medium-spitter",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-spitter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "medium-spitter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "medium-spitter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 50,
     order="b-b-e",
@@ -111,9 +126,15 @@ data:extend(
   {
     type = "unit",
     name = "tame-big-spitter",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/big-spitter_32.png",
-	icon_size = 32,
-     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
+    icon = ICONPATH .. "big-spitter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "big-spitter.png",
+        icon_size = 64,
+      }
+    }, 
+    flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 200,
     order="b-b-f",
     subgroup="enemies",
@@ -162,13 +183,18 @@ data:extend(
     dying_sound = sounds.spitter_dying(0.6),
     run_animation = spitterrunanimation(scale_spitter_big, tint_1_spitter_big, tint_2_spitter_big),
     ai_settings = biter_ai_settings
-  }, 
-  
+  },   
   {
     type = "unit",
     name = "tame-behemoth-spitter",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-spitter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "behemoth-spitter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "behemoth-spitter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 1500,
     order="b-b-f",

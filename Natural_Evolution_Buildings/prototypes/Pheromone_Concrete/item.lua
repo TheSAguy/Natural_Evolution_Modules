@@ -1,3 +1,7 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
+
 data:extend({
 	
 
@@ -5,8 +9,14 @@ data:extend({
   {
     type = "item",
     name = "pheromone_concrete",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/pheromone_concrete.png",
-	icon_size = 32,
+	icon = ICONPATH .. "pheromone_concrete.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "pheromone_concrete.png",
+			icon_size = 64,
+		}
+	},
     subgroup = "terrain",
     order = "b[concrete]-x[plain]",
     stack_size = 400,
@@ -22,8 +32,14 @@ data:extend({
   {
     type = "item",
     name = "exhausted_pheromone_concrete",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/exhausted_pheromone_concrete.png",
-	icon_size = 32,
+	icon = ICONPATH .. "exhausted_pheromone_concrete.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "exhausted_pheromone_concrete.png",
+			icon_size = 64,
+		}
+	},
     subgroup = "terrain",
     order = "b[concrete]-y[plain]",
     stack_size = 400,

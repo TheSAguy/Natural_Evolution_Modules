@@ -1,12 +1,21 @@
 local sounds = require("__base__.prototypes.entity.demo-sounds")
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend(
 {
 
   {
     type = "unit",
     name = "tame-small-biter",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/small-biter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "small-biter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "small-biter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "not-repairable", "breaths-air"},
     max_health = 15,
     order = "b-b-a",
@@ -49,8 +58,14 @@ data:extend(
   {
     type = "unit",
     name = "tame-medium-biter",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/medium-biter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "medium-biter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "medium-biter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 75,
     order="b-b-b",
@@ -105,8 +120,14 @@ data:extend(
     type = "unit",
     name = "tame-big-biter",
 	order = "003",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/big-biter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "big-biter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "big-biter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 375,
     subgroup="enemies",
@@ -161,8 +182,14 @@ data:extend(
     type = "unit",
     name = "tame-behemoth-biter",
 	order = "204",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/behemoth-biter_32.png",
-	icon_size = 32,
+    icon = ICONPATH .. "behemoth-biter.png",
+    icon_size = 64,
+    icons = {
+      {
+        icon = ICONPATH .. "behemoth-biter.png",
+        icon_size = 64,
+      }
+    }, 
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air", "not-repairable"},
     max_health = 3000,
     subgroup="enemies",

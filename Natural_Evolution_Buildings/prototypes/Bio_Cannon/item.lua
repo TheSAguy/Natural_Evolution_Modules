@@ -1,3 +1,6 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend({
 
 	
@@ -6,9 +9,14 @@ data:extend({
 		{
 	type = "item",
 	name = "bi-bio-cannon-area",
-	icon = "__Natural_Evolution_Buildings__/graphics/icons/biocannon_icon.png",
-	icon_size = 32,
-	--flags = {"goes-to-quickbar"},
+	icon = ICONPATH .. "biocannon_icon.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "biocannon_icon.png",
+			icon_size = 64,
+		}
+	}, 
 	subgroup = "defensive-structure",
 	order = "x[turret]-x[gun-turret]",
 	place_result = "bi-bio-cannon-area",

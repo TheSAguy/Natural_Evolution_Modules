@@ -1,3 +1,6 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend({
 	
 
@@ -5,8 +8,14 @@ data:extend({
 	{
 		type = "item",
 		name = "AlienControlStation_Area",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/AlienControlStation_32.png",
-		icon_size = 32,
+		icon = ICONPATH .. "AlienControlStation.png",
+		icon_size = 64,
+		icons = {
+		  {
+			icon = ICONPATH .. "AlienControlStation.png",
+			icon_size = 64,
+		  }
+		}, 
 		--flags = {"goes-to-quickbar"},
 		subgroup = "Natural-Evolution",
 		order = "b[AlienControlStation]-a[AlienControlStation]",

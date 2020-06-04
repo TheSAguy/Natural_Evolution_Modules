@@ -1,3 +1,6 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 --- Combat Inserter
 Combat_Inserter_tint = {r=0, g=0, b=0, a=1}
 
@@ -6,8 +9,14 @@ data:extend({
   {
     type = "inserter",
     name = "combat-inserter",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/combat_inserter.png",
-	icon_size = 32,
+	icon = ICONPATH .. "combat_inserter.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "combat_inserter.png",
+			icon_size = 64,
+		}
+	}, 
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable =
     {

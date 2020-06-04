@@ -3,7 +3,8 @@ if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
 
 NE_Enemies.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
 
-
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 
 inv_extension2 =
 {
@@ -28,8 +29,14 @@ data:extend(
 		{
 		type = "ammo-turret",
 		name = "Artifact-collector-area",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
-		icon_size = 32,
+		icon = ICONPATH .. "Artifact-chest-icon.png",
+		icon_size = 64,
+		icons = {
+			{
+				icon = ICONPATH .. "Artifact-chest-icon.png",
+				icon_size = 64,
+			}
+		}, 
 		flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable"},
 		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
 		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },	
@@ -73,8 +80,14 @@ data:extend(
 		{
 			type = "logistic-container",
 			name = "Artifact-collector",
-			icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
-			icon_size = 32,
+			icon = ICONPATH .. "Artifact-chest-icon.png",
+			icon_size = 64,
+			icons = {
+				{
+					icon = ICONPATH .. "Artifact-chest-icon.png",
+					icon_size = 64,
+				}
+			}, 
 			flags = {"placeable-player", "placeable-neutral", "player-creation"},
 			minable = {mining_time = 0.5, result = "Artifact-collector-area"},
 			render_not_in_network_icon = false,
@@ -119,8 +132,14 @@ data:extend(
   {
     type = "radar",
     name = "Artifact-collector_r",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/Artifact-chest-icon.png",
-	icon_size = 32,
+	icon = ICONPATH .. "Artifact-chest-icon.png",
+	icon_size = 64,
+	icons = {
+		{
+				icon = ICONPATH .. "Artifact-chest-icon.png",
+				icon_size = 64,
+			}
+	}, 
 	flags = {"placeable-player", "player-creation", "not-deconstructable"},
     minable = nil, 
 	max_health = 450,

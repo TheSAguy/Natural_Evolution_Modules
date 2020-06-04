@@ -1,10 +1,19 @@
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
+
 data:extend({
 
 	 {
     type = "ammo",
     name = "NE-Napalm-Rocket",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/napalm_rocket.png",
-	icon_size = 32,
+	icon = ICONPATH .. "napalm_rocket.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "napalm_rocket.png",
+			icon_size = 64,
+		}
+	},
     --flags = {"goes-to-main-inventory"},
     ammo_type =
     {

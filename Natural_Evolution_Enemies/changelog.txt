@@ -1,8 +1,14 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.18.01
-Date: 1. 30. 2020
+Version: 0.18.03
+Date: 5. 28. 2020
   Features:
-    - Updated to Factorio Version 0.18.02 Thanks to Millerscout
+    - Updated icons to 64bit. Still not thoroughly tested.
+    - Removed some of the poison clouds
+---------------------------------------------------------------------------------------------------
+Version: 0.18.02
+Date: 5. 27. 2020
+  Features:
+    - Updated to Factorio Version 0.18.27 Nothing else or tested...
 ---------------------------------------------------------------------------------------------------
 Version: 0.18.00
 Date: 1. 22. 2020

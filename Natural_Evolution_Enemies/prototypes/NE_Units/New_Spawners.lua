@@ -10,7 +10,13 @@ data:extend(
     type = "unit-spawner",
     name = "ne-spawner-base",
     icon = "__base__/graphics/icons/biter-spawner.png",
-    icon_size = 32,
+	icon_size = 64,
+	icons = {
+		{
+			icon = "__base__/graphics/icons/biter-spawner.png",
+			icon_size = 64,
+		}
+	},
     flags = {"placeable-player", "placeable-enemy", "not-repairable"},
     max_health = 500 + (500 * NE_Enemies.Settings.NE_Difficulty), -- v 350,
     order="b-b-g",

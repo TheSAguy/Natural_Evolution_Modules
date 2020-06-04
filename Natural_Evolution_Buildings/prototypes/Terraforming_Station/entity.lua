@@ -1,4 +1,5 @@
-
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local ICONPATH = NEBuildings.modRoot .. "/graphics/icons/"
 
 data:extend(
 	{
@@ -7,8 +8,14 @@ data:extend(
   {
     type = "radar",
     name = "TerraformingStation_New",
-    icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
-	icon_size = 32,
+	icon = ICONPATH .. "TerraformingStation.png",
+	icon_size = 64,
+	icons = {
+		{
+			icon = ICONPATH .. "TerraformingStation.png",
+			icon_size = 64,
+		}
+	},
 	flags = {"placeable-player", "placeable-neutral", "player-creation"},
 	order = "b[TerraformingStation]-a[TerraformingStation]",
     minable = {hardness = 0.2, mining_time = 0.5, result = "TerraformingStation_New"},
