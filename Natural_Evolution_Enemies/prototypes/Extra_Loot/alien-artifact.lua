@@ -1,3 +1,7 @@
+local NEEnemies = require('common')('Natural_Evolution_Enemies')
+local ICONPATH = NEEnemies.modRoot .. "/graphics/icons/"
+
+
 if settings.startup["NE_Alien_Artifacts"].value == true then
 
 	data:extend(
@@ -5,11 +9,11 @@ if settings.startup["NE_Alien_Artifacts"].value == true then
 		{
 		type = "item",
 		name = "alien-artifact",
-		icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png",
+		icon = ICONPATH .. "alien-artifact.png",
 		icon_size = 64,
 		icons = {
 		  {
-			icon = "__Natural_Evolution_Enemies__/graphics/icons/alien-artifact.png",
+			icon = ICONPATH .. "alien-artifact.png",
 			icon_size = 64,
 		  }
 		},

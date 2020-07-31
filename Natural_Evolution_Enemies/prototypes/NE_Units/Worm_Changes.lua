@@ -17,7 +17,7 @@ if NE_Enemies.Settings.NE_Adjust_Vanilla_Worms then
 	data.raw["turret"]["medium-worm-turret"].resistances = Resistances.Medium_Worm
 	data.raw["turret"]["medium-worm-turret"].call_for_help_radius = 100 + (NE_Enemies.Settings.NE_Difficulty * 2)
 
-	----- Big Worms	
+	----- Big Worms	(Give Big Worm the Unit Launch Ability)
 	data.raw["turret"]["big-worm-turret"].attack_parameters = Worm_Attack_Projectile_NH(
 						{
 							range = 35 + NE_Enemies.Settings.NE_Difficulty,
@@ -37,7 +37,7 @@ if NE_Enemies.Settings.NE_Adjust_Vanilla_Worms then
 	data.raw["turret"]["behemoth-worm-turret"].resistances = Resistances.Behemoth_Worm
 	data.raw["turret"]["behemoth-worm-turret"].call_for_help_radius = 180 + (NE_Enemies.Settings.NE_Difficulty * 2)	
 
-	--[[
+	--[[ -- Was thinking to update the players worm turrets from NE Buildings....
 	if data.raw["turret"]["medium-worm-turret-player"] then
 	data.raw["turret"]["medium-worm-turret-player"].attack_parameters = Worm_Attack_Stream(
 						{

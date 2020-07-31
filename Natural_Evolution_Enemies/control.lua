@@ -1,4 +1,4 @@
---ENEMIES v.0.17.18
+--ENEMIES v.0.18.04
 local QC_Mod = false
 
 if not NE_Enemies then NE_Enemies = {} end
@@ -12,7 +12,7 @@ require ("prototypes.NE_Units.Unit_Launcher")
 
 
 ---************** Used for Testing -----
-require ("Test_Spawn")
+--require ("Test_Spawn")
 ---*************
 
 
@@ -482,6 +482,7 @@ function Expansion_Initialization()
 
 end	
 
+
 ---------------------------------------------				 
 local function On_Init()
 
@@ -723,6 +724,29 @@ local function Remove_Trees(entity)
 		end
 end
 
+
+
+--- Remove Rocks
+local function Remove_Rocks(entity)
+
+		local surface = entity.surface
+		local radius = 1.5
+		local pos = entity.position
+		local area = {{pos.x - radius, pos.y - radius}, {pos.x + radius, pos.y + radius}}	
+		-- find nearby rocks
+		local rocks = {}
+		local rocks = surface.find_entities_filtered{area = area, type = "simple-entity"} -- Rocks are simple entities...
+		-- Remove Rocks
+		if #rocks > 0 then
+			writeDebug("Rock Found")
+			for i,rock in pairs(rocks) do
+				if rock and rock.valid then
+					rock.die()
+				end
+			end
+		end
+end
+
 --------------------------------------------------------------------
 local function On_Built(event)
 
@@ -923,6 +947,7 @@ function SpawnBreederBabies(entity)
 				spawn_unit = entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
 				--- Remove trees around mines, to prevent units from getting stuck
 				Remove_Trees(spawn_unit)
+				Remove_Rocks(spawn_unit)
 			end
 		end
 	end
@@ -954,6 +979,7 @@ function SpawnBreederBabies_Spawner(entity)
 			if PositionValid then
 				spawn_unit = entity.surface.create_entity({name = BabyName, position = PositionValid, force = entity.force})
 				Remove_Trees(spawn_unit)
+				Remove_Rocks(spawn_unit)
 			end
 		end
 	end
@@ -1452,17 +1478,29 @@ end
 ---------------------------------------------
 -- Spawn Launched Units 
 function SpawnLaunchedUnits(enemy, unit_to_spawn)
+
+--[[
+
+	local test = subEnemyNumberTable[enemy.name][global.evoFactorFloor]
+
+	writeDebug("subEnemyNumberTable is: "..subEnemyNumberTable[enemy.name][global.evoFactorFloor])
+	
+
+	]]
+	
 	local subEnemyName = subEnemyNameTable[enemy.name]
 	
 	if not subEnemyName then
+		writeDebug("Got kicked out")
 		return
 	end
 	
+	--writeDebug("Got HERE")
 	if subEnemyNameTable[enemy.name][global.evoFactorFloor] then
 		if enemy.name == "ne_green_splash_1" then
 			subEnemyName = subEnemyNameTable[enemy.name][global.evoFactorFloor]
 		else
-			subEnemyName = unit_to_spawn.spawn..subEnemyNameTable[enemy.name][global.evoFactorFloor]
+			subEnemyName = unit_to_spawn.spawn..subEnemyNumberTable[enemy.name][global.evoFactorFloor]
 		end
 	end
 					
@@ -1481,6 +1519,7 @@ function SpawnLaunchedUnits(enemy, unit_to_spawn)
 			--create_unit = enemy.surface.create_entity({name = subEnemyName, position = subEnemyPosition, force = game.forces.enemy})
 			create_unit.health = create_unit.health *.95
 			Remove_Trees(create_unit)
+			Remove_Rocks(create_unit)
 			
 		end
 	end
@@ -1644,6 +1683,7 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 		global.deployed_mine[entity.unit_number] = {mine=entity, time=event.tick}
 		--- Remove trees around mines, to prevent units from getting stuck
 		Remove_Trees(entity)
+		Remove_Rocks(entity)
 		------writeDebug(table_size(global.deployed_mine) )
 		
     end
@@ -1677,9 +1717,10 @@ script.on_event(defines.events.on_trigger_created_entity, function(event)
 		
     end
 	
-	--- WORM Launcher Projectile Trigger
-	if entity.valid and entity.name == "ne_green_splash_2" then
+	--- WORM Launcher Projectile Trigger (This should spawn the units from the BIG Worm attack)
 
+	if entity.valid and entity.name == "ne_green_splash_2" then
+		--writeDebug("Entity Name Created: "..entity.name)
 	if global.tick < event.tick then
 		if game.forces.enemy.evolution_factor > 0.995 then
 			global.evoFactorFloor = 10

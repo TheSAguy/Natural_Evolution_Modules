@@ -1,6 +1,12 @@
 if not NE_Enemies then NE_Enemies = {} end
 if not NE_Enemies.Settings then NE_Enemies.Settings = {} end
+local NEEnemies = require('common')('Natural_Evolution_Enemies')
+local ICONPATH = NEEnemies.modRoot .. "/graphics/icons/"
+local ENTITYPATH = NEEnemies.modRoot .. "/graphics/entity/"
+
 local sounds = require("__base__.prototypes.entity.demo-sounds")
+
+
 NE_Enemies.Settings.NE_Difficulty = settings.startup["NE_Difficulty"].value
 
 
@@ -331,7 +337,7 @@ data:extend({
 
     shadow =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
+      filename = ENTITYPATH .. "acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -378,7 +384,7 @@ data:extend({
     },
     animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/land_mine_projectile.png",
+	  filename = ENTITYPATH .. "land_mine_projectile.png",
       line_length = 16,
       width = 16,
       height = 18,
@@ -387,7 +393,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/land_mine_projectile_shadow.png",
+	  filename = ENTITYPATH .. "land_mine_projectile_shadow.png",
       line_length = 16,
       width = 28,
       height = 16,
@@ -431,7 +437,7 @@ data:extend({
     },
 	animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-green.png",
+	  filename = ENTITYPATH .. "acid-projectile-green.png",
       line_length = 5,
       width = 16,
       height = 18,
@@ -440,7 +446,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
+	  filename = ENTITYPATH .. "acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -487,7 +493,7 @@ data:extend({
     },
 	animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-green.png",
+	  filename = ENTITYPATH .. "acid-projectile-green.png",
       line_length = 5,
       width = 16,
       height = 18,
@@ -496,7 +502,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
+	  filename = ENTITYPATH .. "acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -566,7 +572,7 @@ data:extend({
     },
 	animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-yellow.png",
+	  filename = ENTITYPATH .. "acid-projectile-yellow.png",
       line_length = 5,
       width = 16,
       height = 18,
@@ -575,7 +581,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
+	  filename = ENTITYPATH .. "acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -634,7 +640,7 @@ data:extend({
     },
     animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-blue.png",
+	  filename = ENTITYPATH .. "acid-projectile-blue.png",
       line_length = 5,
       width = 16,
       height = 18,
@@ -643,7 +649,7 @@ data:extend({
     },
     shadow =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/acid-projectile-purple-shadow.png",
+	  filename = ENTITYPATH .. "acid-projectile-purple-shadow.png",
       line_length = 5,
       width = 28,
       height = 16,
@@ -669,21 +675,21 @@ for i = 1, 20 do
 
 local spitter_land_mine = util.table.deepcopy(data.raw["land-mine"]["land-mine"])
 spitter_land_mine.name = "ne-spitter-land-mine-"..i
-spitter_land_mine.icon = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine.png"
+spitter_land_mine.icon = ICONPATH .. "ne-spitter-land-mine.png"
 spitter_land_mine.icon_size = 64
 spitter_land_mine.collision_box = {{-0,-0}, {0, 0}}
 spitter_land_mine.collision_mask = {"not-colliding-with-itself"}
 spitter_land_mine.minable = nil
 spitter_land_mine.alert_when_damaged = false
-spitter_land_mine.picture_safe.filename = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine.png"
+spitter_land_mine.picture_safe.filename = ICONPATH .. "ne-spitter-land-mine.png"
 spitter_land_mine.picture_safe.width = 64
 spitter_land_mine.picture_safe.height = 64
 spitter_land_mine.picture_safe.scale = 0.5
-spitter_land_mine.picture_set.filename = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine-set.png"
+spitter_land_mine.picture_set.filename = ICONPATH .. "ne-spitter-land-mine-set.png"
 spitter_land_mine.picture_set.width = 64
 spitter_land_mine.picture_set.height = 64
 spitter_land_mine.picture_set.scale = 0.5
-spitter_land_mine.picture_set_enemy.filename = "__Natural_Evolution_Enemies__/graphics/icons/ne-spitter-land-mine-set.png"
+spitter_land_mine.picture_set_enemy.filename = ICONPATH .. "ne-spitter-land-mine-set.png"
 spitter_land_mine.picture_set_enemy.width = 64
 spitter_land_mine.picture_set_enemy.height = 64
 spitter_land_mine.picture_set_enemy.scale = 0.5
@@ -827,7 +833,7 @@ Unit_Launcher_Trigger_1.color = { r = 0/255, g = 0/255, b = 0/255, a = 0}
 Unit_Launcher_Trigger_1.animation =
 
     { -- No Animations
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/empty.png",
+      filename = ENTITYPATH .. "empty.png",
       flags = { "compressed" },
       priority = "low",
       width = 64,
@@ -917,7 +923,7 @@ Launcher_Web_Entity.cyclic = true
 Launcher_Web_Entity.color = nil;
 Launcher_Web_Entity.animation =
     {
-      filename = "__Natural_Evolution_Enemies__/graphics/entity/web_visible.png",
+	  filename = ENTITYPATH .. "web_visible.png",
       flags = {},
 	  render_layer = "remnants",
       priority = "medium",
@@ -944,7 +950,7 @@ data:extend(
     splash =
     {
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-1.png",
+		filename = ENTITYPATH .. "splash-1.png",
         line_length = 5,
         width = 199,
         height = 159,
@@ -952,7 +958,7 @@ data:extend(
         shift = {0.484375, -0.171875}
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-2.png",
+        filename = ENTITYPATH .. "splash-2.png",
         line_length = 5,
         width = 238,
         height = 157,
@@ -960,7 +966,7 @@ data:extend(
         shift = {0.8125, -0.15625}
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-3.png",
+        filename = ENTITYPATH .. "splash-3.png",
         line_length = 5,
         width = 240,
         height = 162,
@@ -968,7 +974,7 @@ data:extend(
         shift = {0.71875, -0.09375}
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-4.png",
+        filename = ENTITYPATH .. "splash-4.png",
         line_length = 5,
         width = 241,
         height = 146,
@@ -990,7 +996,7 @@ Green_Splash.time_before_removed = 60 * 4
 Green_Splash.splash =
     {
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-1.png",
+        filename = ENTITYPATH .. "splash-1.png",
         line_length = 5,
         width = 199,
         height = 159,
@@ -999,7 +1005,7 @@ Green_Splash.splash =
         shift = {0.484375, -0.171875}
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-2.png",
+        filename = ENTITYPATH .. "splash-2.png",
         line_length = 5,
         width = 238,
         height = 157,
@@ -1008,7 +1014,7 @@ Green_Splash.splash =
         shift = {0.8125, -0.15625}
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-3.png",
+        filename = ENTITYPATH .. "splash-3.png",
         line_length = 5,
         width = 240,
         height = 162,
@@ -1017,7 +1023,7 @@ Green_Splash.splash =
         shift = {0.71875, -0.09375}
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/splash-4.png",
+        filename = ENTITYPATH .. "splash-4.png",
         line_length = 5,
         width = 241,
         height = 146,
@@ -1047,7 +1053,7 @@ Spark_Splash.time_before_removed = 60 * 0.5
 Spark_Splash.splash =
     {
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/ne_spark_1.png",
+		filename = ENTITYPATH .. "ne_spark_1.png",
         line_length = 4,
         width = 175,
         height = 190,
@@ -1055,7 +1061,7 @@ Spark_Splash.splash =
 		scale = 0.5,
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/ne_spark_2.png",
+        filename = ENTITYPATH .. "ne_spark_2.png",
         line_length = 4,
         width = 190,
         height = 175,
@@ -1063,7 +1069,7 @@ Spark_Splash.splash =
 		scale = 0.5,
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/ne_spark_3.png",
+        filename = ENTITYPATH .. "ne_spark_3.png",
         line_length = 4,
         width = 175,
         height = 190,
@@ -1071,7 +1077,7 @@ Spark_Splash.splash =
 		scale = 0.5,
       },
       {
-        filename = "__Natural_Evolution_Enemies__/graphics/entity/ne_spark_4.png",
+        filename = ENTITYPATH .. "ne_spark_4.png",
         line_length = 4,
         width = 190,
         height = 175,

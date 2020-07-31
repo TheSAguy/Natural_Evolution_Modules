@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.18.04
+Date: 6. 11. 2020
+  Features:
+    - Updated some icon code
+    - Remove rocks around spawned units. (By removing sImple Entities) This should help unit's getting stuck.
+  Bugfix:
+    - Fixed Big Worm not Launching units
+---------------------------------------------------------------------------------------------------
 Version: 0.18.03
 Date: 5. 28. 2020
   Features:

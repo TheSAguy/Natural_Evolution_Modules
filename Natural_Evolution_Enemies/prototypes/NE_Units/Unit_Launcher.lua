@@ -32,7 +32,18 @@ subEnemyNameTable["ne_green_splash_1"][10] =			"ne-biter-fastL-"..math.floor( 6 
 
 --- Worm Unit-Launcher
 -- Uses a random name in control.lua
-
+subEnemyNameTable["ne_green_splash_2"] = {}
+subEnemyNameTable["ne_green_splash_2"][0] = 			true
+subEnemyNameTable["ne_green_splash_2"][1] = 			true
+subEnemyNameTable["ne_green_splash_2"][2] = 			true
+subEnemyNameTable["ne_green_splash_2"][3] = 			true
+subEnemyNameTable["ne_green_splash_2"][4] = 			true
+subEnemyNameTable["ne_green_splash_2"][5] = 			true
+subEnemyNameTable["ne_green_splash_2"][6] = 			true
+subEnemyNameTable["ne_green_splash_2"][7] = 			true
+subEnemyNameTable["ne_green_splash_2"][8] = 			true
+subEnemyNameTable["ne_green_splash_2"][9] = 			true
+subEnemyNameTable["ne_green_splash_2"][10] =			true
 
 --- Unit Spawner
 subEnemyNameTable["Spawner-Breeder"] = {}
@@ -77,13 +88,13 @@ subEnemyNumberTable["ne_green_splash_2"][0] = 			math.floor(1)
 subEnemyNumberTable["ne_green_splash_2"][1] = 			math.floor(1 + NE_Enemies.Settings.NE_Difficulty / 2)   
 subEnemyNumberTable["ne_green_splash_2"][2] = 			math.floor(2 + NE_Enemies.Settings.NE_Difficulty / 2)    
 subEnemyNumberTable["ne_green_splash_2"][3] = 			math.floor(2 + NE_Enemies.Settings.NE_Difficulty / 2) 
-subEnemyNumberTable["ne_green_splash_2"][4] = 			math.floor(2 + NE_Enemies.Settings.NE_Difficulty / 2)  
+subEnemyNumberTable["ne_green_splash_2"][4] = 			math.floor(3 + NE_Enemies.Settings.NE_Difficulty / 2)  
 subEnemyNumberTable["ne_green_splash_2"][5] = 			math.floor(3 + NE_Enemies.Settings.NE_Difficulty / 2)  
 subEnemyNumberTable["ne_green_splash_2"][6] = 			math.floor(3 + NE_Enemies.Settings.NE_Difficulty / 2)
-subEnemyNumberTable["ne_green_splash_2"][7] = 			math.floor(3 + NE_Enemies.Settings.NE_Difficulty / 2)
+subEnemyNumberTable["ne_green_splash_2"][7] = 			math.floor(4 + NE_Enemies.Settings.NE_Difficulty / 2)
 subEnemyNumberTable["ne_green_splash_2"][8] = 			math.floor(4 + NE_Enemies.Settings.NE_Difficulty / 2)    
-subEnemyNumberTable["ne_green_splash_2"][9] = 			math.floor(4 + NE_Enemies.Settings.NE_Difficulty / 2)   
-subEnemyNumberTable["ne_green_splash_2"][10] =			math.floor(5 + NE_Enemies.Settings.NE_Difficulty / 2)    
+subEnemyNumberTable["ne_green_splash_2"][9] = 			math.floor(5 + NE_Enemies.Settings.NE_Difficulty / 2)   
+subEnemyNumberTable["ne_green_splash_2"][10] =			math.floor(6 + NE_Enemies.Settings.NE_Difficulty / 2)    
 
 --- Unit Spawner
 subEnemyNumberTable["Spawner-Breeder"] = {}
