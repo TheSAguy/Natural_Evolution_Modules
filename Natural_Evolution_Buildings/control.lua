@@ -1,11 +1,10 @@
--- NE BUILDINGS Ver = 0.17.26
+-- NE BUILDINGS Ver = 0.18.04
+
 local QC_Mod = false
-
-
+local NEBuildings = require('common')('Natural_Evolution_Buildings')
+local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
 
 require ("util")
---local Event = require('__stdlib__/stdlib/event/event').set_protected_mode(true)
-local Event = require('__stdlib__/stdlib/event/event')
 require ("control_bio_cannon")
 require ("control_artifact_collector")
 require ("control_acs")
@@ -14,7 +13,7 @@ require ("control_evolution")
 require ("libs/EvoGUI")
 
 --- Used for Testing -----
-require ("Test_Spawn")
+--require ("Test_Spawn")
 
 
 
@@ -46,6 +45,10 @@ local function On_Init()
 	global.world.itemCollectorLookup = {}
 	global.world.itemCollectorEvents = {}
 	
+	--- For Bio Cannon
+	if global.Bio_Cannon_Table ~= nil then
+		Event.register(defines.events.on_tick, function(event) end)
+	end
 
 ---- Evolution_MOD
 	if global.Evolution_MOD == nil then
@@ -127,16 +130,26 @@ local function On_Init()
 	global.NE_Buildings.Settings.Artifact_Collector_Radius = settings.startup["NE_Artifact_Collector_Radius"].value
 
 	
-	
+	--[[
 	if QC_Mod then
 		---*************
 		local surface = game.surfaces['nauvis']
 		Test_Spawn(surface)
 		---*************
 	end
-	
+	]]
 end
 		 
+
+--------------------------------------------------------------------
+local function On_Load()
+
+	--- For Bio Cannon
+  if global.Bio_Cannon_Table ~= nil then
+    Event.register(defines.events.on_tick, function(event) end)
+  end
+end
+
 
 ---------------------------------------------				 
 local function On_Config_Change()
@@ -147,6 +160,11 @@ local function On_Config_Change()
 		EvoGUI.setup()		
 	end
 	
+	--- For Bio Cannon
+	if global.Bio_Cannon_Table ~= nil then
+		Event.register(defines.events.on_tick, function(event) end)
+    end
+  
  	--- Artifact Collector
 	if global.world == nil then
 		global.world = {}
@@ -325,9 +343,23 @@ local force = entity.force
 	
 	--writeDebug("Bio Cannon has been built")				
 
-		New_Bio_Cannon  = surface.create_entity({name = "bi-bio-cannon", position = position, direction = event.created_entity.direction, force = force})
-		New_Bio_CannonR = surface.create_entity({name = "Bio_Cannon_r", position = position, direction = event.created_entity.direction, force = force})
 
+		-- Hidden Radar
+		New_Bio_CannonR = surface.create_entity({
+		  name = "Bio-Cannon-r",
+		  position = position,
+		  direction = event.created_entity.direction,
+		  force = force
+		})
+
+		-- New Cannon, the first was just used for Radius overlay
+		-- (If normally built -- if built from blueprint we just use the same code anyway.)
+		New_Bio_Cannon = surface.create_entity({
+		  name = "bi-bio-cannon",
+		  position = position,
+		  direction = event.created_entity.direction,
+		  force = force
+		})
 		New_Bio_Cannon.health = event.created_entity.health
 		
 	
@@ -340,7 +372,10 @@ local force = entity.force
 			Event.register(defines.events.on_tick, function(event) end)
 		end
 
-		table.insert(global.Bio_Cannon_Table, {New_Bio_Cannon,New_Bio_CannonR,0})
+		-- Group Multiple Entities Together
+		table.insert(global.Bio_Cannon_Table, {New_Bio_Cannon, New_Bio_CannonR, 0})
+
+		-- Remove the "Overlay" Entity
 		event.created_entity.destroy()
 		
 	end
@@ -744,6 +779,7 @@ end
 
 Event.register(Event.core_events.configuration_changed, On_Config_Change)
 Event.register(Event.core_events.init, On_Init)
+Event.register(Event.core_events.load, On_Load)
 
 Event.build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
 Event.pre_remove_events = {defines.events.on_pre_player_mined_item, defines.events.on_robot_pre_mined}
